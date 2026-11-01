@@ -1,6 +1,6 @@
 # The critical branch without tilting theory
 
-This note gives the proof of `RayCat.pointBrickNode'` (`BongartzTheorem/CriticalPieces/PieceCritical.lean`). It produces the point and brick of Bongartz's Lemma 4 ([arXiv:1611.02017v5](https://arxiv.org/abs/1611.02017v5), §4.2) for a critical convex piece. The argument uses no tilting theory, tame hereditary theory or tubes, and it never identifies the quotient `B` below as tame concealed. The Lean proof is the proof of record, and the mathematics has not been reviewed independently.
+This note gives the proof of `RayCat.pointBrickNode'` (`BongartzTheorem/CriticalPieces/PieceCritical.lean`). It produces the point and brick of Bongartz's Lemma 4 ([arXiv:1611.02017v5](https://arxiv.org/abs/1611.02017v5), §4.2) for a critical convex piece. The argument uses no tilting theory, tame hereditary theory or tubes, and it never identifies the quotient `B` below as tame concealed. The Lean proof is the proof of record. An independent agent audit checked selected steps; no human has reviewed the mathematics.
 
 ## The idea
 

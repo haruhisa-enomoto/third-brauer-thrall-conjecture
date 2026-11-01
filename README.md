@@ -46,9 +46,11 @@ tilting theory, and long lines avoid the classification of large sincere algebra
 Theorem A needs only a weak form of Bongartz's large-line theorem, and the library
 does not prove the full theorem.
 
-No human expert or independent agent has reviewed the Lean statements or these two
-proofs. Lean checks the proofs; whether [Challenge.lean](Challenge.lean) says what
-the paper says is a human judgement.
+An independent agent audit of an earlier revision checked the definitions in
+`Statement.lean`, the final proof assembly and selected steps of the two proofs. The
+theorem statements have not changed since. It was not a line-by-line review, and no human
+expert has reviewed the Lean statements or these proofs. Lean checks the proofs; whether
+[Challenge.lean](Challenge.lean) says what the paper says is a human judgement.
 
 ## Layout
 

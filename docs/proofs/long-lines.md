@@ -1,6 +1,6 @@
 # Long lines without the classification of sincere algebras
 
-This note outlines the proof of `LargeIndecomposable.longLineNode`. Bongartz obtains long lines from his theorem on large simply connected sincere algebras, whose proof in the literature goes through the classification of those algebras. Theorem A needs only the weaker statement below. The Lean proof is the proof of record, and the mathematics has not been reviewed independently.
+This note outlines the proof of `LargeIndecomposable.longLineNode`. Bongartz obtains long lines from his theorem on large simply connected sincere algebras, whose proof in the literature goes through the classification of those algebras. Theorem A needs only the weaker statement below. The Lean proof is the proof of record. An independent agent audit checked selected steps; no human has reviewed the mathematics.
 
 ## Statement
 

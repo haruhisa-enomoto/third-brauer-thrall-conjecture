@@ -89,7 +89,9 @@ automation:
 
 fidelity:
   divergences: >-
-    Theorem A, Corollary 1.1 and Corollary 5.3 are stated as in the paper, with the
+    Theorem A, Corollary 1.1 and Corollary 5.3 are stated as in the paper; Theorem 5.1
+    of the paper, which also names the extension, is covered through the extension
+    criterion. The statements have the
     field, the algebra and the modules in one universe. Dimensions are cardinals.
     Intermediate results may be proved in an equivalent or more general form and
     by a different route; docs/PAPER-CORRESPONDENCE.md lists these. Two steps of
@@ -98,17 +100,20 @@ fidelity:
     weakening of the hypotheses or conclusions of the three results is known.
 
 review:
-  status: "unreviewed"
-  reviewers: []
+  status: "agent-reviewed"
+  reviewers: ["OpenAI Codex agent"]
   notes: >-
-    The formalizing agent compared the statements with the paper. No independent
-    agent or human expert has checked Challenge.lean or the two proofs in
-    docs/proofs.
+    A separate agent audited an earlier revision: the complete statement
+    definitions against the paper, the final proof assembly, selected load-bearing
+    arguments of the two proofs in docs/proofs, the build, the axiom reports and the
+    comparator. The theorem statements have not changed since. It was not a
+    line-by-line review, and no human expert has checked the Lean statements or
+    these proofs.
 
 alignment:
   namespace: "LargeIndecomposable"
   statements:
-    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Theorem A (Theorem 5.1)"
+    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Theorem A"
       lean: "LargeIndecomposable.Challenge.theoremA"
       module: "Challenge"
       status: "proved"

@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PAGES = {"index": "Overview", "statement": "Statement", "proof": "Proof guide",
          "library": "Library", "api": "API", "verification": "Verification"}
 DECLARATIONS = [
-    ("theoremA", "MainTheorems", "Theorem A (Theorem 5.1): a dimension-preserving representation embedding of Kronecker modules"),
+    ("theoremA", "MainTheorems", "Theorem A: a dimension-preserving representation embedding of Kronecker modules"),
     ("corollaryDimension", "MainTheorems", "Corollary 1.1: indecomposable modules of every infinite dimension"),
     ("corollaryRadical", "MainTheorems", "Corollary 5.3: control of the endomorphism ring"),
     ("longLineNode", "MainTheorems", "Long lines in the universal cover, without the classification of sincere algebras"),

@@ -17,9 +17,12 @@ embeddings, representation-finite algebras and dimensions as cardinals.
 The [record of November 1, 2026](../verification/2026-11-01/README.md) gives results and
 hashes. These are local runs, not registry acceptance.
 
-No human expert or independent agent has reviewed the Lean statements or the proofs in
-[`proofs/`](proofs/). Lean checks the proofs; whether `Challenge.lean` says what the paper
-says is a human judgement.
+An independent agent audit of an earlier revision checked the definitions in
+`Statement.lean`, the final proof assembly and selected steps of the proofs in
+[`proofs/`](proofs/). The theorem statements have not changed since. It was not a
+line-by-line review, and no human expert has reviewed the Lean statements or these proofs.
+Lean checks the proofs; whether `Challenge.lean` says what the paper says is a human
+judgement.
 
 ## Reproduce the checks
 

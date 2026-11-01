@@ -8,7 +8,7 @@ python3 scripts/scan_axioms.py
 python3 scripts/generate_challenge.py --check
 lake build Challenge Solution</code></pre>
 <p>A fresh build takes about 50 minutes on 20 hardware threads. Build <code>Challenge Solution</code> before independent comparison with <code>scripts/verify-comparator.sh</code>.</p>
-<h2>What has been reviewed</h2><p>No human expert or independent agent has checked the Lean statements or the two proofs in <code>docs/proofs</code>. Lean checks the proofs; the match between <code>Challenge.lean</code> and the paper is a human judgement.</p>
+<h2>What has been reviewed</h2><p>An independent agent audit of an earlier revision checked the definitions in <code>Statement.lean</code>, the final proof assembly and selected steps of the two proofs in <code>docs/proofs</code>. The theorem statements have not changed since. It was not a line-by-line review, and no human expert has reviewed the Lean statements or these proofs. Lean checks the proofs; the match between <code>Challenge.lean</code> and the paper is a human judgement.</p>
 <h2>Source and attribution</h2><p>The development is maintained by Haruhisa Enomoto. The provenance record describes AI contributions, source revisions and licences.</p>
 <p><a href="{{source_url}}/PROVENANCE.md">Provenance</a> · <a href="{{source_url}}/VENDORED.md">Reused source</a> · <a href="{{source_url}}/docs/PAPER-CORRESPONDENCE.md">Paper correspondence</a></p>
 <p><a href="{{source_url}}/docs/VERIFICATION.md">Detailed verification records and reproduction commands</a></p>
