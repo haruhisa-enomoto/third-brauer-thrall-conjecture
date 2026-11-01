@@ -1,0 +1,259 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.AuslanderReiten.Translate.Tau</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.AuslanderReiten.Translate.Tau";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">AuslanderReiten</span>.<span class="name">Translate</span>.<span class="name">Tau</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html">LargeIndecomposable.AuslanderReiten.AlmostSplit.RightAlmostSplit</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.AuslanderReiten.Translate.Tau" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.tauK"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">tauK</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.theta_add"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">theta_add</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.theta_zero"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">theta_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.homTauFun"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauFun</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.homTauInv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauInv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.homTauEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.homTauFun_add"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauFun_add</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.homTauFun_smul"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauFun_smul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.homTauLEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauLEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.finrank_hom_tauK"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">finrank_hom_tauK</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="The-Auslander-Reiten-translate-and-the-Auslander-Reiten-formula" class="markdown-heading">The Auslander–Reiten translate and the Auslander–Reiten formula <a class="hover-link" href="#The-Auslander-Reiten-translate-and-the-Auslander-Reiten-formula">#</a></h1><p>For a free presentation <code>Aⁿ¹ → Aⁿ⁰ → Z → 0</code> with matrix <code>F</code>, the translate is <code>τ_P Z = ker ν F</code>,
+where <code>ν F : DAⁿ¹ → DAⁿ⁰</code> is the Nakayama transform. For every module <code>W</code>,
+<code>Hom_A(W, τ_P Z) ≅ D(Wⁿ¹ / F Wⁿ⁰)</code> (<code><a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauEquiv">homTauEquiv</a></code>), via the Nakayama isomorphism <code>θ</code>. When the
+presentation is a projective resolution (<code>Aⁿ¹ → Aⁿ⁰</code> injective), <code>Wⁿ¹ / F Wⁿ⁰</code> is <code>Ext¹(Z, W)</code>, so
+this is the Auslander–Reiten formula <code>D Ext¹(Z, W) ≅ Hom(W, τZ)</code> for <code>pd Z ≤ 1</code>.</p></div><div class="decl" id="LargeIndecomposable.AR.tauK"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L27-L29">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">tauK</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n₀ </span><span class="fn">n₁</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₀</span></span> → <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Submodule</span> <span class="fn">A</span> <span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/DualA.html#LargeIndecomposable.AR.DA">DA</a> <span class="fn">k</span> <span class="fn">A</span></span>)</span></span></div></div><p>The translate <code>τ_P Z = ker ν F</code> of a presentation matrix.</p><details id="instances-for-list-LargeIndecomposable.AR.tauK" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.theta_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L33-L35">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.theta_add"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">theta_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ </span><span class="fn">ψ</span> : <span class="fn"><span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span> → <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/DualA.html#LargeIndecomposable.AR.DA">DA</a> <span class="fn">k</span> <span class="fn">A</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.theta">theta</a> <span class="fn">(<span class="fn">φ</span> <span class="fn">+</span> <span class="fn">ψ</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.theta">theta</a> <span class="fn">φ</span></span> <span class="fn">+</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.theta">theta</a> <span class="fn">ψ</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.theta_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L37-L39">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.theta_zero"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">theta_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.theta">theta</a> <span class="fn">0</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.homTauFun"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L41-L54">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauFun"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauFun</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n₀ </span><span class="fn">n₁</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₀</span></span> → <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK">tauK</a> <span class="fn">F</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">↥<span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html#LargeIndecomposable.AR.relMapLin">relMapLin</a> <span class="fn">F</span>)</span>.<span class="fn">dualMap</span></span>.<span class="fn">ker</span></span></span></div></div><p>The functionals on <code>Wⁿ¹</code> killed by the relations, from maps into <code>τ_P Z</code>.</p><details id="instances-for-list-LargeIndecomposable.AR.homTauFun" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.homTauInv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L56-L67">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauInv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauInv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n₀ </span><span class="fn">n₁</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₀</span></span> → <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn">↥<span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html#LargeIndecomposable.AR.relMapLin">relMapLin</a> <span class="fn">F</span>)</span>.<span class="fn">dualMap</span></span>.<span class="fn">ker</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK">tauK</a> <span class="fn">F</span>)</span></span></span></div></div><p>Maps into <code>τ_P Z</code> from functionals on <code>Wⁿ¹</code> killed by the relations.</p><details id="instances-for-list-LargeIndecomposable.AR.homTauInv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.homTauEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L69-L83">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n₀ </span><span class="fn">n₁</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₀</span></span> → <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK">tauK</a> <span class="fn">F</span>)</span></span>)</span> <span class="fn">≃</span> <span class="fn">↥<span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html#LargeIndecomposable.AR.relMapLin">relMapLin</a> <span class="fn">F</span>)</span>.<span class="fn">dualMap</span></span>.<span class="fn">ker</span></span></span></span></div></div><p><strong>The Auslander–Reiten formula</strong> (presentation form): <code>Hom_A(W, τ_P Z)</code> is in bijection with
+the functionals on <code>Wⁿ¹</code> killed by the relations, i.e. with <code>D(Wⁿ¹ / F Wⁿ⁰)</code>.</p><details id="instances-for-list-LargeIndecomposable.AR.homTauEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.homTauFun_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L85-L89">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauFun_add"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauFun_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n₀ </span><span class="fn">n₁</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₀</span></span> → <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ </span><span class="fn">ψ</span> : <span class="fn"><span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK">tauK</a> <span class="fn">F</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauFun">homTauFun</a> <span class="fn">F</span> <span class="fn">(<span class="fn">φ</span> <span class="fn">+</span> <span class="fn">ψ</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauFun">homTauFun</a> <span class="fn">F</span> <span class="fn">φ</span></span> <span class="fn">+</span> <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauFun">homTauFun</a> <span class="fn">F</span> <span class="fn">ψ</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.homTauFun_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L91-L100">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauFun_smul"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauFun_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n₀ </span><span class="fn">n₁</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₀</span></span> → <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">k</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK">tauK</a> <span class="fn">F</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauFun">homTauFun</a> <span class="fn">F</span> <span class="fn">(<span class="fn">c</span> <span class="fn">•</span> <span class="fn">φ</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">c</span> <span class="fn">•</span> <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauFun">homTauFun</a> <span class="fn">F</span> <span class="fn">φ</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.homTauLEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L102-L107">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.homTauLEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">homTauLEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n₀ </span><span class="fn">n₁</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₀</span></span> → <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK">tauK</a> <span class="fn">F</span>)</span></span>)</span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↥<span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html#LargeIndecomposable.AR.relMapLin">relMapLin</a> <span class="fn">F</span>)</span>.<span class="fn">dualMap</span></span>.<span class="fn">ker</span></span></span></span></div></div><p><strong>The Auslander–Reiten formula</strong>, <code>k</code>-linearly.</p><details id="instances-for-list-LargeIndecomposable.AR.homTauLEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.finrank_hom_tauK"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/AuslanderReiten/Translate/Tau.lean#L109-L114">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.finrank_hom_tauK"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">finrank_hom_tauK</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n₀ </span><span class="fn">n₁</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n₀</span></span> → <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">(<span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK">tauK</a> <span class="fn">F</span>)</span></span>)</span></span> <span class="fn">+</span> <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html#LargeIndecomposable.AR.relMapLin">relMapLin</a> <span class="fn">F</span>)</span>.<span class="fn">range</span></span></span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn">n₁</span></span> → <span class="fn">W</span>)</span></span></span></div></div><p><strong>Dimension form</strong>: <code>dim Hom(W, τ_P Z) = dim Wⁿ¹ - dim F Wⁿ⁰</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

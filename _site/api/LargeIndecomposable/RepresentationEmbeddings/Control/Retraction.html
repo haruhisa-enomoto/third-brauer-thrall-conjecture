@@ -1,0 +1,585 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.RepresentationEmbeddings.Control.Retraction</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.RepresentationEmbeddings.Control.Retraction";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">RepresentationEmbeddings</span>.<span class="name">Control</span>.<span class="name">Retraction</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Linear/LinearFunctor.lean">Mathlib.CategoryTheory.Linear.LinearFunctor</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Category/ModuleCat/Algebra.lean">Mathlib.Algebra.Category.ModuleCat.Algebra</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.RepresentationEmbeddings.Control.Retraction" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.ρ_id"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">ρ_id</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.ρ_map_comp_map"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">ρ_map_comp_map</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.map_injective"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">map_injective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.KerChain"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">KerChain</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.NilpotentBound"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">NilpotentBound</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.preimageₗ"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">preimageₗ</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.precomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">precomp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.precomp_ρ"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">precomp_ρ</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.kerChain_precomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">kerChain_precomp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.NilpotentBound.precomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">NilpotentBound</span>.<span class="name">precomp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.preimageModₗ"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">preimageModₗ</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.postcomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">postcomp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.kerChain_postcomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">kerChain_postcomp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Retractions.NilpotentBound.postcomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">NilpotentBound</span>.<span class="name">postcomp</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Retractions" class="markdown-heading">Retractions <a class="hover-link" href="#Retractions">#</a></h1><p>Definition 2.4 of the manuscript: for a <code>k</code>-linear functor <code>Ψ : 𝒞 ⥤ Mod A</code>,
+retractions for <code>Ψ</code> are <code>k</code>-linear maps
+<code>ρ_{X,Y} : Hom(Ψ X, Ψ Y) → Hom(X, Y)</code> compatible with composition and left
+inverse to <code>Ψ</code>. The domain <code>𝒞</code> is any <code>k</code>-linear category; in the applications
+it is <code>D</code>, <code>D_fin</code>, or a full subcategory such as <code>C</code> or <code>C_fin</code>.</p><p><code><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">Retractions.KerChain</a> R n f</code> says that <code>f</code> is a composite of <code>n</code> composable
+maps lying in kernels of the retractions, and <code><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.NilpotentBound">Retractions.NilpotentBound</a> R n</code>
+says that every such composite is zero.</p></div><div class="decl" id="LargeIndecomposable.Retractions"><div class="structure"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L35-L41">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a> (max (max u v) w)</div></div><p>Definition 2.4: retractions for <code>Ψ</code> on <code>𝒞</code>.</p><ul class="structure_fields" id="LargeIndecomposable.Retractions.mk"><li id="LargeIndecomposable.Retractions.ρ" class="structure_field"><div class="structure_field_info">ρ<span class="decl_args">
+<span class="fn">(<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">𝒞</span>)</span></span>
+ : <span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">X</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span>)</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span></span></div><div class="structure_field_doc"><p>The retraction <code>ρ_{X,Y} : Hom(Ψ X, Ψ Y) → Hom(X, Y)</code>.</p></div></li><li id="LargeIndecomposable.Retractions.map_comp" class="structure_field"><div class="structure_field_info">map_comp<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z</span> : <span class="fn">𝒞</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">X</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Z</span></span></span>)</span></span>
+ : <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">X</span> <span class="fn">Z</span>)</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">g</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">X</span> <span class="fn">Y</span>)</span> <span class="fn">f</span>)</span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">Y</span> <span class="fn">Z</span>)</span> <span class="fn">g</span>)</span></span></span></div></li><li id="LargeIndecomposable.Retractions.ρ_map" class="structure_field"><div class="structure_field_info">ρ_map<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">𝒞</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">u</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>)</span></span>
+ : <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">X</span> <span class="fn">Y</span>)</span> <span class="fn">(<span class="fn"><span class="fn">Ψ</span>.<span class="fn">map</span></span> <span class="fn">u</span>)</span></span> <span class="fn">=</span> <span class="fn">u</span></span></div></li></ul><details id="instances-for-list-LargeIndecomposable.Retractions" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Retractions.ρ_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L47-L48">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ_id"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">ρ_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">𝒞</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">X</span> <span class="fn">X</span>)</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">(<span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">X</span>)</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Retractions.ρ_map_comp_map"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L50-L53">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ_map_comp_map"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">ρ_map_comp_map</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">X' </span><span class="fn">Y </span><span class="fn">Y'</span> : <span class="fn">𝒞</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">u</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">X'</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Y'</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn"><span class="fn">Y'</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">X</span> <span class="fn">Y</span>)</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn"><span class="fn">Ψ</span>.<span class="fn">map</span></span> <span class="fn">u</span>)</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">(<span class="fn"><span class="fn">Ψ</span>.<span class="fn">map</span></span> <span class="fn">v</span>)</span>)</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">u</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">X'</span> <span class="fn">Y'</span>)</span> <span class="fn">f</span>)</span> <span class="fn">v</span>)</span></span></span></div></div><p>Retractions are natural in both variables.</p></div></div><div class="decl" id="LargeIndecomposable.Retractions.map_injective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L56-L59">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.map_injective"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">map_injective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">𝒞</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Injective</span> <span class="fn"><span class="fn">Ψ</span>.<span class="fn">map</span></span></span></div></div><p>A functor with retractions is faithful.</p></div></div><div class="decl" id="LargeIndecomposable.Retractions.KerChain"><div class="inductive"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L61-L66">source</a></div><div class="decl_header"><span class="decl_kind">inductive</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">KerChain</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">ℕ</span> → <span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">𝒞</span>} → <span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">X</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span>)</span> → <a href="../../.././foundational_types.html">Prop</a></span></span></span></div></div><p><code><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">KerChain</a> R n f</code>: <code>f</code> is a composite of <code>n</code> composable maps lying in
+kernels of the retractions (the empty composite is an identity).</p><ul class="constructors"><li class="constructor" id="LargeIndecomposable.Retractions.KerChain.nil">nil<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">𝒞</span>)</span></span>
+ : <span class="fn"><span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">KerChain</a></span> <span class="fn">0</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">(<span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">X</span>)</span>)</span></span></li><li class="constructor" id="LargeIndecomposable.Retractions.KerChain.cons">cons<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z</span> : <span class="fn">𝒞</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">X</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">g</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">Ψ</span>.<span class="fn">obj</span></span> <span class="fn">Z</span></span></span>}</span></span>
+</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">KerChain</a></span> <span class="fn">n</span> <span class="fn">f</span></span> → <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">Y</span> <span class="fn">Z</span>)</span> <span class="fn">g</span></span> <span class="fn">=</span> <span class="fn">0</span></span> → <span class="fn"><span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">KerChain</a></span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">g</span>)</span></span></span></span></li></ul><details id="instances-for-list-LargeIndecomposable.Retractions.KerChain" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Retractions.NilpotentBound"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L68-L71">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.NilpotentBound"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">NilpotentBound</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>Every composite of <code>n</code> composable maps lying in kernels of the
+retractions is zero.</p><details id="instances-for-list-LargeIndecomposable.Retractions.NilpotentBound" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Retractions.preimageₗ"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L77-L83">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.preimageₗ"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">preimageₗ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞'</span> : <a href="../../.././foundational_types.html">Type</a> w'}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v', w'}</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞'</span> <span class="fn">𝒞</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">𝒞'</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">G</span>.<span class="fn">obj</span></span> <span class="fn">X</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">G</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span>)</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span></span></div></div><p>The inverse of <code>G.map</code> for a fully faithful <code>k</code>-linear functor, as a
+<code>k</code>-linear map.</p><details id="instances-for-list-LargeIndecomposable.Retractions.preimageₗ" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Retractions.precomp"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L85-L90">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.precomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">precomp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞'</span> : <a href="../../.././foundational_types.html">Type</a> w'}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v', w'}</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞'</span> <span class="fn">𝒞</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">comp</span></span> <span class="fn">Ψ</span>)</span></span></div></div><p>Retractions restrict along a fully faithful <code>k</code>-linear functor
+<code>G : 𝒞' ⥤ 𝒞</code> (for example the inclusion of a full subcategory).</p><details id="instances-for-list-LargeIndecomposable.Retractions.precomp" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Retractions.precomp_ρ"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L92-L96">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.precomp_ρ"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">precomp_ρ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞'</span> : <a href="../../.././foundational_types.html">Type</a> w'}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v', w'}</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞'</span> <span class="fn">𝒞</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">𝒞'</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">comp</span></span> <span class="fn">Ψ</span>)</span>.<span class="fn">obj</span></span> <span class="fn">X</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">comp</span></span> <span class="fn">Ψ</span>)</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">G</span>.<span class="fn">map</span></span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.precomp">precomp</a></span> <span class="fn">hG</span>)</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">X</span> <span class="fn">Y</span>)</span> <span class="fn">f</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.ρ">ρ</a></span> <span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">obj</span></span> <span class="fn">X</span>)</span> <span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">obj</span></span> <span class="fn">Y</span>)</span>)</span> <span class="fn">f</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Retractions.kerChain_precomp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L98-L105">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.kerChain_precomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">kerChain_precomp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞'</span> : <a href="../../.././foundational_types.html">Type</a> w'}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v', w'}</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞'</span> <span class="fn">𝒞</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">𝒞'</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">comp</span></span> <span class="fn">Ψ</span>)</span>.<span class="fn">obj</span></span> <span class="fn">X</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">comp</span></span> <span class="fn">Ψ</span>)</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.precomp">precomp</a></span> <span class="fn">hG</span>)</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">KerChain</a></span> <span class="fn">n</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">KerChain</a></span> <span class="fn">n</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Retractions.NilpotentBound.precomp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L107-L109">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.NilpotentBound.precomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">NilpotentBound</span>.<span class="name">precomp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞'</span> : <a href="../../.././foundational_types.html">Type</a> w'}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v', w'}</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞'</span> <span class="fn">𝒞</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.NilpotentBound">NilpotentBound</a></span> <span class="fn">n</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.precomp">precomp</a></span> <span class="fn">hG</span>)</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.NilpotentBound">NilpotentBound</a></span> <span class="fn">n</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Retractions.preimageModₗ"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L113-L119">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.preimageModₗ"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">preimageModₗ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">B</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M </span><span class="fn">N</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">G</span>.<span class="fn">obj</span></span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">G</span>.<span class="fn">obj</span></span> <span class="fn">N</span></span>)</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">M</span> <span class="fn">⟶</span> <span class="fn">N</span></span></span></div></div><p>The inverse of <code>G.map</code> for a fully faithful <code>k</code>-linear functor between
+module categories, as a <code>k</code>-linear map.</p><details id="instances-for-list-LargeIndecomposable.Retractions.preimageModₗ" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Retractions.postcomp"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L121-L131">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.postcomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">postcomp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">B</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">Ψ</span>.<span class="fn">comp</span></span> <span class="fn">G</span>)</span></span></div></div><p>Retractions transport along a fully faithful <code>k</code>-linear functor of module
+categories <code>G</code> (for example inflation along a surjection <code>B → A</code>).</p><details id="instances-for-list-LargeIndecomposable.Retractions.postcomp" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Retractions.kerChain_postcomp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L133-L140">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.kerChain_postcomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">kerChain_postcomp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">B</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">𝒞</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">Ψ</span>.<span class="fn">comp</span></span> <span class="fn">G</span>)</span>.<span class="fn">obj</span></span> <span class="fn">X</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">Ψ</span>.<span class="fn">comp</span></span> <span class="fn">G</span>)</span>.<span class="fn">obj</span></span> <span class="fn">Y</span></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.postcomp">postcomp</a></span> <span class="fn">hG</span>)</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">KerChain</a></span> <span class="fn">n</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.KerChain">KerChain</a></span> <span class="fn">n</span> <span class="fn">(<span class="fn"><span class="fn">hG</span>.<span class="fn">preimage</span></span> <span class="fn">f</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Retractions.NilpotentBound.postcomp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.lean#L142-L146">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.NilpotentBound.postcomp"><span class="name">LargeIndecomposable</span>.<span class="name">Retractions</span>.<span class="name">NilpotentBound</span>.<span class="name">postcomp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝒞</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, w}</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">𝒞</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ψ</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">𝒞</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions">Retractions</a> <span class="fn">k</span> <span class="fn">Ψ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">B</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span>.<span class="fn">FullyFaithful</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">G</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">G</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.NilpotentBound">NilpotentBound</a></span> <span class="fn">n</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">R</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.postcomp">postcomp</a></span> <span class="fn">hG</span>)</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/Control/Retraction.html#LargeIndecomposable.Retractions.NilpotentBound">NilpotentBound</a></span> <span class="fn">n</span></span></div></div></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

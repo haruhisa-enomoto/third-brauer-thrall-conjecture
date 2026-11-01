@@ -1,0 +1,76 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.BilinearForms.Prod</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.BilinearForms.Prod";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">BilinearForms</span>.<span class="name">Prod</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Prod.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/BilinearForm/Hom.lean">Mathlib.LinearAlgebra.BilinearForm.Hom</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/BilinearForm/Properties.lean">Mathlib.LinearAlgebra.BilinearForm.Properties</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.BilinearForms.Prod" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.prod"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">prod</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.prod_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">prod_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.nondegenerate_prod_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_prod_iff</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.LinearAlgebra.BilinearForm.Prod</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Products-of-bilinear-forms" class="markdown-heading">Products of bilinear forms <a class="hover-link" href="#Products-of-bilinear-forms">#</a></h1><p>The product of two bilinear forms is the block-diagonal form on the product module: each factor
+carries its own form and the two factors are orthogonal to each other. It is the bilinear
+counterpart of <code>QuadraticMap.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod">prod</a></code>, and it is the form an orthogonal direct sum of bilinear
+modules carries.</p><p>Nondegeneracy is componentwise: a vector is in the radical of the product exactly when both of
+its components are in the radicals of the factors.</p><h2 id="Main-declarations" class="markdown-heading">Main declarations <a class="hover-link" href="#Main-declarations">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod">LinearMap.BilinForm.prod</a></code>: the block-diagonal form on a product module.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.nondegenerate_prod_iff">LinearMap.BilinForm.nondegenerate_prod_iff</a></code>: the product form is nondegenerate exactly when
+both factors are.</li></ul></div><div class="decl" id="LinearMap.BilinForm.prod"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Prod.lean#L38-L43">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">prod</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">(<span class="fn">M</span> <span class="fn">×</span> <span class="fn">N</span>)</span></span></div></div><p>The block-diagonal bilinear form on a product module: the two factors keep their own forms
+and pair to zero with each other.</p><details id="instances-for-list-LinearMap.BilinForm.prod" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.prod_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Prod.lean#L45-L48">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">prod_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">M</span> <span class="fn">×</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod">prod</a></span> <span class="fn">C</span>)</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn"><span class="fn">x</span>.1</span>)</span> <span class="fn"><span class="fn">y</span>.1</span></span> <span class="fn">+</span> <span class="fn"><span class="fn">(<span class="fn">C</span> <span class="fn"><span class="fn">x</span>.2</span>)</span> <span class="fn"><span class="fn">y</span>.2</span></span></span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.nondegenerate_prod_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Prod.lean#L50-L65">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.nondegenerate_prod_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_prod_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod">prod</a></span> <span class="fn">C</span>)</span>.<span class="fn">Nondegenerate</span></span> <span class="fn">↔</span> <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span> <span class="fn">∧</span> <span class="fn"><span class="fn">C</span>.<span class="fn">Nondegenerate</span></span></span></span></div></div><p>A product of bilinear forms is nondegenerate exactly when both factors are.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

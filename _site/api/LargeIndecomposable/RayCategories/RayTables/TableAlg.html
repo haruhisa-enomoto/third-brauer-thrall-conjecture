@@ -1,0 +1,836 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.RayCategories.RayTables.TableAlg</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.RayCategories.RayTables.TableAlg";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">RayCategories</span>.<span class="name">RayTables</span>.<span class="name">TableAlg</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html">LargeIndecomposable.RayCategories.RayTables.RayTable</a></li><li><a href="../../.././LargeIndecomposable/StandardForm/Basic/SplitTransfer.html">LargeIndecomposable.StandardForm.Basic.SplitTransfer</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.RayCategories.RayTables.TableAlg" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.isRepresentationFinite_of_surjective"><span class="name">LargeIndecomposable</span>.<span class="name">isRepresentationFinite_of_surjective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.rho"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.rho_apply"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.rho_mul"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho_mul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.sum_rho_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">sum_rho_e</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.linSpan"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">linSpan</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.rho_mem"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho_mem</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.one_mem_linSpan"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">one_mem_linSpan</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.mul_mem_linSpan"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">mul_mem_linSpan</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.Lin"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">Lin</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.b_mul"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_mul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.b_mul_of_some"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_mul_of_some</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.b_mul_of_none"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_mul_of_none</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.sum_b_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">sum_b_e</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.rho_apply_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho_apply_e</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.linearIndependent_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">linearIndependent_b</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.span_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">span_b</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.basis"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">basis</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.basis_apply"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">basis_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.instFiniteSubtypeMatrixMemSubalgebraLin"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">instFiniteSubtypeMatrixMemSubalgebraLin</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.mul_e_none"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">mul_e_none</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.mul_none_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">mul_none_e</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.b_e_mul"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_e_mul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.b_mul_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_mul_e</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.b_ne_zero"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_ne_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mult.basis_repr_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">basis_repr_b</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.NMor"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">NMor</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mor"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.NMor.lin"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">NMor</span>.<span class="name">lin</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.NMor.lin_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">NMor</span>.<span class="name">lin_b</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.NMor.lin_mul"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">NMor</span>.<span class="name">lin_mul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mor.lin_one"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">lin_one</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mor.alg"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">alg</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mor.alg_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">alg_b</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mor.alg_surjective"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">alg_surjective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RaySys.Mor.isRepresentationFinite"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">isRepresentationFinite</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="The-linearization-kP-of-a-ray-table" class="markdown-heading">The linearization <code>kP</code> of a ray table <a class="hover-link" href="#The-linearization-kP-of-a-ray-table">#</a></h1><p><code>kP</code> has basis the rays, with products given by the table (<code>set:projective-companion</code>). We
+realize it inside <code>Matrix R R k</code> through the left regular representation, so that it is a
+<code>Subalgebra</code> with basis <code><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a> r</code> and <code><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a> r * <a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a> s = <a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a> (rs)</code> or <code>0</code>.</p><p>A <em>table morphism</em> <code>P → P'</code> sends rays to rays or zero, compatibly with products, and sends
+the identities onto the identities, each hit once. It induces an algebra map <code>kP → kP'</code>,
+surjective when every ray is hit; representation-finiteness passes along such maps
+(<code><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.isRepresentationFinite_of_surjective">isRepresentationFinite_of_surjective</a></code>).</p></div><div class="decl" id="LargeIndecomposable.isRepresentationFinite_of_surjective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L30-L37">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.isRepresentationFinite_of_surjective"><span class="name">LargeIndecomposable</span>.<span class="name">isRepresentationFinite_of_surjective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A </span><span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">A</span> <span class="fn">→ₐ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hφ</span> : <span class="fn"><span class="fn">Function.Surjective</span> <span class="fn">⇑<span class="fn">φ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">B</span></span></div></div><p>Representation-finiteness passes to quotient algebras.</p></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.rho"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L46-L47">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Matrix</span> <span class="fn">R</span> <span class="fn">R</span> <span class="fn">k</span></span></div></div><p>The left regular action of a ray.</p><details id="instances-for-list-LargeIndecomposable.RaySys.Mult.rho" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.rho_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L49-L49">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho_apply"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r </span><span class="fn">t </span><span class="fn">s</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho">rho</a></span> <span class="fn">k</span> <span class="fn">r</span> <span class="fn">t</span> <span class="fn">s</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">if</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">r</span> <span class="fn">s</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">some</span> <span class="fn">t</span></span></span> <span class="fn">then</span> <span class="fn">1</span> <span class="fn">else</span> <span class="fn">0</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.rho_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L51-L80">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho_mul"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r </span><span class="fn">r'</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho">rho</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">*</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho">rho</a></span> <span class="fn">k</span> <span class="fn">r'</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">r</span> <span class="fn">r'</span>)</span>.<span class="fn">elim</span></span> <span class="fn">0</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho">rho</a></span> <span class="fn">k</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.sum_rho_e"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L82-L95">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.sum_rho_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">sum_rho_e</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">∑ <span class="fn">x</span> : <span class="fn">V</span>, <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho">rho</a></span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span></span> <span class="fn">=</span> <span class="fn">1</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.linSpan"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L97-L98">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.linSpan"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">linSpan</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Submodule</span> <span class="fn">k</span> <span class="fn">(<span class="fn">Matrix</span> <span class="fn">R</span> <span class="fn">R</span> <span class="fn">k</span>)</span></span></div></div><p>The span of the rays.</p><details id="instances-for-list-LargeIndecomposable.RaySys.Mult.linSpan" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.rho_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L100-L100">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho_mem"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho">rho</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.linSpan">linSpan</a></span> <span class="fn">k</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.one_mem_linSpan"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L102-L104">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.one_mem_linSpan"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">one_mem_linSpan</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">1</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.linSpan">linSpan</a></span> <span class="fn">k</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.mul_mem_linSpan"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L106-L123">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.mul_mem_linSpan"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">mul_mem_linSpan</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a </span><span class="fn">b</span> : <span class="fn"><span class="fn">Matrix</span> <span class="fn">R</span> <span class="fn">R</span> <span class="fn">k</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ha</span> : <span class="fn"><span class="fn">a</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.linSpan">linSpan</a></span> <span class="fn">k</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hb</span> : <span class="fn"><span class="fn">b</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.linSpan">linSpan</a></span> <span class="fn">k</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">a</span> <span class="fn">*</span> <span class="fn">b</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.linSpan">linSpan</a></span> <span class="fn">k</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.Lin"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L125-L127">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">Lin</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Subalgebra</span> <span class="fn">k</span> <span class="fn">(<span class="fn">Matrix</span> <span class="fn">R</span> <span class="fn">R</span> <span class="fn">k</span>)</span></span></div></div><p><strong>The linearization <code>kP</code>.</strong></p><details id="instances-for-list-LargeIndecomposable.RaySys.Mult.Lin" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.b"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L129-L130">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span></div></div><p>The basis vector of a ray.</p><details id="instances-for-list-LargeIndecomposable.RaySys.Mult.b" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.b_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L132-L136">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b_mul"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r </span><span class="fn">s</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">*</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">s</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">r</span> <span class="fn">s</span>)</span>.<span class="fn">elim</span></span> <span class="fn">0</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.b_mul_of_some"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L138-L139">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b_mul_of_some"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_mul_of_some</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r </span><span class="fn">s </span><span class="fn">t</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">r</span> <span class="fn">s</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">some</span> <span class="fn">t</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">*</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">s</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">t</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.b_mul_of_none"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L141-L142">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b_mul_of_none"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_mul_of_none</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r </span><span class="fn">s</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">r</span> <span class="fn">s</span></span> <span class="fn">=</span> <span class="fn">none</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">*</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">s</span></span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.sum_b_e"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L144-L147">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.sum_b_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">sum_b_e</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">∑ <span class="fn">x</span> : <span class="fn">V</span>, <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span></span> <span class="fn">=</span> <span class="fn">1</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.rho_apply_e"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L149-L160">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho_apply_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">rho_apply_e</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r </span><span class="fn">r'</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.rho">rho</a></span> <span class="fn">k</span> <span class="fn">r'</span> <span class="fn">r</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.tgt">tgt</a></span> <span class="fn">r</span>)</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">if</span> <span class="fn"><span class="fn">r'</span> <span class="fn">=</span> <span class="fn">r</span></span> <span class="fn">then</span> <span class="fn">1</span> <span class="fn">else</span> <span class="fn">0</span></span></span></div></div><p>The coordinate of a matrix at a ray: its entry at <code>(r, e (tgt r))</code>.</p></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.linearIndependent_b"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L162-L170">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.linearIndependent_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">linearIndependent_b</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">LinearIndependent</span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.span_b"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L172-L186">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.span_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">span_b</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Submodule.span</span> <span class="fn">k</span> <span class="fn">(<span class="fn">Set.range</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span>)</span>)</span></span> <span class="fn">=</span> <span class="fn">⊤</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.basis"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L188-L190">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.basis"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">basis</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module.Basis</span> <span class="fn">R</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span></span></div></div><p><strong>The ray basis of <code>kP</code>.</strong></p><details id="instances-for-list-LargeIndecomposable.RaySys.Mult.basis" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.basis_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L192-L193">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.basis_apply"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">basis_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.basis">basis</a></span> <span class="fn">k</span>)</span> <span class="fn">r</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.instFiniteSubtypeMatrixMemSubalgebraLin"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L195-L195">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.instFiniteSubtypeMatrixMemSubalgebraLin"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">instFiniteSubtypeMatrixMemSubalgebraLin</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.mul_e_none"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L197-L200">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.mul_e_none"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">mul_e_none</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">V</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">x</span> <span class="fn">≠</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.src">src</a></span> <span class="fn">r</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span> <span class="fn">r</span></span> <span class="fn">=</span> <span class="fn">none</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.mul_none_e"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L202-L205">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.mul_none_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">mul_none_e</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">V</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">x</span> <span class="fn">≠</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.tgt">tgt</a></span> <span class="fn">r</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">r</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn">none</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.b_e_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L207-L210">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b_e_mul"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_e_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span> <span class="fn">*</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">if</span> <span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.src">src</a></span> <span class="fn">r</span></span></span> <span class="fn">then</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">else</span> <span class="fn">0</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.b_mul_e"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L212-L215">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b_mul_e"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_mul_e</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">*</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">if</span> <span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.tgt">tgt</a></span> <span class="fn">r</span></span></span> <span class="fn">then</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">else</span> <span class="fn">0</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.b_ne_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L217-L218">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b_ne_zero"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">b_ne_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span></span> <span class="fn">≠</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mult.basis_repr_b"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L220-L221">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.basis_repr_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mult</span>.<span class="name">basis_repr_b</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r </span><span class="fn">r'</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.basis">basis</a></span> <span class="fn">k</span>)</span>.<span class="fn">repr</span></span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span>)</span>)</span> <span class="fn">r'</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">if</span> <span class="fn"><span class="fn">r</span> <span class="fn">=</span> <span class="fn">r'</span></span> <span class="fn">then</span> <span class="fn">1</span> <span class="fn">else</span> <span class="fn">0</span></span></span></div></div></div></div><div class="mod_doc"><h3 id="Table-morphisms" class="markdown-heading">Table morphisms <a class="hover-link" href="#Table-morphisms">#</a></h3></div><div class="decl" id="LargeIndecomposable.RaySys.NMor"><div class="structure"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L230-L235">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">NMor</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a></div></div><p>A (not necessarily unital) morphism of tables: rays go to rays or zero, compatibly with
+products, and identities go to identities or zero.</p><ul class="structure_fields" id="LargeIndecomposable.RaySys.NMor.mk"><li id="LargeIndecomposable.RaySys.NMor.f" class="structure_field"><div class="structure_field_info">f : <span class="fn"><span class="fn">R</span> → <span class="fn"><span class="fn">Option</span> <span class="fn">R'</span></span></span></div></li><li id="LargeIndecomposable.RaySys.NMor.hmul" class="structure_field"><div class="structure_field_info">hmul<span class="decl_args">
+<span class="fn">(<span class="fn">r </span><span class="fn">s</span> : <span class="fn">R</span>)</span></span>
+ : <span class="fn"><span class="fn">(<span class="fn"><span class="fn">(<span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">r</span>)</span>.<span class="fn">bind</span></span> <span class="fn">fun (<span class="fn">a</span> : <span class="fn">R'</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">s</span>)</span>.<span class="fn">bind</span></span> <span class="fn">fun (<span class="fn">c</span> : <span class="fn">R'</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">a</span> <span class="fn">c</span></span></span></span></span>)</span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">r</span> <span class="fn">s</span>)</span>.<span class="fn">bind</span></span> <span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span></span></span></div></li><li id="LargeIndecomposable.RaySys.NMor.hid" class="structure_field"><div class="structure_field_info">hid<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>)</span></span>
+ : <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn">none</span></span> <span class="fn">∨</span> <span class="fn">∃ (<span class="fn">x'</span> : <span class="fn">V'</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">some</span> <span class="fn">(<span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x'</span>)</span></span></span></span></span></div></li></ul><details id="instances-for-list-LargeIndecomposable.RaySys.NMor" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mor"><div class="structure"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L237-L239">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>)</span></span>
+<span class="decl_extends">extends</span> <span id="LargeIndecomposable.RaySys.Mor.toNMor"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor">LargeIndecomposable.RaySys.NMor</a> <span class="fn">P</span> <span class="fn">P'</span></span></span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a></div></div><p>A morphism of tables: the identities go onto the identities, each hit once.</p><ul class="structure_fields" id="LargeIndecomposable.RaySys.Mor.mk"><li class="structure_field inherited_field"><div class="structure_field_info"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a> : <span class="fn"><span class="fn">R</span> → <span class="fn"><span class="fn">Option</span> <span class="fn">R'</span></span></span></div></li><li class="structure_field inherited_field"><div class="structure_field_info"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.hmul">hmul</a><span class="decl_args">
+<span class="fn">(<span class="fn">r </span><span class="fn">s</span> : <span class="fn">R</span>)</span></span>
+ : <span class="fn"><span class="fn">(<span class="fn"><span class="fn">(<span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">r</span>)</span>.<span class="fn">bind</span></span> <span class="fn">fun (<span class="fn">a</span> : <span class="fn">R'</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">s</span>)</span>.<span class="fn">bind</span></span> <span class="fn">fun (<span class="fn">c</span> : <span class="fn">R'</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">a</span> <span class="fn">c</span></span></span></span></span>)</span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.mul">mul</a></span> <span class="fn">r</span> <span class="fn">s</span>)</span>.<span class="fn">bind</span></span> <span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span></span></span></div></li><li class="structure_field inherited_field"><div class="structure_field_info"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.hid">hid</a><span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>)</span></span>
+ : <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn">none</span></span> <span class="fn">∨</span> <span class="fn">∃ (<span class="fn">x'</span> : <span class="fn">V'</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">some</span> <span class="fn">(<span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x'</span>)</span></span></span></span></span></div></li><li id="LargeIndecomposable.RaySys.Mor.hid'" class="structure_field"><div class="structure_field_info">hid'<span class="decl_args">
+<span class="fn">(<span class="fn">x'</span> : <span class="fn">V'</span>)</span></span>
+ : <span class="fn"><span class="fn">∃!</span> <span class="fn">x</span> <span class="fn">:</span> <span class="fn">V</span><span class="fn">,</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">some</span> <span class="fn">(<span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult.e">e</a></span> <span class="fn">x'</span>)</span></span></span></span></div></li></ul><details id="instances-for-list-LargeIndecomposable.RaySys.Mor" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.NMor.lin"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L245-L246">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.lin"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">NMor</span>.<span class="name">lin</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor">NMor</a> <span class="fn">P</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span></span></div></div><p>The induced linear map.</p><details id="instances-for-list-LargeIndecomposable.RaySys.NMor.lin" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.NMor.lin_b"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L248-L249">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.lin_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">NMor</span>.<span class="name">lin_b</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor">NMor</a> <span class="fn">P</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.lin">lin</a></span> <span class="fn">k</span>)</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">r</span>)</span>.<span class="fn">elim</span></span> <span class="fn">0</span> <span class="fn">(<span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.NMor.lin_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L251-L285">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.lin_mul"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">NMor</span>.<span class="name">lin_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor">NMor</a> <span class="fn">P</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.lin">lin</a></span> <span class="fn">k</span>)</span> <span class="fn">(<span class="fn">x</span> <span class="fn">*</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.lin">lin</a></span> <span class="fn">k</span>)</span> <span class="fn">x</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.lin">lin</a></span> <span class="fn">k</span>)</span> <span class="fn">y</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mor.lin_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L294-L310">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor.lin_one"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">lin_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor">Mor</a> <span class="fn">P</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.lin">lin</a></span> <span class="fn">k</span>)</span> <span class="fn">1</span></span> <span class="fn">=</span> <span class="fn">1</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mor.alg"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L312-L314">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor.alg"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">alg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor">Mor</a> <span class="fn">P</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span> <span class="fn">→ₐ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span></span></div></div><p><strong>The algebra map of a table morphism.</strong></p><details id="instances-for-list-LargeIndecomposable.RaySys.Mor.alg" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mor.alg_b"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L316-L316">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor.alg_b"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">alg_b</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor">Mor</a> <span class="fn">P</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor.alg">alg</a></span> <span class="fn">k</span>)</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span> <span class="fn">r</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">r</span>)</span>.<span class="fn">elim</span></span> <span class="fn">0</span> <span class="fn">(<span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.b">b</a></span> <span class="fn">k</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mor.alg_surjective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L318-L329">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor.alg_surjective"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">alg_surjective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor">Mor</a> <span class="fn">P</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn">∀ (<span class="fn">r'</span> : <span class="fn">R'</span>), <span class="fn">∃ (<span class="fn">r</span> : <span class="fn">R</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">r</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">some</span> <span class="fn">r'</span></span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Surjective</span> <span class="fn">⇑<span class="fn">(<span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor.alg">alg</a></span> <span class="fn">k</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RaySys.Mor.isRepresentationFinite"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/RayTables/TableAlg.lean#L333-L337">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor.isRepresentationFinite"><span class="name">LargeIndecomposable</span>.<span class="name">RaySys</span>.<span class="name">Mor</span>.<span class="name">isRepresentationFinite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V </span><span class="fn">R </span><span class="fn">V' </span><span class="fn">R'</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">R'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayTable.html#LargeIndecomposable.RaySys.Mult">Mult</a> <span class="fn">V'</span> <span class="fn">R'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mor">Mor</a> <span class="fn">P</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn">∀ (<span class="fn">r'</span> : <span class="fn">R'</span>), <span class="fn">∃ (<span class="fn">r</span> : <span class="fn">R</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">m</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.NMor.f">f</a></span> <span class="fn">r</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">some</span> <span class="fn">r'</span></span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P'</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/TableAlg.html#LargeIndecomposable.RaySys.Mult.Lin">Lin</a></span> <span class="fn">k</span>)</span></span></span></div></div><p><strong>Representation-finiteness passes along surjective table morphisms.</strong></p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

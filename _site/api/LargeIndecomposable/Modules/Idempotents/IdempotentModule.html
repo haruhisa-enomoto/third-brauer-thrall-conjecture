@@ -1,0 +1,676 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Modules.Idempotents.IdempotentModule</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Modules.Idempotents.IdempotentModule";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Modules</span>.<span class="name">Idempotents</span>.<span class="name">IdempotentModule</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/Projection.lean">Mathlib.LinearAlgebra.Projection</a></li><li><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/DirectSum.html">LargeIndecomposable.Foundations.LinearAlgebra.DirectSum</a></li><li><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html">LargeIndecomposable.Foundations.LinearAlgebra.Pointwise</a></li><li><a href="../../.././LargeIndecomposable/Foundations/Ring/ProjectionFamily.html">LargeIndecomposable.Foundations.Ring.ProjectionFamily</a></li><li><a href="../../.././LargeIndecomposable/Modules/Corners/TwoSidedCorners.html">LargeIndecomposable.Modules.Corners.TwoSidedCorners</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/DirectSum/Module.lean">Mathlib.Algebra.DirectSum.Module</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Modules.Idempotents.IdempotentModule" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#IsIdempotentElem.mem_smul_top_iff_smul_eq_self"><span class="name">IsIdempotentElem</span>.<span class="name">mem_smul_top_iff_smul_eq_self</span></a></div><div class="nav_link"><a class="break_within" href="#IsIdempotentElem.smul_eq_self_of_mem_smul_top"><span class="name">IsIdempotentElem</span>.<span class="name">smul_eq_self_of_mem_smul_top</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.smul_top_le_comap_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_top_le_comap_smul_top</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.smulTopMap"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smulTopMap</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.coe_smulTopMap_apply"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">coe_smulTopMap_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.smulTopMap_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smulTopMap_id</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.smulTopMap_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smulTopMap_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.smul_eq_zero_of_ne_of_mem_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_eq_zero_of_ne_of_mem_smul_top</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.iSupIndep_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">iSupIndep_smul_top</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.sum_smul_eq_self_of_sum_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">sum_smul_eq_self_of_sum_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.iSup_smul_top_eq_top_of_sum_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">iSup_smul_top_eq_top_of_sum_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.smul_coeLinearMap_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_coeLinearMap_smul_top</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.isInternal_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isInternal_smul_top</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.coe_ofBijective_coeLinearMap_symm_apply_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">coe_ofBijective_coeLinearMap_symm_apply_smul_top</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.finrank_eq_sum_finrank_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">finrank_eq_sum_finrank_smul_top</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.ProjectionFamilyNondegenerate"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ProjectionFamilyNondegenerate</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.projectionFamilyNondegenerate_iff"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">projectionFamilyNondegenerate_iff</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.projectionFamilyOverlap_injective"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">projectionFamilyOverlap_injective</span></a></div><div class="nav_link"><a class="break_within" href="#IsIdempotentElem.instSMulCornerSmulTop"><span class="name">IsIdempotentElem</span>.<span class="name">instSMulCornerSmulTop</span></a></div><div class="nav_link"><a class="break_within" href="#IsIdempotentElem.Corner.coe_smul"><span class="name">IsIdempotentElem</span>.<span class="name">Corner</span>.<span class="name">coe_smul</span></a></div><div class="nav_link"><a class="break_within" href="#IsIdempotentElem.instModuleCornerSmulTop"><span class="name">IsIdempotentElem</span>.<span class="name">instModuleCornerSmulTop</span></a></div><div class="nav_link"><a class="break_within" href="#IsIdempotentElem.coe_algebraMap_corner_smul"><span class="name">IsIdempotentElem</span>.<span class="name">coe_algebraMap_corner_smul</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.RingTheory.Idempotents.Module</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="A-complete-family-of-orthogonal-idempotents-decomposes-every-module" class="markdown-heading">A complete family of orthogonal idempotents decomposes every module <a class="hover-link" href="#A-complete-family-of-orthogonal-idempotents-decomposes-every-module">#</a></h1><p>Let <code>R</code> be a semiring and let <code>e : ι → R</code> be a <em>complete orthogonal family of idempotents</em>:
+<code>eᵢ eⱼ = 0</code> for <code>i ≠ j</code> and <code>∑ᵢ eᵢ = 1</code>. Then every left <code>R</code>-module <code>M</code> splits as an internal
+direct sum of the <code>S</code>-submodules <code>eᵢ • M</code>,</p><p><code>M = ⨁ᵢ eᵢ M</code>,</p><p>the component of <code>x</code> in position <code>i</code> being <code>eᵢ • x</code>. This file proves that
+(<code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.isInternal_smul_top">LargeIndecomposable.Foundations.isInternal_smul_top</a></code>) and records the dimension count <code>dim M = ∑ᵢ dim (eᵢ M)</code> that
+follows over a division ring.</p><p>For families of module endomorphisms it also records <code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.ProjectionFamilyNondegenerate">LargeIndecomposable.Foundations.ProjectionFamilyNondegenerate</a></code> and
+<code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.projectionFamilyOverlap_injective">LargeIndecomposable.Foundations.projectionFamilyOverlap_injective</a></code>: an orthogonal target family and a source family
+summing to the identity have injective overlap when every matched target map is injective on the
+source range. The source maps need not be idempotent or orthogonal.</p><p>Mathlib has the family (<code>CompleteOrthogonalIdempotents</code>) and the converse direction — a
+decomposition of <code>R</code> itself into left ideals produces such a family
+(<code>DirectSum.completeOrthogonalIdempotents_idempotent</code>) — but not the decomposition of an arbitrary
+module that the family induces.</p><h2 id="The-pieces" class="markdown-heading">The pieces <a class="hover-link" href="#The-pieces">#</a></h2><p>The piece <code>eᵢ M</code> is Mathlib's pointwise action <code>e i • (⊤ : Submodule S M)</code> (scoped in <code>Pointwise</code>),
+so no new definition is introduced for it and Mathlib's pointwise API —
+<code>Submodule.pointwise_smul_def</code>, <code>Submodule.mem_smul_pointwise_iff_exists</code>,
+<code>Submodule.smul_mem_pointwise_smul</code> — applies to the statements below as it stands.</p><h2 id="The-two-scalar-rings" class="markdown-heading">The two scalar rings <a class="hover-link" href="#The-two-scalar-rings">#</a></h2><p>The pieces <code>eᵢ • M</code> are <em>not</em> <code>R</code>-submodules: <code>R</code> is noncommutative in the intended applications,
+and <code>r • (eᵢ • x)</code> need not lie in <code>eᵢ • M</code>. They are submodules over any second ring <code>S</code> whose
+action on <code>M</code> commutes with that of <code>R</code>, that is, under <code>SMulCommClass R S M</code>, which is exactly
+what makes multiplication by <code>e</code> an <code>S</code>-linear map (<code>DistribSMul.toLinearMap</code>) and is exactly the
+hypothesis of Mathlib's pointwise action on <code>Submodule S M</code>; carrying that ambient <code>S</code> is what
+makes the dimension count below available. Taking <code>S = ℕ</code> recovers the decomposition as additive
+submonoids, and an <code>S</code>-algebra structure on <code>R</code> together with <code>IsScalarTower S R M</code> supplies the
+hypothesis in the intended applications.</p><h2 id="Main-definitions" class="markdown-heading">Main definitions <a class="hover-link" href="#Main-definitions">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap">LargeIndecomposable.Foundations.smulTopMap</a> S e f</code>: the restriction of an <code>R</code>-linear map <code>f : M →ₗ[R] N</code> to
+<code>e • M →ₗ[S] e • N</code>.</li></ul><h2 id="Main-results" class="markdown-heading">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.mem_smul_top_iff_smul_eq_self">IsIdempotentElem.mem_smul_top_iff_smul_eq_self</a></code>: for an idempotent <code>e</code>, membership in
+<code>e • M</code> is the fixed-point condition <code>e • x = x</code>. The scalar <code>e</code> needs only a distributive
+monoid action on <code>M</code>.</li><li><code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.isInternal_smul_top">LargeIndecomposable.Foundations.isInternal_smul_top</a></code>: <strong>the decomposition</strong> <code>M = ⨁ᵢ eᵢ M</code>, with the component of <code>x</code> at
+<code>i</code> being <code>eᵢ • x</code> (<code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.coe_ofBijective_coeLinearMap_symm_apply_smul_top">LargeIndecomposable.Foundations.coe_ofBijective_coeLinearMap_symm_apply_smul_top</a></code>).</li><li><code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smul_coeLinearMap_smul_top">LargeIndecomposable.Foundations.smul_coeLinearMap_smul_top</a></code>: multiplying by <code>eᵢ</code> reads off the <code>i</code>-th component of a
+sum. This is what makes the sum direct.</li><li><code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.finrank_eq_sum_finrank_smul_top">LargeIndecomposable.Foundations.finrank_eq_sum_finrank_smul_top</a></code>: for a module finite-dimensional over a division
+ring <code>S</code>, the dimensions of the pieces add up to the dimension of the module.</li><li><code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.instModuleCornerSmulTop">IsIdempotentElem.instModuleCornerSmulTop</a></code>: for a single idempotent <code>e</code>, the piece <code>e • M</code> is a
+module over the corner ring <code>eAe</code> (<code>IsIdempotentElem.Corner</code>), which acts by restricting the
+action of <code>A</code>, as recorded by <code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.Corner.coe_smul">IsIdempotentElem.Corner.coe_smul</a></code>. This is the module structure the
+corner functor <code>M ↦ eM</code> of Morita theory is built on.</li></ul><h2 id="References" class="markdown-heading">References <a class="hover-link" href="#References">#</a></h2><p>The decomposition of a module along a complete orthogonal family of idempotents is the classical
+<em>Peirce decomposition</em>; see T. Y. Lam, <em>A First Course in Noncommutative Rings</em>, §21, or
+Assem--Simson--Skowroński, <em>Elements of the Representation Theory of Associative Algebras I</em>,
+Ch. I.4.</p></div><div class="decl" id="IsIdempotentElem.mem_smul_top_iff_smul_eq_self"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L96-L102">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.mem_smul_top_iff_smul_eq_self"><span class="name">IsIdempotentElem</span>.<span class="name">mem_smul_top_iff_smul_eq_self</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Monoid</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DistribMulAction</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">IsIdempotentElem</span> <span class="fn">e</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">x</span> <span class="fn">∈</span> <span class="fn"><span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span></span></span> <span class="fn">↔</span> <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">•</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn">x</span></span></span></div></div><p><strong>Membership in <code>e • M</code> for an idempotent <code>e</code> is a fixed-point condition.</strong> This is Mathlib's
+<code>LinearMap.IsIdempotentElem.mem_range_iff</code> for the idempotent endomorphism <code>x ↦ e • x</code>, whose range
+is the piece <code>e • M</code>.</p></div></div><div class="decl" id="IsIdempotentElem.smul_eq_self_of_mem_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L104-L107">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.smul_eq_self_of_mem_smul_top"><span class="name">IsIdempotentElem</span>.<span class="name">smul_eq_self_of_mem_smul_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Monoid</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DistribMulAction</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">IsIdempotentElem</span> <span class="fn">e</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn"><span class="fn">x</span> <span class="fn">∈</span> <span class="fn"><span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">•</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn">x</span></span></div></div><p>Multiplication by an idempotent <code>e</code> fixes <code>e • M</code> pointwise.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.smul_top_le_comap_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L121-L127">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smul_top_le_comap_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_top_le_comap_smul_top</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearMap.CompatibleSMul</span> <span class="fn">M</span> <span class="fn">N</span> <span class="fn">S</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span></span> <span class="fn">≤</span> <span class="fn"><span class="fn">Submodule.comap</span> <span class="fn">(<span class="fn">↑<span class="fn">S</span></span> <span class="fn">f</span>)</span> <span class="fn">(<span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span></span></div></div><p><strong>The pieces are natural in the module</strong>: an <code>R</code>-linear map carries <code>e • M</code> into <code>e • N</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.smulTopMap"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L129-L133">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smulTopMap</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearMap.CompatibleSMul</span> <span class="fn">M</span> <span class="fn">N</span> <span class="fn">S</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span> <span class="fn">→ₗ[</span><span class="fn">S</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span></span></div></div><p>The restriction of an <code>R</code>-linear map <code>M → N</code> to the pieces cut out by <code>e</code>, an <code>S</code>-linear map
+<code>e • M → e • N</code>. This is <code><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smul_top_le_comap_smul_top">LargeIndecomposable.Foundations.smul_top_le_comap_smul_top</a></code> promoted to the map it describes.</p><details id="instances-for-list-LargeIndecomposable.Foundations.smulTopMap" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.coe_smulTopMap_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L137-L140">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.coe_smulTopMap_apply"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">coe_smulTopMap_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearMap.CompatibleSMul</span> <span class="fn">M</span> <span class="fn">N</span> <span class="fn">S</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">↥<span class="fn">(<span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap">smulTopMap</a> <span class="fn">S</span> <span class="fn">e</span> <span class="fn">f</span>)</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">f</span> <span class="fn">↑<span class="fn">x</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.smulTopMap_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L142-L147">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smulTopMap_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearMap.CompatibleSMul</span> <span class="fn">M</span> <span class="fn">M</span> <span class="fn">S</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap">smulTopMap</a> <span class="fn">S</span> <span class="fn">e</span> <span class="fn">LinearMap.id</span></span> <span class="fn">=</span> <span class="fn">LinearMap.id</span></span></div></div><p><strong>The restriction to the pieces is functorial</strong>: the identity restricts to the identity.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.smulTopMap_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L149-L156">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smulTopMap_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearMap.CompatibleSMul</span> <span class="fn">M</span> <span class="fn">N</span> <span class="fn">S</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearMap.CompatibleSMul</span> <span class="fn">N</span> <span class="fn">P</span> <span class="fn">S</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearMap.CompatibleSMul</span> <span class="fn">M</span> <span class="fn">P</span> <span class="fn">S</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap">smulTopMap</a> <span class="fn">S</span> <span class="fn">e</span> <span class="fn">(<span class="fn">g</span> <span class="fn">∘ₗ</span> <span class="fn">f</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap">smulTopMap</a> <span class="fn">S</span> <span class="fn">e</span> <span class="fn">g</span></span> <span class="fn">∘ₗ</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smulTopMap">smulTopMap</a> <span class="fn">S</span> <span class="fn">e</span> <span class="fn">f</span></span></span></span></div></div><p><strong>The restriction to the pieces is functorial</strong>: a composite restricts to the composite of the
+restrictions.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.smul_eq_zero_of_ne_of_mem_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L165-L168">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smul_eq_zero_of_ne_of_mem_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_eq_zero_of_ne_of_mem_smul_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">R</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">OrthogonalIdempotents</span> <span class="fn">e</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hij</span> : <span class="fn"><span class="fn">i</span> <span class="fn">≠</span> <span class="fn">j</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn"><span class="fn">x</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">j</span></span> <span class="fn">•</span> <span class="fn">⊤</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div><p>An orthogonal idempotent annihilates the piece cut out by any of the others.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.iSupIndep_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L170-L182">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.iSupIndep_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">iSupIndep_smul_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">R</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">OrthogonalIdempotents</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">iSupIndep</span> <span class="fn">fun (<span class="fn">i</span> : <span class="fn">ι</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">⊤</span></span></span></span></div></div><p>The pieces cut out by an orthogonal family are independent: the piece at <code>i</code> meets the
+supremum of the others only in <code>0</code>, because <code>eᵢ</code> fixes the former and kills the latter.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.sum_smul_eq_self_of_sum_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L186-L190">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.sum_smul_eq_self_of_sum_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">sum_smul_eq_self_of_sum_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">∑ <span class="fn">i</span> : <span class="fn">ι</span>, <span class="fn"><span class="fn">e</span> <span class="fn">i</span></span></span> <span class="fn">=</span> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">∑ <span class="fn">i</span> : <span class="fn">ι</span>, <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">x</span></span></span> <span class="fn">=</span> <span class="fn">x</span></span></div></div><p><strong>A decomposition of the unit decomposes every element</strong>: if <code>∑ᵢ eᵢ = 1</code> then <code>x = ∑ᵢ eᵢ • x</code>.
+Neither idempotency nor orthogonality is needed.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.iSup_smul_top_eq_top_of_sum_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L192-L198">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.iSup_smul_top_eq_top_of_sum_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">iSup_smul_top_eq_top_of_sum_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">∑ <span class="fn">i</span> : <span class="fn">ι</span>, <span class="fn"><span class="fn">e</span> <span class="fn">i</span></span></span> <span class="fn">=</span> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">⨆ (<span class="fn">i</span> : <span class="fn">ι</span>), <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">⊤</span></span></span> <span class="fn">=</span> <span class="fn">⊤</span></span></div></div><p>The pieces cut out by a decomposition of the unit span the module.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.smul_coeLinearMap_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L208-L223">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.smul_coeLinearMap_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_coeLinearMap_smul_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">OrthogonalIdempotents</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">z</span> : <span class="fn"><span class="fn">DirectSum</span> <span class="fn">ι</span> <span class="fn">fun (<span class="fn">i</span> : <span class="fn">ι</span>) =&gt; <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">j</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">j</span></span> <span class="fn">•</span> <span class="fn"><span class="fn">(<span class="fn">DirectSum.coeLinearMap</span> <span class="fn">fun (<span class="fn">i</span> : <span class="fn">ι</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">⊤</span></span></span>)</span> <span class="fn">z</span></span></span> <span class="fn">=</span> <span class="fn">↑<span class="fn">(<span class="fn">z</span> <span class="fn">j</span>)</span></span></span></div></div><p><strong>Multiplying by <code>eⱼ</code> reads off the <code>j</code>-th component of a sum</strong>: in <code>∑ᵢ zᵢ</code> with <code>zᵢ ∈ eᵢ M</code>,
+the idempotent <code>eⱼ</code> fixes the term at <code>j</code> and annihilates all the others. This is what makes the
+sum direct.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.isInternal_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L227-L247">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.isInternal_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isInternal_smul_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">CompleteOrthogonalIdempotents</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">DirectSum.IsInternal</span> <span class="fn">fun (<span class="fn">i</span> : <span class="fn">ι</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">⊤</span></span></span></span></div></div><p><strong>A complete orthogonal family of idempotents decomposes every module</strong>: <code>M = ⨁ᵢ eᵢ M</code>.</p><p>The <code>S</code>-submodule at <code>i</code> is <code>eᵢ • M</code>, and the component of <code>x</code> there is <code>eᵢ • x</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.coe_ofBijective_coeLinearMap_symm_apply_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L249-L264">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.coe_ofBijective_coeLinearMap_symm_apply_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">coe_ofBijective_coeLinearMap_symm_apply_smul_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">CompleteOrthogonalIdempotents</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn">(<span class="fn"><span class="fn">(<span class="fn">LinearEquiv.ofBijective</span> <span class="fn">(<span class="fn">DirectSum.coeLinearMap</span> <span class="fn">fun (<span class="fn">i</span> : <span class="fn">ι</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">⊤</span></span></span>)</span> <span class="fn">⋯</span>)</span>.<span class="fn">symm</span></span> <span class="fn">x</span>)</span> <span class="fn">i</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">x</span></span></span></div></div><p><strong>The component of <code>x</code> at <code>i</code> is <code>eᵢ • x</code></strong>: this is the inverse of the decomposition, read
+off one index at a time. The isomorphism <code>⨁ᵢ eᵢ M ≃ₗ[S] M</code> is the canonical
+<code>LinearEquiv.ofBijective (DirectSum.coeLinearMap _)</code> of an internal direct sum, so Mathlib's
+<code>DirectSum.IsInternal.ofBijective_coeLinearMap_same</code> and friends apply to it as well.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.finrank_eq_sum_finrank_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L273-L280">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.finrank_eq_sum_finrank_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">finrank_eq_sum_finrank_smul_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DivisionRing</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">CompleteOrthogonalIdempotents</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">S</span> <span class="fn">M</span></span> <span class="fn">=</span> <span class="fn">∑ <span class="fn">i</span> : <span class="fn">ι</span>, <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">S</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span></span></span></span></div></div><p><strong>The dimension count</strong>: for a module finite-dimensional over a division ring <code>S</code>, the
+dimensions of the pieces add up to the dimension of the module.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.ProjectionFamilyNondegenerate"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L288-L290">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.ProjectionFamilyNondegenerate"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ProjectionFamilyNondegenerate</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P </span><span class="fn">Q</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">E</span> <span class="fn">→ₗ[</span><span class="fn">𝕜</span><span class="fn">]</span> <span class="fn">E</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>Davis nondegeneracy: every target map is injective on the matching source range.</p><details id="instances-for-list-LargeIndecomposable.Foundations.ProjectionFamilyNondegenerate" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.projectionFamilyNondegenerate_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L292-L294">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.projectionFamilyNondegenerate_iff"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">projectionFamilyNondegenerate_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P </span><span class="fn">Q</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">E</span> <span class="fn">→ₗ[</span><span class="fn">𝕜</span><span class="fn">]</span> <span class="fn">E</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.ProjectionFamilyNondegenerate">ProjectionFamilyNondegenerate</a> <span class="fn">P</span> <span class="fn">Q</span></span> <span class="fn">↔</span> <span class="fn">∀ (<span class="fn">i</span> : <span class="fn">ι</span>), <span class="fn"><span class="fn">Set.InjOn</span> <span class="fn">⇑<span class="fn">(<span class="fn">Q</span> <span class="fn">i</span>)</span></span> <span class="fn">↑<span class="fn"><span class="fn">(<span class="fn">P</span> <span class="fn">i</span>)</span>.<span class="fn">range</span></span></span></span></span></span></div></div><p>Pointwise characterization of nondegeneracy of matched projection blocks.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.projectionFamilyOverlap_injective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L298-L311">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.projectionFamilyOverlap_injective"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">projectionFamilyOverlap_injective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P </span><span class="fn">Q</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">E</span> <span class="fn">→ₗ[</span><span class="fn">𝕜</span><span class="fn">]</span> <span class="fn">E</span></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hPsum</span> : <span class="fn"><span class="fn">∑ <span class="fn">i</span> : <span class="fn">ι</span>, <span class="fn"><span class="fn">P</span> <span class="fn">i</span></span></span> <span class="fn">=</span> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hQ</span> : <span class="fn"><span class="fn">OrthogonalIdempotents</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hPQ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#LargeIndecomposable.Foundations.ProjectionFamilyNondegenerate">ProjectionFamilyNondegenerate</a> <span class="fn">P</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Injective</span> <span class="fn">⇑<span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/Ring/ProjectionFamily.html#LargeIndecomposable.Foundations.projectionFamilyOverlap">projectionFamilyOverlap</a> <span class="fn">P</span> <span class="fn">Q</span>)</span></span></span></div></div><p>Nondegenerate matched overlaps give an injective overlap operator when the source maps
+sum to the identity; source idempotency and orthogonality are not required.</p></div></div><div class="mod_doc"><h3 id="The-pieces-as-modules-over-the-corner-ring" class="markdown-heading">The pieces as modules over the corner ring <a class="hover-link" href="#The-pieces-as-modules-over-the-corner-ring">#</a></h3></div><div class="decl" id="IsIdempotentElem.instSMulCornerSmulTop"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L324-L326">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.instSMulCornerSmulTop"><span class="name">IsIdempotentElem</span>.<span class="name">instSMulCornerSmulTop</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">A</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">IsIdempotentElem</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SMul</span> <span class="fn"><span class="fn">he</span>.<span class="fn">Corner</span></span> <span class="fn">↥<span class="fn">(<span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span></span></div></div><p>The corner ring <code>eAe</code> acts on the piece <code>e • M</code> by restricting the action of <code>A</code>.</p></div></div><div class="decl" id="IsIdempotentElem.Corner.coe_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L328-L330">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.Corner.coe_smul"><span class="name">IsIdempotentElem</span>.<span class="name">Corner</span>.<span class="name">coe_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">A</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">IsIdempotentElem</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">he</span>.<span class="fn">Corner</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">↥<span class="fn">(<span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn">b</span> <span class="fn">•</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">↑<span class="fn">b</span></span> <span class="fn">•</span> <span class="fn">↑<span class="fn">x</span></span></span></span></div></div></div></div><div class="decl" id="IsIdempotentElem.instModuleCornerSmulTop"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L332-L340">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.instModuleCornerSmulTop"><span class="name">IsIdempotentElem</span>.<span class="name">instModuleCornerSmulTop</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">A</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">IsIdempotentElem</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">he</span>.<span class="fn">Corner</span></span> <span class="fn">↥<span class="fn">(<span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span></span></div></div><p><strong>The piece <code>e • M</code> of an <code>A</code>-module is a module over the corner ring <code>eAe</code>.</strong> Its unit <code>e</code>
+acts trivially because <code>e</code> fixes <code>e • M</code> pointwise.</p></div></div><div class="decl" id="IsIdempotentElem.coe_algebraMap_corner_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Idempotents/IdempotentModule.lean#L342-L348">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentModule.html#IsIdempotentElem.coe_algebraMap_corner_smul"><span class="name">IsIdempotentElem</span>.<span class="name">coe_algebraMap_corner_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">A</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">IsIdempotentElem</span> <span class="fn">e</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">↥<span class="fn">(<span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn"><span class="fn">he</span>.<span class="fn">Corner</span></span>)</span> <span class="fn">r</span></span> <span class="fn">•</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">r</span></span> <span class="fn">•</span> <span class="fn">↑<span class="fn">x</span></span></span></span></div></div><p>On the piece <code>e • M</code>, the scalar <code>r • e</code> of the corner ring acts as <code>r</code> does on <code>M</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

@@ -1,0 +1,255 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.RepresentationType.DistributiveIdeals.SoclePair</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.RepresentationType.DistributiveIdeals.SoclePair";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">RepresentationType</span>.<span class="name">DistributiveIdeals</span>.<span class="name">SoclePair</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/QuotientConstruction/Quotient.html">LargeIndecomposable.RepresentationEmbeddings.QuotientConstruction.Quotient</a></li><li><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html">LargeIndecomposable.RepresentationType.DistributiveIdeals.Layers</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.RepresentationType.DistributiveIdeals.SoclePair" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.mem_iff_corners"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_iff_corners</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.isDistribIdeals_of_chain"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">isDistribIdeals_of_chain</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.exists_isPair"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">exists_isPair</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.mem_rad_of_isPair"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_rad_of_isPair</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.socleKernel"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">socleKernel</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.mem_socleKernel"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_socleKernel</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.socleKernel_le"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">socleKernel_le</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.mem_socleKernel_mul_left"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_socleKernel_mul_left</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.mem_socleKernel_mul_right"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_socleKernel_mul_right</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.exists_quotientData"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">exists_quotientData</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="A-non-distributive-algebra-has-a-quotient-with-a-socle-pair" class="markdown-heading">A non-distributive algebra has a quotient with a socle pair <a class="hover-link" href="#A-non-distributive-algebra-has-a-quotient-with-a-socle-pair">#</a></h1><p>The non-distributive case behind alternative (1) of the manuscript's Theorem
+<code>thm:finite-input</code> (Bongartz, Corollary 2), by the elementary proof of note v2,
+Section 4: if the lattice of two-sided ideals of a split basic algebra <code>B</code> is not
+distributive, there are a two-sided ideal <code>K ⊆ J</code> and <code>QuotientData</code> on <code>B/K</code>
+whose idempotents are the images of <code>e_x, e_y</code>
+(<code><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.exists_quotientData">SplitBasicData.exists_quotientData</a></code>).</p><p>The proof follows the note: a non-distributive ideal lattice has a corner
+<code>e_x B e_y</code> whose subbimodules are not totally ordered
+(<code><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.isDistribIdeals_of_chain">SplitBasicData.isDistribIdeals_of_chain</a></code>); hence some radical layer
+<code>D_i / D_{i+1}</code> has two independent elements <code>s, t</code> (<code><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.exists_isPair">exists_isPair</a></code>).
+Instead of the note's <code>K = JH + HJ</code> with <code>H = B D_i B</code>, we kill the largest
+ideal <code>K ⊆ J</code> with <code>e_x B K B e_y ⊆ D_{i+1}</code> (<code><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.socleKernel">socleKernel</a></code>). It contains <code>jl</code>
+and <code>lj</code> for <code>l ∈ D_i</code>, <code>j ∈ J</code>, which is all that is needed; we do not show
+<code>K ⊆ J²</code>, only <code>K ⊆ J</code>.</p></div><div class="decl" id="LargeIndecomposable.SplitBasicData.mem_iff_corners"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L43-L48">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.mem_iff_corners"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_iff_corners</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><span class="fn">TwoSidedIdeal</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn">B</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">b</span> <span class="fn">∈</span> <span class="fn">I</span></span> <span class="fn">↔</span> <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">ι</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData.e">e</a></span> <span class="fn">x</span></span> <span class="fn">*</span> <span class="fn">b</span></span> <span class="fn">*</span> <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData.e">e</a></span> <span class="fn">y</span></span></span> <span class="fn">∈</span> <span class="fn">I</span></span></span></span></div></div><p>A two-sided ideal is the sum of its corners.</p></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.isDistribIdeals_of_chain"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L50-L75">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.isDistribIdeals_of_chain"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">isDistribIdeals_of_chain</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> :
+  <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">ι</span>) (<span class="fn">I₁ </span><span class="fn">I₂</span> : <span class="fn"><span class="fn">TwoSidedIdeal</span> <span class="fn">B</span></span>),
+    <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.cornerIdeal">cornerIdeal</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">I₁</span></span> <span class="fn">≤</span> <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.cornerIdeal">cornerIdeal</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">I₂</span></span></span> <span class="fn">∨</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.cornerIdeal">cornerIdeal</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">I₂</span></span> <span class="fn">≤</span> <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.cornerIdeal">cornerIdeal</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">I₁</span></span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.IsDistribIdeals">IsDistribIdeals</a> <span class="fn">B</span></span></div></div><p>If, for every corner, the corners of any two ideals are comparable, the ideal
+lattice is distributive.</p></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.exists_isPair"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L77-L93">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.exists_isPair"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">exists_isPair</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hnd</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.IsDistribIdeals">IsDistribIdeals</a> <span class="fn">B</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">x</span> : <span class="fn">ι</span>) (<span class="fn">y</span> : <span class="fn">ι</span>) (<span class="fn">n</span> : <span class="fn">ℕ</span>) (<span class="fn">l₁</span> : <span class="fn">B</span>) (<span class="fn">l₂</span> : <span class="fn">B</span>), <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.IsPair">IsPair</a> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.layer">layer</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">n</span>)</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.layer">layer</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span>)</span> <span class="fn">l₁</span> <span class="fn">l₂</span></span></span></div></div><p>A non-distributive split basic algebra has a radical layer <code>D_i/D_{i+1}</code> of some
+corner <code>e_x B e_y</code> containing two independent elements.</p></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.mem_rad_of_isPair"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L95-L126">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.mem_rad_of_isPair"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_rad_of_isPair</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">l₁ </span><span class="fn">l₂</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hp</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.IsPair">IsPair</a> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.layer">layer</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">n</span>)</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.layer">layer</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span>)</span> <span class="fn">l₁</span> <span class="fn">l₂</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">l₁</span> <span class="fn">∈</span> <span class="fn"><span class="fn">Ring.jacobson</span> <span class="fn">B</span></span></span> <span class="fn">∧</span> <span class="fn"><span class="fn">l₂</span> <span class="fn">∈</span> <span class="fn"><span class="fn">Ring.jacobson</span> <span class="fn">B</span></span></span></span></div></div><p>An independent pair in a radical layer lies in <code>J</code>: the zeroth layer of a diagonal
+corner <code>e_x B e_x = k e_x + e_x J e_x</code> has dimension at most one.</p></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.socleKernel"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L135-L146">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.socleKernel"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">socleKernel</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">W</span> : <span class="fn"><span class="fn">Submodule</span> <span class="fn">k</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">TwoSidedIdeal</span> <span class="fn">B</span></span></div></div><p>The largest two-sided ideal <code>K ⊆ J</code> with <code>e_x B K B e_y ⊆ W</code>.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicData.socleKernel" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.mem_socleKernel"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L148-L152">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.mem_socleKernel"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_socleKernel</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <span class="fn"><span class="fn">Submodule</span> <span class="fn">k</span> <span class="fn">B</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">b</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">b</span> <span class="fn">∈</span> <span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.socleKernel">socleKernel</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">W</span>)</span></span></span> <span class="fn">↔</span> <span class="fn"><span class="fn"><span class="fn">b</span> <span class="fn">∈</span> <span class="fn"><span class="fn">Ring.jacobson</span> <span class="fn">B</span></span></span> <span class="fn">∧</span> <span class="fn">∀ (<span class="fn">a </span><span class="fn">c</span> : <span class="fn">B</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData.e">e</a></span> <span class="fn">x</span></span> <span class="fn">*</span> <span class="fn">(<span class="fn"><span class="fn">a</span> <span class="fn">*</span> <span class="fn">b</span></span> <span class="fn">*</span> <span class="fn">c</span>)</span></span> <span class="fn">*</span> <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData.e">e</a></span> <span class="fn">y</span></span></span> <span class="fn">∈</span> <span class="fn">W</span></span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.socleKernel_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L154-L156">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.socleKernel_le"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">socleKernel_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">W</span> : <span class="fn"><span class="fn">Submodule</span> <span class="fn">k</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.socleKernel">socleKernel</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">W</span>)</span></span> <span class="fn">≤</span> <span class="fn"><span class="fn">Ring.jacobson</span> <span class="fn">B</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.mem_socleKernel_mul_left"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L160-L171">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.mem_socleKernel_mul_left"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_socleKernel_mul_left</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">l </span><span class="fn">j</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hl</span> : <span class="fn"><span class="fn">l</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.layer">layer</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">n</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hj</span> : <span class="fn"><span class="fn">j</span> <span class="fn">∈</span> <span class="fn"><span class="fn">Ring.jacobson</span> <span class="fn">B</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hlJ</span> : <span class="fn"><span class="fn">l</span> <span class="fn">∈</span> <span class="fn"><span class="fn">Ring.jacobson</span> <span class="fn">B</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">j</span> <span class="fn">*</span> <span class="fn">l</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.socleKernel">socleKernel</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.layer">layer</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span>)</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.mem_socleKernel_mul_right"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L173-L184">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.mem_socleKernel_mul_right"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mem_socleKernel_mul_right</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">l </span><span class="fn">j</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hl</span> : <span class="fn"><span class="fn">l</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.layer">layer</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">n</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hj</span> : <span class="fn"><span class="fn">j</span> <span class="fn">∈</span> <span class="fn"><span class="fn">Ring.jacobson</span> <span class="fn">B</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">l</span> <span class="fn">*</span> <span class="fn">j</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.socleKernel">socleKernel</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.SplitBasicData.layer">layer</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span>)</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.exists_quotientData"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.lean#L188-L244">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/SoclePair.html#LargeIndecomposable.SplitBasicData.exists_quotientData"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">exists_quotientData</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hnd</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.IsDistribIdeals">IsDistribIdeals</a> <span class="fn">B</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">x</span> : <span class="fn">ι</span>) (<span class="fn">y</span> : <span class="fn">ι</span>) (<span class="fn">K</span> : <span class="fn"><span class="fn">TwoSidedIdeal</span> <span class="fn">B</span></span>),
+  <span class="fn"><span class="fn"><span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">K</span></span> <span class="fn">≤</span> <span class="fn"><span class="fn">Ring.jacobson</span> <span class="fn">B</span></span></span> <span class="fn">∧</span>     <span class="fn">∃ (<span class="fn">Q</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/QuotientConstruction/Quotient.html#LargeIndecomposable.QuotientData">QuotientData</a> <span class="fn">k</span> <span class="fn">(<span class="fn">B</span> <span class="fn">⧸</span> <span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">K</span></span>)</span></span>),
+      <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/QuotientConstruction/Quotient.html#LargeIndecomposable.QuotientData.ex">ex</a></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">Ideal.Quotient.mk</span> <span class="fn">(<span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">K</span>)</span>)</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData.e">e</a></span> <span class="fn">x</span>)</span></span></span> <span class="fn">∧</span>         <span class="fn"><span class="fn"><span class="fn">Q</span>.<a href="../../.././LargeIndecomposable/RepresentationEmbeddings/QuotientConstruction/Quotient.html#LargeIndecomposable.QuotientData.ey">ey</a></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">Ideal.Quotient.mk</span> <span class="fn">(<span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">K</span>)</span>)</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData.e">e</a></span> <span class="fn">y</span>)</span></span></span></span></span></span></span></div></div><p><strong>Note v2, Section 4.</strong> If the lattice of two-sided ideals of a split basic
+algebra <code>B</code> is not distributive, there are <code>x, y</code> and a two-sided ideal <code>K ⊆ J</code>
+such that <code>B/K</code> carries <code>QuotientData</code> (Setting 3.2) with idempotents the images
+of <code>e_x, e_y</code>. By <code>SplitBasicData.quotient</code>, <code>B/K</code> is again split basic with the
+images of the <code>e</code>'s, and its radical is the image of <code>J</code>
+(<code>SplitBasicData.mem_jacobson_quotient_iff</code>).</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

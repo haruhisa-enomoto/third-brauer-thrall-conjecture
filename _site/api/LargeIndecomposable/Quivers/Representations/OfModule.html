@@ -1,0 +1,795 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Quivers.Representations.OfModule</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Quivers.Representations.OfModule";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Quivers</span>.<span class="name">Representations</span>.<span class="name">OfModule</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html">LargeIndecomposable.Quivers.PathAlgebras.ModuleDecomposition</a></li><li><a href="../../.././LargeIndecomposable/Quivers/Representations/DimensionVector.html">LargeIndecomposable.Quivers.Representations.DimensionVector</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Linear/FunctorCategory.lean">Mathlib.CategoryTheory.Linear.FunctorCategory</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Linear/LinearFunctor.lean">Mathlib.CategoryTheory.Linear.LinearFunctor</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Category/ModuleCat/Algebra.lean">Mathlib.Algebra.Category.ModuleCat.Algebra</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Quivers.Representations.OfModule" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepOfModule</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepOfModule_obj"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepOfModule_obj</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepOfModule_map"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepOfModule_map</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.dimVector_quiverRepOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">dimVector_quiverRepOfModule</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.finrank_eq_sum_dimVector_quiverRepOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">finrank_eq_sum_dimVector_quiverRepOfModule</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomOfModule_app"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_app</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomOfModule_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_id</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomOfModule_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomOfModule_injective"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_injective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomComponent"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomComponent</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomComponent_comp_pathMap"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomComponent_comp_pathMap</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomComponent_quiverRepHomOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomComponent_quiverRepHomOfModule</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">moduleHomOfQuiverRepHom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_apply"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">moduleHomOfQuiverRepHom_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_apply_of_mem"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">moduleHomOfQuiverRepHom_apply_of_mem</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomOfModule_moduleHomOfQuiverRepHom"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_moduleHomOfQuiverRepHom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_quiverRepHomOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">moduleHomOfQuiverRepHom_quiverRepHomOfModule</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.exists_quiverRepHomOfModule_eq"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">exists_quiverRepHomOfModule_eq</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepHomOfModule_bijective"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_bijective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepFunctor</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepFunctor_obj"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepFunctor_obj</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepFunctor_map"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepFunctor_map</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepFunctorFullyFaithful</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.instFullModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">instFullModuleCatPathAlgebraQuiverRepQuiverRepFunctor</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.instFaithfulModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">instFaithfulModuleCatPathAlgebraQuiverRepQuiverRepFunctor</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.instAdditiveModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">instAdditiveModuleCatPathAlgebraQuiverRepQuiverRepFunctor</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.instLinearModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">instLinearModuleCatPathAlgebraQuiverRepQuiverRepFunctor</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.RepresentationTheory.Quiver.Representation.OfModule</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="The-representation-of-a-quiver-carried-by-a-module-over-its-path-algebra" class="markdown-heading">The representation of a quiver carried by a module over its path algebra <a class="hover-link" href="#The-representation-of-a-quiver-carried-by-a-module-over-its-path-algebra">#</a></h1><p><code>LargeIndecomposable.Foundations.RepresentationTheory.Quiver.ModuleDecomposition</code> equips a left module <code>M</code> over the path
+algebra <code>kQ</code> of a finite quiver with the data of a representation of <code>Q</code>: the <code>k</code>-subspace
+<code>eᵥ M = <a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponent">LargeIndecomposable.Foundations.vertexComponent</a> k M v</code> at each vertex, the <code>k</code>-linear map <code><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.pathMap">LargeIndecomposable.Foundations.pathMap</a></code> along
+each path, and the restriction <code><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponentMap">LargeIndecomposable.Foundations.vertexComponentMap</a></code> of a <code>kQ</code>-linear map to those
+subspaces. This file assembles that data into an object and a morphism of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/Basic.html#LargeIndecomposable.Foundations.QuiverRep">LargeIndecomposable.Foundations.QuiverRep</a> k Q</code>,
+bundles the assignment as a functor <code>ModuleCat (kQ) ⥤ <a href="../../.././LargeIndecomposable/Quivers/Representations/Basic.html#LargeIndecomposable.Foundations.QuiverRep">LargeIndecomposable.Foundations.QuiverRep</a> k Q</code>, and proves that
+functor <strong>fully faithful</strong>.</p><h2 id="Main-definitions" class="markdown-heading">Main definitions <a class="hover-link" href="#Main-definitions">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">LargeIndecomposable.Foundations.quiverRepOfModule</a> k Q M</code>: the representation <code>v ↦ eᵥ M</code> of <code>Q</code> carried by a <code>kQ</code>-module.</li><li><code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">LargeIndecomposable.Foundations.quiverRepHomOfModule</a> k Q f</code>: the morphism of representations carried by a <code>kQ</code>-linear
+map.</li><li><code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent">LargeIndecomposable.Foundations.quiverRepHomComponent</a> k Q φ v</code>: the component at <code>v</code> of a morphism between two such
+representations, retyped as a map <code>eᵥ M →ₗ[k] eᵥ N</code>.</li><li><code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom">LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom</a> k Q φ</code>: the <code>kQ</code>-linear map glued from those components,
+inverse to <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">LargeIndecomposable.Foundations.quiverRepHomOfModule</a></code>.</li><li><code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">LargeIndecomposable.Foundations.quiverRepFunctor</a> k Q</code>: the two previous assignments bundled as a functor
+<code>ModuleCat (kQ) ⥤ <a href="../../.././LargeIndecomposable/Quivers/Representations/Basic.html#LargeIndecomposable.Foundations.QuiverRep">LargeIndecomposable.Foundations.QuiverRep</a> k Q</code>, and
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful">LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful</a></code>: its full faithfulness.</li></ul><h2 id="Main-results" class="markdown-heading">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.dimVector_quiverRepOfModule">LargeIndecomposable.Foundations.dimVector_quiverRepOfModule</a></code>: the dimension vector of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> k Q M</code> is
+<code>v ↦ dimₖ (eᵥ M)</code>, and <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.finrank_eq_sum_dimVector_quiverRepOfModule">LargeIndecomposable.Foundations.finrank_eq_sum_dimVector_quiverRepOfModule</a></code>: over a
+finite-dimensional module its coordinates sum to <code>dimₖ M</code>.</li><li><code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_id">LargeIndecomposable.Foundations.quiverRepHomOfModule_id</a></code> and <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_comp">LargeIndecomposable.Foundations.quiverRepHomOfModule_comp</a></code>: the assignment is
+functorial.</li><li><code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_injective">LargeIndecomposable.Foundations.quiverRepHomOfModule_injective</a></code> and
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_moduleHomOfQuiverRepHom">LargeIndecomposable.Foundations.quiverRepHomOfModule_moduleHomOfQuiverRepHom</a></code>: it is <strong>injective</strong> and <strong>surjective</strong> on
+<code>Hom</code>-sets, packaged as <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_bijective">LargeIndecomposable.Foundations.quiverRepHomOfModule_bijective</a></code> and, on the bundled functor, as
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful">LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful</a></code>. The inverse laws for the explicit inverse are that
+surjectivity statement together with <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_quiverRepHomOfModule">LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_quiverRepHomOfModule</a></code>.</li><li>The functor is additive and <code>k</code>-linear, so that on <code>Hom</code>-sets it is an isomorphism of
+<code>k</code>-vector spaces and not merely a bijection; that is what makes a dimension computed for
+representations also one for <code>kQ</code>-modules.</li></ul><h2 id="Implementation-notes" class="markdown-heading">Implementation notes <a class="hover-link" href="#Implementation-notes">#</a></h2><p>Both the module and the resulting representation are described through the <em>subspaces</em> <code>eᵥ M</code> of
+<code>M</code>, not through an abstract direct-sum carrier; that is what makes <code><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexProjection">LargeIndecomposable.Foundations.vertexProjection</a></code> and
+the identity <code>∑ᵥ eᵥ • x = x</code> (<code><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.sum_coe_vertexProjection">LargeIndecomposable.Foundations.sum_coe_vertexProjection</a></code>), both from
+<code>LargeIndecomposable.Foundations.RepresentationTheory.Quiver.ModuleDecomposition</code>, available, and those two carry the whole
+content of full faithfulness: injectivity is the fact that a <code>kQ</code>-linear map is determined by its
+restrictions to the components, and surjectivity glues the components of a morphism back together,
+the naturality in the paths being exactly what makes the glued map <code>kQ</code>-linear.</p><p>The vertex set is finite throughout, as it must be: the unit <code>1 = ∑ᵥ eᵥ</code> of <code>kQ</code> is a finite sum of
+vertex idempotents, and without it a module is not the sum of its vertex components at all. It is
+carried as <code>[Finite Q]</code>, refined to <code>[Fintype Q]</code> only where a sum over the vertices is genuinely
+in a statement; elsewhere <code>Fintype.ofFinite</code> supplies the enumeration a proof or a body needs. The
+base is a field only because <code><a href="../../.././LargeIndecomposable/Quivers/Representations/Basic.html#LargeIndecomposable.Foundations.QuiverRep">LargeIndecomposable.Foundations.QuiverRep</a></code> is; the underlying data of
+<code>LargeIndecomposable.Foundations.RepresentationTheory.Quiver.ModuleDecomposition</code> needs no more than a commutative
+semiring. The <code>k</code>-linear structure carried on <code>M</code> alongside the <code>kQ</code>-action is asked for as
+<code>[Module k M]</code> with <code>[IsScalarTower k (pathAlgebra k Q) M]</code>, not extracted from the algebra,
+exactly as in that file. The three modules of the morphism section share one universe, since
+<code>ModuleCat k</code> — and hence <code><a href="../../.././LargeIndecomposable/Quivers/Representations/Basic.html#LargeIndecomposable.Foundations.QuiverRep">LargeIndecomposable.Foundations.QuiverRep</a> k Q</code> — has objects in a single universe. Those two
+hypotheses are what forces the source category of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">LargeIndecomposable.Foundations.quiverRepFunctor</a></code> to be spelled with the
+scoped instances <code>ModuleCat.moduleOfAlgebraModule</code> and
+<code>ModuleCat.isScalarTower_of_algebra_moduleCat</code> of
+<code>Mathlib.Algebra.Category.ModuleCat.Algebra</code>, which restrict the scalars of an object of
+<code>ModuleCat (kQ)</code> along <code>algebraMap k (kQ)</code>; a file stating anything about that functor must
+<code>open scoped ModuleCat</code> for the same reason.</p><p>A representation is a functor out of <code>CategoryTheory.Paths Q</code>, whose objects are the vertices of
+<code>Q</code> only after unfolding the semireducible <code>CategoryTheory.Paths</code>. Two devices from the
+neighbouring files handle that: <code>change Q at v</code> restates a quantified object as a vertex, and the
+functorial equations of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a></code> are proved by first naming the intended identity with
+the vertex-indexed <code><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.pathMap_nil">LargeIndecomposable.Foundations.pathMap_nil</a></code> and <code><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.pathMap_comp">LargeIndecomposable.Foundations.pathMap_comp</a></code>, whose statements are then
+matched definitionally. The morphism-level API is stated on <code>ModuleCat</code> homomorphisms rather than
+on elements for the same reason: an element of <code>(quiverRepOfModule k Q M).obj v</code> is an element of
+<code>eᵥ M</code> only up to unfolding, so a coercion of it to <code>M</code> does not elaborate. That is what
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent">LargeIndecomposable.Foundations.quiverRepHomComponent</a></code> is for: it names the component of a morphism at the vertex-indexed
+type <code>eᵥ M →ₗ[k] eᵥ N</code> once and for all, and everything about the gluing is stated through it.</p><h2 id="References" class="markdown-heading">References <a class="hover-link" href="#References">#</a></h2><p>This is the fully faithful half of <code>quiverRepEquivalence</code>, Layer 1 of
+<code>TauCetiRoadmap/RepresentationTheory/QuiverRepresentations/README.md</code>, which asks for the
+equivalence &quot;sending a module <code>M</code> to the representation <code>v ↦ eᵥ M</code>, with an arrow acting by left
+multiplication, and inverting through the idempotent decomposition <code>M = ⨁ᵥ eᵥ M</code>&quot;. Full
+faithfulness is proved here; the essential surjectivity that completes the equivalence — a
+<code>kQ</code>-module structure on <code>⨁ᵥ Mᵥ</code> for a given representation — is
+<code>LargeIndecomposable.Foundations.RepresentationTheory.Quiver.Representation.AsModule</code>, where the two halves are assembled
+into <code><a href="../../.././LargeIndecomposable/Quivers/Representations/AsModule.html#LargeIndecomposable.Foundations.quiverRepEquivalence">LargeIndecomposable.Foundations.quiverRepEquivalence</a></code>.</p><p>The equivalence itself is classical; see Assem--Simson--Skowroński, <em>Elements of the Representation
+Theory of Associative Algebras I</em>, Ch. III, or Schiffler, <em>Quiver Representations</em>, Ch. 5.</p></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepOfModule"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L138-L159">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepOfModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> t)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/Basic.html#LargeIndecomposable.Foundations.QuiverRep">QuiverRep</a> <span class="fn">k</span> <span class="fn">Q</span></span></div></div><p><strong>The representation of <code>Q</code> carried by a module over its path algebra</strong>: the vector space at a
+vertex <code>v</code> is the component <code>eᵥ M</code>, and a path acts by left multiplication, carrying the component
+at its source to the component at its target.</p><p><code>@[expose]</code> is load-bearing rather than a leak: the <em>statements</em> of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule_map">LargeIndecomposable.Foundations.quiverRepOfModule_map</a></code>
+and of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">LargeIndecomposable.Foundations.quiverRepHomOfModule</a></code> speak of maps between the objects <code>(quiverRepOfModule k Q M).obj v</code>, which only typecheck against <code>ModuleCat.of k (eᵥ M)</code> once this body is unfolded.</p><details id="instances-for-list-LargeIndecomposable.Foundations.quiverRepOfModule" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepOfModule_obj"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L161-L164">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule_obj"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepOfModule_obj</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> t)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">Q</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span>)</span>.<span class="fn">obj</span></span> <span class="fn">v</span></span> <span class="fn">=</span> <span class="fn">↧<span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponent">vertexComponent</a> <span class="fn">k</span> <span class="fn">M</span> <span class="fn">v</span>)</span></span></span></span></div></div><p>The vector space of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> k Q M</code> at a vertex is the component of <code>M</code> there.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepOfModule_map"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L166-L169">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule_map"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepOfModule_map</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> t)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">a</span> <span class="fn">b</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span>)</span>.<span class="fn">map</span></span> <span class="fn">p</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">ModuleCat.ofHom</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.pathMap">pathMap</a> <span class="fn">k</span> <span class="fn">M</span> <span class="fn">p</span>)</span></span></span></div></div><p>A path acts on <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> k Q M</code> by left multiplication.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.dimVector_quiverRepOfModule"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L175-L179">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.dimVector_quiverRepOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">dimVector_quiverRepOfModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> t)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">Q</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/DimensionVector.html#LargeIndecomposable.Foundations.dimVector">dimVector</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span>)</span> <span class="fn">v</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponent">vertexComponent</a> <span class="fn">k</span> <span class="fn">M</span> <span class="fn">v</span>)</span></span></span></span></div></div><p><strong>The dimension vector of the representation carried by a module</strong> is the vertexwise dimension
+of its components.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.finrank_eq_sum_dimVector_quiverRepOfModule"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L181-L186">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.finrank_eq_sum_dimVector_quiverRepOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">finrank_eq_sum_dimVector_quiverRepOfModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> t)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">M</span></span> <span class="fn">=</span> <span class="fn">∑ <span class="fn">v</span> : <span class="fn">Q</span>, <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/DimensionVector.html#LargeIndecomposable.Foundations.dimVector">dimVector</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span>)</span> <span class="fn">v</span></span></span></span></div></div><p><strong>The dimension vector of a finite-dimensional module sums to its dimension</strong>: this is
+<code><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.finrank_eq_sum_finrank_vertexComponent">LargeIndecomposable.Foundations.finrank_eq_sum_finrank_vertexComponent</a></code> read on the associated representation.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomOfModule"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L198-L207">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">N</span></span></span></div></div><p><strong>The morphism of representations carried by a <code>kQ</code>-linear map</strong>: at each vertex it is the
+restriction of the map to the components there, natural in the path by
+<code><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponentMap_comp_pathMap">LargeIndecomposable.Foundations.vertexComponentMap_comp_pathMap</a></code>.</p><details id="instances-for-list-LargeIndecomposable.Foundations.quiverRepHomOfModule" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomOfModule_app"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L209-L212">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_app"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_app</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">Q</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">f</span>)</span>.<span class="fn">app</span></span> <span class="fn">v</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">ModuleCat.ofHom</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponentMap">vertexComponentMap</a> <span class="fn">k</span> <span class="fn">f</span> <span class="fn">v</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomOfModule_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L214-L222">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_id</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">LinearMap.id</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span>)</span></span></span></div></div><p><strong>The assignment is functorial</strong>: the identity map goes to the identity morphism.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomOfModule_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L224-L232">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_comp</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N </span><span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span></span><span class="fn">]</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">(<span class="fn">g</span> <span class="fn">∘ₗ</span> <span class="fn">f</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">f</span>)</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">g</span>)</span></span></span></div></div><p><strong>The assignment is functorial</strong>: a composite goes to the composite.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomOfModule_injective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L234-L256">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_injective"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_injective</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Injective</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span>)</span></span></div></div><p><strong>Faithfulness</strong>: a <code>kQ</code>-linear map is determined by the morphism of representations it
+carries, a module being the sum of its vertex components.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomComponent"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L258-L265">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomComponent</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">Q</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponent">vertexComponent</a> <span class="fn">k</span> <span class="fn">M</span> <span class="fn">v</span>)</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponent">vertexComponent</a> <span class="fn">k</span> <span class="fn">N</span> <span class="fn">v</span>)</span></span></span></div></div><p><strong>The component at a vertex of a morphism between representations carried by modules</strong>, named
+at the vertex-indexed type <code>eᵥ M →ₗ[k] eᵥ N</code>. It is the component of <code>φ</code> as a <code>ModuleCat</code>
+homomorphism, retyped: that is what lets its values be spoken of as elements of <code>eᵥ N</code>, which the
+object type of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">LargeIndecomposable.Foundations.quiverRepOfModule</a></code> otherwise hides.</p><details id="instances-for-list-LargeIndecomposable.Foundations.quiverRepHomComponent" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomComponent_comp_pathMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L267-L274">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent_comp_pathMap"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomComponent_comp_pathMap</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">a</span> <span class="fn">b</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent">quiverRepHomComponent</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">φ</span> <span class="fn">b</span></span> <span class="fn">∘ₗ</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.pathMap">pathMap</a> <span class="fn">k</span> <span class="fn">M</span> <span class="fn">p</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.pathMap">pathMap</a> <span class="fn">k</span> <span class="fn">N</span> <span class="fn">p</span></span> <span class="fn">∘ₗ</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent">quiverRepHomComponent</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">φ</span> <span class="fn">a</span></span></span></span></div></div><p><strong>The components of a morphism commute with the action of a path.</strong> This is the naturality of
+<code>φ</code>, read at the vertex-indexed types.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomComponent_quiverRepHomOfModule"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L340-L344">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent_quiverRepHomOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomComponent_quiverRepHomOfModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">Q</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent">quiverRepHomComponent</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">f</span>)</span> <span class="fn">v</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponentMap">vertexComponentMap</a> <span class="fn">k</span> <span class="fn">f</span> <span class="fn">v</span></span></span></div></div><p>The component of the morphism carried by a <code>kQ</code>-linear map is the restriction of that map.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L346-L367">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">moduleHomOfQuiverRepHom</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span></span><span class="fn">]</span> <span class="fn">N</span></span></div></div><p><strong>The <code>kQ</code>-linear map recovered from a morphism of the associated representations.</strong> It glues
+the components of <code>φ</code> along the decomposition <code>M = ⨁ᵥ eᵥ M</code>; the naturality of <code>φ</code> in the paths is
+exactly what makes the glued map commute with the action of the path algebra.</p><p>Only <code>[Finite Q]</code> is asked for: the gluing needs an enumeration of the vertices, but no sum over
+them occurs in the type, so <code>Fintype.ofFinite</code> supplies one in the body.</p><details id="instances-for-list-LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L369-L377">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_apply"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">moduleHomOfQuiverRepHom_apply</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom">moduleHomOfQuiverRepHom</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">φ</span>)</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn">∑ <span class="fn">v</span> : <span class="fn">Q</span>, <span class="fn">↑<span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent">quiverRepHomComponent</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">φ</span> <span class="fn">v</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexProjection">vertexProjection</a> <span class="fn">k</span> <span class="fn">M</span> <span class="fn">v</span>)</span> <span class="fn">x</span>)</span>)</span></span></span></span></div></div><p>The recovered map, spelled out: glue the components of <code>φ</code> along the vertex projections.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_apply_of_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L379-L385">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_apply_of_mem"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">moduleHomOfQuiverRepHom_apply_of_mem</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/ModuleDecomposition.html#LargeIndecomposable.Foundations.vertexComponent">vertexComponent</a> <span class="fn">k</span> <span class="fn">M</span> <span class="fn">v</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom">moduleHomOfQuiverRepHom</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">φ</span>)</span> <span class="fn">↑<span class="fn">x</span></span></span> <span class="fn">=</span> <span class="fn">↑<span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomComponent">quiverRepHomComponent</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">φ</span> <span class="fn">v</span>)</span> <span class="fn">x</span>)</span></span></span></div></div><p><strong>On a vertex component the recovered map is the component of <code>φ</code> there.</strong></p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomOfModule_moduleHomOfQuiverRepHom"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L387-L398">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_moduleHomOfQuiverRepHom"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_moduleHomOfQuiverRepHom</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom">moduleHomOfQuiverRepHom</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">φ</span>)</span></span> <span class="fn">=</span> <span class="fn">φ</span></span></div></div><p><strong>Fullness</strong>: every morphism of the associated representations is carried by a <code>kQ</code>-linear map,
+namely <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom">LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom</a></code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_quiverRepHomOfModule"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L400-L406">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom_quiverRepHomOfModule"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">moduleHomOfQuiverRepHom_quiverRepHomOfModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom">moduleHomOfQuiverRepHom</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">f</span>)</span></span> <span class="fn">=</span> <span class="fn">f</span></span></div></div><p><strong>Faithfulness</strong>, in inverse form: gluing the components of the morphism carried by a
+<code>kQ</code>-linear map returns that map.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.exists_quiverRepHomOfModule_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L408-L412">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.exists_quiverRepHomOfModule_eq"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">exists_quiverRepHomOfModule_eq</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span></span><span class="fn">]</span> <span class="fn">N</span></span>), <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">f</span></span> <span class="fn">=</span> <span class="fn">φ</span></span></span></div></div><p><strong>Fullness</strong>, in existential form.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepHomOfModule_bijective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L414-L420">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_bijective"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepHomOfModule_bijective</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Bijective</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span>)</span></span></div></div><p><strong>Full faithfulness on a <code>Hom</code>-set</strong>: the <code>kQ</code>-linear maps <code>M → N</code> are exactly the morphisms
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> k Q M ⟶ <a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> k Q N</code>. With <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_id">LargeIndecomposable.Foundations.quiverRepHomOfModule_id</a></code> and
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_comp">LargeIndecomposable.Foundations.quiverRepHomOfModule_comp</a></code> this is one half of the roadmap's <code>quiverRepEquivalence</code>; the
+other half is essential surjectivity.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepFunctor"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L432-L447">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepFunctor</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span>)</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/Basic.html#LargeIndecomposable.Foundations.QuiverRep">QuiverRep</a> <span class="fn">k</span> <span class="fn">Q</span>)</span></span></div></div><p><strong>The functor from <code>kQ</code>-modules to representations of <code>Q</code></strong>: it carries a module to
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">LargeIndecomposable.Foundations.quiverRepOfModule</a></code> and a <code>kQ</code>-linear map to <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">LargeIndecomposable.Foundations.quiverRepHomOfModule</a></code>, the
+functoriality being <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_id">LargeIndecomposable.Foundations.quiverRepHomOfModule_id</a></code> and <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_comp">LargeIndecomposable.Foundations.quiverRepHomOfModule_comp</a></code>.
+This is the module-to-representation half of the roadmap's <code>quiverRepEquivalence</code>, and
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful">LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful</a></code> is its full faithfulness.</p><p><code>@[expose]</code> here is load-bearing for the same reason as on <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">LargeIndecomposable.Foundations.quiverRepOfModule</a></code>: the
+<em>statement</em> of <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor_map">LargeIndecomposable.Foundations.quiverRepFunctor_map</a></code> speaks of a morphism between the objects
+<code>(quiverRepFunctor k Q).obj M</code>, which only typechecks against a morphism of
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">LargeIndecomposable.Foundations.quiverRepOfModule</a></code> once this body is unfolded.</p><details id="instances-for-list-LargeIndecomposable.Foundations.quiverRepFunctor" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepFunctor_obj"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L449-L452">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor_obj"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepFunctor_obj</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">quiverRepFunctor</a> <span class="fn">k</span> <span class="fn">Q</span>)</span>.<span class="fn">obj</span></span> <span class="fn">M</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepOfModule">quiverRepOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">↑<span class="fn">M</span></span></span></span></div></div><p>The functor carries a module to the representation it carries.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepFunctor_map"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L454-L457">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor_map"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepFunctor_map</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/PathAlgebra.html#LargeIndecomposable.Foundations.pathAlgebra">pathAlgebra</a> <span class="fn">k</span> <span class="fn">Q</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">⟶</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">quiverRepFunctor</a> <span class="fn">k</span> <span class="fn">Q</span>)</span>.<span class="fn">map</span></span> <span class="fn">f</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule">quiverRepHomOfModule</a> <span class="fn">k</span> <span class="fn">Q</span> <span class="fn">(<span class="fn">ModuleCat.Hom.hom</span> <span class="fn">f</span>)</span></span></span></div></div><p>The functor carries a <code>kQ</code>-linear map to the morphism of representations it carries.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L459-L469">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">quiverRepFunctorFullyFaithful</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">quiverRepFunctor</a> <span class="fn">k</span> <span class="fn">Q</span>)</span>.<span class="fn">FullyFaithful</span></span></div></div><p><strong>The functor from <code>kQ</code>-modules to representations of <code>Q</code> is fully faithful</strong>: this is
+<code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepHomOfModule_bijective">LargeIndecomposable.Foundations.quiverRepHomOfModule_bijective</a></code>, with <code><a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom">LargeIndecomposable.Foundations.moduleHomOfQuiverRepHom</a></code> as the explicit
+preimage. It is one half of the roadmap's <code>quiverRepEquivalence</code>; the other half is essential
+surjectivity, proved in
+<code>LargeIndecomposable.Foundations.RepresentationTheory.Quiver.Representation.AsModule</code>.</p><details id="instances-for-list-LargeIndecomposable.Foundations.quiverRepFunctorFullyFaithful" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.instFullModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L471-L472">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.instFullModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">instFullModuleCatPathAlgebraQuiverRepQuiverRepFunctor</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">quiverRepFunctor</a> <span class="fn">k</span> <span class="fn">Q</span>)</span>.<span class="fn">Full</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.instFaithfulModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L474-L475">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.instFaithfulModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">instFaithfulModuleCatPathAlgebraQuiverRepQuiverRepFunctor</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">quiverRepFunctor</a> <span class="fn">k</span> <span class="fn">Q</span>)</span>.<span class="fn">Faithful</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.instAdditiveModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L477-L496">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.instAdditiveModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">instAdditiveModuleCatPathAlgebraQuiverRepQuiverRepFunctor</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">quiverRepFunctor</a> <span class="fn">k</span> <span class="fn">Q</span>)</span>.<span class="fn">Additive</span></span></div></div><p><strong>The functor is additive</strong>: a <code>kQ</code>-linear map restricts to the vertex components
+additively.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.instLinearModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Quivers/Representations/OfModule.lean#L498-L515">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.instLinearModuleCatPathAlgebraQuiverRepQuiverRepFunctor"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">instLinearModuleCatPathAlgebraQuiverRepQuiverRepFunctor</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/Representations/OfModule.html#LargeIndecomposable.Foundations.quiverRepFunctor">quiverRepFunctor</a> <span class="fn">k</span> <span class="fn">Q</span>)</span></span></div></div><p><strong>The functor is <code>k</code>-linear</strong>: the vertex components of a <code>kQ</code>-module are <code>k</code>-subspaces, and
+restricting a <code>kQ</code>-linear map to them is <code>k</code>-linear in the map. This is what makes the functor
+compare <code>k</code>-dimensions of morphism spaces.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

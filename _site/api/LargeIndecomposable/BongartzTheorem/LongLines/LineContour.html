@@ -1,0 +1,206 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.BongartzTheorem.LongLines.LineContour</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.BongartzTheorem.LongLines.LineContour";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">BongartzTheorem</span>.<span class="name">LongLines</span>.<span class="name">LineContour</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineIndec.html">LargeIndecomposable.BongartzTheorem.LongLines.LineIndec</a></li><li><a href="../../.././LargeIndecomposable/RayCategories/Linearization/RegularRepresentation.html">LargeIndecomposable.RayCategories.Linearization.RegularRepresentation</a></li><li><a href="../../.././LargeIndecomposable/RepresentationType/MinimalInfinite/Connected.html">LargeIndecomposable.RepresentationType.MinimalInfinite.Connected</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.BongartzTheorem.LongLines.LineContour" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.morAct_ne_zero"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">morAct_ne_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.linPres_word_ne_zero"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">linPres_word_ne_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.isIndecomposable_compHom"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">isIndecomposable_compHom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.CLine.card_finset"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">CLine</span>.<span class="name">card_finset</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.CLine.finrank_lineMod"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">CLine</span>.<span class="name">finrank_lineMod</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.CLine.lineModB"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">CLine</span>.<span class="name">lineModB</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.CLine.smul_lineModB"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">CLine</span>.<span class="name">smul_lineModB</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.noContour_of_lines"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">noContour_of_lines</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Lines-of-every-length-exclude-contours" class="markdown-heading">Lines of every length exclude contours <a class="hover-link" href="#Lines-of-every-length-exclude-contours">#</a></h1><p>If the cover contains lines of every length, a contour of <code>P</code> (two different paths with the same
+nonzero value <code>w</code>) is impossible when <code>B ≅ k(P)</code> is minimal representation-infinite: the modules of
+the lines are indecomposable, pairwise of different dimensions, and killed by <code>w</code>
+(<code>CLine.pdAct_contour_eq_zero</code>), so <code>B / (w)</code> would be representation-infinite
+(BO13b, Lemma 7.2 (c), proof; <code><a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.noContour_of_lines">noContour_of_lines</a></code>).</p></div><div class="decl" id="LargeIndecomposable.RayCat.morAct_ne_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean#L36-L42">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.morAct_ne_zero"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">morAct_ne_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s </span><span class="fn">t</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">g</span> : <span class="fn"><span class="fn">s</span> <span class="fn">⟶</span> <span class="fn">t</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><span class="fn">g</span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Linearization/RegularRepresentation.html#LargeIndecomposable.RayQuiver.morAct">RayQuiver.morAct</a> <span class="fn">k</span> <span class="fn">g</span></span> <span class="fn">≠</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.linPres_word_ne_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean#L44-L53">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.linPres_word_ne_zero"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">linPres_word_ne_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">l</span> : <span class="fn"><span class="fn">List</span> <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.quiver">RayQuiver.quiver</a> <span class="fn">P</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.A">A</a></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hl</span> : <span class="fn"><span class="fn">l</span> <span class="fn">≠</span> <span class="fn"><span class="fn">[</span><span class="fn">]</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">h</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationEmbeddings/WalkConstruction/Monomial.html#LargeIndecomposable.FinQuiver.PathFrom">FinQuiver.PathFrom</a> <span class="fn">x</span> <span class="fn">l</span> <span class="fn">y</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hν</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.pathMor">RayQuiver.pathMor</a> <span class="fn">l</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">h</span></span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.linPres">RayQuiver.linPres</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.word">FinQuiver.word</a> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.quiver">RayQuiver.quiver</a> <span class="fn">P</span>)</span> <span class="fn">l</span>)</span></span> <span class="fn">≠</span> <span class="fn">0</span></span></div></div><p><strong>A path with nonzero value is nonzero in the linearization.</strong></p></div></div><div class="decl" id="LargeIndecomposable.RayCat.isIndecomposable_compHom"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean#L61-L92">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.isIndecomposable_compHom"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">isIndecomposable_compHom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A </span><span class="fn">B </span><span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">B</span> <span class="fn">≃+*</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsIndecomposable">Statement.IsIndecomposable</a> <span class="fn">A</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsIndecomposable">Statement.IsIndecomposable</a> <span class="fn">B</span> <span class="fn">M</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.CLine.card_finset"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean#L100-L106">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.CLine.card_finset"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">CLine</span>.<span class="name">card_finset</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/CoverLine.html#LargeIndecomposable.RayCat.CLine">CLine</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">L</span>.<a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LinePaths.html#LargeIndecomposable.RayCat.CLine.finset">finset</a></span>.<span class="fn">card</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">L</span>.<a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/CoverLine.html#LargeIndecomposable.RayCat.CLine.n">n</a></span> <span class="fn">+</span> <span class="fn">1</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.CLine.finrank_lineMod"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean#L108-L113">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.CLine.finrank_lineMod"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">CLine</span>.<span class="name">finrank_lineMod</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/CoverLine.html#LargeIndecomposable.RayCat.CLine">CLine</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">L</span>.<a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineIndec.html#LargeIndecomposable.RayCat.CLine.lineMod">lineMod</a></span> <span class="fn">k</span>)</span>.<a href="../../.././LargeIndecomposable/AuslanderReiten/Lengths/FDMod.html#LargeIndecomposable.AR.FDMod.carrier">carrier</a></span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">L</span>.<a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/CoverLine.html#LargeIndecomposable.RayCat.CLine.n">n</a></span> <span class="fn">+</span> <span class="fn">1</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.CLine.lineModB"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean#L117-L127">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.CLine.lineModB"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">CLine</span>.<span class="name">lineModB</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/CoverLine.html#LargeIndecomposable.RayCat.CLine">CLine</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span></span> <span class="fn">≃ₐ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Lengths/FDMod.html#LargeIndecomposable.AR.FDMod">AR.FDMod</a> <span class="fn">k</span> <span class="fn">B</span></span></div></div><p>The module of a line as a <code>B</code>-module.</p><details id="instances-for-list-LargeIndecomposable.RayCat.CLine.lineModB" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RayCat.CLine.smul_lineModB"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean#L129-L130">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.CLine.smul_lineModB"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">CLine</span>.<span class="name">smul_lineModB</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/CoverLine.html#LargeIndecomposable.RayCat.CLine">CLine</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span></span> <span class="fn">≃ₐ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn">B</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><span class="fn">(<span class="fn"><span class="fn">L</span>.<a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.CLine.lineModB">lineModB</a></span> <span class="fn">k</span> <span class="fn">e</span>)</span>.<a href="../../.././LargeIndecomposable/AuslanderReiten/Lengths/FDMod.html#LargeIndecomposable.AR.FDMod.carrier">carrier</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">b</span> <span class="fn">•</span> <span class="fn">m</span></span> <span class="fn">=</span>   <span class="fn">have <span class="fn">this</span> :=
+    <span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">symm</span></span> <span class="fn">b</span></span> <span class="fn">•</span>       <span class="fn">have <span class="fn">this</span> := <span class="fn">m</span>;
+      <span class="fn">this</span></span></span>;
+  <span class="fn">this</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.noContour_of_lines"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/BongartzTheorem/LongLines/LineContour.lean#L134-L201">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/LineContour.html#LargeIndecomposable.RayCat.noContour_of_lines"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">noContour_of_lines</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k </span><span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/MinimalInfinite/Minimal.html#LargeIndecomposable.IsMinimalRepInfinite">IsMinimalRepInfinite</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span></span> <span class="fn">≃ₐ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">htf</span> : <span class="fn">∀ (<span class="fn">g</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover.Pi1">Cover.Pi1</a> <span class="fn">x₀</span></span>), <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">≠</span> <span class="fn">1</span></span> → <span class="fn">∀ (<span class="fn">n</span> : <span class="fn">ℕ</span>), <span class="fn"><span class="fn"><span class="fn">0</span> <span class="fn">&lt;</span> <span class="fn">n</span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">^</span> <span class="fn">n</span></span> <span class="fn">≠</span> <span class="fn">1</span></span></span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hlines</span> : <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">ℕ</span>), <span class="fn">∃ (<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/CoverLine.html#LargeIndecomposable.RayCat.CLine">CLine</a> <span class="fn">x₀</span></span>), <span class="fn"><span class="fn">m</span> <span class="fn">≤</span> <span class="fn"><span class="fn">L</span>.<a href="../../.././LargeIndecomposable/BongartzTheorem/LongLines/CoverLine.html#LargeIndecomposable.RayCat.CLine.n">n</a></span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/BongartzTheorem/ContourExclusion/NoContour.html#LargeIndecomposable.RayQuiver.NoContour">RayQuiver.NoContour</a> <span class="fn">P</span></span></div></div><p><strong>Lines of every length exclude contours</strong> (BO13b, Lemma 7.2 (c)).</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

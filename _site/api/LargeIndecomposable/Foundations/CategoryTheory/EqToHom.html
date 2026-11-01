@@ -1,0 +1,233 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.CategoryTheory.EqToHom</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.CategoryTheory.EqToHom";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">CategoryTheory</span>.<span class="name">EqToHom</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/EqToHom.lean">Mathlib.CategoryTheory.EqToHom</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Preadditive/Basic.lean">Mathlib.CategoryTheory.Preadditive.Basic</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.CategoryTheory.EqToHom" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.eqToHom_conjugate_cancel"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_cancel</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.eqToHom_conjugate_eq_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_eq_id</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.eqToHom_conjugate_eq_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_eq_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.eqToHom_conjugate_add"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_add</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.eqToHom_conjugate_square"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_square</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.eq_of_eqToHom_conjugate"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eq_of_eqToHom_conjugate</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.eqToHom_conjugate_vertical_square_of_horizontal_square"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_vertical_square_of_horizontal_square</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.eqToHom_eq_iso_hom_map_eqToHom"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_eq_iso_hom_map_eqToHom</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Functor.map_heq"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">map_heq</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.CategoryTheory.EqToHom</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Transporting-categorical-morphisms-along-object-equalities" class="markdown-heading">Transporting categorical morphisms along object equalities <a class="hover-link" href="#Transporting-categorical-morphisms-along-object-equalities">#</a></h1><p>This file provides general lemmas for removing and rearranging the conjugations by <code>eqToHom</code> that
+arise when categorical objects are identified propositionally. They apply in an arbitrary category
+and avoid exposing the definitional equality of the objects being transported.</p><h2 id="Main-results" class="markdown-heading">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_cancel">LargeIndecomposable.Foundations.eqToHom_conjugate_cancel</a></code>: transporting a morphism and then transporting it back leaves
+it unchanged.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_eq_id">LargeIndecomposable.Foundations.eqToHom_conjugate_eq_id</a></code>, <code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_eq_comp">LargeIndecomposable.Foundations.eqToHom_conjugate_eq_comp</a></code> and
+<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_add">LargeIndecomposable.Foundations.eqToHom_conjugate_add</a></code>: transporting an identity, a composite or a sum gives the
+identity, the composite of the transports or the sum of the transports.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_square">LargeIndecomposable.Foundations.eqToHom_conjugate_square</a></code>: conjugating every edge preserves and reflects commutativity of
+a square.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eq_of_eqToHom_conjugate">LargeIndecomposable.Foundations.eq_of_eqToHom_conjugate</a></code>: two morphisms with equal conjugates are equal.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_vertical_square_of_horizontal_square">LargeIndecomposable.Foundations.eqToHom_conjugate_vertical_square_of_horizontal_square</a></code>: commutativity with conjugated
+horizontal edges gives commutativity after moving the conjugations to the vertical edges.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_eq_iso_hom_map_eqToHom">LargeIndecomposable.Foundations.eqToHom_eq_iso_hom_map_eqToHom</a></code>: transport along an index equality is conjugate, through
+identifications <code>Y i ≅ F.obj (X i)</code>, to the image under a functor <code>F</code> of the transport.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#CategoryTheory.Functor.map_heq">CategoryTheory.Functor.map_heq</a></code>: a functor sends morphisms which agree up to equalities of their
+endpoints to morphisms which agree in the same way.</li></ul></div><div class="decl" id="LargeIndecomposable.Foundations.eqToHom_conjugate_cancel"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L44-L50">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_cancel"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_cancel</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">X' </span><span class="fn">Y </span><span class="fn">Y'</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">X</span> <span class="fn">=</span> <span class="fn">X'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hY</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">=</span> <span class="fn">Y'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Y'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+        <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hY</span>)</span>)</span></span> <span class="fn">=</span>   <span class="fn">f</span></span></div></div><p>Transporting a morphism along object equalities and then back leaves it unchanged.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.eqToHom_conjugate_eq_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L52-L57">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_eq_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_eq_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">X</span> <span class="fn">=</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><span class="fn">f</span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">Y</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">h</span>)</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span></div></div><p><strong>A transported identity is the identity</strong>: conjugating a morphism equal to <code>𝟙 Y</code> by the
+object equality <code>X = Y</code> gives <code>𝟙 X</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.eqToHom_conjugate_eq_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L59-L69">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_eq_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_eq_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">X' </span><span class="fn">Y </span><span class="fn">Y' </span><span class="fn">Z </span><span class="fn">Z'</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">X</span> <span class="fn">=</span> <span class="fn">X'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hY</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">=</span> <span class="fn">Y'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hZ</span> : <span class="fn"><span class="fn">Z</span> <span class="fn">=</span> <span class="fn">Z'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Y'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">Y'</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><span class="fn">f</span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">g</span> <span class="fn">h</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">g</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hY</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">h</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span></span></span></div></div><p><strong>Transport distributes over composition</strong>: if <code>f = g ≫ h</code>, the transport of <code>f</code> is the
+composite of the transports of <code>g</code> and <code>h</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.eqToHom_conjugate_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L71-L79">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_add"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">X' </span><span class="fn">Y </span><span class="fn">Y'</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">X</span> <span class="fn">=</span> <span class="fn">X'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hY</span> : <span class="fn"><span class="fn">Y'</span> <span class="fn">=</span> <span class="fn">Y</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g </span><span class="fn">h</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Y'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hfgh</span> : <span class="fn"><span class="fn">f</span> <span class="fn">=</span> <span class="fn"><span class="fn">g</span> <span class="fn">+</span> <span class="fn">h</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hY</span>)</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">g</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hY</span>)</span>)</span></span> <span class="fn">+</span>     <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">h</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hY</span>)</span>)</span></span></span></span></div></div><p><strong>Transport is additive</strong>: in a preadditive category, if <code>f = g + h</code>, the transport of <code>f</code> is
+the sum of the transports of <code>g</code> and <code>h</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.eqToHom_conjugate_square"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L81-L94">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_square"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_square</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">X' </span><span class="fn">Y </span><span class="fn">Y' </span><span class="fn">Z </span><span class="fn">Z' </span><span class="fn">W </span><span class="fn">W'</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">X</span> <span class="fn">=</span> <span class="fn">X'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hY</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">=</span> <span class="fn">Y'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hZ</span> : <span class="fn"><span class="fn">Z</span> <span class="fn">=</span> <span class="fn">Z'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hW</span> : <span class="fn"><span class="fn">W</span> <span class="fn">=</span> <span class="fn">W'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Y'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">Y'</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f'</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">W'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g'</span> : <span class="fn"><span class="fn">W'</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+        <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hY</span>)</span>
+        <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">g</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span></span> <span class="fn">=</span>     <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+        <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f'</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hW</span>)</span>
+        <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">g'</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span></span></span> <span class="fn">↔</span>   <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">g</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f'</span> <span class="fn">g'</span></span></span></span></div></div><p><strong>Conjugating a commuting square by object equalities leaves it commuting</strong>, and nothing else
+becomes commuting that way: the square of transported edges commutes exactly when the original
+one does.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.eq_of_eqToHom_conjugate"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L96-L103">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eq_of_eqToHom_conjugate"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eq_of_eqToHom_conjugate</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">X' </span><span class="fn">Y </span><span class="fn">Y'</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">=</span> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hY</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">=</span> <span class="fn">Y'</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> :
+  <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hY</span>)</span>)</span></span> <span class="fn">=</span>     <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hX</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">g</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hY</span>)</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">f</span> <span class="fn">=</span> <span class="fn">g</span></span></div></div><p><strong>Two morphisms conjugated to the same morphism are equal</strong>: conjugating back cancels, by
+<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_cancel">LargeIndecomposable.Foundations.eqToHom_conjugate_cancel</a></code>, on both sides at once.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.eqToHom_conjugate_vertical_square_of_horizontal_square"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L105-L113">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_conjugate_vertical_square_of_horizontal_square"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_conjugate_vertical_square_of_horizontal_square</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A </span><span class="fn">A' </span><span class="fn">B </span><span class="fn">B' </span><span class="fn">D </span><span class="fn">D' </span><span class="fn">E </span><span class="fn">E'</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><span class="fn">A</span> <span class="fn">=</span> <span class="fn">A'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span> <span class="fn">=</span> <span class="fn">B'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hD</span> : <span class="fn"><span class="fn">D</span> <span class="fn">=</span> <span class="fn">D'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hE</span> : <span class="fn"><span class="fn">E</span> <span class="fn">=</span> <span class="fn">E'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn"><span class="fn">A'</span> <span class="fn">⟶</span> <span class="fn">B'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">q</span> : <span class="fn"><span class="fn">E'</span> <span class="fn">⟶</span> <span class="fn">D'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">B</span> <span class="fn">⟶</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">A</span> <span class="fn">⟶</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> :
+  <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hA</span>)</span>
+        <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">p</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span>
+      <span class="fn">f</span></span> <span class="fn">=</span>     <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">g</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hE</span>)</span>
+        <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">q</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">p</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hD</span>)</span>)</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">g</span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">hE</span>)</span>)</span>)</span>
+    <span class="fn">q</span></span></span></div></div><p><strong>A square with conjugated horizontal edges yields a square with conjugated vertical edges.</strong>
+The horizontal conjugations cancel from the conclusion, while the vertical edges acquire the
+corresponding conjugations.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.eqToHom_eq_iso_hom_map_eqToHom"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L115-L123">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#LargeIndecomposable.Foundations.eqToHom_eq_iso_hom_map_eqToHom"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">eqToHom_eq_iso_hom_map_eqToHom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_1, u_2}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v_2, u_3}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">C</span> <span class="fn">D</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Y</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">D</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">(<span class="fn">i</span> : <span class="fn">ι</span>) → <span class="fn"><span class="fn"><span class="fn">Y</span> <span class="fn">i</span></span> <span class="fn">≅</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">(<span class="fn">X</span> <span class="fn">i</span>)</span></span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">i</span> <span class="fn">=</span> <span class="fn">j</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn"><span class="fn">(<span class="fn">e</span> <span class="fn">i</span>)</span>.<span class="fn">hom</span></span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">map</span></span> <span class="fn">(<span class="fn">CategoryTheory.eqToHom</span> <span class="fn">⋯</span>)</span>)</span> <span class="fn"><span class="fn">(<span class="fn">e</span> <span class="fn">j</span>)</span>.<span class="fn">inv</span></span>)</span></span></span></div></div><p><strong>Transport along an index equality commutes with identifications through a functor</strong>: given
+families <code>X</code> in <code>C</code> and <code>Y</code> in <code>D</code> with isomorphisms <code>e i : Y i ≅ F.obj (X i)</code>, the transport
+<code>Y i ⟶ Y j</code> along <code>i = j</code> is the conjugate by <code>e</code> of the image under <code>F</code> of the transport
+<code>X i ⟶ X j</code>.</p></div></div><div class="decl" id="CategoryTheory.Functor.map_heq"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/EqToHom.lean#L129-L135">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/EqToHom.html#CategoryTheory.Functor.map_heq"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">map_heq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v_2, u_2}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">Functor</span> <span class="fn">C</span> <span class="fn">D</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">X' </span><span class="fn">Y'</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f'</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Y'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">X</span> <span class="fn">=</span> <span class="fn">X'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hY</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">=</span> <span class="fn">Y'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">f</span> <span class="fn">≍</span> <span class="fn">f'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<span class="fn">map</span></span> <span class="fn">f</span></span> <span class="fn">≍</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<span class="fn">map</span></span> <span class="fn">f'</span></span></span></div></div><p>A functor sends morphisms which agree up to equalities of their endpoints to morphisms which
+agree in the same way.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

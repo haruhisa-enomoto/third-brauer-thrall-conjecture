@@ -1,0 +1,291 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.RayCategories.Contours.ContourClinging</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.RayCategories.Contours.ContourClinging";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">RayCategories</span>.<span class="name">Contours</span>.<span class="name">ContourClinging</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourSourceNormalization.html">LargeIndecomposable.RayCategories.Contours.ContourSourceNormalization</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.RayCategories.Contours.ContourClinging" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PathInterlacementRelation"><span class="name">LargeIndecomposable</span>.<span class="name">PathInterlacementRelation</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PathInterlacementRelation.refl"><span class="name">LargeIndecomposable</span>.<span class="name">PathInterlacementRelation</span>.<span class="name">refl</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PathInterlacementRelation.symm"><span class="name">LargeIndecomposable</span>.<span class="name">PathInterlacementRelation</span>.<span class="name">symm</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PathInterlacementRelation.trans"><span class="name">LargeIndecomposable</span>.<span class="name">PathInterlacementRelation</span>.<span class="name">trans</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.ContourFunctionClingsAtSource"><span class="name">LargeIndecomposable</span>.<span class="name">ContourFunctionClingsAtSource</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.ContourFunctionClingsToPath"><span class="name">LargeIndecomposable</span>.<span class="name">ContourFunctionClingsToPath</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.contourFunctionClingsAtSource_iff_forall_clingsToPath"><span class="name">LargeIndecomposable</span>.<span class="name">contourFunctionClingsAtSource_iff_forall_clingsToPath</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.ContourFunctionClingsAtSources"><span class="name">LargeIndecomposable</span>.<span class="name">ContourFunctionClingsAtSources</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.contourFunctionClingsAtSource_of_normalizedAtSource"><span class="name">LargeIndecomposable</span>.<span class="name">contourFunctionClingsAtSource_of_normalizedAtSource</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.ClingingAtEverySourceDetectsIdentity"><span class="name">LargeIndecomposable</span>.<span class="name">ClingingAtEverySourceDetectsIdentity</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.EverywhereClingingTrivializesInterlacement"><span class="name">LargeIndecomposable</span>.<span class="name">EverywhereClingingTrivializesInterlacement</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.clingingAtEverySourceDetectsIdentity_of_trivializesInterlacement"><span class="name">LargeIndecomposable</span>.<span class="name">clingingAtEverySourceDetectsIdentity_of_trivializesInterlacement</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.HasClingingSourceStep"><span class="name">LargeIndecomposable</span>.<span class="name">HasClingingSourceStep</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.HasRoiterClingingPathStep"><span class="name">LargeIndecomposable</span>.<span class="name">HasRoiterClingingPathStep</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.hasClingingSourceStep_of_roiterClingingPathStep"><span class="name">LargeIndecomposable</span>.<span class="name">hasClingingSourceStep_of_roiterClingingPathStep</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.contourFunctionCohomologyVanishes_of_clinging"><span class="name">LargeIndecomposable</span>.<span class="name">contourFunctionCohomologyVanishes_of_clinging</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Interlacement-classes-and-Roiter-clinging" class="markdown-heading">Interlacement classes and Roiter clinging <a class="hover-link" href="#Interlacement-classes-and-Roiter-clinging">#</a></h1><p>Package the source-faithful global interface in BGRS, Section 8.3.  A contour
+function clings at a source when every pair of related paths admits
+representatives in the same respective interlacement classes on which the
+contour value is one.  If clinging at every source detects the identity and a
+local exact correction adds one source while preserving previous ones, finite
+source induction gives contour-cohomology vanishing.</p></div><div class="decl" id="LargeIndecomposable.PathInterlacementRelation"><div class="structure"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L28-L39">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation"><span class="name">LargeIndecomposable</span>.<span class="name">PathInterlacementRelation</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a> (max v w)</div></div><p>An equivalence relation on parallel paths representing the
+interlacement classes inside every nonzero ray.  Compatibility with a
+particular ray-category realization is intentionally kept separate.</p><ul class="structure_fields" id="LargeIndecomposable.PathInterlacementRelation.mk"><li id="LargeIndecomposable.PathInterlacementRelation.interlaced" class="structure_field"><div class="structure_field_info">interlaced<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">Q</span>}</span></span>
+</span> : <span class="fn"><span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">i</span> <span class="fn">j</span></span> → <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">i</span> <span class="fn">j</span></span> → <a href="../../.././foundational_types.html">Prop</a></span></div></li><li id="LargeIndecomposable.PathInterlacementRelation.refl'" class="structure_field"><div class="structure_field_info">refl'<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">i</span> <span class="fn">j</span></span>)</span></span>
+ : <span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">p</span> <span class="fn">p</span></span></div></li><li id="LargeIndecomposable.PathInterlacementRelation.symm'" class="structure_field"><div class="structure_field_info">symm'<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p </span><span class="fn">q</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">i</span> <span class="fn">j</span></span>}</span></span>
+</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">p</span> <span class="fn">q</span></span> → <span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">q</span> <span class="fn">p</span></span></span></div></li><li id="LargeIndecomposable.PathInterlacementRelation.trans'" class="structure_field"><div class="structure_field_info">trans'<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p </span><span class="fn">q </span><span class="fn">r</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">i</span> <span class="fn">j</span></span>}</span></span>
+</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">p</span> <span class="fn">q</span></span> → <span class="fn"><span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">q</span> <span class="fn">r</span></span> → <span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">p</span> <span class="fn">r</span></span></span></span></div></li></ul><details id="instances-for-list-LargeIndecomposable.PathInterlacementRelation" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.PathInterlacementRelation.refl"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L45-L47">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.refl"><span class="name">LargeIndecomposable</span>.<span class="name">PathInterlacementRelation</span>.<span class="name">refl</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">i</span> <span class="fn">j</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">I</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">p</span> <span class="fn">p</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PathInterlacementRelation.symm"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L49-L52">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.symm"><span class="name">LargeIndecomposable</span>.<span class="name">PathInterlacementRelation</span>.<span class="name">symm</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p </span><span class="fn">q</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">i</span> <span class="fn">j</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">I</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">p</span> <span class="fn">q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">I</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">q</span> <span class="fn">p</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PathInterlacementRelation.trans"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L54-L58">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.trans"><span class="name">LargeIndecomposable</span>.<span class="name">PathInterlacementRelation</span>.<span class="name">trans</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p </span><span class="fn">q </span><span class="fn">r</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">i</span> <span class="fn">j</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hpq</span> : <span class="fn"><span class="fn"><span class="fn">I</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">p</span> <span class="fn">q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hqr</span> : <span class="fn"><span class="fn"><span class="fn">I</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">q</span> <span class="fn">r</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">I</span>.<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation.interlaced">interlaced</a></span> <span class="fn">p</span> <span class="fn">r</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.ContourFunctionClingsAtSource"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L62-L75">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ContourFunctionClingsAtSource"><span class="name">LargeIndecomposable</span>.<span class="name">ContourFunctionClingsAtSource</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.contourScalarFunctionSubgroup">contourScalarFunctionSubgroup</a> <span class="fn">R</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">Q</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A contour function clings at <code>x</code> when any two related paths starting at
+<code>x</code> have representatives in their respective interlacement classes on which
+the contour value is one.</p><details id="instances-for-list-LargeIndecomposable.ContourFunctionClingsAtSource" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.ContourFunctionClingsToPath"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L77-L92">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ContourFunctionClingsToPath"><span class="name">LargeIndecomposable</span>.<span class="name">ContourFunctionClingsToPath</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.contourScalarFunctionSubgroup">contourScalarFunctionSubgroup</a> <span class="fn">R</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">x</span> <span class="fn">y</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A contour function clings to the nonzero ray selected by one path when
+every other representative admits same-class replacements on which the
+contour value is one.  This is the path-level form of membership in the set
+<code>M(c)</code> in BGRS 8.6.</p><details id="instances-for-list-LargeIndecomposable.ContourFunctionClingsToPath" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.contourFunctionClingsAtSource_iff_forall_clingsToPath"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L94-L103">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.contourFunctionClingsAtSource_iff_forall_clingsToPath"><span class="name">LargeIndecomposable</span>.<span class="name">contourFunctionClingsAtSource_iff_forall_clingsToPath</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.contourScalarFunctionSubgroup">contourScalarFunctionSubgroup</a> <span class="fn">R</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">Q</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ContourFunctionClingsAtSource">ContourFunctionClingsAtSource</a> <span class="fn">R</span> <span class="fn">I</span> <span class="fn">c</span> <span class="fn">x</span></span> <span class="fn">↔</span> <span class="fn">∀ {<span class="fn">y</span> : <span class="fn">Q</span>} (<span class="fn">p</span> : <span class="fn"><span class="fn">Quiver.Path</span> <span class="fn">x</span> <span class="fn">y</span></span>), <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ContourFunctionClingsToPath">ContourFunctionClingsToPath</a> <span class="fn">R</span> <span class="fn">I</span> <span class="fn">c</span> <span class="fn">p</span></span></span></span></div></div><p>Clinging at a source is exactly clinging to every path beginning at that
+source.</p></div></div><div class="decl" id="LargeIndecomposable.ContourFunctionClingsAtSources"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L105-L111">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ContourFunctionClingsAtSources"><span class="name">LargeIndecomposable</span>.<span class="name">ContourFunctionClingsAtSources</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.contourScalarFunctionSubgroup">contourScalarFunctionSubgroup</a> <span class="fn">R</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>Simultaneous clinging at every source in a finite set.</p><details id="instances-for-list-LargeIndecomposable.ContourFunctionClingsAtSources" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.contourFunctionClingsAtSource_of_normalizedAtSource"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L113-L124">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.contourFunctionClingsAtSource_of_normalizedAtSource"><span class="name">LargeIndecomposable</span>.<span class="name">contourFunctionClingsAtSource_of_normalizedAtSource</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.contourScalarFunctionSubgroup">contourScalarFunctionSubgroup</a> <span class="fn">R</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">Q</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourSourceNormalization.html#LargeIndecomposable.ContourFunctionNormalizedAtSource">ContourFunctionNormalizedAtSource</a> <span class="fn">R</span> <span class="fn">c</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ContourFunctionClingsAtSource">ContourFunctionClingsAtSource</a> <span class="fn">R</span> <span class="fn">I</span> <span class="fn">c</span> <span class="fn">x</span></span></div></div><p>Full normalization is stronger than clinging: use the original paths as
+their own interlacement-class representatives.</p></div></div><div class="decl" id="LargeIndecomposable.ClingingAtEverySourceDetectsIdentity"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L126-L132">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ClingingAtEverySourceDetectsIdentity"><span class="name">LargeIndecomposable</span>.<span class="name">ClingingAtEverySourceDetectsIdentity</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The depth/interlacement conclusion needed after the global induction:
+clinging at every source forces the contour function to be the identity.</p><details id="instances-for-list-LargeIndecomposable.ClingingAtEverySourceDetectsIdentity" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.EverywhereClingingTrivializesInterlacement"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L134-L144">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.EverywhereClingingTrivializesInterlacement"><span class="name">LargeIndecomposable</span>.<span class="name">EverywhereClingingTrivializesInterlacement</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The remaining depth conclusion in the BGRS globalization: after a contour
+function clings at every source, it is one on every related interlaced pair.</p><details id="instances-for-list-LargeIndecomposable.EverywhereClingingTrivializesInterlacement" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.clingingAtEverySourceDetectsIdentity_of_trivializesInterlacement"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L146-L181">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.clingingAtEverySourceDetectsIdentity_of_trivializesInterlacement"><span class="name">LargeIndecomposable</span>.<span class="name">clingingAtEverySourceDetectsIdentity_of_trivializesInterlacement</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">htrivial</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.EverywhereClingingTrivializesInterlacement">EverywhereClingingTrivializesInterlacement</a> <span class="fn">R</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ClingingAtEverySourceDetectsIdentity">ClingingAtEverySourceDetectsIdentity</a> <span class="fn">R</span> <span class="fn">I</span></span></div></div><p>If everywhere clinging trivializes interlaced contours, then everywhere
+clinging detects the identity contour function.</p></div></div><div class="decl" id="LargeIndecomposable.HasClingingSourceStep"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L183-L196">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.HasClingingSourceStep"><span class="name">LargeIndecomposable</span>.<span class="name">HasClingingSourceStep</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The finite form of the source-local adjustment promised by BGRS Lemma
+8.6: an exact inverse correction adds one chosen source to a finite protected
+set of sources where the contour function already clings.</p><details id="instances-for-list-LargeIndecomposable.HasClingingSourceStep" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.HasRoiterClingingPathStep"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L198-L212">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.HasRoiterClingingPathStep"><span class="name">LargeIndecomposable</span>.<span class="name">HasRoiterClingingPathStep</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The exact path-level conclusion of BGRS Lemma 8.6.  One correction
+preserves every ray to which the original contour function already clings and
+makes it cling to every ray starting at the selected source.</p><details id="instances-for-list-LargeIndecomposable.HasRoiterClingingPathStep" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.hasClingingSourceStep_of_roiterClingingPathStep"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L214-L230">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.hasClingingSourceStep_of_roiterClingingPathStep"><span class="name">LargeIndecomposable</span>.<span class="name">hasClingingSourceStep_of_roiterClingingPathStep</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hstep</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.HasRoiterClingingPathStep">HasRoiterClingingPathStep</a> <span class="fn">R</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.HasClingingSourceStep">HasClingingSourceStep</a> <span class="fn">R</span> <span class="fn">I</span></span></div></div><p>The source-faithful path-level Roiter step supplies the finite protected-
+source step needed by the global induction.</p></div></div><div class="decl" id="LargeIndecomposable.contourFunctionCohomologyVanishes_of_clinging"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/RayCategories/Contours/ContourClinging.lean#L232-L246">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.contourFunctionCohomologyVanishes_of_clinging"><span class="name">LargeIndecomposable</span>.<span class="name">contourFunctionCohomologyVanishes_of_clinging</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.PathContourRelation">PathContourRelation</a> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.PathInterlacementRelation">PathInterlacementRelation</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hdetect</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.ClingingAtEverySourceDetectsIdentity">ClingingAtEverySourceDetectsIdentity</a> <span class="fn">R</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hstep</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourClinging.html#LargeIndecomposable.HasClingingSourceStep">HasClingingSourceStep</a> <span class="fn">R</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Contours/ContourFunction.html#LargeIndecomposable.ContourFunctionCohomologyVanishes">ContourFunctionCohomologyVanishes</a> <span class="fn">R</span></span></div></div><p>The source-faithful finite globalization of Roiter's proof.  The two
+remaining combinatorial inputs are precisely the local clinging-preserving
+adjustment and the fact that clinging everywhere detects the identity.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

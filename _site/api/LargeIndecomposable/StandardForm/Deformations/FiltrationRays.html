@@ -1,0 +1,971 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.StandardForm.Deformations.FiltrationRays</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.StandardForm.Deformations.FiltrationRays";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">StandardForm</span>.<span class="name">Deformations</span>.<span class="name">FiltrationRays</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/RayCategories/RayTables/RayDegree.html">LargeIndecomposable.RayCategories.RayTables.RayDegree</a></li><li><a href="../../.././LargeIndecomposable/StandardForm/Basic/A0Graded.html">LargeIndecomposable.StandardForm.Basic.A0Graded</a></li><li><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FilteredA.html">LargeIndecomposable.StandardForm.Deformations.FilteredA</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.StandardForm.Deformations.FiltrationRays" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.RadOne"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">RadOne</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.σ_zero_mul"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σ_zero_mul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.σ_zero_pow_succ"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σ_zero_pow_succ</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.radOne_of"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">radOne_of</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.rad_mul_F"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">rad_mul_F</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.F_mul_rad"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">F_mul_rad</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.isEndpoint_F"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">isEndpoint_F</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.endpointRadical_le_F"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">endpointRadical_le_F</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.finrank_corner_le"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">finrank_corner_le</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.ray_eq_of_degree"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">ray_eq_of_degree</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.degree_lt_of_lt"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">degree_lt_of_lt</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.exists_degree"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">exists_degree</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.mem_F_of_ray"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">mem_F_of_ray</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.piece"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">piece</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.σ_corner_mem"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σ_corner_mem</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.σ_piece_surj"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σ_piece_surj</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.σCorner"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σCorner</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.σCorner_surjective"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σCorner_surjective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.σCorner_ker"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σCorner_ker</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.finrank_piece"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">finrank_piece</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.finrank_piece_le"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">finrank_piece_le</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.PosFiltration.rayDegree"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">rayDegree</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.MeshWalk.IsDiag"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">IsDiag</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.MeshWalk.isDiag_mul"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">isDiag_mul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.MeshWalk.isDiag_pow"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">isDiag_pow</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.MeshWalk.isDiag_of_isHom"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">isDiag_of_isHom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.MeshWalk.lenA0_noNil"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">lenA0_noNil</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.IndSkeleton.posFiltA_radOne"><span class="name">LargeIndecomposable</span>.<span class="name">IndSkeleton</span>.<span class="name">posFiltA_radOne</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.IndSkeleton.rayDegree_J"><span class="name">LargeIndecomposable</span>.<span class="name">IndSkeleton</span>.<span class="name">rayDegree_J</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Lemma-3-7-for-the-categorical-filtration" class="markdown-heading">Lemma 3.7 for the categorical filtration <a class="hover-link" href="#Lemma-3-7-for-the-categorical-filtration">#</a></h1><p>The source paper (<code>lem:ray-degree</code>): &quot;Write <code>F^nA(x,y) = J^n(P_y,P_x)</code> […] Every
+space <code>A₀(x,y)_d</code> of degree <code>d</code> has dimension at most one, and initial forms give a bijection
+between the nonzero rays of <code>A</code> and the nonzero spaces <code>A₀(x,y)_d</code>. If the endpoint
+subbimodules satisfy <code>U_{r'} ⊊ U_r</code>, then <code>deg_J(r') &gt; deg_J(r)</code>.&quot;</p><p>The proof only uses that the filtration is multiplicative, starts at <code>A</code>, ends at zero, and
+contains the radical in degree one (&quot;endpoint radicals belong to <code>J</code>&quot;). We prove the lemma for
+every positive filtered deformation <code>P</code> of a graded algebra <code>Λ</code> with this property
+(<code><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">PosFiltration.RadOne</a></code>): the corner layers have dimension at most one
+(<code><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.finrank_corner_le">finrank_corner_le</a></code>), elements of one degree lie in one ray (<code><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.ray_eq_of_degree">ray_eq_of_degree</a></code>), a smaller
+subbimodule has a larger degree (<code><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.degree_lt_of_lt">degree_lt_of_lt</a></code>), and the initial form <code>σ_d</code> maps the
+corner <code>F^dA(x,y)</code> onto the corner <code>Λ(x,y)_d</code> of <code>Λ</code> cut out by the idempotents
+<code>σ₀(e_x)</code>, with kernel <code>F^{d+1}A(x,y)</code> (<code><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σ_piece_surj">σ_piece_surj</a></code>, <code><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.finrank_piece_le">finrank_piece_le</a></code>).</p><p>For <code>A</code> itself, <code>posFiltA</code> is the filtration <code>J^n</code> of the source (<code>FilteredA.lean</code>), and the
+radical lies in <code>J¹</code> because the degree-zero part of <code>A₀</code> has no nonzero nilpotents
+(<code><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.lenA0_noNil">lenA0_noNil</a></code>). This gives the literal Lemma 3.7 (<code><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.IndSkeleton.rayDegree_J">IndSkeleton.rayDegree_J</a></code>).</p></div><div class="decl" id="LargeIndecomposable.PosFiltration.RadOne"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L47-L48">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">RadOne</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The radical lies in degree one.</p><details id="instances-for-list-LargeIndecomposable.PosFiltration.RadOne" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.σ_zero_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L50-L51">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σ_zero_mul"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σ_zero_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a </span><span class="fn">b</span> : <span class="fn">B</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">0</span>)</span> <span class="fn">(<span class="fn">a</span> <span class="fn">*</span> <span class="fn">b</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">0</span>)</span> <span class="fn">a</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">0</span>)</span> <span class="fn">b</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.σ_zero_pow_succ"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L53-L56">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σ_zero_pow_succ"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σ_zero_pow_succ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">B</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">0</span>)</span> <span class="fn">(<span class="fn">a</span> <span class="fn">^</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">0</span>)</span> <span class="fn">a</span></span> <span class="fn">^</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.radOne_of"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L58-L68">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.radOne_of"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">radOne_of</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">z</span> : <span class="fn">Λ</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">G</span>.<a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading.IsHom">IsHom</a></span> <span class="fn">0</span> <span class="fn">z</span></span> → <span class="fn"><span class="fn"><span class="fn">IsNilpotent</span> <span class="fn">z</span></span> → <span class="fn"><span class="fn">z</span> <span class="fn">=</span> <span class="fn">0</span></span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span></div></div><p><strong>The radical lies in <code>F¹</code></strong> when the degree-zero part of <code>Λ</code> has no nonzero nilpotents.</p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.rad_mul_F"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L70-L73">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.rad_mul_F"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">rad_mul_F</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hP</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">z</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ha</span> : <span class="fn"><span class="fn">a</span> <span class="fn">∈</span> <span class="fn"><a href="../../.././LargeIndecomposable/MultiplicativeBases/Normed/NormedBasis.html#LargeIndecomposable.algebraRadical">algebraRadical</a> <span class="fn">k</span> <span class="fn">B</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hz</span> : <span class="fn"><span class="fn">z</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">a</span> <span class="fn">*</span> <span class="fn">z</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.F_mul_rad"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L75-L77">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.F_mul_rad"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">F_mul_rad</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hP</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">z</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ha</span> : <span class="fn"><span class="fn">a</span> <span class="fn">∈</span> <span class="fn"><a href="../../.././LargeIndecomposable/MultiplicativeBases/Normed/NormedBasis.html#LargeIndecomposable.algebraRadical">algebraRadical</a> <span class="fn">k</span> <span class="fn">B</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hz</span> : <span class="fn"><span class="fn">z</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">z</span> <span class="fn">*</span> <span class="fn">a</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.isEndpoint_F"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L81-L84">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.isEndpoint_F"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">isEndpoint_F</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.IsEndpointSubbimodule">IsEndpointSubbimodule</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.endpointRadical_le_F"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L86-L95">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.endpointRadical_le_F"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">endpointRadical_le_F</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hP</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">g</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">d</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hgd</span> : <span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.endpointRadical">endpointRadical</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">g</span></span> <span class="fn">≤</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span></span></div></div><p><code>R(g) ⊆ F^{d+1}</code> for <code>g ∈ F^d</code>: endpoint radicals belong to <code>F¹</code>.</p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.finrank_corner_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L97-L120">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.finrank_corner_le"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">finrank_corner_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hP</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span>)</span></span></span> <span class="fn">≤</span> <span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span>)</span></span></span> <span class="fn">+</span> <span class="fn">1</span></span></span></div></div><p><strong>Each layer of the filtration of a corner has dimension at most one.</strong></p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.ray_eq_of_degree"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L122-L138">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.ray_eq_of_degree"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">ray_eq_of_degree</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hP</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">d</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hfd</span> : <span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hfd'</span> : <span class="fn"><span class="fn">f</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hgd</span> : <span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hgd'</span> : <span class="fn"><span class="fn">g</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.ray">ray</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">f</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.ray">ray</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">g</span></span></span></div></div><p><strong>Elements of the same degree lie in the same ray.</strong></p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.degree_lt_of_lt"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L140-L151">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.degree_lt_of_lt"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">degree_lt_of_lt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hP</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hlt</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.endpointSpan">endpointSpan</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">g</span></span> <span class="fn">&lt;</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.endpointSpan">endpointSpan</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">f</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">d </span><span class="fn">d'</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hfd</span> : <span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hgd'</span> : <span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d'</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hgd''</span> : <span class="fn"><span class="fn">g</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d'</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">d</span> <span class="fn">&lt;</span> <span class="fn">d'</span></span></div></div><p><strong>A strictly smaller subbimodule has a strictly larger degree.</strong></p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.exists_degree"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L153-L161">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.exists_degree"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">exists_degree</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf0</span> : <span class="fn"><span class="fn">f</span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">d</span> : <span class="fn">ℕ</span>), <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> <span class="fn">∧</span> <span class="fn"><span class="fn">f</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span></span></span></div></div><p>Every nonzero element has a degree.</p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.mem_F_of_ray"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L163-L166">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.mem_F_of_ray"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">mem_F_of_ray</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.ray">ray</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">f</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">d</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span></div></div></div></div><div class="mod_doc"><h3 id="The-initial-forms-on-corners" class="markdown-heading">The initial forms on corners <a class="hover-link" href="#The-initial-forms-on-corners">#</a></h3></div><div class="decl" id="LargeIndecomposable.PosFiltration.piece"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L170-L177">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">piece</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Submodule</span> <span class="fn">k</span> <span class="fn">Λ</span></span></div></div><p>The corner <code>Λ(x, y)_d</code>: degree-<code>d</code> elements of <code>σ₀(e_x) Λ σ₀(e_y)</code>.</p><details id="instances-for-list-LargeIndecomposable.PosFiltration.piece" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.σ_corner_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L179-L187">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σ_corner_mem"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σ_corner_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">d</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">B</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ha</span> : <span class="fn"><span class="fn">a</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">had</span> : <span class="fn"><span class="fn">a</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">d</span>)</span> <span class="fn">a</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.σ_piece_surj"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L189-L199">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σ_piece_surj"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σ_piece_surj</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">d</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">z</span> : <span class="fn">Λ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hz</span> : <span class="fn"><span class="fn">z</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ <span class="fn">a</span> ∈ <span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span>, <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">d</span>)</span> <span class="fn">a</span></span> <span class="fn">=</span> <span class="fn">z</span></span></span></div></div><p><strong>Initial forms map the corner layers onto the corner pieces.</strong></p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.σCorner"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L201-L206">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σCorner"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σCorner</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span>)</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span>)</span></span></span></div></div><p>The initial form on a corner layer.</p><details id="instances-for-list-LargeIndecomposable.PosFiltration.σCorner" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.σCorner_surjective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L208-L211">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σCorner_surjective"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σCorner_surjective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Surjective</span> <span class="fn">⇑<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σCorner">σCorner</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.σCorner_ker"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L213-L216">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σCorner_ker"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">σCorner_ker</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.σCorner">σCorner</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span>)</span> <span class="fn">a</span></span> <span class="fn">=</span> <span class="fn">0</span></span> <span class="fn">↔</span> <span class="fn"><span class="fn">↑<span class="fn">a</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.finrank_piece"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L218-L233">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.finrank_piece"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">finrank_piece</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span>)</span></span></span> <span class="fn">+</span> <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span>)</span></span></span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span> ⊓ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span>)</span></span></span></span></div></div><p><code>dim Λ(x,y)_d = dim F^dA(x,y) - dim F^{d+1}A(x,y)</code>.</p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.finrank_piece_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L235-L240">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.finrank_piece_le"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">finrank_piece_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hP</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span>)</span></span></span> <span class="fn">≤</span> <span class="fn">1</span></span></div></div><p><strong>Lemma 3.7, first assertion</strong>: every piece <code>Λ(x,y)_d</code> has dimension at most one.</p></div></div><div class="decl" id="LargeIndecomposable.PosFiltration.rayDegree"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L242-L279">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.rayDegree"><span class="name">LargeIndecomposable</span>.<span class="name">PosFiltration</span>.<span class="name">rayDegree</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading">LenGrading</a> <span class="fn">k</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration">PosFiltration</a> <span class="fn">G</span> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hP</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(∀ (<span class="fn">d</span> : <span class="fn">ℕ</span>), <span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span>)</span></span></span> <span class="fn">≤</span> <span class="fn">1</span></span>)</span> <span class="fn">∧</span>   <span class="fn"><span class="fn">(∀ (<span class="fn">f</span> : <span class="fn">B</span>) (<span class="fn">d</span> : <span class="fn">ℕ</span>),
+      <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> → <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> → <span class="fn"><span class="fn"><span class="fn">f</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span> → <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">d</span>)</span> <span class="fn">f</span></span> <span class="fn">≠</span> <span class="fn">0</span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">k</span> <span class="fn">∙</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">d</span>)</span> <span class="fn">f</span></span></span></span></span></span></span></span>)</span> <span class="fn">∧</span>     <span class="fn"><span class="fn">(∀ (<span class="fn">f </span><span class="fn">g</span> : <span class="fn">B</span>) (<span class="fn">d </span><span class="fn">d'</span> : <span class="fn">ℕ</span>),
+        <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> →
+          <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> →
+            <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> → <span class="fn"><span class="fn"><span class="fn">f</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d'</span></span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d'</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span> → <span class="fn">(<span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.ray">ray</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">f</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.ray">ray</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">g</span></span></span> <span class="fn">↔</span> <span class="fn"><span class="fn">d</span> <span class="fn">=</span> <span class="fn">d'</span></span>)</span></span></span></span></span></span></span>)</span> <span class="fn">∧</span>       <span class="fn"><span class="fn">(∀ (<span class="fn">d</span> : <span class="fn">ℕ</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span></span> <span class="fn">≠</span> <span class="fn">⊥</span></span> → <span class="fn">∃ <span class="fn">f</span> ∈ <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span>, <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> <span class="fn">∧</span> <span class="fn"><span class="fn">f</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span></span></span></span>)</span> <span class="fn">∧</span>         <span class="fn">∀ (<span class="fn">f </span><span class="fn">g</span> : <span class="fn">B</span>),
+          <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> →
+            <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> →
+              <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.endpointSpan">endpointSpan</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">g</span></span> <span class="fn">&lt;</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.endpointSpan">endpointSpan</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">f</span></span></span> →
+                <span class="fn">∀ (<span class="fn">d </span><span class="fn">d'</span> : <span class="fn">ℕ</span>), <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d'</span></span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d'</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span> → <span class="fn"><span class="fn">d</span> <span class="fn">&lt;</span> <span class="fn">d'</span></span></span></span></span></span></span></span></span></span></span></span></span></span></div></div><p><strong>Lemma 3.7, the bijection</strong>: a nonzero <code>f</code> of the corner of degree <code>d</code> has nonzero initial
+form, which spans <code>Λ(x,y)_d</code>; two nonzero elements of a corner have the same ray iff they have
+the same degree, and every nonzero piece is the initial form of a nonzero element.</p></div></div><div class="mod_doc"><h3 id="The-degree-zero-part-of-A₀" class="markdown-heading">The degree-zero part of <code>A₀</code> <a class="hover-link" href="#The-degree-zero-part-of-A₀">#</a></h3></div><div class="decl" id="LargeIndecomposable.MeshWalk.IsDiag"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L294-L296">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.IsDiag"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">IsDiag</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.TranslationQuiver">TranslationQuiver</a> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>) → <span class="fn"><span class="fn">Fintype</span> <span class="fn">((<span class="fn">y</span> : <span class="fn">V</span>) × <span class="fn">(<span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">x</span>)</span>)</span></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">c</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.MeshCoefficients">MeshCoefficients</a> <span class="fn">k</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.LocalFamily">CatAlg.LocalFamily</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">D</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.MeshData">CatAlg.MeshData</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span> <span class="fn">L</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">z</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/CategoryAlgebra.html#LargeIndecomposable.CatAlg.Alg">CatAlg.Alg</a> <span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.F0">F0</a></span>)</span><span class="fn">ᵐᵒᵖ</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">t</span> : <span class="fn"><span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.PV">PV</a></span> → <span class="fn">k</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A diagonal scalar element <code>∑ t_p e_p</code> of <code>A₀</code>.</p><details id="instances-for-list-LargeIndecomposable.MeshWalk.IsDiag" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.MeshWalk.isDiag_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L298-L305">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.isDiag_mul"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">isDiag_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.TranslationQuiver">TranslationQuiver</a> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>) → <span class="fn"><span class="fn">Fintype</span> <span class="fn">((<span class="fn">y</span> : <span class="fn">V</span>) × <span class="fn">(<span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">x</span>)</span>)</span></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">c</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.MeshCoefficients">MeshCoefficients</a> <span class="fn">k</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.LocalFamily">CatAlg.LocalFamily</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">D</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.MeshData">CatAlg.MeshData</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span> <span class="fn">L</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">z </span><span class="fn">w</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/CategoryAlgebra.html#LargeIndecomposable.CatAlg.Alg">CatAlg.Alg</a> <span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.F0">F0</a></span>)</span><span class="fn">ᵐᵒᵖ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">t </span><span class="fn">s</span> : <span class="fn"><span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.PV">PV</a></span> → <span class="fn">k</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hz</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.IsDiag">IsDiag</a> <span class="fn">D</span> <span class="fn">z</span> <span class="fn">t</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hw</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.IsDiag">IsDiag</a> <span class="fn">D</span> <span class="fn">w</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.IsDiag">IsDiag</a> <span class="fn">D</span> <span class="fn">(<span class="fn">z</span> <span class="fn">*</span> <span class="fn">w</span>)</span> <span class="fn">(<span class="fn">s</span> <span class="fn">*</span> <span class="fn">t</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.MeshWalk.isDiag_pow"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L307-L313">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.isDiag_pow"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">isDiag_pow</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.TranslationQuiver">TranslationQuiver</a> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>) → <span class="fn"><span class="fn">Fintype</span> <span class="fn">((<span class="fn">y</span> : <span class="fn">V</span>) × <span class="fn">(<span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">x</span>)</span>)</span></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">c</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.MeshCoefficients">MeshCoefficients</a> <span class="fn">k</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.LocalFamily">CatAlg.LocalFamily</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">D</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.MeshData">CatAlg.MeshData</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span> <span class="fn">L</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">z</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/CategoryAlgebra.html#LargeIndecomposable.CatAlg.Alg">CatAlg.Alg</a> <span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.F0">F0</a></span>)</span><span class="fn">ᵐᵒᵖ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">t</span> : <span class="fn"><span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.PV">PV</a></span> → <span class="fn">k</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hz</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.IsDiag">IsDiag</a> <span class="fn">D</span> <span class="fn">z</span> <span class="fn">t</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.IsDiag">IsDiag</a> <span class="fn">D</span> <span class="fn">(<span class="fn">z</span> <span class="fn">^</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span>)</span> <span class="fn">(<span class="fn">t</span> <span class="fn">^</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">1</span>)</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.MeshWalk.isDiag_of_isHom"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L316-L330">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.isDiag_of_isHom"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">isDiag_of_isHom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.TranslationQuiver">TranslationQuiver</a> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>) → <span class="fn"><span class="fn">Fintype</span> <span class="fn">((<span class="fn">y</span> : <span class="fn">V</span>) × <span class="fn">(<span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">x</span>)</span>)</span></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">c</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.MeshCoefficients">MeshCoefficients</a> <span class="fn">k</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.LocalFamily">CatAlg.LocalFamily</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">D</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.MeshData">CatAlg.MeshData</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span> <span class="fn">L</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hfin</span> : <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">V</span>), <span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">(<span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.ScalarMeshCategory.obj">ScalarMeshCategory.obj</a> <span class="fn">c</span> <span class="fn">x</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.ScalarMeshCategory.obj">ScalarMeshCategory.obj</a> <span class="fn">c</span> <span class="fn">y</span></span>)</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">z</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/CategoryAlgebra.html#LargeIndecomposable.CatAlg.Alg">CatAlg.Alg</a> <span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.F0">F0</a></span>)</span><span class="fn">ᵐᵒᵖ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hz</span> : <span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/MultiplicativeBases/Normed/A0Normed.html#LargeIndecomposable.MeshWalk.lenA0">lenA0</a> <span class="fn">D</span> <span class="fn">hfin</span>)</span>.<a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading.IsHom">IsHom</a></span> <span class="fn">0</span> <span class="fn">z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">t</span> : <span class="fn"><span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.PV">PV</a></span> → <span class="fn">k</span></span>), <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.IsDiag">IsDiag</a> <span class="fn">D</span> <span class="fn">z</span> <span class="fn">t</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.MeshWalk.lenA0_noNil"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L333-L348">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.MeshWalk.lenA0_noNil"><span class="name">LargeIndecomposable</span>.<span class="name">MeshWalk</span>.<span class="name">lenA0_noNil</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Quiver</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.TranslationQuiver">TranslationQuiver</a> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>) → <span class="fn"><span class="fn">Fintype</span> <span class="fn">((<span class="fn">y</span> : <span class="fn">V</span>) × <span class="fn">(<span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">x</span>)</span>)</span></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">c</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.MeshCoefficients">MeshCoefficients</a> <span class="fn">k</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.LocalFamily">CatAlg.LocalFamily</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">D</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Weights/LocalMesh.html#LargeIndecomposable.CatAlg.MeshData">CatAlg.MeshData</a> <span class="fn">(<a href="../../.././LargeIndecomposable/MeshCategories/Coverings/DeckInstance.html#LargeIndecomposable.MeshWalk.meshFam">meshFam</a> <span class="fn">Q</span> <span class="fn">c</span>)</span> <span class="fn">L</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hfin</span> : <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">V</span>), <span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">(<span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.ScalarMeshCategory.obj">ScalarMeshCategory.obj</a> <span class="fn">c</span> <span class="fn">x</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/MeshCategories/Basic/MeshCategory.html#LargeIndecomposable.ScalarMeshCategory.obj">ScalarMeshCategory.obj</a> <span class="fn">c</span> <span class="fn">y</span></span>)</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">z</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/CategoryAlgebra.html#LargeIndecomposable.CatAlg.Alg">CatAlg.Alg</a> <span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/StandardForm/Basic/ProjectiveEvaluation.html#LargeIndecomposable.CatAlg.MeshData.F0">F0</a></span>)</span><span class="fn">ᵐᵒᵖ</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hz</span> : <span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/MultiplicativeBases/Normed/A0Normed.html#LargeIndecomposable.MeshWalk.lenA0">lenA0</a> <span class="fn">D</span> <span class="fn">hfin</span>)</span>.<a href="../../.././LargeIndecomposable/AuslanderReiten/Radical/GradedLayers.html#LargeIndecomposable.LenGrading.IsHom">IsHom</a></span> <span class="fn">0</span> <span class="fn">z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hn</span> : <span class="fn"><span class="fn">IsNilpotent</span> <span class="fn">z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">z</span> <span class="fn">=</span> <span class="fn">0</span></span></div></div><p><strong>The degree-zero part of <code>A₀</code> has no nonzero nilpotents.</strong></p></div></div><div class="mod_doc"><h3 id="Lemma-3-7-for-A" class="markdown-heading">Lemma 3.7 for <code>A</code> <a class="hover-link" href="#Lemma-3-7-for-A">#</a></h3></div><div class="decl" id="LargeIndecomposable.IndSkeleton.posFiltA_radOne"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L363-L365">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.IndSkeleton.posFiltA_radOne"><span class="name">LargeIndecomposable</span>.<span class="name">IndSkeleton</span>.<span class="name">posFiltA_radOne</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k </span><span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsNoetherianRing</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IndSkeleton">IndSkeleton</a> <span class="fn">k</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/MeshCategories/AuslanderReitenQuiver/ARQuiver.html#LargeIndecomposable.IndSkeleton.ArrowBases">ArrowBases</a></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span> → <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">CompleteOrthogonalIdempotents</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hprim</span> : <span class="fn">∀ (<span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span>), <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Idempotents/PrimitiveDecomposition.html#LargeIndecomposable.IsPrimitiveIdempotent">IsPrimitiveIdempotent</a> <span class="fn">(<span class="fn">e</span> <span class="fn">i</span>)</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hbasic</span> :
+  <span class="fn">∀ (<span class="fn">i </span><span class="fn">j</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span>), <span class="fn"><span class="fn">(∃ (<span class="fn">x</span> : <span class="fn">A</span>) (<span class="fn">y</span> : <span class="fn">A</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">*</span> <span class="fn">x</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">e</span> <span class="fn">j</span></span></span> <span class="fn">=</span> <span class="fn">x</span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">j</span></span> <span class="fn">*</span> <span class="fn">y</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">e</span> <span class="fn">i</span></span></span> <span class="fn">=</span> <span class="fn">y</span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">x</span> <span class="fn">*</span> <span class="fn">y</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">e</span> <span class="fn">i</span></span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn">y</span> <span class="fn">*</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">e</span> <span class="fn">j</span></span></span></span></span></span>)</span> → <span class="fn"><span class="fn">i</span> <span class="fn">=</span> <span class="fn">j</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FilteredA.html#LargeIndecomposable.IndSkeleton.posFiltA">posFiltA</a></span> <span class="fn">b</span> <span class="fn">he</span> <span class="fn">hprim</span> <span class="fn">hbasic</span>)</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.RadOne">RadOne</a></span></div></div><p><strong>The radical of <code>A</code> lies in <code>J¹</code>.</strong></p></div></div><div class="decl" id="LargeIndecomposable.IndSkeleton.rayDegree_J"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/Deformations/FiltrationRays.lean#L367-L386">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.IndSkeleton.rayDegree_J"><span class="name">LargeIndecomposable</span>.<span class="name">IndSkeleton</span>.<span class="name">rayDegree_J</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k </span><span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsNoetherianRing</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IndSkeleton">IndSkeleton</a> <span class="fn">k</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/MeshCategories/AuslanderReitenQuiver/ARQuiver.html#LargeIndecomposable.IndSkeleton.ArrowBases">ArrowBases</a></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span> → <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn">CompleteOrthogonalIdempotents</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hprim</span> : <span class="fn">∀ (<span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span>), <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Idempotents/PrimitiveDecomposition.html#LargeIndecomposable.IsPrimitiveIdempotent">IsPrimitiveIdempotent</a> <span class="fn">(<span class="fn">e</span> <span class="fn">i</span>)</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hbasic</span> :
+  <span class="fn">∀ (<span class="fn">i </span><span class="fn">j</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span>), <span class="fn"><span class="fn">(∃ (<span class="fn">x</span> : <span class="fn">A</span>) (<span class="fn">y</span> : <span class="fn">A</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">i</span></span> <span class="fn">*</span> <span class="fn">x</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">e</span> <span class="fn">j</span></span></span> <span class="fn">=</span> <span class="fn">x</span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">j</span></span> <span class="fn">*</span> <span class="fn">y</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">e</span> <span class="fn">i</span></span></span> <span class="fn">=</span> <span class="fn">y</span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">x</span> <span class="fn">*</span> <span class="fn">y</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">e</span> <span class="fn">i</span></span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn">y</span> <span class="fn">*</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">e</span> <span class="fn">j</span></span></span></span></span></span>)</span> → <span class="fn"><span class="fn">i</span> <span class="fn">=</span> <span class="fn">j</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/Basic/RightModules.html#LargeIndecomposable.IsRepresentationFiniteRight">IsRepresentationFiniteRight</a> <span class="fn">k</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents">PrimitiveIdempotents</a> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.m">m</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">have <span class="fn">P</span> := <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FilteredA.html#LargeIndecomposable.IndSkeleton.posFiltA">posFiltA</a></span> <span class="fn">b</span> <span class="fn">he</span> <span class="fn">hprim</span> <span class="fn">hbasic</span></span>;
+<span class="fn"><span class="fn">(∀ (<span class="fn">d</span> : <span class="fn">ℕ</span>), <span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span>)</span></span></span> <span class="fn">≤</span> <span class="fn">1</span></span>)</span> <span class="fn">∧</span>   <span class="fn"><span class="fn">(∀ (<span class="fn">f</span> : <span class="fn">A</span>) (<span class="fn">d</span> : <span class="fn">ℕ</span>),
+      <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> → <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> → <span class="fn"><span class="fn"><span class="fn">f</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span> → <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">d</span>)</span> <span class="fn">f</span></span> <span class="fn">≠</span> <span class="fn">0</span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">k</span> <span class="fn">∙</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.σ">σ</a></span> <span class="fn">d</span>)</span> <span class="fn">f</span></span></span></span></span></span></span></span>)</span> <span class="fn">∧</span>     <span class="fn"><span class="fn">(∀ (<span class="fn">f </span><span class="fn">g</span> : <span class="fn">A</span>) (<span class="fn">d </span><span class="fn">d'</span> : <span class="fn">ℕ</span>),
+        <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> →
+          <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> →
+            <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> → <span class="fn"><span class="fn"><span class="fn">f</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d'</span></span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d'</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span> → <span class="fn">(<span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.ray">ray</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">f</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.ray">ray</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">g</span></span></span> <span class="fn">↔</span> <span class="fn"><span class="fn">d</span> <span class="fn">=</span> <span class="fn">d'</span></span>)</span></span></span></span></span></span></span>)</span> <span class="fn">∧</span>       <span class="fn"><span class="fn">(∀ (<span class="fn">d</span> : <span class="fn">ℕ</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/FiltrationRays.html#LargeIndecomposable.PosFiltration.piece">piece</a></span> <span class="fn">F</span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">d</span></span> <span class="fn">≠</span> <span class="fn">⊥</span></span> → <span class="fn">∃ <span class="fn">f</span> ∈ <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span>, <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> <span class="fn">∧</span> <span class="fn"><span class="fn">f</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span></span></span></span>)</span> <span class="fn">∧</span>         <span class="fn">∀ (<span class="fn">f </span><span class="fn">g</span> : <span class="fn">A</span>),
+          <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> →
+            <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.corner">corner</a></span> <span class="fn">x</span> <span class="fn">y</span></span></span> →
+              <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.endpointSpan">endpointSpan</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">g</span></span> <span class="fn">&lt;</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././LargeIndecomposable/RayCategories/RayTables/Rays.html#LargeIndecomposable.PrimitiveIdempotents.endpointSpan">endpointSpan</a></span> <span class="fn">x</span> <span class="fn">y</span> <span class="fn">f</span></span></span> →
+                <span class="fn">∀ (<span class="fn">d </span><span class="fn">d'</span> : <span class="fn">ℕ</span>), <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d</span></span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">d'</span></span></span> → <span class="fn"><span class="fn"><span class="fn">g</span> ∉ <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/PositiveDeformation.html#LargeIndecomposable.PosFiltration.F">F</a></span> <span class="fn">(<span class="fn">d'</span> <span class="fn">+</span> <span class="fn">1</span>)</span></span></span> → <span class="fn"><span class="fn">d</span> <span class="fn">&lt;</span> <span class="fn">d'</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></div></div><p><strong>Lemma 3.7</strong> (<code>lem:ray-degree</code>) for the categorical filtration <code>F^dA(x,y) = J^d(P_y,P_x)</code>
+(<code>posFiltA</code>): in every corner, the pieces <code>A₀(x,y)_d</code> (cut out by the initial forms of the
+idempotents) have dimension at most one; a nonzero element of degree <code>d</code> has nonzero initial
+form spanning <code>A₀(x,y)_d</code>; two nonzero elements have the same ray iff they have the same
+degree; every nonzero piece is reached; and <code>U_{r'} ⊊ U_r</code> forces <code>deg_J r' &gt; deg_J r</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

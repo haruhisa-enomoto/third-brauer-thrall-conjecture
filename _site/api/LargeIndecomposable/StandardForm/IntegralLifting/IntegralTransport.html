@@ -1,0 +1,959 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.StandardForm.IntegralLifting.IntegralTransport</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.StandardForm.IntegralLifting.IntegralTransport";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">StandardForm</span>.<span class="name">IntegralLifting</span>.<span class="name">IntegralTransport</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/Foundations/Gradings/GModLemmas.html">LargeIndecomposable.Foundations.Gradings.GModLemmas</a></li><li><a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html">LargeIndecomposable.StandardForm.Deformations.SquareZero</a></li><li><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralMesh.html">LargeIndecomposable.StandardForm.IntegralLifting.IntegralMesh</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.StandardForm.IntegralLifting.IntegralTransport" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.liftR"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">liftR</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.liftR_spec"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">liftR_spec</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.twMap_add"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_add</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.twMap_sub"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_sub</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.twMap_smul"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_smul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.twMap_red_smul"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_red_smul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.twMap_sum"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_sum</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.twMap_zero"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.lift_tw"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">lift_tw</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.comp_twMap"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">comp_twMap</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.twMap_comp"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.πs"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.πs_tr"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_tr</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.πs_sh"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_sh</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.πs_ct"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_ct</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.πs_update"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_update</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.πs_single"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_single</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.actLiftTw"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">actLiftTw</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.actLiftTw_act"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">actLiftTw_act</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.WLift.isLiftHom_tw"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">isLiftHom_tw</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Twice-a-first-order-lift" class="markdown-heading">Twice a first-order lift <a class="hover-link" href="#Twice-a-first-order-lift">#</a></h1><p>The source paper (proof of Lemma 10.2): &quot;take module and map corrections for
+a first-order <code>𝔽₂</code>-cocycle and use twice their lifts over <code>𝒪</code>. Every equation is linear in <code>ε</code>;
+multiplication by two makes it depend only on the modulo-two base matrices.&quot;</p><p>For a cocycle <code>μ̃ = 2μ̄</code> over <code>𝒪</code>, a lifted action <code>ν</code> of <code>M</code> for <code>μ̄</code> gives the lifted action
+<code>2ν</code> of a lift <code>M̃</code> (<code><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.actLiftTw">actLiftTw</a></code>), and a lifted map <code>(f, g)</code> gives <code>(f̃, 2g)</code> (<code><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.isLiftHom_tw">isLiftHom_tw</a></code>).</p></div><div class="decl" id="LargeIndecomposable.WLift.liftR"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L41-L42">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.liftR"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">liftR</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hπ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsRed">IsRed</a> <span class="fn">GΛ'</span> <span class="fn">GΛ</span> <span class="fn">π</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">Λ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">Λ'</span></div></div><p>A lift through a reduction.</p><details id="instances-for-list-LargeIndecomposable.WLift.liftR" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.WLift.liftR_spec"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L44-L45">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.liftR_spec"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">liftR_spec</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hπ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsRed">IsRed</a> <span class="fn">GΛ'</span> <span class="fn">GΛ</span> <span class="fn">π</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">Λ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">π</span> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.liftR">liftR</a> <span class="fn">hπ</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn">x</span></span></div></div></div></div><div class="mod_doc"><h3 id="twMap" class="markdown-heading"><code>twMap</code> <a class="hover-link" href="#twMap">#</a></h3></div><div class="decl" id="LargeIndecomposable.WLift.twMap_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L49-L50">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.twMap_add"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ </span><span class="fn">ψ</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">(<span class="fn">φ</span> <span class="fn">+</span> <span class="fn">ψ</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">φ</span></span> <span class="fn">+</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">ψ</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.twMap_sub"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L52-L53">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.twMap_sub"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_sub</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ </span><span class="fn">ψ</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">(<span class="fn">φ</span> <span class="fn">-</span> <span class="fn">ψ</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">φ</span></span> <span class="fn">-</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">ψ</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.twMap_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L55-L56">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.twMap_smul"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">t</span> : <span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">(<span class="fn">t</span> <span class="fn">•</span> <span class="fn">φ</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/ZModFour.html#LargeIndecomposable.Z4.lift">Z4.lift</a> <span class="fn">t</span></span> <span class="fn">•</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">φ</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.twMap_red_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L58-L61">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.twMap_red_smul"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_red_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">(<span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/ZModFour.html#LargeIndecomposable.Z4.red">Z4.red</a> <span class="fn">a</span></span> <span class="fn">•</span> <span class="fn">φ</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">a</span> <span class="fn">•</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">φ</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.twMap_sum"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L63-L65">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.twMap_sum"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_sum</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">κ</span> : <a href="../../.././foundational_types.html">Type</a> u_7}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">κ</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">κ</span> → <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">(∑ <span class="fn">i</span> ∈ <span class="fn">s</span>, <span class="fn"><span class="fn">φ</span> <span class="fn">i</span></span>)</span></span> <span class="fn">=</span> <span class="fn">∑ <span class="fn">i</span> ∈ <span class="fn">s</span>, <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">(<span class="fn">φ</span> <span class="fn">i</span>)</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.twMap_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L67-L68">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.twMap_zero"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">0</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.lift_tw"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L70-L74">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.lift_tw"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">lift_tw</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f'</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf'</span> : <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">M'</span>), <span class="fn"><span class="fn"><span class="fn">ρN</span> <span class="fn">(<span class="fn">f'</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">ρM</span> <span class="fn">m</span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">f'</span> <span class="fn">(<span class="fn"><span class="fn">HM</span>.<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift.tw">tw</a></span> <span class="fn">v</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">HN</span>.<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift.tw">tw</a></span> <span class="fn">(<span class="fn">f</span> <span class="fn">v</span>)</span></span></span></div></div><p>A lift of a map commutes with twice.</p></div></div><div class="decl" id="LargeIndecomposable.WLift.comp_twMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L76-L83">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.comp_twMap"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">comp_twMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> u_7}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <a href="../../.././foundational_types.html">Type</a> u_8}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">P'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">PP'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">P'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">PP</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">P</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρP</span> : <span class="fn"><span class="fn">P'</span> <span class="fn">→+</span> <span class="fn">P</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HP</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">PP'</span> <span class="fn">PP</span> <span class="fn">π</span> <span class="fn">ρP</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">P</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f'</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn">P'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf'</span> : <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">N'</span>), <span class="fn"><span class="fn"><span class="fn">ρP</span> <span class="fn">(<span class="fn">f'</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">ρN</span> <span class="fn">m</span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">f'</span> <span class="fn">∘ₗ</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">g</span></span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HP</span> <span class="fn">(<span class="fn">f</span> <span class="fn">∘ₗ</span> <span class="fn">g</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.twMap_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L85-L91">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.twMap_comp"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">twMap_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> u_7}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P'</span> : <a href="../../.././foundational_types.html">Type</a> u_8}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">P'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">PP'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">P'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">PP</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">P</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρP</span> : <span class="fn"><span class="fn">P'</span> <span class="fn">→+</span> <span class="fn">P</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HP</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">PP'</span> <span class="fn">PP</span> <span class="fn">π</span> <span class="fn">ρP</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f'</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf'</span> : <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">M'</span>), <span class="fn"><span class="fn"><span class="fn">ρN</span> <span class="fn">(<span class="fn">f'</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">ρM</span> <span class="fn">m</span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HN</span> <span class="fn">HP</span> <span class="fn">g</span></span> <span class="fn">∘ₗ</span> <span class="fn">f'</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HP</span> <span class="fn">(<span class="fn">g</span> <span class="fn">∘ₗ</span> <span class="fn">f</span>)</span></span></span></div></div></div></div><div class="mod_doc"><h3 id="Twice-a-lifted-action" class="markdown-heading">Twice a lifted action <a class="hover-link" href="#Twice-a-lifted-action">#</a></h3></div><div class="decl" id="LargeIndecomposable.WLift.πs"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L100-L101">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><span class="fn">ℕ</span> → <span class="fn">Λ'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">ℕ</span> → <span class="fn">Λ</span></span></div></div><p>The sequence of reductions.</p><details id="instances-for-list-LargeIndecomposable.WLift.πs" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.WLift.πs_tr"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L103-L104">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs_tr"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_tr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><span class="fn">ℕ</span> → <span class="fn">Λ'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/Hochschild/BarComplex.html#LargeIndecomposable.Bar.tr">Bar.tr</a> <span class="fn">n</span> <span class="fn">a</span>)</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/BarComplex.html#LargeIndecomposable.Bar.tr">Bar.tr</a> <span class="fn">n</span> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">a</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.πs_sh"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L106-L106">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs_sh"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_sh</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><span class="fn">ℕ</span> → <span class="fn">Λ'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/Hochschild/BarComplex.html#LargeIndecomposable.Bar.sh">Bar.sh</a> <span class="fn">a</span>)</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/BarComplex.html#LargeIndecomposable.Bar.sh">Bar.sh</a> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">a</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.πs_ct"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L108-L109">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs_ct"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_ct</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><span class="fn">ℕ</span> → <span class="fn">Λ'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/Hochschild/BarComplex.html#LargeIndecomposable.Bar.ct">Bar.ct</a> <span class="fn">0</span> <span class="fn">a</span>)</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/BarComplex.html#LargeIndecomposable.Bar.ct">Bar.ct</a> <span class="fn">0</span> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">a</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.πs_update"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L111-L117">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs_update"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_update</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><span class="fn">ℕ</span> → <span class="fn">Λ'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">Λ'</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">(<span class="fn">Function.update</span> <span class="fn">a</span> <span class="fn">i</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">Function.update</span> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">a</span>)</span> <span class="fn">i</span> <span class="fn">(<span class="fn">π</span> <span class="fn">x</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.πs_single"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L119-L120">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs_single"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">πs_single</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn">Λ'</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.πs">πs</a> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.single">GExt.single</a> <span class="fn">b</span>)</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.single">GExt.single</a> <span class="fn">(<span class="fn">π</span> <span class="fn">b</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.actLiftTw"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L123-L146">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.actLiftTw"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">actLiftTw</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hπ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsRed">IsRed</a> <span class="fn">GΛ'</span> <span class="fn">GΛ</span> <span class="fn">π</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><span class="fn">Λ</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn"><span class="fn">Λ</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">Λ</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ'</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn"><span class="fn">Λ'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn">Λ'</span></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hμ'</span> : <span class="fn">∀ (<span class="fn">a </span><span class="fn">b </span><span class="fn">x</span> : <span class="fn">Λ'</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">π</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">μ</span> <span class="fn">(<span class="fn">π</span> <span class="fn">a</span>)</span>)</span> <span class="fn">(<span class="fn">π</span> <span class="fn">b</span>)</span></span></span> → <span class="fn"><span class="fn"><span class="fn">(<span class="fn">μ'</span> <span class="fn">a</span>)</span> <span class="fn">b</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">2</span> <span class="fn">•</span> <span class="fn">x</span></span></span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">q</span> : <span class="fn">ℤ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.ActLift">GExt.ActLift</a> <span class="fn">μ</span> <span class="fn">q</span> <span class="fn">MM</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.ActLift">GExt.ActLift</a> <span class="fn">μ'</span> <span class="fn">q</span> <span class="fn">MM'</span></span></div></div><p><strong>Twice a lifted action</strong>.</p><details id="instances-for-list-LargeIndecomposable.WLift.actLiftTw" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.WLift.actLiftTw_act"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L148-L152">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.actLiftTw_act"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">actLiftTw_act</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hπ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsRed">IsRed</a> <span class="fn">GΛ'</span> <span class="fn">GΛ</span> <span class="fn">π</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><span class="fn">Λ</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn"><span class="fn">Λ</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">Λ</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ'</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn"><span class="fn">Λ'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn">Λ'</span></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hμ'</span> : <span class="fn">∀ (<span class="fn">a </span><span class="fn">b </span><span class="fn">x</span> : <span class="fn">Λ'</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">π</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">μ</span> <span class="fn">(<span class="fn">π</span> <span class="fn">a</span>)</span>)</span> <span class="fn">(<span class="fn">π</span> <span class="fn">b</span>)</span></span></span> → <span class="fn"><span class="fn"><span class="fn">(<span class="fn">μ'</span> <span class="fn">a</span>)</span> <span class="fn">b</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">2</span> <span class="fn">•</span> <span class="fn">x</span></span></span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">q</span> : <span class="fn">ℤ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">L</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.ActLift">GExt.ActLift</a> <span class="fn">μ</span> <span class="fn">q</span> <span class="fn">MM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M'</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn">Λ'</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.actLiftTw">actLiftTw</a> <span class="fn">HM</span> <span class="fn">hπ</span> <span class="fn">hμ'</span> <span class="fn">L</span>)</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.ActLift.act">act</a></span> <span class="fn">m</span> <span class="fn">b</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">HM</span>.<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift.tw">tw</a></span> <span class="fn">(<span class="fn"><span class="fn">L</span>.<a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.ActLift.act">act</a></span> <span class="fn">(<span class="fn">ρM</span> <span class="fn">m</span>)</span> <span class="fn">(<span class="fn">π</span> <span class="fn">b</span>)</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.WLift.isLiftHom_tw"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.lean#L154-L161">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.isLiftHom_tw"><span class="name">LargeIndecomposable</span>.<span class="name">WLift</span>.<span class="name">isLiftHom_tw</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">Λ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Λ'</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">Λ'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">GΛ'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GAlg">GExt.GAlg</a> <span class="fn">Λ'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">π</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→+*</span> <span class="fn">Λ</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">MM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρM</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→+</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">2</span>)</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<span class="fn">ZMod</span> <span class="fn">4</span>)</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN'</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ'</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">NN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod">GExt.GMod</a> <span class="fn">GΛ</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ρN</span> : <span class="fn"><span class="fn">N'</span> <span class="fn">→+</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">HM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">MM'</span> <span class="fn">MM</span> <span class="fn">π</span> <span class="fn">ρM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">HN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsLift">IsLift</a> <span class="fn">NN'</span> <span class="fn">NN</span> <span class="fn">π</span> <span class="fn">ρN</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hπ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.IsRed">IsRed</a> <span class="fn">GΛ'</span> <span class="fn">GΛ</span> <span class="fn">π</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><span class="fn">Λ</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn"><span class="fn">Λ</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">Λ</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ'</span> : <span class="fn"><span class="fn">Λ'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn"><span class="fn">Λ'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn">Λ'</span></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hμ'</span> : <span class="fn">∀ (<span class="fn">a </span><span class="fn">b </span><span class="fn">x</span> : <span class="fn">Λ'</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">π</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">μ</span> <span class="fn">(<span class="fn">π</span> <span class="fn">a</span>)</span>)</span> <span class="fn">(<span class="fn">π</span> <span class="fn">b</span>)</span></span></span> → <span class="fn"><span class="fn"><span class="fn">(<span class="fn">μ'</span> <span class="fn">a</span>)</span> <span class="fn">b</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">2</span> <span class="fn">•</span> <span class="fn">x</span></span></span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">q</span> : <span class="fn">ℤ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">L₁</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.ActLift">GExt.ActLift</a> <span class="fn">μ</span> <span class="fn">q</span> <span class="fn">MM</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">L₂</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.ActLift">GExt.ActLift</a> <span class="fn">μ</span> <span class="fn">q</span> <span class="fn">NN</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">2</span></span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.IsLiftHom">GExt.IsLiftHom</a> <span class="fn">L₁</span> <span class="fn">L₂</span> <span class="fn">f</span> <span class="fn">g</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f'</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">ZMod</span> <span class="fn">4</span></span><span class="fn">]</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf'act</span> : <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">M'</span>) (<span class="fn">b</span> : <span class="fn">Λ'</span>), <span class="fn"><span class="fn"><span class="fn">f'</span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">MM'</span>.<a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod.act">act</a></span> <span class="fn">m</span>)</span> <span class="fn">b</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">NN'</span>.<a href="../../.././LargeIndecomposable/StandardForm/Hochschild/GradedExt.html#LargeIndecomposable.GExt.GMod.act">act</a></span> <span class="fn">(<span class="fn">f'</span> <span class="fn">m</span>)</span>)</span> <span class="fn">b</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hf'</span> : <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">M'</span>), <span class="fn"><span class="fn"><span class="fn">ρN</span> <span class="fn">(<span class="fn">f'</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">ρM</span> <span class="fn">m</span>)</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/StandardForm/Deformations/SquareZero.html#LargeIndecomposable.GExt.IsLiftHom">GExt.IsLiftHom</a> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.actLiftTw">actLiftTw</a> <span class="fn">HM</span> <span class="fn">hπ</span> <span class="fn">hμ'</span> <span class="fn">L₁</span>)</span> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralTransport.html#LargeIndecomposable.WLift.actLiftTw">actLiftTw</a> <span class="fn">HN</span> <span class="fn">hπ</span> <span class="fn">hμ'</span> <span class="fn">L₂</span>)</span> <span class="fn">f'</span> <span class="fn">(<a href="../../.././LargeIndecomposable/StandardForm/IntegralLifting/IntegralModules.html#LargeIndecomposable.WLift.twMap">twMap</a> <span class="fn">HM</span> <span class="fn">HN</span> <span class="fn">g</span>)</span></span></div></div><p><strong>Twice a lifted map.</strong></p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

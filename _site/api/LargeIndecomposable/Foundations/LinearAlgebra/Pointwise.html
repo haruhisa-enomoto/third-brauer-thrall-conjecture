@@ -1,0 +1,199 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.LinearAlgebra.Pointwise</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.LinearAlgebra.Pointwise";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">LinearAlgebra</span>.<span class="name">Pointwise</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Module/Submodule/Pointwise.lean">Mathlib.Algebra.Module.Submodule.Pointwise</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Ring/Subring/Basic.lean">Mathlib.Algebra.Ring.Subring.Basic</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Ring/Action/Pointwise/Set.lean">Mathlib.Algebra.Ring.Action.Pointwise.Set</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.LinearAlgebra.Pointwise" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#Submodule.pow_smul_mem_pow_smul"><span class="name">Submodule</span>.<span class="name">pow_smul_mem_pow_smul</span></a></div><div class="nav_link"><a class="break_within" href="#Submodule.pow_smul_antitone"><span class="name">Submodule</span>.<span class="name">pow_smul_antitone</span></a></div><div class="nav_link"><a class="break_within" href="#Submodule.pow_add_smul_mem"><span class="name">Submodule</span>.<span class="name">pow_add_smul_mem</span></a></div><div class="nav_link"><a class="break_within" href="#Submodule.smul_mem_pow_smul"><span class="name">Submodule</span>.<span class="name">smul_mem_pow_smul</span></a></div><div class="nav_link"><a class="break_within" href="#Submodule.neg_smul_eq_smul"><span class="name">Submodule</span>.<span class="name">neg_smul_eq_smul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.smul_mem_smul_top_of_mul_eq_self"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_mem_smul_top_of_mul_eq_self</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.smul_eq_zero_of_mul_eq_zero_of_mem_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_eq_zero_of_mul_eq_zero_of_mem_smul_top</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.Algebra.Module.Submodule.Pointwise</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Pointwise-scalar-actions-on-submodules" class="markdown-heading">Pointwise scalar actions on submodules <a class="hover-link" href="#Pointwise-scalar-actions-on-submodules">#</a></h1><p>This file also records how scalar products that fix or annihilate a scalar control its
+pointwise image of the whole module. The image-membership result needs only a distributive
+monoid action. Over a ring of scalars, negating the scalar does not change the pointwise image
+of a submodule, since a submodule is closed under negation.</p><p>Let <code>S</code> be a subring of a commutative ring <code>A</code>, <code>M</code> an <code>A</code>-module and <code>M₀</code> an <code>S</code>-submodule of
+<code>M</code>. This file collects the elementary facts about the family <code>rⁿ • M₀</code>, for <code>r : S</code>, in
+Mathlib's pointwise action on submodules.</p><p>The family is written out as <code>rⁿ • M₀</code> rather than wrapped in a definition of its own:
+<code>Submodule.mem_smul_pointwise_iff_exists</code> already characterises membership and
+<code>Submodule.smul_le_self_of_tower</code> already gives the shrinking, so a wrapper would only oblige
+this file to restate both.</p><h2 id="Main-results" class="markdown-heading">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.pow_smul_mem_pow_smul">Submodule.pow_smul_mem_pow_smul</a></code>: the ambient-scalar bridge — an element of <code>M₀</code> scaled by
+<code>sⁿ : A</code> lands in <code>⟨s, _⟩ⁿ • M₀</code>, so a consumer speaking <code>A</code> needs no coercion plumbing.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.pow_smul_antitone">Submodule.pow_smul_antitone</a></code>: the family is antitone in the exponent.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.pow_add_smul_mem">Submodule.pow_add_smul_mem</a></code>: <code>M₀</code> absorbs further powers of a scalar drawn from <code>S</code>.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.neg_smul_eq_smul">Submodule.neg_smul_eq_smul</a></code>: over a ring of scalars, <code>(-a) • N = a • N</code>.</li></ul></div><div class="decl" id="Submodule.pow_smul_mem_pow_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.lean#L48-L60">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.pow_smul_mem_pow_smul"><span class="name">Submodule</span>.<span class="name">pow_smul_mem_pow_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Subring</span> <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M₀</span> : <span class="fn"><span class="fn">Submodule</span> <span class="fn">(↥<span class="fn">S</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs0</span> : <span class="fn"><span class="fn">s</span> <span class="fn">∈</span> <span class="fn">S</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">y</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hy</span> : <span class="fn"><span class="fn">y</span> <span class="fn">∈</span> <span class="fn">M₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">s</span> <span class="fn">^</span> <span class="fn">n</span></span> <span class="fn">•</span> <span class="fn">y</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">⟨</span><span class="fn">s</span>, <span class="fn">hs0</span><span class="fn">⟩</span></span> <span class="fn">^</span> <span class="fn">n</span></span> <span class="fn">•</span> <span class="fn">M₀</span></span></span></div></div><p><strong>The ambient-scalar bridge.</strong> Membership in <code>rⁿ • M₀</code> is stated in Mathlib's terms with the
+subring scalar <code>r : S</code>, while a caller typically holds the ambient <code>s : A</code>. This is the crossing,
+so the coercion plumbing is done once here.</p><p>Only this direction holds: the converse would need multiplication by <code>sⁿ</code> to be injective.</p><p>Not <code>@[simp]</code>: the left-hand side is already reducible by
+<code>Submodule.mem_smul_pointwise_iff_exists</code>, so simp would rather rewrite it than close it, and the
+simpNF linter says so. This is a bridge to apply, not a normalisation.</p></div></div><div class="decl" id="Submodule.pow_smul_antitone"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.lean#L62-L69">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.pow_smul_antitone"><span class="name">Submodule</span>.<span class="name">pow_smul_antitone</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Subring</span> <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M₀</span> : <span class="fn"><span class="fn">Submodule</span> <span class="fn">(↥<span class="fn">S</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r</span> : <span class="fn">↥<span class="fn">S</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Antitone</span> <span class="fn">fun (<span class="fn">n</span> : <span class="fn">ℕ</span>) =&gt; <span class="fn"><span class="fn"><span class="fn">r</span> <span class="fn">^</span> <span class="fn">n</span></span> <span class="fn">•</span> <span class="fn">M₀</span></span></span></span></div></div><p><strong>The family <code>rⁿ • M₀</code> is antitone in <code>n</code>.</strong> Raising the exponent multiplies by a further
+<code>r</code>, and <code>Submodule.smul_le_self_of_tower</code> says that shrinks the submodule.</p></div></div><div class="decl" id="Submodule.pow_add_smul_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.lean#L71-L80">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.pow_add_smul_mem"><span class="name">Submodule</span>.<span class="name">pow_add_smul_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Subring</span> <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M₀</span> : <span class="fn"><span class="fn">Submodule</span> <span class="fn">(↥<span class="fn">S</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs0</span> : <span class="fn"><span class="fn">s</span> <span class="fn">∈</span> <span class="fn">S</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">j </span><span class="fn">k</span> : <span class="fn">ℕ</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">z</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hz</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">s</span> <span class="fn">^</span> <span class="fn">k</span></span> <span class="fn">•</span> <span class="fn">z</span></span> <span class="fn">∈</span> <span class="fn">M₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">s</span> <span class="fn">^</span> <span class="fn">(<span class="fn">j</span> <span class="fn">+</span> <span class="fn">k</span>)</span></span> <span class="fn">•</span> <span class="fn">z</span></span> <span class="fn">∈</span> <span class="fn">M₀</span></span></div></div><p><strong>A submodule over a subring absorbs further powers of a scalar from that subring</strong>: raising
+the exponent cannot leave <code>M₀</code>, because the extra factor is itself a scalar from <code>S</code>.</p></div></div><div class="decl" id="Submodule.smul_mem_pow_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.lean#L82-L99">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.smul_mem_pow_smul"><span class="name">Submodule</span>.<span class="name">smul_mem_pow_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Subring</span> <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M₀</span> : <span class="fn"><span class="fn">Submodule</span> <span class="fn">(↥<span class="fn">S</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs0</span> : <span class="fn"><span class="fn">s</span> <span class="fn">∈</span> <span class="fn">S</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">b</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hb</span> : <span class="fn"><span class="fn">b</span> <span class="fn">∈</span> <span class="fn">S</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">c</span> : <span class="fn">A</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">M</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n </span><span class="fn">k</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hcb</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">s</span> <span class="fn">^</span> <span class="fn">(<span class="fn">n</span> <span class="fn">+</span> <span class="fn">k</span>)</span></span> <span class="fn">•</span> <span class="fn">b</span></span> <span class="fn">=</span> <span class="fn">c</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hk</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">s</span> <span class="fn">^</span> <span class="fn">k</span></span> <span class="fn">•</span> <span class="fn">m</span></span> <span class="fn">∈</span> <span class="fn">M₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">c</span> <span class="fn">•</span> <span class="fn">m</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">⟨</span><span class="fn">s</span>, <span class="fn">hs0</span><span class="fn">⟩</span></span> <span class="fn">^</span> <span class="fn">n</span></span> <span class="fn">•</span> <span class="fn">M₀</span></span></span></div></div><p><strong>Scaling into <code>sⁿ • M₀</code>.</strong> If <code>c</code> factors as <code>s ^ (n + k) • b</code> with <code>b : S</code>, and <code>s ^ k • m</code>
+already lies in <code>M₀</code>, then <code>c • m</code> lies in <code>sⁿ • M₀</code>.</p><p>This is the step that both a submodules-basis <code>smul</code> condition and a module-filter-basis
+<code>smul_right'</code> axiom reduce to, which is why it is stated once here rather than inline at each.</p></div></div><div class="decl" id="Submodule.neg_smul_eq_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.lean#L106-L111">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#Submodule.neg_smul_eq_smul"><span class="name">Submodule</span>.<span class="name">neg_smul_eq_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">α</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">α</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">α</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">α</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">N</span> : <span class="fn"><span class="fn">Submodule</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">-</span><span class="fn">a</span></span> <span class="fn">•</span> <span class="fn">N</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">a</span> <span class="fn">•</span> <span class="fn">N</span></span></span></div></div><p><strong>Negating the scalar does not change the image.</strong> Over a ring of scalars,
+<code>(-a) • N = -(a • N)</code>, and a submodule is its own negation.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.smul_mem_smul_top_of_mul_eq_self"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.lean#L124-L129">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#LargeIndecomposable.Foundations.smul_mem_smul_top_of_mul_eq_self"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_mem_smul_top_of_mul_eq_self</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Monoid</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DistribMulAction</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">r</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hr</span> : <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">*</span> <span class="fn">r</span></span> <span class="fn">=</span> <span class="fn">r</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">r</span> <span class="fn">•</span> <span class="fn">x</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn">f</span> <span class="fn">•</span> <span class="fn">⊤</span></span></span></div></div><p><strong>An element <code>r</code> fixed on the left by <code>f</code> carries the whole module into <code>f • M</code></strong>: if
+<code>f * r = r</code> then every multiple of <code>r</code> lies in <code>f • M</code>. No idempotency is needed.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.smul_eq_zero_of_mul_eq_zero_of_mem_smul_top"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.lean#L138-L143">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/Pointwise.html#LargeIndecomposable.Foundations.smul_eq_zero_of_mul_eq_zero_of_mem_smul_top"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">smul_eq_zero_of_mul_eq_zero_of_mem_smul_top</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r </span><span class="fn">e</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hr</span> : <span class="fn"><span class="fn"><span class="fn">r</span> <span class="fn">*</span> <span class="fn">e</span></span> <span class="fn">=</span> <span class="fn">0</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn"><span class="fn">x</span> <span class="fn">∈</span> <span class="fn"><span class="fn">e</span> <span class="fn">•</span> <span class="fn">⊤</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">r</span> <span class="fn">•</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div><p><strong>An element that kills <code>e</code> on the right annihilates <code>e • M</code></strong>: if <code>r * e = 0</code> then <code>r</code> sends
+every element of <code>e • M</code> to zero. No idempotency is needed.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

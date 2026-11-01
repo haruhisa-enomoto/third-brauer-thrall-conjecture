@@ -1,0 +1,725 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.ExactCategories.BaseChange</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.ExactCategories.BaseChange";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactCategories</span>.<span class="name">BaseChange</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html">LargeIndecomposable.Foundations.ExactCategories.ExactStructure</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.ExactCategories.BaseChange" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.cobaseChangeπ"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChangeπ</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.inl_cobaseChangeπ"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">inl_cobaseChangeπ</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.inl_cobaseChangeπ_assoc"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">inl_cobaseChangeπ_assoc</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.inr_cobaseChangeπ"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">inr_cobaseChangeπ</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.inr_cobaseChangeπ_assoc"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">inr_cobaseChangeπ_assoc</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.cobaseChange"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.cobaseChange_def"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_def</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.cobaseChange_X₁"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_X₁</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.cobaseChange_X₂"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_X₂</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.cobaseChange_X₃"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_X₃</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.cobaseChange_f"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_f</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.cobaseChange_g"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_g</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChangeι"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChangeι_fst"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι_fst</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChangeι_fst_assoc"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι_fst_assoc</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChangeι_snd"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι_snd</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChangeι_snd_assoc"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι_snd_assoc</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChange"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChange_def"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_def</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChange_X₁"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_X₁</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChange_X₂"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_X₂</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChange_X₃"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_X₃</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChange_g"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_g</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.baseChange_f"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_f</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.ExactStructure.conflation_cobaseChange"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">conflation_cobaseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.ExactStructure.conflation_baseChange"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">conflation_baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPushout"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">conflation_comp_of_isPushout</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPullback"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">conflation_comp_of_isPullback</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.ExactStructure.exists_conflation_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">exists_conflation_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.ExactStructure.exists_conflation_comp'"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">exists_conflation_comp'</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.CategoryTheory.Exact.BaseChange</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Conflations-along-admissible-base-change-and-the-Noether-conflation" class="markdown-heading">Conflations along admissible base change, and the Noether conflation <a class="hover-link" href="#Conflations-along-admissible-base-change-and-the-Noether-conflation">#</a></h1><p>Quillen's axiom E2 produces a pushout of an inflation along an arbitrary morphism and asserts
+only that the resulting morphism is again an inflation. This file identifies the <em>cokernel</em> of
+that inflation: cobase change of a conflation <code>X ⟶ Y ⟶ Z</code> along <code>u : X ⟶ X'</code> produces a
+conflation <code>X' ⟶ Q ⟶ Z</code> with the <em>same</em> third term. Dually, base change of a conflation along
+<code>u : Z' ⟶ Z</code> produces a conflation <code>X ⟶ Q ⟶ Z'</code> with the same first term.</p><p>The second half of the file uses this to describe the conflations attached to a composite of two
+inflations. If <code>X ⟶ Y ⟶ Z</code> and <code>Y ⟶ W ⟶ V</code> are conflations, then the pushout <code>Q</code> of the
+inflation <code>Y ⟶ W</code> along the deflation <code>Y ⟶ Z</code> is at once the third term of a conflation
+<code>X ⟶ W ⟶ Q</code> and the second term of a conflation <code>Z ⟶ Q ⟶ V</code>. This is the exact-category form of
+Noether's second isomorphism theorem, <code>Q ≅ W/X</code> with <code>(W/X)/(Y/X) ≅ W/Y</code>, and it is what makes
+extension-closed subcategories inherit axiom E1.</p><h2 id="Main-definitions" class="markdown-heading">Main definitions <a class="hover-link" href="#Main-definitions">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">LargeIndecomposable.Foundations.cobaseChange</a></code>: the conflation <code>X' ⟶ Q ⟶ Z</code> obtained from <code>S : X ⟶ Y ⟶ Z</code> and a
+pushout square along <code>u : X ⟶ X'</code>.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">LargeIndecomposable.Foundations.baseChange</a></code>: the conflation <code>X ⟶ Q ⟶ Z'</code> obtained from <code>S : X ⟶ Y ⟶ Z</code> and a pullback
+square along <code>u : Z' ⟶ Z</code>.</li></ul><h2 id="Main-results" class="markdown-heading">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.conflation_cobaseChange">LargeIndecomposable.Foundations.ExactStructure.conflation_cobaseChange</a></code> and
+<code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.conflation_baseChange">LargeIndecomposable.Foundations.ExactStructure.conflation_baseChange</a></code>: base and cobase change of a conflation along an
+arbitrary morphism is a conflation; the inflation or deflation in the original conflation is
+the admissible morphism being pushed out or pulled back.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPushout">LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPushout</a></code> and
+<code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPullback">LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPullback</a></code>: the cokernel of a composite of
+inflations, and the kernel of a composite of deflations, computed as a pushout resp. pullback.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.exists_conflation_comp">LargeIndecomposable.Foundations.ExactStructure.exists_conflation_comp</a></code>: the Noether package for a composite of two
+inflations.</li></ul><h2 id="References" class="markdown-heading">References <a class="hover-link" href="#References">#</a></h2><ul><li>Theo Bühler, <em>Exact categories</em>, Expositiones Mathematicae <strong>28</strong> (2010), 1--69,
+<a href="https://arxiv.org/abs/0811.1480">https://arxiv.org/abs/0811.1480</a>. Proposition 2.12 identifies the cokernel along a cobase
+change and Lemma 3.5 is the Noether isomorphism proved here.</li></ul></div><div class="decl" id="LargeIndecomposable.Foundations.cobaseChangeπ"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L68-L71">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChangeπ"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChangeπ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span></div></div><p>The morphism <code>Q ⟶ S.X₃</code> out of a cobase change of <code>S.f</code> along <code>u</code>, induced by <code>S.g</code> on the
+one summand and by <code>0</code> on the other.</p><details id="instances-for-list-LargeIndecomposable.Foundations.cobaseChangeπ" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.inl_cobaseChangeπ"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L73-L75">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.inl_cobaseChangeπ"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">inl_cobaseChangeπ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">v</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChangeπ">cobaseChangeπ</a> <span class="fn">S</span> <span class="fn">sq</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.inl_cobaseChangeπ_assoc"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L73-L73">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.inl_cobaseChangeπ_assoc"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">inl_cobaseChangeπ_assoc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span> <span class="fn">⟶</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">v</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChangeπ">cobaseChangeπ</a> <span class="fn">S</span> <span class="fn">sq</span>)</span> <span class="fn">h</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">h</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.inr_cobaseChangeπ"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L77-L79">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.inr_cobaseChangeπ"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">inr_cobaseChangeπ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">w</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChangeπ">cobaseChangeπ</a> <span class="fn">S</span> <span class="fn">sq</span>)</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.inr_cobaseChangeπ_assoc"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L77-L77">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.inr_cobaseChangeπ_assoc"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">inr_cobaseChangeπ_assoc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span> <span class="fn">⟶</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">w</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChangeπ">cobaseChangeπ</a> <span class="fn">S</span> <span class="fn">sq</span>)</span> <span class="fn">h</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">0</span> <span class="fn">h</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.cobaseChange"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L81-L84">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span></div></div><p>The cobase change of a short complex <code>S</code> along <code>u : S.X₁ ⟶ X'</code>: the short complex
+<code>X' ⟶ Q ⟶ S.X₃</code> attached to a pushout square of <code>S.f</code> along <code>u</code>.</p><details id="instances-for-list-LargeIndecomposable.Foundations.cobaseChange" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.cobaseChange_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L86-L88">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange_def"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">cobaseChange</a> <span class="fn">S</span> <span class="fn">sq</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">X'</span>, <span class="fn">X₂</span> := <span class="fn">Q</span>, <span class="fn">X₃</span> := <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span>, <span class="fn">f</span> := <span class="fn">w</span>, <span class="fn">g</span> := <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChangeπ">cobaseChangeπ</a> <span class="fn">S</span> <span class="fn">sq</span></span>, <span class="fn">zero</span> := <span class="fn">⋯</span> <span class="fn">}</span></span></span></div></div><p>The defining equation for <code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">cobaseChange</a></code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.cobaseChange_X₁"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L90-L90">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange_X₁"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_X₁</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">cobaseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">X₁</span></span> <span class="fn">=</span> <span class="fn">X'</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.cobaseChange_X₂"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L91-L91">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange_X₂"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_X₂</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">cobaseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">X₂</span></span> <span class="fn">=</span> <span class="fn">Q</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.cobaseChange_X₃"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L92-L92">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange_X₃"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_X₃</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">cobaseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">X₃</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.cobaseChange_f"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L93-L94">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange_f"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_f</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">cobaseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">f</span></span> <span class="fn">≍</span> <span class="fn">w</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.cobaseChange_g"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L96-L97">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange_g"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">cobaseChange_g</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">cobaseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">g</span></span> <span class="fn">≍</span> <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChangeπ">cobaseChangeπ</a> <span class="fn">S</span> <span class="fn">sq</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChangeι"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L105-L108">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span></div></div><p>The morphism <code>S.X₁ ⟶ Q</code> into a base change of <code>S.g</code> along <code>u</code>, induced by <code>S.f</code> on the one
+factor and by <code>0</code> on the other.</p><details id="instances-for-list-LargeIndecomposable.Foundations.baseChangeι" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChangeι_fst"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L110-L112">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι_fst"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι_fst</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι">baseChangeι</a> <span class="fn">S</span> <span class="fn">sq</span>)</span> <span class="fn">v</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChangeι_fst_assoc"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L110-L110">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι_fst_assoc"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι_fst_assoc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι">baseChangeι</a> <span class="fn">S</span> <span class="fn">sq</span>)</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">v</span> <span class="fn">h</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">h</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChangeι_snd"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L114-L116">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι_snd"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι_snd</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι">baseChangeι</a> <span class="fn">S</span> <span class="fn">sq</span>)</span> <span class="fn">w</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChangeι_snd_assoc"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L114-L114">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι_snd_assoc"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChangeι_snd_assoc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι">baseChangeι</a> <span class="fn">S</span> <span class="fn">sq</span>)</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">w</span> <span class="fn">h</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">0</span> <span class="fn">h</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChange"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L118-L121">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span></div></div><p>The base change of a short complex <code>S</code> along <code>u : Z' ⟶ S.X₃</code>: the short complex
+<code>S.X₁ ⟶ Q ⟶ Z'</code> attached to a pullback square of <code>S.g</code> along <code>u</code>.</p><details id="instances-for-list-LargeIndecomposable.Foundations.baseChange" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChange_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L123-L125">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange_def"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">baseChange</a> <span class="fn">S</span> <span class="fn">sq</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span>, <span class="fn">X₂</span> := <span class="fn">Q</span>, <span class="fn">X₃</span> := <span class="fn">Z'</span>, <span class="fn">f</span> := <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι">baseChangeι</a> <span class="fn">S</span> <span class="fn">sq</span></span>, <span class="fn">g</span> := <span class="fn">w</span>, <span class="fn">zero</span> := <span class="fn">⋯</span> <span class="fn">}</span></span></span></div></div><p>The defining equation for <code><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">baseChange</a></code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChange_X₁"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L127-L127">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange_X₁"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_X₁</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">baseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">X₁</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChange_X₂"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L128-L128">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange_X₂"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_X₂</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">baseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">X₂</span></span> <span class="fn">=</span> <span class="fn">Q</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChange_X₃"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L129-L129">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange_X₃"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_X₃</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">baseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">X₃</span></span> <span class="fn">=</span> <span class="fn">Z'</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChange_g"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L130-L131">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange_g"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_g</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">baseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">g</span></span> <span class="fn">≍</span> <span class="fn">w</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.baseChange_f"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L133-L134">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange_f"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">baseChange_f</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">baseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span>.<span class="fn">f</span></span> <span class="fn">≍</span> <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChangeι">baseChangeι</a> <span class="fn">S</span> <span class="fn">sq</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.Foundations.ExactStructure.conflation_cobaseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L142-L167">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.conflation_cobaseChange"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">conflation_cobaseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroObject</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ExactStructure">ExactStructure</a> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hS</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn">S</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₁</span></span> <span class="fn">⟶</span> <span class="fn">X'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">X'</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn"><span class="fn">S</span>.<span class="fn">f</span></span> <span class="fn">u</span> <span class="fn">v</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.cobaseChange">cobaseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span></span></div></div><p><strong>Cobase change of a conflation is a conflation with the same cokernel.</strong> The pushout of a
+conflation <code>X ⟶ Y ⟶ Z</code> along a morphism <code>u : X ⟶ X'</code> is a conflation <code>X' ⟶ Q ⟶ Z</code>.</p><p>Axiom E2 alone gives only that <code>X' ⟶ Q</code> is an inflation; the content here is that its cokernel
+may be taken to be the original <code>Z</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.ExactStructure.conflation_baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L169-L191">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.conflation_baseChange"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">conflation_baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroObject</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ExactStructure">ExactStructure</a> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">CategoryTheory.ShortComplex</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hS</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn">S</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z' </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">Z'</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₃</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn"><span class="fn">S</span>.<span class="fn">X₂</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">Z'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">v</span> <span class="fn">w</span> <span class="fn"><span class="fn">S</span>.<span class="fn">g</span></span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.baseChange">baseChange</a> <span class="fn">S</span> <span class="fn">sq</span>)</span></span></div></div><p><strong>Base change of a conflation is a conflation with the same kernel.</strong> The pullback of a
+conflation <code>X ⟶ Y ⟶ Z</code> along a morphism <code>u : Z' ⟶ Z</code> is a conflation <code>X ⟶ Q ⟶ Z'</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPushout"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L193-L213">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPushout"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">conflation_comp_of_isPushout</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroObject</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ExactStructure">ExactStructure</a> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z </span><span class="fn">W </span><span class="fn">V </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hip</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i</span> <span class="fn">p</span></span> <span class="fn">=</span> <span class="fn">0</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">X</span>, <span class="fn">X₂</span> := <span class="fn">Y</span>, <span class="fn">X₃</span> := <span class="fn">Z</span>, <span class="fn">f</span> := <span class="fn">i</span>, <span class="fn">g</span> := <span class="fn">p</span>, <span class="fn">zero</span> := <span class="fn">hip</span> <span class="fn">}</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">j</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">W</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">W</span> <span class="fn">⟶</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hjv</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">j</span> <span class="fn">v</span></span> <span class="fn">=</span> <span class="fn">0</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">Y</span>, <span class="fn">X₂</span> := <span class="fn">W</span>, <span class="fn">X₃</span> := <span class="fn">V</span>, <span class="fn">f</span> := <span class="fn">j</span>, <span class="fn">g</span> := <span class="fn">v</span>, <span class="fn">zero</span> := <span class="fn">hjv</span> <span class="fn">}</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">c</span> : <span class="fn"><span class="fn">W</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn"><span class="fn">Z</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPushout</span> <span class="fn">j</span> <span class="fn">p</span> <span class="fn">c</span> <span class="fn">α</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">X</span>, <span class="fn">X₂</span> := <span class="fn">W</span>, <span class="fn">X₃</span> := <span class="fn">Q</span>, <span class="fn">f</span> := <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i</span> <span class="fn">j</span></span>, <span class="fn">g</span> := <span class="fn">c</span>, <span class="fn">zero</span> := <span class="fn">⋯</span> <span class="fn">}</span></span></span></div></div><p><strong>The cokernel of a composite of inflations.</strong> If <code>X ⟶ Y ⟶ Z</code> and <code>Y ⟶ W ⟶ V</code> are
+conflations, then the pushout <code>Q</code> of the inflation <code>Y ⟶ W</code> along the deflation <code>Y ⟶ Z</code> is a
+cokernel of the composite inflation <code>X ⟶ W</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPullback"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L215-L235">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.conflation_comp_of_isPullback"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">conflation_comp_of_isPullback</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroObject</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ExactStructure">ExactStructure</a> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z </span><span class="fn">W </span><span class="fn">V </span><span class="fn">Q</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hip</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i</span> <span class="fn">p</span></span> <span class="fn">=</span> <span class="fn">0</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">X</span>, <span class="fn">X₂</span> := <span class="fn">Y</span>, <span class="fn">X₃</span> := <span class="fn">Z</span>, <span class="fn">f</span> := <span class="fn">i</span>, <span class="fn">g</span> := <span class="fn">p</span>, <span class="fn">zero</span> := <span class="fn">hip</span> <span class="fn">}</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">V</span> <span class="fn">⟶</span> <span class="fn">W</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">q</span> : <span class="fn"><span class="fn">W</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hvq</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">v</span> <span class="fn">q</span></span> <span class="fn">=</span> <span class="fn">0</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">V</span>, <span class="fn">X₂</span> := <span class="fn">W</span>, <span class="fn">X₃</span> := <span class="fn">Y</span>, <span class="fn">f</span> := <span class="fn">v</span>, <span class="fn">g</span> := <span class="fn">q</span>, <span class="fn">zero</span> := <span class="fn">hvq</span> <span class="fn">}</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">c</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">W</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">sq</span> : <span class="fn"><span class="fn">CategoryTheory.IsPullback</span> <span class="fn">c</span> <span class="fn">α</span> <span class="fn">q</span> <span class="fn">i</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">Q</span>, <span class="fn">X₂</span> := <span class="fn">W</span>, <span class="fn">X₃</span> := <span class="fn">Z</span>, <span class="fn">f</span> := <span class="fn">c</span>, <span class="fn">g</span> := <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">q</span> <span class="fn">p</span></span>, <span class="fn">zero</span> := <span class="fn">⋯</span> <span class="fn">}</span></span></span></div></div><p><strong>The kernel of a composite of deflations.</strong> If <code>X ⟶ Y ⟶ Z</code> and <code>V ⟶ W ⟶ Y</code> are conflations,
+then the pullback <code>Q</code> of the deflation <code>W ⟶ Y</code> along the inflation <code>X ⟶ Y</code> is a kernel of the
+composite deflation <code>W ⟶ Z</code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.ExactStructure.exists_conflation_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L237-L257">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.exists_conflation_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">exists_conflation_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroObject</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ExactStructure">ExactStructure</a> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z </span><span class="fn">W </span><span class="fn">V</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hip</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i</span> <span class="fn">p</span></span> <span class="fn">=</span> <span class="fn">0</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">X</span>, <span class="fn">X₂</span> := <span class="fn">Y</span>, <span class="fn">X₃</span> := <span class="fn">Z</span>, <span class="fn">f</span> := <span class="fn">i</span>, <span class="fn">g</span> := <span class="fn">p</span>, <span class="fn">zero</span> := <span class="fn">hip</span> <span class="fn">}</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">j</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">W</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">W</span> <span class="fn">⟶</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hjv</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">j</span> <span class="fn">v</span></span> <span class="fn">=</span> <span class="fn">0</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">Y</span>, <span class="fn">X₂</span> := <span class="fn">W</span>, <span class="fn">X₃</span> := <span class="fn">V</span>, <span class="fn">f</span> := <span class="fn">j</span>, <span class="fn">g</span> := <span class="fn">v</span>, <span class="fn">zero</span> := <span class="fn">hjv</span> <span class="fn">}</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">Q</span> : <span class="fn">C</span>) (<span class="fn">c</span> : <span class="fn"><span class="fn">W</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>) (<span class="fn">α</span> : <span class="fn"><span class="fn">Z</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>) (<span class="fn">β</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">V</span></span>) (<span class="fn">hc</span> :
+  <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i</span> <span class="fn">j</span>)</span> <span class="fn">c</span></span> <span class="fn">=</span> <span class="fn">0</span></span>) (<span class="fn">hβ</span> :
+  <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">α</span> <span class="fn">β</span></span> <span class="fn">=</span> <span class="fn">0</span></span>),
+  <span class="fn"><span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">X</span>, <span class="fn">X₂</span> := <span class="fn">W</span>, <span class="fn">X₃</span> := <span class="fn">Q</span>, <span class="fn">f</span> := <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i</span> <span class="fn">j</span></span>, <span class="fn">g</span> := <span class="fn">c</span>, <span class="fn">zero</span> := <span class="fn">hc</span> <span class="fn">}</span></span></span> <span class="fn">∧</span>     <span class="fn"><span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">Z</span>, <span class="fn">X₂</span> := <span class="fn">Q</span>, <span class="fn">X₃</span> := <span class="fn">V</span>, <span class="fn">f</span> := <span class="fn">α</span>, <span class="fn">g</span> := <span class="fn">β</span>, <span class="fn">zero</span> := <span class="fn">hβ</span> <span class="fn">}</span></span></span> <span class="fn">∧</span>       <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">j</span> <span class="fn">c</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">p</span> <span class="fn">α</span></span></span> <span class="fn">∧</span>         <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">c</span> <span class="fn">β</span></span> <span class="fn">=</span> <span class="fn">v</span></span></span></span></span></span></div></div><p><strong>The Noether isomorphism for exact categories.</strong> Given conflations <code>X ⟶ Y ⟶ Z</code> and
+<code>Y ⟶ W ⟶ V</code>, there is an object <code>Q</code> — the pushout of <code>Y ⟶ W</code> along <code>Y ⟶ Z</code> — which is at once
+the cokernel of the composite inflation <code>X ⟶ W</code> and an extension of <code>V</code> by <code>Z</code>.</p><p>In the classical notation <code>Q ≅ W/X</code>, and the second conflation is
+<code>Y/X ⟶ W/X ⟶ W/Y</code>. This is Bühler's Lemma 3.5, and it is exactly what an extension-closed
+subcategory needs in order to inherit axiom E1.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.ExactStructure.exists_conflation_comp'"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/ExactCategories/BaseChange.lean#L259-L275">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/ExactCategories/BaseChange.html#LargeIndecomposable.Foundations.ExactStructure.exists_conflation_comp'"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">ExactStructure</span>.<span class="name">exists_conflation_comp'</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroObject</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ExactStructure">ExactStructure</a> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z </span><span class="fn">W </span><span class="fn">V</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hip</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i</span> <span class="fn">p</span></span> <span class="fn">=</span> <span class="fn">0</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">X</span>, <span class="fn">X₂</span> := <span class="fn">Y</span>, <span class="fn">X₃</span> := <span class="fn">Z</span>, <span class="fn">f</span> := <span class="fn">i</span>, <span class="fn">g</span> := <span class="fn">p</span>, <span class="fn">zero</span> := <span class="fn">hip</span> <span class="fn">}</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">v</span> : <span class="fn"><span class="fn">V</span> <span class="fn">⟶</span> <span class="fn">W</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">q</span> : <span class="fn"><span class="fn">W</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hvq</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">v</span> <span class="fn">q</span></span> <span class="fn">=</span> <span class="fn">0</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">V</span>, <span class="fn">X₂</span> := <span class="fn">W</span>, <span class="fn">X₃</span> := <span class="fn">Y</span>, <span class="fn">f</span> := <span class="fn">v</span>, <span class="fn">g</span> := <span class="fn">q</span>, <span class="fn">zero</span> := <span class="fn">hvq</span> <span class="fn">}</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">Q</span> : <span class="fn">C</span>) (<span class="fn">c</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">W</span></span>) (<span class="fn">α</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">⟶</span> <span class="fn">X</span></span>) (<span class="fn">β</span> : <span class="fn"><span class="fn">V</span> <span class="fn">⟶</span> <span class="fn">Q</span></span>) (<span class="fn">hc</span> :
+  <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">c</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">q</span> <span class="fn">p</span>)</span></span> <span class="fn">=</span> <span class="fn">0</span></span>) (<span class="fn">hβ</span> :
+  <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">β</span> <span class="fn">α</span></span> <span class="fn">=</span> <span class="fn">0</span></span>),
+  <span class="fn"><span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">Q</span>, <span class="fn">X₂</span> := <span class="fn">W</span>, <span class="fn">X₃</span> := <span class="fn">Z</span>, <span class="fn">f</span> := <span class="fn">c</span>, <span class="fn">g</span> := <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">q</span> <span class="fn">p</span></span>, <span class="fn">zero</span> := <span class="fn">hc</span> <span class="fn">}</span></span></span> <span class="fn">∧</span>     <span class="fn"><span class="fn"><span class="fn"><span class="fn">E</span>.<a href="../../.././LargeIndecomposable/Foundations/ExactCategories/ExactStructure.html#LargeIndecomposable.Foundations.ConflationClass.Conflation">Conflation</a></span> <span class="fn"><span class="fn">{</span> <span class="fn">X₁</span> := <span class="fn">V</span>, <span class="fn">X₂</span> := <span class="fn">Q</span>, <span class="fn">X₃</span> := <span class="fn">X</span>, <span class="fn">f</span> := <span class="fn">β</span>, <span class="fn">g</span> := <span class="fn">α</span>, <span class="fn">zero</span> := <span class="fn">hβ</span> <span class="fn">}</span></span></span> <span class="fn">∧</span>       <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">c</span> <span class="fn">q</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">α</span> <span class="fn">i</span></span></span> <span class="fn">∧</span>         <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">β</span> <span class="fn">c</span></span> <span class="fn">=</span> <span class="fn">v</span></span></span></span></span></span></div></div><p><strong>The dual Noether isomorphism.</strong> Given conflations <code>X ⟶ Y ⟶ Z</code> and <code>V ⟶ W ⟶ Y</code>, the
+pullback <code>Q</code> of <code>W ⟶ Y</code> along <code>X ⟶ Y</code> is at once the kernel of the composite deflation
+<code>W ⟶ Z</code> and an extension of <code>X</code> by <code>V</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

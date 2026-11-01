@@ -1,0 +1,769 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Cleaving.ClosedChains.ProjectiveModuleRealization</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Cleaving.ClosedChains.ProjectiveModuleRealization";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Cleaving</span>.<span class="name">ClosedChains</span>.<span class="name">ProjectiveModuleRealization</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/LinearEndTransport.html">LargeIndecomposable.Foundations.CategoryTheory.LinearEndTransport</a></li><li><a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html">LargeIndecomposable.Modules.Idempotents.IdempotentProjectiveCategory</a></li><li><a href="../../.././LargeIndecomposable/Modules/Idempotents/OrthogonalIdempotentModule.html">LargeIndecomposable.Modules.Idempotents.OrthogonalIdempotentModule</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Module/RingHom.lean">Mathlib.Algebra.Module.RingHom</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Category/ModuleCat/Abelian.lean">Mathlib.Algebra.Category.ModuleCat.Abelian</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Cleaving.ClosedChains.ProjectiveModuleRealization" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedCarrier</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveEndAction"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveEndAction</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveEndActionAlgHom"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveEndActionAlgHom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedActionAlgHom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedModuleA"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedModuleA</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedModule"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedModule</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedModule_scalarTower"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedModule_scalarTower</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedCarrierToModuleLinearEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedCarrierToModuleLinearEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedModule_finite"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedModule_finite</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_self"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveComponentMatrix_idempotent_apply_self</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_zero_of_target_ne"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveComponentMatrix_idempotent_apply_zero_of_target_ne</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_zero_of_source_ne"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveComponentMatrix_idempotent_apply_zero_of_source_ne</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom_idempotent_apply"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedActionAlgHom_idempotent_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom_corner_apply"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedActionAlgHom_corner_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionComponent</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionMap"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionMap</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionMap_coe"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionMap_coe</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionObj</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj_additive"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionObj_additive</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj_linear"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionObj_linear</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHomApp"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionHomApp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHomApp_coe"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionHomApp_coe</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHom"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionHom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestriction"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestriction</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.projectiveRestriction_additive"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestriction_additive</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionEval"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionEval</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionSingle"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionSingle</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionComponentLinearEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionComponentLinearEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionNatIso"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionNatIso</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionWhiskerLeftNatIso"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionWhiskerLeftNatIso</span></a></div></nav><main>
+<div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedCarrier"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L34-L37">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedCarrier</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a> z</div></div><p>The direct sum of all values of a representation of the primitive-
+projective category.  Since the index is finite, a dependent product is the
+same finite biproduct on underlying vector spaces.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedCarrier" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveEndAction"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L39-L50">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveEndAction"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveEndAction</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">q</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveEndAlgebra">ProjectiveEndAlgebra</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module.End</span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier">realizedCarrier</a></span> <span class="fn">F</span>)</span></span></div></div><p>A matrix endomorphism of the projective generator acts on the direct sum
+of the values of <code>F</code>.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.projectiveEndAction" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveEndActionAlgHom"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L52-L147">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveEndActionAlgHom"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveEndActionAlgHom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveEndAlgebra">ProjectiveEndAlgebra</a></span> <span class="fn">→ₐ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">Module.End</span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier">realizedCarrier</a></span> <span class="fn">F</span>)</span></span></span></div></div><p>Applying a linear primitive-projective representation to matrix
+endomorphisms is an algebra homomorphism.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.projectiveEndActionAlgHom" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L149-L153">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedActionAlgHom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">A</span> <span class="fn">→ₐ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">Module.End</span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier">realizedCarrier</a></span> <span class="fn">F</span>)</span></span></span></div></div><p>The algebra action induced by a linear primitive-projective
+representation.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedModuleA"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L155-L157">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">noncomputable abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModuleA"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedModuleA</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier">realizedCarrier</a></span> <span class="fn">F</span>)</span></span></div></div><p>The induced left <code>A</code>-module structure.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedModuleA" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedModule"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L159-L163">source</a></div><div class="attributes">@[reducible]</div>
+<div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedModule</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span></div></div><p>The induced <code>A</code>-module attached to a linear representation of the
+primitive-projective category.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedModule" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedModule_scalarTower"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L165-L174">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule_scalarTower"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedModule_scalarTower</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier">realizedCarrier</a></span> <span class="fn">F</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedCarrierToModuleLinearEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L176-L186">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrierToModuleLinearEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedCarrierToModuleLinearEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier">realizedCarrier</a></span> <span class="fn">F</span></span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule">realizedModule</a></span> <span class="fn">F</span>)</span></span></span></div></div><p>The original coefficient-space structure on the direct sum agrees with
+the one obtained by restricting the realized <code>A</code>-module along <code>k → A</code>.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedCarrierToModuleLinearEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedModule_finite"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L188-L194">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule_finite"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedModule_finite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">∀ (<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>), <span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">i</span>)</span></span></span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule">realizedModule</a></span> <span class="fn">F</span>)</span></span></span></div></div><p>Pointwise finite-dimensionality makes the realized module
+finite-dimensional over the coefficient field.</p></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_self"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L196-L208">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_self"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveComponentMatrix_idempotent_apply_self</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix">projectiveComponentMatrix</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents.idempotent">idempotent</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.projectiveVertex">projectiveVertex</a></span> <span class="fn">i</span>)</span>)</span> <span class="fn">i</span> <span class="fn">i</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">i</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_zero_of_target_ne"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L210-L221">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_zero_of_target_ne"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveComponentMatrix_idempotent_apply_zero_of_target_ne</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i </span><span class="fn">l </span><span class="fn">j</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hji</span> : <span class="fn"><span class="fn">j</span> <span class="fn">≠</span> <span class="fn">i</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix">projectiveComponentMatrix</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents.idempotent">idempotent</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.projectiveVertex">projectiveVertex</a></span> <span class="fn">i</span>)</span>)</span> <span class="fn">l</span> <span class="fn">j</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_zero_of_source_ne"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L223-L235">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix_idempotent_apply_zero_of_source_ne"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveComponentMatrix_idempotent_apply_zero_of_source_ne</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i </span><span class="fn">l </span><span class="fn">j</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hli</span> : <span class="fn"><span class="fn">l</span> <span class="fn">≠</span> <span class="fn">i</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.projectiveComponentMatrix">projectiveComponentMatrix</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents.idempotent">idempotent</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.projectiveVertex">projectiveVertex</a></span> <span class="fn">i</span>)</span>)</span> <span class="fn">l</span> <span class="fn">j</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom_idempotent_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L237-L265">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom_idempotent_apply"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedActionAlgHom_idempotent_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier">realizedCarrier</a></span> <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">j</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom">realizedActionAlgHom</a></span> <span class="fn">F</span>)</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents.idempotent">idempotent</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.projectiveVertex">projectiveVertex</a></span> <span class="fn">i</span>)</span>)</span>)</span> <span class="fn">m</span> <span class="fn">j</span></span> <span class="fn">=</span> <span class="fn">if h : <span class="fn"><span class="fn">j</span> <span class="fn">=</span> <span class="fn">i</span></span> then <span class="fn"><span class="fn">⋯</span> <span class="fn">▸</span> <span class="fn"><span class="fn">m</span> <span class="fn">i</span></span></span> else <span class="fn">0</span></span></span></div></div><p>The selected primitive idempotent acts on the realized direct sum as
+the coordinate projector.</p></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom_corner_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L267-L295">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom_corner_apply"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedActionAlgHom_corner_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">i</span> <span class="fn">⟶</span> <span class="fn">j</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedCarrier">realizedCarrier</a></span> <span class="fn">F</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedActionAlgHom">realizedActionAlgHom</a></span> <span class="fn">F</span>)</span> <span class="fn">↑<span class="fn">f</span></span>)</span> <span class="fn">m</span> <span class="fn">j</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">CategoryTheory.ConcreteCategory.hom</span> <span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">map</span></span> <span class="fn">f</span>)</span>)</span> <span class="fn">(<span class="fn">m</span> <span class="fn">i</span>)</span></span></span></div></div><p>A primitive-corner algebra element acts on the target coordinate by the
+given morphism of the representation.</p></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L301-L305">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">noncomputable abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionComponent</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Submodule</span> <span class="fn">k</span> <span class="fn">↑<span class="fn">M</span></span></span></div></div><p>The primitive-idempotent component of an <code>A</code>-module.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionMap"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L307-L319">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionMap"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">i</span> <span class="fn">⟶</span> <span class="fn">j</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">M</span> <span class="fn">i</span>)</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">M</span> <span class="fn">j</span>)</span></span></span></div></div><p>A primitive-corner morphism acts between the corresponding idempotent
+components of an <code>A</code>-module.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionMap" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionMap_coe"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L321-L326">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionMap_coe"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionMap_coe</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">j</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">i</span> <span class="fn">⟶</span> <span class="fn">j</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">M</span> <span class="fn">i</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionMap">projectiveRestrictionMap</a></span> <span class="fn">M</span> <span class="fn">f</span>)</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">↑<span class="fn">f</span></span> <span class="fn">•</span> <span class="fn">↑<span class="fn">m</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L328-L357">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionObj</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span></div></div><p>Restriction of an <code>A</code>-module to the chosen primitive-projective
+category.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj_additive"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L359-L370">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj_additive"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionObj_additive</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj">projectiveRestrictionObj</a></span> <span class="fn">M</span>)</span>.<span class="fn">Additive</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj_linear"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L372-L382">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj_linear"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionObj_linear</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj">projectiveRestrictionObj</a></span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHomApp"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L390-L403">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHomApp"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionHomApp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">M</span> <span class="fn">⟶</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">M</span> <span class="fn">i</span>)</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">N</span> <span class="fn">i</span>)</span></span></span></div></div><p>An <code>A</code>-linear map restricts to every primitive-idempotent component.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHomApp" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHomApp_coe"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L405-L411">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHomApp_coe"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionHomApp_coe</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">M</span> <span class="fn">⟶</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">M</span> <span class="fn">i</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHomApp">projectiveRestrictionHomApp</a></span> <span class="fn">φ</span> <span class="fn">i</span>)</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">CategoryTheory.ConcreteCategory.hom</span> <span class="fn">φ</span>)</span> <span class="fn">↑<span class="fn">m</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHom"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L413-L425">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHom"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestrictionHom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">A</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">M</span> <span class="fn">⟶</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj">projectiveRestrictionObj</a></span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj">projectiveRestrictionObj</a></span> <span class="fn">N</span></span></span></div></div><p>Restriction on a module morphism, as a natural transformation between
+primitive-projective representations.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionHom" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestriction"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L427-L449">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestriction"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestriction</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span>)</span></span></div></div><p>Restriction from <code>A</code>-modules to linear representations of the chosen
+primitive-projective category.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.projectiveRestriction" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.projectiveRestriction_additive"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L451-L461">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestriction_additive"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">projectiveRestriction_additive</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestriction">projectiveRestriction</a></span>.<span class="fn">Additive</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionEval"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L467-L479">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionEval"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionEval</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule">realizedModule</a></span> <span class="fn">F</span>)</span> <span class="fn">i</span>)</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">i</span>)</span></span></span></div></div><p>Evaluation at a primitive coordinate on the corresponding idempotent
+component of the realized module.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionEval" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionSingle"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L481-L517">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionSingle"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionSingle</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">i</span>)</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule">realizedModule</a></span> <span class="fn">F</span>)</span> <span class="fn">i</span>)</span></span></span></div></div><p>Insert a vector as the single nonzero coordinate of the realized module;
+it lies in the matching primitive-idempotent component.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionSingle" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionComponentLinearEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L519-L546">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionComponentLinearEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionComponentLinearEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveIndex">ProjectiveIndex</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↥<span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionComponent">projectiveRestrictionComponent</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule">realizedModule</a></span> <span class="fn">F</span>)</span> <span class="fn">i</span>)</span></span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">i</span>)</span></span></span></div></div><p>The primitive-idempotent component of the module realizing <code>F</code> is
+canonically the value of <code>F</code> at that primitive projective.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionComponentLinearEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionNatIso"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L548-L563">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionNatIso"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionNatIso</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj">projectiveRestrictionObj</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule">realizedModule</a></span> <span class="fn">F</span>)</span></span> <span class="fn">≅</span> <span class="fn">F</span></span></div></div><p>Realizing a linear representation and restricting it back to the chosen
+primitive projectives recovers the original representation.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionNatIso" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionWhiskerLeftNatIso"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.lean#L565-L574">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionWhiskerLeftNatIso"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicIdempotents</span>.<span class="name">realizedRestrictionWhiskerLeftNatIso</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> x}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasic.html#LargeIndecomposable.SplitBasicIdempotents">SplitBasicIdempotents</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span> <span class="fn">(<span class="fn">ModuleCat</span> <span class="fn">k</span>)</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Functor.Linear</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">D</span> : <span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">K</span> <span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Modules/Idempotents/IdempotentProjectiveCategory.html#LargeIndecomposable.SplitBasicIdempotents.ProjectiveCategory">ProjectiveCategory</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">D</span>.<span class="fn">comp</span></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.projectiveRestrictionObj">projectiveRestrictionObj</a></span> <span class="fn">(<span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/Cleaving/ClosedChains/ProjectiveModuleRealization.html#LargeIndecomposable.SplitBasicIdempotents.realizedModule">realizedModule</a></span> <span class="fn">F</span>)</span>)</span></span> <span class="fn">≅</span> <span class="fn"><span class="fn"><span class="fn">D</span>.<span class="fn">comp</span></span> <span class="fn">F</span></span></span></div></div><p>The realization--restriction comparison remains an isomorphism after
+precomposition by any source functor.</p><details id="instances-for-list-LargeIndecomposable.SplitBasicIdempotents.realizedRestrictionWhiskerLeftNatIso" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

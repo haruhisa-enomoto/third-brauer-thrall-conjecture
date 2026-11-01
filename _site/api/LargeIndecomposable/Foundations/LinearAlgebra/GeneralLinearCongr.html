@@ -1,0 +1,190 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.LinearAlgebra.GeneralLinearCongr</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.LinearAlgebra.GeneralLinearCongr";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">LinearAlgebra</span>.<span class="name">GeneralLinearCongr</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/GeneralLinearGroup/Basic.lean">Mathlib.LinearAlgebra.GeneralLinearGroup.Basic</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.LinearAlgebra.GeneralLinearCongr" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LinearEquiv.autCongr"><span class="name">LinearEquiv</span>.<span class="name">autCongr</span></a></div><div class="nav_link"><a class="break_within" href="#LinearEquiv.autCongr_apply_apply"><span class="name">LinearEquiv</span>.<span class="name">autCongr_apply_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearEquiv.autCongr_symm_apply_apply"><span class="name">LinearEquiv</span>.<span class="name">autCongr_symm_apply_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearEquiv.autCongr_apply"><span class="name">LinearEquiv</span>.<span class="name">autCongr_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearEquiv.autCongr_symm_apply"><span class="name">LinearEquiv</span>.<span class="name">autCongr_symm_apply</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.LinearAlgebra.GeneralLinearGroup.Congr</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Conjugating-automorphism-groups-along-a-semilinear-equivalence" class="markdown-heading">Conjugating automorphism groups along a semilinear equivalence <a class="hover-link" href="#Conjugating-automorphism-groups-along-a-semilinear-equivalence">#</a></h1><p>Mathlib conjugates general linear groups with
+<code>LinearMap.GeneralLinearGroup.congrLinearEquiv : GL R₁ M₁ ≃* GL R₂ M₂</code>, and identifies <code>GL R M</code> with
+the automorphisms <code>M ≃ₗ[R] M</code> through <code>LinearMap.GeneralLinearGroup.generalLinearEquiv</code>. Groups of
+linear automorphisms cut out by a structure they preserve — an orthogonal group, an isometry
+group — are subgroups of <code>M ≃ₗ[R] M</code> rather than of <code>GL R M</code>, so what they need is the composite of
+those two, which this file records as <code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr">LinearEquiv.autCongr</a></code>.</p><p>Conjugation needs no more than a semilinear equivalence, which is the generality
+<code>congrLinearEquiv</code> already supplies: <code>e : M₁ ≃ₛₗ[σ₁₂] M₂</code> carries <code>R₁</code>-automorphisms of <code>M₁</code> to
+<code>R₂</code>-automorphisms of <code>M₂</code>, the scalars travelling along <code>σ₁₂</code>. The two inverse-pair assumptions
+give a round trip on each scalar ring — <code>σ₂₁ ∘ σ₁₂</code> is the identity on <code>R₁</code> and <code>σ₁₂ ∘ σ₂₁</code> the
+identity on <code>R₂</code> — and it is the latter that makes the conjugate <code>R₂</code>-linear.</p><h2 id="Main-definitions" class="markdown-heading">Main definitions <a class="hover-link" href="#Main-definitions">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr">LinearEquiv.autCongr</a></code>: conjugation by <code>e : M₁ ≃ₛₗ[σ₁₂] M₂</code>, as an isomorphism
+<code>(M₁ ≃ₗ[R₁] M₁) ≃* (M₂ ≃ₗ[R₂] M₂)</code>.</li></ul><h2 id="Main-statements" class="markdown-heading">Main statements <a class="hover-link" href="#Main-statements">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr_apply">LinearEquiv.autCongr_apply</a></code> and <code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr_symm_apply">LinearEquiv.autCongr_symm_apply</a></code>: conjugation and its inverse
+as equalities of linear equivalences, for consumers that read the conjugate as a map rather than
+at a point. The pointwise <code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr_apply_apply">autCongr_apply_apply</a></code> and <code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr_symm_apply_apply">autCongr_symm_apply_apply</a></code> are the same
+facts evaluated at <code>m</code>.</li></ul></div><div class="decl" id="LinearEquiv.autCongr"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.lean#L73-L79">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr"><span class="name">LinearEquiv</span>.<span class="name">autCongr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₂</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₂</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₁₂</span> : <span class="fn"><span class="fn">R₁</span> <span class="fn">→+*</span> <span class="fn">R₂</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₂₁</span> : <span class="fn"><span class="fn">R₂</span> <span class="fn">→+*</span> <span class="fn">R₁</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₁₂</span> <span class="fn">σ₂₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₂₁</span> <span class="fn">σ₁₂</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">M₁</span> <span class="fn">≃ₛₗ[</span><span class="fn">σ₁₂</span><span class="fn">]</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">M₁</span> <span class="fn">≃ₗ[</span><span class="fn">R₁</span><span class="fn">]</span> <span class="fn">M₁</span>)</span> <span class="fn">≃*</span> <span class="fn"><span class="fn">M₂</span> <span class="fn">≃ₗ[</span><span class="fn">R₂</span><span class="fn">]</span> <span class="fn">M₂</span></span></span></div></div><p>Conjugation by a semilinear equivalence <code>e : M₁ ≃ₛₗ[σ₁₂] M₂</code>, as an isomorphism of automorphism
+groups: Mathlib's <code>LinearMap.GeneralLinearGroup.congrLinearEquiv</code> read through
+<code>LinearMap.GeneralLinearGroup.generalLinearEquiv</code>.</p><p>The two evaluation lemmas below are its characteristic API.</p><details id="instances-for-list-LinearEquiv.autCongr" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearEquiv.autCongr_apply_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.lean#L81-L87">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr_apply_apply"><span class="name">LinearEquiv</span>.<span class="name">autCongr_apply_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₂</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₂</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₁₂</span> : <span class="fn"><span class="fn">R₁</span> <span class="fn">→+*</span> <span class="fn">R₂</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₂₁</span> : <span class="fn"><span class="fn">R₂</span> <span class="fn">→+*</span> <span class="fn">R₁</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₁₂</span> <span class="fn">σ₂₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₂₁</span> <span class="fn">σ₁₂</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">M₁</span> <span class="fn">≃ₛₗ[</span><span class="fn">σ₁₂</span><span class="fn">]</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M₁</span> <span class="fn">≃ₗ[</span><span class="fn">R₁</span><span class="fn">]</span> <span class="fn">M₁</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M₂</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr">autCongr</a></span> <span class="fn">f</span>)</span> <span class="fn">m</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">e</span> <span class="fn">(<span class="fn">f</span> <span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">symm</span></span> <span class="fn">m</span>)</span>)</span></span></span></div></div><p>Conjugating <code>f</code> by <code>e</code> sends <code>m</code> to <code>e (f (e.symm m))</code>.</p></div></div><div class="decl" id="LinearEquiv.autCongr_symm_apply_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.lean#L89-L98">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr_symm_apply_apply"><span class="name">LinearEquiv</span>.<span class="name">autCongr_symm_apply_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₂</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₂</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₁₂</span> : <span class="fn"><span class="fn">R₁</span> <span class="fn">→+*</span> <span class="fn">R₂</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₂₁</span> : <span class="fn"><span class="fn">R₂</span> <span class="fn">→+*</span> <span class="fn">R₁</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₁₂</span> <span class="fn">σ₂₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₂₁</span> <span class="fn">σ₁₂</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">M₁</span> <span class="fn">≃ₛₗ[</span><span class="fn">σ₁₂</span><span class="fn">]</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">M₂</span> <span class="fn">≃ₗ[</span><span class="fn">R₂</span><span class="fn">]</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M₁</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">e</span>.<a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr">autCongr</a></span>.<span class="fn">symm</span></span> <span class="fn">g</span>)</span> <span class="fn">m</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">symm</span></span> <span class="fn">(<span class="fn">g</span> <span class="fn">(<span class="fn">e</span> <span class="fn">m</span>)</span>)</span></span></span></div></div><p>Inverse conjugation by <code>e</code> sends <code>m</code> to <code>e.symm (g (e m))</code>.</p></div></div><div class="decl" id="LinearEquiv.autCongr_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.lean#L100-L107">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr_apply"><span class="name">LinearEquiv</span>.<span class="name">autCongr_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₂</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₂</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₁₂</span> : <span class="fn"><span class="fn">R₁</span> <span class="fn">→+*</span> <span class="fn">R₂</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₂₁</span> : <span class="fn"><span class="fn">R₂</span> <span class="fn">→+*</span> <span class="fn">R₁</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₁₂</span> <span class="fn">σ₂₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₂₁</span> <span class="fn">σ₁₂</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">M₁</span> <span class="fn">≃ₛₗ[</span><span class="fn">σ₁₂</span><span class="fn">]</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M₁</span> <span class="fn">≃ₗ[</span><span class="fn">R₁</span><span class="fn">]</span> <span class="fn">M₁</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span>.<a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr">autCongr</a></span> <span class="fn">f</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">symm</span></span>.<span class="fn">trans</span></span> <span class="fn">f</span>)</span>.<span class="fn">trans</span></span> <span class="fn">e</span></span></span></div></div><p>Conjugation by <code>e</code>, as an equality of linear equivalences: <code><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr">autCongr</a> e f</code> is <code>f</code> precomposed
+with <code>e.symm</code> and postcomposed with <code>e</code>. Structural consumers — determinants, traces, anything
+reading the conjugate as a map rather than at a point — want this form.</p></div></div><div class="decl" id="LinearEquiv.autCongr_symm_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.lean#L109-L117">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr_symm_apply"><span class="name">LinearEquiv</span>.<span class="name">autCongr_symm_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₂</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">R₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R₂</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₁₂</span> : <span class="fn"><span class="fn">R₁</span> <span class="fn">→+*</span> <span class="fn">R₂</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">σ₂₁</span> : <span class="fn"><span class="fn">R₂</span> <span class="fn">→+*</span> <span class="fn">R₁</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₁₂</span> <span class="fn">σ₂₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">RingHomInvPair</span> <span class="fn">σ₂₁</span> <span class="fn">σ₁₂</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">M₁</span> <span class="fn">≃ₛₗ[</span><span class="fn">σ₁₂</span><span class="fn">]</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">M₂</span> <span class="fn">≃ₗ[</span><span class="fn">R₂</span><span class="fn">]</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span>.<a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/GeneralLinearCongr.html#LinearEquiv.autCongr">autCongr</a></span>.<span class="fn">symm</span></span> <span class="fn">g</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">trans</span></span> <span class="fn">g</span>)</span>.<span class="fn">trans</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">symm</span></span></span></span></div></div><p>Inverse conjugation by <code>e</code>, as an equality of linear equivalences: <code>(autCongr e).symm g</code> is <code>g</code>
+precomposed with <code>e</code> and postcomposed with <code>e.symm</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

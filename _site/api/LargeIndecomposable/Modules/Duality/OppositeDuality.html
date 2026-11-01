@@ -1,0 +1,798 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Modules.Duality.OppositeDuality</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Modules.Duality.OppositeDuality";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Modules</span>.<span class="name">Duality</span>.<span class="name">OppositeDuality</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/Modules/KrullSchmidt/IndecomposableFullyFaithful.html">LargeIndecomposable.Modules.KrullSchmidt.IndecomposableFullyFaithful</a></li><li><a href="../../.././LargeIndecomposable/RepresentationType/MinimalInfinite/Minimal.html">LargeIndecomposable.RepresentationType.MinimalInfinite.Minimal</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/Dual/Lemmas.lean">Mathlib.LinearAlgebra.Dual.Lemmas</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/TwoSidedIdeal/Operations.lean">Mathlib.RingTheory.TwoSidedIdeal.Operations</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Modules.Duality.OppositeDuality" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.val_injective"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">val_injective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instZero"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instZero</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instAdd"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instAdd</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instNeg"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instNeg</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instSub"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSub</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instSMulNat"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMulNat</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instSMulInt"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMulInt</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instSMul"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instAddCommGroup"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instAddCommGroup</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.valHom"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">valHom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instModule"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instModule</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.val_add"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">val_add</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.val_zero"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">val_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.val_smul"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">val_smul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.ext"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ext</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.ext_iff"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ext_iff</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.linEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">linEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.finrank_eq"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">finrank_eq</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instFiniteDimensional"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instFiniteDimensional</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instSMulMulOpposite"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMulMulOpposite</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.smul_apply"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">smul_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instModuleMulOpposite"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instModuleMulOpposite</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instIsScalarTowerMulOpposite"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instIsScalarTowerMulOpposite</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instSMulR"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMulR</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.smulR_apply"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">smulR_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instModuleR"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instModuleR</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.instIsScalarTower"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instIsScalarTower</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.ev"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ev</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.ev_injective"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ev_injective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.ev_val"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ev_val</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.evk"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">evk</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.ev_bijective"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ev_bijective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.evEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">evEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.transpose"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">transpose</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.transpose_apply"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">transpose_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.transpose_comp"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">transpose_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.eq_zero_of_dual"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">eq_zero_of_dual</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.isIndecomposable"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">isIndecomposable</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.DualMod.congr"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">congr</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.kStr"><span class="name">LargeIndecomposable</span>.<span class="name">kStr</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.kStr_tower"><span class="name">LargeIndecomposable</span>.<span class="name">kStr_tower</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.isRepresentationFinite_mop"><span class="name">LargeIndecomposable</span>.<span class="name">isRepresentationFinite_mop</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.quotOpEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">quotOpEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.hmin_op"><span class="name">LargeIndecomposable</span>.<span class="name">hmin_op</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="k-duality-and-the-opposite-algebra" class="markdown-heading"><code>k</code>-duality and the opposite algebra <a class="hover-link" href="#k-duality-and-the-opposite-algebra">#</a></h1><p>For a <code>k</code>-algebra <code>R</code> and an <code>R</code>-module <code>M</code> with a compatible <code>k</code>-structure,
+the <code>k</code>-dual <code>M →ₗ[k] k</code> is an <code>Rᵐᵒᵖ</code>-module (<code><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a></code>). For finite-dimensional
+<code>R</code>, duality shows that <code>R</code> is representation-finite iff <code>Rᵐᵒᵖ</code> is
+(<code><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.isRepresentationFinite_mop">isRepresentationFinite_mop</a></code>).</p></div><div class="decl" id="LargeIndecomposable.DualMod"><div class="structure"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L35-L38">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a> u</div></div><p>The <code>k</code>-dual of a <code>k</code>-module (with the transposed actions).</p><ul class="structure_fields" id="LargeIndecomposable.DualMod.mk"><li id="LargeIndecomposable.DualMod.val" class="structure_field"><div class="structure_field_info">val : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">k</span></span></div><div class="structure_field_doc"><p>The underlying functional.</p></div></li></ul><details id="instances-for-list-LargeIndecomposable.DualMod" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.DualMod.val_injective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L44-L45">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val_injective"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">val_injective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Injective</span> <a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instZero"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L47-L47">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instZero"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instZero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Zero</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instAdd"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L48-L48">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instAdd"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instAdd</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Add</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instNeg"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L49-L49">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instNeg"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instNeg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Neg</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instSub"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L50-L50">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instSub"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSub</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Sub</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instSMulNat"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L51-L51">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instSMulNat"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMulNat</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SMul</span> <span class="fn">ℕ</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instSMulInt"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L52-L52">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instSMulInt"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMulInt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SMul</span> <span class="fn">ℤ</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instSMul"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L53-L53">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instSMul"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SMul</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instAddCommGroup"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L55-L57">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instAddCommGroup"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instAddCommGroup</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.valHom"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L59-L60">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.valHom"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">valHom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span></span> <span class="fn">→+</span> <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">k</span></span></span></div></div><p>The underlying additive map.</p><details id="instances-for-list-LargeIndecomposable.DualMod.valHom" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.DualMod.instModule"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L62-L62">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instModule"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instModule</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.val_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L64-L64">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val_add"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">val_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ </span><span class="fn">ψ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">φ</span> <span class="fn">+</span> <span class="fn">ψ</span>)</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">φ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">+</span> <span class="fn"><span class="fn">ψ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.val_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L66-L66">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val_zero"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">val_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a> <span class="fn">0</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.val_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L68-L68">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val_smul"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">val_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">k</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">c</span> <span class="fn">•</span> <span class="fn">φ</span>)</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">=</span> <span class="fn"><span class="fn">c</span> <span class="fn">•</span> <span class="fn"><span class="fn">φ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.ext"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L70-L71">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ext"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ext</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">φ </span><span class="fn">ψ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">φ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">m</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">ψ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">m</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">φ</span> <span class="fn">=</span> <span class="fn">ψ</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.ext_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L70-L70">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ext_iff"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ext_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">φ </span><span class="fn">ψ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">φ</span> <span class="fn">=</span> <span class="fn">ψ</span></span> <span class="fn">↔</span> <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">φ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">m</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">ψ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">m</span></span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.linEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L73-L80">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.linEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">linEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span></span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">Module.Dual</span> <span class="fn">k</span> <span class="fn">M</span></span></span></div></div><p><code><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> k M</code> is the <code>k</code>-dual.</p><details id="instances-for-list-LargeIndecomposable.DualMod.linEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.DualMod.finrank_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L82-L83">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.finrank_eq"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">finrank_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">M</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instFiniteDimensional"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L85-L86">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instFiniteDimensional"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instFiniteDimensional</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instSMulMulOpposite"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L90-L91">source</a></div><div class="attributes">@[instance_reducible, instance 50]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instSMulMulOpposite"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMulMulOpposite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SMul</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.smul_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L93-L94">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.smul_apply"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">smul_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">r</span> <span class="fn">•</span> <span class="fn">φ</span>)</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">m</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">φ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">(<span class="fn"><span class="fn">MulOpposite.unop</span> <span class="fn">r</span></span> <span class="fn">•</span> <span class="fn">m</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instModuleMulOpposite"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L96-L102">source</a></div><div class="attributes">@[instance_reducible, instance 50]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instModuleMulOpposite"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instModuleMulOpposite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instIsScalarTowerMulOpposite"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L104-L107">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instIsScalarTowerMulOpposite"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instIsScalarTowerMulOpposite</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">M</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instSMulR"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L119-L121">source</a></div><div class="attributes">@[instance_reducible, instance 50]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instSMulR"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instSMulR</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SMul</span> <span class="fn">R</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span></div></div><p>The dual of an <code>Rᵐᵒᵖ</code>-module is an <code>R</code>-module.</p></div></div><div class="decl" id="LargeIndecomposable.DualMod.smulR_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L125-L126">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.smulR_apply"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">smulR_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">r</span> <span class="fn">•</span> <span class="fn">φ</span>)</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">n</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">φ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">(<span class="fn"><span class="fn">MulOpposite.op</span> <span class="fn">r</span></span> <span class="fn">•</span> <span class="fn">n</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instModuleR"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L128-L134">source</a></div><div class="attributes">@[instance_reducible, instance 50]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instModuleR"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instModuleR</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.instIsScalarTower"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L136-L139">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.instIsScalarTower"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">instIsScalarTower</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">R</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.ev"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L141-L147">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ev"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ev</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span><span class="fn">]</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span></span></div></div><p>Evaluation into the double dual.</p><details id="instances-for-list-LargeIndecomposable.DualMod.ev" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.DualMod.ev_injective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L149-L157">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ev_injective"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ev_injective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Injective</span> <span class="fn">⇑<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ev">ev</a></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.ev_val"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L159-L159">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ev_val"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ev_val</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ev">ev</a> <span class="fn">n</span>)</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">φ</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">φ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">n</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.evk"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L161-L165">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.evk"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">evk</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span></span></div></div><p>Evaluation as a <code>k</code>-linear map.</p><details id="instances-for-list-LargeIndecomposable.DualMod.evk" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.DualMod.ev_bijective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L167-L172">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ev_bijective"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">ev_bijective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Bijective</span> <span class="fn">⇑<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.ev">ev</a></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.evEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L174-L176">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.evEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">evEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">N</span> <span class="fn">≃ₗ[</span><span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span><span class="fn">]</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span></span></div></div><p>The double dual isomorphism.</p><details id="instances-for-list-LargeIndecomposable.DualMod.evEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.DualMod.transpose"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L178-L186">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.transpose"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">transpose</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span> <span class="fn">→ₗ[</span><span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span><span class="fn">]</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span></span></div></div><p>The transpose of an <code>R</code>-linear endomorphism of the dual.</p><details id="instances-for-list-LargeIndecomposable.DualMod.transpose" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.DualMod.transpose_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L188-L189">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.transpose_apply"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">transpose_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ψ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.transpose">transpose</a> <span class="fn">e</span>)</span> <span class="fn">ψ</span>)</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">φ</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">ψ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">(<span class="fn">e</span> <span class="fn">φ</span>)</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.transpose_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L191-L192">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.transpose_comp"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">transpose_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e </span><span class="fn">e'</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.transpose">transpose</a> <span class="fn">(<span class="fn">e</span> <span class="fn">∘ₗ</span> <span class="fn">e'</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.transpose">transpose</a> <span class="fn">e'</span></span> <span class="fn">∘ₗ</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.transpose">transpose</a> <span class="fn">e</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.eq_zero_of_dual"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L194-L196">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.eq_zero_of_dual"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">eq_zero_of_dual</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">X</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">X</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">ψ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">X</span></span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">ψ</span>.<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.val">val</a></span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn">0</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.DualMod.isIndecomposable"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L198-L253">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.isIndecomposable"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">isIndecomposable</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hN</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsIndecomposable">Statement.IsIndecomposable</a> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsIndecomposable">Statement.IsIndecomposable</a> <span class="fn">R</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">N</span>)</span></span></div></div><p>The dual of a finite-dimensional indecomposable <code>Rᵐᵒᵖ</code>-module is indecomposable.</p></div></div><div class="decl" id="LargeIndecomposable.DualMod.congr"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L274-L284">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod.congr"><span class="name">LargeIndecomposable</span>.<span class="name">DualMod</span>.<span class="name">congr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">R</span> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Y</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">Y</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">Y</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">R</span> <span class="fn">Y</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">X</span> <span class="fn">≃ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">Y</span></span> <span class="fn">≃ₗ[</span><span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span><span class="fn">]</span> <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.DualMod">DualMod</a> <span class="fn">k</span> <span class="fn">X</span></span></span></div></div><p>Duality on isomorphisms (contravariant).</p><details id="instances-for-list-LargeIndecomposable.DualMod.congr" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.kStr"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L288-L291">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.kStr"><span class="name">LargeIndecomposable</span>.<span class="name">kStr</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span></div></div><p>The <code>k</code>-structure of an <code>R</code>-module through <code>algebraMap</code>.</p><details id="instances-for-list-LargeIndecomposable.kStr" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.kStr_tower"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L293-L300">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.kStr_tower"><span class="name">LargeIndecomposable</span>.<span class="name">kStr_tower</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">R</span> <span class="fn">M</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.isRepresentationFinite_mop"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L302-L320">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.isRepresentationFinite_mop"><span class="name">LargeIndecomposable</span>.<span class="name">isRepresentationFinite_mop</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsRepresentationFinite">Statement.IsRepresentationFinite</a> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsRepresentationFinite">Statement.IsRepresentationFinite</a> <span class="fn"><span class="fn">R</span><span class="fn">ᵐᵒᵖ</span></span></span></div></div><p><strong>Duality.</strong> A finite-dimensional representation-finite algebra has a
+representation-finite opposite algebra.</p></div></div><div class="decl" id="LargeIndecomposable.quotOpEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L332-L344">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.quotOpEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">quotOpEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">J</span> : <span class="fn"><span class="fn">TwoSidedIdeal</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">⧸</span> <span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">J</span></span></span> <span class="fn">≃+*</span> <span class="fn"><span class="fn">(<span class="fn">A</span> <span class="fn">⧸</span> <span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn"><span class="fn">J</span>.<span class="fn">unop</span></span></span>)</span><span class="fn">ᵐᵒᵖ</span></span></span></div></div><p><code>Aᵐᵒᵖ ⧸ J ≅ (A ⧸ J.unop)ᵐᵒᵖ</code>.</p><details id="instances-for-list-LargeIndecomposable.quotOpEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.hmin_op"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Duality/OppositeDuality.lean#L346-L359">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Duality/OppositeDuality.html#LargeIndecomposable.hmin_op"><span class="name">LargeIndecomposable</span>.<span class="name">hmin_op</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hmin</span> : <span class="fn">∀ (<span class="fn">I</span> : <span class="fn"><span class="fn">TwoSidedIdeal</span> <span class="fn">A</span></span>), <span class="fn"><span class="fn"><span class="fn">I</span> <span class="fn">≠</span> <span class="fn">⊥</span></span> → <span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsRepresentationFinite">Statement.IsRepresentationFinite</a> <span class="fn">(<span class="fn">A</span> <span class="fn">⧸</span> <span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">I</span></span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">J</span> : <span class="fn"><span class="fn">TwoSidedIdeal</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hJ</span> : <span class="fn"><span class="fn">J</span> <span class="fn">≠</span> <span class="fn">⊥</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsRepresentationFinite">Statement.IsRepresentationFinite</a> <span class="fn">(<span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">⧸</span> <span class="fn"><span class="fn">TwoSidedIdeal.asIdeal</span> <span class="fn">J</span></span>)</span></span></div></div><p><strong>Minimality is self-dual.</strong> If every proper quotient of <code>A</code> is
+representation-finite, so is every proper quotient of <code>Aᵐᵒᵖ</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

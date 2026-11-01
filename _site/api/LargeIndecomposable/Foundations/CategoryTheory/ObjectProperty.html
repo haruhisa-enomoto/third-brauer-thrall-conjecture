@@ -1,0 +1,392 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.CategoryTheory.ObjectProperty</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.CategoryTheory.ObjectProperty";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Equivalence.lean">Mathlib.CategoryTheory.Equivalence</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/ObjectProperty/ClosedUnderIsomorphisms.lean">Mathlib.CategoryTheory.ObjectProperty.ClosedUnderIsomorphisms</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/ObjectProperty/ContainsZero.lean">Mathlib.CategoryTheory.ObjectProperty.ContainsZero</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/ObjectProperty/FiniteProducts.lean">Mathlib.CategoryTheory.ObjectProperty.FiniteProducts</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/ObjectProperty/Small.lean">Mathlib.CategoryTheory.ObjectProperty.Small</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Preadditive/AdditiveFunctor.lean">Mathlib.CategoryTheory.Preadditive.AdditiveFunctor</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Limits/Shapes/BinaryBiproducts.lean">Mathlib.CategoryTheory.Limits.Shapes.BinaryBiproducts</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.CategoryTheory.ObjectProperty" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.inverseImage_functor_inverseImage_inverse"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">inverseImage_functor_inverseImage_inverse</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.isClosedUnderIsomorphisms_of_containsZero"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">isClosedUnderIsomorphisms_of_containsZero</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.isClosedUnderBinaryProducts_of_prop_biprod"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">isClosedUnderBinaryProducts_of_prop_biprod</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.prop_biprod_of_isClosedUnderBinaryProducts"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">prop_biprod_of_isClosedUnderBinaryProducts</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.essentiallySmall_of_ambient"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">essentiallySmall_of_ambient</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.ιOfLE_additive"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">ιOfLE_additive</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.homMk_eta"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">homMk_eta</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.homMk_comp"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">homMk_comp</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.ObjectProperty.lift_map_hom_of_eq"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">lift_map_hom_of_eq</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_functor_eq_lift"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_eq_lift</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_inverse_eq_lift"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_eq_lift</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_functor_comp_ι"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_comp_ι</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_inverse_comp_ι"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_comp_ι</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_functor_obj_obj"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_obj_obj</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_functor_map_hom"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_map_hom</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_inverse_obj_obj"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_obj_obj</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_inverse_map_hom"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_map_hom</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_functor_additive"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_additive</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Equivalence.congrFullSubcategory_inverse_additive"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_additive</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.CategoryTheory.ObjectProperty</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Object-properties-transport-along-equivalences-and-closure-properties" class="markdown-heading">Object properties: transport along equivalences, and closure properties <a class="hover-link" href="#Object-properties-transport-along-equivalences-and-closure-properties">#</a></h1><p>This file contains general lemmas about object properties: transporting them along an
+equivalence, comparing Mathlib's closure type classes with one another in the presence of a
+zero object and of binary biproducts, smallness of full subcategories, and additivity of the
+standard functors between full subcategories.</p><h2 id="Main-declarations" class="markdown-heading">Main declarations <a class="hover-link" href="#Main-declarations">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.inverseImage_functor_inverseImage_inverse">CategoryTheory.ObjectProperty.inverseImage_functor_inverseImage_inverse</a></code>: pulling an
+isomorphism-invariant property backward along both functors of an equivalence recovers it.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.isClosedUnderIsomorphisms_of_containsZero">CategoryTheory.ObjectProperty.isClosedUnderIsomorphisms_of_containsZero</a></code>: a property holding
+for a zero object and closed under binary products is closed under isomorphisms.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.isClosedUnderBinaryProducts_of_prop_biprod">CategoryTheory.ObjectProperty.isClosedUnderBinaryProducts_of_prop_biprod</a></code>: for a replete
+property in a category with binary biproducts, closure under binary products only has to be
+checked on biproducts.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.prop_biprod_of_isClosedUnderBinaryProducts">CategoryTheory.ObjectProperty.prop_biprod_of_isClosedUnderBinaryProducts</a></code>: a property closed
+under binary products holds for binary biproducts, with <code>X ⊞ Y</code> as the syntactic form of the
+conclusion.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.homMk_eta">CategoryTheory.ObjectProperty.homMk_eta</a></code> and <code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.homMk_comp">CategoryTheory.ObjectProperty.homMk_comp</a></code>:
+<code>homMk</code> of the underlying morphism is the morphism itself, and <code>homMk</code> preserves composites.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.lift_map_hom_of_eq">CategoryTheory.ObjectProperty.lift_map_hom_of_eq</a></code>: a functor defined as a lift through a full
+subcategory acts on morphisms as the lifted functor, up to the identifications of objects.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.essentiallySmall_of_ambient">CategoryTheory.ObjectProperty.essentiallySmall_of_ambient</a></code>: every property in an essentially
+small category is essentially small.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.ιOfLE_additive">CategoryTheory.ObjectProperty.ιOfLE_additive</a></code>: the inclusion of a smaller property into a larger
+one is additive.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_additive">CategoryTheory.Equivalence.congrFullSubcategory_functor_additive</a></code> and
+<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_inverse_additive">CategoryTheory.Equivalence.congrFullSubcategory_inverse_additive</a></code>: an additive equivalence
+restricts to an additive equivalence between corresponding full subcategories.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_comp_ι">CategoryTheory.Equivalence.congrFullSubcategory_functor_comp_ι</a></code> and
+<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_inverse_comp_ι">CategoryTheory.Equivalence.congrFullSubcategory_inverse_comp_ι</a></code>: the restricted functors,
+followed by the inclusions, are the inclusions followed by the original functors.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_obj_obj">CategoryTheory.Equivalence.congrFullSubcategory_functor_obj_obj</a></code>,
+<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_map_hom">CategoryTheory.Equivalence.congrFullSubcategory_functor_map_hom</a></code> and their <code>inverse</code>
+counterparts: the restricted functors evaluated on objects and morphisms, for deriving the
+evaluation lemmas of any equivalence defined as a <code>congrFullSubcategory</code>.</li></ul></div><div class="decl" id="CategoryTheory.ObjectProperty.inverseImage_functor_inverseImage_inverse"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L68-L75">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.inverseImage_functor_inverseImage_inverse"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">inverseImage_functor_inverseImage_inverse</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">P</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">inverse</span></span>)</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span></div></div><p>Pulling an isomorphism-invariant object property backward along both functors of an
+equivalence recovers the original property.</p></div></div><div class="decl" id="CategoryTheory.ObjectProperty.isClosedUnderIsomorphisms_of_containsZero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L77-L95">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.isClosedUnderIsomorphisms_of_containsZero"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">isClosedUnderIsomorphisms_of_containsZero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">P</span>.<span class="fn">ContainsZero</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">P</span>.<span class="fn">IsClosedUnderBinaryProducts</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">P</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span></div></div><p><strong>A property holding for a zero object and closed under binary products is closed under
+isomorphisms.</strong> An isomorphism <code>e : X ≅ Y</code> exhibits <code>Y</code> as a product of a zero object with <code>X</code>,
+the two projections being the zero morphism and <code>e.inv</code>.</p><p>Mathlib's <code>CategoryTheory.ObjectProperty.IsClosedUnderBinaryProducts.closedUnderIsomorphisms</code> is
+the same argument run on a terminal object, but it assumes closure under the empty limit, which
+<code>CategoryTheory.ObjectProperty.ContainsZero</code> — the property for <em>one</em> zero object — does not
+supply before repleteness is known.</p></div></div><div class="decl" id="CategoryTheory.ObjectProperty.isClosedUnderBinaryProducts_of_prop_biprod"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L97-L106">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.isClosedUnderBinaryProducts_of_prop_biprod"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">isClosedUnderBinaryProducts_of_prop_biprod</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasZeroMorphisms</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">P</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">C</span>), <span class="fn"><span class="fn"><span class="fn">P</span> <span class="fn">X</span></span> → <span class="fn"><span class="fn"><span class="fn">P</span> <span class="fn">Y</span></span> → <span class="fn"><span class="fn">P</span> <span class="fn">(<span class="fn">X</span> <span class="fn">⊞</span> <span class="fn">Y</span>)</span></span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">P</span>.<span class="fn">IsClosedUnderBinaryProducts</span></span></div></div><p><strong>For a replete property, closure under binary products only has to be checked on
+biproducts</strong>, since in a category with binary biproducts every binary product is one.</p></div></div><div class="decl" id="CategoryTheory.ObjectProperty.prop_biprod_of_isClosedUnderBinaryProducts"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L108-L117">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.prop_biprod_of_isClosedUnderBinaryProducts"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">prop_biprod_of_isClosedUnderBinaryProducts</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasZeroMorphisms</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">P</span>.<span class="fn">IsClosedUnderBinaryProducts</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasBinaryBiproduct</span> <span class="fn">X</span> <span class="fn">Y</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">P</span> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hY</span> : <span class="fn"><span class="fn">P</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">P</span> <span class="fn">(<span class="fn">X</span> <span class="fn">⊞</span> <span class="fn">Y</span>)</span></span></div></div><p><strong>A property closed under binary products holds for binary biproducts.</strong> In a category with
+binary biproducts the biproduct is a binary product, so this is
+<code>CategoryTheory.ObjectProperty.prop_of_isLimit_binaryFan</code> applied to
+<code>CategoryTheory.Limits.BinaryBiproduct.isLimit</code>; naming it keeps the index of the conclusion
+syntactically <code>X ⊞ Y</code>, which matters when the conclusion is the type index of a dependent
+family.</p></div></div><div class="decl" id="CategoryTheory.ObjectProperty.essentiallySmall_of_ambient"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L119-L124">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.essentiallySmall_of_ambient"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">essentiallySmall_of_ambient</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">EssentiallySmall.{w, v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">ObjectProperty.EssentiallySmall.{w, v₁, u₁}</span> <span class="fn">P</span></span></div></div><p>Every object property in an essentially small category is essentially small. This supplies
+the smallness instance for its full subcategory through Mathlib's object-property API.</p></div></div><div class="decl" id="CategoryTheory.ObjectProperty.ιOfLE_additive"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L126-L130">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.ιOfLE_additive"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">ιOfLE_additive</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P </span><span class="fn">P'</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">P</span> <span class="fn">≤</span> <span class="fn">P'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">ιOfLE</span> <span class="fn">h</span>)</span>.<span class="fn">Additive</span></span></div></div><p>The inclusion of a smaller object property into a larger one is an additive functor: both
+categories carry the addition of the ambient one.</p></div></div><div class="decl" id="CategoryTheory.ObjectProperty.homMk_eta"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L132-L136">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.homMk_eta"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">homMk_eta</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn"><span class="fn">P</span>.<span class="fn">FullSubcategory</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">homMk</span> <span class="fn"><span class="fn">f</span>.<span class="fn">hom</span></span></span> <span class="fn">=</span> <span class="fn">f</span></span></div></div><p>A morphism of a full subcategory is <code>homMk</code> of its underlying morphism.</p></div></div><div class="decl" id="CategoryTheory.ObjectProperty.homMk_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L138-L143">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.homMk_comp"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">homMk_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z</span> : <span class="fn"><span class="fn">P</span>.<span class="fn">FullSubcategory</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn">X</span>.<span class="fn">obj</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn">Y</span>.<span class="fn">obj</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn"><span class="fn">Y</span>.<span class="fn">obj</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn">Z</span>.<span class="fn">obj</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">homMk</span> <span class="fn">(<span class="fn">CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">g</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryStruct.comp</span> <span class="fn">(<span class="fn">homMk</span> <span class="fn">f</span>)</span> <span class="fn">(<span class="fn">homMk</span> <span class="fn">g</span>)</span></span></span></div></div><p><code>homMk</code> of a composite is the composite of the <code>homMk</code>s. This is useful when <code>homMk (· ≫ ·)</code>
+appears under a functor.</p></div></div><div class="decl" id="CategoryTheory.ObjectProperty.lift_map_hom_of_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L145-L155">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.ObjectProperty.lift_map_hom_of_eq"><span class="name">CategoryTheory</span>.<span class="name">ObjectProperty</span>.<span class="name">lift_map_hom_of_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <span class="fn"><span class="fn">Functor</span> <span class="fn">C</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hF</span> : <span class="fn">∀ (<span class="fn">A</span> : <span class="fn">C</span>), <span class="fn"><span class="fn">P</span> <span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">A</span>)</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">G</span> : <span class="fn"><span class="fn">Functor</span> <span class="fn">C</span> <span class="fn"><span class="fn">P</span>.<span class="fn">FullSubcategory</span></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hG</span> : <span class="fn"><span class="fn">G</span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<span class="fn">lift</span></span> <span class="fn">F</span> <span class="fn">hF</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A </span><span class="fn">B</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">A</span> <span class="fn">⟶</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">obj</span></span> <span class="fn">A</span>)</span>.<span class="fn">obj</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">A</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">obj</span></span> <span class="fn">B</span>)</span>.<span class="fn">obj</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">B</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">G</span>.<span class="fn">map</span></span> <span class="fn">f</span>)</span>.<span class="fn">hom</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryStruct.comp</span> <span class="fn">(<span class="fn">eqToHom</span> <span class="fn">hA</span>)</span> <span class="fn">(<span class="fn">CategoryStruct.comp</span> <span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">map</span></span> <span class="fn">f</span>)</span> <span class="fn">(<span class="fn">eqToHom</span> <span class="fn">⋯</span>)</span>)</span></span></span></div></div><p>A functor <code>G</code> given by the lift of <code>F</code> through a full subcategory acts on morphisms as <code>F</code>,
+up to the identifications of the underlying objects. Stated for any <code>G</code> equal to the lift, so that
+it applies to a functor defined as a lift (via its equation lemma) without unfolding it.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_functor_eq_lift"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L161-L168">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_eq_lift"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_eq_lift</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">functor</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">lift</span></span> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">P</span>.<span class="fn">ι</span></span>.<span class="fn">comp</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span>)</span> <span class="fn">⋯</span></span></span></div></div><p>The forward functor on corresponding full subcategories is the lift of the original functor.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_inverse_eq_lift"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L170-L179">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_inverse_eq_lift"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_eq_lift</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">inverse</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<span class="fn">lift</span></span> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">ι</span></span>.<span class="fn">comp</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">inverse</span></span>)</span> <span class="fn">⋯</span></span></span></div></div><p>The inverse functor on corresponding full subcategories is the lift of the original inverse.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_functor_comp_ι"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L181-L191">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_comp_ι"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_comp_ι</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">functor</span></span>.<span class="fn">comp</span></span> <span class="fn"><span class="fn">Q</span>.<span class="fn">ι</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<span class="fn">ι</span></span>.<span class="fn">comp</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span></span></div></div><p>The forward functor on corresponding full subcategories, followed by the inclusion, is the
+inclusion followed by the original functor.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_inverse_comp_ι"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L193-L203">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_inverse_comp_ι"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_comp_ι</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">inverse</span></span>.<span class="fn">comp</span></span> <span class="fn"><span class="fn">P</span>.<span class="fn">ι</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">ι</span></span>.<span class="fn">comp</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">inverse</span></span></span></span></div></div><p>The inverse functor on corresponding full subcategories, followed by the inclusion, is the
+inclusion followed by the original inverse.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_functor_obj_obj"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L211-L216">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_obj_obj"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_obj_obj</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn"><span class="fn">P</span>.<span class="fn">FullSubcategory</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">functor</span></span>.<span class="fn">obj</span></span> <span class="fn">X</span>)</span>.<span class="fn">obj</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span>.<span class="fn">obj</span></span> <span class="fn"><span class="fn">X</span>.<span class="fn">obj</span></span></span></span></div></div><p>The forward functor on corresponding full subcategories acts on objects as the original
+functor. Not a simp lemma: <code>congrFullSubcategory_functor</code> already unfolds the left-hand side.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_functor_map_hom"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L218-L225">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_map_hom"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_map_hom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn"><span class="fn">P</span>.<span class="fn">FullSubcategory</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">functor</span></span>.<span class="fn">map</span></span> <span class="fn">f</span>)</span>.<span class="fn">hom</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryStruct.comp</span> <span class="fn">(<span class="fn">eqToHom</span> <span class="fn">⋯</span>)</span> <span class="fn">(<span class="fn">CategoryStruct.comp</span> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span>.<span class="fn">map</span></span> <span class="fn"><span class="fn">f</span>.<span class="fn">hom</span></span>)</span> <span class="fn">(<span class="fn">eqToHom</span> <span class="fn">⋯</span>)</span>)</span></span></span></div></div><p>The forward functor on corresponding full subcategories acts on morphisms as the original
+functor, up to the identifications of <code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_obj_obj">congrFullSubcategory_functor_obj_obj</a></code>.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_inverse_obj_obj"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L227-L232">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_inverse_obj_obj"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_obj_obj</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Y</span> : <span class="fn"><span class="fn">Q</span>.<span class="fn">FullSubcategory</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">inverse</span></span>.<span class="fn">obj</span></span> <span class="fn">Y</span>)</span>.<span class="fn">obj</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">inverse</span></span>.<span class="fn">obj</span></span> <span class="fn"><span class="fn">Y</span>.<span class="fn">obj</span></span></span></span></div></div><p>The inverse functor on corresponding full subcategories acts on objects as the original
+inverse. Not a simp lemma: <code>congrFullSubcategory_inverse</code> already unfolds the left-hand side.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_inverse_map_hom"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L234-L241">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_inverse_map_hom"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_map_hom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn"><span class="fn">Q</span>.<span class="fn">FullSubcategory</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">inverse</span></span>.<span class="fn">map</span></span> <span class="fn">f</span>)</span>.<span class="fn">hom</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryStruct.comp</span> <span class="fn">(<span class="fn">eqToHom</span> <span class="fn">⋯</span>)</span> <span class="fn">(<span class="fn">CategoryStruct.comp</span> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">inverse</span></span>.<span class="fn">map</span></span> <span class="fn"><span class="fn">f</span>.<span class="fn">hom</span></span>)</span> <span class="fn">(<span class="fn">eqToHom</span> <span class="fn">⋯</span>)</span>)</span></span></span></div></div><p>The inverse functor on corresponding full subcategories acts on morphisms as the original
+inverse, up to the identifications of <code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_inverse_obj_obj">congrFullSubcategory_inverse_obj_obj</a></code>.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_functor_additive"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L245-L253">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_functor_additive"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_functor_additive</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Preadditive</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">functor</span></span>.<span class="fn">Additive</span></span></div></div><p>The functor of an equivalence restricted to corresponding full subcategories is additive.</p></div></div><div class="decl" id="CategoryTheory.Equivalence.congrFullSubcategory_inverse_additive"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.lean#L255-L263">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/ObjectProperty.html#CategoryTheory.Equivalence.congrFullSubcategory_inverse_additive"><span class="name">CategoryTheory</span>.<span class="name">Equivalence</span>.<span class="name">congrFullSubcategory_inverse_additive</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₁, u₁}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v₂, u₂}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Preadditive</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">C</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <span class="fn"><span class="fn">ObjectProperty</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Q</span>.<span class="fn">IsClosedUnderIsomorphisms</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">C</span> <span class="fn">≌</span> <span class="fn">D</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn"><span class="fn">e</span>.<span class="fn">inverse</span></span>.<span class="fn">Additive</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn"><span class="fn">Q</span>.<span class="fn">inverseImage</span></span> <span class="fn"><span class="fn">e</span>.<span class="fn">functor</span></span></span> <span class="fn">=</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">e</span>.<span class="fn">congrFullSubcategory</span></span> <span class="fn">h</span>)</span>.<span class="fn">inverse</span></span>.<span class="fn">Additive</span></span></div></div><p>The inverse of an equivalence restricted to corresponding full subcategories is additive.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

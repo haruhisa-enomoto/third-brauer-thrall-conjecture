@@ -1,0 +1,238 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.MildContours.Basic.SepD5</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.MildContours.Basic.SepD5";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">MildContours</span>.<span class="name">Basic</span>.<span class="name">SepD5</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/MildContours/Basic/SepD5.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/Cleaving/Shapes/ShapeOut4.html">LargeIndecomposable.Cleaving.Shapes.ShapeOut4</a></li><li><a href="../../.././LargeIndecomposable/Cleaving/Shapes/ShapeSD5.html">LargeIndecomposable.Cleaving.Shapes.ShapeSD5</a></li><li><a href="../../.././LargeIndecomposable/Cleaving/Shapes/ShapeSD6.html">LargeIndecomposable.Cleaving.Shapes.ShapeSD6</a></li><li><a href="../../.././LargeIndecomposable/MildContours/Basic/Separated.html">LargeIndecomposable.MildContours.Basic.Separated</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.MildContours.Basic.SepD5" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.MildHyp.not_loop_d5"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_loop_d5</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.MildHyp.not_arrow_d5"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_arrow_d5</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.MildHyp.not_four_out"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_four_out</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.MildHyp.not_sep_d6"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_sep_d6</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Separated-quiver-D̃₅-at-a-loop" class="markdown-heading">Separated-quiver <code>D̃₅</code> at a loop <a class="hover-link" href="#Separated-quiver-D̃₅-at-a-loop">#</a></h1><p>A loop <code>ρ</code> at <code>x</code> together with two further distinct arrows out of <code>x</code> and two
+further distinct arrows into <code>x</code> gives a <code>D̃₅</code> in the separated quiver
+(<code>x⁺ → x⁻</code> along <code>ρ</code>). Made of arrows only, it cleaves into every proper
+residue <code>P/τ</code> with <code>τ</code> not irreducible (<code><a href="../../.././LargeIndecomposable/MildContours/Basic/SepD5.html#LargeIndecomposable.RayCat.MildHyp.not_loop_d5">MildHyp.not_loop_d5</a></code>).</p></div><div class="decl" id="LargeIndecomposable.RayCat.MildHyp.not_loop_d5"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/MildContours/Basic/SepD5.lean#L33-L51">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/MildContours/Basic/SepD5.html#LargeIndecomposable.RayCat.MildHyp.not_loop_d5"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_loop_d5</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/FiniteRayCategory.html#LargeIndecomposable.IsFiniteRayCategory">IsFiniteRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Infinite</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MildContours/Basic/Setup.html#LargeIndecomposable.RayCat.MildHyp">MildHyp</a> <span class="fn">k</span> <span class="fn">P</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">τ</span> : <span class="fn"><span class="fn">a</span> <span class="fn">⟶</span> <span class="fn">b</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.IsIso</span> <span class="fn">τ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ0</span> : <span class="fn"><span class="fn">τ</span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτi</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Factor.html#LargeIndecomposable.IsIrreducible">IsIrreducible</a> <span class="fn">τ</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">u </span><span class="fn">v </span><span class="fn">z </span><span class="fn">t</span> : <span class="fn"><a href="../../.././LargeIndecomposable/FundamentalGroups/Basic/Fundamental.html#LargeIndecomposable.RayCat.RayVert">RayVert</a> <span class="fn">P</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ρ</span> : <span class="fn"><span class="fn">x</span> <span class="fn">⟶</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ea</span> : <span class="fn"><span class="fn">x</span> <span class="fn">⟶</span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eb</span> : <span class="fn"><span class="fn">x</span> <span class="fn">⟶</span> <span class="fn">v</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eα</span> : <span class="fn"><span class="fn">z</span> <span class="fn">⟶</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eβ</span> : <span class="fn"><span class="fn">t</span> <span class="fn">⟶</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h1</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn">u</span></span>), <span class="fn"><span class="fn">ρ</span> <span class="fn">≍</span> <span class="fn">ea</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h2</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn">v</span></span>), <span class="fn"><span class="fn">ρ</span> <span class="fn">≍</span> <span class="fn">eb</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h3</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">u</span> <span class="fn">=</span> <span class="fn">v</span></span>), <span class="fn"><span class="fn">ea</span> <span class="fn">≍</span> <span class="fn">eb</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h4</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn">z</span></span>), <span class="fn"><span class="fn">ρ</span> <span class="fn">≍</span> <span class="fn">eα</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h5</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">ρ</span> <span class="fn">≍</span> <span class="fn">eβ</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h6</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">z</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">eα</span> <span class="fn">≍</span> <span class="fn">eβ</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">False</span></div></div><p><strong>No loop with three arrows out and three arrows in.</strong></p></div></div><div class="decl" id="LargeIndecomposable.RayCat.MildHyp.not_arrow_d5"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/MildContours/Basic/SepD5.lean#L53-L72">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/MildContours/Basic/SepD5.html#LargeIndecomposable.RayCat.MildHyp.not_arrow_d5"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_arrow_d5</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/FiniteRayCategory.html#LargeIndecomposable.IsFiniteRayCategory">IsFiniteRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Infinite</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MildContours/Basic/Setup.html#LargeIndecomposable.RayCat.MildHyp">MildHyp</a> <span class="fn">k</span> <span class="fn">P</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">τ</span> : <span class="fn"><span class="fn">a</span> <span class="fn">⟶</span> <span class="fn">b</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.IsIso</span> <span class="fn">τ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ0</span> : <span class="fn"><span class="fn">τ</span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτi</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Factor.html#LargeIndecomposable.IsIrreducible">IsIrreducible</a> <span class="fn">τ</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y </span><span class="fn">u </span><span class="fn">v </span><span class="fn">z </span><span class="fn">t</span> : <span class="fn"><a href="../../.././LargeIndecomposable/FundamentalGroups/Basic/Fundamental.html#LargeIndecomposable.RayCat.RayVert">RayVert</a> <span class="fn">P</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ρ</span> : <span class="fn"><span class="fn">x</span> <span class="fn">⟶</span> <span class="fn">y</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ea</span> : <span class="fn"><span class="fn">x</span> <span class="fn">⟶</span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eb</span> : <span class="fn"><span class="fn">x</span> <span class="fn">⟶</span> <span class="fn">v</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eα</span> : <span class="fn"><span class="fn">z</span> <span class="fn">⟶</span> <span class="fn">y</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eβ</span> : <span class="fn"><span class="fn">t</span> <span class="fn">⟶</span> <span class="fn">y</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h1</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">y</span> <span class="fn">=</span> <span class="fn">u</span></span>), <span class="fn"><span class="fn">ρ</span> <span class="fn">≍</span> <span class="fn">ea</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h2</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">y</span> <span class="fn">=</span> <span class="fn">v</span></span>), <span class="fn"><span class="fn">ρ</span> <span class="fn">≍</span> <span class="fn">eb</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h3</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">u</span> <span class="fn">=</span> <span class="fn">v</span></span>), <span class="fn"><span class="fn">ea</span> <span class="fn">≍</span> <span class="fn">eb</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h4</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn">z</span></span>), <span class="fn"><span class="fn">ρ</span> <span class="fn">≍</span> <span class="fn">eα</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h5</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">x</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">ρ</span> <span class="fn">≍</span> <span class="fn">eβ</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h6</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">z</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">eα</span> <span class="fn">≍</span> <span class="fn">eβ</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">False</span></div></div><p><strong>No arrow with two further arrows out of its source and two further arrows into
+its target</strong> (separated-quiver <code>D̃₅</code>).</p></div></div><div class="decl" id="LargeIndecomposable.RayCat.MildHyp.not_four_out"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/MildContours/Basic/SepD5.lean#L74-L91">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/MildContours/Basic/SepD5.html#LargeIndecomposable.RayCat.MildHyp.not_four_out"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_four_out</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/FiniteRayCategory.html#LargeIndecomposable.IsFiniteRayCategory">IsFiniteRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Infinite</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MildContours/Basic/Setup.html#LargeIndecomposable.RayCat.MildHyp">MildHyp</a> <span class="fn">k</span> <span class="fn">P</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">τ</span> : <span class="fn"><span class="fn">a</span> <span class="fn">⟶</span> <span class="fn">b</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.IsIso</span> <span class="fn">τ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ0</span> : <span class="fn"><span class="fn">τ</span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτi</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Factor.html#LargeIndecomposable.IsIrreducible">IsIrreducible</a> <span class="fn">τ</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">y </span><span class="fn">u </span><span class="fn">v </span><span class="fn">w </span><span class="fn">t</span> : <span class="fn"><a href="../../.././LargeIndecomposable/FundamentalGroups/Basic/Fundamental.html#LargeIndecomposable.RayCat.RayVert">RayVert</a> <span class="fn">P</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e₁</span> : <span class="fn"><span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">e₂</span> : <span class="fn"><span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">v</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">e₃</span> : <span class="fn"><span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">w</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">e₄</span> : <span class="fn"><span class="fn">y</span> <span class="fn">⟶</span> <span class="fn">t</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h12</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">u</span> <span class="fn">=</span> <span class="fn">v</span></span>), <span class="fn"><span class="fn">e₁</span> <span class="fn">≍</span> <span class="fn">e₂</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h13</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">u</span> <span class="fn">=</span> <span class="fn">w</span></span>), <span class="fn"><span class="fn">e₁</span> <span class="fn">≍</span> <span class="fn">e₃</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h14</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">u</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">e₁</span> <span class="fn">≍</span> <span class="fn">e₄</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h23</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">v</span> <span class="fn">=</span> <span class="fn">w</span></span>), <span class="fn"><span class="fn">e₂</span> <span class="fn">≍</span> <span class="fn">e₃</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h24</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">v</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">e₂</span> <span class="fn">≍</span> <span class="fn">e₄</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h34</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">w</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">e₃</span> <span class="fn">≍</span> <span class="fn">e₄</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">False</span></div></div><p><strong>No point with four distinct arrows out</strong> (<code>D̃₄</code> star).</p></div></div><div class="decl" id="LargeIndecomposable.RayCat.MildHyp.not_sep_d6"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/MildContours/Basic/SepD5.lean#L93-L113">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/MildContours/Basic/SepD5.html#LargeIndecomposable.RayCat.MildHyp.not_sep_d6"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_sep_d6</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/FiniteRayCategory.html#LargeIndecomposable.IsFiniteRayCategory">IsFiniteRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Infinite</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hM</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MildContours/Basic/Setup.html#LargeIndecomposable.RayCat.MildHyp">MildHyp</a> <span class="fn">k</span> <span class="fn">P</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">τ</span> : <span class="fn"><span class="fn">a</span> <span class="fn">⟶</span> <span class="fn">b</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.IsIso</span> <span class="fn">τ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ0</span> : <span class="fn"><span class="fn">τ</span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτi</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Factor.html#LargeIndecomposable.IsIrreducible">IsIrreducible</a> <span class="fn">τ</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p </span><span class="fn">q </span><span class="fn">r </span><span class="fn">c </span><span class="fn">c₂ </span><span class="fn">s </span><span class="fn">t</span> : <span class="fn"><a href="../../.././LargeIndecomposable/FundamentalGroups/Basic/Fundamental.html#LargeIndecomposable.RayCat.RayVert">RayVert</a> <span class="fn">P</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">eγ</span> : <span class="fn"><span class="fn">p</span> <span class="fn">⟶</span> <span class="fn">c</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eγ'</span> : <span class="fn"><span class="fn">p</span> <span class="fn">⟶</span> <span class="fn">c₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eβ</span> : <span class="fn"><span class="fn">p</span> <span class="fn">⟶</span> <span class="fn">q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eρ</span> : <span class="fn"><span class="fn">r</span> <span class="fn">⟶</span> <span class="fn">q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ea</span> : <span class="fn"><span class="fn">r</span> <span class="fn">⟶</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">eε</span> : <span class="fn"><span class="fn">r</span> <span class="fn">⟶</span> <span class="fn">t</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h1</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">c</span> <span class="fn">=</span> <span class="fn">c₂</span></span>), <span class="fn"><span class="fn">eγ</span> <span class="fn">≍</span> <span class="fn">eγ'</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h2</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">c</span> <span class="fn">=</span> <span class="fn">q</span></span>), <span class="fn"><span class="fn">eγ</span> <span class="fn">≍</span> <span class="fn">eβ</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h3</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">c₂</span> <span class="fn">=</span> <span class="fn">q</span></span>), <span class="fn"><span class="fn">eγ'</span> <span class="fn">≍</span> <span class="fn">eβ</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h4</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">q</span> <span class="fn">=</span> <span class="fn">s</span></span>), <span class="fn"><span class="fn">eρ</span> <span class="fn">≍</span> <span class="fn">ea</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h5</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">q</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">eρ</span> <span class="fn">≍</span> <span class="fn">eε</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h6</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">s</span> <span class="fn">=</span> <span class="fn">t</span></span>), <span class="fn"><span class="fn">ea</span> <span class="fn">≍</span> <span class="fn">eε</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h7</span> : <span class="fn"><span class="fn">¬</span><span class="fn">∃ (_ : <span class="fn"><span class="fn">p</span> <span class="fn">=</span> <span class="fn">r</span></span>), <span class="fn"><span class="fn">eβ</span> <span class="fn">≍</span> <span class="fn">eρ</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">False</span></div></div><p><strong>Separated-quiver <code>D̃₆</code></strong>: three distinct arrows out of <code>p</code>, three distinct arrows
+out of <code>r</code>, one from each ending at a common <code>q</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

@@ -1,0 +1,398 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Modules.Homological.Ext</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Modules.Homological.Ext";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Modules</span>.<span class="name">Homological</span>.<span class="name">Ext</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html">LargeIndecomposable.AuslanderReiten.Translate.Tau</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Modules.Homological.Ext" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.gen"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">gen</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.syz"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">syz</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.row_mem"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">row_mem</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.syz_eq_span"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">syz_eq_span</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.Free"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">Free</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.restr"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">restr</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.Ext1"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">Ext1</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.rowMap"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.rowMap_apply"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.rowMap_eq"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_eq</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.rowMap_single"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_single</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.rowMap_surjective"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_surjective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.rowMap_injective"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_injective</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.rowEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.homSyzEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">homSyzEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.homSyzEquiv_restr"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">homSyzEquiv_restr</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.map_range_restr"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">map_range_restr</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.FreePres.ext1EquivCoker"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">ext1EquivCoker</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.AR.finrank_hom_tau_eq_ext1"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">finrank_hom_tau_eq_ext1</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Ext¹-from-a-free-presentation" class="markdown-heading"><code>Ext¹</code> from a free presentation <a class="hover-link" href="#Ext¹-from-a-free-presentation">#</a></h1><p>For a free presentation <code>P</code> of <code>Z</code> with generator map <code>g₀ : Aⁿ⁰ → Z</code> and syzygy <code>Ω = ker g₀</code>,
+<code>Ext¹_P(Z, W) = Hom_A(Ω, W) / {restrictions of maps Aⁿ⁰ → W}</code> (<code><a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.Ext1">Ext1</a></code>). When the relation rows
+are free generators of <code>Ω</code> (<code>P.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free">Free</a></code>, i.e. <code>pd Z ≤ 1</code> with this resolution), <code>Ext¹_P(Z, W)</code> is
+<code>Wⁿ¹ / F Wⁿ⁰</code> (<code><a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.ext1EquivCoker">ext1EquivCoker</a></code>), and the Auslander–Reiten formula reads
+<code>dim Hom(W, τ_P Z) = dim Ext¹_P(Z, W)</code> (<code><a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.finrank_hom_tau_eq_ext1">finrank_hom_tau_eq_ext1</a></code>).</p></div><div class="decl" id="LargeIndecomposable.AR.FreePres.gen"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L28-L32">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.gen"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">gen</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₀">n₀</a></span></span> → <span class="fn">A</span>)</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">Z</span></span></div></div><p>The generator map <code>Aⁿ⁰ → Z</code>.</p><details id="instances-for-list-LargeIndecomposable.AR.FreePres.gen" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.syz"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L34-L35">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.syz"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">syz</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Submodule</span> <span class="fn">A</span> <span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₀">n₀</a></span></span> → <span class="fn">A</span>)</span></span></div></div><p>The syzygy <code>Ω = ker(Aⁿ⁰ → Z)</code>.</p><details id="instances-for-list-LargeIndecomposable.AR.FreePres.syz" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.row_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L37-L38">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.row_mem"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">row_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span> <span class="fn">i</span></span> <span class="fn">∈</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.syz">syz</a></span></span></div></div><p>The relation rows lie in the syzygy.</p></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.syz_eq_span"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L40-L46">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.syz_eq_span"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">syz_eq_span</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₀">n₀</a></span></span> → <span class="fn">A</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hp</span> : <span class="fn"><span class="fn">p</span> <span class="fn">∈</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.syz">syz</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">r</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span> → <span class="fn">A</span></span>), <span class="fn"><span class="fn">p</span> <span class="fn">=</span> <span class="fn">∑ <span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span>, <span class="fn"><span class="fn"><span class="fn">r</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span> <span class="fn">i</span></span></span></span></span></span></div></div><p>The rows generate the syzygy.</p></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.Free"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L48-L50">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">Free</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The relation rows are free generators of the syzygy (projective dimension at most one).</p><details id="instances-for-list-LargeIndecomposable.AR.FreePres.Free" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.restr"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L54-L59">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.restr"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">restr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₀">n₀</a></span></span> → <span class="fn">A</span>)</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">W</span>)</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">↥<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.syz">syz</a></span></span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">W</span></span></span></div></div><p>Restriction <code>Hom(Aⁿ⁰, W) → Hom(Ω, W)</code>.</p><details id="instances-for-list-LargeIndecomposable.AR.FreePres.restr" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.Ext1"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L62-L64">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.Ext1"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">Ext1</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_4)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a> (max (max u_2 u_4) u_4 u_2)</div></div><p><strong><code>Ext¹</code> from a free presentation.</strong></p><details id="instances-for-list-LargeIndecomposable.AR.Ext1" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.rowMap"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L66-L76">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span> → <span class="fn">A</span>)</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.syz">syz</a></span></span></span></div></div><p><code>r ↦ Σᵢ rᵢ Fᵢ</code>, into the syzygy.</p><details id="instances-for-list-LargeIndecomposable.AR.FreePres.rowMap" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.rowMap_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L78-L79">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap_apply"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span> → <span class="fn">A</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap">rowMap</a></span> <span class="fn">r</span>)</span></span> <span class="fn">=</span> <span class="fn">∑ <span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span>, <span class="fn"><span class="fn"><span class="fn">r</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span> <span class="fn">i</span></span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.rowMap_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L81-L85">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap_eq"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span> → <span class="fn">A</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap">rowMap</a></span> <span class="fn">r</span></span> <span class="fn">=</span> <span class="fn">∑ <span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span>, <span class="fn"><span class="fn"><span class="fn">r</span> <span class="fn">i</span></span> <span class="fn">•</span> <span class="fn"><span class="fn">⟨</span><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span> <span class="fn">i</span></span>, <span class="fn">⋯</span><span class="fn">⟩</span></span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.rowMap_single"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L87-L93">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap_single"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_single</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap">rowMap</a></span> <span class="fn">(<span class="fn">Pi.single</span> <span class="fn">i</span> <span class="fn">1</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">⟨</span><span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span> <span class="fn">i</span></span>, <span class="fn">⋯</span><span class="fn">⟩</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.rowMap_surjective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L95-L98">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap_surjective"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_surjective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Surjective</span> <span class="fn">⇑<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap">rowMap</a></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.rowMap_injective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L100-L107">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap_injective"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowMap_injective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hF</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free">Free</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Injective</span> <span class="fn">⇑<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowMap">rowMap</a></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.rowEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L109-L111">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.rowEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">rowEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hF</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free">Free</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span> → <span class="fn">A</span>)</span> <span class="fn">≃ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.syz">syz</a></span></span></span></div></div><p>For a free presentation with free relation rows, the syzygy is free on the rows.</p><details id="instances-for-list-LargeIndecomposable.AR.FreePres.rowEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.homSyzEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L113-L137">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.homSyzEquiv"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">homSyzEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hF</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free">Free</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">↥<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.syz">syz</a></span></span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">W</span>)</span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span> → <span class="fn">W</span></span></span></div></div><p><code>Hom(Ω, W) ≅ Wⁿ¹</code>, <code>f ↦ (f Fᵢ)ᵢ</code>.</p><details id="instances-for-list-LargeIndecomposable.AR.FreePres.homSyzEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.homSyzEquiv_restr"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L139-L148">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.homSyzEquiv_restr"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">homSyzEquiv_restr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hF</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free">Free</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₀">n₀</a></span></span> → <span class="fn">A</span>)</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">W</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.homSyzEquiv">homSyzEquiv</a></span> <span class="fn">hF</span>)</span> <span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.restr">restr</a></span> <span class="fn">f</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html#LargeIndecomposable.AR.relMapLin">relMapLin</a> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span>)</span> <span class="fn">fun (<span class="fn">j</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₀">n₀</a></span></span>) =&gt; <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">Pi.single</span> <span class="fn">j</span> <span class="fn">1</span>)</span></span></span></span></span></div></div><p>Restriction corresponds to the relation map.</p></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.map_range_restr"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L150-L166">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.map_range_restr"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">map_range_restr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hF</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free">Free</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Submodule.map</span> <span class="fn">(↑<span class="fn">(<span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.homSyzEquiv">homSyzEquiv</a></span> <span class="fn">hF</span>)</span>)</span> <span class="fn"><span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.restr">restr</a></span>.<span class="fn">range</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html#LargeIndecomposable.AR.relMapLin">relMapLin</a> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span>)</span>.<span class="fn">range</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.AR.FreePres.ext1EquivCoker"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L168-L171">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.ext1EquivCoker"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">FreePres</span>.<span class="name">ext1EquivCoker</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hF</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free">Free</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.Ext1">Ext1</a> <span class="fn">W</span> <span class="fn">P</span></span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.n₁">n₁</a></span></span> → <span class="fn">W</span>)</span> <span class="fn">⧸</span> <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/AlmostSplit/RightAlmostSplit.html#LargeIndecomposable.AR.relMapLin">relMapLin</a> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span>)</span>.<span class="fn">range</span></span></span></span></div></div><p><strong><code>Ext¹</code> of a projective-dimension-one presentation is <code>Wⁿ¹ / F Wⁿ⁰</code>.</strong></p><details id="instances-for-list-LargeIndecomposable.AR.FreePres.ext1EquivCoker" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.AR.finrank_hom_tau_eq_ext1"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Modules/Homological/Ext.lean#L173-L179">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.finrank_hom_tau_eq_ext1"><span class="name">LargeIndecomposable</span>.<span class="name">AR</span>.<span class="name">finrank_hom_tau_eq_ext1</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Z</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">W</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">W</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres">FreePres</a> <span class="fn">A</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hF</span> : <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.FreePres.Free">Free</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">(<span class="fn">W</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">↥<span class="fn">(<a href="../../.././LargeIndecomposable/AuslanderReiten/Translate/Tau.html#LargeIndecomposable.AR.tauK">tauK</a> <span class="fn"><span class="fn">P</span>.<a href="../../.././LargeIndecomposable/Modules/Homological/Presentation.html#LargeIndecomposable.AR.FreePres.F">F</a></span>)</span></span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Modules/Homological/Ext.html#LargeIndecomposable.AR.Ext1">Ext1</a> <span class="fn">W</span> <span class="fn">P</span>)</span></span></span></div></div><p><strong>The Auslander–Reiten formula for <code>pd Z ≤ 1</code></strong>: <code>dim Hom(W, τ_P Z) = dim Ext¹_P(Z, W)</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

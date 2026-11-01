@@ -1,0 +1,748 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Coverings.GradedModules.GradedPieceTot</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Coverings.GradedModules.GradedPieceTot";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Coverings</span>.<span class="name">GradedModules</span>.<span class="name">GradedPieceTot</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html">LargeIndecomposable.Coverings.GradedModules.GradedPiece</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Coverings.GradedModules.GradedPieceTot" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.cov"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">cov</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.gOf_cov"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">gOf_cov</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.cov_gOf"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">cov_gOf</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.eq_of_y_gOf"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">eq_of_y_gOf</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.projW"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">projW</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.idem_comm"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">idem_comm</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.projW_mem"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">projW_mem</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.projW_of_mem"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">projW_of_mem</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.suppSet"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">suppSet</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.sum_projW"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">sum_projW</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.projW_eq_zero_of_not_mem"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">projW_eq_zero_of_not_mem</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.totToM"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">totToM</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.mToTot"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">mToTot</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.mToTot_totToM"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">mToTot_totToM</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.totToM_mToTot"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">totToM_mToTot</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.arrElt"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">arrElt</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.toM_map_eq"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">toM_map_eq</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.toM_sum"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">toM_sum</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.sum_toM_single"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">sum_toM_single</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.idem_smul_toM"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">idem_smul_toM</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.totToM_pdVert"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">totToM_pdVert</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.totToM_pdArr"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">totToM_pdArr</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="The-total-space-of-grRep" class="markdown-heading">The total space of <code>grRep</code> <a class="hover-link" href="#The-total-space-of-grRep">#</a></h1><p>The cover object of a pair <code>(y, g)</code> is <code><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.cov">cov</a> y g = (y, g ≫ ℓ y)</code>; every cover object is
+<code><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.cov">cov</a> a.y (gOf a)</code> (<code><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.cov_gOf">cov_gOf</a></code>). The projection of <code>M</code> onto <code>W a</code> is <code>e_{a.y} ∘ proj_{g(a)}</code>
+(<code><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW">projW</a></code>). If <code>S</code> contains every cover object with <code>W a ≠ 0</code>, summing the components
+identifies the total space of <code>grRep S</code> with <code>M</code> (<code>totEquiv</code>).</p></div><div class="decl" id="LargeIndecomposable.RayCat.cov"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L29-L30">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.cov"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">cov</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover.Pi1">Cover.Pi1</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span></div></div><p>The cover object of degree <code>g</code> over <code>y</code>.</p><details id="instances-for-list-LargeIndecomposable.RayCat.cov" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RayCat.gOf_cov"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L32-L35">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.gOf_cov"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">gOf_cov</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover.Pi1">Cover.Pi1</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.gOf">gOf</a> <span class="fn">ℓ</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.cov">cov</a> <span class="fn">ℓ</span> <span class="fn">y</span> <span class="fn">g</span>)</span></span> <span class="fn">=</span> <span class="fn">g</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.cov_gOf"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L37-L40">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.cov_gOf"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">cov_gOf</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.cov">cov</a> <span class="fn">ℓ</span> <span class="fn"><span class="fn">a</span>.<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover.y">y</a></span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.gOf">gOf</a> <span class="fn">ℓ</span> <span class="fn">a</span>)</span></span> <span class="fn">=</span> <span class="fn">a</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.eq_of_y_gOf"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L42-L43">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.eq_of_y_gOf"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">eq_of_y_gOf</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hy</span> : <span class="fn"><span class="fn"><span class="fn">a</span>.<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover.y">y</a></span> <span class="fn">=</span> <span class="fn"><span class="fn">b</span>.<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover.y">y</a></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.gOf">gOf</a> <span class="fn">ℓ</span> <span class="fn">a</span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.gOf">gOf</a> <span class="fn">ℓ</span> <span class="fn">b</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">a</span> <span class="fn">=</span> <span class="fn">b</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.projW"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L49-L53">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">projW</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">M</span></span></div></div><p>The projection of <code>M</code> onto <code>W a</code>.</p><details id="instances-for-list-LargeIndecomposable.RayCat.projW" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RayCat.idem_comm"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L55-L62">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.idem_comm"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">idem_comm</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover.Pi1">Cover.Pi1</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">μ</span>.<a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.Grading.proj">proj</a></span> <span class="fn">g</span>)</span> <span class="fn">(<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Linearization/LinMul.html#LargeIndecomposable.RayQuiver.morElt">RayQuiver.morElt</a> <span class="fn">k</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">y</span>)</span></span> <span class="fn">•</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Linearization/LinMul.html#LargeIndecomposable.RayQuiver.morElt">RayQuiver.morElt</a> <span class="fn">k</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">y</span>)</span></span> <span class="fn">•</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">μ</span>.<a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.Grading.proj">proj</a></span> <span class="fn">g</span>)</span> <span class="fn">m</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.projW_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L64-L71">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW_mem"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">projW_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW">projW</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">a</span>)</span> <span class="fn">m</span></span> <span class="fn">∈</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.W">W</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">a</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.projW_of_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L73-L83">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW_of_mem"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">projW_of_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">w</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hw</span> : <span class="fn"><span class="fn">w</span> <span class="fn">∈</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.W">W</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">b</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW">projW</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">a</span>)</span> <span class="fn">w</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">if</span> <span class="fn"><span class="fn">a</span> <span class="fn">=</span> <span class="fn">b</span></span> <span class="fn">then</span> <span class="fn">w</span> <span class="fn">else</span> <span class="fn">0</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.suppSet"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L85-L87">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.suppSet"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">suppSet</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span></div></div><p>The cover objects that can carry <code>M</code>.</p><details id="instances-for-list-LargeIndecomposable.RayCat.suppSet" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RayCat.sum_projW"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L89-L106">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.sum_projW"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">sum_projW</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">∑ <span class="fn">a</span> ∈ <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.suppSet">suppSet</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span></span>, <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW">projW</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">a</span>)</span> <span class="fn">m</span></span></span> <span class="fn">=</span> <span class="fn">m</span></span></div></div><p><strong><code>M</code> is the sum of its pieces.</strong></p></div></div><div class="decl" id="LargeIndecomposable.RayCat.projW_eq_zero_of_not_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L108-L113">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW_eq_zero_of_not_mem"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">projW_eq_zero_of_not_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ha</span> : <span class="fn"><span class="fn">a</span> ∉ <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.suppSet">suppSet</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.projW">projW</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">a</span>)</span> <span class="fn">m</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.totToM"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L117-L121">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">totToM</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PushDown/PushDown.html#LargeIndecomposable.Rep.Tot">Tot</a></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">M</span></span></div></div><p>The map <code>⊕_{a ∈ S} W a → M</code>.</p><details id="instances-for-list-LargeIndecomposable.RayCat.totToM" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RayCat.mToTot"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L123-L127">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.mToTot"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">mToTot</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PushDown/PushDown.html#LargeIndecomposable.Rep.Tot">Tot</a></span></span></div></div><p>The map <code>M → ⊕_{a ∈ S} W a</code>.</p><details id="instances-for-list-LargeIndecomposable.RayCat.mToTot" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RayCat.mToTot_totToM"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L129-L139">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.mToTot_totToM"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">mToTot_totToM</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PushDown/PushDown.html#LargeIndecomposable.Rep.Tot">Tot</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.mToTot">mToTot</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM">totToM</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.totToM_mToTot"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L141-L158">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM_mToTot"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">totToM_mToTot</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hS</span> : <span class="fn">∀ (<span class="fn">a</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span>), <span class="fn"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.W">W</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">a</span></span> <span class="fn">≠</span> <span class="fn">⊥</span></span> → <span class="fn"><span class="fn">a</span> <span class="fn">∈</span> <span class="fn">S</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM">totToM</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.mToTot">mToTot</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn">m</span></span></div></div><p>If <code>S</code> contains all cover objects carrying <code>M</code>, the total space is <code>M</code>.</p></div></div><div class="decl" id="LargeIndecomposable.RayCat.arrElt"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L163-L164">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.arrElt"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">arrElt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.quiver">RayQuiver.quiver</a> <span class="fn">P</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.A">A</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span></span></div></div><p>The element of <code>k(P)</code> of an arrow of <code>Q_P</code>.</p><details id="instances-for-list-LargeIndecomposable.RayCat.arrElt" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RayCat.toM_map_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L166-L167">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.toM_map_eq"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">toM_map_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">α</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceQuiver">pieceQuiver</a> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.A">A</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.Rep.obj">obj</a></span> <span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceQuiver">pieceQuiver</a> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.src">src</a></span> <span class="fn">α</span>)</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.toM">toM</a> <span class="fn">(<span class="fn">(<span class="fn">ModuleCat.Hom.hom</span> <span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.Rep.map">map</a></span> <span class="fn">α</span>)</span>)</span> <span class="fn">w</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.arrElt">arrElt</a> <span class="fn">k</span> <span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceProj">pieceProj</a> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.Hom.arr">arr</a></span> <span class="fn">α</span>)</span></span> <span class="fn">•</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.toM">toM</a> <span class="fn">w</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.toM_sum"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L169-L174">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.toM_sum"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">toM_sum</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceQuiver">pieceQuiver</a> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.V">V</a></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">ι</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.Rep.obj">obj</a></span> <span class="fn">a</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.toM">toM</a> <span class="fn">(∑ <span class="fn">i</span> ∈ <span class="fn">s</span>, <span class="fn"><span class="fn">f</span> <span class="fn">i</span></span>)</span></span> <span class="fn">=</span> <span class="fn">∑ <span class="fn">i</span> ∈ <span class="fn">s</span>, <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.toM">toM</a> <span class="fn">(<span class="fn">f</span> <span class="fn">i</span>)</span></span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.sum_toM_single"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L176-L181">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.sum_toM_single"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">sum_toM_single</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">t</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceQuiver">pieceQuiver</a> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.V">V</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.Rep.obj">obj</a></span> <span class="fn">t</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">∑ <span class="fn">j</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceQuiver">pieceQuiver</a> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.V">V</a></span>, <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.toM">toM</a> <span class="fn">(<span class="fn">Pi.single</span> <span class="fn">t</span> <span class="fn">v</span> <span class="fn">j</span>)</span></span></span> <span class="fn">=</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.toM">toM</a> <span class="fn">v</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.idem_smul_toM"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L183-L188">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.idem_smul_toM"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">idem_smul_toM</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">q</span> : <span class="fn">P</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceQuiver">pieceQuiver</a> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.V">V</a></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.Rep.obj">obj</a></span> <span class="fn">a</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Linearization/LinMul.html#LargeIndecomposable.RayQuiver.morElt">RayQuiver.morElt</a> <span class="fn">k</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">q</span>)</span></span> <span class="fn">•</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.toM">toM</a> <span class="fn">w</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">if</span> <span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/PieceKills.html#LargeIndecomposable.RayCat.pt">pt</a> <span class="fn">S</span> <span class="fn">a</span>)</span>.<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover.y">y</a></span> <span class="fn">=</span> <span class="fn">q</span></span> <span class="fn">then</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.toM">toM</a> <span class="fn">w</span></span> <span class="fn">else</span> <span class="fn">0</span></span></span></div></div></div></div><div class="decl" id="LargeIndecomposable.RayCat.totToM_pdVert"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L190-L199">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM_pdVert"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">totToM_pdVert</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">q</span> : <span class="fn">P</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PushDown/PushDown.html#LargeIndecomposable.Rep.Tot">Tot</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM">totToM</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PushDown/PushDownModule.html#LargeIndecomposable.Rep.pdVert">Rep.pdVert</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceProj">pieceProj</a> <span class="fn">S</span>)</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">q</span>)</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Linearization/LinMul.html#LargeIndecomposable.RayQuiver.morElt">RayQuiver.morElt</a> <span class="fn">k</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">q</span>)</span></span> <span class="fn">•</span> <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM">totToM</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">x</span></span></span></span></div></div><p><code><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM">totToM</a></code> intertwines the vertex actions.</p></div></div><div class="decl" id="LargeIndecomposable.RayCat.totToM_pdArr"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.lean#L201-L248">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM_pdArr"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">totToM_pdArr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/Basic.html#LargeIndecomposable.IsRayCategory">IsRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x₀</span> : <span class="fn">P</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ℓ</span> : <span class="fn">(<span class="fn">y</span> : <span class="fn">P</span>) → <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">x₀</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.vtx">vtx</a> <span class="fn">y</span></span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">P</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">μ</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Foundations/Gradings/Basic.html#LargeIndecomposable.Graded.GrMod">Graded.GrMod</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/RayGrading.html#LargeIndecomposable.RayCat.rayGrAlg">rayGrAlg</a> <span class="fn">ℓ</span> <span class="fn">k</span>)</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <span class="fn"><span class="fn">Finset</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hS</span> : <span class="fn">∀ (<span class="fn">a</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Coverings/UniversalCover/Cover.html#LargeIndecomposable.RayCat.Cover">Cover</a> <span class="fn">x₀</span></span>), <span class="fn"><span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.W">W</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">a</span></span> <span class="fn">≠</span> <span class="fn">⊥</span></span> → <span class="fn"><span class="fn">a</span> <span class="fn">∈</span> <span class="fn">S</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.quiver">RayQuiver.quiver</a> <span class="fn">P</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PathAlgebras/FiniteQuiver.html#LargeIndecomposable.FinQuiver.A">A</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span>.<a href="../../.././LargeIndecomposable/Quivers/PushDown/PushDown.html#LargeIndecomposable.Rep.Tot">Tot</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM">totToM</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">(<span class="fn">(<a href="../../.././LargeIndecomposable/Quivers/PushDown/PushDownModule.html#LargeIndecomposable.Rep.pdArr">Rep.pdArr</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/UniversalCover/CoverPiece.html#LargeIndecomposable.RayCat.pieceProj">pieceProj</a> <span class="fn">S</span>)</span> <span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPiece.html#LargeIndecomposable.RayCat.grRep">grRep</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">c</span>)</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.arrElt">arrElt</a> <span class="fn">k</span> <span class="fn">c</span></span> <span class="fn">•</span> <span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM">totToM</a> <span class="fn">ℓ</span> <span class="fn">k</span> <span class="fn">μ</span> <span class="fn">S</span>)</span> <span class="fn">x</span></span></span></span></div></div><p><code><a href="../../.././LargeIndecomposable/Coverings/GradedModules/GradedPieceTot.html#LargeIndecomposable.RayCat.totToM">totToM</a></code> intertwines the arrow actions when <code>S</code> contains all cover objects carrying <code>M</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

@@ -1,0 +1,593 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.BilinearForms.Diagonalization</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.BilinearForms.Diagonalization";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">BilinearForms</span>.<span class="name">Diagonalization</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Tactic/LinearCombination.lean">Mathlib.Tactic.LinearCombination</a></li><li><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Ideals.html">LargeIndecomposable.Foundations.BilinearForms.Ideals</a></li><li><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Isometry.html">LargeIndecomposable.Foundations.BilinearForms.Isometry</a></li><li><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Orthogonal.html">LargeIndecomposable.Foundations.BilinearForms.Orthogonal</a></li><li><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/SymplecticBasis.html">LargeIndecomposable.Foundations.BilinearForms.SymplecticBasis</a></li><li><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/DiagonalQuadraticForm.html">LargeIndecomposable.Foundations.LinearAlgebra.DiagonalQuadraticForm</a></li><li><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/SubmoduleCompl.html">LargeIndecomposable.Foundations.LinearAlgebra.SubmoduleCompl</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/Basis/SMul.lean">Mathlib.LinearAlgebra.Basis.SMul</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/BilinearForm/IsometryEquiv.lean">Mathlib.LinearAlgebra.BilinearForm.IsometryEquiv</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/FiniteDimensional/Lemmas.lean">Mathlib.LinearAlgebra.FiniteDimensional.Lemmas</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/Matrix/BilinearForm.lean">Mathlib.LinearAlgebra.Matrix.BilinearForm</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/QuadraticForm/IsometryEquiv.lean">Mathlib.LinearAlgebra.QuadraticForm.IsometryEquiv</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.BilinearForms.Diagonalization" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.iIsOrtho.toMatrix_eq_diagonal"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">iIsOrtho</span>.<span class="name">toMatrix_eq_diagonal</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.iIsOrtho.det_toMatrix"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">iIsOrtho</span>.<span class="name">det_toMatrix</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.iIsOrtho.isUnit_det_toMatrix"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">iIsOrtho</span>.<span class="name">isUnit_det_toMatrix</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.equivalent_weightedSumSquares_of_iIsOrtho"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">equivalent_weightedSumSquares_of_iIsOrtho</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.det_toMatrix_comp"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">det_toMatrix_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.det_toMatrix_eq_det_sq_mul_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">det_toMatrix_eq_det_sq_mul_det</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Equivalent.exists_det_eq_unit_sq_mul_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Equivalent</span>.<span class="name">exists_det_eq_unit_sq_mul_det</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Equivalent.isSquare_det_mul_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Equivalent</span>.<span class="name">isSquare_det_mul_det</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.equivalent_iff_toQuadraticMap_equivalent"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">equivalent_iff_toQuadraticMap_equivalent</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.iIsOrtho.dvd_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">iIsOrtho</span>.<span class="name">dvd_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isUnit_two_of_iIsOrtho_toBilin'_hyperbolic"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isUnit_two_of_iIsOrtho_toBilin'_hyperbolic</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.exists_forall_apply_self_dvd_of_forall_dvd"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_forall_apply_self_dvd_of_forall_dvd</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_isUnit_of_isUnit_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_orthogonal_basis_isUnit_of_isUnit_det</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.exists_equivalent_weightedSumSquares_of_isUnit_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_equivalent_weightedSumSquares_of_isUnit_det</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_of_isAlt_imp_eq_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_orthogonal_basis_of_isAlt_imp_eq_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_orthogonal_basis_iff</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.exists_basis_toMatrix_eq_one"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_basis_toMatrix_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.equivalent_toBilin'_one"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">equivalent_toBilin'_one</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.equivalent_of_finrank_eq"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">equivalent_of_finrank_eq</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Nondegenerate.exists_basis_toMatrix_eq_J_or_toMatrix_eq_one"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">exists_basis_toMatrix_eq_J_or_toMatrix_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#Matrix.IsSymm.exists_isUnit_transpose_mul_mul_eq_diagonal"><span class="name">Matrix</span>.<span class="name">IsSymm</span>.<span class="name">exists_isUnit_transpose_mul_mul_eq_diagonal</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.LinearAlgebra.BilinearForm.Diagonalization</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Diagonalization-of-symmetric-bilinear-forms-in-every-characteristic" class="markdown-heading">Diagonalization of symmetric bilinear forms in every characteristic <a class="hover-link" href="#Diagonalization-of-symmetric-bilinear-forms-in-every-characteristic">#</a></h1><p>Over a commutative ring, an orthogonal basis gives a diagonal Gram matrix and reduces divisibility
+of all pairings to divisibility of its diagonal values. For a symmetric form with <code>2</code> invertible,
+it also identifies the associated quadratic form with the weighted sum of squares of its
+self-pairings. The hyperbolic plane can therefore have an orthogonal basis only when <code>2</code> is a
+unit. Over a local ring with <code>2</code> invertible, a pairing dividing every value can be replaced by a
+self-pairing with the same property. A symmetric form with unit Gram determinant has an
+orthogonal basis with unit self-pairings over any such local ring.</p><p>Over a field in which <code>2</code> is invertible, every symmetric bilinear form on a finite-dimensional
+space has an orthogonal basis (<code>LinearMap.BilinForm.exists_orthogonal_basis</code>); in matrix terms,
+every symmetric matrix is congruent to a diagonal one. In characteristic two this fails: a nonzero
+alternating form is symmetric, and an orthogonal basis for it would make every basis pairing
+vanish, hence the whole form. This file shows that the alternating forms are
+the only obstruction, in every characteristic: a symmetric form has an orthogonal basis if and
+only if it is zero or not alternating (<code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_iff">LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_iff</a></code>).</p><p>For a nondegenerate form over a field in which every element is a square, for instance a finite
+field of characteristic two (<code>isSquare_of_charTwo'</code>), the orthogonal basis can be rescaled: a
+symmetric form that is not alternating has an <strong>orthonormal basis</strong>, one in which its matrix is
+the identity (<code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_basis_toMatrix_eq_one">LinearMap.BilinForm.IsSymm.exists_basis_toMatrix_eq_one</a></code>). Hence it is equivalent
+to the standard form <code>Matrix.toBilin' 1</code>, which is itself such a form in every positive dimension
+(<code>Matrix.isAlt_toBilin'_one_iff</code> in <code>LargeIndecomposable.Foundations.LinearAlgebra.Matrix.BilinearForm</code>), and any two such
+forms of the same dimension are equivalent. Together with the symplectic normal form of
+<code>LargeIndecomposable.Foundations.LinearAlgebra.BilinearForm.SymplecticBasis</code> this gives the dichotomy for nondegenerate
+forms that are alternating or symmetric: a symplectic basis when the form is alternating, an
+orthonormal basis when it is not
+(<code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.Nondegenerate.exists_basis_toMatrix_eq_J_or_toMatrix_eq_one">LinearMap.BilinForm.Nondegenerate.exists_basis_toMatrix_eq_J_or_toMatrix_eq_one</a></code>). Over <code>𝔽₂</code>,
+where every form that is alternating is symmetric, this classifies the nondegenerate symmetric
+bilinear forms, which is the input to the normal forms of one-relator pro-<code>2</code> groups.</p><p>Gram determinants transform by the square of the coordinate-map determinant. Consequently, the
+Gram determinants of equivalent bilinear forms differ by the square of a unit, and their product
+is a square, without symmetry or nondegeneracy assumptions. When <code>2</code> is invertible, symmetric
+bilinear forms are equivalent exactly when their associated quadratic forms are equivalent.</p><h2 id="Main-results" class="markdown-heading">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.iIsOrtho.toMatrix_eq_diagonal">LinearMap.BilinForm.iIsOrtho.toMatrix_eq_diagonal</a></code>: the Gram matrix in an orthogonal basis
+is the diagonal matrix of its self-pairings.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.equivalent_weightedSumSquares_of_iIsOrtho">LinearMap.BilinForm.IsSymm.equivalent_weightedSumSquares_of_iIsOrtho</a></code>: an orthogonal basis
+identifies the associated quadratic form with a weighted sum of squares.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.det_toMatrix_comp">LinearMap.BilinForm.det_toMatrix_comp</a></code>, <code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.det_toMatrix_eq_det_sq_mul_det">LinearMap.BilinForm.det_toMatrix_eq_det_sq_mul_det</a></code>:
+the Gram determinant under a linear map and under a change of basis.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.Equivalent.exists_det_eq_unit_sq_mul_det">LinearMap.BilinForm.Equivalent.exists_det_eq_unit_sq_mul_det</a></code>: equivalent forms have Gram
+determinants differing by a unit square, in any finite bases with the same index type.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.Equivalent.isSquare_det_mul_det">LinearMap.BilinForm.Equivalent.isSquare_det_mul_det</a></code>: hence the product of their Gram
+determinants is a square.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.equivalent_iff_toQuadraticMap_equivalent">LinearMap.BilinForm.IsSymm.equivalent_iff_toQuadraticMap_equivalent</a></code>: when <code>2</code> is invertible,
+equivalence of symmetric bilinear forms is equivalent to equivalence of their quadratic forms.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.iIsOrtho.dvd_apply">LinearMap.BilinForm.iIsOrtho.dvd_apply</a></code>: divisibility from diagonal values.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.isUnit_two_of_iIsOrtho_toBilin'_hyperbolic">LinearMap.BilinForm.isUnit_two_of_iIsOrtho_toBilin'_hyperbolic</a></code>: an orthogonal basis of the
+hyperbolic plane forces <code>2</code> to be a unit.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_forall_apply_self_dvd_of_forall_dvd">LinearMap.BilinForm.IsSymm.exists_forall_apply_self_dvd_of_forall_dvd</a></code>: over a local ring with
+<code>2</code> a unit, a minimal pairing yields a minimal self-pairing.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_isUnit_of_isUnit_det">LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_isUnit_of_isUnit_det</a></code>: over a local ring
+with <code>2</code> a unit, a unit Gram determinant gives an orthogonal basis with unit self-pairings.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_equivalent_weightedSumSquares_of_isUnit_det">LinearMap.BilinForm.IsSymm.exists_equivalent_weightedSumSquares_of_isUnit_det</a></code>: such a form
+is isometric to a unit diagonal quadratic form, with a determinant change-of-basis equation.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_of_isAlt_imp_eq_zero">LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_of_isAlt_imp_eq_zero</a></code>: a symmetric form
+that is zero or not alternating has an orthogonal basis, in every characteristic.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_iff">LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_iff</a></code>: this condition is also necessary.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_basis_toMatrix_eq_one">LinearMap.BilinForm.IsSymm.exists_basis_toMatrix_eq_one</a></code>: over a field in which every element
+is a square, a nondegenerate symmetric form that is not alternating has an orthonormal basis.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.equivalent_toBilin'_one">LinearMap.BilinForm.IsSymm.equivalent_toBilin'_one</a></code>,
+<code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.equivalent_of_finrank_eq">LinearMap.BilinForm.IsSymm.equivalent_of_finrank_eq</a></code>: such a form is equivalent to the standard
+form on <code>Fin n → K</code>, so any two of them of the same dimension are equivalent.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.Nondegenerate.exists_basis_toMatrix_eq_J_or_toMatrix_eq_one">LinearMap.BilinForm.Nondegenerate.exists_basis_toMatrix_eq_J_or_toMatrix_eq_one</a></code>: the
+symplectic-or-orthonormal dichotomy.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#Matrix.IsSymm.exists_isUnit_transpose_mul_mul_eq_diagonal">Matrix.IsSymm.exists_isUnit_transpose_mul_mul_eq_diagonal</a></code>: when <code>2</code> is invertible in a field,
+every symmetric matrix over it is congruent to a diagonal matrix.</li></ul><h2 id="References" class="markdown-heading">References <a class="hover-link" href="#References">#</a></h2><ul><li>A. A. Albert, <em>Symmetric and alternate matrices in an arbitrary field, I</em>, Trans. Amer. Math.
+Soc. 43 (1938), 386–436.</li><li>O. T. O'Meara, <em>Introduction to Quadratic Forms</em>, 92:1.</li><li>J. W. S. Cassels, <em>Rational Quadratic Forms</em>, Chapter 8.</li></ul></div><div class="decl" id="LinearMap.BilinForm.iIsOrtho.toMatrix_eq_diagonal"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L109-L117">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.iIsOrtho.toMatrix_eq_diagonal"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">iIsOrtho</span>.<span class="name">toMatrix_eq_diagonal</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hb</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">b</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">Matrix.diagonal</span> <span class="fn">fun (<span class="fn">i</span> : <span class="fn">ι</span>) =&gt; <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span>)</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span></span></span></span></span></div></div><p>The Gram matrix in an orthogonal basis is the diagonal matrix of the self-pairings.</p></div></div><div class="decl" id="LinearMap.BilinForm.iIsOrtho.det_toMatrix"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L119-L123">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.iIsOrtho.det_toMatrix"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">iIsOrtho</span>.<span class="name">det_toMatrix</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hb</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">b</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span> <span class="fn">=</span> <span class="fn">∏ <span class="fn">i</span> : <span class="fn">ι</span>, <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span>)</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span></span></span></span></div></div><p>The Gram determinant in an orthogonal basis is the product of the self-pairings.</p></div></div><div class="decl" id="LinearMap.BilinForm.iIsOrtho.isUnit_det_toMatrix"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L125-L130">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.iIsOrtho.isUnit_det_toMatrix"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">iIsOrtho</span>.<span class="name">isUnit_det_toMatrix</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hb</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">b</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hbu</span> : <span class="fn">∀ (<span class="fn">i</span> : <span class="fn">ι</span>), <span class="fn"><span class="fn">IsUnit</span> <span class="fn">(<span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span>)</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsUnit</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span></span></div></div><p>The Gram determinant in an orthogonal basis with unit self-pairings is a unit.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.equivalent_weightedSumSquares_of_iIsOrtho"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L132-L149">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.equivalent_weightedSumSquares_of_iIsOrtho"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">equivalent_weightedSumSquares_of_iIsOrtho</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Invertible</span> <span class="fn">2</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hb</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">b</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">BilinMap.toQuadraticMap</span> <span class="fn">B</span>)</span>.<span class="fn">Equivalent</span></span> <span class="fn">(<span class="fn">QuadraticMap.weightedSumSquares</span> <span class="fn">R</span> <span class="fn">fun (<span class="fn">i</span> : <span class="fn">ι</span>) =&gt; <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span>)</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span></span></span>)</span></span></div></div><p>The quadratic form of a symmetric bilinear form in an orthogonal basis is isometric to
+the diagonal form of its self-pairings.</p></div></div><div class="decl" id="LinearMap.BilinForm.det_toMatrix_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L156-L165">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.det_toMatrix_comp"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">det_toMatrix_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">(<span class="fn"><span class="fn">C</span>.<span class="fn">comp</span></span> <span class="fn">f</span> <span class="fn">f</span>)</span>)</span>.<span class="fn">det</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">LinearMap.toMatrix</span> <span class="fn">b</span> <span class="fn">c</span>)</span> <span class="fn">f</span>)</span>.<span class="fn">det</span></span> <span class="fn">^</span> <span class="fn">2</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">c</span>)</span> <span class="fn">C</span>)</span>.<span class="fn">det</span></span></span></span></div></div><p>Pulling back a bilinear form along a linear map multiplies its Gram determinant by the
+square of the coordinate-map determinant. The source and target bases use the same arbitrary
+finite index type; no symmetry or nondegeneracy is required.</p></div></div><div class="decl" id="LinearMap.BilinForm.det_toMatrix_eq_det_sq_mul_det"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L167-L173">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.det_toMatrix_eq_det_sq_mul_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">det_toMatrix_eq_det_sq_mul_det</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b </span><span class="fn">c</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">c</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">b</span>.<span class="fn">toMatrix</span></span> <span class="fn">⇑<span class="fn">c</span></span>)</span>.<span class="fn">det</span></span> <span class="fn">^</span> <span class="fn">2</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span></span></span></div></div><p>A change of basis multiplies the Gram determinant by the square of the basis-change
+matrix determinant.</p></div></div><div class="decl" id="LinearMap.BilinForm.Equivalent.exists_det_eq_unit_sq_mul_det"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L175-L188">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.Equivalent.exists_det_eq_unit_sq_mul_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Equivalent</span>.<span class="name">exists_det_eq_unit_sq_mul_det</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">Equivalent</span></span> <span class="fn">C</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">u</span> : <span class="fn"><span class="fn">R</span><span class="fn">ˣ</span></span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">↑<span class="fn">u</span></span> <span class="fn">^</span> <span class="fn">2</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">c</span>)</span> <span class="fn">C</span>)</span>.<span class="fn">det</span></span></span></span></span></div></div><p>The Gram determinants of equivalent bilinear forms differ by the square of a unit. This
+holds over any commutative ring, including for singular and nonsymmetric forms, in any
+caller-provided finite bases with the same index type.</p></div></div><div class="decl" id="LinearMap.BilinForm.Equivalent.isSquare_det_mul_det"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L190-L198">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.Equivalent.isSquare_det_mul_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Equivalent</span>.<span class="name">isSquare_det_mul_det</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">Equivalent</span></span> <span class="fn">C</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsSquare</span> <span class="fn">(<span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">c</span>)</span> <span class="fn">C</span>)</span>.<span class="fn">det</span></span>)</span></span></div></div><p>The product of Gram determinants of equivalent bilinear forms is a square. This holds over
+any commutative ring, including for singular and nonsymmetric forms, in any caller-provided
+finite bases with the same index type.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.equivalent_iff_toQuadraticMap_equivalent"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L200-L215">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.equivalent_iff_toQuadraticMap_equivalent"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">equivalent_iff_toQuadraticMap_equivalent</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Invertible</span> <span class="fn">2</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hC</span> : <span class="fn"><span class="fn">C</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">Equivalent</span></span> <span class="fn">C</span></span> <span class="fn">↔</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn">BilinMap.toQuadraticMap</span> <span class="fn">B</span>)</span>.<span class="fn">Equivalent</span></span> <span class="fn">(<span class="fn">BilinMap.toQuadraticMap</span> <span class="fn">C</span>)</span></span></span></div></div><p>When <code>2</code> is invertible, symmetric bilinear forms are equivalent exactly when their
+associated quadratic forms are equivalent. The underlying modules need not be finite or free.</p></div></div><div class="decl" id="LinearMap.BilinForm.iIsOrtho.dvd_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L217-L225">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.iIsOrtho.dvd_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">iIsOrtho</span>.<span class="name">dvd_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hb</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">b</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">d</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hd</span> : <span class="fn">∀ (<span class="fn">i</span> : <span class="fn">ι</span>), <span class="fn"><span class="fn">d</span> <span class="fn">∣</span> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span>)</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">d</span> <span class="fn">∣</span> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span></span></div></div><p>Along an orthogonal basis, a common divisor of the diagonal values of a bilinear form divides
+every value of the form.</p></div></div><div class="decl" id="LinearMap.BilinForm.isUnit_two_of_iIsOrtho_toBilin'_hyperbolic"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L227-L236">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.isUnit_two_of_iIsOrtho_toBilin'_hyperbolic"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isUnit_two_of_iIsOrtho_toBilin'_hyperbolic</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn">2</span></span> → <span class="fn">R</span>)</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hb</span> : <span class="fn"><span class="fn"><span class="fn">(<span class="fn">Matrix.toBilin'</span> <span class="fn">!![<span class="fn">0</span>, <span class="fn">1</span>; <span class="fn">1</span>, <span class="fn">0</span>]</span>)</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">b</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsUnit</span> <span class="fn">2</span></span></div></div><p>If the hyperbolic plane, the form with Gram matrix <code>!![0, 1; 1, 0]</code> on <code>R²</code>, has an orthogonal
+basis, then <code>2</code> is a unit in <code>R</code>. So over a ring such as <code>ℤ_2</code> the hyperbolic plane is not
+diagonalizable.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.exists_forall_apply_self_dvd_of_forall_dvd"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L238-L263">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_forall_apply_self_dvd_of_forall_dvd"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_forall_apply_self_dvd_of_forall_dvd</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsLocalRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h2</span> : <span class="fn"><span class="fn">IsUnit</span> <span class="fn">2</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u </span><span class="fn">w</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">y </span><span class="fn">z</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">u</span>)</span> <span class="fn">w</span></span> <span class="fn">∣</span> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">y</span>)</span> <span class="fn">z</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">x</span> : <span class="fn">M</span>), <span class="fn">∀ (<span class="fn">y </span><span class="fn">z</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">x</span></span> <span class="fn">∣</span> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">y</span>)</span> <span class="fn">z</span></span></span></span></span></div></div><p>Over a local ring in which <code>2</code> is a unit, if a value <code>B u w</code> of a symmetric bilinear form
+divides every value of the form, then so does one of the self-pairings <code>B u u</code>, <code>B w w</code> and
+<code>B (u + w) (u + w)</code>.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_isUnit_of_isUnit_det"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L265-L340">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_isUnit_of_isUnit_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_orthogonal_basis_isUnit_of_isUnit_det</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsLocalRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h2</span> : <span class="fn"><span class="fn">IsUnit</span> <span class="fn">2</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">(<span class="fn">Fin</span> <span class="fn">n</span>)</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hdet</span> : <span class="fn"><span class="fn">IsUnit</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">c</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">(<span class="fn">Fin</span> <span class="fn">n</span>)</span> <span class="fn">R</span> <span class="fn">M</span></span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">c</span></span></span> <span class="fn">∧</span> <span class="fn">∀ (<span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span>), <span class="fn"><span class="fn">IsUnit</span> <span class="fn">(<span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">c</span> <span class="fn">i</span>)</span>)</span> <span class="fn">(<span class="fn">c</span> <span class="fn">i</span>)</span>)</span></span></span></span></span></div></div><p>A symmetric form with unit Gram determinant over a local ring with two invertible has
+an orthogonal basis with unit self-pairings. The input basis is arbitrary.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.exists_equivalent_weightedSumSquares_of_isUnit_det"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L342-L360">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_equivalent_weightedSumSquares_of_isUnit_det"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_equivalent_weightedSumSquares_of_isUnit_det</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsLocalRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h2</span> : <span class="fn"><span class="fn">IsUnit</span> <span class="fn">2</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ℕ</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">(<span class="fn">Fin</span> <span class="fn">n</span>)</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hdet</span> : <span class="fn"><span class="fn">IsUnit</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">w</span> : <span class="fn"><span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span> → <span class="fn"><span class="fn">R</span><span class="fn">ˣ</span></span></span>),
+  <span class="fn"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">BilinMap.toQuadraticMap</span> <span class="fn">B</span>)</span>.<span class="fn">Equivalent</span></span> <span class="fn">(<span class="fn">QuadraticMap.weightedSumSquares</span> <span class="fn">R</span> <span class="fn">w</span>)</span></span> <span class="fn">∧</span>     <span class="fn">∃ (<span class="fn">d</span> : <span class="fn">R</span>), <span class="fn"><span class="fn">∏ <span class="fn">i</span> : <span class="fn"><span class="fn">Fin</span> <span class="fn">n</span></span>, <span class="fn">↑<span class="fn">(<span class="fn">w</span> <span class="fn">i</span>)</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">d</span> <span class="fn">^</span> <span class="fn">2</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span></span></span></span></span></span></div></div><p>A symmetric form with unit Gram determinant over a local ring with two invertible is
+isometric to a unit diagonal form. The product of its coefficients equals the original Gram
+determinant times the square of a change-of-basis determinant.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_of_isAlt_imp_eq_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L410-L433">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_of_isAlt_imp_eq_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_orthogonal_basis_of_isAlt_imp_eq_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">IsAlt</span></span> → <span class="fn"><span class="fn">B</span> <span class="fn">=</span> <span class="fn">0</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">v</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">(<span class="fn">Fin</span> <span class="fn">(<span class="fn">Module.finrank</span> <span class="fn">K</span> <span class="fn">V</span>)</span>)</span> <span class="fn">K</span> <span class="fn">V</span></span>), <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">v</span></span></span></span></div></div><p><strong>A symmetric bilinear form that is zero or not alternating has an orthogonal basis</strong>, in
+every characteristic. Away from characteristic two the hypothesis is automatic for symmetric
+forms (<code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Basic.html#LargeIndecomposable.Foundations.BilinForm.eq_zero_of_isSymm_of_isAlt">LargeIndecomposable.Foundations.BilinForm.eq_zero_of_isSymm_of_isAlt</a></code>), which recovers
+<code>LinearMap.BilinForm.exists_orthogonal_basis</code>; in characteristic two it excludes exactly the
+nonzero alternating forms.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L435-L444">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_orthogonal_basis_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_orthogonal_basis_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(∃ (<span class="fn">v</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">(<span class="fn">Fin</span> <span class="fn">(<span class="fn">Module.finrank</span> <span class="fn">K</span> <span class="fn">V</span>)</span>)</span> <span class="fn">K</span> <span class="fn">V</span></span>), <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">iIsOrtho</span></span> <span class="fn">⇑<span class="fn">v</span></span></span>)</span> <span class="fn">↔</span> <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">IsAlt</span></span> → <span class="fn"><span class="fn">B</span> <span class="fn">=</span> <span class="fn">0</span></span></span></span></div></div><p><strong>A symmetric bilinear form has an orthogonal basis if and only if it is zero or not
+alternating.</strong> The forward direction is the observation that an orthogonal basis of an alternating
+form pairs every two basis vectors to zero.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.exists_basis_toMatrix_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L446-L461">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.exists_basis_toMatrix_eq_one"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">exists_basis_toMatrix_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hsq</span> : <span class="fn">∀ (<span class="fn">a</span> : <span class="fn">K</span>), <span class="fn"><span class="fn">IsSquare</span> <span class="fn">a</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hnd</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">IsAlt</span></span> → <span class="fn"><span class="fn">B</span> <span class="fn">=</span> <span class="fn">0</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">v</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">(<span class="fn">Fin</span> <span class="fn">(<span class="fn">Module.finrank</span> <span class="fn">K</span> <span class="fn">V</span>)</span>)</span> <span class="fn">K</span> <span class="fn">V</span></span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">toMatrix</span> <span class="fn">v</span>)</span> <span class="fn">B</span></span> <span class="fn">=</span> <span class="fn">1</span></span></span></div></div><p><strong>A nondegenerate symmetric form that is not alternating has an orthonormal basis</strong>, over a
+field in which every element is a square: rescaling an orthogonal basis by inverse square roots of
+the self-pairings makes the matrix of the form the identity. The hypothesis on squares holds in
+every finite field of characteristic two (<code>isSquare_of_charTwo'</code>).</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.equivalent_toBilin'_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L463-L471">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.equivalent_toBilin'_one"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">equivalent_toBilin'_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hsq</span> : <span class="fn">∀ (<span class="fn">a</span> : <span class="fn">K</span>), <span class="fn"><span class="fn">IsSquare</span> <span class="fn">a</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hnd</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">IsAlt</span></span> → <span class="fn"><span class="fn">B</span> <span class="fn">=</span> <span class="fn">0</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">Equivalent</span></span> <span class="fn">(<span class="fn">Matrix.toBilin'</span> <span class="fn">1</span>)</span></span></div></div><p>Over a field in which every element is a square, a nondegenerate symmetric form that is not
+alternating is equivalent to the standard form <code>∑ i, x i * y i</code> on <code>Fin n → K</code>, for <code>n</code> the
+dimension.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.equivalent_of_finrank_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L473-L481">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.IsSymm.equivalent_of_finrank_eq"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">equivalent_of_finrank_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V'</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">K</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">K</span> <span class="fn">V'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B'</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">K</span> <span class="fn">V'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hsq</span> : <span class="fn">∀ (<span class="fn">a</span> : <span class="fn">K</span>), <span class="fn"><span class="fn">IsSquare</span> <span class="fn">a</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hnd</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">IsAlt</span></span> → <span class="fn"><span class="fn">B</span> <span class="fn">=</span> <span class="fn">0</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB'</span> : <span class="fn"><span class="fn">B'</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hnd'</span> : <span class="fn"><span class="fn">B'</span>.<span class="fn">Nondegenerate</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h'</span> : <span class="fn"><span class="fn"><span class="fn">B'</span>.<span class="fn">IsAlt</span></span> → <span class="fn"><span class="fn">B'</span> <span class="fn">=</span> <span class="fn">0</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hdim</span> : <span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">K</span> <span class="fn">V</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">Module.finrank</span> <span class="fn">K</span> <span class="fn">V'</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">Equivalent</span></span> <span class="fn">B'</span></span></div></div><p>Over a field in which every element is a square, two nondegenerate symmetric forms that are
+not alternating, on spaces of the same dimension, are equivalent.</p></div></div><div class="decl" id="LinearMap.BilinForm.Nondegenerate.exists_basis_toMatrix_eq_J_or_toMatrix_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L483-L495">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#LinearMap.BilinForm.Nondegenerate.exists_basis_toMatrix_eq_J_or_toMatrix_eq_one"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">exists_basis_toMatrix_eq_J_or_toMatrix_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hsq</span> : <span class="fn">∀ (<span class="fn">a</span> : <span class="fn">K</span>), <span class="fn"><span class="fn">IsSquare</span> <span class="fn">a</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hnd</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">B</span>.<span class="fn">IsAlt</span></span> <span class="fn">∨</span> <span class="fn"><span class="fn">B</span>.<span class="fn">IsSymm</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">B</span>.<span class="fn">IsAlt</span></span> <span class="fn">∧</span> <span class="fn">∃ (<span class="fn">m</span> : <span class="fn">ℕ</span>) (<span class="fn">v</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">(<span class="fn"><span class="fn">Fin</span> <span class="fn">m</span></span> <span class="fn">⊕</span> <span class="fn"><span class="fn">Fin</span> <span class="fn">m</span></span>)</span> <span class="fn">K</span> <span class="fn">V</span></span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">BilinForm.toMatrix</span> <span class="fn">v</span>)</span> <span class="fn">B</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">Matrix.J</span> <span class="fn">(<span class="fn">Fin</span> <span class="fn">m</span>)</span> <span class="fn">K</span></span></span></span>)</span> <span class="fn">∨</span>   <span class="fn"><span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">B</span>.<span class="fn">IsAlt</span></span></span> <span class="fn">∧</span> <span class="fn">∃ (<span class="fn">v</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">(<span class="fn">Fin</span> <span class="fn">(<span class="fn">Module.finrank</span> <span class="fn">K</span> <span class="fn">V</span>)</span>)</span> <span class="fn">K</span> <span class="fn">V</span></span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">BilinForm.toMatrix</span> <span class="fn">v</span>)</span> <span class="fn">B</span></span> <span class="fn">=</span> <span class="fn">1</span></span></span></span></span></div></div><p><strong>The normal-form dichotomy for a nondegenerate form that is alternating or symmetric</strong>, over
+a field in which every element is a square: an alternating form has a symplectic basis, and a
+symmetric form that is not alternating has an orthonormal basis. In characteristic two every
+alternating form is symmetric, so the hypothesis is just symmetry there.</p></div></div><div class="decl" id="Matrix.IsSymm.exists_isUnit_transpose_mul_mul_eq_diagonal"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/Diagonalization.lean#L502-L518">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/Diagonalization.html#Matrix.IsSymm.exists_isUnit_transpose_mul_mul_eq_diagonal"><span class="name">Matrix</span>.<span class="name">IsSymm</span>.<span class="name">exists_isUnit_transpose_mul_mul_eq_diagonal</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Invertible</span> <span class="fn">2</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">n</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">n</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <span class="fn"><span class="fn">Matrix</span> <span class="fn">n</span> <span class="fn">n</span> <span class="fn">K</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hA</span> : <span class="fn"><span class="fn">A</span>.<span class="fn">IsSymm</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">∃ (<span class="fn">P</span> : <span class="fn"><span class="fn">Matrix</span> <span class="fn">n</span> <span class="fn">n</span> <span class="fn">K</span></span>) (<span class="fn">d</span> : <span class="fn"><span class="fn">n</span> → <span class="fn">K</span></span>), <span class="fn"><span class="fn"><span class="fn">IsUnit</span> <span class="fn">P</span></span> <span class="fn">∧</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn"><span class="fn">P</span>.<span class="fn">transpose</span></span> <span class="fn">*</span> <span class="fn">A</span></span> <span class="fn">*</span> <span class="fn">P</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">diagonal</span> <span class="fn">d</span></span></span></span></span></div></div><p><strong>A symmetric matrix over a field in which <code>2</code> is invertible is congruent to a diagonal
+matrix</strong>: <code>Pᵀ * A * P</code> is diagonal for some invertible <code>P</code>. This is the matrix form of
+<code>LinearMap.BilinForm.exists_orthogonal_basis</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

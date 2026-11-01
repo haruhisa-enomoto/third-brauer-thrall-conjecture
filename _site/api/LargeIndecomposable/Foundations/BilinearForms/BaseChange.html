@@ -1,0 +1,1205 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.BilinearForms.BaseChange</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.BilinearForms.BaseChange";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">BilinearForms</span>.<span class="name">BaseChange</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html">LargeIndecomposable.Foundations.BilinearForms.Prod</a></li><li><a href="../../.././LargeIndecomposable/Foundations/LinearAlgebra/QuadraticPosDef.html">LargeIndecomposable.Foundations.LinearAlgebra.QuadraticPosDef</a></li><li><a href="../../.././LargeIndecomposable/Foundations/Ring/IsBaseChange.html">LargeIndecomposable.Foundations.Ring.IsBaseChange</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Order/Algebra.lean">Mathlib.Algebra.Order.Algebra</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/BilinearForm/IsometryEquiv.lean">Mathlib.LinearAlgebra.BilinearForm.IsometryEquiv</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/BilinearForm/TensorProduct.lean">Mathlib.LinearAlgebra.BilinearForm.TensorProduct</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/Matrix/BilinearForm.lean">Mathlib.LinearAlgebra.Matrix.BilinearForm</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/TensorProduct/Prod.lean">Mathlib.LinearAlgebra.TensorProduct.Prod</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/TensorProduct/IsBaseChangePi.lean">Mathlib.RingTheory.TensorProduct.IsBaseChangePi</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Ring/Hom/InjSurj.lean">Mathlib.Algebra.Ring.Hom.InjSurj</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/Flat/FaithfullyFlat/Basic.lean">Mathlib.RingTheory.Flat.FaithfullyFlat.Basic</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.BilinearForms.BaseChange" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.baseChange_flip"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">baseChange_flip</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.SeparatingLeft.baseChange"><span class="name">LinearMap</span>.<span class="name">SeparatingLeft</span>.<span class="name">baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.SeparatingRight.baseChange"><span class="name">LinearMap</span>.<span class="name">SeparatingRight</span>.<span class="name">baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Nondegenerate.baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.SeparatingLeft.baseChange_of_isLocalization"><span class="name">LinearMap</span>.<span class="name">SeparatingLeft</span>.<span class="name">baseChange_of_isLocalization</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.SeparatingRight.baseChange_of_isLocalization"><span class="name">LinearMap</span>.<span class="name">SeparatingRight</span>.<span class="name">baseChange_of_isLocalization</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Nondegenerate.baseChange_of_isLocalization"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">baseChange_of_isLocalization</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm"><span class="name">IsBaseChange</span>.<span class="name">bilinForm</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_def"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_def</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_apply"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_apply</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_unique"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_unique</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_zero"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_zero</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_add"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_add</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_flip"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_flip</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_smul"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_smul</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_apply_symm"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_apply_symm</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_comp"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_comp</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_prod"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_prod</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_tmul"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_tmul</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.liftBaseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">liftBaseChange</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinForm_baseChange"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinFormIsometryEquiv"><span class="name">IsBaseChange</span>.<span class="name">bilinFormIsometryEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#IsBaseChange.bilinFormIsometryEquiv_apply"><span class="name">IsBaseChange</span>.<span class="name">bilinFormIsometryEquiv_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.baseChange_baseChange_baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">baseChange_baseChange_baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.toMatrix_baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">toMatrix_baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.det_toMatrix_baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">det_toMatrix_baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.nondegenerate_of_nondegenerate_baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_of_nondegenerate_baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.nondegenerate_baseChange_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_baseChange_iff</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsometryEquiv.baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsometryEquiv</span>.<span class="name">baseChange</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsometryEquiv.baseChange_tmul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsometryEquiv</span>.<span class="name">baseChange_tmul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">bilinFormBaseChangeProdIsometry</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry_tmul"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">bilinFormBaseChangeProdIsometry_tmul</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry_symm_tmul"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">bilinFormBaseChangeProdIsometry_symm_tmul</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.posDef_toQuadraticMap_baseChange_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">posDef_toQuadraticMap_baseChange_iff</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.LinearAlgebra.BilinearForm.BaseChange</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Bilinear-forms-and-base-change" class="markdown-heading">Bilinear forms and base change <a class="hover-link" href="#Bilinear-forms-and-base-change">#</a></h1><p>This file extends bilinear forms to abstract base changes through <code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">IsBaseChange.bilinForm</a></code>,
+using Mathlib's canonical tensor base change and transport along a linear equivalence. It also
+records how nondegeneracy behaves under base change.</p><p>Nondegeneracy is not preserved by an arbitrary base change: a form can acquire a kernel when its
+discriminant becomes a zero divisor. On a finite free module it is exactly the nonvanishing of
+that discriminant, so any structure map between integral domains reflects it, and an injective one
+also preserves it. The theorems
+<code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.nondegenerate_of_nondegenerate_baseChange">LinearMap.BilinForm.nondegenerate_of_nondegenerate_baseChange</a></code> and
+<code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.nondegenerate_baseChange_iff">LinearMap.BilinForm.nondegenerate_baseChange_iff</a></code>, and the computations behind them,
+<code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.toMatrix_baseChange">LinearMap.BilinForm.toMatrix_baseChange</a></code> and <code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.det_toMatrix_baseChange">LinearMap.BilinForm.det_toMatrix_baseChange</a></code>, say
+that base change acts entrywise on the Gram matrix of a basis and maps its determinant accordingly.</p><p>When the scalar algebra is free over the original semiring, base change preserves left separation
+and nondegeneracy without any finiteness or freeness hypothesis on the module carrying the form.
+In particular, this applies to arbitrary extensions of fields, even in infinite dimension.
+Injective localizations also preserve separation and nondegeneracy without any condition on the
+module carrying the form.</p><p>Over an ordered field, base change into a linearly ordered commutative ring along an
+order-preserving structure map also preserves and reflects positive definiteness of the quadratic
+map associated to a bilinear form on a finite-dimensional space; this is how a rational form is
+compared with its real extension.</p><h2 id="Main-declarations" class="markdown-heading">Main declarations <a class="hover-link" href="#Main-declarations">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">IsBaseChange.bilinForm</a></code>: extension to an abstract base change, characterized by its values
+on the original module.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_tmul">IsBaseChange.bilinForm_tmul</a></code>: extension commutes with tensor products of bilinear forms.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingLeft.baseChange">LinearMap.SeparatingLeft.baseChange</a></code>: a free scalar extension preserves left separation.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.Nondegenerate.baseChange">LinearMap.BilinForm.Nondegenerate.baseChange</a></code>: a free scalar extension preserves
+nondegeneracy, without a finite-dimensionality assumption.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.Nondegenerate.baseChange_of_isLocalization">LinearMap.BilinForm.Nondegenerate.baseChange_of_isLocalization</a></code>: an injective localization
+preserves nondegeneracy, without a freeness or finiteness assumption on the module.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.liftBaseChange">LinearMap.BilinForm.liftBaseChange</a></code>: lifting a form-preserving map preserves the
+base-changed form, without assuming the map exhibits a base change.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_baseChange">IsBaseChange.bilinForm_baseChange</a></code>: if a bilinear form restricts along a map to a
+second form, evaluating it through the associated base-change equivalence agrees with the
+canonical base change of the second form.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinFormIsometryEquiv">IsBaseChange.bilinFormIsometryEquiv</a></code>: in that situation the base-change equivalence is an
+isometric equivalence from the canonical base change of the second form.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.baseChange_baseChange_baseChange">LinearMap.BilinForm.baseChange_baseChange_baseChange</a></code>: base-changed maps preserving a bilinear
+form preserve its base change.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.toMatrix_baseChange">LinearMap.BilinForm.toMatrix_baseChange</a></code>: the Gram matrix of a base-changed form, in the
+base-changed basis, is the entrywise image of the original Gram matrix.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.det_toMatrix_baseChange">LinearMap.BilinForm.det_toMatrix_baseChange</a></code>: the determinant of that Gram matrix is the image of
+the original determinant.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.nondegenerate_of_nondegenerate_baseChange">LinearMap.BilinForm.nondegenerate_of_nondegenerate_baseChange</a></code>: a bilinear form on a finite free
+module over an integral domain is nondegenerate as soon as its base change into a second integral
+domain is, with no hypothesis on the structure map.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.nondegenerate_baseChange_iff">LinearMap.BilinForm.nondegenerate_baseChange_iff</a></code>: along an injective structure map between
+integral domains the implication is an equivalence.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.IsometryEquiv.baseChange">LinearMap.BilinForm.IsometryEquiv.baseChange</a></code>: an isometric equivalence of bilinear forms
+base-changes to an isometric equivalence of their base changes.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry">LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry</a></code>: base change commutes with products of
+bilinear forms, via the canonical tensor-product equivalence.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.posDef_toQuadraticMap_baseChange_iff">LinearMap.BilinForm.posDef_toQuadraticMap_baseChange_iff</a></code>: along an order-preserving
+structure map from an ordered field to a linearly ordered commutative ring, base change preserves
+and reflects positive definiteness of the quadratic map of any finite-dimensional bilinear form.</li></ul></div><div class="decl" id="LinearMap.BilinForm.baseChange_flip"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L97-L102">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.baseChange_flip"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">baseChange_flip</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn"><span class="fn">B</span>.<span class="fn">flip</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span>.<span class="fn">flip</span></span></span></div></div><p>Scalar extension commutes with flipping a bilinear form.</p></div></div><div class="decl" id="LinearMap.SeparatingLeft.baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L105-L124">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingLeft.baseChange"><span class="name">LinearMap</span>.<span class="name">SeparatingLeft</span>.<span class="name">baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Free</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">SeparatingLeft</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SeparatingLeft</span> <span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span></span></div></div><p>A free scalar extension preserves left separation of a bilinear form, with no finiteness
+assumption on the module carrying the form.</p></div></div><div class="decl" id="LinearMap.SeparatingRight.baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L127-L134">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingRight.baseChange"><span class="name">LinearMap</span>.<span class="name">SeparatingRight</span>.<span class="name">baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Free</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">SeparatingRight</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SeparatingRight</span> <span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span></span></div></div><p>A free scalar extension preserves right separation of a bilinear form, with no finiteness
+assumption on the module carrying the form.</p></div></div><div class="decl" id="LinearMap.BilinForm.Nondegenerate.baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L137-L141">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.Nondegenerate.baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Free</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span>.<span class="fn">Nondegenerate</span></span></div></div><p>A free scalar extension preserves nondegeneracy of a bilinear form, with no finiteness
+assumption on the module carrying the form. In particular, this applies to extensions of fields.</p></div></div><div class="decl" id="LinearMap.SeparatingLeft.baseChange_of_isLocalization"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L144-L161">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingLeft.baseChange_of_isLocalization"><span class="name">LinearMap</span>.<span class="name">SeparatingLeft</span>.<span class="name">baseChange_of_isLocalization</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">Submonoid</span> <span class="fn">R</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsLocalization</span> <span class="fn">S</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FaithfulSMul</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">SeparatingLeft</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SeparatingLeft</span> <span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span></span></div></div><p>An injective localization preserves left separation of a bilinear form, without any freeness
+or finiteness assumption on the module carrying the form.</p></div></div><div class="decl" id="LinearMap.SeparatingRight.baseChange_of_isLocalization"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L164-L171">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingRight.baseChange_of_isLocalization"><span class="name">LinearMap</span>.<span class="name">SeparatingRight</span>.<span class="name">baseChange_of_isLocalization</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">Submonoid</span> <span class="fn">R</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsLocalization</span> <span class="fn">S</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FaithfulSMul</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">SeparatingRight</span> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">SeparatingRight</span> <span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span></span></div></div><p>An injective localization preserves right separation of a bilinear form, without any freeness
+or finiteness assumption on the module carrying the form.</p></div></div><div class="decl" id="LinearMap.BilinForm.Nondegenerate.baseChange_of_isLocalization"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L174-L179">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.Nondegenerate.baseChange_of_isLocalization"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">baseChange_of_isLocalization</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><span class="fn">Submonoid</span> <span class="fn">R</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsLocalization</span> <span class="fn">S</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FaithfulSMul</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span>.<span class="fn">Nondegenerate</span></span></div></div><p>An injective localization preserves nondegeneracy of a bilinear form, without any freeness
+or finiteness assumption on the module carrying the form.</p></div></div><div class="decl" id="IsBaseChange.bilinForm"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L193-L197">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm"><span class="name">IsBaseChange</span>.<span class="name">bilinForm</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">A</span> <span class="fn">N</span></span></div></div><p>Extend a bilinear form to an abstract base change, transporting Mathlib's tensor-product
+base change along the canonical equivalence.</p><details id="instances-for-list-IsBaseChange.bilinForm" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="IsBaseChange.bilinForm_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L199-L201">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_def"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">LinearMap.BilinForm.congr</span> <span class="fn"><span class="fn">h</span>.<span class="fn">equiv</span></span>)</span> <span class="fn">(<span class="fn">LinearMap.BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span></span></span></div></div></div></div><div class="decl" id="IsBaseChange.bilinForm_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L203-L207">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_apply"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span>)</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">f</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">y</span>)</span></span></span></div></div><p>The extended form agrees with the original form on the image of the structure map.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_unique"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L209-L214">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_unique"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_unique</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">A</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hC</span> : <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">C</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">f</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">y</span>)</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">C</span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span></span></span></div></div><p>A bilinear form on a base change is determined by its values on the original module.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L216-L220">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_zero"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">0</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div><p>Scalar extension preserves the zero bilinear form.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L222-L226">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_add"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B </span><span class="fn">C</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">(<span class="fn">B</span> <span class="fn">+</span> <span class="fn">C</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span></span> <span class="fn">+</span> <span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">C</span></span></span></span></div></div><p>Scalar extension commutes with addition of bilinear forms.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_flip"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L228-L232">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_flip"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_flip</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn"><span class="fn">B</span>.<span class="fn">flip</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span>)</span>.<span class="fn">flip</span></span></span></div></div><p>Scalar extension commutes with flipping a bilinear form.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L234-L238">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_smul"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">(<span class="fn">r</span> <span class="fn">•</span> <span class="fn">B</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">r</span></span> <span class="fn">•</span> <span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span></span></span></span></div></div><p>Scalar extension commutes with scalar multiples from the original semiring.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_apply_symm"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L240-L250">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_apply_symm"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_apply_symm</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r</span> : <span class="fn">R</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">y</span>)</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">r</span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span>)</span> <span class="fn">y</span>)</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">r</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span>)</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span></span></span></div></div><p>A scalar symmetry between a bilinear form and its flip passes to scalar extension.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L252-L261">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_comp"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f'</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h'</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l </span><span class="fn">r</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">h'</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">(<span class="fn"><span class="fn">B</span>.<span class="fn">comp</span></span> <span class="fn">l</span> <span class="fn">r</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span>)</span>.<span class="fn">comp</span></span> <span class="fn">(<span class="fn"><span class="fn">h'</span>.<span class="fn">lift</span></span> <span class="fn">(<span class="fn">f</span> <span class="fn">∘ₗ</span> <span class="fn">l</span>)</span>)</span> <span class="fn">(<span class="fn"><span class="fn">h'</span>.<span class="fn">lift</span></span> <span class="fn">(<span class="fn">f</span> <span class="fn">∘ₗ</span> <span class="fn">r</span>)</span>)</span></span></span></div></div><p>Scalar extension commutes with pullback along linear maps, lifted to the base changes.
+Supply the target witness <code>h</code> when using this as a simp rule, as it is not determined by the
+left-hand side.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_prod"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L263-L271">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_prod"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_prod</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f'</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h'</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B'</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">⋯</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod">prod</a></span> <span class="fn">B'</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span>)</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod">prod</a></span> <span class="fn">(<span class="fn"><span class="fn">h'</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B'</span>)</span></span></span></div></div><p>Scalar extension of a block-diagonal form is the block-diagonal form of its two extensions.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_tmul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L273-L294">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_tmul"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_tmul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N'</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f'</span> : <span class="fn"><span class="fn">M'</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h'</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f'</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B'</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M'</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">⋯</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">(<span class="fn"><span class="fn">B</span>.<span class="fn">tmul</span></span> <span class="fn">B'</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B</span>)</span>.<span class="fn">tmul</span></span> <span class="fn">(<span class="fn"><span class="fn">h'</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm">bilinForm</a></span> <span class="fn">B'</span>)</span></span></span></div></div><p>Scalar extension of a tensor product form is the tensor product of the extended forms.</p></div></div><div class="decl" id="LinearMap.BilinForm.liftBaseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L310-L327">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.liftBaseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">liftBaseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B'</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">A</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">f</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">B'</span> <span class="fn">x</span>)</span> <span class="fn">y</span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">TensorProduct</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">(<span class="fn">LinearMap.liftBaseChange</span> <span class="fn">A</span> <span class="fn">f</span>)</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">LinearMap.liftBaseChange</span> <span class="fn">A</span> <span class="fn">f</span>)</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B'</span>)</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span></span></div></div><p>If <code>B</code> restricts along <code>f</code> to <code>B'</code>, evaluating <code>B</code> on the images of <code>f.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.liftBaseChange">liftBaseChange</a> A</code>
+agrees with the canonical base change of <code>B'</code>. The map <code>f</code> need not exhibit a base change.</p></div></div><div class="decl" id="IsBaseChange.bilinForm_baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L329-L338">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinForm_baseChange"><span class="name">IsBaseChange</span>.<span class="name">bilinForm_baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B'</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">A</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">f</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">B'</span> <span class="fn">x</span>)</span> <span class="fn">y</span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">TensorProduct</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn"><span class="fn">h</span>.<span class="fn">equiv</span></span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn"><span class="fn">h</span>.<span class="fn">equiv</span></span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">LinearMap.BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B'</span>)</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span></span></div></div><p>If <code>B</code> restricts along a base-change map to <code>B'</code>, its base-change equivalence preserves
+the canonical base change of <code>B'</code>.</p></div></div><div class="decl" id="IsBaseChange.bilinFormIsometryEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L340-L347">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinFormIsometryEquiv"><span class="name">IsBaseChange</span>.<span class="name">bilinFormIsometryEquiv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B'</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">A</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">f</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">B'</span> <span class="fn">x</span>)</span> <span class="fn">y</span>)</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">LinearMap.BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B'</span>)</span>.<span class="fn">IsometryEquiv</span></span> <span class="fn">B</span></span></div></div><p>If <code>B</code> restricts along a base-change map <code>f</code> to <code>B'</code>, the base-change equivalence
+<code>A ⊗[R] M ≃ N</code> is an isometric equivalence from the canonical base change of <code>B'</code> to <code>B</code>.</p><details id="instances-for-list-IsBaseChange.bilinFormIsometryEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="IsBaseChange.bilinFormIsometryEquiv_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L349-L356">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinFormIsometryEquiv_apply"><span class="name">IsBaseChange</span>.<span class="name">bilinFormIsometryEquiv_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">IsBaseChange</span> <span class="fn">A</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B'</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">A</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn">∀ (<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">f</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">B'</span> <span class="fn">x</span>)</span> <span class="fn">y</span>)</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn"><span class="fn">TensorProduct</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinFormIsometryEquiv">bilinFormIsometryEquiv</a></span> <span class="fn">B'</span> <span class="fn">B</span> <span class="fn">hB</span>)</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">h</span>.<span class="fn">equiv</span></span> <span class="fn">x</span></span></span></div></div><p>The isometric equivalence <code><a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#IsBaseChange.bilinFormIsometryEquiv">IsBaseChange.bilinFormIsometryEquiv</a></code> is the base-change
+equivalence.</p></div></div><div class="decl" id="LinearMap.BilinForm.baseChange_baseChange_baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L358-L370">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.baseChange_baseChange_baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">baseChange_baseChange_baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B'</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">g</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">M'</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn">∀ (<span class="fn">v </span><span class="fn">w</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">B'</span> <span class="fn">(<span class="fn">g</span> <span class="fn">v</span>)</span>)</span> <span class="fn">(<span class="fn">g</span> <span class="fn">w</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">v</span>)</span> <span class="fn">w</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn"><span class="fn">TensorProduct</span> <span class="fn">R</span> <span class="fn">A</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B'</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">baseChange</span> <span class="fn">A</span> <span class="fn">g</span>)</span> <span class="fn">x</span>)</span>)</span> <span class="fn">(<span class="fn">(<span class="fn">baseChange</span> <span class="fn">A</span> <span class="fn">g</span>)</span> <span class="fn">y</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span></span></div></div><p><strong>Base-changed maps preserving a bilinear form preserve its base change</strong>: if <code>g</code> carries <code>B</code>
+to <code>B'</code>, then <code>g.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingLeft.baseChange">baseChange</a> A</code> carries <code>B.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingLeft.baseChange">baseChange</a> A</code> to <code>B'.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingLeft.baseChange">baseChange</a> A</code>.</p></div></div><div class="decl" id="LinearMap.BilinForm.toMatrix_baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L384-L393">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.toMatrix_baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">toMatrix_baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">toMatrix</span> <span class="fn">(<span class="fn">Module.Basis.baseChange</span> <span class="fn">A</span> <span class="fn">b</span>)</span>)</span> <span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">map</span></span> <span class="fn">⇑<span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span></span></span></span></div></div><p>Base change acts entrywise on the Gram matrix of a bilinear form: the matrix of <code>B.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.SeparatingLeft.baseChange">baseChange</a> A</code>
+in the base-changed basis is the image of the matrix of <code>B</code> under the structure map.</p></div></div><div class="decl" id="LinearMap.BilinForm.det_toMatrix_baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L403-L409">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.det_toMatrix_baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">det_toMatrix_baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">(<span class="fn">Module.Basis.baseChange</span> <span class="fn">A</span> <span class="fn">b</span>)</span>)</span> <span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span>)</span>.<span class="fn">det</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">algebraMap</span> <span class="fn">R</span> <span class="fn">A</span>)</span> <span class="fn"><span class="fn">(<span class="fn">(<span class="fn">toMatrix</span> <span class="fn">b</span>)</span> <span class="fn">B</span>)</span>.<span class="fn">det</span></span></span></span></div></div><p>The Gram determinant of a base-changed bilinear form is the image of the original Gram
+determinant under the structure map.</p></div></div><div class="decl" id="LinearMap.BilinForm.nondegenerate_of_nondegenerate_baseChange"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L412-L425">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.nondegenerate_of_nondegenerate_baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_of_nondegenerate_baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsDomain</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsDomain</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span>.<span class="fn">Nondegenerate</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span></div></div><p><strong>Nondegeneracy descends along any base change of integral domains.</strong> On a finite free module,
+nondegeneracy of a bilinear form is nonvanishing of the determinant of its Gram matrix, and the
+structure map sends that determinant to the determinant of the base-changed Gram matrix, so a
+nondegenerate base change forces a nondegenerate form. No hypothesis on the structure map is
+needed.</p></div></div><div class="decl" id="LinearMap.BilinForm.nondegenerate_baseChange_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L427-L441">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.nondegenerate_baseChange_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_baseChange_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsDomain</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FaithfulSMul</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">Module.Basis</span> <span class="fn">ι</span> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B</span>)</span>.<span class="fn">Nondegenerate</span></span> <span class="fn">↔</span> <span class="fn"><span class="fn">B</span>.<span class="fn">Nondegenerate</span></span></span></div></div><p><strong>Nondegeneracy is preserved and reflected by an injective base change of integral domains.</strong>
+On a finite free module, nondegeneracy of a bilinear form is nonvanishing of the determinant of its
+Gram matrix, and an injective structure map neither creates nor destroys that.</p></div></div><div class="decl" id="LinearMap.BilinForm.IsometryEquiv.baseChange"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L457-L463">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.IsometryEquiv.baseChange"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsometryEquiv</span>.<span class="name">baseChange</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₁</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₂</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₂</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn">B₁</span>.<span class="fn">IsometryEquiv</span></span> <span class="fn">B₂</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B₁</span>)</span>.<span class="fn">IsometryEquiv</span></span> <span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B₂</span>)</span></span></div></div><p>Base change of an isometric equivalence of bilinear forms: the base change of the underlying
+linear equivalence is an isometric equivalence of the base-changed forms.</p><details id="instances-for-list-LinearMap.BilinForm.IsometryEquiv.baseChange" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.IsometryEquiv.baseChange_tmul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L465-L470">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.IsometryEquiv.baseChange_tmul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsometryEquiv</span>.<span class="name">baseChange_tmul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₁</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₂</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₂</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn"><span class="fn">B₁</span>.<span class="fn">IsometryEquiv</span></span> <span class="fn">B₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">A</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M₁</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.IsometryEquiv.baseChange">baseChange</a> <span class="fn">A</span> <span class="fn">f</span>)</span> <span class="fn">(<span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn"><span class="fn">f</span> <span class="fn">m</span></span></span></span></div></div><p>On pure tensors, a base-changed isometric equivalence applies the original equivalence to the
+vector.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L473-L487">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">bilinFormBaseChangeProdIsometry</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B₁</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₁</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B₂</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">LinearMap.BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">(<span class="fn"><span class="fn">B₁</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod">prod</a></span> <span class="fn">B₂</span>)</span>)</span>.<span class="fn">IsometryEquiv</span></span>
+  <span class="fn">(<span class="fn"><span class="fn">(<span class="fn">LinearMap.BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B₁</span>)</span>.<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/Prod.html#LinearMap.BilinForm.prod">prod</a></span> <span class="fn">(<span class="fn">LinearMap.BilinForm.baseChange</span> <span class="fn">A</span> <span class="fn">B₂</span>)</span>)</span></span></div></div><p>Base change of a product of bilinear forms is isometric to the product of their base changes,
+via the canonical distribution of tensor products over products.</p><details id="instances-for-list-LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry_tmul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L489-L495">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry_tmul"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">bilinFormBaseChangeProdIsometry_tmul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B₁</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₁</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B₂</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">A</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn"><span class="fn">M₁</span> <span class="fn">×</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry">bilinFormBaseChangeProdIsometry</a> <span class="fn">A</span> <span class="fn">B₁</span> <span class="fn">B₂</span>)</span> <span class="fn">(<span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">x</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(</span><span class="fn"><span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn"><span class="fn">x</span>.1</span></span><span class="fn">,</span> <span class="fn"><span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn"><span class="fn">x</span>.2</span></span><span class="fn">)</span></span></span></div></div><p>The product base-change isometry distributes a pure tensor over its two coordinates.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry_symm_tmul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L497-L504">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry_symm_tmul"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">bilinFormBaseChangeProdIsometry_symm_tmul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₂</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">R</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">M₂</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B₁</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₁</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">B₂</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">R</span> <span class="fn">M₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">A</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">M₁</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">y</span> : <span class="fn">M₂</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LargeIndecomposable.Foundations.bilinFormBaseChangeProdIsometry">bilinFormBaseChangeProdIsometry</a> <span class="fn">A</span> <span class="fn">B₁</span> <span class="fn">B₂</span>)</span>.<span class="fn">symm</span></span> <span class="fn"><span class="fn">(</span><span class="fn"><span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">x</span></span><span class="fn">,</span> <span class="fn"><span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">y</span></span><span class="fn">)</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn"><span class="fn">(</span><span class="fn">x</span><span class="fn">,</span> <span class="fn">y</span><span class="fn">)</span></span></span></span></div></div><p>The inverse product base-change isometry combines pure tensors with a common scalar.</p></div></div><div class="decl" id="LinearMap.BilinForm.posDef_toQuadraticMap_baseChange_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/BilinearForms/BaseChange.lean#L518-L570">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/BilinearForms/BaseChange.html#LinearMap.BilinForm.posDef_toQuadraticMap_baseChange_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">posDef_toQuadraticMap_baseChange_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearOrder</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsStrictOrderedRing</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">LinearOrder</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsStrictOrderedRing</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">F</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulPosStrictMono</span> <span class="fn">F</span> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">F</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">F</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><span class="fn">LinearMap.BilinForm</span> <span class="fn">F</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">BilinMap.toQuadraticMap</span> <span class="fn">(<span class="fn">BilinForm.baseChange</span> <span class="fn">K</span> <span class="fn">B</span>)</span>)</span>.<span class="fn">PosDef</span></span> <span class="fn">↔</span> <span class="fn"><span class="fn">(<span class="fn">BilinMap.toQuadraticMap</span> <span class="fn">B</span>)</span>.<span class="fn">PosDef</span></span></span></div></div><p><strong>Positive definiteness is preserved and reflected by an ordered scalar extension.</strong> For a
+bilinear form on a finite-dimensional space over an ordered field <code>F</code>, and a linearly ordered
+commutative ring <code>K</code> whose structure map from <code>F</code> is strictly monotone, the quadratic map of the
+base change of <code>B</code> to <code>K</code> is positive definite exactly when that of <code>B</code> is. No symmetry assumption
+is needed. In particular a rational form is positive definite exactly when its real extension is.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

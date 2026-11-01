@@ -1,0 +1,410 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.Foundations.CategoryTheory.PreadditiveIndecomposable</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.Foundations.CategoryTheory.PreadditiveIndecomposable";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">CategoryTheory</span>.<span class="name">PreadditiveIndecomposable</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/HopkinsLevitzki.lean">Mathlib.RingTheory.HopkinsLevitzki</a></li><li><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/LinearEnd.html">LargeIndecomposable.Foundations.CategoryTheory.LinearEnd</a></li><li><a href="../../.././LargeIndecomposable/Foundations/Ring/LocalRing.html">LargeIndecomposable.Foundations.Ring.LocalRing</a></li><li><a href="../../.././LargeIndecomposable/Modules/KrullSchmidt/Indecomposable.html">LargeIndecomposable.Modules.KrullSchmidt.Indecomposable</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Idempotents/Basic.lean">Mathlib.CategoryTheory.Idempotents.Basic</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Linear/Basic.lean">Mathlib.CategoryTheory.Linear.Basic</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Preadditive/Biproducts.lean">Mathlib.CategoryTheory.Preadditive.Biproducts</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/FiniteDimensional/Basic.lean">Mathlib.LinearAlgebra.FiniteDimensional.Basic</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/Artinian/Defs.lean">Mathlib.RingTheory.Artinian.Defs</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/Artinian/Module.lean">Mathlib.RingTheory.Artinian.Module</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/LocalRing/Defs.lean">Mathlib.RingTheory.LocalRing.Defs</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Limits/Shapes/BinaryBiproducts.lean">Mathlib.CategoryTheory.Limits.Shapes.BinaryBiproducts</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.Foundations.CategoryTheory.PreadditiveIndecomposable" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.indecomposable_of_idempotent_eq_zero_or_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_of_idempotent_eq_zero_or_id</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.indecomposable_of_injective_of_isLocalRing"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_of_injective_of_isLocalRing</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.isIso_of_isIso_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isIso_of_isIso_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.isoBiprodOfRetracts"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isoBiprodOfRetracts</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.isoBiprodOfRetracts_hom"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isoBiprodOfRetracts_hom</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.isoBiprodOfRetracts_inv"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isoBiprodOfRetracts_inv</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">idempotent_eq_zero_or_id_of_indecomposable</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.indecomposable_iff_idempotent_eq_zero_or_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_iff_idempotent_eq_zero_or_id</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.not_isZero_of_finrank_end_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">not_isZero_of_finrank_end_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.id_ne_zero_of_finrank_end_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">id_ne_zero_of_finrank_end_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.indecomposable_of_finrank_end_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_of_finrank_end_eq_one</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.isLocalRing_end_of_idempotent_eq_zero_or_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isLocalRing_end_of_idempotent_eq_zero_or_id</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.isLocalRing_end_of_indecomposable"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isLocalRing_end_of_indecomposable</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.Foundations.indecomposable_of_isLocalRing_end"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_of_isLocalRing_end</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Indecomposable.of_iso"><span class="name">CategoryTheory</span>.<span class="name">Indecomposable</span>.<span class="name">of_iso</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Functor.indecomposable_obj_of_map_bijective"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">indecomposable_obj_of_map_bijective</span></a></div></nav><main>
+<div class="mod_doc"><p>Ported from TauCeti (<code>TauCeti.CategoryTheory.Preadditive.Indecomposable</code>, commit 580b6f9d5, Apache 2.0).</p></div><div class="mod_doc"><h1 id="Recognizing-indecomposable-objects-from-their-endomorphisms" class="markdown-heading">Recognizing indecomposable objects from their endomorphisms <a class="hover-link" href="#Recognizing-indecomposable-objects-from-their-endomorphisms">#</a></h1><p>Mathlib defines <code>CategoryTheory.Indecomposable X</code> as the conjunction &quot;<code>X</code> is not a zero object,
+and in every decomposition <code>X ≅ Y ⊞ Z</code> one of <code>Y</code>, <code>Z</code> is zero&quot;, and proves exactly one criterion
+for it: a simple object is indecomposable (<code>CategoryTheory.indecomposable_of_simple</code>). That
+criterion is too strong for the objects that carry the theory of a finite-dimensional algebra: an
+indecomposable projective module is almost never simple. The criterion that does apply is the one
+this file supplies — an object all of whose idempotent endomorphisms are trivial is
+indecomposable — together with the two forms in which it is used in practice. An object whose
+endomorphisms are recorded faithfully in a <em>local</em> ring, by a map preserving zero, the identity and
+squares, is indecomposable; this is the criterion behind the Krull–Schmidt theorem, and the one
+the quiver Jordan blocks need, their endomorphism algebra <code>k[X]/(Xⁿ⁺¹)</code> being local but not a
+field. And over a division ring, an object whose endomorphism space is one-dimensional (a
+<em>brick</em>) is indecomposable.</p><p>The converse holds as soon as idempotents split, that is, over an idempotent-complete category
+(<code>CategoryTheory.IsIdempotentComplete</code>, which every abelian category is): splitting <code>e</code> and <code>𝟙 - e</code>
+produces two retracts of <code>X</code> whose idempotents add up to the identity, and any such pair realizes
+<code>X</code> as their biproduct. So over such a category an object is indecomposable exactly when it is
+nonzero and carries no idempotent endomorphism other than <code>0</code> and the identity, which is the form
+in which indecomposability is <em>used</em>: it turns a decomposition of a vertex space into a
+decomposition of the whole object.</p><h2 id="Main-results" class="markdown-heading">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_idempotent_eq_zero_or_id">LargeIndecomposable.Foundations.indecomposable_of_idempotent_eq_zero_or_id</a></code>: a nonzero object whose only idempotent
+endomorphisms are <code>0</code> and the identity is indecomposable.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_injective_of_isLocalRing">LargeIndecomposable.Foundations.indecomposable_of_injective_of_isLocalRing</a></code>: <strong>an object whose endomorphisms are
+recorded faithfully in a local ring, by a map preserving zero, the identity and squares, is
+indecomposable.</strong></li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_finrank_end_eq_one">LargeIndecomposable.Foundations.indecomposable_of_finrank_end_eq_one</a></code>: in a <code>k</code>-linear category over a division ring,
+<strong>a brick is indecomposable</strong>.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts">LargeIndecomposable.Foundations.isoBiprodOfRetracts</a></code>: two retracts of <code>X</code> whose idempotents sum to the identity exhibit
+<code>X</code> as their biproduct.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable">LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable</a></code>: the converse of the first criterion, over
+an idempotent-complete category, packaged with it as
+<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_iff_idempotent_eq_zero_or_id">LargeIndecomposable.Foundations.indecomposable_iff_idempotent_eq_zero_or_id</a></code>.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isLocalRing_end_of_idempotent_eq_zero_or_id">LargeIndecomposable.Foundations.isLocalRing_end_of_idempotent_eq_zero_or_id</a></code>: in a linear category over a commutative
+Artinian ring, a nonzero object whose endomorphisms are finitely generated over the base and whose
+only idempotent endomorphisms are <code>0</code> and the identity has a local endomorphism ring.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isLocalRing_end_of_indecomposable">LargeIndecomposable.Foundations.isLocalRing_end_of_indecomposable</a></code>: the same for an indecomposable object of an
+idempotent-complete category; this is Fitting's lemma, for instance for a Hom-finite linear
+category over a field.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_isLocalRing_end">LargeIndecomposable.Foundations.indecomposable_of_isLocalRing_end</a></code>: conversely, an object with a local endomorphism ring
+is indecomposable.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isIso_of_isIso_comp">LargeIndecomposable.Foundations.isIso_of_isIso_comp</a></code>: an invertible composite <code>f ≫ g</code> through an object with only
+trivial idempotent endomorphisms has <code>f</code> invertible.</li><li><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#CategoryTheory.Functor.indecomposable_obj_of_map_bijective">CategoryTheory.Functor.indecomposable_obj_of_map_bijective</a></code>: a functor preserving zero morphisms
+and bijective on the endomorphisms of an indecomposable object carries it to an indecomposable
+object; in particular a fully faithful one does.</li></ul><h2 id="Implementation-notes" class="markdown-heading">Implementation notes <a class="hover-link" href="#Implementation-notes">#</a></h2><p>The idempotent hypothesis is phrased with composition, <code>e ≫ e = e</code>, rather than through the ring
+<code>CategoryTheory.End X</code>, whose multiplication is composition in the opposite order; for an
+idempotent the two agree, but the hypothesis is easier to discharge as stated.</p><p><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_injective_of_isLocalRing">indecomposable_of_injective_of_isLocalRing</a></code> records the endomorphisms in an unbundled map <code>φ</code>,
+asked to be injective, to send <code>0</code> to <code>0</code> and <code>𝟙 X</code> to <code>1</code>, and to carry squares to squares,
+<code>φ (e ≫ e) = φ e * φ e</code>. On a square the two orders of multiplication agree, so no use site has to
+choose between <code>≫</code> and the multiplication of <code>End X</code>; bundling <code>φ</code> as a ring homomorphism would
+settle the order and demand additivity besides. The ring is not asked to be commutative because
+the endomorphism ring of an indecomposable object, the intended source of <code>φ</code>, is not.</p><p>Two neighbours state the same idea in narrower settings.
+<code>LargeIndecomposable.Foundations.indecomposable_iff_isLocalRing_end</code> asks <code>CategoryTheory.End</code> itself to be local but is
+confined to <code>ModuleCat A</code> and to modules of finite length;
+<code><a href="../../.././LargeIndecomposable/Modules/KrullSchmidt/Indecomposable.html#LargeIndecomposable.Foundations.isIndecomposableModule_of_isLocalRing_end">LargeIndecomposable.Foundations.isIndecomposableModule_of_isLocalRing_end</a></code> is the statement for bare modules. A quiver
+representation is a functor <code>Paths Q ⥤ ModuleCat k</code>, not an object of <code>ModuleCat A</code>, and recording
+its endomorphisms in a ring already known to be local is what makes the criterion cheap to apply.</p><p>The criteria that only produce or consume idempotents and zero objects are stated over
+<code>CategoryTheory.Limits.HasZeroMorphisms</code>, the setting of <code>CategoryTheory.Indecomposable</code> itself;
+only the converse direction, which forms <code>𝟙 X - e</code>, and the biproduct decomposition from retracts
+need a preadditive category. The brick criterion is stated over a division ring.</p><p><code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts">isoBiprodOfRetracts</a></code> asks only for the two retractions and the identity <code>r₁ ≫ i₁ + r₂ ≫ i₂ = 𝟙 X</code>;
+the orthogonality relations <code>i₁ ≫ r₂ = 0</code> and <code>i₂ ≫ r₁ = 0</code> follow. Stating it this way keeps it
+usable from any source of complementary idempotents, not only from
+<code>CategoryTheory.IsIdempotentComplete.idempotents_split</code>.</p></div><div class="decl" id="LargeIndecomposable.Foundations.indecomposable_of_idempotent_eq_zero_or_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L120-L128">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_idempotent_eq_zero_or_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_of_idempotent_eq_zero_or_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.Limits.IsZero</span> <span class="fn">X</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">e</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span></span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">e</span> <span class="fn">e</span></span> <span class="fn">=</span> <span class="fn">e</span></span> → <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn">0</span></span> <span class="fn">∨</span> <span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Indecomposable</span> <span class="fn">X</span></span></div></div><p><strong>An object with no nontrivial idempotent endomorphism is indecomposable.</strong></p></div></div><div class="decl" id="LargeIndecomposable.Foundations.indecomposable_of_injective_of_isLocalRing"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L130-L142">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_injective_of_isLocalRing"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_of_injective_of_isLocalRing</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.Limits.IsZero</span> <span class="fn">X</span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsLocalRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">(<span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span>)</span> → <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hφ</span> : <span class="fn"><span class="fn">Function.Injective</span> <span class="fn">φ</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hzero</span> : <span class="fn"><span class="fn"><span class="fn">φ</span> <span class="fn">0</span></span> <span class="fn">=</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hid</span> : <span class="fn"><span class="fn"><span class="fn">φ</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span>)</span></span> <span class="fn">=</span> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hsq</span> : <span class="fn">∀ (<span class="fn">e</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span></span>), <span class="fn"><span class="fn"><span class="fn">φ</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">e</span> <span class="fn">e</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">φ</span> <span class="fn">e</span></span> <span class="fn">*</span> <span class="fn"><span class="fn">φ</span> <span class="fn">e</span></span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Indecomposable</span> <span class="fn">X</span></span></div></div><p><strong>An object whose endomorphisms are recorded faithfully in a local ring is indecomposable.</strong>
+The record <code>φ</code> is asked to be injective and to preserve zero, the identity and squares. This is
+the criterion behind the Krull–Schmidt theorem: an object whose endomorphism ring is local is
+indecomposable.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.isIso_of_isIso_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L144-L158">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isIso_of_isIso_comp"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isIso_of_isIso_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hY</span> : <span class="fn">∀ (<span class="fn">e</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">e</span> <span class="fn">e</span></span> <span class="fn">=</span> <span class="fn">e</span></span> → <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn">0</span></span> <span class="fn">∨</span> <span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">Y</span></span></span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">CategoryTheory.IsIso</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">f</span> <span class="fn">g</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.IsIso</span> <span class="fn">f</span></span></div></div><p><strong>A composite that is invertible has an invertible first factor</strong>, when the object it passes
+through has only the trivial idempotent endomorphisms and the identity of the source is nonzero.
+Both hypotheses hold when the source is nonzero and the middle object is indecomposable in a
+category where idempotents split (<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable">LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable</a></code>).</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.isoBiprodOfRetracts"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L164-L186">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isoBiprodOfRetracts</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">i₁</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r₁</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i₂</span> : <span class="fn"><span class="fn">Z</span> <span class="fn">⟶</span> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r₂</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i₁</span> <span class="fn">r₁</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">Y</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i₂</span> <span class="fn">r₂</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">Z</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> :
+  <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">r₁</span> <span class="fn">i₁</span></span> <span class="fn">+</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">r₂</span> <span class="fn">i₂</span></span></span> <span class="fn">=</span>     <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">X</span> <span class="fn">≅</span> <span class="fn"><span class="fn">Y</span> <span class="fn">⊞</span> <span class="fn">Z</span></span></span></div></div><p><strong>Two retracts whose idempotents sum to the identity split an object as a biproduct.</strong> Its
+comparison map and inverse are read off by <code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts_hom">LargeIndecomposable.Foundations.isoBiprodOfRetracts_hom</a></code> and
+<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts_inv">LargeIndecomposable.Foundations.isoBiprodOfRetracts_inv</a></code>.</p><details id="instances-for-list-LargeIndecomposable.Foundations.isoBiprodOfRetracts" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.Foundations.isoBiprodOfRetracts_hom"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L188-L196">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts_hom"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isoBiprodOfRetracts_hom</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i₁</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r₁</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i₂</span> : <span class="fn"><span class="fn">Z</span> <span class="fn">⟶</span> <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r₂</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">h₁</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i₁</span> <span class="fn">r₁</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">Y</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">h₂</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i₂</span> <span class="fn">r₂</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">Z</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">h</span> :
+  <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">r₁</span> <span class="fn">i₁</span></span> <span class="fn">+</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">r₂</span> <span class="fn">i₂</span></span></span> <span class="fn">=</span>     <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts">isoBiprodOfRetracts</a> <span class="fn">i₁</span> <span class="fn">r₁</span> <span class="fn">i₂</span> <span class="fn">r₂</span> <span class="fn">h₁</span> <span class="fn">h₂</span> <span class="fn">h</span>)</span>.<span class="fn">hom</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.Limits.biprod.lift</span> <span class="fn">r₁</span> <span class="fn">r₂</span></span></span></div></div><p>The comparison map of <code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts">LargeIndecomposable.Foundations.isoBiprodOfRetracts</a></code> is the pair of the two retractions.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.isoBiprodOfRetracts_inv"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L198-L204">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts_inv"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isoBiprodOfRetracts_inv</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y </span><span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i₁</span> : <span class="fn"><span class="fn">Y</span> <span class="fn">⟶</span> <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r₁</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Y</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i₂</span> : <span class="fn"><span class="fn">Z</span> <span class="fn">⟶</span> <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">r₂</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">h₁</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i₁</span> <span class="fn">r₁</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">Y</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">h₂</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">i₂</span> <span class="fn">r₂</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">Z</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">h</span> :
+  <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">r₁</span> <span class="fn">i₁</span></span> <span class="fn">+</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">r₂</span> <span class="fn">i₂</span></span></span> <span class="fn">=</span>     <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts">isoBiprodOfRetracts</a> <span class="fn">i₁</span> <span class="fn">r₁</span> <span class="fn">i₂</span> <span class="fn">r₂</span> <span class="fn">h₁</span> <span class="fn">h₂</span> <span class="fn">h</span>)</span>.<span class="fn">inv</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.Limits.biprod.desc</span> <span class="fn">i₁</span> <span class="fn">i₂</span></span></span></div></div><p>The inverse of <code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isoBiprodOfRetracts">LargeIndecomposable.Foundations.isoBiprodOfRetracts</a></code> is the pair of the two sections.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L206-L217">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">idempotent_eq_zero_or_id_of_indecomposable</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.IsIdempotentComplete</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">CategoryTheory.Indecomposable</span> <span class="fn">X</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">e</span> <span class="fn">e</span></span> <span class="fn">=</span> <span class="fn">e</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn">0</span></span> <span class="fn">∨</span> <span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span></span></div></div><p><strong>An indecomposable object has no nontrivial idempotent endomorphism</strong>, as soon as idempotents
+split. This is the converse of <code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_idempotent_eq_zero_or_id">LargeIndecomposable.Foundations.indecomposable_of_idempotent_eq_zero_or_id</a></code>.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.indecomposable_iff_idempotent_eq_zero_or_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L219-L225">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_iff_idempotent_eq_zero_or_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_iff_idempotent_eq_zero_or_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.IsIdempotentComplete</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.Indecomposable</span> <span class="fn">X</span></span> <span class="fn">↔</span>   <span class="fn"><span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.Limits.IsZero</span> <span class="fn">X</span></span></span> <span class="fn">∧</span>     <span class="fn">∀ (<span class="fn">e</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span></span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">e</span> <span class="fn">e</span></span> <span class="fn">=</span> <span class="fn">e</span></span> → <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn">0</span></span> <span class="fn">∨</span> <span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span></span></span></span></span></span></div></div><p><strong>Indecomposability is the triviality of the idempotent endomorphisms</strong>, over a category in
+which idempotents split.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.not_isZero_of_finrank_end_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L231-L236">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.not_isZero_of_finrank_end_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">not_isZero_of_finrank_end_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">(<span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span>)</span></span> <span class="fn">=</span> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.Limits.IsZero</span> <span class="fn">X</span></span></span></div></div><p>An object whose endomorphism space is one-dimensional is not a zero object.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.id_ne_zero_of_finrank_end_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L238-L241">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.id_ne_zero_of_finrank_end_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">id_ne_zero_of_finrank_end_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Nontrivial</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">(<span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span>)</span></span> <span class="fn">=</span> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span> <span class="fn">≠</span> <span class="fn">0</span></span></div></div><p>An object whose endomorphism space is one-dimensional has a nonzero identity.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.indecomposable_of_finrank_end_eq_one"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L245-L257">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_finrank_end_eq_one"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_of_finrank_end_eq_one</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DivisionRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">Module.finrank</span> <span class="fn">k</span> <span class="fn">(<span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span>)</span></span> <span class="fn">=</span> <span class="fn">1</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Indecomposable</span> <span class="fn">X</span></span></div></div><p><strong>A brick is indecomposable</strong>: an object whose endomorphism space over a division ring is
+one-dimensional is indecomposable.</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.isLocalRing_end_of_idempotent_eq_zero_or_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L259-L275">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isLocalRing_end_of_idempotent_eq_zero_or_id"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isLocalRing_end_of_idempotent_eq_zero_or_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsArtinianRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">R</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">R</span> <span class="fn">(<span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span>)</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.Limits.IsZero</span> <span class="fn">X</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">e</span> : <span class="fn"><span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span></span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">e</span> <span class="fn">e</span></span> <span class="fn">=</span> <span class="fn">e</span></span> → <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn">0</span></span> <span class="fn">∨</span> <span class="fn"><span class="fn">e</span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.id</span> <span class="fn">X</span></span></span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsLocalRing</span> <span class="fn">(<span class="fn">CategoryTheory.End</span> <span class="fn">X</span>)</span></span></div></div><p><strong>A nonzero object with no nontrivial idempotent endomorphism has a local endomorphism ring</strong>,
+in a linear category over a commutative Artinian ring <code>R</code> when the endomorphisms of the object are
+finitely generated over <code>R</code>. Then <code>End X</code> has finite length over itself, and a ring of finite length
+with no idempotents besides <code>0</code> and <code>1</code> is local by Fitting's lemma
+(<code><a href="../../.././LargeIndecomposable/Modules/KrullSchmidt/Indecomposable.html#LargeIndecomposable.Foundations.isLocalRing_of_isIndecomposableModule_self">LargeIndecomposable.Foundations.isLocalRing_of_isIndecomposableModule_self</a></code>).</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.isLocalRing_end_of_indecomposable"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L277-L286">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isLocalRing_end_of_indecomposable"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">isLocalRing_end_of_indecomposable</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsArtinianRing</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">R</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.IsIdempotentComplete</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">R</span> <span class="fn">(<span class="fn">X</span> <span class="fn">⟶</span> <span class="fn">X</span>)</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">CategoryTheory.Indecomposable</span> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsLocalRing</span> <span class="fn">(<span class="fn">CategoryTheory.End</span> <span class="fn">X</span>)</span></span></div></div><p><strong>Fitting's lemma: an indecomposable object has a local endomorphism ring</strong>, in an
+idempotent-complete linear category over a commutative Artinian ring <code>R</code> when the endomorphisms of
+the object are finitely generated over <code>R</code>, for instance in a Hom-finite linear category over a
+field. Indecomposability leaves <code>0</code> and <code>1</code> as the only idempotents of <code>End X</code>
+(<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable">LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable</a></code>).</p></div></div><div class="decl" id="LargeIndecomposable.Foundations.indecomposable_of_isLocalRing_end"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L288-L294">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.indecomposable_of_isLocalRing_end"><span class="name">LargeIndecomposable</span>.<span class="name">Foundations</span>.<span class="name">indecomposable_of_isLocalRing_end</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{v, u}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsLocalRing</span> <span class="fn">(<span class="fn">CategoryTheory.End</span> <span class="fn">X</span>)</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Indecomposable</span> <span class="fn">X</span></span></div></div><p><strong>An object with a local endomorphism ring is indecomposable</strong>, the converse of
+<code><a href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#LargeIndecomposable.Foundations.isLocalRing_end_of_indecomposable">LargeIndecomposable.Foundations.isLocalRing_end_of_indecomposable</a></code>.</p></div></div><div class="decl" id="CategoryTheory.Indecomposable.of_iso"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L302-L304">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#CategoryTheory.Indecomposable.of_iso"><span class="name">CategoryTheory</span>.<span class="name">Indecomposable</span>.<span class="name">of_iso</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasZeroMorphisms</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">Indecomposable</span> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">X</span> <span class="fn">≅</span> <span class="fn">Y</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Indecomposable</span> <span class="fn">Y</span></span></div></div><p>Indecomposability is invariant under isomorphism.</p></div></div><div class="decl" id="CategoryTheory.Functor.indecomposable_obj_of_map_bijective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/70ce32998b998cd6ae01b1550e848ac353850c21/LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.lean#L314-L333">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/Foundations/CategoryTheory/PreadditiveIndecomposable.html#CategoryTheory.Functor.indecomposable_obj_of_map_bijective"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">indecomposable_obj_of_map_bijective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v_1, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Category.{v_2, u_2}</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasZeroMorphisms</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasBinaryBiproducts</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsIdempotentComplete</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Limits.HasBinaryBiproducts</span> <span class="fn">D</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">Functor</span> <span class="fn">C</span> <span class="fn">D</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hX</span> : <span class="fn"><span class="fn">Indecomposable</span> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hF</span> : <span class="fn"><span class="fn">Function.Bijective</span> <span class="fn"><span class="fn">F</span>.<span class="fn">map</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Indecomposable</span> <span class="fn">(<span class="fn"><span class="fn">F</span>.<span class="fn">obj</span></span> <span class="fn">X</span>)</span></span></div></div><p><strong>A functor bijective on the endomorphisms of an indecomposable object carries it to an
+indecomposable object</strong>, when idempotents split in the source. A fully faithful functor
+qualifies, by <code>CategoryTheory.Functor.FullyFaithful.map_bijective</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

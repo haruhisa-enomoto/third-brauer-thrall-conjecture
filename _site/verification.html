@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verification · Third Brauer–Thrall conjecture</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="nav" aria-label="Main"><a class="brand" href="index.html">Third Brauer–Thrall conjecture</a><a href="index.html">Overview</a><a href="statement.html">Statement</a><a href="proof.html">Proof guide</a><a href="library.html">Library</a><a href="api.html">API</a><a href="verification.html">Verification</a><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture">GitHub</a></nav></header>
+<main id="main"><p class="eyebrow">Reproducibility</p><h1>Verification and provenance</h1>
+<p>The library and its independent statement compile with Lean 4.35.0-rc3. Their axiom reports contain only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>. The three deliberate Challenge placeholders are not part of the proof.</p>
+<p>November 1, 2026 (Lean v4.35.0-rc3, module system): fresh build passed (10320 jobs including Challenge and Solution); axiom audit passed with only propext, Classical.choice and Quot.sound, and a scan of all 67397 declarations found no other axiom. lake comparator check of the independent statement of Theorem A, Corollary 1.1 and Corollary 5.3 passed, with con-ron, NanoDa and Lean kernel replay.</p>
+<h2>Build the project</h2><pre><code>lake exe cache get
+lake build
+python3 scripts/audit_axioms.py
+python3 scripts/scan_axioms.py
+python3 scripts/generate_challenge.py --check
+lake build Challenge Solution</code></pre>
+<p>A fresh build takes about 50 minutes on 20 hardware threads. Build <code>Challenge Solution</code> before independent comparison with <code>scripts/verify-comparator.sh</code>.</p>
+<h2>What has been reviewed</h2><p>An independent agent audit of an earlier revision checked the definitions in <code>Statement.lean</code>, the final proof assembly and selected steps of the two proofs in <code>docs/proofs</code>. The theorem statements have not changed since. It was not a line-by-line review, and no human expert has reviewed the Lean statements or these proofs. Lean checks the proofs; the match between <code>Challenge.lean</code> and the paper is a human judgement.</p>
+<h2>Source and attribution</h2><p>The development is maintained by Haruhisa Enomoto. The provenance record describes AI contributions, source revisions and licences.</p>
+<p><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/ad4e003f317a7c29f45e7eaae0ddf1d64a19c2a8/PROVENANCE.md">Provenance</a> · <a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/ad4e003f317a7c29f45e7eaae0ddf1d64a19c2a8/VENDORED.md">Reused source</a> · <a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/ad4e003f317a7c29f45e7eaae0ddf1d64a19c2a8/docs/PAPER-CORRESPONDENCE.md">Paper correspondence</a></p>
+<p><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/ad4e003f317a7c29f45e7eaae0ddf1d64a19c2a8/docs/VERIFICATION.md">Detailed verification records and reproduction commands</a></p>
+</main><footer class="site-footer">Source: <a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/tree/ad4e003f317a7c29f45e7eaae0ddf1d64a19c2a8">ad4e003</a> · API: <a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/tree/70ce32998b998cd6ae01b1550e848ac353850c21">70ce329</a><br>Haruhisa Enomoto · Lean formalization · Apache-2.0</footer></body></html>
