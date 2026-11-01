@@ -1,0 +1,4 @@
+{"name": "F75", "doc": "BO13a Lemma 7, reflecting case: the `D̃₅` tree `x₂ → a' → tz`, `a' → b' → y₁`, `x → b'`.", "theorem": "not_f75",
+ "verts": ["a'", "x₂", "tz", "b'", "y₁", "x"], "objs": ["A'", "X₂", "Tz", "B'", "Y₁", "X"],
+ "arrows": [["x₂", "a'", "V₁'"], ["a'", "b'", "V₂'"], ["a'", "tz", "ρ₂'"], ["b'", "y₁", "V₃'"], ["x", "b'", "φ"]],
+ "copy": {"type": "D", "m": 1, "spine": ["a'", "b'"], "leaves": ["x₂", "tz", "y₁", "x"]}}

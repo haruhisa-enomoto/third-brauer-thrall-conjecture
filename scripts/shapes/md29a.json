@@ -1,0 +1,4 @@
+{"name": "MD29A", "doc": "[mild] figure 2.9 (first diagram): the square `a → x → a`, `a → y → a` (`η γ = α ω'`) with arms `c → a` (the last arrow of `γ`), `x → b` (`δ`) and `b → y` (`β`).", "theorem": "not_md29a", "mild": true,
+ "verts": ["A1", "Xm", "Y1", "A2", "C0", "B3", "B0"], "objs": ["OA1", "OXm", "OY1", "OA2", "OC0", "OB3", "OB0"],
+ "arrows": [["C0", "A1", "γl"], ["A1", "Xm", "η"], ["Xm", "B3", "δ"], ["B0", "Y1", "β"], ["Y1", "A2", "ω"], ["A1", "Y1", "α"], ["Xm", "A2", "γ"]],
+ "choose": {"A1 A2": ["η", "γ"]}}

@@ -1,0 +1,3 @@
+{"name": "F67", "doc": "BO13a figure 6.7 (category 11): the square `w₁ ≫ w₂ = ψ ≫ u₂` with `ρₙ' : x' → b`, `w₁' : x → b'` and `b : m → c`.", "theorem": "not_f67",
+ "verts": ["x", "b", "m", "y₀", "x'", "b'", "c"], "objs": ["X", "Bb", "M", "Y₀", "X'", "B'", "Cc"],
+ "arrows": [["x", "b", "w₁"], ["x", "m", "ψ"], ["b", "y₀", "w₂"], ["m", "y₀", "U"], ["x'", "b", "r"], ["x", "b'", "v"], ["m", "c", "d"]]}

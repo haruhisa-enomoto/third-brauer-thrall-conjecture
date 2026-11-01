@@ -1,0 +1,4 @@
+{"name": "F73", "doc": "BO13a figure 7.3 (category 44): the pentagon `x → c → y₀`, `x → a → b → y₀` with `a → y₁ ← b' ← a' → tz`.", "theorem": "not_f73",
+ "verts": ["x", "c", "y₀", "a", "b", "y₁", "b'", "a'", "tz"],
+ "objs": ["X", "Cc", "Y₀", "Aa", "Bb", "Y₁", "B'", "A'", "Tz"],
+ "arrows": [["x", "c", "W₁"], ["c", "y₀", "W₂"], ["x", "a", "V₁"], ["a", "b", "V₂"], ["b", "y₀", "V₃"], ["a", "y₁", "r"], ["b'", "y₁", "V₃'"], ["a'", "b'", "V₂'"], ["a'", "tz", "ρ₂'"]]}

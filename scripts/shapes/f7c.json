@@ -1,0 +1,4 @@
+{"name": "F7C", "doc": "BO13a figure 7.2 (third tree): the `Ẽ₈` tree `a ← x → c₁ → c₂ → c₃ → c₄`, `a → b`, `a → y₁ ← e`.", "theorem": "not_f7c",
+ "verts": ["a", "x", "c₁", "c₂", "c₃", "c₄", "b", "y₁", "e"], "objs": ["Aa", "X", "C₁", "C₂", "C₃", "C₄", "Bb", "Y₁", "E"],
+ "arrows": [["x", "a", "V₁"], ["x", "c₁", "w₁"], ["c₁", "c₂", "w₂"], ["c₂", "c₃", "w₃"], ["c₃", "c₄", "w₄"], ["a", "b", "V₂"], ["a", "y₁", "r"], ["e", "y₁", "η"]],
+ "copy": {"type": "E8", "center": "a", "short": "b", "medium": ["y₁", "e"], "long": ["x", "c₁", "c₂", "c₃", "c₄"]}}

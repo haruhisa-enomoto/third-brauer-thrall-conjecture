@@ -1,0 +1,5 @@
+{"name": "F66", "doc": "BO13a figure 6.6 (category 20): the square `β ≫ w₂ = ψ ≫ u₂` with `σₙ ← x' → m` (`ρₙ'`), `m → c ← x''` (`b`, `σ₂'`), `x → b''` (`w₁'`), and the zero relation `ρₙ' ≫ b = 0`.", "theorem": "not_f66",
+ "verts": ["x", "b", "m", "y₀", "x'", "zn", "c", "x''", "b''"],
+ "objs": ["X", "Bb", "M", "Y₀", "X'", "Zn", "Cc", "X''", "B''"],
+ "arrows": [["x", "b", "β"], ["x", "m", "ψ"], ["b", "y₀", "W"], ["m", "y₀", "U"], ["x'", "zn", "σn"], ["x'", "m", "r"], ["m", "c", "d"], ["x''", "c", "t"], ["x", "b''", "w₁"]],
+ "zero": [["x'", "c"]]}

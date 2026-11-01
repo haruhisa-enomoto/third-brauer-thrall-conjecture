@@ -1,0 +1,4 @@
+{"name": "F8S13", "doc": "The `D̃₄` star `a → c`, `c → y₀, y₁, z₂`.", "theorem": "not_f8s13",
+ "verts": ["c", "a", "y₀", "y₁", "z₂"], "objs": ["Cc", "Aa", "Y₀", "Y₁", "Z₂"],
+ "arrows": [["a", "c", "A"], ["c", "y₀", "Bm"], ["c", "y₁", "r₁"], ["c", "z₂", "r₂"]],
+ "copy": {"type": "D", "m": 0, "spine": ["c"], "leaves": ["a", "y₀", "y₁", "z₂"]}}

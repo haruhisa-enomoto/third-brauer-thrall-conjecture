@@ -1,0 +1,17 @@
+16 hypotheses:
+  h0_m_y₀ : ¬FactorsThroughMorphism τ (U)
+  h0_m_c : ¬FactorsThroughMorphism τ (d)
+  h0_x'_m : ¬FactorsThroughMorphism τ (r)
+  h0_x'_y₀ : ¬FactorsThroughMorphism τ (r ≫ U)
+  h0_x'_c : ¬FactorsThroughMorphism τ (r ≫ d)
+  h0_x_m : ¬FactorsThroughMorphism τ (ψ)
+  h0_x_y₀ : ¬FactorsThroughMorphism τ (ψ ≫ U)
+  h0_x_c : ¬FactorsThroughMorphism τ (ψ ≫ d)
+  hi_r : ¬IsIso r
+  hi_ψ : ¬IsIso ψ
+  hi_U : ¬IsIso U
+  hi_d : ¬IsIso d
+  hl_U_d_c : ¬∃ g, U ≫ g = d
+  hl_d_U_y₀ : ¬∃ g, d ≫ g = U
+  hr_r_ψ_x : ¬∃ g, g ≫ r = ψ
+  hr_ψ_r_x' : ¬∃ g, g ≫ ψ = r

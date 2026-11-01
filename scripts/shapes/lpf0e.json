@@ -1,0 +1,4 @@
+{"name": "LPF0E", "doc": "LPF, exit `ε` at `x₀` with `ε ≫ ζ = ρ ≫ λ` (`λ` the prefix of `w` to `q`, `D̃₅`): `ρ ≫ a₁, λ, ε` out of `x₀`, `ζ : y → q`, `σ : q → x₀` the rest of `w`.", "theorem": "not_lpf0e", "mild": true,
+ "verts": ["Y1", "X3", "C8", "Q", "Y4", "X9"], "objs": ["OY1", "OX3", "OC8", "OQ", "OY4", "OX9"],
+ "arrows": [["Y1", "Q", "ζ"], ["X3", "C8", "m"], ["X3", "Q", "l"], ["X3", "Y4", "ε"], ["Q", "X9", "s"]],
+ "copy": {"type": "D", "m": 1, "spine": ["X3", "Q"], "leaves": ["C8", "Y4", "Y1", "X9"]}}

@@ -1,0 +1,4 @@
+{"name": "ME8", "doc": "[mild] figure 2.2 (second diagram): the `Ẽ₈` tree `t ← x ← x'' → z ← z' → y ← y' ← t'`, `x'' → t''`.", "theorem": "not_me8", "mild": true,
+ "verts": ["xc", "td", "x", "t", "z", "c", "y", "yb", "tb"], "objs": ["Xc", "Td", "X", "T", "Z", "Cz", "Y", "Yb", "Tb"],
+ "arrows": [["xc", "x", "ξ"], ["x", "t", "δ₁"], ["xc", "td", "δ₂"], ["xc", "z", "γ"], ["c", "z", "τ'"], ["c", "y", "α"], ["yb", "y", "ρ"], ["tb", "yb", "β"]],
+ "copy": {"type": "E8", "center": "xc", "short": "td", "medium": ["x", "t"], "long": ["z", "c", "y", "yb", "tb"]}}

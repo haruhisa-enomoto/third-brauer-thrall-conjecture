@@ -1,0 +1,4 @@
+{"name": "MD29B", "doc": "[mild] figure 2.9 (second diagram): the square `a → x → a`, `a → y → a` (`η γ = α ω'`) with arms `x → m → b` (`δ` split after its first arrow) and `m → b → y`.", "theorem": "not_md29b", "mild": true,
+ "verts": ["A1", "Xm", "Y1", "A2", "M1", "B1", "M2", "B2"], "objs": ["OA1", "OXm", "OY1", "OA2", "OM1", "OB1", "OM2", "OB2"],
+ "arrows": [["A1", "Xm", "η"], ["Xm", "M1", "δf"], ["M1", "B1", "ξ"], ["M2", "B2", "ξ₂"], ["B2", "Y1", "β"], ["Y1", "A2", "ω"], ["A1", "Y1", "α"], ["Xm", "A2", "γ"]],
+ "choose": {"A1 A2": ["η", "γ"]}}

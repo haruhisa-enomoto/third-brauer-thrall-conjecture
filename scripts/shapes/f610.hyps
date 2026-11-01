@@ -1,0 +1,34 @@
+33 hypotheses:
+  hc0 : ψ ≫ U = w₁ ≫ w₂
+  h0_b_y₀ : ¬FactorsThroughMorphism τ (w₂)
+  h0_m_y₀ : ¬FactorsThroughMorphism τ (U)
+  h0_x_b : ¬FactorsThroughMorphism τ (w₁)
+  h0_x_b' : ¬FactorsThroughMorphism τ (v)
+  h0_x_m : ¬FactorsThroughMorphism τ (ψ)
+  h0_x_y₀ : ¬FactorsThroughMorphism τ (w₁ ≫ w₂)
+  h0_x'_b : ¬FactorsThroughMorphism τ (r)
+  h0_x'_y₀ : ¬FactorsThroughMorphism τ (r ≫ w₂)
+  h0_x''_m : ¬FactorsThroughMorphism τ (t)
+  h0_x''_y₀ : ¬FactorsThroughMorphism τ (t ≫ U)
+  hi_w₁ : ¬IsIso w₁
+  hi_ψ : ¬IsIso ψ
+  hi_w₂ : ¬IsIso w₂
+  hi_U : ¬IsIso U
+  hi_r : ¬IsIso r
+  hi_v : ¬IsIso v
+  hi_t : ¬IsIso t
+  hlft_x_b_m : ¬∃ g, w₁ ≫ g = ψ
+  hlft_x_b_b' : ¬∃ g, w₁ ≫ g = v
+  hlft_x_b'_b : ¬∃ g, v ≫ g = w₁
+  hlft_x_b'_m : ¬∃ g, v ≫ g = ψ
+  hlft_x_b'_y₀ : ¬∃ g, v ≫ g = w₁ ≫ w₂
+  hlft_x_m_b : ¬∃ g, ψ ≫ g = w₁
+  hlft_x_m_b' : ¬∃ g, ψ ≫ g = v
+  hrgt_m_b_y₀ : ¬∃ g, g ≫ w₂ = U
+  hrgt_x''_b_y₀ : ¬∃ g, g ≫ w₂ = t ≫ U
+  hrgt_b_m_y₀ : ¬∃ g, g ≫ U = w₂
+  hrgt_x'_m_y₀ : ¬∃ g, g ≫ U = r ≫ w₂
+  hrgt_x'_x_b : ¬∃ g, g ≫ w₁ = r
+  hrgt_x''_x_m : ¬∃ g, g ≫ ψ = t
+  hrgt_x_x'_b : ¬∃ g, g ≫ r = w₁
+  hrgt_x_x''_m : ¬∃ g, g ≫ t = ψ

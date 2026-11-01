@@ -1,0 +1,4 @@
+{"name": "F94S", "doc": "BO13a figure 9.4 for `j = 2`: the `D̃₆` tree `x → a → y₀`, `a → y₁ ← c'`, `x₂ → c' → z₂`.", "theorem": "not_f94s",
+ "verts": ["a", "x", "y₀", "y₁", "c'", "x₂", "z₂"], "objs": ["Aa", "X", "Y₀", "Y₁", "C'", "X₂", "Z₂"],
+ "arrows": [["x", "a", "V₁"], ["a", "y₀", "V₂"], ["a", "y₁", "ρ₁'"], ["c'", "y₁", "σ₂'"], ["x₂", "c'", "V₁'"], ["c'", "z₂", "V₂'"]],
+ "copy": {"type": "D", "m": 2, "spine": ["a", "y₁", "c'"], "leaves": ["x", "y₀", "x₂", "z₂"]}}

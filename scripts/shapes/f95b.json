@@ -1,0 +1,4 @@
+{"name": "F95B", "doc": "BO13a §2.2.5 (`v₂` is an arrow): the `Ẽ₈` tree `m ← a ← x → wm`, `a ← xn → y₁ ← x₂ → y₂ ← x₃`.", "theorem": "not_f95b",
+ "verts": ["a", "m", "x", "wm", "xn", "y₁", "x₂", "y₂", "x₃"], "objs": ["Aa", "Mm", "X", "Wm", "Xn", "Y₁", "X₂", "Y₂", "X₃"],
+ "arrows": [["a", "m", "β"], ["x", "a", "V₁"], ["x", "wm", "W₁"], ["xn", "a", "r"], ["xn", "y₁", "σn"], ["x₂", "y₁", "ρn₁"], ["x₂", "y₂", "σn₁"], ["x₃", "y₂", "ρn₂"]],
+ "copy": {"type": "E8", "center": "a", "short": "m", "medium": ["x", "wm"], "long": ["xn", "y₁", "x₂", "y₂", "x₃"]}}

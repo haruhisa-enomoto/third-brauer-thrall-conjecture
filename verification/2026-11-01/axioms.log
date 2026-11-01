@@ -1,0 +1,24 @@
+'LargeIndecomposable.theoremA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.corollaryDimension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.corollaryRadical' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.longLineNode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.theoremA_of_bongartz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.corollaryDimension_of_bongartz_large' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.corollaryRadical_of_bongartz_large' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.SplitBasicData.nonempty_controlledEmbedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LargeIndecomposable.Covering.PairCoveringData.toCoveringData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LargeIndecomposable.Covering.CoveringData.controlledEmbedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'LargeIndecomposable.Walk.MonomialBand.toWalkData' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.Walk.WalkData.controlledEmbedding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.exists_brick_of_le_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.kroneckerBricks_of_large' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.SplitBasicData.presentation_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.Challenge.theoremA' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.Challenge.corollaryDimension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LargeIndecomposable.Challenge.corollaryRadical' depends on axioms: [propext, Classical.choice, Quot.sound]

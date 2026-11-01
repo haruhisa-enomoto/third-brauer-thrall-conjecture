@@ -1,0 +1,4 @@
+{"name": "In3", "doc": "The `D̃₄` star with three arrows `α, β, γ` into `y` and one arrow `ρ` out of `y` ([mild] Figure 1.3).", "theorem": "not_in3", "mild": true,
+ "verts": ["y", "a", "b", "c", "t"], "objs": ["Y", "Aa", "Bb", "Cc", "Tt"],
+ "arrows": [["a", "y", "α"], ["b", "y", "β"], ["c", "y", "γ"], ["y", "t", "ρ"]],
+ "copy": {"type": "D", "m": 0, "spine": ["y"], "leaves": ["a", "b", "c", "t"]}}

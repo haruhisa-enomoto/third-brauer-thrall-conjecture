@@ -1,0 +1,4 @@
+{"name": "LPF0D", "doc": "LPF, exit `ε` at `x₀` with `ε ≫ ζ = ρ ≫ a₁` (`D̃₅`): `ρ, a₁, ε` out of `x₀`, `ζ : y → x₁`, `a₂ : x₁ → x₂`.", "theorem": "not_lpf0d", "mild": true,
+ "verts": ["Y1", "X3", "X6", "C5", "E7", "Y4"], "objs": ["OY1", "OX3", "OX6", "OC5", "OE7", "OY4"],
+ "arrows": [["Y1", "C5", "ζ"], ["X3", "X6", "ρ"], ["X3", "C5", "a"], ["X3", "Y4", "ε"], ["C5", "E7", "b"]],
+ "copy": {"type": "D", "m": 1, "spine": ["X3", "C5"], "leaves": ["X6", "Y4", "Y1", "E7"]}}

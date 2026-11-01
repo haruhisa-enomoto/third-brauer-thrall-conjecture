@@ -1,0 +1,4 @@
+{"name": "ME7B", "doc": "[mild] Lemma 2.1, Case II: the `Ẽ₇` tree `z₁ ← x → t ← z → y ← y' ← t'`, `x' → z`.", "theorem": "not_me7b", "mild": true,
+ "verts": ["z", "xa", "t", "x", "z1", "y", "yb", "tb"], "objs": ["Z", "Xa", "T", "X", "Z₁", "Y", "Yb", "Tb"],
+ "arrows": [["z", "t", "φ"], ["x", "t", "δ"], ["x", "z1", "γ₁"], ["xa", "z", "γ₂"], ["z", "y", "α"], ["yb", "y", "ρ"], ["tb", "yb", "β"]],
+ "copy": {"type": "E7", "center": "z", "short": "xa", "long": [["t", "x", "z1"], ["y", "yb", "tb"]]}}

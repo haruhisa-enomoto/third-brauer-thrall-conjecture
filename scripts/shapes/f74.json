@@ -1,0 +1,4 @@
+{"name": "F74", "doc": "BO13a figure 7.4: the `D̃₇` tree `c ← x → a`, `x → m ← x₂ → a'`, `b' ← a' → tz`.", "theorem": "not_f74",
+ "verts": ["x", "c", "a", "m", "x₂", "a'", "b'", "tz"], "objs": ["X", "Cc", "Aa", "M", "X₂", "A'", "B'", "Tz"],
+ "arrows": [["x", "c", "W₁"], ["x", "a", "V₁"], ["x", "m", "γ"], ["x₂", "m", "W₁'"], ["x₂", "a'", "V₁'"], ["a'", "b'", "V₂'"], ["a'", "tz", "ρ₂'"]],
+ "copy": {"type": "D", "m": 3, "spine": ["x", "m", "x₂", "a'"], "leaves": ["c", "a", "b'", "tz"]}}

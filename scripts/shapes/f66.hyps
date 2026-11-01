@@ -1,0 +1,46 @@
+45 hypotheses:
+  hc0 : ψ ≫ U = β ≫ W
+  hz0 : r ≫ d = 0
+  h0_b_y₀ : ¬FactorsThroughMorphism τ (W)
+  h0_m_c : ¬FactorsThroughMorphism τ (d)
+  h0_m_y₀ : ¬FactorsThroughMorphism τ (U)
+  h0_x_b : ¬FactorsThroughMorphism τ (β)
+  h0_x_b'' : ¬FactorsThroughMorphism τ (w₁)
+  h0_x_c : ¬FactorsThroughMorphism τ (ψ ≫ d)
+  h0_x_m : ¬FactorsThroughMorphism τ (ψ)
+  h0_x_y₀ : ¬FactorsThroughMorphism τ (β ≫ W)
+  h0_x'_m : ¬FactorsThroughMorphism τ (r)
+  h0_x'_y₀ : ¬FactorsThroughMorphism τ (r ≫ U)
+  h0_x'_zn : ¬FactorsThroughMorphism τ (σn)
+  h0_x''_c : ¬FactorsThroughMorphism τ (t)
+  hi_β : ¬IsIso β
+  hi_ψ : ¬IsIso ψ
+  hi_W : ¬IsIso W
+  hi_U : ¬IsIso U
+  hi_σn : ¬IsIso σn
+  hi_r : ¬IsIso r
+  hi_d : ¬IsIso d
+  hi_t : ¬IsIso t
+  hi_w₁ : ¬IsIso w₁
+  hlft_m_c_y₀ : ¬∃ g, d ≫ g = U
+  hlft_m_y₀_c : ¬∃ g, U ≫ g = d
+  hlft_x_b_m : ¬∃ g, β ≫ g = ψ
+  hlft_x_b_c : ¬∃ g, β ≫ g = ψ ≫ d
+  hlft_x_b_b'' : ¬∃ g, β ≫ g = w₁
+  hlft_x_b''_b : ¬∃ g, w₁ ≫ g = β
+  hlft_x_b''_m : ¬∃ g, w₁ ≫ g = ψ
+  hlft_x_b''_y₀ : ¬∃ g, w₁ ≫ g = β ≫ W
+  hlft_x_b''_c : ¬∃ g, w₁ ≫ g = ψ ≫ d
+  hlft_x_m_b : ¬∃ g, ψ ≫ g = β
+  hlft_x_m_b'' : ¬∃ g, ψ ≫ g = w₁
+  hlft_x'_m_zn : ¬∃ g, r ≫ g = σn
+  hlft_x'_zn_m : ¬∃ g, σn ≫ g = r
+  hlft_x'_zn_y₀ : ¬∃ g, σn ≫ g = r ≫ U
+  hrgt_m_b_y₀ : ¬∃ g, g ≫ W = U
+  hrgt_x'_b_y₀ : ¬∃ g, g ≫ W = r ≫ U
+  hrgt_x''_m_c : ¬∃ g, g ≫ d = t
+  hrgt_b_m_y₀ : ¬∃ g, g ≫ U = W
+  hrgt_x'_x_m : ¬∃ g, g ≫ ψ = r
+  hrgt_x_x'_m : ¬∃ g, g ≫ r = ψ
+  hrgt_x_x''_c : ¬∃ g, g ≫ t = ψ ≫ d
+  hrgt_m_x''_c : ¬∃ g, g ≫ t = d

@@ -1,0 +1,4 @@
+{"name": "DM5C", "doc": "`D̃₅` with spine `a → c`: `x → a → y` at `a` and two arrows out of `c` ([mild] figure 4.9, first diagram).", "theorem": "not_dm5c", "mild": true,
+ "verts": ["A", "Cc", "Xx", "Yy", "X2", "Z"], "objs": ["OA", "OCc", "OXx", "OYy", "OX2", "OZ"],
+ "arrows": [["Xx", "A", "γ"], ["A", "Yy", "α"], ["A", "Cc", "η₁"], ["Cc", "X2", "η₂"], ["Cc", "Z", "φ"]],
+ "copy": {"type": "D", "m": 1, "spine": ["A", "Cc"], "leaves": ["Xx", "Yy", "X2", "Z"]}}

@@ -1,0 +1,4 @@
+{"name": "MD4", "doc": "[mild] figure 2.1 (third diagram): the `D̃₄` star `x → z`, `z → y`, `z → z'`, `z → t`.", "theorem": "not_md4", "mild": true,
+ "verts": ["z", "x", "y", "zb", "t"], "objs": ["Z", "X", "Y", "Zb", "T"],
+ "arrows": [["x", "z", "γ"], ["z", "y", "α"], ["z", "zb", "τ'"], ["z", "t", "η"]],
+ "copy": {"type": "D", "m": 0, "spine": ["z"], "leaves": ["x", "y", "zb", "t"]}}

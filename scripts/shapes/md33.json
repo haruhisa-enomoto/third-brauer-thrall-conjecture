@@ -1,0 +1,5 @@
+{"name": "MD33", "doc": "[mild] figure 3.3: an extra arrow `ε` out of `x` next to the contour square, with `η : a → x'`, `δ : x' → b'`, `ω' : y' → a`, `β : b'' → y'` and `ω' ≫ η = 0` in `P/τ`.", "theorem": "not_md33", "mild": true, "zero_mod": true,
+ "verts": ["Xa", "Cc", "Aa", "Bb", "Yy", "X2", "B3", "Y2", "B4"], "objs": ["OXa", "OCc", "OAa", "OBb", "OYy", "OX2", "OB3", "OY2", "OB4"],
+ "arrows": [["Xa", "Cc", "ε"], ["Xa", "Aa", "γ"], ["Xa", "Bb", "δ"], ["Aa", "Yy", "α"], ["Bb", "Yy", "β"], ["Aa", "X2", "η"], ["X2", "B3", "δ₂"], ["Y2", "Aa", "ω"], ["B4", "Y2", "β₂"]],
+ "zero": [["Y2", "X2"], ["Y2", "B3"], ["B4", "X2"], ["B4", "B3"]],
+ "choose": {"Xa Yy": ["γ", "α"]}}

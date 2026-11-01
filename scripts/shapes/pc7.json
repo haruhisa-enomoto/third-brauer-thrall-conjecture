@@ -1,0 +1,3 @@
+{"name": "PC7", "doc": "Open penny-farthing (`n = 2`): the `Ã₄` cycle `x → x ← t → c → c ← x` along `α²`, `β α`, `γ`, a radical endomorphism `ℓ` of `c`, and `a₁ γ`.", "theorem": "not_pc7", "mild": true,
+ "verts": ["X0", "X2", "T0", "C0", "C1"], "objs": ["OX0", "OX2", "OT0", "OC0", "OC1"],
+ "arrows": [["X0", "X2", "s"], ["X0", "C1", "u"], ["T0", "X2", "f"], ["T0", "C0", "γ"], ["C0", "C1", "ℓ"]]}

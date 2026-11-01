@@ -1,0 +1,38 @@
+37 hypotheses:
+  hz0 : V₁ ≫ ρ₂' = 0
+  hz1 : σ₃' ≫ ρ₁' = 0
+  h0_a_y₁ : ¬FactorsThroughMorphism τ (ρ₁')
+  h0_a_z₂ : ¬FactorsThroughMorphism τ (ρ₂')
+  h0_x_B : ¬FactorsThroughMorphism τ (W₁)
+  h0_x_a : ¬FactorsThroughMorphism τ (V₁)
+  h0_x_y₁ : ¬FactorsThroughMorphism τ (V₁ ≫ ρ₁')
+  h0_xn_B : ¬FactorsThroughMorphism τ (r)
+  h0_xn_tφ : ¬FactorsThroughMorphism τ (φ)
+  h0_x₂_a : ¬FactorsThroughMorphism τ (σ₂')
+  h0_x₂_y₁ : ¬FactorsThroughMorphism τ (σ₂' ≫ ρ₁')
+  h0_x₂_z₂ : ¬FactorsThroughMorphism τ (σ₂' ≫ ρ₂')
+  h0_x₃_a : ¬FactorsThroughMorphism τ (σ₃')
+  h0_x₃_z₂ : ¬FactorsThroughMorphism τ (σ₃' ≫ ρ₂')
+  hi_φ : ¬IsIso φ
+  hi_r : ¬IsIso r
+  hi_W₁ : ¬IsIso W₁
+  hi_V₁ : ¬IsIso V₁
+  hi_σ₂' : ¬IsIso σ₂'
+  hi_σ₃' : ¬IsIso σ₃'
+  hi_ρ₁' : ¬IsIso ρ₁'
+  hi_ρ₂' : ¬IsIso ρ₂'
+  hlft_a_y₁_z₂ : ¬∃ g, ρ₁' ≫ g = ρ₂'
+  hlft_a_z₂_y₁ : ¬∃ g, ρ₂' ≫ g = ρ₁'
+  hlft_x_B_a : ¬∃ g, W₁ ≫ g = V₁
+  hlft_x_B_y₁ : ¬∃ g, W₁ ≫ g = V₁ ≫ ρ₁'
+  hlft_x_a_B : ¬∃ g, V₁ ≫ g = W₁
+  hlft_xn_B_tφ : ¬∃ g, r ≫ g = φ
+  hlft_xn_tφ_B : ¬∃ g, φ ≫ g = r
+  hrgt_xn_x_B : ¬∃ g, g ≫ W₁ = r
+  hrgt_x₂_x_a : ¬∃ g, g ≫ V₁ = σ₂'
+  hrgt_x₃_x_a : ¬∃ g, g ≫ V₁ = σ₃'
+  hrgt_x_xn_B : ¬∃ g, g ≫ r = W₁
+  hrgt_x_x₂_a : ¬∃ g, g ≫ σ₂' = V₁
+  hrgt_x₃_x₂_a : ¬∃ g, g ≫ σ₂' = σ₃'
+  hrgt_x_x₃_a : ¬∃ g, g ≫ σ₃' = V₁
+  hrgt_x₂_x₃_a : ¬∃ g, g ≫ σ₃' = σ₂'

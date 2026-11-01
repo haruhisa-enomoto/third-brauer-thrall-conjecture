@@ -1,0 +1,4 @@
+{"name": "F8R1C", "doc": "BO13a Lemma 8, reflecting case: the `Ẽ₆` tree `c' ← x → a ← x₂ → tφ`, `a → c → y₁`.", "theorem": "not_f8r1c",
+ "verts": ["a", "x", "c'", "x₂", "tφ", "c", "y₁"], "objs": ["Aa", "X", "C'", "X₂", "Tφ", "Cc", "Y₁"],
+ "arrows": [["x", "a", "V₁"], ["x", "c'", "W₁"], ["x₂", "a", "σ₂'"], ["x₂", "tφ", "φ"], ["a", "c", "A"], ["c", "y₁", "r₁"]],
+ "copy": {"type": "E6", "center": "a", "inner": ["x", "x₂", "c"], "outer": ["c'", "tφ", "y₁"]}}

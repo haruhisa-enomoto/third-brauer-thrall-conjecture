@@ -1,0 +1,18 @@
+17 hypotheses:
+  h0_a_c : ¬FactorsThroughMorphism τ (A)
+  h0_x_a : ¬FactorsThroughMorphism τ (V₁)
+  h0_x_c : ¬FactorsThroughMorphism τ (V₁ ≫ A)
+  h0_xn_a : ¬FactorsThroughMorphism τ (r)
+  h0_xn_c : ¬FactorsThroughMorphism τ (r ≫ A)
+  h0_x₂_a : ¬FactorsThroughMorphism τ (σ₂')
+  h0_x₂_c : ¬FactorsThroughMorphism τ (σ₂' ≫ A)
+  hi_V₁ : ¬IsIso V₁
+  hi_r : ¬IsIso r
+  hi_σ₂' : ¬IsIso σ₂'
+  hi_A : ¬IsIso A
+  hr_V₁_r_xn : ¬∃ g, g ≫ V₁ = r
+  hr_V₁_σ₂'_x₂ : ¬∃ g, g ≫ V₁ = σ₂'
+  hr_r_V₁_x : ¬∃ g, g ≫ r = V₁
+  hr_r_σ₂'_x₂ : ¬∃ g, g ≫ r = σ₂'
+  hr_σ₂'_V₁_x : ¬∃ g, g ≫ σ₂' = V₁
+  hr_σ₂'_r_xn : ¬∃ g, g ≫ σ₂' = r

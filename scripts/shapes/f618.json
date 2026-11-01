@@ -1,0 +1,4 @@
+{"name": "F618", "doc": "BO13a figure 6.18: the `D̃₅` tree `x' → c → y₀`, `c ← m → z₂`, `m → y₁`.", "theorem": "not_f618",
+ "verts": ["c", "x'", "y₀", "m", "z₂", "y₁"], "objs": ["Cc", "X'", "Y₀", "M", "Z₂", "Y₁"],
+ "arrows": [["x'", "c", "r"], ["c", "y₀", "bb"], ["m", "c", "a"], ["m", "z₂", "q"], ["m", "y₁", "U'"]],
+ "copy": {"type": "D", "m": 1, "spine": ["c", "m"], "leaves": ["x'", "y₀", "z₂", "y₁"]}}

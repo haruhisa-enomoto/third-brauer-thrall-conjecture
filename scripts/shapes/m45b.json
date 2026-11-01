@@ -1,0 +1,4 @@
+{"name": "M45B", "doc": "[mild] figure 4.5 (second diagram): the exit `ε : x₀ → b` and an exit `γ : x₁ → c` with `a ≫ γ ≠ 0`, around the square `a ≫ β = ρ ≫ ρ`.", "theorem": "not_m45b", "mild": true,
+ "verts": ["A", "Bb", "B", "X1", "Cc", "W", "G"], "objs": ["XA", "XBb", "XB", "XX1", "XCc", "XW", "XG"],
+ "arrows": [["A", "Bb", "ε"], ["A", "B", "ρ"], ["A", "X1", "a"], ["X1", "Cc", "γ"], ["X1", "W", "β"], ["B", "W", "ρ'"], ["G", "B", "β'"]],
+ "choose": {"A W": ["ρ", "ρ'"]}}

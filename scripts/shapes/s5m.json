@@ -1,0 +1,4 @@
+{"name": "S5m", "doc": "The `D̃₅` tree `zn ← m → y₀`, `m → y₁ ← b'`, `te → y₁`.", "theorem": "not_s5m",
+ "verts": ["m", "zn", "y₀", "y₁", "b'", "te"], "objs": ["M", "Zn", "Y₀", "Y₁", "B'", "Te"],
+ "arrows": [["m", "zn", "s"], ["m", "y₀", "U"], ["m", "y₁", "U'"], ["b'", "y₁", "W'"], ["te", "y₁", "e"]],
+ "copy": {"type": "D", "m": 1, "spine": ["m", "y₁"], "leaves": ["zn", "y₀", "b'", "te"]}}

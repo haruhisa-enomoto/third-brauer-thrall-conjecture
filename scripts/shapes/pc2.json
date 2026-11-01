@@ -1,0 +1,4 @@
+{"name": "PC2", "doc": "Open penny-farthing (`n = 2`): `Ẽ₇` centred at `t` (`a`, `b`, `γ`), arms `x → t ← w` (along `α a`, `δ`) and `x ← t → c` (along `b α`, `γ`).", "theorem": "not_pc2", "mild": true,
+ "verts": ["T1", "X0", "T2", "W2", "X2", "T0", "C0", "C1"], "objs": ["OT1", "OX0", "OT2", "OW2", "OX2", "OT0", "OC0", "OC1"],
+ "arrows": [["X0", "T1", "a"], ["X0", "T2", "e"], ["W2", "T2", "d"], ["T1", "X2", "b"], ["T0", "X2", "f"], ["T0", "C0", "γ₀"], ["T1", "C1", "γ₁"]],
+ "copy": {"type": "E7", "center": "T1", "short": "C1", "long": [["X0", "T2", "W2"], ["X2", "T0", "C0"]]}}

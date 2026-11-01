@@ -1,0 +1,4 @@
+{"name": "MI41B", "doc": "[mild] MIDB, figure 4.1, second diagram: the dumb-bell square with `χ` after it, an extra arrow `ζ` into `x` and an extra arrow `t` out of `y`.", "theorem": "not_mi41b", "mild": true,
+ "verts": ["X0", "X1", "X2", "Tt", "Y0", "Y1", "Y2", "Zz"], "objs": ["OX0", "OX1", "OX2", "OT", "OY0", "OY1", "OY2", "OZ"],
+ "arrows": [["X0", "X1", "c₁"], ["X1", "X2", "c₂"], ["Tt", "X2", "ζ"], ["X0", "Y1", "μ₁"], ["X1", "Y2", "μ₂"], ["Y0", "Y1", "a₁"], ["Y1", "Y2", "a₂"], ["Y0", "Zz", "t"]],
+ "choose": {"X0 Y2": ["μ₁", "a₂"]}}

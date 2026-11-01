@@ -1,0 +1,4 @@
+{"name": "F8R1D", "doc": "BO13a Lemma 8, reflecting case: `c' ← x → a → c → y₁`, `xn → c`, `x₂ → a → z₂` with `ρn' ≫ ρ₁'' = v₁ ≫ ρ₂' = 0`.", "theorem": "not_f8r1d",
+ "verts": ["x", "c'", "a", "c", "xn", "y₁", "x₂", "z₂"], "objs": ["X", "C'", "Aa", "Cc", "Xn", "Y₁", "X₂", "Z₂"],
+ "arrows": [["x", "c'", "W₁"], ["x", "a", "V₁"], ["a", "c", "A"], ["xn", "c", "r"], ["c", "y₁", "r₁"], ["x₂", "a", "σ₂'"], ["a", "z₂", "ρ₂'"]],
+ "zero": [["xn", "y₁"], ["x", "z₂"]]}

@@ -1,0 +1,23 @@
+22 hypotheses:
+  h0_m_zn : ¬FactorsThroughMorphism τ (s)
+  h0_m_y₀ : ¬FactorsThroughMorphism τ (U)
+  h0_m_y₁ : ¬FactorsThroughMorphism τ (U')
+  h0_b'_y₁ : ¬FactorsThroughMorphism τ (W')
+  h0_te_y₁ : ¬FactorsThroughMorphism τ (e)
+  hi_s : ¬IsIso s
+  hi_U : ¬IsIso U
+  hi_U' : ¬IsIso U'
+  hi_W' : ¬IsIso W'
+  hi_e : ¬IsIso e
+  hl_s_U_y₀ : ¬∃ g, s ≫ g = U
+  hl_s_U'_y₁ : ¬∃ g, s ≫ g = U'
+  hl_U_s_zn : ¬∃ g, U ≫ g = s
+  hl_U_U'_y₁ : ¬∃ g, U ≫ g = U'
+  hl_U'_s_zn : ¬∃ g, U' ≫ g = s
+  hl_U'_U_y₀ : ¬∃ g, U' ≫ g = U
+  hr_U'_W'_b' : ¬∃ g, g ≫ U' = W'
+  hr_U'_e_te : ¬∃ g, g ≫ U' = e
+  hr_W'_U'_m : ¬∃ g, g ≫ W' = U'
+  hr_W'_e_te : ¬∃ g, g ≫ W' = e
+  hr_e_U'_m : ¬∃ g, g ≫ e = U'
+  hr_e_W'_b' : ¬∃ g, g ≫ e = W'

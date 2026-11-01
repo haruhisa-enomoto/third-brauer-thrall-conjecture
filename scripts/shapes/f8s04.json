@@ -1,0 +1,4 @@
+{"name": "F8S04", "doc": "The `D̃₄` star `a → y₀, y₁, z₂, yn1`.", "theorem": "not_f8s04",
+ "verts": ["a", "y₀", "y₁", "z₂", "yn1"], "objs": ["Aa", "Y₀", "Y₁", "Z₂", "Yn1"],
+ "arrows": [["a", "y₀", "V₂"], ["a", "y₁", "ρ₁'"], ["a", "z₂", "ρ₂'"], ["a", "yn1", "s"]],
+ "copy": {"type": "D", "m": 0, "spine": ["a"], "leaves": ["y₀", "y₁", "z₂", "yn1"]}}

@@ -1,0 +1,5 @@
+{"name": "M43B", "doc": "[mild] figure 4.3 (second diagram): an exit `ε : x₀ → b` and an entry `δ : z → x₁` with `δ ≫ β = 0`, around the square `a ≫ β = ρ ≫ ρ`, with `ρ ≫ a ← δ` and `β ≫ a = 0`.", "theorem": "not_m43b", "mild": true,
+ "verts": ["Z", "X1", "W", "A", "B", "Bb", "D1", "G", "Z2"], "objs": ["XZ", "XX1", "XW", "XA", "XB", "XBb", "XD1", "XG", "XZ2"],
+ "arrows": [["Z", "X1", "δ"], ["X1", "W", "β"], ["A", "B", "ρ"], ["A", "Bb", "ε"], ["A", "X1", "a"], ["B", "W", "ρ'"], ["B", "D1", "a'"], ["G", "B", "β'"], ["Z2", "D1", "δ'"]],
+ "zero": [["Z", "W"], ["G", "D1"]],
+ "choose": {"A W": ["ρ", "ρ'"]}}

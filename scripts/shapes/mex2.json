@@ -1,0 +1,4 @@
+{"name": "MEX2", "doc": "Exceptional diamond: an arrow `φ` into `d` other than `ω₁` ([mild] figure 4.9, second diagram).", "theorem": "not_mex2", "mild": true,
+ "verts": ["Xx", "A", "B", "Yy", "Y0", "Dd", "D2", "Z"], "objs": ["OXx", "OA", "OB", "OYy", "OY0", "ODd", "OD2", "OZ"],
+ "arrows": [["Y0", "Dd", "ω₁"], ["Dd", "A", "ω₂"], ["A", "Yy", "α"], ["Yy", "D2", "ω₃"], ["Xx", "A", "γ"], ["Xx", "B", "δ"], ["B", "Yy", "β"], ["Z", "D2", "φ"]],
+ "choose": {"Xx Yy": ["γ", "α"]}}

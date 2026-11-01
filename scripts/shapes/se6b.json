@@ -1,0 +1,4 @@
+{"name": "SE6B", "doc": "`Ẽ₆` at `y`: the arm `y → a → y` into `y`, the tail `y → a → y`, and `y ← x → x` (`β`, `d`).", "theorem": "not_se6b", "mild": true,
+ "verts": ["Y", "A1", "Y0", "A3", "Y4", "X", "X2"], "objs": ["OY", "OA1", "OY0", "OA3", "OY4", "OX", "OX2"],
+ "arrows": [["Y0", "A1", "u"], ["A1", "Y", "α"], ["Y", "A3", "ω"], ["A3", "Y4", "α₂"], ["X", "Y", "β"], ["X", "X2", "d"]],
+ "copy": {"type": "E6", "center": "Y", "inner": ["A1", "A3", "X"], "outer": ["Y0", "Y4", "X2"]}}

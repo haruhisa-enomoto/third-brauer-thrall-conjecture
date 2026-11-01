@@ -1,0 +1,4 @@
+{"name": "DB31B", "doc": "[mild] figure 3.1, second diagram: the dumb-bell square `x → y → y`, `x → x → y` with `η` out of the first `y`, `ν` into the last `y` and `χ` out of the second `x`.", "theorem": "not_db31b", "mild": true,
+ "verts": ["Aa", "Bb", "Cc", "Dd", "Hh", "Ff", "Gg"], "objs": ["OA", "OB", "OC", "OD", "OH", "OF", "OG"],
+ "arrows": [["Aa", "Bb", "μ₁"], ["Bb", "Dd", "a₁"], ["Aa", "Cc", "c₁"], ["Cc", "Dd", "μ₂"], ["Bb", "Hh", "η"], ["Ff", "Dd", "ν"], ["Cc", "Gg", "c₂"]],
+ "choose": {"Aa Dd": ["μ₁", "a₁"]}}

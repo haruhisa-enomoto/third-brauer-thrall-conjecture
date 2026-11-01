@@ -1,0 +1,4 @@
+{"name": "MD5", "doc": "[mild] Lemma 2.2: the `D̃₅` tree with `α, β` into `y`, `q : y → m` and `a, b` out of `m`.", "theorem": "not_md5", "mild": true,
+ "verts": ["y", "z", "t", "m", "u", "v"], "objs": ["Y", "Z", "T", "M", "U", "V"],
+ "arrows": [["z", "y", "α"], ["t", "y", "β"], ["y", "m", "q"], ["m", "u", "a"], ["m", "v", "b"]],
+ "copy": {"type": "D", "m": 1, "spine": ["y", "m"], "leaves": ["z", "t", "u", "v"]}}

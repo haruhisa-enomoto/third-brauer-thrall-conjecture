@@ -1,0 +1,5 @@
+{"name": "LPF2", "doc": "[mild] figure 3.2, second diagram (LPF, exit `ε` at `x_i`, `i ≥ 2`): the square `λ ≫ σ = ρ ≫ ρ` (`λ` the prefix of `w` to `x_i`, `σ` the rest), `ε` at `x_i`, `ρ ≫ a₁ ≫ c` (`c : x₁ → x_i`) and `c' ≫ σ` into the middle `x₀`.", "theorem": "not_lpf2", "mild": true,
+ "verts": ["X0", "XI", "Y", "XM", "XB", "X1", "XI2", "XI3", "X13"], "objs": ["OX0", "OXI", "OY", "OXM", "OXB", "OX1", "OXI2", "OXI3", "OX13"],
+ "arrows": [["X0", "XI", "l"], ["XI", "XB", "s"], ["X0", "XM", "ρ"], ["XM", "XB", "ρ'"], ["XI", "Y", "ε"], ["XM", "X1", "a"], ["X1", "XI2", "c"], ["XI3", "XM", "s'"], ["X13", "XI3", "c'"]],
+ "zero": [["XI3", "X1"], ["X13", "X1"], ["X13", "XI2"], ["XI3", "XI2"]],
+ "choose": {"X0 XB": ["l", "s"]}}

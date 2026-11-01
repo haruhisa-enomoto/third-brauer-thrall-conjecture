@@ -1,0 +1,4 @@
+{"name": "Out3", "doc": "The `D̃₄` star with one arrow `ρ` into `y` and three arrows `α, β, γ` out of `y` ([mild] Lemma LPF).", "theorem": "not_out3", "mild": true,
+ "verts": ["y", "s", "a", "b", "c"], "objs": ["Y", "Ss", "Aa", "Bb", "Cc"],
+ "arrows": [["s", "y", "ρ"], ["y", "a", "α"], ["y", "b", "β"], ["y", "c", "γ"]],
+ "copy": {"type": "D", "m": 0, "spine": ["y"], "leaves": ["s", "a", "b", "c"]}}

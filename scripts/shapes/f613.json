@@ -1,0 +1,4 @@
+{"name": "F613", "doc": "BO13a figure 6.13: the `D̃₆` tree `x' → b → zn`, `b → y₀ ← m`, `m → y₁`, `m → z₂`.", "theorem": "not_f613",
+ "verts": ["y₀", "x'", "b", "zn", "m", "y₁", "z₂"], "objs": ["Y₀", "X'", "Bb", "Zn", "M", "Y₁", "Z₂"],
+ "arrows": [["x'", "b", "r"], ["b", "zn", "s"], ["b", "y₀", "W"], ["m", "y₀", "U"], ["m", "y₁", "U'"], ["m", "z₂", "q"]],
+ "copy": {"type": "D", "m": 2, "spine": ["b", "y₀", "m"], "leaves": ["x'", "zn", "y₁", "z₂"]}}

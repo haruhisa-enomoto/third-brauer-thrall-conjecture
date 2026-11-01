@@ -1,0 +1,19 @@
+{
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "-j1",
+    "-M14000",
+    ".build-audit/axioms/AxiomAuditFull.lean"
+  ],
+  "source": "scripts/AxiomAudit.lean",
+  "expected_queries": 18,
+  "reported_declarations": 18,
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "exit": 0
+}

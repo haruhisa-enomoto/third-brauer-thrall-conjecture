@@ -1,0 +1,127 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Representation embeddings and the third Brauer–Thrall conjecture"
+  description: >-
+    A Lean 4 formalization, built on Mathlib, of the principal results of the
+    paper Representation embeddings and the third Brauer–Thrall conjecture. Over
+    an algebraically closed field, every representation-infinite
+    finite-dimensional algebra admits a representation embedding of a
+    colimit-closed category of Kronecker modules that preserves infinite
+    dimensions (Theorem A). Hence it has indecomposable modules of every
+    infinite dimension (Corollary 1.1), with endomorphism rings local with
+    residue field k and radical of bounded nilpotence index (Corollary 5.3).
+    The cited inputs are proved in the library: Bongartz's Theorem 6 and
+    Corollary 1.3 of Göbel and Simson.
+  authors: ["Haruhisa Enomoto"]
+  responsible_maintainers: ["Haruhisa Enomoto"]
+  license: "Apache-2.0"
+
+classification:
+  arxiv: ["math.RT", "math.RA"]
+  msc2020: ["16G20", "16G60", "16G10"]
+
+sources:
+  - title: "Representation embeddings and the third Brauer–Thrall conjecture"
+    authors: ["Haruhisa Enomoto"]
+    type: "paper"
+    location: "https://hexagonmath.org/2610.00179v1"
+    relationship: "formalizes"
+    note: >-
+      The formalized paper, version 1, written under the author's direction with
+      GPT-6-Astra and revised with Claude Opus 5.5. Statements are matched with
+      Lean declarations in docs/PAPER-CORRESPONDENCE.md.
+    author_endorsement: "participated"
+  - title: "Representation embeddings and the second Brauer–Thrall conjecture"
+    authors: ["K. Bongartz"]
+    type: "paper"
+    location: "https://arxiv.org/abs/1611.02017v5"
+    relationship: "background"
+    note: >-
+      Source of Theorem 6, which the paper cites and the library proves. Two steps
+      have different proofs here: see docs/proofs.
+    author_endorsement: "not-contacted"
+  - title: "Rigid families and endomorphism algebras of Kronecker modules"
+    authors: ["R. Göbel", "D. Simson"]
+    type: "paper"
+    location: "Israel J. Math. 110 (1999), 293–315"
+    relationship: "background"
+    note: "Source of Corollary 1.3, proved in the library for every algebraically closed field."
+    author_endorsement: "not-contacted"
+
+status:
+  scope: >-
+    Theorem A, Corollary 1.1 and Corollary 5.3 as stated in the paper, for
+    arbitrary algebraically closed fields. The compared statements in
+    Challenge.lean use only Mathlib definitions. Every numbered statement of the
+    paper with mathematical content is covered in the form recorded in
+    docs/PAPER-CORRESPONDENCE.md, and the cited inputs are proved: Bongartz's
+    Theorem 6 and Göbel–Simson Corollary 1.3. The library proves only the part of
+    Bongartz's large-line theorem that Theorem A needs.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5"]
+      framework: "Claude Code"
+      tool_setup: >-
+        An AI coding agent working in a local Lean project with compiler
+        feedback, explicit axiom audits and a statement-by-statement correspondence
+        with the paper, under the author's direction. The library reuses earlier
+        formalizations listed in VENDORED.md.
+      cost:
+        wall_time: "About four days of development (October 29 – November 1, 2026)"
+        spend_usd: "subscription-based"
+        hardware: "Local Linux workstation"
+      prompting_notes: >-
+        The author required the cited inputs to be proved, with Mathlib as the only
+        dependency, and allowed proof routes that differ from the literature.
+  spend_usd: "subscription-based"
+  notes: >-
+    The paper was written with GPT-6-Astra and revised with Claude Opus 5.5 under
+    the author's direction. The formalization was written by AI coding agents
+    under the author's direction. A complete model-by-model history of the reused
+    code has not been reconstructed.
+
+fidelity:
+  divergences: >-
+    Theorem A, Corollary 1.1 and Corollary 5.3 are stated as in the paper, with the
+    field, the algebra and the modules in one universe. Dimensions are cardinals.
+    Intermediate results may be proved in an equivalent or more general form and
+    by a different route; docs/PAPER-CORRESPONDENCE.md lists these. Two steps of
+    Bongartz's Theorem 6 have different proofs: the critical pair avoids tilting
+    theory, and long lines avoid the classification of large sincere algebras. No
+    weakening of the hypotheses or conclusions of the three results is known.
+
+review:
+  status: "unreviewed"
+  reviewers: []
+  notes: >-
+    The formalizing agent compared the statements with the paper. No independent
+    agent or human expert has checked Challenge.lean or the two proofs in
+    docs/proofs.
+
+alignment:
+  namespace: "LargeIndecomposable"
+  statements:
+    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Theorem A (Theorem 5.1)"
+      lean: "LargeIndecomposable.Challenge.theoremA"
+      module: "Challenge"
+      status: "proved"
+      note: "Proved in Solution.lean from LargeIndecomposable.theoremA."
+    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Corollary 1.1"
+      lean: "LargeIndecomposable.Challenge.corollaryDimension"
+      module: "Challenge"
+      status: "proved"
+      note: "Proved in Solution.lean from LargeIndecomposable.corollaryDimension."
+    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Corollary 5.3"
+      lean: "LargeIndecomposable.Challenge.corollaryRadical"
+      module: "Challenge"
+      status: "proved"
+      note: "Proved in Solution.lean from LargeIndecomposable.corollaryRadical."
+
+acknowledgements: "Lean and Mathlib."

@@ -1,0 +1,214 @@
+module
+
+public import Mathlib.Algebra.Category.ModuleCat.Basic
+public import Mathlib.Algebra.Algebra.RestrictScalars
+public import Mathlib.CategoryTheory.ObjectProperty.FullSubcategory
+public import Mathlib.CategoryTheory.Linear.LinearFunctor
+public import Mathlib.CategoryTheory.Linear.FunctorCategory
+public import Mathlib.CategoryTheory.Limits.Shapes.Equalizers
+public import Mathlib.Algebra.Category.ModuleCat.Algebra
+public import Mathlib.CategoryTheory.Limits.Preserves.Filtered
+public import Mathlib.CategoryTheory.Limits.Filtered
+public import Mathlib.CategoryTheory.Limits.Shapes.Products
+public import Mathlib.FieldTheory.IsAlgClosed.Basic
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+public import Mathlib.RingTheory.Jacobson.Radical
+public import Mathlib.SetTheory.Cardinal.Basic
+
+/-!
+# Statements of the large-indecomposable theorems
+
+This file uses only Mathlib. It fixes the vocabulary of the manuscript
+*Representation embeddings and the third Brauer–Thrall conjecture* and states
+its three principal results:
+
+* `TheoremA` (Theorem A = Theorem 5.1): a representation-infinite
+  finite-dimensional algebra over an algebraically closed field admits a
+  representation embedding `F : D → Mod A` from the Kronecker modules without
+  simple injective summand, sending finite-dimensional modules to
+  finite-dimensional modules, commuting with arbitrary direct sums and
+  filtered colimits, and preserving the dimension of infinite-dimensional
+  modules;
+* `CorollaryDimension` (Corollary 1.1): such an algebra has an indecomposable
+  module of every infinite dimension (the third Brauer–Thrall conjecture over
+  algebraically closed fields);
+* `CorollaryRadical` (Corollary 5.3): these modules can be chosen with
+  `End(M)/rad End(M) ≅ k` and `(rad End(M))ⁿ = 0` for one `n` independent of
+  the dimension.
+
+`ClosedUnderColimits` records that `D` has arbitrary coproducts and filtered
+colimits, so the preservation statements of Theorem A are not vacuous.
+
+Conventions follow the manuscript. Modules are left modules. A Kronecker
+module `(V, W; a, b)` has `V` at the source vertex, `W` at the target vertex
+and arrow maps `a b : V → W`; it is a functor from `WalkingParallelPair` to
+`ModuleCat k`. Dimensions are cardinals (`Module.rank`).
+All types live in one universe `u`.
+-/
+
+@[expose] public section
+
+set_option autoImplicit false
+
+noncomputable section
+
+namespace LargeIndecomposable.Statement
+
+open CategoryTheory Limits
+
+universe u
+
+/-! ### Kronecker modules -/
+
+section Kronecker
+
+variable (k : Type u) [Field k]
+
+/-- Kronecker modules: representations `(V, W; a, b)` of the Kronecker quiver
+`1 ⇉ 2`, as diagrams `V ⇉ W` of `k`-vector spaces of arbitrary dimension,
+that is, functors from the walking parallel pair to `k`-vector spaces. The
+space `V` sits at `zero`, `W` at `one`, and the arrow maps are `a` (`left`)
+and `b` (`right`). Morphisms are pairs `(g, h)` with `h a = a' g` and
+`h b = b' g` (natural transformations). -/
+abbrev Kron : Type (u + 1) := WalkingParallelPair ⥤ ModuleCat.{u} k
+
+variable {k}
+
+namespace Kron
+
+/-- The space `V` at the source vertex. -/
+abbrev V (X : Kron k) : ModuleCat.{u} k := X.obj WalkingParallelPair.zero
+
+/-- The space `W` at the target vertex. -/
+abbrev W (X : Kron k) : ModuleCat.{u} k := X.obj WalkingParallelPair.one
+
+/-- The first arrow map `a : V → W`. -/
+abbrev a (X : Kron k) : X.V ⟶ X.W := X.map WalkingParallelPairHom.left
+
+/-- The second arrow map `b : V → W`. -/
+abbrev b (X : Kron k) : X.V ⟶ X.W := X.map WalkingParallelPairHom.right
+
+/-- The dimension of a Kronecker module: `dim V + dim W`. -/
+def dim (X : Kron k) : Cardinal.{u} :=
+  Module.rank k X.V + Module.rank k X.W
+
+/-- A Kronecker module is finite-dimensional if both of its spaces are. -/
+def IsFiniteDimensional (X : Kron k) : Prop :=
+  FiniteDimensional k X.V ∧ FiniteDimensional k X.W
+
+/-- A short exact sequence of Kronecker modules: short exact at both
+vertices. -/
+def IsShortExact {X Y Z : Kron k} (f : X ⟶ Y) (g : Y ⟶ Z) : Prop :=
+  ∀ j : WalkingParallelPair,
+    Function.Injective (f.app j).hom ∧ Function.Surjective (g.app j).hom ∧
+      LinearMap.range (f.app j).hom = LinearMap.ker (g.app j).hom
+
+end Kron
+
+/-- The modules without a direct summand isomorphic to the simple injective
+`S₊ = (k, 0; 0, 0)`; equivalently (manuscript (2.1)) `ker a ∩ ker b = 0`. -/
+def InD : ObjectProperty (Kron k) :=
+  fun X ↦ LinearMap.ker X.a.hom ⊓ LinearMap.ker X.b.hom = ⊥
+
+variable (k) in
+/-- The category `D` of Kronecker modules of arbitrary dimension without a
+direct summand isomorphic to `S₊`, a full subcategory of `Kron k`. -/
+abbrev D : Type (u + 1) := (InD (k := k)).FullSubcategory
+
+/-- An object of `D` is indecomposable if it is nonzero and its only
+idempotent endomorphisms are `0` and `1`. -/
+def IsIndecomposableKron (X : D k) : Prop :=
+  ¬ IsZero X.obj ∧ ∀ e : X ⟶ X, e ≫ e = e → e = 0 ∨ e = 𝟙 X
+
+end Kronecker
+
+/-! ### Modules over an algebra -/
+
+section Modules
+
+variable (k : Type u) [Field k] (A : Type u) [Ring A] [Algebra k A]
+
+/-- A module is indecomposable if it is nonzero and is not the direct sum of
+two nonzero submodules. -/
+def IsIndecomposable (M : Type u) [AddCommGroup M] [Module A M] : Prop :=
+  Nontrivial M ∧ ∀ N N' : Submodule A M, IsCompl N N' → N = ⊥ ∨ N' = ⊥
+
+/-- `A` is representation-finite: there are only finitely many isomorphism
+classes of finite-dimensional (equivalently, finitely generated)
+indecomposable `A`-modules. -/
+def IsRepresentationFinite : Prop :=
+  ∃ (n : ℕ) (B : Fin n → ModuleCat.{u} A),
+    ∀ (M : Type u) [AddCommGroup M] [Module A M] [Module.Finite A M],
+      IsIndecomposable A M → ∃ i, Nonempty (M ≃ₗ[A] B i)
+
+/-- The `k`-dimension of an `A`-module. -/
+def dim (M : ModuleCat.{u} A) : Cardinal.{u} :=
+  Module.rank k (RestrictScalars k A M)
+
+end Modules
+
+/-! ### Representation embeddings -/
+
+section Embeddings
+
+variable {k : Type u} [Field k] {A : Type u} [Ring A] [Algebra k A]
+
+/-- A functor `F : D → Mod A` is a representation embedding if it is
+`k`-linear, preserves short exact sequences and indecomposability, and
+reflects isomorphism classes. -/
+def IsRepresentationEmbedding (F : D k ⥤ ModuleCat.{u} A) : Prop :=
+  F.Additive ∧ F.Linear k ∧
+  (∀ (X Y Z : D k) (f : X ⟶ Y) (g : Y ⟶ Z), Kron.IsShortExact f.hom g.hom →
+    Function.Injective (F.map f).hom ∧ Function.Surjective (F.map g).hom ∧
+      LinearMap.range (F.map f).hom = LinearMap.ker (F.map g).hom) ∧
+  (∀ X : D k, IsIndecomposableKron X → IsIndecomposable A (F.obj X)) ∧
+  (∀ X Y : D k, Nonempty (F.obj X ≅ F.obj Y) → Nonempty (X ≅ Y))
+
+end Embeddings
+
+/-! ### The principal statements -/
+
+/-- The category `D` has arbitrary coproducts and filtered colimits (it is
+closed under them in the category of all Kronecker modules). -/
+def ClosedUnderColimits : Prop :=
+  ∀ (k : Type u) [Field k],
+    HasFilteredColimitsOfSize.{u, u} (D k) ∧
+      ∀ ι : Type u, HasColimitsOfShape (Discrete ι) (D k)
+
+/-- Theorem A (Theorem 5.1). -/
+def TheoremA : Prop :=
+  ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
+    [FiniteDimensional k A], ¬ IsRepresentationFinite A →
+    ∃ F : D k ⥤ ModuleCat.{u} A,
+      IsRepresentationEmbedding F ∧
+      (∀ T : D k, T.obj.IsFiniteDimensional → Module.Finite k (RestrictScalars k A (F.obj T))) ∧
+      (∀ ι : Type u, PreservesColimitsOfShape (Discrete ι) F) ∧
+      PreservesFilteredColimitsOfSize.{u, u} F ∧
+      (∀ T : D k, Cardinal.aleph0 ≤ T.obj.dim → dim k A (F.obj T) = T.obj.dim)
+
+/-- Corollary 1.1: the third Brauer–Thrall conjecture over algebraically
+closed fields, in the form that every infinite dimension occurs. -/
+def CorollaryDimension : Prop :=
+  ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
+    [FiniteDimensional k A], ¬ IsRepresentationFinite A →
+    ∀ κ : Cardinal.{u}, Cardinal.aleph0 ≤ κ →
+      ∃ (M : Type u) (_ : AddCommGroup M) (_ : Module A M) (_ : Module k M)
+        (_ : IsScalarTower k A M), Module.rank k M = κ ∧ IsIndecomposable A M
+
+/-- Corollary 5.3: modules of every infinite dimension whose endomorphism
+algebra `E` satisfies `E = k·1 + rad E`, `1 ∉ rad E` (so `E / rad E ≅ k`), and
+`(rad E)ⁿ = 0` for one `n ≥ 1` independent of the dimension. -/
+def CorollaryRadical : Prop :=
+  ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
+    [FiniteDimensional k A], ¬ IsRepresentationFinite A →
+    ∃ n : ℕ, 1 ≤ n ∧ ∀ κ : Cardinal.{u}, Cardinal.aleph0 ≤ κ →
+      ∃ (M : Type u) (_ : AddCommGroup M) (_ : Module A M) (_ : Module k M)
+        (_ : IsScalarTower k A M), Module.rank k M = κ ∧
+        (∀ x : Module.End A M, ∃ c : k,
+          x - algebraMap k (Module.End A M) c ∈ Ring.jacobson (Module.End A M)) ∧
+        (1 : Module.End A M) ∉ Ring.jacobson (Module.End A M) ∧
+        (∀ f : Fin n → Module.End A M, (∀ i, f i ∈ Ring.jacobson (Module.End A M)) →
+          (List.ofFn f).prod = 0) ∧
+        IsIndecomposable A M
+
+end LargeIndecomposable.Statement

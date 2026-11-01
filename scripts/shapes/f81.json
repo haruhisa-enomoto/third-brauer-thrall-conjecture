@@ -1,0 +1,4 @@
+{"name": "F81", "doc": "BO13a figure 8.1: the `Ẽ₇` tree `xn → B ← x → a → y₁`, `a ← x₂ → z₂ ← x₃`.", "theorem": "not_f81",
+ "verts": ["a", "y₁", "x", "B", "xn", "x₂", "z₂", "x₃"], "objs": ["Aa", "Y₁", "X", "Bb", "Xn", "X₂", "Z₂", "X₃"],
+ "arrows": [["xn", "B", "r"], ["x", "B", "W₁"], ["x", "a", "V₁"], ["a", "y₁", "ρ₁'"], ["x₂", "a", "σ₂'"], ["x₂", "z₂", "ρ₂"], ["x₃", "z₂", "σ₃"]],
+ "copy": {"type": "E7", "center": "a", "short": "y₁", "long": [["x", "B", "xn"], ["x₂", "z₂", "x₃"]]}}

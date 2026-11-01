@@ -1,0 +1,4 @@
+{"name": "DM5", "doc": "[mild] figure 2.5 (first diagram): `α, β` into `y`, `ω' : y → a`, `γ : x → a`, `α : a → y` again (`D̃₅`).", "theorem": "not_dm5", "mild": true,
+ "verts": ["Y", "A2", "A", "B", "S", "Y2"], "objs": ["OY", "OA2", "OA", "OB", "OS", "OY2"],
+ "arrows": [["A", "Y", "α"], ["B", "Y", "β"], ["Y", "A2", "ω"], ["S", "A2", "γ"], ["A2", "Y2", "α₂"]],
+ "copy": {"type": "D", "m": 1, "spine": ["Y", "A2"], "leaves": ["A", "B", "S", "Y2"]}}

@@ -1,0 +1,3 @@
+{"name": "F610", "doc": "BO13a figure 6.10 (category 11): the square `w₁ ≫ w₂ = ψ ≫ u₂` with `ρₙ' : x' → b`, `w₁' : x → b'` and `σ₂' : x'' → m`.", "theorem": "not_f610",
+ "verts": ["x", "b", "m", "y₀", "x'", "b'", "x''"], "objs": ["X", "Bb", "M", "Y₀", "X'", "B'", "X''"],
+ "arrows": [["x", "b", "w₁"], ["x", "m", "ψ"], ["b", "y₀", "w₂"], ["m", "y₀", "U"], ["x'", "b", "r"], ["x", "b'", "v"], ["x''", "m", "t"]]}

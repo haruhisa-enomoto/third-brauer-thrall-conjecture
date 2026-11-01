@@ -1,0 +1,4 @@
+{"name": "ME7", "doc": "[mild] figure 2.2 (first diagram): the `Ẽ₇` tree `t ← x → z ← z' → y ← y' ← t'`, `x' → z'`.", "theorem": "not_me7", "mild": true,
+ "verts": ["c", "xa", "z", "x", "t", "y", "yb", "tb"], "objs": ["Cz", "Xa", "Z", "X", "T", "Y", "Yb", "Tb"],
+ "arrows": [["x", "t", "δ"], ["x", "z", "γ₁"], ["c", "z", "τ'"], ["xa", "c", "γ₂"], ["c", "y", "α"], ["yb", "y", "ρ"], ["tb", "yb", "β"]],
+ "copy": {"type": "E7", "center": "c", "short": "xa", "long": [["z", "x", "t"], ["y", "yb", "tb"]]}}

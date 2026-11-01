@@ -1,0 +1,4 @@
+{"name": "SD6", "doc": "Separated-quiver `D̃₆`: arrows `p → c, p → c', p → q` and `r → q, r → s, r → t`.", "theorem": "not_sd6", "mild": true,
+ "verts": ["p", "q", "r", "c", "c2", "s", "t"], "objs": ["Pp", "Qq", "Rr", "Cc", "Cc2", "Ss", "Tt"],
+ "arrows": [["p", "c", "γ"], ["p", "c2", "γ'"], ["p", "q", "β"], ["r", "q", "ρ"], ["r", "s", "a"], ["r", "t", "ε"]],
+ "copy": {"type": "D", "m": 2, "spine": ["p", "q", "r"], "leaves": ["c", "c2", "s", "t"]}}

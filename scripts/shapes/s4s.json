@@ -1,0 +1,4 @@
+{"name": "S4s", "doc": "The `D̃₄` star `x' → m ← x`, `y₀ ← m → c`.", "theorem": "not_s4s",
+ "verts": ["m", "x'", "x", "y₀", "c"], "objs": ["M", "X'", "X", "Y₀", "Cc"],
+ "arrows": [["x'", "m", "r"], ["x", "m", "ψ"], ["m", "y₀", "U"], ["m", "c", "d"]],
+ "copy": {"type": "D", "m": 0, "spine": ["m"], "leaves": ["x'", "x", "y₀", "c"]}}

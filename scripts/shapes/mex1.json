@@ -1,0 +1,4 @@
+{"name": "MEX1", "doc": "Exceptional diamond with `η` of length two: the square `x → a → y`, `x → b → y` with `c → x` (`η₂`), `y₀ → d → a` (`ω₁ ω₂`) and `y → d'` (`ω₁`) ([mild] figure 4.8, second diagram, completed).", "theorem": "not_mex1", "mild": true,
+ "verts": ["Cc", "Xx", "A", "B", "Yy", "Y0", "Dd", "Ee"], "objs": ["OCc", "OXx", "OA", "OB", "OYy", "OY0", "ODd", "OEe"],
+ "arrows": [["Cc", "Xx", "η₂"], ["Y0", "Dd", "ω₁"], ["Dd", "A", "ω₂"], ["Xx", "A", "γ"], ["Xx", "B", "δ"], ["A", "Yy", "α"], ["B", "Yy", "β"], ["Yy", "Ee", "ω₃"]],
+ "choose": {"Xx Yy": ["γ", "α"]}}

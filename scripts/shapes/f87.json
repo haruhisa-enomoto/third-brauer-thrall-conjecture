@@ -1,0 +1,5 @@
+{"name": "F87", "doc": "BO13a figure 8.7: `c' ← x → a ← x₂`, `a → y₁`, `xn → a`, `xn → yn1 ← xn1 → yn2` with `ρn' ≫ ρ₁' = 0`.", "theorem": "not_f87",
+ "verts": ["x", "c'", "a", "x₂", "y₁", "xn", "yn1", "xn1", "yn2"],
+ "objs": ["X", "C'", "Aa", "X₂", "Y₁", "Xn", "Yn1", "Xn1", "Yn2"],
+ "arrows": [["x", "c'", "W₁"], ["x", "a", "V₁"], ["x₂", "a", "σ₂'"], ["a", "y₁", "ρ₁'"], ["xn", "a", "r"], ["xn", "yn1", "σn"], ["xn1", "yn1", "ρn1"], ["xn1", "yn2", "σn1"]],
+ "zero": [["xn", "y₁"]]}

@@ -1,0 +1,286 @@
+/-
+Copyright (c) 2026 The Tau Ceti contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: The Tau Ceti contributors
+-/
+module
+
+public import LargeIndecomposable.Quivers.Reflection.Basic
+
+/-! Ported from TauCeti (`TauCeti.RepresentationTheory.Quiver.Reflection.Iterate`, commit 580b6f9d5, Apache 2.0). -/
+
+/-!
+# Iterating the reflection of a quiver along a list of vertices
+
+Reflecting a quiver at a vertex reverses the arrows meeting that vertex. Iterating a reflection
+changes the quiver, not the vertex type, so the carrier here is the quiver *structure* rather than
+the type synonym `LargeIndecomposable.Foundations.Quiver.Reflect`: the reflection at the second vertex has to be taken with
+respect to the structure produced by the first. Accordingly `LargeIndecomposable.Foundations.Quiver.reflectAt` repackages
+`LargeIndecomposable.Foundations.Quiver.reflectHom` as an operation on `Quiver` structures on a fixed vertex type — it has
+the arrows of `Reflect V i`, by `LargeIndecomposable.Foundations.Quiver.hom_reflectAt_eq_hom_reflect` — and
+`LargeIndecomposable.Foundations.Quiver.reflectList` folds it along a list.
+
+## Main definitions
+
+* `LargeIndecomposable.Foundations.Quiver.reflectAt`: reflection at a vertex, as an operation on quiver structures.
+* `LargeIndecomposable.Foundations.Quiver.reflectList`: reflection at each vertex of a list, in order.
+* `LargeIndecomposable.Foundations.Quiver.fintypeHomReflectList`: arrow-finiteness transported along `reflectList`, the
+  iterated counterpart of `LargeIndecomposable.Foundations.Quiver.instFintypeReflectHom`.
+
+## Main results
+
+* `LargeIndecomposable.Foundations.Quiver.reflectAt_reflectAt`: reflecting twice at the same vertex returns the quiver
+  structure it started from.
+* `LargeIndecomposable.Foundations.Quiver.reflectList_reverse_reflectList`: reflecting along a list and then along its
+  reverse returns the original quiver structure.
+* `Quiver.nonempty_reflectList_sum_hom_equiv`: reflecting along any list keeps the arrows
+  joining two vertices in either direction, so it changes the orientation of a quiver but not its
+  underlying multigraph.
+* `LargeIndecomposable.Foundations.Quiver.hom_reflectList` and `LargeIndecomposable.Foundations.Quiver.hom_reflectList_of_not_iff`: reflecting
+  along a repetition-free list reverses exactly the arrows joining a vertex of the list to a
+  vertex outside it.
+* `LargeIndecomposable.Foundations.Quiver.reflectList_eq_self`: reflecting once at every vertex restores the original
+  quiver structure, with `LargeIndecomposable.Foundations.Quiver.hom_reflectList_of_forall_mem` the same statement on
+  arrow types.
+
+## Implementation notes
+
+All three definitions are `@[expose]`d. A module that iterates the reflection of *representations*
+needs the reductions `reflectList q (i :: l) = reflectList (reflectAt q i) l` and
+`(a ⟶ b) = LargeIndecomposable.Foundations.Quiver.reflectHom i a b` in `reflectAt q i` to hold definitionally, so that a
+recursive construction typechecks against the quiver structure its predecessor produced; the same
+goes for the recursion of `fintypeHomReflectList` along the list.
+
+## References
+
+The lists along which this iteration is sink-admissible are studied in
+`LargeIndecomposable.Foundations.RepresentationTheory.Quiver.Reflection.Admissible`. A sink-admissible list may be empty,
+may repeat a vertex and need not exhaust the vertices; it is along a sink-admissible ordering — a
+sink-admissible list that is repetition-free and contains every vertex — that the reflection
+functors compose into the Coxeter functor. See Bernstein--Gelfand--Ponomarev, *Coxeter functors and
+Gabriel's theorem*.
+-/
+
+public section
+
+namespace LargeIndecomposable.Foundations
+
+open _root_.Quiver
+
+universe u v
+
+variable {V : Type u}
+
+namespace Quiver
+
+/-! ### Reflection as an operation on quiver structures -/
+
+/-- Reflection at the vertex `i`, as an operation on the quiver structures carried by a fixed
+vertex type: `reflectAt q i` has the arrows of `q` with every arrow incident to `i` reversed.
+Unlike the type synonym `LargeIndecomposable.Foundations.Quiver.Reflect`, this form iterates, which is what a sequence of
+reflections needs. -/
+@[expose, instance_reducible]
+noncomputable def reflectAt (q : _root_.Quiver.{v} V) (i : V) : _root_.Quiver.{v} V :=
+  ⟨@reflectHom V q i⟩
+
+/-- The arrows of `reflectAt q i` are the ones computed by `LargeIndecomposable.Foundations.Quiver.reflectHom`. -/
+@[simp]
+theorem hom_reflectAt (q : _root_.Quiver.{v} V) (i a b : V) :
+    @_root_.Quiver.Hom V (reflectAt q i) a b = @reflectHom V q i a b :=
+  (rfl)
+
+/-- `reflectAt` reproduces the quiver carried by the type synonym `LargeIndecomposable.Foundations.Quiver.Reflect`. -/
+theorem hom_reflectAt_eq_hom_reflect [q : _root_.Quiver.{v} V] (i a b : V) :
+    @_root_.Quiver.Hom V (reflectAt q i) a b = @_root_.Quiver.Hom (Reflect V i) _ a b :=
+  (hom_reflectAt q i a b).trans (hom_reflect i a b).symm
+
+/-- A sink becomes a source after reflecting the quiver at that vertex. -/
+theorem IsSink.isSource_reflectAt {q : _root_.Quiver.{v} V} {i : V} (h : @IsSink V q i) :
+    @IsSource V (reflectAt q i) i := by
+  refine (@IsSource_def V (reflectAt q i) i).mpr fun a ↦ ⟨fun e ↦ ?_⟩
+  exact ((@IsSink_def V q i).mp h a).elim
+    (cast ((hom_reflectAt q i a i).trans (@reflectHom_right V q i a)) e)
+
+/-- A source becomes a sink after reflecting the quiver at that vertex. -/
+theorem IsSource.isSink_reflectAt {q : _root_.Quiver.{v} V} {i : V} (h : @IsSource V q i) :
+    @IsSink V (reflectAt q i) i := by
+  refine (@IsSink_def V (reflectAt q i) i).mpr fun b ↦ ⟨fun e ↦ ?_⟩
+  exact ((@IsSource_def V q i).mp h b).elim
+    (cast ((hom_reflectAt q i i b).trans (@reflectHom_left V q i b)) e)
+
+/-- **Reflection at a vertex is an involution.** Reflecting twice at the same vertex reverses the
+arrows meeting it twice, returning the quiver structure it started from. Since `reflectAt` carries
+the arrows of the type synonym `LargeIndecomposable.Foundations.Quiver.Reflect`, the arrow types agree by
+`LargeIndecomposable.Foundations.Quiver.hom_reflect_reflect`. -/
+@[simp]
+theorem reflectAt_reflectAt (q : _root_.Quiver.{v} V) (i : V) :
+    reflectAt (reflectAt q i) i = q :=
+  congrArg _root_.Quiver.mk (funext fun a ↦ funext fun b ↦ @hom_reflect_reflect V q i a b)
+
+/-! ### Reflecting along a list of vertices -/
+
+/-- Reflection at each vertex of a list in turn, starting from the head. -/
+@[expose, instance_reducible]
+noncomputable def reflectList (q : _root_.Quiver.{v} V) (l : List V) : _root_.Quiver.{v} V :=
+  l.foldl reflectAt q
+
+@[simp]
+theorem reflectList_nil (q : _root_.Quiver.{v} V) : reflectList q [] = q :=
+  (rfl)
+
+@[simp]
+theorem reflectList_cons (q : _root_.Quiver.{v} V) (i : V) (l : List V) :
+    reflectList q (i :: l) = reflectList (reflectAt q i) l :=
+  (rfl)
+
+/-- Reflecting along a concatenation is reflecting along the two segments in turn, which is how an
+ordering is split into an already reflected initial segment and the entries still to come. -/
+@[simp]
+theorem reflectList_append (q : _root_.Quiver.{v} V) (l₁ l₂ : List V) :
+    reflectList q (l₁ ++ l₂) = reflectList (reflectList q l₁) l₂ :=
+  (List.foldl_append)
+
+/-- Reflecting along a list and then along its reverse returns the original quiver structure. -/
+@[simp]
+theorem reflectList_reverse_reflectList (q : _root_.Quiver.{v} V) :
+    ∀ l : List V, reflectList (reflectList q l) l.reverse = q
+  | [] => by simp
+  | i :: l => by
+      rw [reflectList_cons, List.reverse_cons, reflectList_append,
+        reflectList_reverse_reflectList,
+        reflectList_cons, reflectList_nil, reflectAt_reflectAt]
+
+/-- **The arrows of an iteratively reflected quiver are finite in number** whenever those of the
+original one are: reflection only reverses arrows. This is the iterated counterpart of
+`LargeIndecomposable.Foundations.Quiver.instFintypeReflectHom`, recursive along the list because the reflection at each
+vertex is taken with respect to the structure the previous one produced. -/
+@[expose, instance_reducible]
+noncomputable def fintypeHomReflectList :
+    ∀ (l : List V) (q : _root_.Quiver.{v} V)
+      (_hq : ∀ a b : V, Fintype (@_root_.Quiver.Hom V q a b)) (a b : V),
+      Fintype (@_root_.Quiver.Hom V (reflectList q l) a b)
+  | [], _, hq, a, b => hq a b
+  | i :: l, q, hq, a, b =>
+      fintypeHomReflectList l (reflectAt q i) (@instFintypeReflectHom V q hq i) a b
+
+/-! ### The underlying multigraph -/
+
+/-- **Reflection at a vertex keeps the arrows joining two vertices**, only redistributing them
+between the two directions: the arrows running from `a` to `b` or from `b` to `a` are the same
+before and after the reflection. -/
+theorem _root_.Quiver.nonempty_reflectAt_sum_hom_equiv (q : _root_.Quiver.{v} V) (i a b : V) :
+    Nonempty ((@_root_.Quiver.Hom V (reflectAt q i) a b ⊕ @_root_.Quiver.Hom V (reflectAt q i) b a)
+      ≃ (@_root_.Quiver.Hom V q a b ⊕ @_root_.Quiver.Hom V q b a)) := by
+  rw [hom_reflectAt, hom_reflectAt]
+  by_cases hai : a = i
+  · subst hai
+    by_cases hba : b = a
+    · subst hba
+      rw [@reflectHom_left V q]
+      exact ⟨Equiv.refl _⟩
+    · rw [@reflectHom_left V q, @reflectHom_right V q]
+      exact ⟨Equiv.sumComm _ _⟩
+  · by_cases hbi : b = i
+    · subst hbi
+      rw [@reflectHom_right V q, @reflectHom_left V q]
+      exact ⟨Equiv.sumComm _ _⟩
+    · rw [@reflectHom_of_ne_of_ne V q i a b hai hbi, @reflectHom_of_ne_of_ne V q i b a hbi hai]
+      exact ⟨Equiv.refl _⟩
+
+/-- **Reflection along any list keeps the underlying multigraph**: the arrows joining two vertices,
+in either direction, are the same before and after the reflections. -/
+theorem _root_.Quiver.nonempty_reflectList_sum_hom_equiv :
+    ∀ (q : _root_.Quiver.{v} V) (l : List V) (a b : V),
+      Nonempty ((@_root_.Quiver.Hom V (reflectList q l) a b ⊕
+          @_root_.Quiver.Hom V (reflectList q l) b a) ≃
+        (@_root_.Quiver.Hom V q a b ⊕ @_root_.Quiver.Hom V q b a))
+  | _, [], _, _ => ⟨Equiv.refl _⟩
+  | q, i :: l, a, b => by
+      obtain ⟨e⟩ := nonempty_reflectList_sum_hom_equiv (reflectAt q i) l a b
+      obtain ⟨f⟩ := nonempty_reflectAt_sum_hom_equiv q i a b
+      exact ⟨e.trans f⟩
+
+/-! ### Reflecting along a repetition-free list -/
+
+/-- The induction behind `LargeIndecomposable.Foundations.Quiver.hom_reflectList`. Both directions are proved at once
+because peeling off the head of the list exchanges them: the head lies on the list and every
+vertex it is joined to changes side. -/
+private theorem hom_reflectList_aux :
+    ∀ l : List V, l.Nodup → ∀ (q : _root_.Quiver.{v} V) (a b : V),
+      ((a ∈ l ↔ b ∈ l) →
+          @_root_.Quiver.Hom V (reflectList q l) a b = @_root_.Quiver.Hom V q a b) ∧
+        (¬(a ∈ l ↔ b ∈ l) →
+          @_root_.Quiver.Hom V (reflectList q l) a b = @_root_.Quiver.Hom V q b a) := by
+  intro l
+  induction l with
+  | nil => exact fun _ q a b ↦ ⟨fun _ ↦ rfl, fun h ↦ absurd (by simp) h⟩
+  | cons i t ih =>
+    intro hnd q a b
+    rw [List.nodup_cons] at hnd
+    obtain ⟨hit, hnd⟩ := hnd
+    have hii : i ∈ i :: t := by simp
+    have hmem : ∀ v : V, v ≠ i → (v ∈ i :: t ↔ v ∈ t) := fun v hv ↦ by simp [hv]
+    rw [reflectList_cons]
+    by_cases hai : a = i
+    · by_cases hbi : b = i
+      · rw [hai, hbi]
+        refine ⟨fun _ ↦ ?_, fun _ ↦ ?_⟩ <;>
+          rw [(ih hnd (reflectAt q i) i i).1 Iff.rfl, hom_reflectAt, @reflectHom_left V q i i]
+      · rw [hai]
+        by_cases hbt : b ∈ t
+        · refine ⟨fun _ ↦ ?_, fun h ↦ absurd (iff_of_true hii (by simp [hbt])) h⟩
+          rw [(ih hnd (reflectAt q i) i b).2 (by simp [hit, hbt]), hom_reflectAt,
+            @reflectHom_right V q i b]
+        · refine ⟨fun h ↦ absurd (h.mp hii) (by simp [hbi, hbt]), fun _ ↦ ?_⟩
+          rw [(ih hnd (reflectAt q i) i b).1 (iff_of_false hit hbt), hom_reflectAt,
+            @reflectHom_left V q i b]
+    · by_cases hbi : b = i
+      · rw [hbi]
+        by_cases hat : a ∈ t
+        · refine ⟨fun _ ↦ ?_, fun h ↦ absurd (iff_of_true (by simp [hat]) hii) h⟩
+          rw [(ih hnd (reflectAt q i) a i).2 (by simp [hit, hat]), hom_reflectAt,
+            @reflectHom_left V q i a]
+        · refine ⟨fun h ↦ absurd (h.mpr hii) (by simp [hai, hat]), fun _ ↦ ?_⟩
+          rw [(ih hnd (reflectAt q i) a i).1 (iff_of_false hat hit), hom_reflectAt,
+            @reflectHom_right V q i a]
+      · rw [hmem a hai, hmem b hbi]
+        refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
+        · rw [(ih hnd (reflectAt q i) a b).1 h, hom_reflectAt,
+            @reflectHom_of_ne_of_ne V q i a b hai hbi]
+        · rw [(ih hnd (reflectAt q i) a b).2 h, hom_reflectAt,
+            @reflectHom_of_ne_of_ne V q i b a hbi hai]
+
+/-- **Reflecting along a repetition-free list.** An arrow joining two vertices that are both on
+the list, or both off it, survives: each of its ends is reversed the same number of times. -/
+theorem hom_reflectList (q : _root_.Quiver.{v} V) {l : List V} (hl : l.Nodup) {a b : V}
+    (h : a ∈ l ↔ b ∈ l) :
+    @_root_.Quiver.Hom V (reflectList q l) a b = @_root_.Quiver.Hom V q a b :=
+  (hom_reflectList_aux l hl q a b).1 h
+
+/-- Reflecting along a repetition-free list reverses the arrows joining a vertex of the list to a
+vertex outside it: exactly one of the two ends is met by a reflection. -/
+theorem hom_reflectList_of_not_iff (q : _root_.Quiver.{v} V) {l : List V} (hl : l.Nodup)
+    {a b : V} (h : ¬(a ∈ l ↔ b ∈ l)) :
+    @_root_.Quiver.Hom V (reflectList q l) a b = @_root_.Quiver.Hom V q b a :=
+  (hom_reflectList_aux l hl q a b).2 h
+
+/-- **Reflecting once at every vertex restores the quiver.** Both ends of every arrow are met by a
+reflection, so every arrow is reversed twice. This is the arrow-type form; the equality of quiver
+structures itself is `LargeIndecomposable.Foundations.Quiver.reflectList_eq_self`. -/
+theorem hom_reflectList_of_forall_mem (q : _root_.Quiver.{v} V) {l : List V} (hl : l.Nodup)
+    (hall : ∀ v : V, v ∈ l) (a b : V) :
+    @_root_.Quiver.Hom V (reflectList q l) a b = @_root_.Quiver.Hom V q a b :=
+  hom_reflectList q hl (iff_of_true (hall a) (hall b))
+
+/-- **Reflecting once at every vertex returns the quiver structure it started from.** In
+particular the composite of the reflections along a full sink-admissible ordering — the
+combinatorial shadow of the Coxeter functor — is an operation from the quiver to itself, not to
+some other orientation. -/
+theorem reflectList_eq_self (q : _root_.Quiver.{v} V) {l : List V} (hl : l.Nodup)
+    (hall : ∀ v : V, v ∈ l) : reflectList q l = q :=
+  congrArg _root_.Quiver.mk
+    (funext fun a ↦ funext fun b ↦ hom_reflectList_of_forall_mem q hl hall a b)
+
+end Quiver
+
+end LargeIndecomposable.Foundations

@@ -1,0 +1,4 @@
+{"name": "In4", "doc": "The `D̃₄` star with four arrows `α, β, γ, δ` into `y` ([mild] Lemma 2.1).", "theorem": "not_in4", "mild": true,
+ "verts": ["y", "a", "b", "c", "d"], "objs": ["Y", "Aa", "Bb", "Cc", "Dd"],
+ "arrows": [["a", "y", "α"], ["b", "y", "β"], ["c", "y", "γ"], ["d", "y", "δ"]],
+ "copy": {"type": "D", "m": 0, "spine": ["y"], "leaves": ["a", "b", "c", "d"]}}

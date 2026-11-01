@@ -1,0 +1,5 @@
+{"name": "LPF1", "doc": "[mild] figure 3.2 (first diagram, LPF with an extra arrow `ε` out of `x₀`, `n ≥ 3`): `A = x₀` with `ε, a₁, ρ`; the square `a₁ ≫ μ₁ = ρ ≫ ρ`; `B = x₀ → D = x₁ → E = x₂` by `a₁, a₂`; `G = x₁ → F = x₂ → B` by `a₂, μ₂` with `μ₂ ≫ a₁ = 0`.", "theorem": "not_lpf1", "mild": true,
+ "verts": ["A", "Y", "X1", "B", "C", "D", "E", "F", "G"], "objs": ["XA", "XY", "XX1", "XB", "XC", "XD", "XE", "XF", "XG"],
+ "arrows": [["A", "Y", "ε"], ["A", "X1", "a"], ["A", "B", "ρ"], ["X1", "C", "μ₁"], ["B", "C", "ρ'"], ["B", "D", "a'"], ["D", "E", "b"], ["F", "B", "μ₂"], ["G", "F", "b'"]],
+ "zero": [["F", "D"], ["F", "E"], ["G", "D"], ["G", "E"]],
+ "choose": {"A C": ["ρ", "ρ'"]}}

@@ -1,0 +1,4 @@
+{"name": "F616", "doc": "BO13a figure 6.16: the `Ẽ₆` tree `zn ← x' → c`, `y₁ ← m → c`, `c → y₀ ← b`.", "theorem": "not_f616",
+ "verts": ["c", "x'", "zn", "m", "y₁", "y₀", "b"], "objs": ["Cc", "X'", "Zn", "M", "Y₁", "Y₀", "Bb"],
+ "arrows": [["x'", "c", "r"], ["x'", "zn", "σn"], ["m", "c", "a"], ["m", "y₁", "U'"], ["c", "y₀", "bb"], ["b", "y₀", "W"]],
+ "copy": {"type": "E6", "center": "c", "inner": ["x'", "m", "y₀"], "outer": ["zn", "y₁", "b"]}}

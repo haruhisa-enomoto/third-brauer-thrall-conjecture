@@ -1,0 +1,4 @@
+{"name": "DB23A", "doc": "`Ẽ₆` at the start `x` of a dumb-bell with `χ = c₁ c₂` ([mild] figure 2.3, first diagram): `u₀ → u₁ → w → v₁ → v₀` along `χ χ`, and `w → m ← n` along `μ` and `α²`.", "theorem": "not_db23a", "mild": true,
+ "verts": ["W", "U1", "U0", "V1", "V0", "M", "N"], "objs": ["OW", "OU1", "OU0", "OV1", "OV0", "OM", "ON"],
+ "arrows": [["U0", "U1", "c₁"], ["U1", "W", "c₂"], ["W", "V1", "d₁"], ["V1", "V0", "d₂"], ["W", "M", "μ"], ["N", "M", "a"]],
+ "copy": {"type": "E6", "center": "W", "inner": ["U1", "V1", "M"], "outer": ["U0", "V0", "N"]}}

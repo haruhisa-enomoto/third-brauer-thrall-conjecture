@@ -1,0 +1,4 @@
+{"name": "SE7", "doc": "Star `Ẽ₇` at the end `y` of a mild contour: the arm `y → c → a → y` along the last cycle of `v`, the tail `y → c → a → y` along `ρ = κ ≫ ε ≫ α`, and `b → y` along `β`.", "theorem": "not_se7", "mild": true,
+ "verts": ["Y", "A1", "C1", "YM", "C2", "A2", "Y4", "B"], "objs": ["OY", "OA1", "OC1", "OYM", "OC2", "OA2", "OY4", "OB"],
+ "arrows": [["YM", "C1", "κ"], ["C1", "A1", "ε"], ["A1", "Y", "α"], ["B", "Y", "β"], ["Y", "C2", "κ₂"], ["C2", "A2", "ε₂"], ["A2", "Y4", "α₂"]],
+ "copy": {"type": "E7", "center": "Y", "short": "B", "long": [["A1", "C1", "YM"], ["C2", "A2", "Y4"]]}}

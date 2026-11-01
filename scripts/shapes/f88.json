@@ -1,0 +1,4 @@
+{"name": "F88", "doc": "BO13a figure 8.8: the `Ẽ₆` tree with centre `a` and arms `a ← x → c'`, `a ← x₂ → tφ`, `a ← xn → yn1`.", "theorem": "not_f88",
+ "verts": ["a", "x", "c'", "x₂", "tφ", "xn", "yn1"], "objs": ["Aa", "X", "C'", "X₂", "Tφ", "Xn", "Yn1"],
+ "arrows": [["x", "a", "V₁"], ["x", "c'", "W₁"], ["x₂", "a", "σ₂'"], ["x₂", "tφ", "φ"], ["xn", "a", "r"], ["xn", "yn1", "σn"]],
+ "copy": {"type": "E6", "center": "a", "inner": ["x", "x₂", "xn"], "outer": ["c'", "tφ", "yn1"]}}

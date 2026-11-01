@@ -1,0 +1,4 @@
+{"name": "F810D", "doc": "The dual of BO13a figure 8.10: `tω → y₁ ← a`, `a → y₀`, `a → z₂`, `m → a ← x` with `v₁ ≫ ρ₂' = d ≫ v₂ = 0`.", "theorem": "not_f810d",
+ "verts": ["y₁", "tω", "a", "m", "x", "y₀", "z₂"], "objs": ["Y₁", "Tω", "Aa", "M", "X", "Y₀", "Z₂"],
+ "arrows": [["tω", "y₁", "ω"], ["a", "y₁", "ρ₁'"], ["a", "y₀", "V₂"], ["a", "z₂", "ρ₂'"], ["m", "a", "d"], ["x", "a", "V₁"]],
+ "zero": [["x", "z₂"], ["m", "y₀"]]}

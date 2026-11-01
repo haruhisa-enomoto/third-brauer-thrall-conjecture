@@ -1,0 +1,4 @@
+{"name": "F82", "doc": "BO13a figure 8.2: the `D̃₆` tree `xn → B → yn1`, `B → y₀ ← a`, `a → y₁`, `a → z₂`.", "theorem": "not_f82",
+ "verts": ["B", "xn", "yn1", "y₀", "a", "y₁", "z₂"], "objs": ["Bb", "Xn", "Yn1", "Y₀", "Aa", "Y₁", "Z₂"],
+ "arrows": [["xn", "B", "r"], ["B", "yn1", "s"], ["B", "y₀", "W₂"], ["a", "y₀", "V₂"], ["a", "y₁", "ρ₁'"], ["a", "z₂", "ρ₂'"]],
+ "copy": {"type": "D", "m": 2, "spine": ["B", "y₀", "a"], "leaves": ["xn", "yn1", "y₁", "z₂"]}}

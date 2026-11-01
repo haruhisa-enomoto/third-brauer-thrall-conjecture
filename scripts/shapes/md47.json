@@ -1,0 +1,4 @@
+{"name": "MD47", "doc": "[mild] figure 4.7 (part): `η` with at least three arrows; the square `x → a → y`, `x → b → y` with arms `c₁ → c₂ → x` (the last two arrows of `η`) and `b → y → a` (`β`, `ω'`).", "theorem": "not_md47", "mild": true,
+ "verts": ["Bq", "Yq", "A1", "C1", "C2", "X1", "B1", "Y1"], "objs": ["OBq", "OYq", "OA1", "OC1", "OC2", "OX1", "OB1", "OY1"],
+ "arrows": [["Bq", "Yq", "β₂"], ["Yq", "A1", "ω"], ["C1", "C2", "η₁"], ["C2", "X1", "η₂"], ["X1", "A1", "γ"], ["X1", "B1", "δ"], ["A1", "Y1", "α"], ["B1", "Y1", "β"]],
+ "choose": {"X1 Y1": ["γ", "α"]}}

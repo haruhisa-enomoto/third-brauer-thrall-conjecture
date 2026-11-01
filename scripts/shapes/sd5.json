@@ -1,0 +1,4 @@
+{"name": "SD5", "doc": "Separated-quiver `D̃₅`: a loop `ρ` at `x` (`x⁺ → x⁻`) with two further arrows `a, b` out of `x` and two further arrows `α, β` into `x`.", "theorem": "not_sd5", "mild": true,
+ "verts": ["xp", "xm", "u", "v", "z", "t"], "objs": ["Xp", "Xm", "U", "V", "Z", "T"],
+ "arrows": [["xp", "xm", "ρ"], ["xp", "u", "a"], ["xp", "v", "b"], ["z", "xm", "α"], ["t", "xm", "β"]],
+ "copy": {"type": "D", "m": 1, "spine": ["xp", "xm"], "leaves": ["u", "v", "z", "t"]}}

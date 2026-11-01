@@ -1,0 +1,4 @@
+{"name": "DB23B", "doc": "`D̃₇` for a dumb-bell with `μ = φ β`, `φ` not invertible ([mild] figure 2.3, second diagram): spine `s₂ ← s₁ → r₁ ← r₂`, leaves `s₃`, `t₁` at `s₂` (along `χ`, `φ`) and `r₃`, `t₂` at `r₂` (along `α`, `β`).", "theorem": "not_db23b", "mild": true,
+ "verts": ["S2", "S1", "R1", "R2", "S3", "T1", "R3", "T2"], "objs": ["OS2", "OS1", "OR1", "OR2", "OS3", "OT1", "OR3", "OT2"],
+ "arrows": [["S1", "S2", "c₁"], ["S2", "S3", "c₂"], ["S2", "T1", "φ"], ["S1", "R1", "μ"], ["R2", "R1", "a₁"], ["R3", "R2", "a₂"], ["T2", "R2", "β"]],
+ "copy": {"type": "D", "m": 3, "spine": ["S2", "S1", "R1", "R2"], "leaves": ["S3", "T1", "R3", "T2"]}}

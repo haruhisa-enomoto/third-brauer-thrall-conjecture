@@ -1,0 +1,4 @@
+{"name": "PC1", "doc": "Open penny-farthing (`n = 2`): `D̃₅` with spine `x₁ ← t`, two exits `γ, γ'` at `t` and `α²` through `x₁`.", "theorem": "not_pc1", "mild": true,
+ "verts": ["X1", "T0", "X0", "X2", "C0", "D0"], "objs": ["OX1", "OT0", "OX0", "OX2", "OC0", "OD0"],
+ "arrows": [["X0", "X1", "α₁"], ["X1", "X2", "α₂"], ["T0", "X1", "b"], ["T0", "C0", "γ"], ["T0", "D0", "γ'"]],
+ "copy": {"type": "D", "m": 1, "spine": ["X1", "T0"], "leaves": ["X0", "X2", "C0", "D0"]}}

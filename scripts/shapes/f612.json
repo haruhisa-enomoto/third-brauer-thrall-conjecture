@@ -1,0 +1,5 @@
+{"name": "F612", "doc": "BO13a figure 6.12: the tree `zn ← x' → b → y₀ ← m → z₂`, `m → y₁ ← b'`, `x'' → m` with the zero relation `σ₂' ≫ u₂ = 0`.", "theorem": "not_f612",
+ "verts": ["x'", "zn", "b", "y₀", "m", "z₂", "y₁", "b'", "x''"],
+ "objs": ["X'", "Zn", "Bb", "Y₀", "M", "Z₂", "Y₁", "B'", "X''"],
+ "arrows": [["x'", "zn", "σn"], ["x'", "b", "r"], ["b", "y₀", "W"], ["m", "y₀", "U"], ["m", "z₂", "ρ₂'"], ["m", "y₁", "U'"], ["b'", "y₁", "W'"], ["x''", "m", "t"]],
+ "zero": [["x''", "y₀"]]}

@@ -1,0 +1,4 @@
+{"name": "MB85", "doc": "BHV list number 85 ([mild] figure 4.8, first diagram): `a → c → x → b'` (`η₁ η₂ δ`), `b → y → d → a'` (`β ω'₁ ω'₂`), with the squares `η₁ ξ = α ω'₁` and `η₂ γ = ξ ω'₂`.", "theorem": "not_mb85", "mild": true,
+ "verts": ["Aa", "Cc", "Xx", "Bp", "Bb", "Yy", "Dd", "Ap"], "objs": ["OAa", "OCc", "OXx", "OBp", "OBb", "OYy", "ODd", "OAp"],
+ "arrows": [["Aa", "Cc", "η₁"], ["Cc", "Xx", "η₂"], ["Xx", "Bp", "δ"], ["Bb", "Yy", "β"], ["Yy", "Dd", "ω₁"], ["Dd", "Ap", "ω₂"], ["Aa", "Yy", "α"], ["Cc", "Dd", "ξ"], ["Xx", "Ap", "γ"]],
+ "choose": {"Aa Dd": ["α", "ω₁"], "Cc Ap": ["ξ", "ω₂"], "Aa Ap": ["α", "ω₁", "ω₂"]}}

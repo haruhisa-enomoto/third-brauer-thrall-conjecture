@@ -1,0 +1,5 @@
+{"name": "M44C", "doc": "[mild] figure 4.4 (third diagram): the exit `ε : x₀ → b`, an arrow `ε₂ : b → z` and `η : x₁ → z`, around the square `a ≫ β = ρ ≫ ρ`, with `ρ ≫ a` and `β ≫ a = 0`.", "theorem": "not_m44c", "mild": true,
+ "verts": ["Bv", "A", "X1", "B", "W", "Y1", "G", "T", "S"], "objs": ["XBv", "XA", "XX1", "XB", "XW", "XY1", "XG", "XT", "XS"],
+ "arrows": [["A", "Bv", "ε"], ["A", "X1", "a"], ["A", "B", "ρ"], ["B", "W", "ρ'"], ["G", "B", "β'"], ["G", "T", "η"], ["S", "T", "ε₂"], ["B", "Y1", "a'"], ["X1", "W", "β"]],
+ "zero": [["G", "Y1"]],
+ "choose": {"A W": ["ρ", "ρ'"]}}

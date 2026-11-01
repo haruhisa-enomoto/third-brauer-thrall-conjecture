@@ -1,0 +1,5 @@
+{"name": "MD29C", "doc": "[mild] figure 2.9 (third diagram): an extra arrow `ε` out of `b` with `δ ≫ ε ≠ 0`, next to the contour square, with `β ≫ ω' ≫ η ≫ δ` and `ω' ≫ η = 0` in `P/τ`.", "theorem": "not_md29c", "mild": true, "zero_mod": true,
+ "verts": ["Xa", "Aa", "Bb", "Yy", "Cc", "B0", "Y1", "X1", "B1"], "objs": ["OXa", "OAa", "OBb", "OYy", "OCc", "OB0", "OY1", "OX1", "OB1"],
+ "arrows": [["Xa", "Aa", "γ"], ["Xa", "Bb", "δ"], ["Aa", "Yy", "α"], ["Bb", "Yy", "β"], ["Bb", "Cc", "ε"], ["B0", "Y1", "β₂"], ["Y1", "Aa", "ω"], ["Aa", "X1", "η"], ["X1", "B1", "δ₂"]],
+ "zero": [["Y1", "X1"], ["Y1", "B1"], ["B0", "X1"], ["B0", "B1"]],
+ "choose": {"Xa Yy": ["γ", "α"]}}

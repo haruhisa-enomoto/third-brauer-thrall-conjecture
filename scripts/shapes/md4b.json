@@ -1,0 +1,4 @@
+{"name": "MD4B", "doc": "[mild] Lemma 2.2: the `D̃₄` star with `α, β` into `y` and `a, b` out of `y`.", "theorem": "not_md4b", "mild": true,
+ "verts": ["y", "z", "t", "u", "v"], "objs": ["Y", "Z", "T", "U", "V"],
+ "arrows": [["z", "y", "α"], ["t", "y", "β"], ["y", "u", "a"], ["y", "v", "b"]],
+ "copy": {"type": "D", "m": 0, "spine": ["y"], "leaves": ["z", "t", "u", "v"]}}

@@ -1,0 +1,4 @@
+{"name": "ME8B", "doc": "[mild] Lemma 2.1, Case II: the `Ẽ₈` tree `z₁ ← x ← x'' → t ← z → y ← y' ← t'`, `x'' → z₂`.", "theorem": "not_me8b", "mild": true,
+ "verts": ["xc", "z2", "x", "z1", "t", "z", "y", "yb", "tb"], "objs": ["Xc", "Z₂", "X", "Z₁", "T", "Z", "Y", "Yb", "Tb"],
+ "arrows": [["xc", "x", "ξ"], ["x", "z1", "γ₁"], ["xc", "z2", "γ₂"], ["xc", "t", "δ"], ["z", "t", "φ"], ["z", "y", "α"], ["yb", "y", "ρ"], ["tb", "yb", "β"]],
+ "copy": {"type": "E8", "center": "xc", "short": "z2", "medium": ["x", "z1"], "long": ["t", "z", "y", "yb", "tb"]}}

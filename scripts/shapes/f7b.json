@@ -1,0 +1,4 @@
+{"name": "F7B", "doc": "BO13a figure 7.2 (second tree): the `Ẽ₆` tree `c ← x → a`, `a → b → b₂`, `a → y₁ ← e`.", "theorem": "not_f7b",
+ "verts": ["a", "x", "c", "b", "b₂", "y₁", "e"], "objs": ["Aa", "X", "Cc", "Bb", "B₂", "Y₁", "E"],
+ "arrows": [["x", "a", "V₁"], ["x", "c", "W₁"], ["a", "b", "V₂"], ["b", "b₂", "s"], ["a", "y₁", "r"], ["e", "y₁", "η"]],
+ "copy": {"type": "E6", "center": "a", "inner": ["x", "b", "y₁"], "outer": ["c", "b₂", "e"]}}

@@ -1,0 +1,4 @@
+{"name": "SE6", "doc": "Star `Ẽ₆` at the end `y` of a mild contour: arms `s₁ → t₁ → y` along `v`, `s₂ → t₂ → y` along `w`, and the tail `y → a → y` along `ρ = ω' ≫ α`.", "theorem": "not_se6", "mild": true,
+ "verts": ["Y", "T1", "S1", "T2", "S2", "A3", "Y4"], "objs": ["OY", "OT1", "OS1", "OT2", "OS2", "OA3", "OY4"],
+ "arrows": [["S1", "T1", "u"], ["T1", "Y", "α"], ["S2", "T2", "u'"], ["T2", "Y", "β"], ["Y", "A3", "ω"], ["A3", "Y4", "α₂"]],
+ "copy": {"type": "E6", "center": "Y", "inner": ["T1", "T2", "A3"], "outer": ["S1", "S2", "Y4"]}}

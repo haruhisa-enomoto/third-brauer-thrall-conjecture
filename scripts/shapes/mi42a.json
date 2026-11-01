@@ -1,0 +1,5 @@
+{"name": "MI42A", "doc": "[mild] MIDB, figure 4.2, first diagram: the dumb-bell square below `α²`, with the extra arrow `t` out of the first two `y`, `α t = 0`.", "theorem": "not_mi42a", "mild": true,
+ "verts": ["X0", "X1", "X2", "Y0", "Y1", "Y2", "Y3", "Z0", "Z1"], "objs": ["OX0", "OX1", "OX2", "OY0", "OY1", "OY2", "OY3", "OZ0", "OZ1"],
+ "arrows": [["X0", "X1", "c₁"], ["X1", "X2", "c₂"], ["X0", "Y2", "μ₁"], ["X1", "Y3", "μ₂"], ["Y0", "Y1", "a₁"], ["Y1", "Y2", "a₂"], ["Y2", "Y3", "a₃"], ["Y0", "Z0", "t₀"], ["Y1", "Z1", "t₁"]],
+ "zero": [["Y0", "Z1"]],
+ "choose": {"X0 Y3": ["μ₁", "a₃"]}}

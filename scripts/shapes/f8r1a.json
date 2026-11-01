@@ -1,0 +1,4 @@
+{"name": "F8R1A", "doc": "BO13a Lemma 8, reflecting case: the `D̃₅` tree `x → a → y₁`, `a → c → y₀`, `xn → c`.", "theorem": "not_f8r1a",
+ "verts": ["a", "x", "y₁", "c", "y₀", "xn"], "objs": ["Aa", "X", "Y₁", "Cc", "Y₀", "Xn"],
+ "arrows": [["x", "a", "V₁"], ["a", "c", "A"], ["c", "y₀", "Bm"], ["xn", "c", "r"], ["a", "y₁", "ρ₁'"]],
+ "copy": {"type": "D", "m": 1, "spine": ["a", "c"], "leaves": ["x", "y₁", "y₀", "xn"]}}

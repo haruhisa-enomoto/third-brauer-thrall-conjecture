@@ -1,0 +1,3 @@
+{"name": "F68", "doc": "BO13a figure 6.8 (category 93): the two squares `w₁ ≫ w₂ = ψ ≫ u₂`, `ψ ≫ u₂' = w₁' ≫ w₂'` with `ρₙ' : x' → b` and `σ₂' : x'' → b'`.", "theorem": "not_f68",
+ "verts": ["x", "b", "m", "b'", "y₀", "y₁", "x'", "x''"], "objs": ["X", "Bb", "M", "B'", "Y₀", "Y₁", "X'", "X''"],
+ "arrows": [["x", "b", "w₁"], ["x", "m", "ψ"], ["x", "b'", "v"], ["b", "y₀", "w₂"], ["m", "y₀", "U"], ["m", "y₁", "U'"], ["b'", "y₁", "v₂"], ["x'", "b", "r"], ["x''", "b'", "t"]]}

@@ -1,0 +1,137 @@
+/-
+Copyright (c) 2026 The Tau Ceti contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: The Tau Ceti contributors
+-/
+module
+
+public import Mathlib.CategoryTheory.EqToHom
+public import Mathlib.CategoryTheory.Preadditive.Basic
+
+/-! Ported from TauCeti (`TauCeti.CategoryTheory.EqToHom`, commit 580b6f9d5, Apache 2.0). -/
+
+/-!
+# Transporting categorical morphisms along object equalities
+
+This file provides general lemmas for removing and rearranging the conjugations by `eqToHom` that
+arise when categorical objects are identified propositionally. They apply in an arbitrary category
+and avoid exposing the definitional equality of the objects being transported.
+
+## Main results
+
+* `LargeIndecomposable.Foundations.eqToHom_conjugate_cancel`: transporting a morphism and then transporting it back leaves
+  it unchanged.
+* `LargeIndecomposable.Foundations.eqToHom_conjugate_eq_id`, `LargeIndecomposable.Foundations.eqToHom_conjugate_eq_comp` and
+  `LargeIndecomposable.Foundations.eqToHom_conjugate_add`: transporting an identity, a composite or a sum gives the
+  identity, the composite of the transports or the sum of the transports.
+* `LargeIndecomposable.Foundations.eqToHom_conjugate_square`: conjugating every edge preserves and reflects commutativity of
+  a square.
+* `LargeIndecomposable.Foundations.eq_of_eqToHom_conjugate`: two morphisms with equal conjugates are equal.
+* `LargeIndecomposable.Foundations.eqToHom_conjugate_vertical_square_of_horizontal_square`: commutativity with conjugated
+  horizontal edges gives commutativity after moving the conjugations to the vertical edges.
+* `LargeIndecomposable.Foundations.eqToHom_eq_iso_hom_map_eqToHom`: transport along an index equality is conjugate, through
+  identifications `Y i ≅ F.obj (X i)`, to the image under a functor `F` of the transport.
+* `CategoryTheory.Functor.map_heq`: a functor sends morphisms which agree up to equalities of their
+  endpoints to morphisms which agree in the same way.
+-/
+
+public section
+
+namespace LargeIndecomposable.Foundations
+
+open CategoryTheory
+
+/-- Transporting a morphism along object equalities and then back leaves it unchanged. -/
+theorem eqToHom_conjugate_cancel {C : Type*} [Category* C] {X X' Y Y' : C}
+    (hX : X = X') (hY : Y = Y') (f : X' ⟶ Y') :
+    eqToHom hX.symm ≫ (eqToHom hX ≫ f ≫ eqToHom hY.symm) ≫ eqToHom hY = f := by
+  subst X'
+  subst Y'
+  simp
+
+/-- **A transported identity is the identity**: conjugating a morphism equal to `𝟙 Y` by the
+object equality `X = Y` gives `𝟙 X`. -/
+theorem eqToHom_conjugate_eq_id {C : Type*} [Category* C] {X Y : C} (h : X = Y)
+    (f : Y ⟶ Y) (hf : f = 𝟙 Y) : eqToHom h ≫ f ≫ eqToHom h.symm = 𝟙 X := by
+  subst h
+  simp [hf]
+
+/-- **Transport distributes over composition**: if `f = g ≫ h`, the transport of `f` is the
+composite of the transports of `g` and `h`. -/
+theorem eqToHom_conjugate_eq_comp {C : Type*} [Category* C] {X X' Y Y' Z Z' : C}
+    (hX : X = X') (hY : Y = Y') (hZ : Z = Z') (f : X' ⟶ Z') (g : X' ⟶ Y') (h : Y' ⟶ Z')
+    (hf : f = g ≫ h) :
+    eqToHom hX ≫ f ≫ eqToHom hZ.symm =
+      (eqToHom hX ≫ g ≫ eqToHom hY.symm) ≫ eqToHom hY ≫ h ≫ eqToHom hZ.symm := by
+  subst hX
+  subst hY
+  subst hZ
+  simp [hf]
+
+/-- **Transport is additive**: in a preadditive category, if `f = g + h`, the transport of `f` is
+the sum of the transports of `g` and `h`. -/
+theorem eqToHom_conjugate_add {C : Type*} [Category* C] [Preadditive C] {X X' Y Y' : C}
+    (hX : X = X') (hY : Y' = Y) {f g h : X' ⟶ Y'} (hfgh : f = g + h) :
+    eqToHom hX ≫ f ≫ eqToHom hY
+      = (eqToHom hX ≫ g ≫ eqToHom hY) + (eqToHom hX ≫ h ≫ eqToHom hY) := by
+  subst hX
+  subst hY
+  simp [hfgh]
+
+/-- **Conjugating a commuting square by object equalities leaves it commuting**, and nothing else
+becomes commuting that way: the square of transported edges commutes exactly when the original
+one does. -/
+theorem eqToHom_conjugate_square {C : Type*} [Category* C] {X X' Y Y' Z Z' W W' : C}
+    (hX : X = X') (hY : Y = Y') (hZ : Z = Z') (hW : W = W')
+    (f : X' ⟶ Y') (g : Y' ⟶ Z') (f' : X' ⟶ W') (g' : W' ⟶ Z') :
+    (eqToHom hX ≫ f ≫ eqToHom hY.symm) ≫ eqToHom hY ≫ g ≫ eqToHom hZ.symm =
+        (eqToHom hX ≫ f' ≫ eqToHom hW.symm) ≫ eqToHom hW ≫ g' ≫ eqToHom hZ.symm ↔
+      f ≫ g = f' ≫ g' := by
+  subst hX
+  subst hY
+  subst hZ
+  subst hW
+  simp
+
+/-- **Two morphisms conjugated to the same morphism are equal**: conjugating back cancels, by
+`LargeIndecomposable.Foundations.eqToHom_conjugate_cancel`, on both sides at once. -/
+theorem eq_of_eqToHom_conjugate {C : Type*} [Category* C] {X X' Y Y' : C} (hX : X' = X)
+    (hY : Y = Y') {f g : X ⟶ Y}
+    (h : eqToHom hX ≫ f ≫ eqToHom hY = eqToHom hX ≫ g ≫ eqToHom hY) : f = g :=
+  (eqToHom_conjugate_cancel hX hY.symm f).symm.trans
+    ((congrArg (fun u : X' ⟶ Y' ↦ eqToHom hX.symm ≫ u ≫ eqToHom hY.symm) h).trans
+      (eqToHom_conjugate_cancel hX hY.symm g))
+
+/-- **A square with conjugated horizontal edges yields a square with conjugated vertical edges.**
+The horizontal conjugations cancel from the conclusion, while the vertical edges acquire the
+corresponding conjugations. -/
+theorem eqToHom_conjugate_vertical_square_of_horizontal_square {C : Type*} [Category* C]
+    {A A' B B' D D' E E' : C} (hA : A = A') (hB : B = B') (hD : D = D') (hE : E = E')
+    (p : A' ⟶ B') (q : E' ⟶ D') (f : B ⟶ D) (g : A ⟶ E)
+    (h : (eqToHom hA ≫ p ≫ eqToHom hB.symm) ≫ f = g ≫ eqToHom hE ≫ q ≫ eqToHom hD.symm) :
+    p ≫ (eqToHom hB.symm ≫ f ≫ eqToHom hD) = (eqToHom hA.symm ≫ g ≫ eqToHom hE) ≫ q :=
+  (eqToHom_conjugate_square hA hB hD hE p _ _ q).mp (by simpa using h)
+
+/-- **Transport along an index equality commutes with identifications through a functor**: given
+families `X` in `C` and `Y` in `D` with isomorphisms `e i : Y i ≅ F.obj (X i)`, the transport
+`Y i ⟶ Y j` along `i = j` is the conjugate by `e` of the image under `F` of the transport
+`X i ⟶ X j`. -/
+theorem eqToHom_eq_iso_hom_map_eqToHom {ι C D : Type*} [Category* C] [Category* D]
+    (F : C ⥤ D) {X : ι → C} {Y : ι → D} (e : ∀ i, Y i ≅ F.obj (X i)) {i j : ι} (h : i = j) :
+    eqToHom (congrArg Y h) = (e i).hom ≫ F.map (eqToHom (congrArg X h)) ≫ (e j).inv := by
+  subst h
+  simp
+
+end LargeIndecomposable.Foundations
+
+namespace CategoryTheory.Functor
+
+/-- A functor sends morphisms which agree up to equalities of their endpoints to morphisms which
+agree in the same way. -/
+theorem map_heq {C D : Type*} [Category* C] [Category* D] (F : C ⥤ D) {X Y X' Y' : C}
+    {f : X ⟶ Y} {f' : X' ⟶ Y'} (hX : X = X') (hY : Y = Y') (h : f ≍ f') :
+    F.map f ≍ F.map f' := by
+  subst hX hY
+  rw [eq_of_heq h]
+
+end CategoryTheory.Functor

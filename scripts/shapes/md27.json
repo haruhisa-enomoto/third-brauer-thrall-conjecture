@@ -1,0 +1,4 @@
+{"name": "MD27", "doc": "[mild] figure 2.7: the contour square `x → a → y`, `x → b → y` with `b → x' → b'` (`η`, `δ`) and `a' → y' → a` (`α`, `ω'`).", "theorem": "not_md27", "mild": true,
+ "verts": ["Xp", "A", "B", "Y", "Xm", "Bp", "Yp", "Ap"], "objs": ["OXp", "OA", "OB", "OY", "OX", "OBp", "OYp", "OAp"],
+ "arrows": [["Xp", "A", "γ"], ["Xp", "B", "δ"], ["A", "Y", "α"], ["B", "Y", "β"], ["B", "Xm", "η"], ["Xm", "Bp", "δ₂"], ["Yp", "A", "ω"], ["Ap", "Yp", "α₂"]],
+ "choose": {"Xp Y": ["γ", "α"]}}

@@ -1,0 +1,28 @@
+module
+
+public import LargeIndecomposable
+public import Solution
+
+/-! Axiom report for the main theorems and their intermediate forms.
+Run with `lake env lean scripts/AxiomAudit.lean`, or `python3 scripts/audit_axioms.py`. -/
+
+@[expose] public section
+
+#print axioms LargeIndecomposable.theoremA
+#print axioms LargeIndecomposable.corollaryDimension
+#print axioms LargeIndecomposable.corollaryRadical
+#print axioms LargeIndecomposable.longLineNode
+#print axioms LargeIndecomposable.theoremA_of_bongartz
+#print axioms LargeIndecomposable.corollaryDimension_of_bongartz_large
+#print axioms LargeIndecomposable.corollaryRadical_of_bongartz_large
+#print axioms LargeIndecomposable.SplitBasicData.nonempty_controlledEmbedding
+#print axioms LargeIndecomposable.Covering.PairCoveringData.toCoveringData
+#print axioms LargeIndecomposable.Covering.CoveringData.controlledEmbedding
+#print axioms LargeIndecomposable.Walk.MonomialBand.toWalkData
+#print axioms LargeIndecomposable.Walk.WalkData.controlledEmbedding
+#print axioms LargeIndecomposable.exists_brick_of_le_card
+#print axioms LargeIndecomposable.kroneckerBricks_of_large
+#print axioms LargeIndecomposable.SplitBasicData.presentation_surjective
+#print axioms LargeIndecomposable.Challenge.theoremA
+#print axioms LargeIndecomposable.Challenge.corollaryDimension
+#print axioms LargeIndecomposable.Challenge.corollaryRadical

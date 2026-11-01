@@ -1,0 +1,4 @@
+{"name": "MI41A", "doc": "[mild] MIDB, figure 4.1, first diagram: `D̃₅` at the end `y` of a dumb-bell with two extra arrows `t₁, t₂` out of `y`.", "theorem": "not_mi41a", "mild": true,
+ "verts": ["Y0", "Y1", "Y2", "Xx", "Zz", "Zp"], "objs": ["OY0", "OY1", "OY2", "OX", "OZ", "OZp"],
+ "arrows": [["Y0", "Y1", "a₁"], ["Y1", "Y2", "a₂"], ["Xx", "Y1", "μ"], ["Y0", "Zz", "t₁"], ["Y0", "Zp", "t₂"]],
+ "copy": {"type": "D", "m": 1, "spine": ["Y0", "Y1"], "leaves": ["Zz", "Zp", "Xx", "Y2"]}}

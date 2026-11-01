@@ -1,0 +1,4 @@
+{"name": "DM5D", "doc": "`D̃₅` with spine `y → d`: two arrows into `y` and two arrows out of `d`.", "theorem": "not_dm5d", "mild": true,
+ "verts": ["Yy", "Dd", "A", "B", "A2", "Z"], "objs": ["OYy", "ODd", "OA", "OB", "OA2", "OZ"],
+ "arrows": [["A", "Yy", "α"], ["B", "Yy", "β"], ["Yy", "Dd", "ω₁"], ["Dd", "A2", "ω₂"], ["Dd", "Z", "φ"]],
+ "copy": {"type": "D", "m": 1, "spine": ["Yy", "Dd"], "leaves": ["A", "B", "A2", "Z"]}}

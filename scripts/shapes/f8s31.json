@@ -1,0 +1,4 @@
+{"name": "F8S31", "doc": "The `D̃₄` star `x, xn, x₂ → a → c`.", "theorem": "not_f8s31",
+ "verts": ["a", "x", "xn", "x₂", "c"], "objs": ["Aa", "X", "Xn", "X₂", "Cc"],
+ "arrows": [["x", "a", "V₁"], ["xn", "a", "r"], ["x₂", "a", "σ₂'"], ["a", "c", "A"]],
+ "copy": {"type": "D", "m": 0, "spine": ["a"], "leaves": ["x", "xn", "x₂", "c"]}}

@@ -1,0 +1,4 @@
+{"name": "F63", "doc": "BO13a figure 6.3: the two squares of figure 6.0 (`β ≫ w₂ = ψ ≫ u₂`,\n`ψ ≫ u₂' = β' ≫ w₂'`) with `η → y₁`, `ρₙ' : x' → b` and `φ : x' → tf`.", "theorem": "not_f63",
+ "verts": ["x", "b", "m", "b'", "y₀", "y₁", "te", "x'", "tf"],
+ "objs": ["X", "Bb", "M", "B'", "Y₀", "Y₁", "Te", "X'", "Tf"],
+ "arrows": [["x", "b", "β"], ["x", "m", "ψ"], ["x", "b'", "β'"], ["b", "y₀", "W"], ["m", "y₀", "U"], ["m", "y₁", "U'"], ["b'", "y₁", "W'"], ["te", "y₁", "e"], ["x'", "b", "r"], ["x'", "tf", "φ"]]}

@@ -1,0 +1,4 @@
+{"name": "S65", "doc": "BO13a figure 6.5: the `D̃₅` tree `b ← x → b'`, `x → m`, `x' → m ← x''`.", "theorem": "not_s65",
+ "verts": ["x", "m", "b", "b'", "x'", "x''"], "objs": ["X", "M", "Bb", "B'", "X'", "X''"],
+ "arrows": [["x", "b", "β"], ["x", "m", "ψ"], ["x", "b'", "β'"], ["x'", "m", "r"], ["x''", "m", "t"]],
+ "copy": {"type": "D", "m": 1, "spine": ["x", "m"], "leaves": ["b", "b'", "x'", "x''"]}}

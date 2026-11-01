@@ -1,0 +1,4 @@
+{"name": "Out4", "doc": "The `D̃₄` star with four arrows `α, β, γ, δ` out of `y`.", "theorem": "not_out4", "mild": true,
+ "verts": ["y", "a", "b", "c", "d"], "objs": ["Y", "Aa", "Bb", "Cc", "Dd"],
+ "arrows": [["y", "a", "α"], ["y", "b", "β"], ["y", "c", "γ"], ["y", "d", "δ"]],
+ "copy": {"type": "D", "m": 0, "spine": ["y"], "leaves": ["a", "b", "c", "d"]}}

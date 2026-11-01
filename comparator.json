@@ -1,0 +1,15 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "LargeIndecomposable.Challenge.theoremA",
+    "LargeIndecomposable.Challenge.corollaryDimension",
+    "LargeIndecomposable.Challenge.corollaryRadical"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

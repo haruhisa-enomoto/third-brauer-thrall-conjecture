@@ -1,0 +1,4 @@
+{"name": "MPF1", "doc": "[mild] figure 2.4 (first diagram): `y₁ →α y₂ →α y₃ →α y₄` with `t₁ →β y₂`, `t₂ →β y₃`.", "theorem": "not_mpf1", "mild": true,
+ "verts": ["y2", "y1", "t1", "y3", "y4", "t2"], "objs": ["Y₂", "Y₁", "T₁", "Y₃", "Y₄", "T₂"],
+ "arrows": [["y1", "y2", "α₁"], ["y2", "y3", "α₂"], ["y3", "y4", "α₃"], ["t1", "y2", "β₁"], ["t2", "y3", "β₂"]],
+ "copy": {"type": "D", "m": 1, "spine": ["y2", "y3"], "leaves": ["y1", "t1", "y4", "t2"]}}

@@ -1,0 +1,5 @@
+{"name": "F617", "doc": "BO13a figure 6.17: the square `ψ ≫ u₂' = β' ≫ w₂'` with `β : x → b`, `a : m → c ← x'` and `x'' → m`, `x'' → z₂`, with the zero relation `σ₂' ≫ a = 0`.", "theorem": "not_f617",
+ "verts": ["x", "b'", "m", "y₁", "b", "c", "x'", "x''", "z₂"],
+ "objs": ["X", "B'", "M", "Y₁", "Bb", "Cc", "X'", "X''", "Z₂"],
+ "arrows": [["x", "b'", "β'"], ["x", "m", "ψ"], ["m", "y₁", "U'"], ["b'", "y₁", "W'"], ["x", "b", "β"], ["m", "c", "a"], ["x'", "c", "r"], ["x''", "m", "t"], ["x''", "z₂", "ρ₂"]],
+ "zero": [["x''", "c"]]}
