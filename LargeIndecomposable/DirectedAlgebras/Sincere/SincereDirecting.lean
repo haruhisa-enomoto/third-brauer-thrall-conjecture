@@ -68,8 +68,8 @@ theorem reach_of_nonsplit {X Y E : FDMod k A} (hX : IsInd X) (hY : IsInd Y) (i :
   by_cases hboth : ∃ j, ij j ≠ 0 ∧ pj j ≠ 0
   · obtain ⟨j, h1, h2⟩ := hboth
     have hInd : IsInd (d.obj j) := ⟨d.indec j, d.nt j⟩
-    exact Reach₁.trans (Reach₁.step hX hInd (show X ⟶ d.obj j from ij j) h1 (hij j))
-      (Reach₁.step hInd hY (show d.obj j ⟶ Y from pj j) h2 (hpj j))
+    exact Reach₁.trans (Reach₁.step hX hInd (show X ⟶ d.obj j from (FDMod.ofLin (ij j))) h1 (hij j))
+      (Reach₁.step hInd hY (show d.obj j ⟶ Y from (FDMod.ofLin (pj j))) h2 (hpj j))
   · push Not at hboth
     exfalso
     apply hns
@@ -273,8 +273,8 @@ def IsProjL (P : FDMod k A) : Prop :=
 
 lemma isProjL_projE {e : A} (he : IsIdempotentElem e) : IsProjL (projE (k := k) he) := by
   intro X Y q hq φ
-  obtain ⟨g, hg⟩ := projE_lift he (show X ⟶ Y from q) hq (show projE he ⟶ Y from φ)
-  exact ⟨g, hg⟩
+  obtain ⟨g, hg⟩ := projE_lift he (show X ⟶ Y from (FDMod.ofLin (q))) hq (show projE he ⟶ Y from (FDMod.ofLin (φ)))
+  exact ⟨(FDMod.lin (g)), ((FDMod.comp_eq_iff _ _ _).1 (hg))⟩
 
 /-- The index set of an injective envelope. -/
 abbrev EnvIdx (D : DirData k A) (Y : FDMod k A) : Type u :=
@@ -376,11 +376,11 @@ theorem extVanish_cosyz (hT : ∀ x, x ∈ D.T) (hU : Directing U) (hs : Sincere
       (fun j : EnvIdx D Y ↦ D.injE j.down.1) j
   have hIU : Reach₁ (D.injE j.down.1) U := by
     by_cases hb : Function.Bijective b
-    · exact Reach₁.iso_trans ⟨show _ ⟶ _ from b, hb⟩ hI hreach
-    · exact Reach₁.trans (Reach₁.step hI hind (show _ ⟶ _ from b) hj hb) hreach
+    · exact Reach₁.iso_trans ⟨FDMod.ofLin b, hb⟩ hI hreach
+    · exact Reach₁.trans (Reach₁.step hI hind (FDMod.ofLin b) hj hb) hreach
   by_cases ha' : Function.Bijective a
-  · exact hU.2 (Reach₁.iso_trans ⟨show _ ⟶ _ from a, ha'⟩ hU.1 hIU)
-  · exact hU.2 (Reach₁.trans (Reach₁.step hU.1 hI (show _ ⟶ _ from a) ha ha') hIU)
+  · exact hU.2 (Reach₁.iso_trans ⟨FDMod.ofLin a, ha'⟩ hU.1 hIU)
+  · exact hU.2 (Reach₁.trans (Reach₁.step hU.1 hI (FDMod.ofLin a) ha ha') hIU)
 
 /-- If `W` has no extensions by the cosyzygy of `Y`, a syzygy of `W` has no extensions by `Y`. -/
 theorem extVanish_syz_of_cosyz {W K P : FDMod k A} (f : K →ₗ[A] P)
@@ -522,8 +522,8 @@ theorem mono_or_epi (hT : ∀ x, x ∈ D.T) (hU : Directing U) (hs : Sincere D U
     exact h1.symm
   have hVU : Reach₁ V U ∨ IsoM V U := by
     by_cases hb : Function.Bijective f
-    · exact Or.inr ⟨show _ ⟶ _ from f, hb⟩
-    · exact Or.inl (Reach₁.step hVi hU.1 (show _ ⟶ _ from f) hf0 hb)
+    · exact Or.inr ⟨FDMod.ofLin f, hb⟩
+    · exact Or.inl (Reach₁.step hVi hU.1 (FDMod.ofLin f) hf0 hb)
   -- the syzygy `N` is projective
   have hK := extVanish_syz_of_pred (D := D) hT hU hs (K := FDMod.ofSub N) (P := P) hVi hVU
     N.subtype π Subtype.val_injective (Submodule.mkQ_surjective N)
@@ -534,7 +534,7 @@ theorem mono_or_epi (hT : ∀ x, x ∈ D.T) (hU : Directing U) (hs : Sincere D U
     p.surjective_rangeRestrict (by rw [Submodule.range_subtype, LinearMap.ker_rangeRestrict])
   have hσ' : ∀ z, p' (σ z) = z := fun z ↦ LinearMap.congr_fun hσ z
   obtain ⟨c, hc⟩ := projE_brick (k := k) (D.idem y) (D.local_ y)
-    (show Py ⟶ Py from σ ∘ₗ p')
+    (show Py ⟶ Py from (FDMod.ofLin (σ ∘ₗ p')))
   have hc' : ∀ b, σ (p' b) = c • b := fun b ↦ LinearMap.congr_fun hc b
   have hgy : p (genP (k := k) y) = ⟨v, hvr⟩ := Subtype.ext hvl
   have hc0 : c ≠ 0 := by

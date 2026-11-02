@@ -79,7 +79,7 @@ theorem finite_of_bounded {ι : Type} [Fintype ι] (e : ι → A) (he : ∀ x, I
       have := LinearMap.congr_fun (hall' i) w
       simp only [LinearMap.comp_apply, LinearMap.zero_apply] at this
       rw [this, map_zero]
-  let f : N ⟶ d.obj j := FDMod.lin (d.proj j) ∘ₗ φ
+  let f : N ⟶ d.obj j := (FDMod.ofLin (FDMod.lin (d.proj j) ∘ₗ φ))
   have hmem : ∀ Z, Z ∈ d.obj j :: Lj j →
       Z ∈ (Finset.univ.toList).flatMap (fun j ↦ d.obj j :: Lj j) := fun Z hZ ↦
     List.mem_flatMap.2 ⟨j, Finset.mem_toList.2 (Finset.mem_univ j), hZ⟩

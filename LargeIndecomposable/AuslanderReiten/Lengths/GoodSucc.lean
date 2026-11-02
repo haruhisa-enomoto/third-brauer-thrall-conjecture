@@ -84,7 +84,7 @@ theorem good_succ (hproj : ∀ Y : FDMod k A, IndNT Y → IsFreeSummand A Y → 
   haveI : IsLocalRing (Module.End A Y) := hY.1.isLocalRing (k := k)
   obtain ⟨E, g, hg, hgs, hmin, hleft, hKind, hKnt⟩ := exists_arSeq Y hp
   let K : FDMod k A := FDMod.ofSub (LinearMap.ker (FDMod.lin g))
-  let fK : K ⟶ E := (LinearMap.ker (FDMod.lin g)).subtype
+  let fK : K ⟶ E := (FDMod.ofLin ((LinearMap.ker (FDMod.lin g)).subtype))
   have hfKinj : Function.Injective (FDMod.lin fK) := Subtype.val_injective
   have hexK : LinearMap.range (FDMod.lin fK) = LinearMap.ker (FDMod.lin g) :=
     Submodule.range_subtype _

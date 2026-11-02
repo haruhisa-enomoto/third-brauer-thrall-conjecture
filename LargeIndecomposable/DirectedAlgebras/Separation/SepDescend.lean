@@ -115,20 +115,20 @@ def decompDescend {X : FDMod k (D.QAlg T')} {M : FDMod k A} (g : M ⟶ resFD (D.
     simp only [LinearMap.sum_apply, LinearMap.coe_comp, Function.comp_apply,
       LinearMap.id_apply] at this
     rw [this]
-    exact LinearMap.congr_fun (invOf_comp g hg) (ofX x)
+    exact LinearMap.congr_fun (congrArg FDMod.lin ((invOf_comp g hg))) (ofX x)
   retr i := by
     apply LinearMap.ext; intro x
     change FDMod.lin (d.proj i) (FDMod.lin (invOf g hg) (FDMod.lin g
       (FDMod.lin (d.inc i) x))) = x
     rw [show FDMod.lin (invOf g hg) (FDMod.lin g (FDMod.lin (d.inc i) x)) =
-      FDMod.lin (d.inc i) x from LinearMap.congr_fun (comp_invOf g hg) _]
+      FDMod.lin (d.inc i) x from LinearMap.congr_fun (congrArg FDMod.lin (comp_invOf g hg)) _]
     exact LinearMap.congr_fun (d.retr i) x
   orth i j h := by
     apply LinearMap.ext; intro x
     change FDMod.lin (d.proj j) (FDMod.lin (invOf g hg) (FDMod.lin g
       (FDMod.lin (d.inc i) x))) = 0
     rw [show FDMod.lin (invOf g hg) (FDMod.lin g (FDMod.lin (d.inc i) x)) =
-      FDMod.lin (d.inc i) x from LinearMap.congr_fun (comp_invOf g hg) _]
+      FDMod.lin (d.inc i) x from LinearMap.congr_fun (congrArg FDMod.lin (comp_invOf g hg)) _]
     exact LinearMap.congr_fun (d.orth i j h) x
 
 lemma quot_supp (Y : FDMod k (D.QAlg T')) :

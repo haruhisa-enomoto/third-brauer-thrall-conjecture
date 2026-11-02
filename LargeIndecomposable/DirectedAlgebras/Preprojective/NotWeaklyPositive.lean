@@ -37,7 +37,7 @@ theorem Directing.finrank_end [IsAlgClosed k] {M : FDMod k A} (hM : Directing M)
     refine ⟨c, ?_⟩
     have h := hM.endo (FDMod.ofLin (f - c • LinearMap.id))
     rcases h with h0 | hb
-    · exact sub_eq_zero.1 (congrArg FDMod.lin h0)
+    · exact sub_eq_zero.1 h0
     · exfalso
       obtain ⟨v, hv⟩ := hc.exists_hasEigenvector
       apply hv.2
