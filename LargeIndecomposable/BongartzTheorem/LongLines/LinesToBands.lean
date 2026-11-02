@@ -6,7 +6,7 @@ public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.HullStage
 /-!
 # The line step from long lines
 
-`LongLineNode` is the large-line input of the representation-finite case (BO23, proof of
+`LinesOfEveryLength` is the large-line input of the representation-finite case (BO23, proof of
 Theorem 7, lines 876–882; BO13b, Theorem `ssc`): when every finite convex piece of the universal
 cover is representation-finite and graded indecomposables have unbounded supports, the cover
 contains lines of every length. The line lemma (BO13b, Lemma 7.2) then gives the line step: lines of
@@ -27,7 +27,7 @@ open CategoryTheory Statement RayCat RayCat.Cover RayQuiver Covering LargeIndeco
 universe u
 
 /-- **The large-line input**: lines of every length in the universal cover. -/
-def LongLineNode : Prop :=
+def LinesOfEveryLength : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -46,7 +46,7 @@ def LongLineNode : Prop :=
           ∀ m : ℕ, ∃ L : CLine x₀, m ≤ L.n
 
 /-- **The line step from long lines** (BO13b, Lemma 7.2; BO23, proof of Theorem 7). -/
-theorem d7Node_of_longLine (hL : LongLineNode.{u}) : D7Node.{u} := by
+theorem repFinitePiecesGiveBandCore_of_longLine (hL : LinesOfEveryLength.{u}) : RepFinitePiecesGiveBandCore.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd

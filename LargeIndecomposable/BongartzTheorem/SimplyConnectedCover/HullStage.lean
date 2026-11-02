@@ -1,16 +1,16 @@
 module
 
 public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.HullResidue
-public import LargeIndecomposable.BongartzTheorem.Reduction.FromDichotomy
-public import LargeIndecomposable.BongartzTheorem.LongLines.LineSplit
+public import LargeIndecomposable.BongartzTheorem.Reduction.DistributiveCase
+public import LargeIndecomposable.BongartzTheorem.LongLines.LineStep
 public import LargeIndecomposable.FundamentalGroups.SimplyConnectedStages.ChainHull
 public import LargeIndecomposable.FundamentalGroups.SimplyConnectedStages.ReductionStep
 
 /-!
-# `HullNode` from Satz 5.1
+# `IntervalFiniteCover` from Satz 5.1
 
-As `hullNode_of_chainHull`, with the chain-bounded case supplied by `hullFinite_of_chainBounded`
-(Satz 5.1 from `StageStepNode`, proved in `stageStepNode`). The connectedness it needs holds for the ray category of a
+As `intervalFiniteCover_of_chainHull`, with the chain-bounded case supplied by `hullFinite_of_chainBounded`
+(Satz 5.1 from `SimplyConnectedStageStep`, proved in `simplyConnectedStageStep`). The connectedness it needs holds for the ray category of a
 minimal representation-infinite algebra and passes to the residue `P/μ` (`resFGEquiv`).
 -/
 
@@ -26,8 +26,8 @@ open CategoryTheory Limits Statement
 
 universe u
 
-/-- **`HullNode` from the reduction step.** -/
-theorem hullNode_of_stage (hS : StageStepNode) : HullNode.{u} := by
+/-- **`IntervalFiniteCover` from the reduction step.** -/
+theorem intervalFiniteCover_of_stage (hS : SimplyConnectedStageStep) : IntervalFiniteCover.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -49,7 +49,7 @@ theorem hullNode_of_stage (hS : StageStepNode) : HullNode.{u} := by
   · exact hullFinite_of_not_hasLong hL
   letI := S.isFiniteRayCategory hd
   obtain ⟨a, b, μ, hμ, hμr, hμ0, hlong, hcont, hCB'⟩ :=
-    prop2Node_of mulBasisNode (longNotInContourNode_of_mulBasis mulBasisNode) k B ι S hB hd hCB hL
+    bongartzProposition2_of twistedMulBasisExists (longMorphismNotInContour_of_mulBasis twistedMulBasisExists) k B ι S hB hd hCB hL
   haveI := LargeIndecomposable.rayResidueCategory_isFiniteRayCategory μ hμ
   haveI : Finite (Res μ) :=
     Finite.of_surjective (fun x ↦ (⟨x⟩ : Res μ)) fun ⟨x⟩ ↦ ⟨x, rfl⟩
@@ -65,7 +65,7 @@ theorem hullNode_of_stage (hS : StageStepNode) : HullNode.{u} := by
     (hullFinite_of_chainBounded hS _ (leftCancel_quotient _ (RaySmall.leftCancel (S.leftCancel hd)))
       (rightCancel_quotient _ (RaySmall.rightCancel (S.rightCancel hd))) hCB' hcon' _)
 
-/-- **`HullNode`** (interval-finiteness of the universal cover), proved. -/
-theorem hullNode : HullNode.{u} := hullNode_of_stage stageStepNode
+/-- **`IntervalFiniteCover`** (interval-finiteness of the universal cover), proved. -/
+theorem intervalFiniteCover : IntervalFiniteCover.{u} := intervalFiniteCover_of_stage simplyConnectedStageStep
 
 end LargeIndecomposable.RayCat

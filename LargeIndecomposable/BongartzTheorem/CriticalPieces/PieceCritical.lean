@@ -14,7 +14,7 @@ For a critical piece: all indecomposable projectives lie in the preprojective co
 (`goodProj_piece`), because the points whose projective lies in it form an arrow-closed, hence
 convex, set containing the support of the component. Then `AR.DirData.exists_pointBrick` gives
 point–brick data on a minimal quotient. They inflate to the piece (`pointBrick'_critical`). This
-proves `PointBrickNode'`.
+proves `PointBrickData`.
 -/
 
 @[expose] public section
@@ -89,15 +89,6 @@ lemma smul_eq_chi {M : Type*} [AddCommGroup M] [Module A M] [Module k M] [IsScal
   have h2 : D.e x • (a • m) = (D.e x * a * D.e x) • m := by
     rw [mul_smul, mul_smul, h m]
   rw [h2, D.chi_spec x hx, smul_assoc, h m]
-
-/-- The characters of the quotient. -/
-lemma chi_quotAny {T' : Set D.ι} (hT : T' ⊆ D.T) (x : T') (hx : x ∈ (D.quotAny hT).T) (a : A) :
-    (D.quotAny hT).chi x hx (D.qmap T' a) = D.chi x.1 (hT x.2) a := by
-  apply (D.quotAny hT).smul_e_inj hx
-  refine ((D.quotAny hT).chi_spec x hx (D.qmap T' a)).symm.trans ?_
-  change D.qmap T' (D.e x.1) * D.qmap T' a * D.qmap T' (D.e x.1) = _
-  rw [← map_mul, ← map_mul, D.chi_spec x.1 (hT x.2), map_smul]
-  rfl
 
 end LargeIndecomposable.AR.DirData
 
@@ -510,8 +501,8 @@ lemma nonempty_of_not_repFin (hrep : ¬PieceRepFin k S) : S.Nonempty := by
   obtain ⟨⟨s, -⟩, -⟩ := hind
   exact absurd (show (∅ : Finset (Cover x₀)) from s).2 (by simp)
 
-/-- **`PointBrickNode'` holds.** No tilting, tubes or classification tables are used. -/
-theorem pointBrickNode' : PointBrickNode'.{u} := by
+/-- **`PointBrickData` holds.** No tilting, tubes or classification tables are used. -/
+theorem pointBrickData : PointBrickData.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -520,8 +511,8 @@ theorem pointBrickNode' : PointBrickNode'.{u} := by
   letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
   intro e x₀ htf C hC hrep hmin
   exact ⟨C, hC, pointBrick'_critical hC (nonempty_of_not_repFin hrep)
-    (coverAcyclicNode k B ι S hB hd x₀)
-    (intervalFinite_of_hull (hullNode k B ι S hB hd e x₀ htf))
-    (coverLocalSCNode k B ι S hB hd x₀) hrep hmin⟩
+    (coverIsAcyclic k B ι S hB hd x₀)
+    (intervalFinite_of_hull (intervalFiniteCover k B ι S hB hd e x₀ htf))
+    (coverLocallySimplyConnected k B ι S hB hd x₀) hrep hmin⟩
 
 end LargeIndecomposable.RayCat

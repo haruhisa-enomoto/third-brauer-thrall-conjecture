@@ -10,17 +10,17 @@ public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasisQuot
 public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasisStd
 
 /-!
-# Bongartz's Theorem 6 from its remaining nodes
+# Bongartz's Theorem 6 from its remaining steps
 
 `BongartzDistributive` follows from three statements about the small model
 `P` of the ray category of a distributive minimal representation-infinite
 algebra `B` (`bongartzDistributive_of_nodes`):
 
-* `StandardnessNode`: `B ≅ k(P)`;
-* `CrownNode`: if `P` is not chain-bounded, its fundamental group is
+* `AlgebraIsLinearization`: `B ≅ k(P)`;
+* `CrownCase`: if `P` is not chain-bounded, its fundamental group is
   free (the chain-bounded case is Fischbacher's theorem, proved in
   `FundamentalGroups/Basic/FreePi.lean`);
-* `DichotomyNode`: given `B ≅ k(P)` and a torsion-free fundamental
+* `CoverDichotomy`: given `B ≅ k(P)` and a torsion-free fundamental
   group, a finite convex piece of the universal cover carries a Kronecker pair
   respecting the relations of the cover, or `B` has a monomial band.
 
@@ -41,7 +41,7 @@ universe u
 
 /-- The algebra is the linearization of (the small model of) its ray
 category. -/
-def StandardnessNode : Prop :=
+def AlgebraIsLinearization : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -53,7 +53,7 @@ def StandardnessNode : Prop :=
       Nonempty (Linearization (RaySmall.{0} S.toIdempotents.RayCategory) k ≃ₐ[k] B)
 
 /-- The crown case of BO13a Theorem 2 b). -/
-def CrownNode : Prop :=
+def CrownCase : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -61,25 +61,6 @@ def CrownNode : Prop :=
       letI := S.locallySmall hd
       ¬ChainBounded S.toIdempotents.RayCategory →
         ∀ X : FundGroupoid (RaySmall.{0} S.toIdempotents.RayCategory), IsFreeGroup (End X)
-
-/-- The dichotomy on the universal cover. -/
-def DichotomyNode : Prop :=
-  ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
-    [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
-    IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
-      letI := S.distribHomStructure hd
-      letI := S.locallySmall hd
-      letI := S.isRayCategory hd
-      letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-      letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-      ∀ (_ : Linearization (RaySmall.{0} S.toIdempotents.RayCategory) k ≃ₐ[k] B)
-        (x₀ : RaySmall.{0} S.toIdempotents.RayCategory),
-        (∀ g : Pi1 x₀, g ≠ 1 → ∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
-          (∃ (Sp : Finset (Cover x₀)) (_ : Convex (Sp : Set (Cover x₀)))
-            (K : KroneckerPair k (pieceQuiver Sp)),
-            (∀ i, Nontrivial (K.P.obj i) ∨ Nontrivial (K.Q₀.obj i)) ∧
-              RespectsCover (K.functor.obj (SminusK k)) ∧ RespectsCover (K.functor.obj (P1K k))) ∨
-          Nonempty (Walk.MonomialBand k B)
 
 /-- A minimal representation-infinite split basic algebra has at least one
 primitive idempotent. -/
@@ -98,33 +79,9 @@ lemma SplitBasicData.nonempty_of_minimal {k : Type u} [Field k] {B : Type u} [Ri
   apply hxy
   rw [← one_smul B x, ← one_smul B y, h1, zero_smul, zero_smul]
 
-/-- **Bongartz's Theorem 6 (data form) from its remaining nodes.** -/
-theorem bongartzDistributive_of_nodes (hStd : StandardnessNode.{u}) (hCrown : CrownNode.{u})
-    (hDich : DichotomyNode.{u}) : BongartzDistributive.{u} := by
-  intro k _ _ B _ _ _ ι _ S hB hd
-  classical
-  have hι := S.nonempty_of_minimal hB
-  letI := S.distribHomStructure hd
-  letI := S.locallySmall hd
-  letI := S.isRayCategory hd
-  letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-  letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-  obtain ⟨e⟩ := hStd k B ι S hB hd
-  let x₀ : RaySmall.{0} S.toIdempotents.RayCategory :=
-    ⟨⟨S.toIdempotents.projectiveVertexEquiv.symm (Classical.arbitrary ι)⟩⟩
-  have hfree : ∀ X : FundGroupoid (RaySmall.{0} S.toIdempotents.RayCategory), IsFreeGroup (End X) := by
-    by_cases hCB : ChainBounded S.toIdempotents.RayCategory
-    · exact S.small_isFreeGroup_end hd hB hCB
-    · exact hCrown k B ι S hB hd hCB
-  have htf : ∀ g : Pi1 x₀, g ≠ 1 → ∀ n : ℕ, 0 < n → g ^ n ≠ 1 := fun g hg n hn ↦
-    aut_pow_ne_one_of_isFreeGroup_end _ (hfree _) g hg n hn
-  rcases hDich k B ι S hB hd e x₀ htf with ⟨Sp, hS, K, hsupp, h₁, h₂⟩ | hband
-  · exact Or.inl ⟨pairCoveringData e htf Sp hS K hsupp h₁ h₂⟩
-  · exact Or.inr hband
-
 /-- Crown case: contour functions are exact (BO13a, proof of
 Theorem 2, via Proposition 2 and the §3.1 lemma). -/
-def CrownH2Node : Prop :=
+def CrownSecondCohomologyVanishes : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -135,7 +92,7 @@ def CrownH2Node : Prop :=
         ∀ C : ContourFn (RaySmall.{0} S.toIdempotents.RayCategory) (Additive kˣ), C.Exact
 
 /-- Crown case with a long morphism: the fundamental group is free. -/
-def CrownLongNode : Prop :=
+def CrownLongCase : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -145,7 +102,7 @@ def CrownLongNode : Prop :=
         ∀ X : FundGroupoid (RaySmall.{0} S.toIdempotents.RayCategory), IsFreeGroup (End X)
 
 /-- Crown case with a long morphism: contour functions are exact. -/
-def CrownLongH2Node : Prop :=
+def CrownLongSecondCohomologyVanishes : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -157,7 +114,7 @@ def CrownLongH2Node : Prop :=
 
 attribute [local instance] isRayCategory_of_finiteRayCategory in
 /-- Without long morphisms the crown case is the base case. -/
-theorem crownNode_of (h : CrownLongNode.{u}) : CrownNode.{u} := by
+theorem crownCase_of (h : CrownLongCase.{u}) : CrownCase.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -177,7 +134,7 @@ theorem crownNode_of (h : CrownLongNode.{u}) : CrownNode.{u} := by
 
 attribute [local instance] isRayCategory_of_finiteRayCategory in
 /-- Without long morphisms contour functions vanish. -/
-theorem crownH2Node_of (h : CrownLongH2Node.{u}) : CrownH2Node.{u} := by
+theorem crownSecondCohomologyVanishes_of (h : CrownLongSecondCohomologyVanishes.{u}) : CrownSecondCohomologyVanishes.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -191,7 +148,7 @@ theorem crownH2Node_of (h : CrownLongH2Node.{u}) : CrownH2Node.{u} := by
 /-- BO13a Proposition 2 (with the crown-freeness of `P/μ` used in the proof of
 its Theorem 2): a crown and a long morphism give a long morphism `μ` that
 occurs in no contour, with `P/μ` chain-bounded. -/
-def Prop2Node : Prop :=
+def BongartzProposition2 : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -204,7 +161,7 @@ def Prop2Node : Prop :=
           (_ : ¬IsIrreducible μ) (_ : μ ≠ 0), IsLongAt μ ∧ NotInContour μ ∧ ChainBounded (Res μ)
 
 attribute [local instance] isRayCategory_of_finiteRayCategory in
-theorem crownLongNode_of (h : Prop2Node.{u}) : CrownLongNode.{u} := by
+theorem crownLongCase_of (h : BongartzProposition2.{u}) : CrownLongCase.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -221,7 +178,7 @@ theorem crownLongNode_of (h : Prop2Node.{u}) : CrownLongNode.{u} := by
     (RaySmall.leftCancel (S.leftCancel hd)) (RaySmall.rightCancel (S.rightCancel hd)) hCB' hcon X
 
 attribute [local instance] isRayCategory_of_finiteRayCategory in
-theorem crownLongH2Node_of (h : Prop2Node.{u}) : CrownLongH2Node.{u} := by
+theorem crownLongSecondCohomologyVanishes_of (h : BongartzProposition2.{u}) : CrownLongSecondCohomologyVanishes.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -232,12 +189,12 @@ theorem crownLongH2Node_of (h : Prop2Node.{u}) : CrownLongH2Node.{u} := by
   exact exact_of_residue μ hμ hμr hμ0 hlong hcont
     (RaySmall.leftCancel (S.leftCancel hd)) (RaySmall.rightCancel (S.rightCancel hd)) hCB' C
 
-/-! ### Nodes in multiplicative-basis form -/
+/-! ### Steps in multiplicative-basis form -/
 
 /-- BGRS (Gabriel–Roiter 13.10–13.17): a minimal representation-infinite
 distributive algebra has a twisted multiplicative basis over its ray
 category. -/
-def MulBasisNode : Prop :=
+def TwistedMulBasisExists : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -250,7 +207,7 @@ def MulBasisNode : Prop :=
 
 /-- BO13a Proposition 2: a crown and a long morphism give a long morphism that
 occurs in no contour. -/
-def LongNotInContourNode : Prop :=
+def LongMorphismNotInContour : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -264,7 +221,7 @@ def LongNotInContourNode : Prop :=
 
 /-- `P/μ` has bounded chains: `B/⟨μ⟩` is representation-finite by minimality
 and has a twisted multiplicative basis over `P/μ`. -/
-theorem prop2Node_of (hM : MulBasisNode.{u}) (hL : LongNotInContourNode.{u}) : Prop2Node.{u} := by
+theorem bongartzProposition2_of (hM : TwistedMulBasisExists.{u}) (hL : LongMorphismNotInContour.{u}) : BongartzProposition2.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -279,9 +236,9 @@ theorem prop2Node_of (hM : MulBasisNode.{u}) (hL : LongNotInContourNode.{u}) : P
     Bm.chainBounded_res hμ (hB.2 _ (RayQuiver.MulBasis.ideal_ne_bot hμ0))⟩
 
 /-- Standardness from a twisted multiplicative basis: its contour function is
-exact by Roiter's theorem (no crown) or by `CrownH2Node`. -/
-theorem standardnessNode_of_mulBasis (hM : MulBasisNode.{u}) (hC : CrownH2Node.{u}) :
-    StandardnessNode.{u} := by
+exact by Roiter's theorem (no crown) or by `CrownSecondCohomologyVanishes`. -/
+theorem algebraIsLinearization_of_mulBasis (hM : TwistedMulBasisExists.{u}) (hC : CrownSecondCohomologyVanishes.{u}) :
+    AlgebraIsLinearization.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -298,13 +255,5 @@ theorem standardnessNode_of_mulBasis (hM : MulBasisNode.{u}) (hC : CrownH2Node.{
     · exact hC k B ι S hB hd hCB Bm.contourFn
   obtain ⟨a, ha⟩ := hex
   exact Bm.nonempty_algEquiv ha
-
-/-- **Bongartz's Theorem 6 (data form)** from three nodes: BGRS multiplicative
-bases, BO13a Proposition 2, and the dichotomy on the universal cover. -/
-theorem bongartzDistributive_of_mulBasis (hM : MulBasisNode.{u}) (hL : LongNotInContourNode.{u})
-    (hDich : DichotomyNode.{u}) : BongartzDistributive.{u} :=
-  bongartzDistributive_of_nodes
-    (standardnessNode_of_mulBasis hM (crownH2Node_of (crownLongH2Node_of (prop2Node_of hM hL))))
-    (crownNode_of (crownLongNode_of (prop2Node_of hM hL))) hDich
 
 end LargeIndecomposable

@@ -13,7 +13,7 @@ nilpotent of an exponent independent of the dimension (Corollary 5.3, through
 the retractions of Proposition 5.2).
 
 The Kronecker bricks are supplied by Göbel–Simson, Corollary 1.3; here this
-input is the interim hypothesis `KroneckerBricks`.
+input is the hypothesis `KroneckerBricks`.
 -/
 
 @[expose] public section
@@ -35,7 +35,7 @@ scalars. -/
 def IsBrickKron (T : Kron k) : Prop :=
   ¬ IsZero T ∧ ∀ f : T ⟶ T, ∃ c : k, f = c • 𝟙 T
 
-/-- Interim hypothesis (Göbel–Simson, Corollary 1.3): Kronecker bricks of every
+/-- Hypothesis (Göbel–Simson, Corollary 1.3): Kronecker bricks of every
 infinite dimension. -/
 def KroneckerBricks : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (κ : Cardinal.{u}), Cardinal.aleph0 ≤ κ →
@@ -54,9 +54,6 @@ lemma exists_functional {M : Type u} [AddCommGroup M] [Module k M] {p : Submodul
 def rankOne {M N : Type u} [AddCommGroup M] [Module k M] [AddCommGroup N] [Module k N]
     (φ : M →ₗ[k] k) (v : N) : M →ₗ[k] N :=
   (LinearMap.toSpanSingleton k N v).comp φ
-
-lemma rankOne_apply {M N : Type u} [AddCommGroup M] [Module k M] [AddCommGroup N] [Module k N]
-    (φ : M →ₗ[k] k) (v : N) (x : M) : rankOne φ v x = φ x • v := rfl
 
 /-- If `c • x = φ(x) v` for all `x` with `c ≠ 0`, the space has dimension at most one. -/
 lemma rank_le_one_of_eq_rankOne {M : Type u} [AddCommGroup M] [Module k M] {c : k} (hc : c ≠ 0)
@@ -274,7 +271,7 @@ section Main
 variable (H : DistributiveControlled.{u}) (G : KroneckerBricks.{u})
 
 include H G in
-/-- Corollary 1.1, conditional on the two interim hypotheses. -/
+/-- Corollary 1.1, conditional on the two hypotheses. -/
 theorem corollaryDimension_of : CorollaryDimension.{u} := by
   intro k _ _ A _ _ _ hA κ hκ
   obtain ⟨E⟩ := nonempty_controlledEmbedding_of_not_isRepresentationFinite (k := k) H A hA
@@ -285,7 +282,7 @@ theorem corollaryDimension_of : CorollaryDimension.{u} := by
     isIndecomposable_brick E hT hinf⟩
 
 include H G in
-/-- Corollary 5.3, conditional on the two interim hypotheses. -/
+/-- Corollary 5.3, conditional on the two hypotheses. -/
 theorem corollaryRadical_of : CorollaryRadical.{u} := by
   intro k _ _ A _ _ _ hA
   obtain ⟨E⟩ := nonempty_controlledEmbedding_of_not_isRepresentationFinite (k := k) H A hA

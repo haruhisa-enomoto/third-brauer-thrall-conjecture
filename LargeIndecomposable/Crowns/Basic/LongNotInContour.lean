@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.BongartzTheorem.Reduction.Steps
+public import LargeIndecomposable.BongartzTheorem.Reduction.TheoremSix
 public import LargeIndecomposable.Crowns.Section225.SameDomain
 public import LargeIndecomposable.RayCategories.ClosedChains.ClosedChainOf
 public import LargeIndecomposable.Crowns.Basic.RepresentationInfiniteShapes
@@ -10,9 +10,9 @@ public import LargeIndecomposable.Crowns.Basic.RepresentationInfiniteShapes
 
 * `RayCat.ClosedChain.toCrown`: a closed chain as a periodic crown.
 * `RayCat.RaySmall.chainBounded_of`: chain-boundedness descends from the small model.
-* `longNotInContourNode_of`: `LongNotInContourNode` from `MulBasisNode` and the
+* `longMorphismNotInContour_of`: `LongMorphismNotInContour` from `TwistedMulBasisExists` and the
   representation-infinite shapes of BO13a §2.2 (`MulBasis.s225_final`).
-* `longNotInContourNode_of_mulBasis`: the shapes discharged (`Crowns/Basic/RepresentationInfiniteShapes.lean`).
+* `longMorphismNotInContour_of_mulBasis`: the shapes discharged (`Crowns/Basic/RepresentationInfiniteShapes.lean`).
 -/
 
 @[expose] public section
@@ -151,10 +151,10 @@ open RayCat RayQuiver
 attribute [local instance] isRayCategory_of_finiteRayCategory in
 /-- **BO13a Proposition 2** from BGRS multiplicative bases and the
 representation-infinite shapes of BO13a §2.2. -/
-theorem longNotInContourNode_of (hM : MulBasisNode.{u})
+theorem longMorphismNotInContour_of (hM : TwistedMulBasisExists.{u})
     (hSh : ∀ (k : Type u) [Field k] [IsAlgClosed k], MulBasis.L6Shapes k ∧ MulBasis.L8Shapes k ∧
       ¬Statement.IsRepresentationFinite (Linearization (ThinCat F93.thin) k)) :
-    LongNotInContourNode.{u} := by
+    LongMorphismNotInContour.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -178,14 +178,14 @@ theorem longNotInContourNode_of (hM : MulBasisNode.{u})
     hcont hS6 hS8 hD93 Cc.toCrown μ₀ hμ₀
 
 /-- **BO13a Proposition 2** from BGRS multiplicative bases. -/
-theorem longNotInContourNode_of_mulBasis (hM : MulBasisNode.{u}) : LongNotInContourNode.{u} :=
-  longNotInContourNode_of hM fun k _ _ ↦
+theorem longMorphismNotInContour_of_mulBasis (hM : TwistedMulBasisExists.{u}) : LongMorphismNotInContour.{u} :=
+  longMorphismNotInContour_of hM fun k _ _ ↦
     ⟨MulBasis.l6Shapes k, MulBasis.l8Shapes k, MulBasis.f93Shape k⟩
 
 /-- **Bongartz's Theorem 6 (data form)** from BGRS multiplicative bases and the
 dichotomy on the universal cover. -/
-theorem bongartzDistributive_of_mulBasis_dichotomy (hM : MulBasisNode.{u})
-    (hDich : DichotomyNode.{u}) : BongartzDistributive.{u} :=
-  bongartzDistributive_of_mulBasis hM (longNotInContourNode_of_mulBasis hM) hDich
+theorem bongartzDistributive_of_mulBasis_dichotomy (hM : TwistedMulBasisExists.{u})
+    (hDich : CoverDichotomy.{u}) : BongartzDistributive.{u} :=
+  bongartzDistributive_of_mulBasis hM (longMorphismNotInContour_of_mulBasis hM) hDich
 
 end LargeIndecomposable

@@ -9,7 +9,7 @@ Arrows of the cover of `P/μ` out of the image of an object lift to arrows of th
 (`arrow_lift`). An injective quiver map with arrow lifting and reflection of path values pulls
 local simple connectivity back (`isCoboundaryOn_of_transfer`); applied to the residue map this
 gives `coverLocalSC_of_residue`, and with the chain-bounded and no-long cases,
-`coverLocalSCNode`.
+`coverLocallySimplyConnected`.
 -/
 
 @[expose] public section
@@ -275,7 +275,7 @@ universe u
 open Statement in
 /-- **The universal cover of a minimal representation-infinite distributive algebra is locally
 simply connected.** -/
-theorem coverLocalSCNode (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B]
+theorem coverLocallySimplyConnected (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B]
     [Algebra k B] [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι]
     (S : SplitBasicData k B ι) (hB : IsMinimalRepInfinite B) (hd : IsDistribIdeals B) :
     letI := S.distribHomStructure hd
@@ -297,14 +297,14 @@ theorem coverLocalSCNode (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ri
     isConnected_fund_of_nzConnected fun x y ↦ RaySmall.nzConnected
       (S.nzConnected hd (fun e he hc ↦ hB.central_idempotent e he hc) x.as y.as)
   by_cases hCB : ChainBounded S.toIdempotents.RayCategory
-  · exact coverLocalSC_of_chainBounded stageStepNode _ (RaySmall.leftCancel (S.leftCancel hd))
+  · exact coverLocalSC_of_chainBounded simplyConnectedStageStep _ (RaySmall.leftCancel (S.leftCancel hd))
       (RaySmall.rightCancel (S.rightCancel hd)) (RaySmall.chainBounded hCB) hcon x₀
   by_cases hL : HasLong (RaySmall.{0} S.toIdempotents.RayCategory)
   swap
   · exact coverLocalSC_of_not_hasLong hL
   letI := S.isFiniteRayCategory hd
   obtain ⟨a, b, μ, hμ, hμr, hμ0, hlong, hcont, hCB'⟩ :=
-    prop2Node_of mulBasisNode (longNotInContourNode_of_mulBasis mulBasisNode) k B ι S hB hd hCB hL
+    bongartzProposition2_of twistedMulBasisExists (longMorphismNotInContour_of_mulBasis twistedMulBasisExists) k B ι S hB hd hCB hL
   haveI := LargeIndecomposable.rayResidueCategory_isFiniteRayCategory μ hμ
   haveI : Finite (Res μ) :=
     Finite.of_surjective (fun x ↦ (⟨x⟩ : Res μ)) fun ⟨x⟩ ↦ ⟨x, rfl⟩
@@ -317,7 +317,7 @@ theorem coverLocalSCNode (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ri
     isConnected_of_equivalent (resFGEquiv μ hμ hμr hμ0)
   have hcon' : IsConnected (FundGroupoid (Res μ)) := isConnected_quotient homotopy
   exact coverLocalSC_of_residue μ hμ hμr hμ0 hlong hcont
-    (coverLocalSC_of_chainBounded stageStepNode _
+    (coverLocalSC_of_chainBounded simplyConnectedStageStep _
       (leftCancel_quotient _ (RaySmall.leftCancel (S.leftCancel hd)))
       (rightCancel_quotient _ (RaySmall.rightCancel (S.rightCancel hd))) hCB' hcon' _)
 

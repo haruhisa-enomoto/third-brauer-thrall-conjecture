@@ -156,20 +156,4 @@ theorem scalar_of_related_of_deep_or_scalar
   exact key p q hint rfl
 
 
-/-- **BGRS 2.9**: if non-interlaced pairs of paths with the same nonzero value
-are deep, then all such pairs have proportional values. -/
-theorem scalar_of_related_of_deep
-    (L : LargeIndecomposable.BGRSRayArrowLift (C := S.ProjectiveCategory))
-    (hzero : ∀ {i j : LargeIndecomposable.RayVertex S.RayCategory} (p : Quiver.Path i j),
-      L.pathMap p = 0 ↔ LargeIndecomposable.rayPathMap p = 0)
-    (hdeep : ∀ {i j : LargeIndecomposable.RayVertex S.RayCategory} {p q : Quiver.Path i j},
-      (LargeIndecomposable.rayPathContourRelation (C := S.RayCategory)).related p q →
-      ¬(LargeIndecomposable.properWhiskerInterlacementRelation
-        (LargeIndecomposable.rayPathContourRelation (C := S.RayCategory))).interlaced p q →
-      S.IsBGRSDeepRayPath p)
-    {i j : LargeIndecomposable.RayVertex S.RayCategory} {p q : Quiver.Path i j}
-    (hpq : (LargeIndecomposable.rayPathContourRelation (C := S.RayCategory)).related p q) :
-    (scalarRel S L).related p q :=
-  scalar_of_related_of_deep_or_scalar S L hzero (fun h h' ↦ Or.inl (hdeep h h')) hpq
-
 end LargeIndecomposable.SplitBasicIdempotents

@@ -1,13 +1,13 @@
 module
 
-public import LargeIndecomposable.BongartzTheorem.CriticalPieces.NonSincere
+public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PairWithoutSupport
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.SinkCount
 /-!
 # Point–brick data without sincerity
 
 `PointBrick'` is `PointBrick` without the condition that `V` is nonzero at every vertex other
 than `x`. It still gives a Kronecker pair whose extensions respect the cover
-(`pair_of_pointBrick'`), hence the support-free critical node (`criticalNode'_of_point'`). Two
+(`pair_of_pointBrick'`), hence the support-free critical step (`criticalPieceCarriesPair_of_pointBrickData`). Two
 independent cocycles give `PointBrick'` (`pointBrick'_of_cocycles`).
 -/
 
@@ -58,7 +58,7 @@ theorem pair_of_pointBrick' {Sp : Finset (Cover x₀)} (h : PointBrick' (k := k)
       (respectsCover_extRep _ _ (respectsCover_pointRep x) hVc h₂.1 h₂.2)⟩
 
 /-- Critical pieces carry the data of Bongartz's Lemma 4, without sincerity. -/
-def PointBrickNode' : Prop :=
+def PointBrickData : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -75,8 +75,8 @@ def PointBrickNode' : Prop :=
             PieceRepFin k C') →
           ∃ (Sp : Finset (Cover x₀)) (_ : Convex (Sp : Set (Cover x₀))), PointBrick' (k := k) Sp
 
-/-- **The support-free critical node from point–brick data.** -/
-theorem criticalNode'_of_point' (h : PointBrickNode'.{u}) : CriticalNode'.{u} := by
+/-- **The support-free critical step from point–brick data.** -/
+theorem criticalPieceCarriesPair_of_pointBrickData (h : PointBrickData.{u}) : CriticalPieceCarriesPair.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -87,65 +87,5 @@ theorem criticalNode'_of_point' (h : PointBrickNode'.{u}) : CriticalNode'.{u} :=
   obtain ⟨Sp, hSp, hpb⟩ := h k B ι S hB hd e x₀ htf C hC hrep hmin
   obtain ⟨K, hK⟩ := pair_of_pointBrick' hpb
   exact ⟨Sp, hSp, K, hK⟩
-
-/-- **Point–brick data from two independent cocycles, without sincerity.** -/
-theorem pointBrick'_of_cocycles {S : Finset (Cover x₀)} (F : Ext.RelFam (pieceQuiver S) k)
-    (hF : ∀ r, F.ρ r ∈ TwoSidedIdeal.span (relGens k S))
-    (hgen : relGens k S ⊆ TwoSidedIdeal.span (Set.range F.ρ))
-    (x : (pieceQuiver S).V) (V : Rep k (pieceQuiver S)) (finV : ∀ i, FiniteDimensional k (V.obj i))
-    (hVx : Subsingleton (V.obj x))
-    (brickV : ∀ f : V ⟶ V, ∃ c : k, ∀ i, (f.app i).hom = c • LinearMap.id)
-    (hV : ∃ i, Nontrivial (V.obj i)) (hVc : RespectsCover V)
-    (h2 : 2 ≤ Module.finrank k (Ext.cocycles F (X := V) (Y := Rep.pointRep (k := k) x))) :
-    PointBrick' (k := k) S := by
-  haveI := finV
-  haveI : ∀ i, FiniteDimensional k ((Rep.pointRep (k := k) x).obj i) := fun i ↦
-    inferInstanceAs (FiniteDimensional k (Fin _ → k))
-  obtain ⟨w₁, w₂, hw⟩ := exists_pair h2
-  have hind : ∀ c₁ c₂ : k, (∀ α, c₁ • (w₁ : Ext.Data V (Rep.pointRep (k := k) x)) α +
-      c₂ • (w₂ : Ext.Data V (Rep.pointRep (k := k) x)) α = 0) → c₁ = 0 ∧ c₂ = 0 := by
-    intro c₁ c₂ hc
-    apply hw
-    apply Subtype.ext
-    funext α
-    simpa using hc α
-  have hK : ∀ w : Ext.cocycles F (X := V) (Y := Rep.pointRep (k := k) x),
-      CrossOK (pairAtSink x V finV hVx brickV hV (w₁ : Ext.Data V (Rep.pointRep (k := k) x))
-        (w₂ : Ext.Data V (Rep.pointRep (k := k) x)) hind)
-        (w : Ext.Data V (Rep.pointRep (k := k) x)) := fun w ↦
-    crossOK_of_cocycle _ hVc (respectsCover_pointRep x) F hF hgen _ w.2
-  exact ⟨x, V, finV, hVx, brickV, hV, hVc,
-    Or.inr ⟨(w₁ : Ext.Data V (Rep.pointRep (k := k) x)),
-      (w₂ : Ext.Data V (Rep.pointRep (k := k) x)), hind, hK w₁, hK w₂⟩⟩
-
-/-- **Point–brick data at a source from two independent cocycles.** -/
-theorem pointBrick'_of_cocycles_source {S : Finset (Cover x₀)} (F : Ext.RelFam (pieceQuiver S) k)
-    (hF : ∀ r, F.ρ r ∈ TwoSidedIdeal.span (relGens k S))
-    (hgen : relGens k S ⊆ TwoSidedIdeal.span (Set.range F.ρ))
-    (x : (pieceQuiver S).V) (V : Rep k (pieceQuiver S)) (finV : ∀ i, FiniteDimensional k (V.obj i))
-    (hVx : Subsingleton (V.obj x))
-    (brickV : ∀ f : V ⟶ V, ∃ c : k, ∀ i, (f.app i).hom = c • LinearMap.id)
-    (hV : ∃ i, Nontrivial (V.obj i)) (hVc : RespectsCover V)
-    (h2 : 2 ≤ Module.finrank k (Ext.cocycles F (X := Rep.pointRep (k := k) x) (Y := V))) :
-    PointBrick' (k := k) S := by
-  haveI := finV
-  haveI : ∀ i, FiniteDimensional k ((Rep.pointRep (k := k) x).obj i) := fun i ↦
-    inferInstanceAs (FiniteDimensional k (Fin _ → k))
-  obtain ⟨w₁, w₂, hw⟩ := exists_pair h2
-  have hind : ∀ c₁ c₂ : k, (∀ α, c₁ • (w₁ : Ext.Data (Rep.pointRep (k := k) x) V) α +
-      c₂ • (w₂ : Ext.Data (Rep.pointRep (k := k) x) V) α = 0) → c₁ = 0 ∧ c₂ = 0 := by
-    intro c₁ c₂ hc
-    apply hw
-    apply Subtype.ext
-    funext α
-    simpa using hc α
-  have hK : ∀ w : Ext.cocycles F (X := Rep.pointRep (k := k) x) (Y := V),
-      CrossOK (pairAtSource x V finV hVx brickV hV
-        (w₁ : Ext.Data (Rep.pointRep (k := k) x) V) (w₂ : Ext.Data (Rep.pointRep (k := k) x) V) hind)
-        (w : Ext.Data (Rep.pointRep (k := k) x) V) := fun w ↦
-    crossOK_of_cocycle _ (respectsCover_pointRep x) hVc F hF hgen _ w.2
-  exact ⟨x, V, finV, hVx, brickV, hV, hVc,
-    Or.inl ⟨(w₁ : Ext.Data (Rep.pointRep (k := k) x) V),
-      (w₂ : Ext.Data (Rep.pointRep (k := k) x) V), hind, hK w₁, hK w₂⟩⟩
 
 end LargeIndecomposable.RayCat

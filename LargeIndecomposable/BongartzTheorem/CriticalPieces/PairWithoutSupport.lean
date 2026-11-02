@@ -4,15 +4,12 @@ public import LargeIndecomposable.BongartzTheorem.LongLines.LinesToBands
 public import LargeIndecomposable.Coverings.Pieces.PairRestrict
 
 /-!
-# The critical node without a support condition
+# Critical pieces without a support condition
 
-The Kronecker pair of the critical node need not be supported at every vertex of its convex
-piece: covering data are obtained after restricting the pair to its support
-(`PairCoveringData.ofPair`). `CriticalNode'` and `DichotomyNode'` drop the support condition, and
-Theorem A with both corollaries follows from `CriticalNode'` and `SSCNode`
-(`theoremA_of_critical'_ssc`). `CriticalNode` implies `CriticalNode'`.
-
-The final proof does not use `SSCNode`; see `MainTheorems.lean`.
+The Kronecker pair of a critical piece need not be supported at every vertex of the piece:
+covering data are obtained after restricting the pair to its support
+(`PairCoveringData.ofPair`). `CriticalPieceCarriesPair` and `CoverDichotomy` have no support
+condition.
 -/
 
 @[expose] public section
@@ -51,7 +48,7 @@ def pairCoveringData' (e : Linearization P k ≃ₐ[k] A)
 end RayCat
 
 /-- Without a support condition: a critical piece carries a Kronecker pair. -/
-def CriticalNode' : Prop :=
+def CriticalPieceCarriesPair : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -70,19 +67,8 @@ def CriticalNode' : Prop :=
             (K : KroneckerPair k (pieceQuiver Sp)),
               RespectsCover (K.functor.obj (SminusK k)) ∧ RespectsCover (K.functor.obj (P1K k))
 
-theorem criticalNode'_of (hC : CriticalNode.{u}) : CriticalNode'.{u} := by
-  intro k _ _ B _ _ _ ι _ _ S hB hd
-  letI := S.distribHomStructure hd
-  letI := S.locallySmall hd
-  letI := S.isRayCategory hd
-  letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-  letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-  intro e x₀ htf C hC1 hC2 hC3
-  obtain ⟨Sp, hSp, K, -, h₁, h₂⟩ := hC k B ι S hB hd e x₀ htf C hC1 hC2 hC3
-  exact ⟨Sp, hSp, K, h₁, h₂⟩
-
 /-- The dichotomy on the universal cover, without a support condition. -/
-def DichotomyNode' : Prop :=
+def CoverDichotomy : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -99,7 +85,7 @@ def DichotomyNode' : Prop :=
               RespectsCover (K.functor.obj (SminusK k)) ∧ RespectsCover (K.functor.obj (P1K k))) ∨
           Nonempty (Walk.MonomialBand k B)
 
-theorem dichotomyNode'_of (hC : CriticalNode'.{u}) (hL : LineNode.{u}) : DichotomyNode'.{u} := by
+theorem coverDichotomy_of (hC : CriticalPieceCarriesPair.{u}) (hL : RepFinitePiecesGiveBand.{u}) : CoverDichotomy.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -121,9 +107,9 @@ theorem dichotomyNode'_of (hC : CriticalNode'.{u}) (hL : LineNode.{u}) : Dichoto
       by_contra h'
       exact h _ C hC h' rfl
 
-/-- **Bongartz's Theorem 6 (data form)** from its nodes, without a support condition. -/
-theorem bongartzDistributive_of_nodesNS (hStd : StandardnessNode.{u}) (hCrown : CrownNode.{u})
-    (hDich : DichotomyNode'.{u}) : BongartzDistributive.{u} := by
+/-- **Bongartz's Theorem 6 (data form)** from its steps, without a support condition. -/
+theorem bongartzDistributive_of_steps (hStd : AlgebraIsLinearization.{u}) (hCrown : CrownCase.{u})
+    (hDich : CoverDichotomy.{u}) : BongartzDistributive.{u} := by
   intro k _ _ B _ _ _ ι _ S hB hd
   classical
   have hι := S.nonempty_of_minimal hB
@@ -146,13 +132,13 @@ theorem bongartzDistributive_of_nodesNS (hStd : StandardnessNode.{u}) (hCrown : 
   · exact Or.inr hband
 
 /-- **Bongartz's Theorem 6 (data form)** from the support-free dichotomy. -/
-theorem bongartzDistributive_of_dichotomy' (hDich : DichotomyNode'.{u}) :
+theorem bongartzDistributive_of_coverDichotomy (hDich : CoverDichotomy.{u}) :
     BongartzDistributive.{u} :=
-  bongartzDistributive_of_nodesNS
-    (standardnessNode_of_mulBasis mulBasisNode
-      (crownH2Node_of (crownLongH2Node_of (prop2Node_of mulBasisNode
-        (longNotInContourNode_of_mulBasis mulBasisNode)))))
-    (crownNode_of (crownLongNode_of (prop2Node_of mulBasisNode
-      (longNotInContourNode_of_mulBasis mulBasisNode)))) hDich
+  bongartzDistributive_of_steps
+    (algebraIsLinearization_of_mulBasis twistedMulBasisExists
+      (crownSecondCohomologyVanishes_of (crownLongSecondCohomologyVanishes_of (bongartzProposition2_of twistedMulBasisExists
+        (longMorphismNotInContour_of_mulBasis twistedMulBasisExists)))))
+    (crownCase_of (crownLongCase_of (bongartzProposition2_of twistedMulBasisExists
+      (longMorphismNotInContour_of_mulBasis twistedMulBasisExists)))) hDich
 
 end LargeIndecomposable

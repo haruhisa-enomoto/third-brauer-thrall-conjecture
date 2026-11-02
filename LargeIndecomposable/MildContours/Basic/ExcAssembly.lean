@@ -7,9 +7,9 @@ public import LargeIndecomposable.MildContours.Basic.CoreAssembly
 public import LargeIndecomposable.BongartzTheorem.Reduction.ConnectBridge
 
 /-!
-# The proportionality node without exceptions
+# The proportionality step without exceptions
 
-`scalarNode`: for a minimal representation-infinite distributive algebra there is a
+`scalarProportionality`: for a minimal representation-infinite distributive algebra there is a
 zero-detecting lift for which every non-interlaced contour is deep or has proportional
 values. Contours are deep or exceptional (`deep_or_exc`); an exceptional dumb-bell is
 unique and is made to commute by twisting its loops (`db_lift`); the `Q₂'` contours are
@@ -263,11 +263,11 @@ theorem q2_all (hd : IsDistribIdeals B) :
 
 end SplitBasicData
 
-/-- **The proportionality node** ([mild] Theorem 3 with the exceptional contours made to
+/-- **The proportionality step** ([mild] Theorem 3 with the exceptional contours made to
 commute): for a minimal representation-infinite distributive algebra there is a
 zero-detecting lift for which every non-interlaced contour is deep or has proportional
 values. -/
-theorem scalarNode : ScalarNode.{u} := by
+theorem scalarProportionality : ScalarProportionality.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd

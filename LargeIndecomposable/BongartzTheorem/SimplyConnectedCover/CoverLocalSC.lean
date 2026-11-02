@@ -28,7 +28,7 @@ def CoverLocalSC {P : Type} [Category.{0} P] [HasZeroMorphisms P] [IsRayCategory
     IsCocycleOn D c → IsCoboundaryOn D c
 
 /-- **Local simple connectivity for chain-bounded categories.** -/
-theorem coverLocalSC_of_chainBounded (hS : StageStepNode) (P : Type) [Category.{0} P]
+theorem coverLocalSC_of_chainBounded (hS : SimplyConnectedStageStep) (P : Type) [Category.{0} P]
     [HasZeroMorphisms P] [IsRayCategory P] [Finite P] [Fintype P] [DecidableEq P]
     (hL : LeftCancel P) (hR : RightCancel P) (hCB : ChainBounded P)
     (hcon : IsConnected (FundGroupoid P)) (x₀ : P) : CoverLocalSC x₀ := by

@@ -4,7 +4,7 @@ public import LargeIndecomposable.Coverings.GradedModules.GradedPieceAct
 public import LargeIndecomposable.Coverings.GradedModules.RayGrading
 public import LargeIndecomposable.Coverings.GradedModules.PushDownIndecomposable
 public import LargeIndecomposable.BongartzTheorem.ContourExclusion.NoContour
-public import LargeIndecomposable.BongartzTheorem.Reduction.DichotomySteps
+public import LargeIndecomposable.BongartzTheorem.Reduction.CoverDichotomy
 
 /-!
 # The grading of a push-down

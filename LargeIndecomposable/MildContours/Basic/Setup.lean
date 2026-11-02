@@ -4,7 +4,7 @@ public import LargeIndecomposable.RayCategories.Basic.MinimalQuotLin
 public import LargeIndecomposable.RayCategories.Distributive.QuotientRayPresentations
 public import LargeIndecomposable.FundamentalGroups.Basic.SmallFree
 public import LargeIndecomposable.RayCategories.Basic.Cancel
-public import LargeIndecomposable.BongartzTheorem.Reduction.Steps
+public import LargeIndecomposable.BongartzTheorem.Reduction.TheoremSix
 
 /-!
 # Setting for Bongartz's "On mild contours"

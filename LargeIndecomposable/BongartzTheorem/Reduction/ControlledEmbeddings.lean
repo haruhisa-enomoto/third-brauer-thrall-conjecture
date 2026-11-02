@@ -31,7 +31,7 @@ open CategoryTheory Statement
 
 universe u
 
-/-- Interim hypothesis: every distributive split basic minimal
+/-- Hypothesis: every distributive split basic minimal
 representation-infinite algebra over an algebraically closed field has a
 controlled embedding. -/
 def DistributiveControlled : Prop :=

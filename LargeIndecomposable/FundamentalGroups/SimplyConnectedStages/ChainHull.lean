@@ -7,7 +7,7 @@ public import LargeIndecomposable.Coverings.UniversalCover.GCoverVolt
 /-!
 # Fischbacher's Satz 5.1 from the reduction step
 
-`StageStepNode` is the reduction step of Satz 5.1: if `P` has reduction data (Lemma 2.1) and is
+`SimplyConnectedStageStep` is the reduction step of Satz 5.1: if `P` has reduction data (Lemma 2.1) and is
 loop-free, a good universal cover of `P/⟨αᵢ⟩` (at every point) gives a good universal cover of
 `P`. Induction on the number of arrows along Lemma 2.1 (up to duality, `coverGood_of_op`), with
 the base case of no essential contours (`coverGood_of_noEss`), gives good covers of all finite
@@ -30,7 +30,7 @@ open CategoryTheory Limits Opposite
 attribute [local instance] isRayCategory_of_finiteRayCategory
 
 /-- **The reduction step of Satz 5.1.** -/
-def StageStepNode : Prop :=
+def SimplyConnectedStageStep : Prop :=
   ∀ (Q : Type) [Category.{0} Q] [HasZeroMorphisms Q] [LargeIndecomposable.IsFiniteRayCategory0 Q]
     [Finite Q] {ι : Type} {b : Q} {d : ι → Q} {α : ∀ i, b ⟶ d i} (hα : ∀ i, ¬IsIso (α i))
     (D : RedData α), D.EssHyp (hα := hα) → LeftCancel Q → RightCancel Q → ChainBounded Q →
@@ -40,7 +40,7 @@ def StageStepNode : Prop :=
     ∀ x₀ : Q, CoverGood x₀
 
 /-- **Good covers by induction along Lemma 2.1.** -/
-theorem coverGood_of_stage (hS : StageStepNode) : ∀ (n : ℕ) (Q : Type) [Category.{0} Q]
+theorem coverGood_of_stage (hS : SimplyConnectedStageStep) : ∀ (n : ℕ) (Q : Type) [Category.{0} Q]
     [HasZeroMorphisms Q] [LargeIndecomposable.IsFiniteRayCategory0 Q] [Finite Q],
     LeftCancel Q → RightCancel Q → ChainBounded Q → LoopFree Q → arrowCount Q ≤ n →
     ∀ x₀ : Q, CoverGood x₀ := by
@@ -72,7 +72,7 @@ theorem coverGood_of_stage (hS : StageStepNode) : ∀ (n : ℕ) (Q : Type) [Cate
 
 /-- **Fischbacher's Satz 5.1** (from the reduction step): a finite connected chain-bounded ray
 category with cancellation has an interval-finite universal cover. -/
-theorem hullFinite_of_chainBounded (hS : StageStepNode) (P : Type) [Category.{0} P]
+theorem hullFinite_of_chainBounded (hS : SimplyConnectedStageStep) (P : Type) [Category.{0} P]
     [HasZeroMorphisms P] [IsRayCategory P] [Finite P] [Fintype P] [DecidableEq P]
     (hL : LeftCancel P) (hR : RightCancel P) (hCB : ChainBounded P)
     (hcon : IsConnected (FundGroupoid P)) (x₀ : P) : HullFinite x₀ := by

@@ -3,7 +3,7 @@ module
 public import LargeIndecomposable.Coverings.Pieces.PieceModRep
 public import LargeIndecomposable.Coverings.Pieces.PieceSepCover
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.PreprojDir
-public import LargeIndecomposable.BongartzTheorem.Reduction.DichotomySteps
+public import LargeIndecomposable.BongartzTheorem.Reduction.CoverDichotomy
 
 /-!
 # Representation-finite pieces are representation-directed

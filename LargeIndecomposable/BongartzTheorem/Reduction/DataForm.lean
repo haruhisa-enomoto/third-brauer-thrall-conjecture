@@ -22,7 +22,7 @@ needs. Alternative (1), for
 nondistributive algebras, is proved in `NonDistributive`.
 
 By Propositions 4.4, 4.7 and 4.8 (`PushDown.PdDatum.controlledEmbedding`), it
-implies the interim hypothesis `DistributiveControlled`, and hence Theorem A
+implies the hypothesis `DistributiveControlled`, and hence Theorem A
 and the two corollaries.
 -/
 
@@ -74,18 +74,6 @@ theorem corollaryRadical_of_bongartz (H : BongartzDistributive.{u})
     (G : KroneckerBricks.{u}) : CorollaryRadical.{u} :=
   corollaryRadical_of (distributiveControlled_of_bongartz H) G
 
-
-/-- Corollary 1.1, conditional on Bongartz's Theorem 6 and Kronecker bricks of
-every dimension `κ > |k|`. -/
-theorem corollaryDimension_of_bongartz_large (H : BongartzDistributive.{u})
-    (G : KroneckerBricksLarge.{u}) : CorollaryDimension.{u} :=
-  corollaryDimension_of_bongartz H (kroneckerBricks_of_large G)
-
-/-- The radical corollary, conditional on Bongartz's Theorem 6 and Kronecker
-bricks of every dimension `κ > |k|`. -/
-theorem corollaryRadical_of_bongartz_large (H : BongartzDistributive.{u})
-    (G : KroneckerBricksLarge.{u}) : CorollaryRadical.{u} :=
-  corollaryRadical_of_bongartz H (kroneckerBricks_of_large G)
 
 /-- Göbel–Simson, Corollary 1.3: Kronecker bricks of every infinite dimension. -/
 theorem kroneckerBricks : KroneckerBricks.{u} :=

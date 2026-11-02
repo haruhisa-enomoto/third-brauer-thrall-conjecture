@@ -286,7 +286,7 @@ public import LargeIndecomposable.Crowns.Basic.RepresentationInfiniteShapes
 public import LargeIndecomposable.Crowns.Basic.LongNotInContour
 public import LargeIndecomposable.RepresentationType.Basic.Retract
 public import LargeIndecomposable.Crowns.Basic.CrownReduction
-public import LargeIndecomposable.BongartzTheorem.Reduction.Steps
+public import LargeIndecomposable.BongartzTheorem.Reduction.TheoremSix
 public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasisFromDeep
 public import LargeIndecomposable.MildContours.Basic.DeepContoursFromCore
 public import LargeIndecomposable.MildContours.Basic.TinyBridge
@@ -298,8 +298,8 @@ public import LargeIndecomposable.MultiplicativeBases.Twisted.LoopEndomorphismKi
 public import LargeIndecomposable.MultiplicativeBases.Twisted.ExceptionalContourTwist
 public import LargeIndecomposable.MildContours.Basic.ExcBridge
 public import LargeIndecomposable.MildContours.Basic.ExcAssembly
-public import LargeIndecomposable.BongartzTheorem.Reduction.DichotomySteps
-public import LargeIndecomposable.BongartzTheorem.Reduction.FromDichotomy
+public import LargeIndecomposable.BongartzTheorem.Reduction.CoverDichotomy
+public import LargeIndecomposable.BongartzTheorem.Reduction.DistributiveCase
 public import LargeIndecomposable.MultiplicativeBases.Twisted.AssemblyMulBasis
 public import LargeIndecomposable.MultiplicativeBases.Twisted.AssemblyScalar
 public import LargeIndecomposable.RayCategories.Distributive.DistribRayBasis
@@ -504,7 +504,7 @@ public import LargeIndecomposable.Coverings.GradedModules.GradedPieceAct
 public import LargeIndecomposable.Coverings.GradedModules.GradedCount
 public import LargeIndecomposable.RayCategories.Basic.Balls
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.GabrielPieces
-public import LargeIndecomposable.BongartzTheorem.LongLines.LineSplit
+public import LargeIndecomposable.BongartzTheorem.LongLines.LineStep
 public import LargeIndecomposable.FundamentalGroups.Basic.Cocycle
 public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.HullAcyclic
 public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.HullCocycle
@@ -633,8 +633,8 @@ public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceRigid
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceTits
 public import LargeIndecomposable.Quivers.PushDown.FullSub
 public import LargeIndecomposable.Coverings.Pieces.PairRestrict
-public import LargeIndecomposable.BongartzTheorem.CriticalPieces.NonSincere
-public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointBrickNS
+public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PairWithoutSupport
+public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointBrickData
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.PreprojUnbounded
 public import LargeIndecomposable.RepresentationType.MinimalInfinite.BoundedFinite
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.BoundedLength

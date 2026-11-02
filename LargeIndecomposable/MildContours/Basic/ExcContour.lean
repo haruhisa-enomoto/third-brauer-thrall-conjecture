@@ -610,11 +610,6 @@ def DBN.unop {x y : P}
       rintro ⟨g, hg⟩
       exact N.nχμ ⟨g.op, Quiver.Hom.unop_inj (by simpa using hg)⟩ }
 
-/-- A path of `Pᵒᵖ` of length two, read back. -/
-lemma unrevPath_two {X Y Z : RayVert Pᵒᵖ} (a : X ⟶ Y) (b : Y ⟶ Z) :
-    unrevPath ((Quiver.Path.nil.cons a).cons b) =
-      (Quiver.Path.nil.cons (unrevArr b)).cons (unrevArr a) := rfl
-
 lemma eq_of_revPath_two {x y : RayVert P} (v : Quiver.Path x y)
     {Y : RayVert Pᵒᵖ} (a : (RayVert.mk (Opposite.op y.out) : RayVert Pᵒᵖ) ⟶ Y)
     (b : Y ⟶ RayVert.mk (Opposite.op x.out))

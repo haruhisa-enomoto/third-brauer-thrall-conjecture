@@ -3,13 +3,13 @@ module
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.GabrielPieces
 
 /-!
-# The line node from interval-finiteness and the core step
+# The line step from interval-finiteness and the core step
 
-`LineNode` (all finite convex pieces representation-finite ⇒ monomial band) follows from
+`RepFinitePiecesGiveBand` (all finite convex pieces representation-finite ⇒ monomial band) follows from
 
-* `HullNode`: every finite set of objects of the universal cover lies in a finite convex
+* `IntervalFiniteCover`: every finite set of objects of the universal cover lies in a finite convex
   piece (interval-finiteness), and
-* `D7Node`: if all finite convex pieces are representation-finite and graded-indecomposable
+* `RepFinitePiecesGiveBandCore`: if all finite convex pieces are representation-finite and graded-indecomposable
   `k(P)`-modules have supports of unbounded size, there is a monomial band.
 
 The link is Gabriel's covering theorem (`repFin_of_bounded_support`): bounded supports would
@@ -29,7 +29,7 @@ open CategoryTheory Statement RayCat RayCat.Cover RayQuiver Covering LargeIndeco
 universe u
 
 /-- Interval-finiteness of the universal cover. -/
-def HullNode : Prop :=
+def IntervalFiniteCover : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -44,7 +44,7 @@ def HullNode : Prop :=
 
 /-- The core of the line step: unbounded graded supports over representation-finite pieces give a
 monomial band. -/
-def D7Node : Prop :=
+def RepFinitePiecesGiveBandCore : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -62,8 +62,8 @@ def D7Node : Prop :=
             (μ : GrMod (rayGrAlg ℓ k) M), IsGrIndec μ ∧ Nontrivial M ∧ n < (suppF k ℓ μ).card) →
           Nonempty (Walk.MonomialBand k B)
 
-/-- **`LineNode` from interval-finiteness and the core step.** -/
-theorem lineNode_of (hH : HullNode.{u}) (hD : D7Node.{u}) : LineNode.{u} := by
+/-- **`RepFinitePiecesGiveBand` from interval-finiteness and the core step.** -/
+theorem repFinitePiecesGiveBand_of (hH : IntervalFiniteCover.{u}) (hD : RepFinitePiecesGiveBandCore.{u}) : RepFinitePiecesGiveBand.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd

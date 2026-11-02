@@ -14,10 +14,10 @@ DECLARATIONS = [
     ("theoremA", "MainTheorems", "Theorem A: a dimension-preserving representation embedding of Kronecker modules"),
     ("corollaryDimension", "MainTheorems", "Corollary 1.1: indecomposable modules of every infinite dimension"),
     ("corollaryRadical", "MainTheorems", "Corollary 5.3: control of the endomorphism ring"),
-    ("longLineNode", "MainTheorems", "Long lines in the universal cover, without the classification of sincere algebras"),
+    ("linesOfEveryLength", "MainTheorems", "Long lines in the universal cover, without the classification of sincere algebras"),
     ("theoremA_of_bongartz", "BongartzTheorem/Reduction/DataForm", "Theorem A from the data form of Bongartz's Theorem 6"),
-    ("mulBasisNode", "BongartzTheorem/Reduction/FromDichotomy", "Twisted multiplicative bases of minimal representation-infinite distributive algebras"),
-    ("RayCat.pointBrickNode'", "BongartzTheorem/CriticalPieces/PieceCritical", "Critical pieces carry point-brick data, without tilting theory"),
+    ("twistedMulBasisExists", "BongartzTheorem/Reduction/DistributiveCase", "Twisted multiplicative bases of minimal representation-infinite distributive algebras"),
+    ("RayCat.pointBrickData", "BongartzTheorem/CriticalPieces/PieceCritical", "Critical pieces carry point-brick data, without tilting theory"),
     ("RayCat.noContour_of_large", "BongartzTheorem/ContourExclusion/ContourFree", "A large sincere directing module excludes contours"),
     ("SplitBasicData.isRepresentationFinite_linearization", "RayCategories/Distributive/LinearizationRepresentationFinite", "Bretscher-Gabriel: the standard form of a representation-finite algebra is representation-finite"),
 ]

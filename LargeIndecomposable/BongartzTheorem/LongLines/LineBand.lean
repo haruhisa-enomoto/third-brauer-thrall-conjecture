@@ -305,8 +305,6 @@ def cyc : FinQuiver.Hom (cycleQuiver (nc t t') (eps L t t')) (quiver P) where
       exact hg.2.2.2.1.symm
     · rw [tgt_idx hg e he]
 
-lemma lidx_first : lidx t (.first : CycArr (nc t t')) = t + 1 := rfl
-
 include hg in
 lemma lidx_second : lidx t (.second : CycArr (nc t t')) = t' := by
   have := t'_eq hg; simp only [lidx, CycArr.posNat]; omega

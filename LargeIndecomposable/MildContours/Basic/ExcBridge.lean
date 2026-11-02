@@ -51,14 +51,6 @@ lemma reversedArr_fromArr {X Y : RayVert (RaySmall.{0} C)} (e : X ⟶ Y) : rever
 lemma fromArr_reversedArr {i j : RayVertex C} (a : i ⟶ j) : fromArr (reversedArr a) = a :=
   Subtype.ext (Equiv.symm_apply_apply _ _)
 
-lemma sh_fromArr {X Y : RayVert (RaySmall.{0} C)} (e : X ⟶ Y) :
-    RaySmall.sh (fromArr e).1 = e.1 := Equiv.apply_symm_apply _ _
-
-/-- A path of length two, reversed. -/
-lemma fromP_two {X Y Z : RayVert (RaySmall.{0} C)} (a : X ⟶ Y) (b : Y ⟶ Z) :
-    fromP ((Quiver.Path.nil.cons a).cons b) =
-      (Quiver.Path.nil.cons (fromArr b)).cons (fromArr a) := rfl
-
 /-- "Another arrow" transfers from the reversed ray quiver to `RaySmall C` (arrows out of a point). -/
 lemma not_heq_reversedArr_out {m X : RayVertex C} (e : X ⟶ m) (ℓ : X ⟶ X)
     (he : ¬∃ _ : m = X, HEq e ℓ) :

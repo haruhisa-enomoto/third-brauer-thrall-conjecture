@@ -88,59 +88,8 @@ def linMulBasis : MulBasis k P (Linearization P k) where
     · rw [linBasis_apply, rayElt_eq_morElt]; exact hμ
     · rw [← hμ, linBasis_apply, rayElt_eq_morElt]
 
-@[simp] lemma linMulBasis_elt {x y : P} (f : x ⟶ y) : (linMulBasis k P).elt f = morElt k f := rfl
-
 
 /-! ### Rescaling -/
-
-namespace MulBasis
-
-variable {k P A} (B : MulBasis k P A)
-
-lemma elt_ne_zero' {x y : P} {f : x ⟶ y} (hf : f ≠ 0) : B.elt f ≠ 0 := by
-  have := B.basis.ne_zero ⟨x, y, f, hf⟩
-  rwa [B.basis_apply] at this
-
-/-- The cocycle identity of the twist. -/
-lemma tw_cocycle {x y z w : P} (f : x ⟶ y) (g : y ⟶ z) (h : z ⟶ w) (hne : f ≫ g ≫ h ≠ 0) :
-    B.tw f g * B.tw (f ≫ g) h = B.tw g h * B.tw f (g ≫ h) := by
-  have e := mul_assoc (B.elt h) (B.elt g) (B.elt f)
-  rw [B.elt_mul g h, smul_mul_assoc, B.elt_mul f (g ≫ h), smul_smul, B.elt_mul f g, mul_smul_comm,
-    B.elt_mul (f ≫ g) h, smul_smul, Category.assoc] at e
-  ext
-  have hne' := B.elt_ne_zero' hne
-  have := (smul_left_injective k hne') e
-  simp only [Units.val_mul]
-  exact this.symm
-
-/-- Rescaling the basis elements by units. -/
-def rescale (s : ∀ {x y : P}, (x ⟶ y) → kˣ) (hs : ∀ x : P, s (𝟙 x) = 1) : MulBasis k P A where
-  elt f := (s f : k) • B.elt f
-  tw f g := s f * s g * B.tw f g * (s (f ≫ g))⁻¹
-  elt_zero := by simp [B.elt_zero]
-  elt_mul f g := by
-    rw [smul_mul_smul_comm, B.elt_mul, smul_smul, smul_smul]
-    congr 1
-    simp only [Units.val_mul, Units.val_inv_eq_inv_val]
-    field_simp
-  elt_mul_ne f g h := by rw [smul_mul_smul_comm, B.elt_mul_ne f g h, smul_zero]
-  sum_id := by simp [hs, B.sum_id]
-  tw_id_left f := by simp [hs, B.tw_id_left]
-  tw_id_right f := by simp [hs, B.tw_id_right]
-  linearIndependent := by
-    have := (B.basis.unitsSMul fun μ ↦ s μ.2.2.1).linearIndependent
-    convert this using 1
-    funext μ
-    rw [Module.Basis.unitsSMul_apply, B.basis_apply]
-    rfl
-  span := by
-    have := (B.basis.unitsSMul fun μ ↦ s μ.2.2.1).span_eq
-    convert this using 2
-    ext a
-    simp only [Set.mem_range, Module.Basis.unitsSMul_apply, B.basis_apply]
-    rfl
-
-end MulBasis
 
 end RayQuiver
 

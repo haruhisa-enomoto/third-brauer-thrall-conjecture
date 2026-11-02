@@ -2,7 +2,7 @@ module
 
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceRigid
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.BoundedLength
-public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointBrickNS
+public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointBrickData
 
 /-!
 # Cocycles from a presentation

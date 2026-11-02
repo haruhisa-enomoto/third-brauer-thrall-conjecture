@@ -2,14 +2,14 @@ module
 
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBuild
 public import LargeIndecomposable.BongartzTheorem.LongLines.LinesToBands
-public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointBrickNS
+public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointBrickData
 
 /-!
 # Long lines
 
 In a minimal representation-infinite distributive algebra with representation-finite cover pieces
 and unbounded graded indecomposables, the universal cover has lines of every length
-(`longLineNode`). This removes the last input of Theorem A.
+(`linesOfEveryLength`). This removes the last input of Theorem A.
 -/
 
 @[expose] public section
@@ -152,7 +152,7 @@ open CategoryTheory Limits RayCat Cover RayQuiver Covering FinQuiver Module Stat
 universe u
 
 /-- **Long lines exist.** -/
-theorem longLineNode : LongLineNode.{u} := by
+theorem linesOfEveryLength : LinesOfEveryLength.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -160,9 +160,9 @@ theorem longLineNode : LongLineNode.{u} := by
   letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
   letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
   intro e x₀ htf hpiece ℓ hsupp m
-  have hIF := hullNode k B ι S hB hd e x₀ htf
-  have hacycCov := coverAcyclicNode k B ι S hB hd x₀
-  have hlsc := coverLocalSCNode k B ι S hB hd x₀
+  have hIF := intervalFiniteCover k B ι S hB hd e x₀ htf
+  have hacycCov := coverIsAcyclic k B ι S hB hd x₀
+  have hlsc := coverLocallySimplyConnected k B ι S hB hd x₀
   have hint := intervalFinite_of_hull hIF
   have htf' : TorsionFree (Pi1 x₀) := fun x n hn h ↦ by
     by_contra hx
@@ -237,20 +237,20 @@ theorem longLineNode : LongLineNode.{u} := by
 
 /-- **Theorem A.** -/
 theorem theoremA : TheoremA.{u} :=
-  theoremA_of_bongartz (bongartzDistributive_of_dichotomy' (dichotomyNode'_of
-    (RayCat.criticalNode'_of_point' RayCat.pointBrickNode')
-    (lineNode_of (hullNode_of_stage stageStepNode) (d7Node_of_longLine longLineNode))))
+  theoremA_of_bongartz (bongartzDistributive_of_coverDichotomy (coverDichotomy_of
+    (RayCat.criticalPieceCarriesPair_of_pointBrickData RayCat.pointBrickData)
+    (repFinitePiecesGiveBand_of (intervalFiniteCover_of_stage simplyConnectedStageStep) (repFinitePiecesGiveBandCore_of_longLine linesOfEveryLength))))
 
 /-- **Corollary 1.1.** -/
 theorem corollaryDimension : CorollaryDimension.{u} :=
-  corollaryDimension_of_bongartz' (bongartzDistributive_of_dichotomy' (dichotomyNode'_of
-    (RayCat.criticalNode'_of_point' RayCat.pointBrickNode')
-    (lineNode_of (hullNode_of_stage stageStepNode) (d7Node_of_longLine longLineNode))))
+  corollaryDimension_of_bongartz' (bongartzDistributive_of_coverDichotomy (coverDichotomy_of
+    (RayCat.criticalPieceCarriesPair_of_pointBrickData RayCat.pointBrickData)
+    (repFinitePiecesGiveBand_of (intervalFiniteCover_of_stage simplyConnectedStageStep) (repFinitePiecesGiveBandCore_of_longLine linesOfEveryLength))))
 
 /-- **The radical corollary.** -/
 theorem corollaryRadical : CorollaryRadical.{u} :=
-  corollaryRadical_of_bongartz' (bongartzDistributive_of_dichotomy' (dichotomyNode'_of
-    (RayCat.criticalNode'_of_point' RayCat.pointBrickNode')
-    (lineNode_of (hullNode_of_stage stageStepNode) (d7Node_of_longLine longLineNode))))
+  corollaryRadical_of_bongartz' (bongartzDistributive_of_coverDichotomy (coverDichotomy_of
+    (RayCat.criticalPieceCarriesPair_of_pointBrickData RayCat.pointBrickData)
+    (repFinitePiecesGiveBand_of (intervalFiniteCover_of_stage simplyConnectedStageStep) (repFinitePiecesGiveBandCore_of_longLine linesOfEveryLength))))
 
 end LargeIndecomposable

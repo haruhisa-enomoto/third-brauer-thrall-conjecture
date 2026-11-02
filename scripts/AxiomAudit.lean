@@ -11,10 +11,8 @@ Run with `lake env lean scripts/AxiomAudit.lean`, or `python3 scripts/audit_axio
 #print axioms LargeIndecomposable.theoremA
 #print axioms LargeIndecomposable.corollaryDimension
 #print axioms LargeIndecomposable.corollaryRadical
-#print axioms LargeIndecomposable.longLineNode
+#print axioms LargeIndecomposable.linesOfEveryLength
 #print axioms LargeIndecomposable.theoremA_of_bongartz
-#print axioms LargeIndecomposable.corollaryDimension_of_bongartz_large
-#print axioms LargeIndecomposable.corollaryRadical_of_bongartz_large
 #print axioms LargeIndecomposable.SplitBasicData.nonempty_controlledEmbedding
 #print axioms LargeIndecomposable.Covering.PairCoveringData.toCoveringData
 #print axioms LargeIndecomposable.Covering.CoveringData.controlledEmbedding

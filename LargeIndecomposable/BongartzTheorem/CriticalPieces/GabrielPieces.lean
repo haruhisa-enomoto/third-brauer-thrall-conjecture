@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.BongartzTheorem.Reduction.DichotomySteps
+public import LargeIndecomposable.BongartzTheorem.Reduction.CoverDichotomy
 public import LargeIndecomposable.Coverings.GradedModules.GradedCount
 public import LargeIndecomposable.RayCategories.Basic.Balls
 

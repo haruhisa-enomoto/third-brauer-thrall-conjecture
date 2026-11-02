@@ -126,12 +126,6 @@ theorem exists_sincere_piece (hnc : NoContour P) (hS : Convex (S : Set (Cover x�
     rwa [Nat.card_eq_fintype_card (α := (ptsOf T' : Finset (Cover x₀))), Fintype.card_coe] at this
 
 omit [Fintype P] [DecidableEq P] in
-lemma pathIn_end {H : Set (Cover x₀)} {x : RayVert (Cover x₀)} : ∀ {y : RayVert (Cover x₀)}
-    (p : Quiver.Path x y), PathIn H p → y.out ∈ H
-  | _, .nil, h => h
-  | _, .cons _ _, h => h.2
-
-omit [Fintype P] [DecidableEq P] in
 lemma pathIn_start {H : Set (Cover x₀)} {x : RayVert (Cover x₀)} : ∀ {y : RayVert (Cover x₀)}
     (p : Quiver.Path x y), PathIn H p → x.out ∈ H
   | _, .nil, h => h

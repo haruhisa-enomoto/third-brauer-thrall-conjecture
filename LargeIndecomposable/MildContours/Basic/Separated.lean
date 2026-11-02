@@ -73,26 +73,6 @@ theorem MildHyp.not_arrow_crown2 (hM : MildHyp k P) {a b : P} (τ : a ⟶ b) (h�
     (not_ftm_of_irreducible hτ hτi σ₀.2) (not_ftm_of_irreducible hτ hτi ρ₁.2)
     (not_ftm_of_irreducible hτ hτi σ₁.2) a₀.1 a₀.2 a₁.1 a₁.2 b₁.1 b₁.2 b₀.2 b₀.1
 
-/-- **No crown of six arrows** (a 6-cycle in the separated quiver). -/
-theorem MildHyp.not_arrow_crown3 (hM : MildHyp k P) {a b : P} (τ : a ⟶ b) (hτ : ¬IsIso τ)
-    (hτ0 : τ ≠ 0) (hτi : ¬IsIrreducible τ) {x₀ x₁ x₂ z₀ z₁ z₂ : RayVert P}
-    (ρ₀ : x₀ ⟶ z₀) (σ₀ : x₁ ⟶ z₀) (ρ₁ : x₁ ⟶ z₁) (σ₁ : x₂ ⟶ z₁) (ρ₂ : x₂ ⟶ z₂) (σ₂ : x₀ ⟶ z₂)
-    (hz₀ : ¬∃ h : x₀ = x₁, HEq ρ₀ σ₀) (hz₁ : ¬∃ h : x₁ = x₂, HEq ρ₁ σ₁)
-    (hz₂ : ¬∃ h : x₂ = x₀, HEq ρ₂ σ₂)
-    (hx₀ : ¬∃ h : z₀ = z₂, HEq ρ₀ σ₂) (hx₁ : ¬∃ h : z₀ = z₁, HEq σ₀ ρ₁)
-    (hx₂ : ¬∃ h : z₁ = z₂, HEq σ₁ ρ₂) : False := by
-  have a₀ := arrows_in_apart ρ₀ σ₀ hz₀
-  have a₁ := arrows_in_apart ρ₁ σ₁ hz₁
-  have a₂ := arrows_in_apart ρ₂ σ₂ hz₂
-  have b₀ := arrows_out_apart ρ₀ σ₂ hx₀
-  have b₁ := arrows_out_apart σ₀ ρ₁ hx₁
-  have b₂ := arrows_out_apart σ₁ ρ₂ hx₂
-  exact hM.not_crown3 τ hτ hτ0 ρ₀.1 σ₀.1 ρ₁.1 σ₁.1 ρ₂.1 σ₂.1
-    (not_ftm_of_irreducible hτ hτi ρ₀.2) (not_ftm_of_irreducible hτ hτi σ₀.2)
-    (not_ftm_of_irreducible hτ hτi ρ₁.2) (not_ftm_of_irreducible hτ hτi σ₁.2)
-    (not_ftm_of_irreducible hτ hτi ρ₂.2) (not_ftm_of_irreducible hτ hτi σ₂.2)
-    a₀.1 a₀.2 a₁.1 a₁.2 a₂.1 a₂.2 b₁.1 b₁.2 b₂.1 b₂.2 b₀.2 b₀.1
-
 end RayCat
 
 end LargeIndecomposable

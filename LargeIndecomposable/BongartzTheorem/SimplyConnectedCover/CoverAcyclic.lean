@@ -10,7 +10,7 @@ back from `b` to `a`. It holds for good covers (`coverAcyclic_of_cycleFree`), fo
 positive cocycle (`coverAcyclic_of_posCocycle`), and passes from the residue `P/μ` to `P`
 (`coverAcyclic_of_residue`). Hence it holds for the ray category of a minimal
 representation-infinite distributive algebra with torsion-free fundamental group
-(`coverAcyclicNode`), by the case split of `hullNode_of_stage`.
+(`coverIsAcyclic`), by the case split of `intervalFiniteCover_of_stage`.
 -/
 
 @[expose] public section
@@ -114,7 +114,7 @@ theorem coverAcyclic_of_residue (h : CoverAcyclic ((resF μ).obj x₀)) : CoverA
 end Residue
 
 /-- **Acyclicity for chain-bounded categories** (from Satz 5.1). -/
-theorem coverAcyclic_of_chainBounded (hS : StageStepNode) (P : Type) [Category.{0} P]
+theorem coverAcyclic_of_chainBounded (hS : SimplyConnectedStageStep) (P : Type) [Category.{0} P]
     [HasZeroMorphisms P] [IsRayCategory P] [Finite P] [Fintype P] [DecidableEq P]
     (hL : LeftCancel P) (hR : RightCancel P) (hCB : ChainBounded P)
     (hcon : IsConnected (FundGroupoid P)) (x₀ : P) : CoverAcyclic x₀ := by
@@ -133,7 +133,7 @@ universe u
 open Statement in
 /-- **The universal cover of a minimal representation-infinite distributive algebra has no
 oriented cycles.** -/
-theorem coverAcyclicNode (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B]
+theorem coverIsAcyclic (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B]
     [Algebra k B] [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι]
     (S : SplitBasicData k B ι) (hB : IsMinimalRepInfinite B) (hd : IsDistribIdeals B) :
     letI := S.distribHomStructure hd
@@ -155,14 +155,14 @@ theorem coverAcyclicNode (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ri
     isConnected_fund_of_nzConnected fun x y ↦ RaySmall.nzConnected
       (S.nzConnected hd (fun e he hc ↦ hB.central_idempotent e he hc) x.as y.as)
   by_cases hCB : ChainBounded S.toIdempotents.RayCategory
-  · exact coverAcyclic_of_chainBounded stageStepNode _ (RaySmall.leftCancel (S.leftCancel hd))
+  · exact coverAcyclic_of_chainBounded simplyConnectedStageStep _ (RaySmall.leftCancel (S.leftCancel hd))
       (RaySmall.rightCancel (S.rightCancel hd)) (RaySmall.chainBounded hCB) hcon x₀
   by_cases hL : HasLong (RaySmall.{0} S.toIdempotents.RayCategory)
   swap
   · exact coverAcyclic_of_not_hasLong hL
   letI := S.isFiniteRayCategory hd
   obtain ⟨a, b, μ, hμ, hμr, hμ0, hlong, hcont, hCB'⟩ :=
-    prop2Node_of mulBasisNode (longNotInContourNode_of_mulBasis mulBasisNode) k B ι S hB hd hCB hL
+    bongartzProposition2_of twistedMulBasisExists (longMorphismNotInContour_of_mulBasis twistedMulBasisExists) k B ι S hB hd hCB hL
   haveI := LargeIndecomposable.rayResidueCategory_isFiniteRayCategory μ hμ
   haveI : Finite (Res μ) :=
     Finite.of_surjective (fun x ↦ (⟨x⟩ : Res μ)) fun ⟨x⟩ ↦ ⟨x, rfl⟩
@@ -175,7 +175,7 @@ theorem coverAcyclicNode (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ri
     isConnected_of_equivalent (resFGEquiv μ hμ hμr hμ0)
   have hcon' : IsConnected (FundGroupoid (Res μ)) := isConnected_quotient homotopy
   exact coverAcyclic_of_residue μ hμ hμr hμ0 hlong hcont
-    (coverAcyclic_of_chainBounded stageStepNode _
+    (coverAcyclic_of_chainBounded simplyConnectedStageStep _
       (leftCancel_quotient _ (RaySmall.leftCancel (S.leftCancel hd)))
       (rightCancel_quotient _ (RaySmall.rightCancel (S.rightCancel hd))) hCB' hcon' _)
 

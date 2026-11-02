@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.BongartzTheorem.Reduction.Steps
+public import LargeIndecomposable.BongartzTheorem.Reduction.TheoremSix
 public import LargeIndecomposable.MultiplicativeBases.Twisted.AssemblyMulBasis
 public import LargeIndecomposable.RayCategories.Distributive.ProperQuotientCorners
 public import LargeIndecomposable.RepresentationType.Basic.RepresentationFiniteForms
@@ -8,14 +8,14 @@ public import LargeIndecomposable.Modules.Duality.OppositeDuality
 public import LargeIndecomposable.MultiplicativeBases.ScalarPresentation.SingularPairDisjointness
 
 /-!
-# `MulBasisNode` from "only deep contours"
+# `TwistedMulBasisExists` from "only deep contours"
 
 For a minimal representation-infinite distributive algebra `B`, BGRS §4
 (adapted to mild algebras) gives a presentation whose path
 values vanish exactly on the zero paths of the ray category. If moreover every
 non-interlaced pair of paths with the same nonzero value is deep
-(`OnlyDeepNode`, Bongartz's "On mild contours", Theorem 3), BGRS 2.9–2.10 give
-a twisted multiplicative basis (`mulBasisNode_of_onlyDeep`).
+(`OnlyDeepContours`, Bongartz's "On mild contours", Theorem 3), BGRS 2.9–2.10 give
+a twisted multiplicative basis (`twistedMulBasisExists_of_onlyDeep`).
 -/
 
 @[expose] public section
@@ -109,53 +109,13 @@ lemma finite_twoSidedIdeal_mop [Finite (TwoSidedIdeal B)] : Finite (TwoSidedIdea
 
 end Mild
 
-/-- Bongartz, "On mild contours", Theorem 3, in the form needed here: in the ray
-category of a minimal representation-infinite distributive algebra, two
-non-interlaced paths with the same nonzero value have a deep value. -/
-def OnlyDeepNode : Prop :=
-  ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
-    [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
-    IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
-      letI := S.distribHomStructure hd
-      letI := S.isFiniteRayCategory hd
-      ∀ {i j : RayVertex S.toIdempotents.RayCategory} {p q : Quiver.Path i j},
-        (rayPathContourRelation (C := S.toIdempotents.RayCategory)).related p q →
-        ¬(properWhiskerInterlacementRelation
-          (rayPathContourRelation (C := S.toIdempotents.RayCategory))).interlaced p q →
-        S.toIdempotents.IsBGRSDeepRayPath p
-
-/-- **`MulBasisNode` from `OnlyDeepNode`** (BGRS §4 for mild algebras and
-BGRS 2.9–2.10). -/
-theorem mulBasisNode_of_onlyDeep (h : OnlyDeepNode.{u}) : MulBasisNode.{u} := by
-  intro k _ _ B _ _ _ ι _ _ S hB hd
-  letI := S.distribHomStructure hd
-  letI := S.locallySmall hd
-  letI := S.isRayCategory hd
-  letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-  letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-  letI := S.isFiniteRayCategory hd
-  have hfinI : Finite (TwoSidedIdeal B) := finite_twoSidedIdeal_of_isDistribIdeals k hd
-  have hfinIop : Finite (TwoSidedIdeal Bᵐᵒᵖ) := finite_twoSidedIdeal_mop
-  letI : HasBGRSDistributiveHomStructure k S.toIdempotents.op.ProjectiveCategory :=
-    SplitBasicIdempotents.ProjectiveCategory.bgrsDistributiveHomStructureOfComparable
-      S.toIdempotents.op fun U V hU hV ↦
-        SplitBasicIdempotents.ProjectiveCategory.finiteIdeal_homSubbimodule_comparable
-          S.toIdempotents.op U V hU hV
-  obtain ⟨L, hzero⟩ := CriticalFigure16Quotient.exists_zeroDetectingNormalizedLift S.toIdempotents
-    (mildAlg_of_minimal hB) (mildAlg_mop_of_minimal hB)
-  have hscalar := fun {i j : RayVertex S.toIdempotents.RayCategory} {p q : Quiver.Path i j}
-      (hpq : (rayPathContourRelation (C := S.toIdempotents.RayCategory)).related p q) ↦
-    SplitBasicIdempotents.scalar_of_related_of_deep S.toIdempotents L hzero
-      (h k B ι S hB hd) hpq
-  exact ⟨SplitBasicData.mulBasisOfLift' hzero hscalar (Set.toFinite _)⟩
-
-/-- **The proportionality node**: for a minimal representation-infinite distributive
+/-- **The proportionality step**: for a minimal representation-infinite distributive
 algebra there is a zero-detecting lift for which every non-interlaced pair of paths
 with the same nonzero value is deep or has proportional values. This is what BGRS
-2.9–2.10 need; `OnlyDeepNode` gives it with any zero-detecting normalized lift, and
+2.9–2.10 need; `OnlyDeepContours` gives it with any zero-detecting normalized lift, and
 the degenerate penny-farthing and the closed dumb-bell (where contours need not be
 deep) are to be treated by an adapted lift. -/
-def ScalarNode : Prop :=
+def ScalarProportionality : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
     IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
@@ -170,8 +130,8 @@ def ScalarNode : Prop :=
             (rayPathContourRelation (C := S.toIdempotents.RayCategory))).interlaced p q →
           S.toIdempotents.IsBGRSDeepRayPath p ∨ (SplitBasicIdempotents.scalarRel S.toIdempotents L).related p q
 
-/-- **`MulBasisNode` from `ScalarNode`** (BGRS 2.9–2.10). -/
-theorem mulBasisNode_of_scalar (h : ScalarNode.{u}) : MulBasisNode.{u} := by
+/-- **`TwistedMulBasisExists` from `ScalarProportionality`** (BGRS 2.9–2.10). -/
+theorem twistedMulBasisExists_of_scalar (h : ScalarProportionality.{u}) : TwistedMulBasisExists.{u} := by
   intro k _ _ B _ _ _ ι _ _ S hB hd
   letI := S.distribHomStructure hd
   letI := S.locallySmall hd
@@ -185,21 +145,5 @@ theorem mulBasisNode_of_scalar (h : ScalarNode.{u}) : MulBasisNode.{u} := by
       (hpq : (rayPathContourRelation (C := S.toIdempotents.RayCategory)).related p q) ↦
     SplitBasicIdempotents.scalar_of_related_of_deep_or_scalar S.toIdempotents L hzero hdp hpq
   exact ⟨SplitBasicData.mulBasisOfLift' hzero hscalar (Set.toFinite _)⟩
-
-/-- **`ScalarNode` from `OnlyDeepNode`.** -/
-theorem scalarNode_of_onlyDeep (h : OnlyDeepNode.{u}) : ScalarNode.{u} := by
-  intro k _ _ B _ _ _ ι _ _ S hB hd
-  letI := S.distribHomStructure hd
-  letI := S.isFiniteRayCategory hd
-  have hfinI : Finite (TwoSidedIdeal B) := finite_twoSidedIdeal_of_isDistribIdeals k hd
-  have hfinIop : Finite (TwoSidedIdeal Bᵐᵒᵖ) := finite_twoSidedIdeal_mop
-  letI : HasBGRSDistributiveHomStructure k S.toIdempotents.op.ProjectiveCategory :=
-    SplitBasicIdempotents.ProjectiveCategory.bgrsDistributiveHomStructureOfComparable
-      S.toIdempotents.op fun U V hU hV ↦
-        SplitBasicIdempotents.ProjectiveCategory.finiteIdeal_homSubbimodule_comparable
-          S.toIdempotents.op U V hU hV
-  obtain ⟨L, hzero⟩ := CriticalFigure16Quotient.exists_zeroDetectingNormalizedLift S.toIdempotents
-    (mildAlg_of_minimal hB) (mildAlg_mop_of_minimal hB)
-  exact ⟨L, hzero, fun hpq hni ↦ Or.inl (h k B ι S hB hd hpq hni)⟩
 
 end LargeIndecomposable
