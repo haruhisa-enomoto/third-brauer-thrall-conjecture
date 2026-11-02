@@ -152,8 +152,8 @@ def linEquiv : Linearization Q' k ≃ₐ[k] (Linearization Q k)ᵐᵒᵖ :=
 
 include A in
 /-- `k(Q')` is representation-finite when `k(Q)` is. -/
-theorem isRepresentationFinite (h : IsRepresentationFinite (Linearization Q k)) :
-    IsRepresentationFinite (Linearization Q' k) :=
+theorem isRepresentationFinite (h : Statement.IsRepresentationFinite (Linearization Q k)) :
+    Statement.IsRepresentationFinite (Linearization Q' k) :=
   isRepresentationFinite_of_ringEquiv (A.linEquiv k).symm.toRingEquiv
     (isRepresentationFinite_mop (k := k) h)
 

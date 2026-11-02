@@ -469,7 +469,7 @@ theorem infl_isRepresentationFinite (h : IsRepresentationFinite k (P.Lin k)ᵐ�
   have h1 := P.restrict_isRepresentationFinite k (Wv v) h
   have h2 := (P.secMor v).isRepresentationFinite k (P.secMor_surjective v) h1
   have := corner_finite (k := k) ((P.infl v).isIdempotentElem_eW k (Wk v))
-  have h3 : IsRepresentationFinite k ((P.infl v).isIdempotentElem_eW k (Wk v))ᵐᵒᵖ.Corner :=
+  have h3 : IsRepresentationFinite k (((P.infl v).isIdempotentElem_eW k (Wk v)).Corner)ᵐᵒᵖ :=
     isRepresentationFinite_of_algEquiv ((P.infl v).restrictEquiv k (Wk v)) h2
   exact isRepresentationFinite_of_full ((P.infl v).isIdempotentElem_eW k (Wk v))
     (P.infl_full k v) h3
