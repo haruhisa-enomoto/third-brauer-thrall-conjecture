@@ -44,7 +44,7 @@ theorem finrank_end_directing [IsAlgClosed k] {M : FDMod k A} (hM : Directing M)
       have h1 : φ v = c • v := hv.apply_eq_smul
       change φ v - c • v = 0
       rw [h1, sub_self]
-    rcases hM.endo (show M ⟶ M from ψ) with h | h
+    rcases hM.endo (show M ⟶ M from (FDMod.ofLin (ψ))) with h | h
     · refine ⟨c, ?_⟩
       have : ψ = 0 := h
       exact (sub_eq_zero.1 this).symm
@@ -175,7 +175,7 @@ theorem exists_thinQuot (hT : ∀ x, x ∈ D.T) (hC : ∀ x y, cartan D y x ≤ 
   refine ⟨N, ⟨isIndecMod_of_brick (quot_brick (hT x) L), hnt⟩, fun c hc ↦ ?_, fun c hc ↦ ?_⟩
   · -- the piece at a point of `E`
     obtain ⟨a, ha⟩ := hne c hc
-    let f : eSub P (D.e c) →ₗ[k] eSub N (D.e c) := eSubMap D.e (show P ⟶ N from L.mkQ) c
+    let f : eSub P (D.e c) →ₗ[k] eSub N (D.e c) := eSubMap D.e (show P ⟶ N from (FDMod.ofLin (L.mkQ))) c
     have hfi : Function.Injective f := by
       refine (injective_iff_map_eq_zero f).2 fun p hp ↦ ?_
       have h1 : (p : P) ∈ L := (Submodule.Quotient.mk_eq_zero L).1 (congrArg Subtype.val hp)

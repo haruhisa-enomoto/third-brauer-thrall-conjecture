@@ -177,8 +177,8 @@ theorem exists_min_extreme (hT : ∀ x, x ∈ D.T) (hU : Directing U) (hs : Sinc
 
 lemma isProjL_sumProj (D : DirData k A) (l : List D.ι) : IsProjL (sumProj D l) := by
   intro X Y q hq φ
-  obtain ⟨g, hg⟩ := sumProj_lift D (show X ⟶ Y from q) hq l (show _ ⟶ Y from φ)
-  exact ⟨g, hg⟩
+  obtain ⟨g, hg⟩ := sumProj_lift D (show X ⟶ Y from (FDMod.ofLin (q))) hq l (show _ ⟶ Y from (FDMod.ofLin (φ)))
+  exact ⟨g, ((FDMod.comp_eq_iff _ _ _).1 (hg))⟩
 
 lemma exists_iso_proj (hT : ∀ x, x ∈ D.T) :
     ∀ (l : List D.ι) (t : (decompSumProj D hT l).ι),
@@ -190,10 +190,10 @@ lemma exists_iso_proj (hT : ∀ x, x ∈ D.T) :
 lemma exists_proj_hom_ne (hs : Sincere D U) (i : D.ι) :
     ∃ f : projE (k := k) (D.idem i) ⟶ U, FDMod.lin f ≠ 0 := by
   obtain ⟨u, hu⟩ := hs i
-  refine ⟨show projE (k := k) (D.idem i) →ₗ[A] U from
+  refine ⟨(FDMod.ofLin (show projE (k := k) (D.idem i) →ₗ[A] U from
     { toFun := fun b ↦ (b : A) • u
       map_add' := fun a b ↦ add_smul _ _ _
-      map_smul' := fun a b ↦ mul_smul _ _ _ }, fun h0 ↦ hu ?_⟩
+      map_smul' := fun a b ↦ mul_smul _ _ _ })), fun h0 ↦ hu ?_⟩
   exact LinearMap.congr_fun h0 (genP i)
 
 /-- **Indecomposable submodules of projectives are projective or predecessors of `U`.** -/
@@ -222,14 +222,14 @@ theorem dirGood_of_embed (hT : ∀ x, x ∈ D.T) (hU : Directing U) (hs : Sincer
   · left
     let e := LinearEquiv.ofBijective _ hb
     exact (isProjSummand_decompSumProj D hT l t).of_splitMono D
-      (show W →ₗ[A] (decompSumProj D hT l).obj t from
-        FDMod.lin ((decompSumProj D hT l).proj t) ∘ₗ φ)
-      (show (decompSumProj D hT l).obj t →ₗ[A] W from e.symm.toLinearMap)
-      (LinearMap.ext fun x ↦ e.symm_apply_apply x)
+      ((FDMod.ofLin (show W →ₗ[A] (decompSumProj D hT l).obj t from
+        FDMod.lin ((decompSumProj D hT l).proj t) ∘ₗ φ)))
+      ((FDMod.ofLin (show (decompSumProj D hT l).obj t →ₗ[A] W from e.symm.toLinearMap)))
+      (FDMod.hom_ext ((LinearMap.ext fun x ↦ e.symm_apply_apply x)))
   · right
     left
     have h1 : Reach₁ W ((decompSumProj D hT l).obj t) :=
-      Reach₁.step hW hZ (FDMod.lin ((decompSumProj D hT l).proj t) ∘ₗ φ) ht hb
+      Reach₁.step hW hZ (FDMod.ofLin ((FDMod.lin ((decompSumProj D hT l).proj t) ∘ₗ φ))) ht hb
     obtain ⟨i, g, hg⟩ := exists_iso_proj hT l t
     obtain ⟨f, hf⟩ := exists_proj_hom_ne hs i
     have hb0 : FDMod.lin (g ≫ f) ≠ 0 := by
@@ -270,7 +270,7 @@ theorem isProjSummand_syz (hT : ∀ x, x ∈ D.T) (hU : Directing U) (hs : Since
   obtain ⟨σ, hσ⟩ := hv (syz D L) (sumProj D ((coverList D L).map Sigma.fst))
     (LinearMap.ker (sumMap D L (coverList D L))).subtype (sumMap D L (coverList D L))
     Subtype.val_injective (sumMap_coverList_surjective D L) (Submodule.range_subtype _)
-  exact ⟨(coverList D L).map Sigma.fst, σ, sumMap D L (coverList D L), hσ⟩
+  exact ⟨(coverList D L).map Sigma.fst, (FDMod.ofLin (σ)), (FDMod.ofLin (sumMap D L (coverList D L))), ((FDMod.comp_eq_id_iff _ _).2 (hσ))⟩
 
 /-- Rank–nullity for restriction along the kernel of a surjection. -/
 lemma finrank_hom_exact {K P Z : FDMod k A} (f : K →ₗ[A] P) (g : P →ₗ[A] Z)

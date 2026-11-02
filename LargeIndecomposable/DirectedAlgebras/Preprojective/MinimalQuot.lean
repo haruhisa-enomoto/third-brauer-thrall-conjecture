@@ -49,10 +49,10 @@ lemma exists_e_smul_ne {N : FDMod k A} (hN : Nontrivial N) : ∃ (x : D.ι) (n :
 
 lemma exists_proj_hom_ne' {i : D.ι} {U : FDMod k A} {u : U} (hu : D.e i • u ≠ 0) :
     ∃ f : projE (k := k) (D.idem i) ⟶ U, FDMod.lin f ≠ 0 := by
-  refine ⟨show projE (k := k) (D.idem i) →ₗ[A] U from
+  refine ⟨(FDMod.ofLin (show projE (k := k) (D.idem i) →ₗ[A] U from
     { toFun := fun b ↦ (b : A) • u
       map_add' := fun a b ↦ add_smul _ _ _
-      map_smul' := fun a b ↦ mul_smul _ _ _ }, fun h0 ↦ hu ?_⟩
+      map_smul' := fun a b ↦ mul_smul _ _ _ })), fun h0 ↦ hu ?_⟩
   exact LinearMap.congr_fun h0 (DirData.genP i)
 
 /-- A preprojective component of bounded modules containing all projectives is everything. -/
@@ -345,19 +345,19 @@ variable {A' : Type u} [Ring A'] [Algebra k A'] {φ : A →ₐ[k] A'}
 /-- Restriction identifies homomorphism spaces. -/
 def homResEquiv (hφ : Function.Surjective φ) (X Y : FDMod k A') :
     (X →ₗ[A'] Y) ≃ₗ[k] (resFD φ X →ₗ[A] resFD φ Y) where
-  toFun e := FDMod.lin (resHom φ (show X ⟶ Y from e))
+  toFun e := FDMod.lin (resHom φ (show X ⟶ Y from (FDMod.ofLin (e))))
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
-  invFun e := FDMod.lin (unresHom hφ (show resFD φ X ⟶ resFD φ Y from e))
+  invFun e := FDMod.lin (unresHom hφ (show resFD φ X ⟶ resFD φ Y from (FDMod.ofLin (e))))
   left_inv _ := rfl
   right_inv _ := rfl
 
 lemma finrank_range_res (hφ : Function.Surjective φ) {K P Y : FDMod k A'} (f : K →ₗ[A'] P) :
     finrank k (LinearMap.range (precomp k (Y := resFD φ Y)
-      (FDMod.lin (resHom φ (show K ⟶ P from f))))) =
+      (FDMod.lin (resHom φ (show K ⟶ P from (FDMod.ofLin (f))))))) =
       finrank k (LinearMap.range (precomp k (Y := Y) f)) := by
   have h : LinearMap.range (precomp k (Y := resFD φ Y)
-      (FDMod.lin (resHom φ (show K ⟶ P from f)))) =
+      (FDMod.lin (resHom φ (show K ⟶ P from (FDMod.ofLin (f)))))) =
       (LinearMap.range (precomp k (Y := Y) f)).map (homResEquiv hφ K Y).toLinearMap := by
     ext e
     constructor
@@ -404,9 +404,9 @@ theorem pointBrickA_of_quot {T' : Set D.ι} (hT : T' ⊆ D.T)
   rcases hext with h | h
   · refine ⟨x.1, resFD φ V, resFD φ Sb, resFD φ (syz DB V),
       resFD φ (sumProj DB ((coverList DB V).map Sigma.fst)),
-      FDMod.lin (resHom φ (show syz DB V ⟶ _ from (LinearMap.ker (sumMap DB V (coverList DB V))).subtype)),
+      FDMod.lin (resHom φ (show syz DB V ⟶ _ from (FDMod.ofLin ((LinearMap.ker (sumMap DB V (coverList DB V))).subtype)))),
       hbrick, hnt, hV, hS, hS1, Subtype.val_injective, Or.inl
-      ⟨FDMod.lin (resHom φ (show _ ⟶ V from sumMap DB V (coverList DB V))),
+      ⟨FDMod.lin (resHom φ (show _ ⟶ V from (FDMod.ofLin (sumMap DB V (coverList DB V))))),
         sumMap_coverList_surjective DB V, ?_, ?_⟩⟩
     · ext p
       constructor
@@ -418,9 +418,9 @@ theorem pointBrickA_of_quot {T' : Set D.ι} (hT : T' ⊆ D.T)
       exact h
   · refine ⟨x.1, resFD φ V, resFD φ Sb, resFD φ (syz DB Sb),
       resFD φ (sumProj DB ((coverList DB Sb).map Sigma.fst)),
-      FDMod.lin (resHom φ (show syz DB Sb ⟶ _ from (LinearMap.ker (sumMap DB Sb (coverList DB Sb))).subtype)),
+      FDMod.lin (resHom φ (show syz DB Sb ⟶ _ from (FDMod.ofLin ((LinearMap.ker (sumMap DB Sb (coverList DB Sb))).subtype)))),
       hbrick, hnt, hV, hS, hS1, Subtype.val_injective, Or.inr
-      ⟨FDMod.lin (resHom φ (show _ ⟶ Sb from sumMap DB Sb (coverList DB Sb))),
+      ⟨FDMod.lin (resHom φ (show _ ⟶ Sb from (FDMod.ofLin (sumMap DB Sb (coverList DB Sb))))),
         sumMap_coverList_surjective DB Sb, ?_, ?_⟩⟩
     · ext p
       constructor

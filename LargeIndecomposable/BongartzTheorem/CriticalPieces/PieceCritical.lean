@@ -59,7 +59,7 @@ lemma proj_succ (D : DirData k A) (s t : D.ι) (a : A) (ha : D.e t * a * D.e s �
     𝒞 (projE (k := k) (D.idem t)) := by
   have hvr : (D.e t * a * D.e s) * D.e s = D.e t * a * D.e s := by
     rw [mul_assoc, D.e_mul_e]
-  refine h𝒞.mem_of_hom hs hind (show _ ⟶ _ from DirData.rmul t _ hvr) fun h0 ↦ ha ?_
+  refine h𝒞.mem_of_hom hs hind (show _ ⟶ _ from (FDMod.ofLin (DirData.rmul t _ hvr))) fun h0 ↦ ha ?_
   have h1 := LinearMap.congr_fun h0 (DirData.genP (k := k) (D := D) t)
   have h2 := congrArg Subtype.val h1
   change D.e t * (D.e t * a * D.e s) = 0 at h2
@@ -465,7 +465,7 @@ theorem pointBrick'_critical : PointBrick' (k := k) S := by
         map_add' := map_add φ.tot
         map_smul' := fun a x ↦ LinearMap.congr_fun (tot_comp_pieceAct hVc hVc φ a) x }
     let φM : V →ₗ[PieceAlg k S] V := eV.toLinearMap ∘ₗ φA ∘ₗ eV.symm.toLinearMap
-    obtain ⟨c, hc⟩ := hb (show V ⟶ V from φM)
+    obtain ⟨c, hc⟩ := hb (show V ⟶ V from (AR.FDMod.ofLin (φM)))
     refine ⟨c, fun i ↦ LinearMap.ext fun v ↦ ?_⟩
     have h1 : ∀ y : PieceMod Vr hVc, φ.tot y = c • y := fun y ↦ by
       apply eV.injective

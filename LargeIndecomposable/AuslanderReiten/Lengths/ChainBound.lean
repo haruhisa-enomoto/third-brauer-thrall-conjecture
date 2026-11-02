@@ -40,21 +40,21 @@ lemma ChainTo.indNT {Y X : FDMod k A} {n : ℕ} (h : ChainTo Y n X) : IndNT X :=
 lemma IsIrr.lin_ne_zero {X Y : FDMod k A} (hX : Nontrivial X) (hY : Nontrivial Y) {f : X ⟶ Y}
     (hf : IsIrr f) : FDMod.lin f ≠ 0 := by
   intro h0
-  let a : X ⟶ FDMod.zero k A := show X →ₗ[A] FDMod.zero k A from 0
-  let b : FDMod.zero k A ⟶ Y := show FDMod.zero k A →ₗ[A] Y from 0
+  let a : X ⟶ FDMod.zero k A := (FDMod.ofLin (show X →ₗ[A] FDMod.zero k A from 0))
+  let b : FDMod.zero k A ⟶ Y := (FDMod.ofLin (show FDMod.zero k A →ₗ[A] Y from 0))
   have hab : a ≫ b = f := by
-    refine LinearMap.ext fun x ↦ ?_
+    refine (FDMod.hom_ext (LinearMap.ext fun x ↦ ?_))
     exact (LinearMap.congr_fun h0 x).symm
   rcases hf.2.2 _ a b hab with ⟨r, hr⟩ | ⟨s, hs⟩
   · obtain ⟨x, hx⟩ := exists_ne (0 : X)
     apply hx
-    have h1 : FDMod.lin r (FDMod.lin a x) = x := LinearMap.congr_fun hr x
+    have h1 : FDMod.lin r (FDMod.lin a x) = x := LinearMap.congr_fun (congrArg FDMod.lin hr) x
     have h2 : FDMod.lin a x = 0 := rfl
     rw [h2, map_zero] at h1
     exact h1.symm
   · obtain ⟨y, hy⟩ := exists_ne (0 : Y)
     apply hy
-    have h1 : FDMod.lin b (FDMod.lin s y) = y := LinearMap.congr_fun hs y
+    have h1 : FDMod.lin b (FDMod.lin s y) = y := LinearMap.congr_fun (congrArg FDMod.lin hs) y
     exact h1.symm
 
 /-- Irreducible maps are not bijective. -/

@@ -287,7 +287,7 @@ theorem lift_step {L : FDMod k A} {M M' : FDMod k (D.QAlg T')}
   let g : d.obj j →ₗ[A] L := LinearMap.fst A L R ∘ₗ N.subtype ∘ₗ FDMod.lin (d.inc j)
   have hcomm : ∀ x, π (g x) = rf (π' x) := fun x ↦
     (hmemN _ _).1 (FDMod.lin (d.inc j) x).2
-  refine ⟨d.obj j, π', g, ⟨d.indec j, d.nt j⟩, hπ', hker', ?_, ?_⟩
+  refine ⟨d.obj j, π', (FDMod.ofLin (g)), ⟨d.indec j, d.nt j⟩, hπ', hker', ?_, ?_⟩
   · intro h0
     apply hf
     refine LinearMap.ext fun m ↦ ?_
