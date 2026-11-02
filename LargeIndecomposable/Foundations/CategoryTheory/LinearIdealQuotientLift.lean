@@ -17,7 +17,7 @@ noncomputable section
 
 open CategoryTheory
 
-namespace MorphismIdeal
+namespace LargeIndecomposable.MorphismIdeal
 
 universe u₁ v₁ u₂ v₂ w
 
@@ -125,4 +125,4 @@ theorem quotientLift_faithful (hI : I.IsKilledBy F)
   change F.map f = F.map g at hfg
   rw [F.map_sub, hfg, sub_self]
 
-end MorphismIdeal
+end LargeIndecomposable.MorphismIdeal

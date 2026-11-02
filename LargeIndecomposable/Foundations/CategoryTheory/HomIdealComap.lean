@@ -24,7 +24,7 @@ noncomputable section
 
 open CategoryTheory
 
-namespace MorphismIdeal
+namespace LargeIndecomposable.MorphismIdeal
 
 universe u v w
 
@@ -109,7 +109,7 @@ theorem mem_homSubmodule_iff (I : MorphismIdeal C) (X Y : C) (f : X ⟶ Y) :
     f ∈ homSubmodule (k := k) I X Y ↔ f ∈ I.hom X Y :=
   Iff.rfl
 
-end MorphismIdeal
+end LargeIndecomposable.MorphismIdeal
 
 namespace LargeIndecomposable
 

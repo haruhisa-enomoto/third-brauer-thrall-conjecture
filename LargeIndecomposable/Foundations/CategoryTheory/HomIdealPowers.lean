@@ -20,7 +20,7 @@ noncomputable section
 
 open CategoryTheory
 
-namespace MorphismIdeal
+namespace LargeIndecomposable.MorphismIdeal
 
 universe v u
 
@@ -357,4 +357,4 @@ theorem eq_zero_of_mem_every_power
   rw [hN] at hfN
   simpa using hfN
 
-end MorphismIdeal
+end LargeIndecomposable.MorphismIdeal
