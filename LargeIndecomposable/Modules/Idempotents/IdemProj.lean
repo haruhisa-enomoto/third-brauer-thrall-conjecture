@@ -92,8 +92,8 @@ theorem projE_lift {e : A} (he : IsIdempotentElem e) {X Y : FDMod k A} (p : X �
   have hex : e • x ∈ eSub X e := by
     change e • (e • x) = e • x
     rw [← mul_smul, he.eq]
-  refine ⟨(homProjEquiv (k := k) he X).symm ⟨e • x, hex⟩, ?_⟩
-  apply (homProjEquiv (k := k) he Y).injective
+  refine ⟨(FDMod.ofLin ((homProjEquiv (k := k) he X).symm ⟨e • x, hex⟩)), ?_⟩
+  apply FDMod.hom_ext; apply (homProjEquiv (k := k) he Y).injective
   apply Subtype.ext
   change FDMod.lin p ((e : A) • (e • x)) = FDMod.lin f ⟨e, e_mem he⟩
   rw [← mul_smul, he.eq, map_smul, hx, ← map_smul]

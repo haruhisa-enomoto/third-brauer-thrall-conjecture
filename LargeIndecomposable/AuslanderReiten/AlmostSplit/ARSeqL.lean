@@ -31,14 +31,14 @@ variable {k A : Type u} [Field k] [Ring A] [Algebra k A]
 lemma isLeftAS_range {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f) (φ : E ⟶ E)
     (hφ : f ≫ φ = f) :
     IsLeftAS (show U ⟶ FDMod.ofSub (LinearMap.range (FDMod.lin φ)) from
-      LinearMap.codRestrict _ (FDMod.lin f) fun u ↦ LinearMap.mem_range.2 ⟨FDMod.lin f u,
-        (LinearMap.congr_fun hφ u : FDMod.lin φ (FDMod.lin f u) = FDMod.lin f u)⟩) := by
-  refine ⟨fun ⟨r, hr⟩ ↦ hf.1 ⟨show E ⟶ U from FDMod.lin r ∘ₗ
-    (LinearMap.codRestrict _ (FDMod.lin φ) fun e ↦ LinearMap.mem_range_self _ e), ?_⟩,
+      (FDMod.ofLin (LinearMap.codRestrict _ (FDMod.lin f) fun u ↦ LinearMap.mem_range.2 ⟨FDMod.lin f u,
+        (LinearMap.congr_fun (congrArg FDMod.lin hφ) u : FDMod.lin φ (FDMod.lin f u) = FDMod.lin f u)⟩))) := by
+  refine ⟨fun ⟨r, hr⟩ ↦ hf.1 ⟨show E ⟶ U from (FDMod.ofLin (FDMod.lin r ∘ₗ
+    (LinearMap.codRestrict _ (FDMod.lin φ) fun e ↦ LinearMap.mem_range_self _ e))), ?_⟩,
     fun W u' hu ↦ ?_⟩
-  · apply LinearMap.ext; intro u
-    have h1 := LinearMap.congr_fun hr u
-    have hx : FDMod.lin φ (FDMod.lin f u) = FDMod.lin f u := LinearMap.congr_fun hφ u
+  · apply FDMod.hom_ext; apply LinearMap.ext; intro u
+    have h1 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) u
+    have hx : FDMod.lin φ (FDMod.lin f u) = FDMod.lin f u := LinearMap.congr_fun (congrArg FDMod.lin hφ) u
     change FDMod.lin r ⟨FDMod.lin φ (FDMod.lin f u), LinearMap.mem_range_self _ _⟩ = u
     have hy : (⟨FDMod.lin φ (FDMod.lin f u), LinearMap.mem_range_self _ _⟩ :
         LinearMap.range (FDMod.lin φ)) = ⟨FDMod.lin f u, LinearMap.mem_range.2 ⟨FDMod.lin f u, hx⟩⟩ :=
@@ -47,7 +47,7 @@ lemma isLeftAS_range {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f) (φ : E �
     exact h1
   · obtain ⟨v, hv⟩ := hf.2 W u' hu
     refine ⟨show FDMod.ofSub (LinearMap.range (FDMod.lin φ)) ⟶ W from
-      FDMod.lin v ∘ₗ (LinearMap.range (FDMod.lin φ)).subtype, ?_⟩
+      (FDMod.ofLin (FDMod.lin v ∘ₗ (LinearMap.range (FDMod.lin φ)).subtype)), ?_⟩
     rw [← hv]
     rfl
 
@@ -98,24 +98,24 @@ theorem isIndecMod_of_rightAS {E V : FDMod k A} {g : E ⟶ V} (hg : IsRightAS g)
   let e := Submodule.prodEquivOfIsCompl V₁ V₂ h
   let π₁ : V →ₗ[A] V₁ := LinearMap.fst A V₁ V₂ ∘ₗ e.symm.toLinearMap
   let π₂ : V →ₗ[A] V₂ := LinearMap.snd A V₁ V₂ ∘ₗ e.symm.toLinearMap
-  have hns₁ : ¬∃ s : V ⟶ FDMod.ofSub V₁, s ≫ (show FDMod.ofSub V₁ ⟶ V from V₁.subtype) = 𝟙 V := by
+  have hns₁ : ¬∃ s : V ⟶ FDMod.ofSub V₁, s ≫ (show FDMod.ofSub V₁ ⟶ V from (FDMod.ofLin (V₁.subtype))) = 𝟙 V := by
     rintro ⟨s, hs⟩
     obtain ⟨v, hv, hv0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot h2
-    have hmem : ((FDMod.lin s v : V₁) : V) = v := LinearMap.congr_fun hs v
+    have hmem : ((FDMod.lin s v : V₁) : V) = v := LinearMap.congr_fun (congrArg FDMod.lin hs) v
     have hv1 : v ∈ V₁ := hmem ▸ (FDMod.lin s v).2
     exact hv0 ((Submodule.mem_bot A).1 (h.disjoint.le_bot ⟨hv1, hv⟩))
-  have hns₂ : ¬∃ s : V ⟶ FDMod.ofSub V₂, s ≫ (show FDMod.ofSub V₂ ⟶ V from V₂.subtype) = 𝟙 V := by
+  have hns₂ : ¬∃ s : V ⟶ FDMod.ofSub V₂, s ≫ (show FDMod.ofSub V₂ ⟶ V from (FDMod.ofLin (V₂.subtype))) = 𝟙 V := by
     rintro ⟨s, hs⟩
     obtain ⟨v, hv, hv0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot h1
-    have hmem : ((FDMod.lin s v : V₂) : V) = v := LinearMap.congr_fun hs v
+    have hmem : ((FDMod.lin s v : V₂) : V) = v := LinearMap.congr_fun (congrArg FDMod.lin hs) v
     have hv2 : v ∈ V₂ := hmem ▸ (FDMod.lin s v).2
     exact hv0 ((Submodule.mem_bot A).1 (h.disjoint.le_bot ⟨hv, hv2⟩))
-  obtain ⟨t₁, ht₁⟩ := hg.2 (FDMod.ofSub V₁) V₁.subtype hns₁
-  obtain ⟨t₂, ht₂⟩ := hg.2 (FDMod.ofSub V₂) V₂.subtype hns₂
-  refine hg.1 ⟨show V →ₗ[A] E from FDMod.lin t₁ ∘ₗ π₁ + FDMod.lin t₂ ∘ₗ π₂, ?_⟩
-  apply LinearMap.ext; intro v
-  have h1' : ∀ x : V₁, FDMod.lin g (FDMod.lin t₁ x) = x := fun x ↦ LinearMap.congr_fun ht₁ x
-  have h2' : ∀ x : V₂, FDMod.lin g (FDMod.lin t₂ x) = x := fun x ↦ LinearMap.congr_fun ht₂ x
+  obtain ⟨t₁, ht₁⟩ := hg.2 (FDMod.ofSub V₁) (FDMod.ofLin (V₁.subtype)) hns₁
+  obtain ⟨t₂, ht₂⟩ := hg.2 (FDMod.ofSub V₂) (FDMod.ofLin (V₂.subtype)) hns₂
+  refine hg.1 ⟨(FDMod.ofLin (show V →ₗ[A] E from FDMod.lin t₁ ∘ₗ π₁ + FDMod.lin t₂ ∘ₗ π₂)), ?_⟩
+  apply FDMod.hom_ext; apply LinearMap.ext; intro v
+  have h1' : ∀ x : V₁, FDMod.lin g (FDMod.lin t₁ x) = x := fun x ↦ LinearMap.congr_fun (congrArg FDMod.lin ht₁) x
+  have h2' : ∀ x : V₂, FDMod.lin g (FDMod.lin t₂ x) = x := fun x ↦ LinearMap.congr_fun (congrArg FDMod.lin ht₂) x
   change FDMod.lin g (FDMod.lin t₁ (π₁ v) + FDMod.lin t₂ (π₂ v)) = v
   rw [map_add, h1', h2']
   change ((e.symm v).1 : V) + ((e.symm v).2 : V) = v
@@ -127,7 +127,7 @@ theorem isRightAS_coker {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f)
     (hinj : Function.Injective (FDMod.lin f))
     (hmin : ∀ φ : E ⟶ E, f ≫ φ = f → Function.Bijective (FDMod.lin φ)) :
     IsRightAS (show E ⟶ FDMod.ofQuot E (LinearMap.range (FDMod.lin f)) from
-      (LinearMap.range (FDMod.lin f)).mkQ) := by
+      (FDMod.ofLin ((LinearMap.range (FDMod.lin f)).mkQ))) := by
   set R := LinearMap.range (FDMod.lin f) with hR
   let V := FDMod.ofQuot E R
   let g : E →ₗ[A] V := R.mkQ
@@ -142,9 +142,9 @@ theorem isRightAS_coker {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f)
     have hmem : ∀ e, e - FDMod.lin s (g e) ∈ R := fun e ↦ by
       rw [← Submodule.Quotient.mk_eq_zero, ← Submodule.mkQ_apply, map_sub]
       change g e - g (FDMod.lin s (g e)) = 0
-      rw [show g (FDMod.lin s (g e)) = g e from LinearMap.congr_fun hs (g e), sub_self]
-    refine ⟨show E →ₗ[A] U from ef.symm.toLinearMap ∘ₗ
-      LinearMap.codRestrict R (LinearMap.id - FDMod.lin s ∘ₗ g) hmem, LinearMap.ext fun u ↦ ?_⟩
+      rw [show g (FDMod.lin s (g e)) = g e from LinearMap.congr_fun (congrArg FDMod.lin hs) (g e), sub_self]
+    refine ⟨(FDMod.ofLin (show E →ₗ[A] U from ef.symm.toLinearMap ∘ₗ
+      LinearMap.codRestrict R (LinearMap.id - FDMod.lin s ∘ₗ g) hmem)), (FDMod.hom_ext (LinearMap.ext fun u ↦ ?_))⟩
     change ef.symm ⟨FDMod.lin f u - FDMod.lin s (g (FDMod.lin f u)), _⟩ = u
     have : (⟨FDMod.lin f u - FDMod.lin s (g (FDMod.lin f u)), hmem _⟩ : R) =
         ⟨FDMod.lin f u, LinearMap.mem_range_self _ u⟩ := by
@@ -163,9 +163,9 @@ theorem isRightAS_coker {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f)
     let p₁ : Pb →ₗ[A] W := LinearMap.fst A W E ∘ₗ Pb.subtype
     let p₂ : Pb →ₗ[A] E := LinearMap.snd A W E ∘ₗ Pb.subtype
     have hp : ∀ x : Pb, FDMod.lin w (p₁ x) = g (p₂ x) := fun x ↦ (hPb x).1 x.2
-    by_cases hsplit : ∃ ρ : PbM ⟶ U, (show U ⟶ PbM from f') ≫ ρ = 𝟙 U
+    by_cases hsplit : ∃ ρ : PbM ⟶ U, (show U ⟶ PbM from (FDMod.ofLin (f'))) ≫ ρ = 𝟙 U
     · obtain ⟨ρ, hρ⟩ := hsplit
-      have hρ' : ∀ u, FDMod.lin ρ (f' u) = u := fun u ↦ LinearMap.congr_fun hρ u
+      have hρ' : ∀ u, FDMod.lin ρ (f' u) = u := fun u ↦ LinearMap.congr_fun (congrArg FDMod.lin hρ) u
       let q : Pb →ₗ[A] E := p₂ - FDMod.lin f ∘ₗ FDMod.lin ρ
       have hp₁ : Function.Surjective p₁ := fun x ↦ by
         obtain ⟨e, he⟩ := hgsurj (FDMod.lin w x)
@@ -189,7 +189,7 @@ theorem isRightAS_coker {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f)
         rw [hρ', sub_self]
       let e₁ := LinearMap.quotKerEquivOfSurjective p₁ hp₁
       let t : W →ₗ[A] E := (LinearMap.ker p₁).liftQ q hker ∘ₗ e₁.symm.toLinearMap
-      refine ⟨t, LinearMap.ext fun x ↦ ?_⟩
+      refine ⟨(FDMod.ofLin (t)), (FDMod.hom_ext (LinearMap.ext fun x ↦ ?_))⟩
       obtain ⟨y, rfl⟩ := hp₁ x
       have he : e₁.symm (p₁ y) = Submodule.Quotient.mk y := e₁.symm_apply_eq.2 rfl
       change g (t (p₁ y)) = FDMod.lin w (p₁ y)
@@ -198,11 +198,10 @@ theorem isRightAS_coker {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f)
       change g (p₂ y - FDMod.lin f (FDMod.lin ρ y)) = _
       rw [map_sub, hgf, sub_zero, hp]
     · exfalso
-      obtain ⟨h, hh⟩ := hf.2 PbM f' hsplit
-      have hh' : ∀ u, FDMod.lin h (FDMod.lin f u) = f' u := fun u ↦ LinearMap.congr_fun hh u
+      obtain ⟨h, hh⟩ := hf.2 PbM (FDMod.ofLin (f')) hsplit
+      have hh' : ∀ u, FDMod.lin h (FDMod.lin f u) = f' u := fun u ↦ LinearMap.congr_fun (congrArg FDMod.lin hh) u
       let ψ : E →ₗ[A] E := p₂ ∘ₗ FDMod.lin h
-      have hψ : (show E ⟶ E from ψ) ≫ (show E ⟶ E from LinearMap.id) = ψ := rfl
-      have hfψ : f ≫ (show E ⟶ E from ψ) = f := LinearMap.ext fun u ↦ by
+      have hfψ : f ≫ FDMod.ofLin ψ = f := FDMod.hom_ext <| LinearMap.ext fun u ↦ by
         change p₂ (FDMod.lin h (FDMod.lin f u)) = FDMod.lin f u
         rw [hh']; rfl
       have hψb := hmin _ hfψ
@@ -246,7 +245,7 @@ theorem exists_arSeqL [FiniteDimensional k A] (U : FDMod k A) [IsLocalRing (Modu
     ∃ (E : FDMod k A) (f : U ⟶ E), IsLeftAS f ∧ Function.Injective (FDMod.lin f) ∧
       (∀ φ : E ⟶ E, f ≫ φ = f → Function.Bijective (FDMod.lin φ)) ∧
       IsRightAS (show E ⟶ FDMod.ofQuot E (LinearMap.range (FDMod.lin f)) from
-        (LinearMap.range (FDMod.lin f)).mkQ) ∧
+        (FDMod.ofLin ((LinearMap.range (FDMod.lin f)).mkQ))) ∧
       IndNT (FDMod.ofQuot E (LinearMap.range (FDMod.lin f))) := by
   obtain ⟨E, f, hf, hmin⟩ := exists_minimal_leftAS U
   have hinj := injective_of_leftAS hf ι hι hns
@@ -258,6 +257,6 @@ theorem exists_arSeqL [FiniteDimensional k A] (U : FDMod k A) [IsLocalRing (Modu
     have : (LinearMap.range (FDMod.lin f)).mkQ e = 0 := Subsingleton.elim _ _
     exact (Submodule.Quotient.mk_eq_zero _).1 this
   let ef := LinearEquiv.ofBijective (FDMod.lin f) ⟨hinj, hsurj⟩
-  exact hf.1 ⟨ef.symm.toLinearMap, LinearMap.ext fun u ↦ ef.symm_apply_apply u⟩
+  exact hf.1 ⟨(FDMod.ofLin (ef.symm.toLinearMap)), (FDMod.hom_ext (LinearMap.ext fun u ↦ ef.symm_apply_apply u))⟩
 
 end LargeIndecomposable.AR

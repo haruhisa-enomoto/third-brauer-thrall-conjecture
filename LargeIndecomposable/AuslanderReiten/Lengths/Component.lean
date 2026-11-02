@@ -62,7 +62,7 @@ end ClosedClass
 lemma hom_ne_zero_of_eSub {e : A} (he : IsIdempotentElem e) {M : FDMod k A} (m : M)
     (hm : e • m = m) (hm0 : m ≠ 0) :
     ∃ f : projE (k := k) he ⟶ M, FDMod.lin f ≠ 0 := by
-  refine ⟨(homProjEquiv (k := k) he M).symm ⟨m, hm⟩, fun h ↦ hm0 ?_⟩
+  refine ⟨(FDMod.ofLin ((homProjEquiv (k := k) he M).symm ⟨m, hm⟩)), fun h ↦ hm0 ?_⟩
   have := LinearMap.congr_fun h ⟨e, e_mem he⟩
   change e • m = 0 at this
   rwa [hm] at this
