@@ -29,7 +29,7 @@ theorem isIndecMod_of_brick {M : FDMod k A}
     (h : ∀ φ : M ⟶ M, ∃ c : k, FDMod.lin φ = c • LinearMap.id) : IsIndecMod A M := by
   intro U V hUV
   let π : M →ₗ[A] M := U.subtype ∘ₗ Submodule.projectionOnto U V hUV
-  obtain ⟨c, hc⟩ := h π
+  obtain ⟨c, hc⟩ := h (FDMod.ofLin (π))
   by_cases hU : U = ⊥
   · exact Or.inl hU
   right

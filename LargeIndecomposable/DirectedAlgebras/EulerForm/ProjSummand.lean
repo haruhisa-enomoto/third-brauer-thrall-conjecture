@@ -33,11 +33,11 @@ variable (D : DirData k A)
 def isoOfBijective {X Y : FDMod k A} (g : X ⟶ Y) (hg : Function.Bijective (FDMod.lin g)) :
     X ≅ Y where
   hom := g
-  inv := (LinearEquiv.ofBijective (FDMod.lin g) hg).symm.toLinearMap
-  hom_inv_id := LinearMap.ext fun x ↦
-    (LinearEquiv.ofBijective (FDMod.lin g) hg).symm_apply_apply x
-  inv_hom_id := LinearMap.ext fun y ↦
-    (LinearEquiv.ofBijective (FDMod.lin g) hg).apply_symm_apply y
+  inv := (FDMod.ofLin ((LinearEquiv.ofBijective (FDMod.lin g) hg).symm.toLinearMap))
+  hom_inv_id := (FDMod.hom_ext (LinearMap.ext fun x ↦
+    (LinearEquiv.ofBijective (FDMod.lin g) hg).symm_apply_apply x))
+  inv_hom_id := (FDMod.hom_ext (LinearMap.ext fun y ↦
+    (LinearEquiv.ofBijective (FDMod.lin g) hg).apply_symm_apply y))
 
 /-- **Euler-projectivity is invariant under isomorphism.** -/
 theorem EulerProj.of_bijective {P P' : FDMod k A} (hP : EulerProj D P) (g : P ⟶ P')
@@ -134,11 +134,11 @@ def Decomp.prod {P Q : FDMod k A} (d₁ : Decomp P) (d₂ : Decomp Q) : Decomp (
   indec := fun | .inl i => d₁.indec i | .inr i => d₂.indec i
   nt := fun | .inl i => d₁.nt i | .inr i => d₂.nt i
   inc := fun
-    | .inl i => LinearMap.inl A P Q ∘ₗ FDMod.lin (d₁.inc i)
-    | .inr i => LinearMap.inr A P Q ∘ₗ FDMod.lin (d₂.inc i)
+    | .inl i => FDMod.ofLin (LinearMap.inl A P Q ∘ₗ FDMod.lin (d₁.inc i))
+    | .inr i => FDMod.ofLin (LinearMap.inr A P Q ∘ₗ FDMod.lin (d₂.inc i))
   proj := fun
-    | .inl i => FDMod.lin (d₁.proj i) ∘ₗ LinearMap.fst A P Q
-    | .inr i => FDMod.lin (d₂.proj i) ∘ₗ LinearMap.snd A P Q
+    | .inl i => FDMod.ofLin (FDMod.lin (d₁.proj i) ∘ₗ LinearMap.fst A P Q)
+    | .inr i => FDMod.ofLin (FDMod.lin (d₂.proj i) ∘ₗ LinearMap.snd A P Q)
   sum_id := by
     refine LinearMap.ext fun x ↦ ?_
     rw [LinearMap.sum_apply, Fintype.sum_sum_type]
@@ -213,10 +213,10 @@ theorem eulerProj_of_summand (hT : ∀ x, x ∈ D.T) {K : FDMod k A} (l : List D
     (decompSumProj D hT l) (d.inc j ≫ s) (r ≫ d.proj j) (by
       change (d.inc j ≫ (s ≫ r)) ≫ d.proj j = 𝟙 _
       rw [hsr, Category.comp_id]
-      exact d.retr j)
+      exact ((FDMod.comp_eq_id_iff _ _).2 (d.retr j)))
   let e := LinearEquiv.ofBijective (FDMod.lin g) hg
   exact (eulerProj_decompSumProj D hT l i).of_bijective D
-    (show (decompSumProj D hT l).obj i ⟶ d.obj j from e.symm.toLinearMap) e.symm.bijective
+    (show (decompSumProj D hT l).obj i ⟶ d.obj j from (FDMod.ofLin (e.symm.toLinearMap))) e.symm.bijective
 
 end LargeIndecomposable.AR
 

@@ -57,7 +57,7 @@ lemma dimZ_exact {M N L : FDMod k A} (f : M →ₗ[A] N) (g : N →ₗ[A] L) (hf
     dimZ D N = dimZ D M + dimZ D L := by
   funext x
   simp only [dimZ, Pi.add_apply]
-  exact_mod_cast dimv_exact D.e D.idem (M := M) (N := N) (L := L) f g hf hg hex x
+  exact_mod_cast dimv_exact D.e D.idem (M := M) (N := N) (L := L) (FDMod.ofLin (f)) (FDMod.ofLin (g)) hf hg hex x
 
 /-- Maps out of a product. -/
 def homProdEquiv (P Q W : FDMod k A) :
