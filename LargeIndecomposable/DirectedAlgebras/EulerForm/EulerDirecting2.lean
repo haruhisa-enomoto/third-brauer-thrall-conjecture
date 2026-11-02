@@ -105,8 +105,8 @@ lemma coverList_ne_zero (V : FDMod k A) : ∀ x ∈ coverList D V, (x.2 : V) ≠
   exact (Module.finBasis k (eSub V (D.e i))).ne_zero t (Subtype.ext h0)
 
 lemma isProjSummand_projE (i : D.ι) : IsProjSummand D (projE (k := k) (D.idem i)) :=
-  ⟨[i], show projE (k := k) (D.idem i) →ₗ[A] sumProj D [i] from LinearMap.inl A _ _,
-    show sumProj D [i] →ₗ[A] projE (k := k) (D.idem i) from LinearMap.fst A _ _, rfl⟩
+  ⟨[i], (FDMod.ofLin (show projE (k := k) (D.idem i) →ₗ[A] sumProj D [i] from LinearMap.inl A _ _)),
+    (FDMod.ofLin (show sumProj D [i] →ₗ[A] projE (k := k) (D.idem i) from LinearMap.fst A _ _)), rfl⟩
 
 lemma IsProjSummand.of_splitMono {U V : FDMod k A} (hV : IsProjSummand D V) (s : U ⟶ V)
     (r : V ⟶ U) (hsr : s ≫ r = 𝟙 U) : IsProjSummand D U := by
@@ -126,7 +126,7 @@ theorem good_syz (hT : ∀ x, x ∈ D.T) {M V : FDMod k A} (hMi : IsInd M) (hV :
     (d : Decomp (syz D V)) (j : d.ι) : DirGood D M (d.obj j) := by
   classical
   have hU : IsInd (d.obj j) := ⟨d.indec j, d.nt j⟩
-  have hsplitU : d.inc j ≫ d.proj j = 𝟙 _ := d.retr j
+  have hsplitU : d.inc j ≫ d.proj j = 𝟙 _ := ((FDMod.comp_eq_id_iff _ _).2 (d.retr j))
   by_cases hP : IsProjSummand D V
   · -- the cover splits, so the syzygy is a projective summand
     left
@@ -138,7 +138,7 @@ theorem good_syz (hT : ∀ x, x ∈ D.T) {M V : FDMod k A} (hMi : IsInd M) (hV :
       (LinearMap.ker (sumMap D V (coverList D V))).subtype
       (sumMap D V (coverList D V)) Subtype.val_injective (Submodule.range_subtype _) σ hσ
     have hK : IsProjSummand D (syz D V) :=
-      ⟨(coverList D V).map Sigma.fst, (LinearMap.ker (sumMap D V (coverList D V))).subtype, r, hr⟩
+      ⟨(coverList D V).map Sigma.fst, (FDMod.ofLin ((LinearMap.ker (sumMap D V (coverList D V))).subtype)), (FDMod.ofLin (r)), ((FDMod.comp_eq_id_iff _ _).2 (hr))⟩
     exact hK.of_splitMono D (d.inc j) (d.proj j) hsplitU
   · let φ : d.obj j →ₗ[A] sumProj D ((coverList D V).map Sigma.fst) :=
       (LinearMap.ker (sumMap D V (coverList D V))).subtype ∘ₗ FDMod.lin (d.inc j)
@@ -167,19 +167,19 @@ theorem good_syz (hT : ∀ x, x ∈ D.T) {M V : FDMod k A} (hMi : IsInd M) (hV :
       apply hP
       let e := LinearEquiv.ofBijective g₂ hb
       exact (isProjSummand_decompSumProj D hT _ t).of_splitMono D
-        (show V →ₗ[A] (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t from e.symm.toLinearMap) (show (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t →ₗ[A] V from g₂)
-        (LinearMap.ext fun x ↦ e.apply_symm_apply x)
-    have hV2 : Reach₁ ((decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t) V := Reach₁.step hT' hV g₂ hg₂ hnb₂
+        ((FDMod.ofLin (show V →ₗ[A] (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t from e.symm.toLinearMap))) ((FDMod.ofLin (show (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t →ₗ[A] V from g₂)))
+        (FDMod.hom_ext ((LinearMap.ext fun x ↦ e.apply_symm_apply x)))
+    have hV2 : Reach₁ ((decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t) V := Reach₁.step hT' hV (FDMod.ofLin (g₂)) hg₂ hnb₂
     by_cases hb₁ : Function.Bijective (FDMod.lin ((decompSumProj D hT ((coverList D V).map Sigma.fst)).proj t) ∘ₗ φ)
     · left
       let e := LinearEquiv.ofBijective _ hb₁
       exact (isProjSummand_decompSumProj D hT _ t).of_splitMono D
-        (show d.obj j →ₗ[A] (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t from FDMod.lin ((decompSumProj D hT ((coverList D V).map Sigma.fst)).proj t) ∘ₗ φ)
-        (show (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t →ₗ[A] d.obj j from e.symm.toLinearMap)
-        (LinearMap.ext fun x ↦ e.symm_apply_apply x)
+        ((FDMod.ofLin (show d.obj j →ₗ[A] (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t from FDMod.lin ((decompSumProj D hT ((coverList D V).map Sigma.fst)).proj t) ∘ₗ φ)))
+        ((FDMod.ofLin (show (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t →ₗ[A] d.obj j from e.symm.toLinearMap)))
+        (FDMod.hom_ext ((LinearMap.ext fun x ↦ e.symm_apply_apply x)))
     · right
       have hUV : Reach₁ (d.obj j) V :=
-        Reach₁.trans (Reach₁.step hU hT' (FDMod.lin ((decompSumProj D hT ((coverList D V).map Sigma.fst)).proj t) ∘ₗ φ) ht hb₁) hV2
+        Reach₁.trans (Reach₁.step hU hT' (FDMod.ofLin ((FDMod.lin ((decompSumProj D hT ((coverList D V).map Sigma.fst)).proj t) ∘ₗ φ))) ht hb₁) hV2
       rcases hg with h | h | h
       · exact absurd h hP
       · exact Or.inl (Reach₁.trans hUV h)

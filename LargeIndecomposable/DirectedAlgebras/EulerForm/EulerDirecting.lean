@@ -141,20 +141,20 @@ theorem sumProj_lift {X Y : FDMod k A} (p : X ⟶ Y) (hp : Function.Surjective (
     ∀ (l : List D.ι) (f : sumProj D l ⟶ Y), ∃ g : sumProj D l ⟶ X, g ≫ p = f
   | [], f => by
     haveI : Subsingleton (sumProj D []) := inferInstanceAs (Subsingleton PUnit)
-    refine ⟨show sumProj D [] →ₗ[A] X from 0, LinearMap.ext fun x ↦ ?_⟩
+    refine ⟨(FDMod.ofLin (show sumProj D [] →ₗ[A] X from 0)), (FDMod.hom_ext (LinearMap.ext fun x ↦ ?_))⟩
     rw [Subsingleton.elim x 0]
     change FDMod.lin p ((0 : sumProj D [] →ₗ[A] X) 0) = (show sumProj D [] →ₗ[A] Y from f) 0
     simp
   | i :: l, f => by
     obtain ⟨g₁, hg₁⟩ := projE_lift (D.idem i) p hp
-      (show projE (k := k) (D.idem i) →ₗ[A] Y from
-        (show sumProj D (i :: l) →ₗ[A] Y from f) ∘ₗ LinearMap.inl A _ _)
+      ((FDMod.ofLin (show projE (k := k) (D.idem i) →ₗ[A] Y from
+        (show sumProj D (i :: l) →ₗ[A] Y from f) ∘ₗ LinearMap.inl A _ _)))
     obtain ⟨g₂, hg₂⟩ := sumProj_lift p hp l
-      (show sumProj D l →ₗ[A] Y from (show sumProj D (i :: l) →ₗ[A] Y from f) ∘ₗ LinearMap.inr A _ _)
-    refine ⟨show sumProj D (i :: l) →ₗ[A] X from LinearMap.coprod (FDMod.lin g₁) (FDMod.lin g₂), ?_⟩
-    refine LinearMap.ext fun ⟨a, b⟩ ↦ ?_
-    have h1 := LinearMap.congr_fun hg₁ a
-    have h2 := LinearMap.congr_fun hg₂ b
+      ((FDMod.ofLin (show sumProj D l →ₗ[A] Y from (show sumProj D (i :: l) →ₗ[A] Y from f) ∘ₗ LinearMap.inr A _ _)))
+    refine ⟨(FDMod.ofLin (show sumProj D (i :: l) →ₗ[A] X from LinearMap.coprod (FDMod.lin g₁) (FDMod.lin g₂))), ?_⟩
+    refine (FDMod.hom_ext (LinearMap.ext fun ⟨a, b⟩ ↦ ?_))
+    have h1 := LinearMap.congr_fun (congrArg FDMod.lin (hg₁)) a
+    have h2 := LinearMap.congr_fun (congrArg FDMod.lin (hg₂)) b
     change FDMod.lin p (FDMod.lin g₁ a + FDMod.lin g₂ b) =
       (show sumProj D (i :: l) →ₗ[A] Y from f) (a, b)
     rw [map_add]
@@ -171,10 +171,10 @@ theorem IsProjSummand.extVanish {U : FDMod k A} (hU : IsProjSummand D U) (W : FD
     ExtVanish U W := by
   obtain ⟨l, s, r, hsr⟩ := hU
   intro E i p hi hp hex
-  obtain ⟨g, hg⟩ := sumProj_lift D (show E ⟶ U from p) hp l r
+  obtain ⟨g, hg⟩ := sumProj_lift D (show E ⟶ U from (FDMod.ofLin (p))) hp l r
   refine ⟨FDMod.lin g ∘ₗ FDMod.lin s, LinearMap.ext fun x ↦ ?_⟩
-  have := LinearMap.congr_fun hg (FDMod.lin s x)
-  have h2 := LinearMap.congr_fun hsr x
+  have := LinearMap.congr_fun (congrArg FDMod.lin (hg)) (FDMod.lin s x)
+  have h2 := LinearMap.congr_fun (congrArg FDMod.lin (hsr)) x
   change p (FDMod.lin g (FDMod.lin s x)) = x
   exact this.trans h2
 
@@ -185,8 +185,8 @@ def Decomp.pi {J : Type u} [Fintype J] [DecidableEq J] {X : J → FDMod k A}
   obj c := (d c.1).obj c.2
   indec c := (d c.1).indec c.2
   nt c := (d c.1).nt c.2
-  inc c := LinearMap.single A (fun j ↦ X j) c.1 ∘ₗ FDMod.lin ((d c.1).inc c.2)
-  proj c := FDMod.lin ((d c.1).proj c.2) ∘ₗ LinearMap.proj (R := A) (φ := fun j ↦ X j) c.1
+  inc c := (FDMod.ofLin (LinearMap.single A (fun j ↦ X j) c.1 ∘ₗ FDMod.lin ((d c.1).inc c.2)))
+  proj c := (FDMod.ofLin (FDMod.lin ((d c.1).proj c.2) ∘ₗ LinearMap.proj (R := A) (φ := fun j ↦ X j) c.1))
   sum_id := by
     refine LinearMap.ext fun x ↦ funext fun j' ↦ ?_
     rw [LinearMap.sum_apply, Finset.sum_apply, Fintype.sum_sigma, Finset.sum_eq_single j']

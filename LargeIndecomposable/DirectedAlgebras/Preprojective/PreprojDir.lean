@@ -49,15 +49,15 @@ lemma lasFam (X : FDMod k A) (hX : 𝒞 X) : Nonempty (LASFam 𝒞 X) := by
     (isIrr_summandL hf hmin hXi d i)) (fun i ↦ f ≫ d.proj i) ?_ ?_⟩
   · rintro ⟨h, hh⟩
     apply hf.1
-    refine ⟨show E →ₗ[A] X from ∑ i, FDMod.lin (h i) ∘ₗ FDMod.lin (d.proj i), ?_⟩
-    apply LinearMap.ext; intro x
+    refine ⟨(FDMod.ofLin (show E →ₗ[A] X from ∑ i, FDMod.lin (h i) ∘ₗ FDMod.lin (d.proj i))), ?_⟩
+    apply FDMod.hom_ext; apply LinearMap.ext; intro x
     have := LinearMap.congr_fun hh x
     simp only [LinearMap.sum_apply, LinearMap.coe_comp, Function.comp_apply, FDMod.lin_comp,
       LinearMap.id_coe, id_eq] at this
     change (∑ i, FDMod.lin (h i) ∘ₗ FDMod.lin (d.proj i)) (FDMod.lin f x) = x
     simpa [LinearMap.sum_apply] using this
   · intro W v hv
-    obtain ⟨t, ht⟩ := hf.2 W v fun ⟨r, hr⟩ ↦ hv ⟨r, hr⟩
+    obtain ⟨t, ht⟩ := hf.2 W v fun ⟨r, hr⟩ ↦ hv ⟨r, ((FDMod.comp_eq_id_iff _ _).1 (hr))⟩
     refine ⟨fun i ↦ d.inc i ≫ t, ?_⟩
     rw [← ht]
     ext x

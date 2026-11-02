@@ -42,11 +42,11 @@ theorem isIrr_summand {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
     fun W a b hab ↦ ?_⟩
   · -- a split mono `E_i → Z` between indecomposables is an isomorphism
     have hrb := bijective_of_split hZ.1 (d.nt i) r (d.inc i ≫ g) (LinearMap.ext fun u ↦
-      LinearMap.congr_fun hr u)
+      LinearMap.congr_fun ((FDMod.comp_eq_id_iff _ _).1 (hr)) u)
     apply hg.1
-    refine ⟨r ≫ d.inc i, LinearMap.ext fun z ↦ ?_⟩
+    refine ⟨r ≫ d.inc i, (FDMod.hom_ext (LinearMap.ext fun z ↦ ?_))⟩
     apply hrb.1
-    exact LinearMap.congr_fun hr (FDMod.lin r z)
+    exact LinearMap.congr_fun (congrArg FDMod.lin (hr)) (FDMod.lin r z)
   · by_cases hb : SplitEpi b
     · exact Or.inr hb
     left
@@ -54,12 +54,12 @@ theorem isIrr_summand {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
     have hca : ∀ u, FDMod.lin g (FDMod.lin c (FDMod.lin a u)) = FDMod.lin g (FDMod.lin (d.inc i) u) :=
       fun u ↦ by
         have h1 : FDMod.lin g (FDMod.lin c (FDMod.lin a u)) = FDMod.lin b (FDMod.lin a u) :=
-          LinearMap.congr_fun hc _
-        rw [h1]; exact LinearMap.congr_fun hab u
+          LinearMap.congr_fun (congrArg FDMod.lin hc) _
+        rw [h1]; exact LinearMap.congr_fun (congrArg FDMod.lin (hab)) u
     let φ : E →ₗ[A] E := FDMod.lin c ∘ₗ FDMod.lin a ∘ₗ FDMod.lin (d.proj i) +
       ∑ j ∈ Finset.univ.erase i, FDMod.lin (d.inc j) ∘ₗ FDMod.lin (d.proj j)
-    have hφ : (show E ⟶ E from φ) ≫ g = g := by
-      apply LinearMap.ext; intro x
+    have hφ : (show E ⟶ E from (FDMod.ofLin (φ))) ≫ g = g := by
+      apply FDMod.hom_ext; apply LinearMap.ext; intro x
       change FDMod.lin g (φ x) = FDMod.lin g x
       conv_rhs => rw [← hsum x, ← Finset.add_sum_erase _ _ (Finset.mem_univ i)]
       simp only [φ, LinearMap.add_apply, LinearMap.coe_comp, Function.comp_apply,
@@ -105,8 +105,8 @@ theorem isIrr_summand {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
     have hτb : Function.Bijective τ :=
       ⟨hτinj, (LinearMap.injective_iff_surjective (f := τ.restrictScalars k)).1 hτinj⟩
     let eτ := LinearEquiv.ofBijective τ hτb
-    refine ⟨show W →ₗ[A] d.obj i from eτ.symm.toLinearMap ∘ₗ FDMod.lin (d.proj i) ∘ₗ FDMod.lin c,
-      LinearMap.ext fun u ↦ ?_⟩
+    refine ⟨(FDMod.ofLin (show W →ₗ[A] d.obj i from eτ.symm.toLinearMap ∘ₗ FDMod.lin (d.proj i) ∘ₗ FDMod.lin c)),
+      (FDMod.hom_ext (LinearMap.ext fun u ↦ ?_))⟩
     change eτ.symm (FDMod.lin (d.proj i) (FDMod.lin c (FDMod.lin a u))) = u
     rw [LinearEquiv.symm_apply_eq]
     rfl

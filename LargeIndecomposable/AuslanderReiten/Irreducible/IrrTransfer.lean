@@ -25,15 +25,15 @@ variable {k A : Type u} [Field k] [Ring A] [Algebra k A]
 
 /-- The inverse of a bijective morphism. -/
 def invOf {X Y : FDMod k A} (g : X ⟶ Y) (hg : Function.Bijective (FDMod.lin g)) : Y ⟶ X :=
-  (LinearEquiv.ofBijective (FDMod.lin g) hg).symm.toLinearMap
+  (FDMod.ofLin ((LinearEquiv.ofBijective (FDMod.lin g) hg).symm.toLinearMap))
 
 lemma invOf_comp {X Y : FDMod k A} (g : X ⟶ Y) (hg : Function.Bijective (FDMod.lin g)) :
     invOf g hg ≫ g = 𝟙 Y :=
-  LinearMap.ext fun y ↦ (LinearEquiv.ofBijective (FDMod.lin g) hg).apply_symm_apply y
+  (FDMod.hom_ext (LinearMap.ext fun y ↦ (LinearEquiv.ofBijective (FDMod.lin g) hg).apply_symm_apply y))
 
 lemma comp_invOf {X Y : FDMod k A} (g : X ⟶ Y) (hg : Function.Bijective (FDMod.lin g)) :
     g ≫ invOf g hg = 𝟙 X :=
-  LinearMap.ext fun x ↦ (LinearEquiv.ofBijective (FDMod.lin g) hg).symm_apply_apply x
+  (FDMod.hom_ext (LinearMap.ext fun x ↦ (LinearEquiv.ofBijective (FDMod.lin g) hg).symm_apply_apply x))
 
 /-- **Irreducibility survives composing with an isomorphism on the target.** -/
 lemma IsIrr.comp_iso {X Y Y' : FDMod k A} {f : X ⟶ Y} (hf : IsIrr f) (g : Y ⟶ Y')
@@ -89,7 +89,7 @@ theorem isIrr_summandL {X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f)
   refine ⟨fun ⟨r, hr⟩ ↦ hf.1 ⟨d.proj i ≫ r, by rw [← Category.assoc, hr]⟩,
     fun ⟨s, hs⟩ ↦ ?_, fun W a b hab ↦ ?_⟩
   · have hb := bijective_of_split hX.1 (d.nt i) (f ≫ d.proj i) s
-      (LinearMap.ext fun u ↦ LinearMap.congr_fun hs u)
+      (LinearMap.ext fun u ↦ LinearMap.congr_fun ((FDMod.comp_eq_id_iff _ _).1 (hs)) u)
     exact hf.1 ⟨d.proj i ≫ invOf _ hb, by rw [← Category.assoc, comp_invOf]⟩
   · by_cases ha : SplitMono a
     · exact Or.inl ha
@@ -97,12 +97,12 @@ theorem isIrr_summandL {X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f)
     obtain ⟨c, hc⟩ := hf.2 W a ha
     have hbc : ∀ x, FDMod.lin b (FDMod.lin c (FDMod.lin f x)) =
         FDMod.lin (d.proj i) (FDMod.lin f x) := fun x ↦ by
-      have h1 : FDMod.lin c (FDMod.lin f x) = FDMod.lin a x := LinearMap.congr_fun hc x
-      rw [h1]; exact LinearMap.congr_fun hab x
+      have h1 : FDMod.lin c (FDMod.lin f x) = FDMod.lin a x := LinearMap.congr_fun (congrArg FDMod.lin hc) x
+      rw [h1]; exact LinearMap.congr_fun (congrArg FDMod.lin (hab)) x
     let φ : E →ₗ[A] E := FDMod.lin (d.inc i) ∘ₗ FDMod.lin b ∘ₗ FDMod.lin c +
       ∑ j ∈ Finset.univ.erase i, FDMod.lin (d.inc j) ∘ₗ FDMod.lin (d.proj j)
-    have hφ : f ≫ (show E ⟶ E from φ) = f := by
-      apply LinearMap.ext; intro x
+    have hφ : f ≫ (show E ⟶ E from (FDMod.ofLin (φ))) = f := by
+      apply FDMod.hom_ext; apply LinearMap.ext; intro x
       change φ (FDMod.lin f x) = FDMod.lin f x
       conv_rhs => rw [← hsum (FDMod.lin f x), ← Finset.add_sum_erase _ _ (Finset.mem_univ i)]
       simp only [φ, LinearMap.add_apply, LinearMap.coe_comp, Function.comp_apply,
@@ -139,8 +139,8 @@ theorem isIrr_summandL {X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f)
     have hτb : Function.Bijective τ :=
       ⟨(LinearMap.injective_iff_surjective (f := τ.restrictScalars k)).2 hτs, hτs⟩
     let eτ := LinearEquiv.ofBijective τ hτb
-    refine ⟨show d.obj i →ₗ[A] W from FDMod.lin c ∘ₗ FDMod.lin (d.inc i) ∘ₗ eτ.symm.toLinearMap,
-      LinearMap.ext fun w ↦ ?_⟩
+    refine ⟨(FDMod.ofLin (show d.obj i →ₗ[A] W from FDMod.lin c ∘ₗ FDMod.lin (d.inc i) ∘ₗ eτ.symm.toLinearMap)),
+      (FDMod.hom_ext (LinearMap.ext fun w ↦ ?_))⟩
     change τ (eτ.symm w) = w
     exact eτ.apply_symm_apply w
 
@@ -152,10 +152,10 @@ include hφ in
 /-- **Irreducible maps between restrictions are irreducible over the quotient.** -/
 lemma IsIrr.unres {X Y : FDMod k A'} {f : X ⟶ Y} (hf : IsIrr (resHom φ f)) : IsIrr f := by
   refine ⟨fun h ↦ hf.1 ((splitMono_res_iff hφ f).2 h), fun ⟨s, hs⟩ ↦ hf.2.1 ⟨resHom φ s,
-    LinearMap.ext fun y ↦ LinearMap.congr_fun hs (toX y)⟩, fun W a b hab ↦ ?_⟩
+    (FDMod.hom_ext (LinearMap.ext fun y ↦ LinearMap.congr_fun (congrArg FDMod.lin (hs)) (toX y)))⟩, fun W a b hab ↦ ?_⟩
   rcases hf.2.2 (resFD φ W) (resHom φ a) (resHom φ b) (by rw [← hab]; rfl) with h | ⟨s, hs⟩
   · exact Or.inl ((splitMono_res_iff hφ a).1 h)
-  · exact Or.inr ⟨unresHom hφ s, LinearMap.ext fun y ↦ LinearMap.congr_fun hs (ofX y)⟩
+  · exact Or.inr ⟨unresHom hφ s, (FDMod.hom_ext (LinearMap.ext fun y ↦ LinearMap.congr_fun (congrArg FDMod.lin (hs)) (ofX y)))⟩
 
 end Res
 

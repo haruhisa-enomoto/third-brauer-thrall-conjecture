@@ -29,27 +29,27 @@ variable {k A : Type u} [Field k] [Ring A] [Algebra k A]
 lemma isLeftAS_iso_comp {X' X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f) (h : X' ⟶ X)
     (hh : Function.Bijective (FDMod.lin h)) : IsLeftAS (h ≫ f) := by
   refine ⟨fun ⟨r, hr⟩ ↦ hf.1 ⟨r ≫ h, ?_⟩, fun W u hu ↦ ?_⟩
-  · apply LinearMap.ext; intro x
+  · apply FDMod.hom_ext; apply LinearMap.ext; intro x
     obtain ⟨x', rfl⟩ := hh.2 x
     change FDMod.lin h (FDMod.lin r (FDMod.lin f (FDMod.lin h x'))) = FDMod.lin h x'
-    rw [show FDMod.lin r (FDMod.lin f (FDMod.lin h x')) = x' from LinearMap.congr_fun hr x']
+    rw [show FDMod.lin r (FDMod.lin f (FDMod.lin h x')) = x' from LinearMap.congr_fun (congrArg FDMod.lin hr) x']
   · have hu' : ¬∃ r : W ⟶ X, (invOf h hh ≫ u) ≫ r = 𝟙 X := by
       rintro ⟨r, hr⟩
-      refine hu ⟨r ≫ invOf h hh, LinearMap.ext fun x' ↦ ?_⟩
-      have := LinearMap.congr_fun hr (FDMod.lin h x')
+      refine hu ⟨r ≫ invOf h hh, (FDMod.hom_ext (LinearMap.ext fun x' ↦ ?_))⟩
+      have := LinearMap.congr_fun (congrArg FDMod.lin (hr)) (FDMod.lin h x')
       change FDMod.lin r (FDMod.lin u (FDMod.lin (invOf h hh) (FDMod.lin h x'))) = _ at this
       rw [show FDMod.lin (invOf h hh) (FDMod.lin h x') = x' from
-        LinearMap.congr_fun (comp_invOf h hh) x'] at this
+        LinearMap.congr_fun (congrArg FDMod.lin (comp_invOf h hh)) x'] at this
       change FDMod.lin (invOf h hh) (FDMod.lin r (FDMod.lin u x')) = x'
       rw [this]
-      exact LinearMap.congr_fun (comp_invOf h hh) x'
+      exact LinearMap.congr_fun (congrArg FDMod.lin ((comp_invOf h hh))) x'
     obtain ⟨t, ht⟩ := hf.2 W (invOf h hh ≫ u) hu'
-    refine ⟨t, LinearMap.ext fun x' ↦ ?_⟩
-    have := LinearMap.congr_fun ht (FDMod.lin h x')
+    refine ⟨t, (FDMod.hom_ext (LinearMap.ext fun x' ↦ ?_))⟩
+    have := LinearMap.congr_fun (congrArg FDMod.lin (ht)) (FDMod.lin h x')
     change FDMod.lin t (FDMod.lin f (FDMod.lin h x')) =
       FDMod.lin u (FDMod.lin (invOf h hh) (FDMod.lin h x')) at this
     rw [show FDMod.lin (invOf h hh) (FDMod.lin h x') = x' from
-      LinearMap.congr_fun (comp_invOf h hh) x'] at this
+      LinearMap.congr_fun (congrArg FDMod.lin (comp_invOf h hh)) x'] at this
     exact this
 
 lemma IsoM.res {A' : Type u} [Ring A'] [Algebra k A'] {φ : A →ₐ[k] A'} {X Y : FDMod k A'}
@@ -116,11 +116,11 @@ lemma leftAS_res_factor {K E : FDMod k (D.QAlg T')} {f : K ⟶ E} (hf : IsLeftAS
   let u' : K ⟶ descendQ W hW := unresHom hφ (u ≫ descIsoQInv W hW)
   have hu' : ¬∃ r : descendQ W hW ⟶ K, u' ≫ r = 𝟙 K := by
     rintro ⟨r, hr⟩
-    exact hu ⟨descIsoQInv W hW ≫ resHom (D.qmap T') r, LinearMap.ext fun x ↦
-      LinearMap.congr_fun hr (toX x)⟩
+    exact hu ⟨descIsoQInv W hW ≫ resHom (D.qmap T') r, (FDMod.hom_ext (LinearMap.ext fun x ↦
+      LinearMap.congr_fun (congrArg FDMod.lin (hr)) (toX x)))⟩
   obtain ⟨t', ht'⟩ := hf.2 _ u' hu'
-  exact ⟨resHom (D.qmap T') t' ≫ descIsoQ W hW, LinearMap.ext fun x ↦
-    LinearMap.congr_fun ht' (toX x)⟩
+  exact ⟨resHom (D.qmap T') t' ≫ descIsoQ W hW, (FDMod.hom_ext (LinearMap.ext fun x ↦
+    LinearMap.congr_fun (congrArg FDMod.lin (ht')) (toX x)))⟩
 
 include hT in
 /-- **Restricted left almost split maps are left almost split** when some left almost split map

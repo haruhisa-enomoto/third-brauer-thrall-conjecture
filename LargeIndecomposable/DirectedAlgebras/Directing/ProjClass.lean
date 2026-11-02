@@ -31,10 +31,10 @@ def Decomp.pow {E : FDMod k A} (d : Decomp E) (m : ℕ) :
   obj p := d.obj p.2
   indec p := d.indec p.2
   nt p := d.nt p.2
-  inc p := show d.obj p.2 →ₗ[A] (Fin m → E) from
-    LinearMap.single A (fun _ ↦ E) p.1.down ∘ₗ FDMod.lin (d.inc p.2)
-  proj p := show (Fin m → E) →ₗ[A] d.obj p.2 from
-    FDMod.lin (d.proj p.2) ∘ₗ LinearMap.proj p.1.down
+  inc p := (FDMod.ofLin (show d.obj p.2 →ₗ[A] (Fin m → E) from
+    LinearMap.single A (fun _ ↦ E) p.1.down ∘ₗ FDMod.lin (d.inc p.2)))
+  proj p := (FDMod.ofLin (show (Fin m → E) →ₗ[A] d.obj p.2 from
+    FDMod.lin (d.proj p.2) ∘ₗ LinearMap.proj p.1.down))
   sum_id := by
     classical
     apply LinearMap.ext; intro v
@@ -82,11 +82,11 @@ def decompSelf : Decomp (FDMod.self : FDMod k A) := by
     obj z := projE (k := k) (D.idem z.down.1)
     indec z := (D.projIndNT z.down.1 z.down.2).1
     nt z := (D.projIndNT z.down.1 z.down.2).2
-    inc z := show leftIdeal (D.idem z.down.1) →ₗ[A] A from (leftIdeal (D.idem z.down.1)).subtype
-    proj z := show A →ₗ[A] leftIdeal (D.idem z.down.1) from
+    inc z := (FDMod.ofLin (show leftIdeal (D.idem z.down.1) →ₗ[A] A from (leftIdeal (D.idem z.down.1)).subtype))
+    proj z := (FDMod.ofLin (show A →ₗ[A] leftIdeal (D.idem z.down.1) from
       LinearMap.codRestrict _ (LinearMap.toSpanSingleton A A (D.e z.down.1)) fun a ↦ by
         change a * D.e z.down.1 * D.e z.down.1 = a * D.e z.down.1
-        rw [mul_assoc, D.e_mul_e]
+        rw [mul_assoc, D.e_mul_e]))
     sum_id := by
       apply LinearMap.ext; intro a
       rw [LinearMap.sum_apply]
@@ -115,7 +115,7 @@ theorem iso_proj_of_freeSummand {Z : FDMod k A} (hZ : IndNT Z) (h : IsFreeSumman
     ∃ z, z ∈ D.T ∧ IsoM Z (projE (k := k) (D.idem z)) := by
   obtain ⟨m, α, β, hβα⟩ := h
   obtain ⟨p, hp⟩ := iso_summand_of_splitMono hZ ((D.decompSelf).pow m)
-    (show Z ⟶ (⟨Fin m → (FDMod.self : FDMod k A)⟩ : FDMod k A) from α) β hβα
+    (show Z ⟶ (⟨Fin m → (FDMod.self : FDMod k A)⟩ : FDMod k A) from (FDMod.ofLin (α))) (FDMod.ofLin (β)) ((FDMod.comp_eq_id_iff _ _).2 (hβα))
   exact ⟨p.2.down.1, p.2.down.2, hp⟩
 
 end DirData

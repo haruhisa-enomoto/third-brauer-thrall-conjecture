@@ -116,15 +116,15 @@ theorem irrIn_step (hsucc : ∀ z, z ∈ T' → LivesOn T' (projE (k := k) (D.id
     obtain ⟨g, hg⟩ := hiso2
     obtain ⟨v, -, r, hr⟩ := (hf.comp_iso g hg).factor_rightAS (D.isRightAS_radP z (hT.1 hz))
     have hvinj : Function.Injective (FDMod.lin v) := fun a b h ↦ by
-      have h1 := LinearMap.congr_fun hr a
-      have h2 := LinearMap.congr_fun hr b
+      have h1 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) a
+      have h2 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) b
       change FDMod.lin r (FDMod.lin v a) = a at h1
       change FDMod.lin r (FDMod.lin v b) = b at h2
       rw [← h1, ← h2, h]
     exact livesOn_of_inj v hvinj (livesOn_of_inj (D.radInc z) Subtype.val_injective (hsucc z hz))
   · obtain ⟨E', g', hg', hgs, hmin, hleft, hKind, hKnt⟩ := exists_arSeq V hp
     let K' : FDMod k (D.QAlg T') := FDMod.ofSub (LinearMap.ker (FDMod.lin g'))
-    let f' : K' ⟶ E' := (LinearMap.ker (FDMod.lin g')).subtype
+    let f' : K' ⟶ E' := (FDMod.ofLin ((LinearMap.ker (FDMod.lin g')).subtype))
     have hf'inj : Function.Injective (FDMod.lin f') := Subtype.val_injective
     have hex' : LinearMap.range (FDMod.lin f') = LinearMap.ker (FDMod.lin g') :=
       Submodule.range_subtype _
@@ -165,13 +165,13 @@ theorem irrIn_step (hsucc : ∀ z, z ∈ T' → LivesOn T' (projE (k := k) (D.id
     haveI : IsLocalRing (Module.End A (FDMod.ofQuot E'' (LinearMap.range (FDMod.lin f'')))) :=
       hC.1.isLocalRing (k := k)
     obtain ⟨a, ha⟩ := coker_iso_of_leftAS (g := (show E'' ⟶ FDMod.ofQuot E''
-        (LinearMap.range (FDMod.lin f'')) from (LinearMap.range (FDMod.lin f'')).mkQ))
+        (LinearMap.range (FDMod.lin f'')) from (FDMod.ofLin ((LinearMap.range (FDMod.lin f'')).mkQ))))
       hf''L hf''inj (Submodule.mkQ_surjective _) (Submodule.ker_mkQ _).symm
       hrL hrinj (res_surjective hgs) (res_exact hex')
     obtain ⟨v, -, r, hr⟩ := hf.factor_rightAS (isRightAS_comp_iso hg''R a ha)
     have hvinj : Function.Injective (FDMod.lin v) := fun a b h ↦ by
-      have h1 := LinearMap.congr_fun hr a
-      have h2 := LinearMap.congr_fun hr b
+      have h1 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) a
+      have h2 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) b
       change FDMod.lin r (FDMod.lin v a) = a at h1
       change FDMod.lin r (FDMod.lin v b) = b at h2
       rw [← h1, ← h2, h]
@@ -199,7 +199,7 @@ theorem irrOut_step (sd : ∀ z, Decomp (D.RadP z)) (hsd : ∀ z, z ∈ D.T → 
     · exact absurd hiso hR
   · obtain ⟨E, g, hg, hgs, hmin, hleft, hKind, hKnt⟩ := exists_arSeq Y hp
     let K : FDMod k A := FDMod.ofSub (LinearMap.ker (FDMod.lin g))
-    let fK : K ⟶ E := (LinearMap.ker (FDMod.lin g)).subtype
+    let fK : K ⟶ E := (FDMod.ofLin ((LinearMap.ker (FDMod.lin g)).subtype))
     have hfKinj : Function.Injective (FDMod.lin fK) := Subtype.val_injective
     have hexK : LinearMap.range (FDMod.lin fK) = LinearMap.ker (FDMod.lin g) :=
       Submodule.range_subtype _
@@ -230,9 +230,9 @@ theorem irrOut_step (sd : ∀ z, Decomp (D.RadP z)) (hsd : ∀ z, z ∈ D.T → 
     have hι : Function.Injective (FDMod.lin (c ≫ fK)) := hfKinj.comp hc.1
     have hιns : ¬∃ r : E ⟶ W, (c ≫ fK) ≫ r = 𝟙 W := by
       rintro ⟨r', hr'⟩
-      refine hleft.1 ⟨r' ≫ c, LinearMap.ext fun kk ↦ ?_⟩
+      refine hleft.1 ⟨r' ≫ c, (FDMod.hom_ext (LinearMap.ext fun kk ↦ ?_))⟩
       obtain ⟨w, rfl⟩ := hc.2 kk
-      have := LinearMap.congr_fun hr' w
+      have := LinearMap.congr_fun (congrArg FDMod.lin (hr')) w
       change FDMod.lin r' (FDMod.lin fK (FDMod.lin c w)) = w at this
       change FDMod.lin c (FDMod.lin r' (FDMod.lin fK (FDMod.lin c w))) = FDMod.lin c w
       rw [this]
@@ -242,7 +242,7 @@ theorem irrOut_step (sd : ∀ z, Decomp (D.RadP z)) (hsd : ∀ z, z ∈ D.T → 
       hOutW _ ⟨d2.indec j', d2.nt j'⟩ _ (isIrr_summandL hf2L hf2min hWA d2 j')
     have hC2l : LivesOn (Bset x (sd x) i0) (FDMod.ofQuot E2 (LinearMap.range (FDMod.lin f2))) :=
       livesOn_of_surj (show E2 ⟶ FDMod.ofQuot E2 (LinearMap.range (FDMod.lin f2)) from
-        (LinearMap.range (FDMod.lin f2)).mkQ) (Submodule.mkQ_surjective _) hE2
+        (FDMod.ofLin ((LinearMap.range (FDMod.lin f2)).mkQ))) (Submodule.mkQ_surjective _) hE2
     haveI : Nontrivial (FDMod.ofQuot E2 (LinearMap.range (FDMod.lin f2))) := hC2.2
     haveI : IsLocalRing (Module.End A (FDMod.ofQuot E2 (LinearMap.range (FDMod.lin f2)))) :=
       hC2.1.isLocalRing (k := k)
@@ -255,7 +255,7 @@ theorem irrOut_step (sd : ∀ z, Decomp (D.RadP z)) (hsd : ∀ z, z ∈ D.T → 
         obtain ⟨w, rfl⟩ := hc.2 kk
         exact ⟨w, rfl⟩
     have hiso := coker_iso_of_leftAS (g := (show E2 ⟶ FDMod.ofQuot E2
-        (LinearMap.range (FDMod.lin f2)) from (LinearMap.range (FDMod.lin f2)).mkQ))
+        (LinearMap.range (FDMod.lin f2)) from (FDMod.ofLin ((LinearMap.range (FDMod.lin f2)).mkQ))))
       hf2L hf2inj (Submodule.mkQ_surjective _) (Submodule.ker_mkQ _).symm
       (isLeftAS_iso_comp hleft c hc) hι hgs hexι
     exact livesOn_iso hiso hC2l
