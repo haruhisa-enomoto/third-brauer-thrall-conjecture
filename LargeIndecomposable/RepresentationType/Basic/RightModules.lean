@@ -2,6 +2,7 @@ module
 
 public import LargeIndecomposable.MultiplicativeBases.Normed.NormedBasis
 public import LargeIndecomposable.RepresentationType.Basic.RepresentationFinite
+public import LargeIndecomposable.AuslanderReiten.AlmostSplit.AlmostSplitCofinite
 
 /-!
 # Right modules, representation-finite algebras, and the radical of `ind(mod A)`
@@ -109,27 +110,14 @@ section AlmostSplit
 
 variable {C : Type*} [Category C]
 
-/-- A right almost split morphism: not a split epimorphism, and every
-morphism into its target that is not a split epimorphism factors through it.
-The same definition appears in the library as
-`LargeIndecomposable.IsRightAlmostSplit`. -/
-structure IsRightAlmostSplitRight {E Z : C} (f : E ⟶ Z) : Prop where
-  not_isSplitEpi : ¬ IsSplitEpi f
-  factors : ∀ {X : C} (g : X ⟶ Z), ¬ IsSplitEpi g → ∃ h : X ⟶ E, h ≫ f = g
-
-/-- The dual notion of a left almost split morphism. -/
-structure IsLeftAlmostSplitRight {Z E : C} (f : Z ⟶ E) : Prop where
-  not_isSplitMono : ¬ IsSplitMono f
-  factors : ∀ {X : C} (g : Z ⟶ X), ¬ IsSplitMono g → ∃ h : E ⟶ X, f ≫ h = g
-
 /-- An almost split sequence `0 → U → E → V → 0`: a short exact sequence whose
 first map is left almost split and whose second map is right almost split. -/
 structure IsAlmostSplitSequence [Preadditive C] [HasZeroObject C]
     {U E V : C} (f : U ⟶ E) (g : E ⟶ V) : Prop where
   comp_eq_zero : f ≫ g = 0
   shortExact : (ShortComplex.mk f g comp_eq_zero).ShortExact
-  left : IsLeftAlmostSplitRight f
-  right : IsRightAlmostSplitRight g
+  left : IsLeftAlmostSplit f
+  right : IsRightAlmostSplit g
 
 end AlmostSplit
 
