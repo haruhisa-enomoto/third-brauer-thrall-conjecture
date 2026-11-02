@@ -1,6 +1,7 @@
 module
 
 public import LargeIndecomposable.Foundations.Ring.LocalRingJacobson
+public import LargeIndecomposable.Foundations.CategoryTheory.IndecomposableOfLocalEnd
 public import LargeIndecomposable.Foundations.CategoryTheory.LinearMat
 public import Mathlib.Algebra.Algebra.Equiv
 public import Mathlib.Algebra.Module.Equiv.Basic
@@ -41,22 +42,6 @@ universe u v
 variable {k : Type u} [Field k]
 variable {A : Type v} [Ring A] [Algebra k A]
 
-namespace RingEquiv
-
-/-- Localness transports across a ring equivalence without a commutativity
-hypothesis. -/
-theorem isLocalRing_noncommutative {R S : Type*} [Ring R] [Ring S]
-    [IsLocalRing R] (e : R ≃+* S) : IsLocalRing S := by
-  letI : Nontrivial S := e.injective.nontrivial
-  apply IsLocalRing.of_isUnit_or_isUnit_one_sub_self
-  intro s
-  rcases IsLocalRing.isUnit_or_isUnit_of_add_one
-    (R := R) (a := e.symm s) (b := 1 - e.symm s)
-    (add_sub_cancel (e.symm s) 1) with h | h
-  · exact Or.inl (by simpa using h.map e)
-  · exact Or.inr (by simpa using h.map e)
-
-end RingEquiv
 
 /-- If `End(X)` is nontrivial and `End(Y)` is local, then a pair of maps
 `X ⟶ Y ⟶ X` with invertible composite exhibits `X` and `Y` as isomorphic.
@@ -112,7 +97,7 @@ theorem nonempty_iso_of_isUnit_comp
 
 /-- A finite-dimensional indecomposable module has the Fitting alternative:
 each endomorphism is invertible or nilpotent. -/
-theorem isUnit_or_isNilpotent_of_finite_indecomposable_moduleCat
+theorem isUnit_or_isNilpotent_of_finite_indecomposable
     [Module.Finite k A] (M : ModuleCat.{v} A) [Module.Finite k M]
     (hM : Indecomposable M) (f : CategoryTheory.End M) :
     IsUnit f ∨ IsNilpotent f := by
@@ -167,7 +152,7 @@ theorem isUnit_or_isNilpotent_of_finite_indecomposable_moduleCat
 
 /-- The categorical endomorphism ring of a finite-dimensional indecomposable
 module is local. -/
-theorem moduleCat_end_isLocalRing_of_finite [Module.Finite k A]
+theorem moduleCat_end_isLocalRing [Module.Finite k A]
     (M : ModuleCat.{v} A) [Module.Finite k M] (hM : Indecomposable M) :
     IsLocalRing (CategoryTheory.End M) := by
   have hnsub : ¬ Subsingleton M :=
@@ -177,7 +162,7 @@ theorem moduleCat_end_isLocalRing_of_finite [Module.Finite k A]
     (ModuleCat.endRingEquiv M).symm.injective.nontrivial
   apply IsLocalRing.of_isUnit_or_isUnit_one_sub_self
   intro f
-  rcases isUnit_or_isNilpotent_of_finite_indecomposable_moduleCat
+  rcases isUnit_or_isNilpotent_of_finite_indecomposable
     (k := k) (A := A) M hM f with hf | hf
   · exact Or.inl hf
   · exact Or.inr hf.isUnit_one_sub

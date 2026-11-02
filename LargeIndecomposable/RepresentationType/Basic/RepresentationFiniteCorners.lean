@@ -130,7 +130,7 @@ theorem IsRepresentationFinite.of_idempotentCorner
       (IsIdempotentElem.relativeCounitNatIso (k := k) (A := A) he).app N |>.symm |>.trans
         ((R.mapIso dE.isoBiproduct).trans (R.mapBiproduct dE.summand))
     letI : IsLocalRing (End N) :=
-      moduleCat_end_isLocalRing_of_finite (k := k) (A := B) N hN.2
+      moduleCat_end_isLocalRing (k := k) (A := B) N hN.2
     obtain ⟨j, hNj⟩ := localEnd_retract_biproduct_retract_summand
       (fun j => R.obj (dE.summand j))
       (show IsRetractOf N (⨁ fun j => R.obj (dE.summand j)) from
@@ -146,7 +146,7 @@ theorem IsRepresentationFinite.of_idempotentCorner
     letI : ∀ t, Module.Finite k ((d i).summand t) := fun t =>
       (d i).summand_finite inferInstance t
     letI : ∀ t, IsLocalRing (End ((d i).summand t)) := fun t =>
-      moduleCat_end_isLocalRing_of_finite (k := k) (A := B) ((d i).summand t)
+      moduleCat_end_isLocalRing (k := k) (A := B) ((d i).summand t)
         ((d i).indecomposable t)
     rcases hretXi with ⟨incXi, projXi, hcompXi⟩
     obtain ⟨t, hNt⟩ := indecomposable_retract_biproduct_iso_summand

@@ -140,7 +140,7 @@ theorem lifted_end_isLocalRing (F : CleavingSourceFamily (k := k) K)
     { hW.mulEquivEnd X with map_add' := fun _ _ ↦ W.map_add }
   letI : IsLocalRing (CategoryTheory.End X) := F.end_isLocalRing n
   change IsLocalRing (CategoryTheory.End (W.obj X))
-  exact LargeIndecomposable.RingEquiv.isLocalRing_noncommutative e
+  exact LargeIndecomposable.RingEquiv.isLocalRing_noncomm e
 
 end CleavingSourceFamily
 

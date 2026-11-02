@@ -207,12 +207,12 @@ theorem isLocalRing_of_finite_of_idempotents
     dsimp [M]
     exact regularModule_indecomposable_of_idempotents hidem
   letI : IsLocalRing (CategoryTheory.End M) :=
-    @moduleCat_end_isLocalRing_of_finite k _ Rᵐᵒᵖ _ _ inferInstance
+    @moduleCat_end_isLocalRing k _ Rᵐᵒᵖ _ _ inferInstance
       M hMfinite hMind
   let eR : R ≃+* CategoryTheory.End M :=
     (RingEquiv.moduleEndSelfOp R).trans
       (ModuleCat.endRingEquiv M).symm
-  exact RingEquiv.isLocalRing_noncommutative eR.symm
+  exact RingEquiv.isLocalRing_noncomm eR.symm
 
 /-- The empty biproduct is isomorphic to every zero object. -/
 def zeroIsoEmptyBiproduct
@@ -602,7 +602,7 @@ def finiteIndecomposableRetractSpectrum_module
   letI : ∀ j, Module.Finite k (d.summand j) :=
     fun j => d.summand_finite hM j
   letI : ∀ j, IsLocalRing (CategoryTheory.End (d.summand j)) :=
-    fun j => moduleCat_end_isLocalRing_of_finite
+    fun j => moduleCat_end_isLocalRing
       (k := k) (A := A) (d.summand j) (d.indecomposable j)
   exact {
     n := d.n
@@ -617,7 +617,7 @@ def finiteIndecomposableRetractSpectrum_module
           rw [hip]
           rfl).injective)
       letI : IsLocalRing (CategoryTheory.End N) :=
-        moduleCat_end_isLocalRing_of_finite (k := k) (A := A) N hN
+        moduleCat_end_isLocalRing (k := k) (A := A) N hN
       apply indecomposable_retract_biproduct_iso_summand d.summand
       exact ⟨i ≫ d.isoBiproduct.hom, d.isoBiproduct.inv ≫ p, by
         simp only [Category.assoc, Iso.hom_inv_id_assoc, hip]⟩ }
