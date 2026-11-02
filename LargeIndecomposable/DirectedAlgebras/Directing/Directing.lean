@@ -108,7 +108,7 @@ theorem Directing.split [FiniteDimensional k A] {M E : FDMod k A} (hM : Directin
         simp only [LinearMap.sub_apply, LinearMap.id_apply, LinearMap.coe_comp,
           Function.comp_apply]
         rw [show r (FDMod.lin i m) = m from LinearMap.congr_fun hr m, sub_self])
-    exact ⟨(FDMod.ofLin (s')), hs'⟩
+    exact ⟨(FDMod.ofLin s'), hs'⟩
   -- some summand receives `i` nonzero and maps nonzero by `p`
   by_cases hboth : ∃ j, ij j ≠ 0 ∧ pj j ≠ 0
   · obtain ⟨j, h1, h2⟩ := hboth
@@ -139,6 +139,6 @@ theorem Directing.split [FiniteDimensional k A] {M E : FDMod k A} (hM : Directin
         rw [this, LinearMap.zero_apply, map_zero]
     obtain ⟨s', hs'⟩ := split_of_endo (FDMod.lin i) (FDMod.lin p) hp hex e₂ (fun x ↦ (hpe x))
       hei
-    exact ⟨(FDMod.ofLin (s')), hs'⟩
+    exact ⟨(FDMod.ofLin s'), hs'⟩
 
 end LargeIndecomposable.AR

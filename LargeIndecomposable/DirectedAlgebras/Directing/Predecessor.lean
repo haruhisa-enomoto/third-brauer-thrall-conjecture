@@ -104,7 +104,7 @@ def MinRAS.fam {Z : FDMod k A} (M : MinRAS Z) (P : FDMod k A → Prop) (hP : ∀
     simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.sum_apply, map_sum,
       FDMod.lin_comp]
   · intro W v hv
-    obtain ⟨t, ht⟩ := M.hg.2 W v fun ⟨s, hs⟩ ↦ hv ⟨s, ((FDMod.comp_eq_id_iff _ _).1 (hs))⟩
+    obtain ⟨t, ht⟩ := M.hg.2 W v fun ⟨s, hs⟩ ↦ hv ⟨s, ((FDMod.comp_eq_id_iff _ _).1 hs)⟩
     refine ⟨fun i ↦ t ≫ M.d.proj i, ?_⟩
     have hid := M.d.sum_id
     rw [← ht]

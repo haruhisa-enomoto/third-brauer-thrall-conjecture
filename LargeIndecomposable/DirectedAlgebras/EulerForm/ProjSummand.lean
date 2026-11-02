@@ -216,7 +216,7 @@ theorem eulerProj_of_summand (hT : ∀ x, x ∈ D.T) {K : FDMod k A} (l : List D
       exact ((FDMod.comp_eq_id_iff _ _).2 (d.retr j)))
   let e := LinearEquiv.ofBijective (FDMod.lin g) hg
   exact (eulerProj_decompSumProj D hT l i).of_bijective D
-    (show (decompSumProj D hT l).obj i ⟶ d.obj j from (FDMod.ofLin (e.symm.toLinearMap))) e.symm.bijective
+    (show (decompSumProj D hT l).obj i ⟶ d.obj j from (FDMod.ofLin e.symm.toLinearMap)) e.symm.bijective
 
 end LargeIndecomposable.AR
 

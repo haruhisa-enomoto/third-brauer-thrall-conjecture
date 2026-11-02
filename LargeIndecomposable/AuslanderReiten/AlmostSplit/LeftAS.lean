@@ -177,7 +177,7 @@ theorem FDMod.exists_leftAS [FiniteDimensional k A] (X : FDMod k A)
   let f : X →ₗ[A] FDMod.dunop E' := trUnop (FDMod.lin g) ∘ₗ evA (k := k) (A := A) X
   have hf : ∀ (m : X) (e : E'), (show Module.Dual k E' from f m) e =
       (show Module.Dual k X from FDMod.lin g e) m := fun _ _ ↦ rfl
-  refine ⟨FDMod.dunop E', (FDMod.ofLin (f)), ⟨fun ⟨r, hr⟩ ↦ hg.1 ⟨?_, ?_⟩, fun W u hu ↦ ?_⟩⟩
+  refine ⟨FDMod.dunop E', (FDMod.ofLin f), ⟨fun ⟨r, hr⟩ ↦ hg.1 ⟨?_, ?_⟩, fun W u hu ↦ ?_⟩⟩
   · exact (FDMod.ofLin ((evEquivOp E').symm.toLinearMap ∘ₗ trOp (FDMod.lin r)))
   · apply FDMod.hom_ext; apply LinearMap.ext; intro ξ; apply LinearMap.ext; intro m
     have h1 := congrArg (fun t : FDMod.dop (FDMod.dunop E') ↦

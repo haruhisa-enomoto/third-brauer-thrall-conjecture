@@ -116,8 +116,8 @@ theorem irrIn_step (hsucc : ∀ z, z ∈ T' → LivesOn T' (projE (k := k) (D.id
     obtain ⟨g, hg⟩ := hiso2
     obtain ⟨v, -, r, hr⟩ := (hf.comp_iso g hg).factor_rightAS (D.isRightAS_radP z (hT.1 hz))
     have hvinj : Function.Injective (FDMod.lin v) := fun a b h ↦ by
-      have h1 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) a
-      have h2 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) b
+      have h1 := LinearMap.congr_fun (congrArg FDMod.lin hr) a
+      have h2 := LinearMap.congr_fun (congrArg FDMod.lin hr) b
       change FDMod.lin r (FDMod.lin v a) = a at h1
       change FDMod.lin r (FDMod.lin v b) = b at h2
       rw [← h1, ← h2, h]
@@ -170,8 +170,8 @@ theorem irrIn_step (hsucc : ∀ z, z ∈ T' → LivesOn T' (projE (k := k) (D.id
       hrL hrinj (res_surjective hgs) (res_exact hex')
     obtain ⟨v, -, r, hr⟩ := hf.factor_rightAS (isRightAS_comp_iso hg''R a ha)
     have hvinj : Function.Injective (FDMod.lin v) := fun a b h ↦ by
-      have h1 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) a
-      have h2 := LinearMap.congr_fun (congrArg FDMod.lin (hr)) b
+      have h1 := LinearMap.congr_fun (congrArg FDMod.lin hr) a
+      have h2 := LinearMap.congr_fun (congrArg FDMod.lin hr) b
       change FDMod.lin r (FDMod.lin v a) = a at h1
       change FDMod.lin r (FDMod.lin v b) = b at h2
       rw [← h1, ← h2, h]
@@ -232,7 +232,7 @@ theorem irrOut_step (sd : ∀ z, Decomp (D.RadP z)) (hsd : ∀ z, z ∈ D.T → 
       rintro ⟨r', hr'⟩
       refine hleft.1 ⟨r' ≫ c, (FDMod.hom_ext (LinearMap.ext fun kk ↦ ?_))⟩
       obtain ⟨w, rfl⟩ := hc.2 kk
-      have := LinearMap.congr_fun (congrArg FDMod.lin (hr')) w
+      have := LinearMap.congr_fun (congrArg FDMod.lin hr') w
       change FDMod.lin r' (FDMod.lin fK (FDMod.lin c w)) = w at this
       change FDMod.lin c (FDMod.lin r' (FDMod.lin fK (FDMod.lin c w))) = FDMod.lin c w
       rw [this]

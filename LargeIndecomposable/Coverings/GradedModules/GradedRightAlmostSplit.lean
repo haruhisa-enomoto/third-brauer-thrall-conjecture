@@ -174,7 +174,7 @@ theorem grRASFam [FiniteDimensional k' A'] (htf : TorsionFree G) (Z : FDMod k' A
     simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.sum_apply, map_sum]
     rfl
   · intro W v hv
-    obtain ⟨t, ht⟩ := hras.2 W (FDMod.lin v) fun ⟨s, hs⟩ ↦ hv ⟨(FDMod.ofLin (s)), hs⟩
+    obtain ⟨t, ht⟩ := hras.2 W (FDMod.lin v) fun ⟨s, hs⟩ ↦ hv ⟨(FDMod.ofLin s), hs⟩
     refine ⟨fun i ↦ (FDMod.ofLin (show W →ₗ[A'] d.obj i from d.proj i ∘ₗ t)), ?_⟩
     rw [← ht]
     ext x

@@ -115,7 +115,7 @@ theorem iso_proj_of_freeSummand {Z : FDMod k A} (hZ : IndNT Z) (h : IsFreeSumman
     ∃ z, z ∈ D.T ∧ IsoM Z (projE (k := k) (D.idem z)) := by
   obtain ⟨m, α, β, hβα⟩ := h
   obtain ⟨p, hp⟩ := iso_summand_of_splitMono hZ ((D.decompSelf).pow m)
-    (show Z ⟶ (⟨Fin m → (FDMod.self : FDMod k A)⟩ : FDMod k A) from (FDMod.ofLin (α))) (FDMod.ofLin (β)) ((FDMod.comp_eq_id_iff _ _).2 (hβα))
+    (show Z ⟶ (⟨Fin m → (FDMod.self : FDMod k A)⟩ : FDMod k A) from (FDMod.ofLin α)) (FDMod.ofLin β) ((FDMod.comp_eq_id_iff _ _).2 hβα)
   exact ⟨p.2.down.1, p.2.down.2, hp⟩
 
 end DirData

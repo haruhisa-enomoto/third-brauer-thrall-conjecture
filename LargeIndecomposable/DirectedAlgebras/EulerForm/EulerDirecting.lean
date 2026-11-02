@@ -153,8 +153,8 @@ theorem sumProj_lift {X Y : FDMod k A} (p : X ⟶ Y) (hp : Function.Surjective (
       ((FDMod.ofLin (show sumProj D l →ₗ[A] Y from (show sumProj D (i :: l) →ₗ[A] Y from f) ∘ₗ LinearMap.inr A _ _)))
     refine ⟨(FDMod.ofLin (show sumProj D (i :: l) →ₗ[A] X from LinearMap.coprod (FDMod.lin g₁) (FDMod.lin g₂))), ?_⟩
     refine (FDMod.hom_ext (LinearMap.ext fun ⟨a, b⟩ ↦ ?_))
-    have h1 := LinearMap.congr_fun (congrArg FDMod.lin (hg₁)) a
-    have h2 := LinearMap.congr_fun (congrArg FDMod.lin (hg₂)) b
+    have h1 := LinearMap.congr_fun (congrArg FDMod.lin hg₁) a
+    have h2 := LinearMap.congr_fun (congrArg FDMod.lin hg₂) b
     change FDMod.lin p (FDMod.lin g₁ a + FDMod.lin g₂ b) =
       (show sumProj D (i :: l) →ₗ[A] Y from f) (a, b)
     rw [map_add]
@@ -171,10 +171,10 @@ theorem IsProjSummand.extVanish {U : FDMod k A} (hU : IsProjSummand D U) (W : FD
     ExtVanish U W := by
   obtain ⟨l, s, r, hsr⟩ := hU
   intro E i p hi hp hex
-  obtain ⟨g, hg⟩ := sumProj_lift D (show E ⟶ U from (FDMod.ofLin (p))) hp l r
+  obtain ⟨g, hg⟩ := sumProj_lift D (show E ⟶ U from (FDMod.ofLin p)) hp l r
   refine ⟨FDMod.lin g ∘ₗ FDMod.lin s, LinearMap.ext fun x ↦ ?_⟩
-  have := LinearMap.congr_fun (congrArg FDMod.lin (hg)) (FDMod.lin s x)
-  have h2 := LinearMap.congr_fun (congrArg FDMod.lin (hsr)) x
+  have := LinearMap.congr_fun (congrArg FDMod.lin hg) (FDMod.lin s x)
+  have h2 := LinearMap.congr_fun (congrArg FDMod.lin hsr) x
   change p (FDMod.lin g (FDMod.lin s x)) = x
   exact this.trans h2
 

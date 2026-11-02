@@ -177,8 +177,8 @@ theorem exists_min_extreme (hT : ∀ x, x ∈ D.T) (hU : Directing U) (hs : Sinc
 
 lemma isProjL_sumProj (D : DirData k A) (l : List D.ι) : IsProjL (sumProj D l) := by
   intro X Y q hq φ
-  obtain ⟨g, hg⟩ := sumProj_lift D (show X ⟶ Y from (FDMod.ofLin (q))) hq l (show _ ⟶ Y from (FDMod.ofLin (φ)))
-  exact ⟨g, ((FDMod.comp_eq_iff _ _ _).1 (hg))⟩
+  obtain ⟨g, hg⟩ := sumProj_lift D (show X ⟶ Y from (FDMod.ofLin q)) hq l (show _ ⟶ Y from (FDMod.ofLin φ))
+  exact ⟨g, ((FDMod.comp_eq_iff _ _ _).1 hg)⟩
 
 lemma exists_iso_proj (hT : ∀ x, x ∈ D.T) :
     ∀ (l : List D.ι) (t : (decompSumProj D hT l).ι),
@@ -270,7 +270,7 @@ theorem isProjSummand_syz (hT : ∀ x, x ∈ D.T) (hU : Directing U) (hs : Since
   obtain ⟨σ, hσ⟩ := hv (syz D L) (sumProj D ((coverList D L).map Sigma.fst))
     (LinearMap.ker (sumMap D L (coverList D L))).subtype (sumMap D L (coverList D L))
     Subtype.val_injective (sumMap_coverList_surjective D L) (Submodule.range_subtype _)
-  exact ⟨(coverList D L).map Sigma.fst, (FDMod.ofLin (σ)), (FDMod.ofLin (sumMap D L (coverList D L))), ((FDMod.comp_eq_id_iff _ _).2 (hσ))⟩
+  exact ⟨(coverList D L).map Sigma.fst, (FDMod.ofLin σ), (FDMod.ofLin (sumMap D L (coverList D L))), ((FDMod.comp_eq_id_iff _ _).2 hσ)⟩
 
 /-- Rank–nullity for restriction along the kernel of a surjection. -/
 lemma finrank_hom_exact {K P Z : FDMod k A} (f : K →ₗ[A] P) (g : P →ₗ[A] Z)

@@ -202,7 +202,7 @@ theorem FDMod.exists_rasFam [FiniteDimensional k A] (Z : FDMod k A) (hZ : IsInde
     simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.sum_apply, map_sum,
       FDMod.lin_comp]
   · intro W v hv
-    obtain ⟨t, ht⟩ := hg2 W v fun ⟨s, hs⟩ ↦ hv ⟨s, ((FDMod.comp_eq_id_iff _ _).1 (hs))⟩
+    obtain ⟨t, ht⟩ := hg2 W v fun ⟨s, hs⟩ ↦ hv ⟨s, ((FDMod.comp_eq_id_iff _ _).1 hs)⟩
     refine ⟨fun i ↦ t ≫ d.proj i, ?_⟩
     have hid := d.sum_id
     rw [← ht]

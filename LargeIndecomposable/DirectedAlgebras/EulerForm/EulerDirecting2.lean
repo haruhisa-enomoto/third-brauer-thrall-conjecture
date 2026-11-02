@@ -138,7 +138,7 @@ theorem good_syz (hT : ∀ x, x ∈ D.T) {M V : FDMod k A} (hMi : IsInd M) (hV :
       (LinearMap.ker (sumMap D V (coverList D V))).subtype
       (sumMap D V (coverList D V)) Subtype.val_injective (Submodule.range_subtype _) σ hσ
     have hK : IsProjSummand D (syz D V) :=
-      ⟨(coverList D V).map Sigma.fst, (FDMod.ofLin ((LinearMap.ker (sumMap D V (coverList D V))).subtype)), (FDMod.ofLin (r)), ((FDMod.comp_eq_id_iff _ _).2 (hr))⟩
+      ⟨(coverList D V).map Sigma.fst, (FDMod.ofLin ((LinearMap.ker (sumMap D V (coverList D V))).subtype)), (FDMod.ofLin r), ((FDMod.comp_eq_id_iff _ _).2 hr)⟩
     exact hK.of_splitMono D (d.inc j) (d.proj j) hsplitU
   · let φ : d.obj j →ₗ[A] sumProj D ((coverList D V).map Sigma.fst) :=
       (LinearMap.ker (sumMap D V (coverList D V))).subtype ∘ₗ FDMod.lin (d.inc j)
@@ -169,7 +169,7 @@ theorem good_syz (hT : ∀ x, x ∈ D.T) {M V : FDMod k A} (hMi : IsInd M) (hV :
       exact (isProjSummand_decompSumProj D hT _ t).of_splitMono D
         ((FDMod.ofLin (show V →ₗ[A] (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t from e.symm.toLinearMap))) ((FDMod.ofLin (show (decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t →ₗ[A] V from g₂)))
         (FDMod.hom_ext ((LinearMap.ext fun x ↦ e.apply_symm_apply x)))
-    have hV2 : Reach₁ ((decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t) V := Reach₁.step hT' hV (FDMod.ofLin (g₂)) hg₂ hnb₂
+    have hV2 : Reach₁ ((decompSumProj D hT ((coverList D V).map Sigma.fst)).obj t) V := Reach₁.step hT' hV (FDMod.ofLin g₂) hg₂ hnb₂
     by_cases hb₁ : Function.Bijective (FDMod.lin ((decompSumProj D hT ((coverList D V).map Sigma.fst)).proj t) ∘ₗ φ)
     · left
       let e := LinearEquiv.ofBijective _ hb₁

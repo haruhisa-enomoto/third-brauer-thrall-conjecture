@@ -273,8 +273,8 @@ def IsProjL (P : FDMod k A) : Prop :=
 
 lemma isProjL_projE {e : A} (he : IsIdempotentElem e) : IsProjL (projE (k := k) he) := by
   intro X Y q hq φ
-  obtain ⟨g, hg⟩ := projE_lift he (show X ⟶ Y from (FDMod.ofLin (q))) hq (show projE he ⟶ Y from (FDMod.ofLin (φ)))
-  exact ⟨(FDMod.lin (g)), ((FDMod.comp_eq_iff _ _ _).1 (hg))⟩
+  obtain ⟨g, hg⟩ := projE_lift he (show X ⟶ Y from (FDMod.ofLin q)) hq (show projE he ⟶ Y from (FDMod.ofLin φ))
+  exact ⟨(FDMod.lin g), ((FDMod.comp_eq_iff _ _ _).1 hg)⟩
 
 /-- The index set of an injective envelope. -/
 abbrev EnvIdx (D : DirData k A) (Y : FDMod k A) : Type u :=

@@ -63,7 +63,7 @@ lemma LASFam.not_bijective {P : FDMod k A → Prop} {X : FDMod k A} (F : LASFam 
   intro hb
   let e := LinearEquiv.ofBijective (FDMod.lin (F.f i)) hb
   apply F.notSplit
-  refine ⟨Function.update (fun j ↦ (FDMod.ofLin ((0 : F.E j →ₗ[A] X)))) i (FDMod.ofLin (e.symm.toLinearMap)), ?_⟩
+  refine ⟨Function.update (fun j ↦ (FDMod.ofLin ((0 : F.E j →ₗ[A] X)))) i (FDMod.ofLin e.symm.toLinearMap), ?_⟩
   rw [Finset.sum_eq_single i]
   · ext x
     simp only [Function.update_self, LinearMap.coe_comp, Function.comp_apply, LinearMap.id_coe,
@@ -145,7 +145,7 @@ theorem exists_lasFam [FiniteDimensional k A] (X : FDMod k A) (hX : IndNT X) :
     change (∑ i, FDMod.lin (h i) ∘ₗ FDMod.lin (d.proj i)) (FDMod.lin f x) = x
     simpa [LinearMap.sum_apply] using this
   · intro W v hv
-    obtain ⟨t, ht⟩ := hf.2 W v fun ⟨r, hr⟩ ↦ hv ⟨r, ((FDMod.comp_eq_id_iff _ _).1 (hr))⟩
+    obtain ⟨t, ht⟩ := hf.2 W v fun ⟨r, hr⟩ ↦ hv ⟨r, ((FDMod.comp_eq_id_iff _ _).1 hr)⟩
     refine ⟨fun i ↦ d.inc i ≫ t, ?_⟩
     rw [← ht]
     ext x

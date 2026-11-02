@@ -48,7 +48,7 @@ theorem surjective_of_rightAS [FiniteDimensional k A] {E Z : FDMod k A} {g : E �
     { toFun := fun p ↦ ∑ j, p j • P.z j
       map_add' := fun p q ↦ by simp [add_smul, Finset.sum_add_distrib]
       map_smul' := fun a p ↦ by simp [Finset.smul_sum, mul_smul] }
-  obtain ⟨v, hv⟩ := hg.2 (FDMod.free P.n₀) (FDMod.ofLin (π)) fun ⟨s, hs⟩ ↦ hZ ⟨P.n₀, (FDMod.lin (s)), π, ((FDMod.comp_eq_id_iff _ _).1 (hs))⟩
+  obtain ⟨v, hv⟩ := hg.2 (FDMod.free P.n₀) (FDMod.ofLin π) fun ⟨s, hs⟩ ↦ hZ ⟨P.n₀, (FDMod.lin s), π, ((FDMod.comp_eq_id_iff _ _).1 hs)⟩
   intro z
   obtain ⟨p, hp⟩ := P.span z
   exact ⟨FDMod.lin v p, (LinearMap.congr_fun (congrArg FDMod.lin hv) p).trans hp⟩
@@ -91,7 +91,7 @@ theorem isLeftAS_ker {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
         have : FDMod.lin r (K.subtype m) = m := LinearMap.congr_fun (congrArg FDMod.lin hr) m
         change (K.subtype m : E) - K.subtype (FDMod.lin r (K.subtype m)) = 0
         rw [this, sub_self])
-    exact ⟨(FDMod.ofLin (s)), ((FDMod.comp_eq_id_iff _ _).2 (hs))⟩
+    exact ⟨(FDMod.ofLin s), ((FDMod.comp_eq_id_iff _ _).2 hs)⟩
   · -- the pushout `P = (W × E) / {(u x, -x)}`
     let N : Submodule A (W × E) := LinearMap.range (LinearMap.prod (FDMod.lin u) (-K.subtype))
     let P := FDMod.ofQuot (FDMod.prod W E) N
@@ -146,9 +146,9 @@ theorem isLeftAS_ker {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
       refine ⟨(FDMod.ofLin (r ∘ₗ v')), FDMod.hom_ext (LinearMap.ext fun x ↦ ?_)⟩
       change r (v' x) = FDMod.lin u x
       rw [hvj, hrj]
-    · obtain ⟨h, hh⟩ := hg.2 P (FDMod.ofLin (g')) fun ⟨s, hs'⟩ ↦ hs ⟨(FDMod.lin (s)), ((FDMod.comp_eq_id_iff _ _).1 (hs'))⟩
+    · obtain ⟨h, hh⟩ := hg.2 P (FDMod.ofLin g') fun ⟨s, hs'⟩ ↦ hs ⟨(FDMod.lin s), ((FDMod.comp_eq_id_iff _ _).1 hs')⟩
       have hhv : ∀ e, FDMod.lin g (FDMod.lin h (v' e)) = FDMod.lin g e := fun e ↦ by
-        rw [← hg'v]; exact LinearMap.congr_fun (congrArg FDMod.lin (hh)) (v' e)
+        rw [← hg'v]; exact LinearMap.congr_fun (congrArg FDMod.lin hh) (v' e)
       have hψ := hmin (show E ⟶ E from (FDMod.ofLin (FDMod.lin h ∘ₗ v'))) (FDMod.hom_ext ((LinearMap.ext hhv)))
       have hmemK : ∀ w, FDMod.lin h (j w) ∈ K := fun w ↦ by
         change FDMod.lin g (FDMod.lin h (j w)) = 0
@@ -181,7 +181,7 @@ theorem isIndecMod_of_leftAS {X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f) :
   let e := Submodule.prodEquivOfIsCompl U V h
   let πU : X →ₗ[A] U := LinearMap.fst A U V ∘ₗ e.symm.toLinearMap
   let πV : X →ₗ[A] V := LinearMap.snd A U V ∘ₗ e.symm.toLinearMap
-  have hnsU : ¬∃ r : FDMod.ofSub U ⟶ X, (show X ⟶ FDMod.ofSub U from (FDMod.ofLin (πU))) ≫ r = 𝟙 X := by
+  have hnsU : ¬∃ r : FDMod.ofSub U ⟶ X, (show X ⟶ FDMod.ofSub U from (FDMod.ofLin πU)) ≫ r = 𝟙 X := by
     rintro ⟨r, hr⟩
     obtain ⟨v, hv, hv0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hV
     have h1 : πU v = 0 := by
@@ -189,11 +189,11 @@ theorem isIndecMod_of_leftAS {X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f) :
       change (e.symm ((⟨v, hv⟩ : V) : X)).1 = 0
       rw [this]
     apply hv0
-    have := LinearMap.congr_fun (congrArg FDMod.lin (hr)) v
+    have := LinearMap.congr_fun (congrArg FDMod.lin hr) v
     change FDMod.lin r (πU v) = v at this
     rw [h1, map_zero] at this
     exact this.symm
-  have hnsV : ¬∃ r : FDMod.ofSub V ⟶ X, (show X ⟶ FDMod.ofSub V from (FDMod.ofLin (πV))) ≫ r = 𝟙 X := by
+  have hnsV : ¬∃ r : FDMod.ofSub V ⟶ X, (show X ⟶ FDMod.ofSub V from (FDMod.ofLin πV)) ≫ r = 𝟙 X := by
     rintro ⟨r, hr⟩
     obtain ⟨u, hu, hu0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hU
     have h1 : πV u = 0 := by
@@ -201,12 +201,12 @@ theorem isIndecMod_of_leftAS {X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f) :
       change (e.symm ((⟨u, hu⟩ : U) : X)).2 = 0
       rw [this]
     apply hu0
-    have := LinearMap.congr_fun (congrArg FDMod.lin (hr)) u
+    have := LinearMap.congr_fun (congrArg FDMod.lin hr) u
     change FDMod.lin r (πV u) = u at this
     rw [h1, map_zero] at this
     exact this.symm
-  obtain ⟨a, ha⟩ := hf.2 (FDMod.ofSub U) (FDMod.ofLin (πU)) hnsU
-  obtain ⟨b, hb⟩ := hf.2 (FDMod.ofSub V) (FDMod.ofLin (πV)) hnsV
+  obtain ⟨a, ha⟩ := hf.2 (FDMod.ofSub U) (FDMod.ofLin πU) hnsU
+  obtain ⟨b, hb⟩ := hf.2 (FDMod.ofSub V) (FDMod.ofLin πV) hnsV
   refine hf.1 ⟨(FDMod.ofLin (show E →ₗ[A] X from U.subtype ∘ₗ FDMod.lin a + V.subtype ∘ₗ FDMod.lin b)), ?_⟩
   apply FDMod.hom_ext; apply LinearMap.ext
   intro x
@@ -240,6 +240,6 @@ theorem exists_arSeq [FiniteDimensional k A] (Z : FDMod k A) [IsLocalRing (Modul
     have := Subsingleton.elim (⟨x, hx⟩ : LinearMap.ker (FDMod.lin g)) 0
     exact congrArg Subtype.val this
   let eg := LinearEquiv.ofBijective (FDMod.lin g) ⟨hinj, hsurj⟩
-  exact hg.1 ⟨(FDMod.ofLin (eg.symm.toLinearMap)), FDMod.hom_ext (LinearMap.ext fun z ↦ eg.apply_symm_apply z)⟩
+  exact hg.1 ⟨(FDMod.ofLin eg.symm.toLinearMap), FDMod.hom_ext (LinearMap.ext fun z ↦ eg.apply_symm_apply z)⟩
 
 end LargeIndecomposable.AR

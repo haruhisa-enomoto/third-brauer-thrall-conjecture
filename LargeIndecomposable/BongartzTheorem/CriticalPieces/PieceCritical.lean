@@ -465,7 +465,7 @@ theorem pointBrick'_critical : PointBrick' (k := k) S := by
         map_add' := map_add φ.tot
         map_smul' := fun a x ↦ LinearMap.congr_fun (tot_comp_pieceAct hVc hVc φ a) x }
     let φM : V →ₗ[PieceAlg k S] V := eV.toLinearMap ∘ₗ φA ∘ₗ eV.symm.toLinearMap
-    obtain ⟨c, hc⟩ := hb (show V ⟶ V from (AR.FDMod.ofLin (φM)))
+    obtain ⟨c, hc⟩ := hb (show V ⟶ V from (AR.FDMod.ofLin φM))
     refine ⟨c, fun i ↦ LinearMap.ext fun v ↦ ?_⟩
     have h1 : ∀ y : PieceMod Vr hVc, φ.tot y = c • y := fun y ↦ by
       apply eV.injective

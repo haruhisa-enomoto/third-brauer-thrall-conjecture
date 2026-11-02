@@ -36,7 +36,7 @@ lemma isLeftAS_iso_comp {X' X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f) (h 
   · have hu' : ¬∃ r : W ⟶ X, (invOf h hh ≫ u) ≫ r = 𝟙 X := by
       rintro ⟨r, hr⟩
       refine hu ⟨r ≫ invOf h hh, (FDMod.hom_ext (LinearMap.ext fun x' ↦ ?_))⟩
-      have := LinearMap.congr_fun (congrArg FDMod.lin (hr)) (FDMod.lin h x')
+      have := LinearMap.congr_fun (congrArg FDMod.lin hr) (FDMod.lin h x')
       change FDMod.lin r (FDMod.lin u (FDMod.lin (invOf h hh) (FDMod.lin h x'))) = _ at this
       rw [show FDMod.lin (invOf h hh) (FDMod.lin h x') = x' from
         LinearMap.congr_fun (congrArg FDMod.lin (comp_invOf h hh)) x'] at this
@@ -45,7 +45,7 @@ lemma isLeftAS_iso_comp {X' X E : FDMod k A} {f : X ⟶ E} (hf : IsLeftAS f) (h 
       exact LinearMap.congr_fun (congrArg FDMod.lin ((comp_invOf h hh))) x'
     obtain ⟨t, ht⟩ := hf.2 W (invOf h hh ≫ u) hu'
     refine ⟨t, (FDMod.hom_ext (LinearMap.ext fun x' ↦ ?_))⟩
-    have := LinearMap.congr_fun (congrArg FDMod.lin (ht)) (FDMod.lin h x')
+    have := LinearMap.congr_fun (congrArg FDMod.lin ht) (FDMod.lin h x')
     change FDMod.lin t (FDMod.lin f (FDMod.lin h x')) =
       FDMod.lin u (FDMod.lin (invOf h hh) (FDMod.lin h x')) at this
     rw [show FDMod.lin (invOf h hh) (FDMod.lin h x') = x' from
@@ -117,10 +117,10 @@ lemma leftAS_res_factor {K E : FDMod k (D.QAlg T')} {f : K ⟶ E} (hf : IsLeftAS
   have hu' : ¬∃ r : descendQ W hW ⟶ K, u' ≫ r = 𝟙 K := by
     rintro ⟨r, hr⟩
     exact hu ⟨descIsoQInv W hW ≫ resHom (D.qmap T') r, (FDMod.hom_ext (LinearMap.ext fun x ↦
-      LinearMap.congr_fun (congrArg FDMod.lin (hr)) (toX x)))⟩
+      LinearMap.congr_fun (congrArg FDMod.lin hr) (toX x)))⟩
   obtain ⟨t', ht'⟩ := hf.2 _ u' hu'
   exact ⟨resHom (D.qmap T') t' ≫ descIsoQ W hW, (FDMod.hom_ext (LinearMap.ext fun x ↦
-    LinearMap.congr_fun (congrArg FDMod.lin (ht')) (toX x)))⟩
+    LinearMap.congr_fun (congrArg FDMod.lin ht') (toX x)))⟩
 
 include hT in
 /-- **Restricted left almost split maps are left almost split** when some left almost split map

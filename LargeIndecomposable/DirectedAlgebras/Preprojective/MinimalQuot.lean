@@ -345,19 +345,19 @@ variable {A' : Type u} [Ring A'] [Algebra k A'] {φ : A →ₐ[k] A'}
 /-- Restriction identifies homomorphism spaces. -/
 def homResEquiv (hφ : Function.Surjective φ) (X Y : FDMod k A') :
     (X →ₗ[A'] Y) ≃ₗ[k] (resFD φ X →ₗ[A] resFD φ Y) where
-  toFun e := FDMod.lin (resHom φ (show X ⟶ Y from (FDMod.ofLin (e))))
+  toFun e := FDMod.lin (resHom φ (show X ⟶ Y from (FDMod.ofLin e)))
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
-  invFun e := FDMod.lin (unresHom hφ (show resFD φ X ⟶ resFD φ Y from (FDMod.ofLin (e))))
+  invFun e := FDMod.lin (unresHom hφ (show resFD φ X ⟶ resFD φ Y from (FDMod.ofLin e)))
   left_inv _ := rfl
   right_inv _ := rfl
 
 lemma finrank_range_res (hφ : Function.Surjective φ) {K P Y : FDMod k A'} (f : K →ₗ[A'] P) :
     finrank k (LinearMap.range (precomp k (Y := resFD φ Y)
-      (FDMod.lin (resHom φ (show K ⟶ P from (FDMod.ofLin (f))))))) =
+      (FDMod.lin (resHom φ (show K ⟶ P from (FDMod.ofLin f)))))) =
       finrank k (LinearMap.range (precomp k (Y := Y) f)) := by
   have h : LinearMap.range (precomp k (Y := resFD φ Y)
-      (FDMod.lin (resHom φ (show K ⟶ P from (FDMod.ofLin (f)))))) =
+      (FDMod.lin (resHom φ (show K ⟶ P from (FDMod.ofLin f))))) =
       (LinearMap.range (precomp k (Y := Y) f)).map (homResEquiv hφ K Y).toLinearMap := by
     ext e
     constructor

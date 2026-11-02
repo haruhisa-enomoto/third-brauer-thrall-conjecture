@@ -59,7 +59,7 @@ theorem grRASFam_proj [FiniteDimensional k A] (htf : TorsionFree G) (Z : FDMod k
   · intro W v hv
     have hrange : LinearMap.range (FDMod.lin v) ≤ U := by
       by_cases htop : LinearMap.range (FDMod.lin v) = ⊤
-      · exact absurd (hZ.lift _ (LinearMap.range_eq_top.1 htop)) fun ⟨s, hs⟩ ↦ hv ⟨(FDMod.ofLin (s)), hs⟩
+      · exact absurd (hZ.lift _ (LinearMap.range_eq_top.1 htop)) fun ⟨s, hs⟩ ↦ hv ⟨(FDMod.ofLin s), hs⟩
       · obtain ⟨V, hV, hle⟩ :=
           (eq_top_or_exists_le_coatom (LinearMap.range (FDMod.lin v))).resolve_left htop
         rw [hZ.maximal_unique hV hUc] at hle

@@ -87,7 +87,7 @@ def radInc (x : D.ι) : D.RadP x ⟶ projE (k := k) (D.idem x) := (FDMod.ofLin (
 /-- **The inclusion `rad P(x) → P(x)` is right almost split.** -/
 theorem isRightAS_radP (x : D.ι) (hx : x ∈ D.T) : IsRightAS (D.radInc x) := by
   refine ⟨fun ⟨s, hs⟩ ↦ ?_, fun W u hu ↦ ?_⟩
-  · have h1 := LinearMap.congr_fun (congrArg FDMod.lin (hs)) ⟨D.e x, e_mem (D.idem x)⟩
+  · have h1 := LinearMap.congr_fun (congrArg FDMod.lin hs) ⟨D.e x, e_mem (D.idem x)⟩
     have h2 : D.e x * ((FDMod.lin s ⟨D.e x, e_mem (D.idem x)⟩ : D.radP x) : A) = 0 :=
       (FDMod.lin s ⟨D.e x, e_mem (D.idem x)⟩).2
     have h3 : ((FDMod.lin s ⟨D.e x, e_mem (D.idem x)⟩ : D.radP x) : A) = D.e x :=

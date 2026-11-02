@@ -57,7 +57,7 @@ lemma lasFam (X : FDMod k A) (hX : 𝒞 X) : Nonempty (LASFam 𝒞 X) := by
     change (∑ i, FDMod.lin (h i) ∘ₗ FDMod.lin (d.proj i)) (FDMod.lin f x) = x
     simpa [LinearMap.sum_apply] using this
   · intro W v hv
-    obtain ⟨t, ht⟩ := hf.2 W v fun ⟨r, hr⟩ ↦ hv ⟨r, ((FDMod.comp_eq_id_iff _ _).1 (hr))⟩
+    obtain ⟨t, ht⟩ := hf.2 W v fun ⟨r, hr⟩ ↦ hv ⟨r, ((FDMod.comp_eq_id_iff _ _).1 hr)⟩
     refine ⟨fun i ↦ d.inc i ≫ t, ?_⟩
     rw [← ht]
     ext x

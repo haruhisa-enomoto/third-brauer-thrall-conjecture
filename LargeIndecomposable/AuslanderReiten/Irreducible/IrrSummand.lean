@@ -42,11 +42,11 @@ theorem isIrr_summand {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
     fun W a b hab ↦ ?_⟩
   · -- a split mono `E_i → Z` between indecomposables is an isomorphism
     have hrb := bijective_of_split hZ.1 (d.nt i) r (d.inc i ≫ g) (LinearMap.ext fun u ↦
-      LinearMap.congr_fun ((FDMod.comp_eq_id_iff _ _).1 (hr)) u)
+      LinearMap.congr_fun ((FDMod.comp_eq_id_iff _ _).1 hr) u)
     apply hg.1
     refine ⟨r ≫ d.inc i, (FDMod.hom_ext (LinearMap.ext fun z ↦ ?_))⟩
     apply hrb.1
-    exact LinearMap.congr_fun (congrArg FDMod.lin (hr)) (FDMod.lin r z)
+    exact LinearMap.congr_fun (congrArg FDMod.lin hr) (FDMod.lin r z)
   · by_cases hb : SplitEpi b
     · exact Or.inr hb
     left
@@ -55,10 +55,10 @@ theorem isIrr_summand {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
       fun u ↦ by
         have h1 : FDMod.lin g (FDMod.lin c (FDMod.lin a u)) = FDMod.lin b (FDMod.lin a u) :=
           LinearMap.congr_fun (congrArg FDMod.lin hc) _
-        rw [h1]; exact LinearMap.congr_fun (congrArg FDMod.lin (hab)) u
+        rw [h1]; exact LinearMap.congr_fun (congrArg FDMod.lin hab) u
     let φ : E →ₗ[A] E := FDMod.lin c ∘ₗ FDMod.lin a ∘ₗ FDMod.lin (d.proj i) +
       ∑ j ∈ Finset.univ.erase i, FDMod.lin (d.inc j) ∘ₗ FDMod.lin (d.proj j)
-    have hφ : (show E ⟶ E from (FDMod.ofLin (φ))) ≫ g = g := by
+    have hφ : (show E ⟶ E from (FDMod.ofLin φ)) ≫ g = g := by
       apply FDMod.hom_ext; apply LinearMap.ext; intro x
       change FDMod.lin g (φ x) = FDMod.lin g x
       conv_rhs => rw [← hsum x, ← Finset.add_sum_erase _ _ (Finset.mem_univ i)]

@@ -35,18 +35,18 @@ lemma isRightAS_comp_iso {E Z Z' : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g) (
     LinearMap.congr_fun (congrArg FDMod.lin (comp_invOf a ha)) z
   refine ⟨fun ⟨s, hs⟩ ↦ hg.1 ⟨a ≫ s, (FDMod.hom_ext (LinearMap.ext fun z ↦ ?_))⟩, fun W u hu ↦ ?_⟩
   · apply ha.1
-    exact LinearMap.congr_fun (congrArg FDMod.lin (hs)) (FDMod.lin a z)
+    exact LinearMap.congr_fun (congrArg FDMod.lin hs) (FDMod.lin a z)
   · have hu' : ¬∃ s : Z ⟶ W, s ≫ (u ≫ ai) = 𝟙 Z := by
       rintro ⟨s, hs⟩
       refine hu ⟨ai ≫ s, (FDMod.hom_ext (LinearMap.ext fun z' ↦ ?_))⟩
-      have := LinearMap.congr_fun (congrArg FDMod.lin (hs)) (FDMod.lin ai z')
+      have := LinearMap.congr_fun (congrArg FDMod.lin hs) (FDMod.lin ai z')
       change FDMod.lin ai (FDMod.lin u (FDMod.lin s (FDMod.lin ai z'))) = FDMod.lin ai z' at this
       have h2 := congrArg (FDMod.lin a) this
       rw [hai, hai] at h2
       exact h2
     obtain ⟨v, hv⟩ := hg.2 W (u ≫ ai) hu'
     refine ⟨v, (FDMod.hom_ext (LinearMap.ext fun w ↦ ?_))⟩
-    have := LinearMap.congr_fun (congrArg FDMod.lin (hv)) w
+    have := LinearMap.congr_fun (congrArg FDMod.lin hv) w
     change FDMod.lin g (FDMod.lin v w) = FDMod.lin ai (FDMod.lin u w) at this
     change FDMod.lin a (FDMod.lin g (FDMod.lin v w)) = FDMod.lin u w
     rw [this, hai]
@@ -110,7 +110,7 @@ lemma roundTrip_bijective {K E E' Z Z' : FDMod k A} {f : K ⟶ E} {g : E ⟶ Z} 
     rw [indMap_spec, indMap_spec]
   have hfab : ∀ k', FDMod.lin b (FDMod.lin a (FDMod.lin f k')) = FDMod.lin f k' := fun k' ↦ by
     have h1 : FDMod.lin a (FDMod.lin f k') = FDMod.lin f' k' := LinearMap.congr_fun (congrArg FDMod.lin ha) k'
-    rw [h1]; exact LinearMap.congr_fun (congrArg FDMod.lin (hb)) k'
+    rw [h1]; exact LinearMap.congr_fun (congrArg FDMod.lin hb) k'
   rcases IsLocalRing.isUnit_or_isUnit_one_sub_self ψ with h | h
   · exact (Module.End.isUnit_iff ψ).1 h
   · exfalso
