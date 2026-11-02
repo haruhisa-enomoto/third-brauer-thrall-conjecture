@@ -1,7 +1,12 @@
 module
 
 public import LargeIndecomposable.Modules.SplitBasic.BasicReduction
-public import LargeIndecomposable.Modules.Homological.LeftGlobalDimension
+public import Mathlib.Algebra.Category.ModuleCat.Abelian
+public import Mathlib.Algebra.Category.ModuleCat.Ext.HasExt
+public import Mathlib.Algebra.Category.ModuleCat.Projective
+public import Mathlib.Algebra.Homology.DerivedCategory.Ext.MapBijective
+public import Mathlib.CategoryTheory.Abelian.Projective.Dimension
+public import Mathlib.RingTheory.Morita.Basic
 public import LargeIndecomposable.RepresentationType.Basic.RepresentationFinite
 public import Mathlib.LinearAlgebra.TensorProduct.Finiteness
 public import Mathlib.RingTheory.TensorProduct.Finite
@@ -1773,27 +1778,6 @@ theorem IsRepresentationFinite.of_isFullIdempotent
   IsRepresentationFinite.of_fullIdempotent he hA
     (Classical.choice hfull.exists_fullnessCertificate)
 
-/-- A fixed left-global-dimension bound is unchanged by passage to a full
-idempotent corner. -/
-theorem HasLeftGlobalDimensionLE.fullIdempotent_iff (k : Type u)
-    [Field k] [Algebra k A]
-    (hfull : IsFull e)
-    {n : ℕ} :
-    HasLeftGlobalDimensionLE A n ↔ HasLeftGlobalDimensionLE B n :=
-  HasLeftGlobalDimensionLE.moritaEquivalence_iff
-    (IsIdempotentElem.fullIdempotentMoritaEquivalenceOfIsFull
-      (k := k) he hfull)
-
-/-- Finite left global dimension is unchanged by passage to a full
-idempotent corner. -/
-theorem HasFiniteLeftGlobalDimension.fullIdempotent_iff (k : Type u)
-    [Field k] [Algebra k A]
-    (hfull : IsFull e) :
-    HasFiniteLeftGlobalDimension A ↔ HasFiniteLeftGlobalDimension B :=
-  HasFiniteLeftGlobalDimension.moritaEquivalence_iff
-    (IsIdempotentElem.fullIdempotentMoritaEquivalenceOfIsFull
-      (k := k) he hfull)
-
 namespace BasicIdempotentData
 
 variable {k : Type u} [Field k] [IsAlgClosed k]
@@ -1813,25 +1797,6 @@ theorem representationFinite_corner [FiniteDimensional k A]
     (D : BasicIdempotentData k A) (hA : IsRepresentationFinite k A) :
     IsRepresentationFinite k D.Corner :=
   hA.of_isFullIdempotent (k := k) D.sumIdempotent_isIdempotentElem D.full
-
-omit [IsAlgClosed k] in
-/-- A numerical left-global-dimension bound is unchanged by the selected
-basic full-corner reduction. -/
-theorem leftGlobalDimensionLE_corner_iff [FiniteDimensional k A]
-    (D : BasicIdempotentData k A) {n : ℕ} :
-    HasLeftGlobalDimensionLE A n ↔ HasLeftGlobalDimensionLE D.Corner n :=
-  HasLeftGlobalDimensionLE.fullIdempotent_iff (k := k)
-    D.sumIdempotent_isIdempotentElem D.full
-
-omit [IsAlgClosed k] in
-/-- Finite left global dimension is unchanged by the selected basic
-full-corner reduction. -/
-theorem finiteLeftGlobalDimension_corner_iff [FiniteDimensional k A]
-    (D : BasicIdempotentData k A) :
-    HasFiniteLeftGlobalDimension A ↔
-      HasFiniteLeftGlobalDimension D.Corner :=
-  HasFiniteLeftGlobalDimension.fullIdempotent_iff (k := k)
-    D.sumIdempotent_isIdempotentElem D.full
 
 end BasicIdempotentData
 

@@ -2,7 +2,10 @@ module
 
 public import LargeIndecomposable.MildContours.Basic.DeepContoursFromCore
 public import LargeIndecomposable.MildContours.Basic.TinyBridgeOp
-public import LargeIndecomposable.MildContours.Basic.CoreExc
+public import LargeIndecomposable.MildContours.PennyFarthings.OpenAssembly
+public import LargeIndecomposable.MildContours.PennyFarthings.OpenCase2
+public import LargeIndecomposable.MildContours.DumbBells.RemainingFacts
+public import LargeIndecomposable.MildContours.Diamonds.Conclusion
 public import LargeIndecomposable.MildContours.Basic.SplitBridge
 public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasisFromDeep
 public import LargeIndecomposable.MildContours.PennyFarthings.OpenLengthTwo
@@ -90,58 +93,5 @@ def ExcNode : Prop :=
             (rayPathContourRelation (C := S.toIdempotents.RayCategory))).interlaced p q →
           S.toIdempotents.IsBGRSDeepRayPath p ∨ (SplitBasicIdempotents.scalarRel S.toIdempotents L).related p q
 
-/-- **`ScalarNode` from [mild] LPF and the exceptional-category node.** -/
-theorem scalarNode_of_lpf_exc (hLPF : ForAllRay.{u} fun Q _ _ _ _ _ _ k _ _ ↦ LPFStmt Q k)
-    (hExc : ExcNode.{u}) : ScalarNode.{u} := by
-  intro k _ _ B _ _ _ ι _ _ S hB hd
-  letI := S.distribHomStructure hd
-  letI := S.locallySmall hd
-  letI := S.isFiniteRayCategory hd
-  letI : IsRayCategory (RaySmall.{0} S.toIdempotents.RayCategory) := isRayCategory_of_finiteRayCategory
-  letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-  letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-  letI := isRayCategory_of_finiteRayCategory (C := (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖ)
-  letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖ := Fintype.ofFinite _
-  letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖ := Classical.decEq _
-  letI := isRayCategory_of_finiteRayCategory (C := (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖᵒᵖ)
-  letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖᵒᵖ := Fintype.ofFinite _
-  letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖᵒᵖ := Classical.decEq _
-  by_cases hx : DBExc (RaySmall.{0} S.toIdempotents.RayCategory) ∨ PFExc (RaySmall.{0} S.toIdempotents.RayCategory) ∨
-      DBExc (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖ ∨ PFExc (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖ ∨
-      PFExc (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖᵒᵖ
-  · exact hExc k B ι S hB hd hx
-  push Not at hx
-  obtain ⟨h1, h2, h3, h4, h5⟩ := hx
-  have hM := S.mildHyp hB hd
-  have hMo := hM.op
-  have hE := S.endCyclic
-  have hNPI : NoProjInj (RaySmall.{0} S.toIdempotents.RayCategory) := S.noProjInj_small hB
-  have hNT : NoTiny (RaySmall.{0} S.toIdempotents.RayCategory) := S.noTiny_small hB
-  have hNTo : NoTiny (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖ := S.noTiny_small_op hB
-  have hNS : NoSplit (RaySmall.{0} S.toIdempotents.RayCategory) := S.noSplit_small hB
-  have hOS : OneSidedCyclic (RaySmall.{0} S.toIdempotents.RayCategory) :=
-    RaySmall.oneSidedCyclic (ray_oneSided S.toIdempotents)
-  have hcore : CoreHyp (RaySmall.{0} S.toIdempotents.RayCategory) := by
-    intro x y C ω' hρ
-    exact coreHyp_of_exc hM hMo hE hOS hNPI hNS hNT hNTo (hLPF _ k) (hLPF _ k) h1 h2 h4 C ω' hρ
-  have hcoreo : CoreHyp (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖ := by
-    intro x y C ω' hρ
-    exact coreHyp_of_exc (P := (RaySmall.{0} S.toIdempotents.RayCategory)ᵒᵖ) (k := k) hMo hMo.op hE.op
-      hOS.op hNPI.op hNS.op hNTo hNT.op_op (hLPF _ k) (hLPF _ k) h3 h4 h5 C ω' hρ
-  have hfinI : Finite (TwoSidedIdeal B) := finite_twoSidedIdeal_of_isDistribIdeals k hd
-  have hfinIop : Finite (TwoSidedIdeal Bᵐᵒᵖ) := finite_twoSidedIdeal_mop
-  letI : HasBGRSDistributiveHomStructure k S.toIdempotents.op.ProjectiveCategory :=
-    SplitBasicIdempotents.ProjectiveCategory.bgrsDistributiveHomStructureOfComparable
-      S.toIdempotents.op fun U V hU hV ↦
-        SplitBasicIdempotents.ProjectiveCategory.finiteIdeal_homSubbimodule_comparable
-          S.toIdempotents.op U V hU hV
-  obtain ⟨L, hzero⟩ := CriticalFigure16Quotient.exists_zeroDetectingNormalizedLift S.toIdempotents
-    (mildAlg_of_minimal hB) (mildAlg_mop_of_minimal hB)
-  exact ⟨L, hzero, fun hpq hni ↦ Or.inl (S.deep_of_core k B ι hB hd hcore hcoreo hpq hni)⟩
-
-
-/-- **`ScalarNode` from the exceptional-category node** ([mild] LPF is proved). -/
-theorem scalarNode_of_exc (hExc : ExcNode.{u}) : ScalarNode.{u} :=
-  scalarNode_of_lpf_exc (fun Q _ _ _ _ _ _ k _ _ ↦ RayCat.lpfStmt (P := Q) (k := k)) hExc
 
 end LargeIndecomposable

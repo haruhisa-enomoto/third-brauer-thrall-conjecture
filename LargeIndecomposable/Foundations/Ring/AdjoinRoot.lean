@@ -7,8 +7,12 @@ module
 
 public import Mathlib.RingTheory.AdjoinRoot
 
-import LargeIndecomposable.Foundations.Ring.IdealOperations
-
+import Mathlib.Algebra.Ring.Subgroup
+import Mathlib.Algebra.Ring.Subring.Basic
+import Mathlib.Algebra.Algebra.Subalgebra.Basic
+import Mathlib.RingTheory.Ideal.Operations
+import Mathlib.Algebra.Ring.GeomSum
+import Mathlib.LinearAlgebra.Pi
 /-! Ported from TauCeti (`TauCeti.RingTheory.AdjoinRoot.Basic`, commit 580b6f9d5, Apache 2.0). -/
 
 /-!
@@ -216,21 +220,6 @@ theorem finrank_quotient_span_op_root_X_pow_pow [Nontrivial R] {n p : ℕ} (hp :
     (Ideal.span {op (root (X ^ n : R[X]) ^ p)}) (AlgEquiv.toOpposite R _)
     (by simp [Ideal.map_span])
   rw [← e.toLinearEquiv.finrank_eq, finrank_quotient_span_root_X_pow_pow hp]
-
-open MulOpposite in
-/-- **The quotient of `M_j` by the image of `x ^ m` has rank `min j m`**, where `M_j` is the
-quotient of the opposite of `R[X]/(X ^ n)` by `op (x ^ j)`, for `j ≤ n` and `x` the class of `X`.
-This quotient is `M_(min j m)`. -/
-theorem finrank_quotient_map_mkQ_span_op_root_X_pow_pow [Nontrivial R] {n j : ℕ} (hj : j ≤ n)
-    (m : ℕ) :
-    Module.finrank R (((AdjoinRoot (X ^ n : R[X]))ᵐᵒᵖ ⧸
-        Ideal.span {op (root (X ^ n : R[X]) ^ j)}) ⧸
-      (Submodule.map (Ideal.span {op (root (X ^ n : R[X]) ^ j)}).mkQ
-        (Ideal.span {op (root (X ^ n : R[X]) ^ m)})).restrictScalars R) = min j m := by
-  rw [(Submodule.Quotient.restrictScalarsEquiv R _).finrank_eq,
-    ((Submodule.quotientQuotientEquivQuotientSup _ _).restrictScalars R).finrank_eq, op_pow,
-    op_pow, Ideal.span_singleton_pow_sup_span_singleton_pow, ← op_pow,
-    finrank_quotient_span_op_root_X_pow_pow ((min_le_left j m).trans hj)]
 
 section TensorProduct
 

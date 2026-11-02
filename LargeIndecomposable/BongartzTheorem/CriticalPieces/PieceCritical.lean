@@ -4,8 +4,9 @@ public import LargeIndecomposable.BongartzTheorem.CriticalPieces.ExtCocycle
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.CriticalForm
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.CriticalConnected
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.MinimalQuot
-public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PiecePreprojective
-
+public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.CoverLocalSCResidue
+public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.HullStage
+public import LargeIndecomposable.Coverings.Pieces.PieceSepCover
 /-!
 # Critical pieces carry point–brick data
 
@@ -530,17 +531,5 @@ namespace LargeIndecomposable
 open Statement
 
 universe u
-
-/-- **Theorem A from the ssc theorem alone.** -/
-theorem theoremA_of_ssc (hS : SSCNode.{u}) : TheoremA.{u} :=
-  theoremA_of_point'_ssc RayCat.pointBrickNode' hS
-
-/-- **Corollary 1.1 from the ssc theorem alone.** -/
-theorem corollaryDimension_of_ssc (hS : SSCNode.{u}) : CorollaryDimension.{u} :=
-  corollaryDimension_of_point'_ssc RayCat.pointBrickNode' hS
-
-/-- **The radical corollary from the ssc theorem alone.** -/
-theorem corollaryRadical_of_ssc (hS : SSCNode.{u}) : CorollaryRadical.{u} :=
-  corollaryRadical_of_point'_ssc RayCat.pointBrickNode' hS
 
 end LargeIndecomposable

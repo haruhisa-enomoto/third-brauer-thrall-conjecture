@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RayCategories.ClosedChains.ClosedChainBound
+public import LargeIndecomposable.RayCategories.ClosedChains.ClosedChainOf
 public import LargeIndecomposable.RayCategories.RoiterVanishing.KeyLemma
 
 /-!

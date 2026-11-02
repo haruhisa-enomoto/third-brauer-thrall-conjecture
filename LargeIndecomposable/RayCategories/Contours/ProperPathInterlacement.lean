@@ -102,20 +102,6 @@ theorem related_of_properWhiskerInterlaced
     R.related p q :=
   (related_both_of_properWhiskerInterlaced R hpq).1 hpp
 
-/-- A contour function has the same value on an elementary whiskered contour
-as on the shorter inner contour. -/
-theorem contourScalarFunction_eq_inner_of_properWhisker
-    (R : PathContourRelation Q)
-    (c : contourScalarFunctionSubgroup (k := k) R)
-    {a i j b : Q} (s : Quiver.Path a i)
-    (p q : Quiver.Path i j) (t : Quiver.Path j b)
-    (hpq : R.related p q)
-    (houter : R.related ((s.comp p).comp t) ((s.comp q).comp t)) :
-    contourScalarFamily R c
-        (relatedContour R ((s.comp p).comp t) ((s.comp q).comp t) houter) =
-      contourScalarFamily R c (relatedContour R p q hpq) :=
-  c.property.2 s p q t hpq houter
-
 /-- In a proper whisker step, the sum of the inner path lengths is strictly
 smaller than the sum of the outer path lengths. -/
 theorem inner_length_sum_lt_outer_length_sum_of_properWhisker

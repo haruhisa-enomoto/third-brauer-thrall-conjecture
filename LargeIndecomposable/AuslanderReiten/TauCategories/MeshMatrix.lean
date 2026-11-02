@@ -1,6 +1,7 @@
 module
 
-public import LargeIndecomposable.AuslanderReiten.TauCategories.EulerSurplus
+public import Mathlib.Data.Fintype.Card
+public import Mathlib.Tactic
 public import Mathlib.Data.Matrix.Diagonal
 
 set_option backward.isDefEq.respectTransparency.types false
@@ -91,21 +92,6 @@ theorem matrixTotal_singletonMatrix (row column : ι) :
           · simp [singletonMatrix, hi]
     _ = 1 := by simp
 
-theorem matrixTotal_one : matrixTotal (1 : Matrix ι ι ℤ) = vertexCount (ι := ι) := by
-  simp [matrixTotal, Matrix.one_apply, vertexCount]
-
-omit [DecidableEq ι] in
-theorem matrixTotal_arrowMatrix (arrowMultiplicity : ι → ι → ℕ) :
-    matrixTotal (arrowMatrix arrowMultiplicity) = -arrowCount arrowMultiplicity := by
-  simp [matrixTotal, arrowMatrix, arrowCount]
-
-theorem matrixTotal_meshContribution
-    (IsProjective : ι → Prop) [DecidablePred IsProjective]
-    (tau : {Y : ι // ¬ IsProjective Y} → ι) :
-    matrixTotal (meshContribution IsProjective tau) = meshCount IsProjective := by
-  rw [meshContribution, matrixTotal_sum]
-  simp [matrixTotal_singletonMatrix, meshCount]
-
 theorem meshContribution_apply_of_projective
     (IsProjective : ι → Prop) [DecidablePred IsProjective]
     (tau : {Y : ι // ¬ IsProjective Y} → ι)
@@ -163,17 +149,5 @@ theorem meshMatrix_apply_of_nonprojective
   rw [meshMatrix, Matrix.add_apply, Matrix.add_apply, Matrix.one_apply,
     arrowMatrix, meshContribution_apply_of_nonprojective IsProjective tau hTarget]
   simp [sub_eq_add_neg]
-
-/-- The source paper, equation (2.1): the total entry sum of the mesh matrix
-is the Auslander--Reiten Euler expression. -/
-theorem matrixTotal_meshMatrix_eq_eulerMagnitude
-    (arrowMultiplicity : ι → ι → ℕ)
-    (IsProjective : ι → Prop) [DecidablePred IsProjective]
-    (tau : {Y : ι // ¬ IsProjective Y} → ι) :
-    matrixTotal (meshMatrix arrowMultiplicity IsProjective tau) =
-      eulerMagnitude arrowMultiplicity IsProjective := by
-  rw [meshMatrix, matrixTotal_add, matrixTotal_add, matrixTotal_one,
-    matrixTotal_arrowMatrix, matrixTotal_meshContribution]
-  simp [eulerMagnitude, sub_eq_add_neg]
 
 end LargeIndecomposable.ARCount

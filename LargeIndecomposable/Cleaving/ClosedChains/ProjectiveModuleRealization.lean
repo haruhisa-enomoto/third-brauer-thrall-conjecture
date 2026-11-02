@@ -1,7 +1,11 @@
 module
 
 public import LargeIndecomposable.Modules.Idempotents.IdempotentProjectiveCategory
-public import LargeIndecomposable.Foundations.CategoryTheory.LinearEndTransport
+public import LargeIndecomposable.Foundations.CategoryTheory.LinearMat
+public import Mathlib.Algebra.Algebra.Equiv
+public import Mathlib.Algebra.Module.Equiv.Basic
+public import Mathlib.CategoryTheory.Conj
+public import Mathlib.CategoryTheory.Linear.LinearFunctor
 public import LargeIndecomposable.Modules.Idempotents.OrthogonalIdempotentModule
 public import Mathlib.Algebra.Category.ModuleCat.Abelian
 public import Mathlib.Algebra.Module.RingHom

@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.StandardForm.Weights.MeshWeights
-public import LargeIndecomposable.Foundations.LinearAlgebra.BasisExt
+public import Mathlib
 public import LargeIndecomposable.StandardForm.Hochschild.WeightHH
 
 /-!
@@ -139,22 +139,6 @@ theorem rowWt_map {M N : Type} [AddCommGroup M] [AddCommGroup N] (h : M →+ N) 
     rowWt (W.map h) R = h (rowWt W R) := by
   unfold rowWt
   rw [MeshWt.pw_map, map_sub]; rfl
-
-include hK hmid in
-/-- **Proposition 7.5** (`prop:primitive-parameter-characters`): the residual characters
-are part of an integer basis of `W(P)`. -/
-theorem chars_part_of_basis [Module.Free ℤ (WP Q c v₀ D)] [Module.Finite ℤ (WP Q c v₀ D)]
-    (Wu : MeshWt Q (WP Q c v₀ D)) (hWu : Wu.res c D = AddMonoidHom.id _) {n : ℕ}
-    (R : Fin n → Σ x : Q.nonprojective, Quiver.Path (Q.tau x).1 x.1)
-    (hdual : ∀ i, ∃ W : MeshWt Q ℤ, ∀ j, rowWt W (R j) = if j = i then 1 else 0) :
-    ∃ (ι : Type) (b : Module.Basis ι ℤ (WP Q c v₀ D)) (j : Fin n → ι), Function.Injective j ∧
-      ∀ i, b (j i) = rowWt Wu (R i) := by
-  choose W hW using hdual
-  refine exists_basis_of_dual (fun i ↦ rowWt Wu (R i)) (fun i ↦ ((W i).res c D).toIntLinearMap)
-    fun i j ↦ ?_
-  change (W i).res c D (rowWt Wu (R j)) = _
-  rw [← rowWt_map, rowWt_eq_of_res x₀ hK hmid _ (W i) (by rw [MeshWt.res_map, hWu]; rfl), hW i j]
-  simp only [eq_comm]
 
 end Prop76
 

@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBuild
-public import LargeIndecomposable.BongartzTheorem.LongLines.SSCLines
+public import LargeIndecomposable.BongartzTheorem.LongLines.LinesToBands
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointBrickNS
 
 /-!

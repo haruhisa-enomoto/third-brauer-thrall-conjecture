@@ -3,8 +3,9 @@ module
 public import LargeIndecomposable.RayCategories.RayTables.LinCorners
 public import LargeIndecomposable.RayCategories.RayTables.RayBasis
 public import LargeIndecomposable.MultiplicativeBases.Normed.A0Normed
-public import LargeIndecomposable.RayCategories.RayTables.RayStandard
-
+public import LargeIndecomposable.StandardForm.Basic.StandardAlgebras
+public import LargeIndecomposable.RayCategories.RayTables.RayProduct
+public import LargeIndecomposable.RayCategories.RayTables.RayTransport
 /-!
 # Rays of the fibres of the zero-product family
 

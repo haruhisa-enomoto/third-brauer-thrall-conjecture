@@ -12,12 +12,13 @@ public import LargeIndecomposable.StandardForm.Basic.SplitTransfer
 public import LargeIndecomposable.RayCategories.RayTables.EndpointChains
 public import LargeIndecomposable.StandardForm.Weights.PosetWeights
 public import LargeIndecomposable.MultiplicativeBases.Normed.NonbasicBasis
-public import LargeIndecomposable.RayCategories.RayTables.GradedRays
+public import LargeIndecomposable.RayCategories.RayTables.RayProduct
+public import LargeIndecomposable.MultiplicativeBases.Normed.A0Normed
 public import LargeIndecomposable.StandardForm.Weights.UnitCoefficients
 public import LargeIndecomposable.MeshCategories.AuslanderReitenQuiver.ARMeshFinite
 public import LargeIndecomposable.StandardForm.Basic.StandardAlgebras
-public import LargeIndecomposable.StandardForm.Deformations.FiltrationRays
-
+public import LargeIndecomposable.StandardForm.Deformations.FilteredA
+public import LargeIndecomposable.StandardForm.Basic.A0Graded
 /-!
 # Part I statements
 
@@ -144,59 +145,6 @@ theorem rayProduct_independent (hbasic : IsBasicAlgebra A)
         f' * h' ≠ 0 ∧ F.ray (k := k) x z (f * h) = F.ray (k := k) x z (f' * h')) :=
   F.rayProduct_independent_of hA hf hf0 hh hh0 hf' hh'
 
-/-- The algebra-radical analogue of Lemma 3.7: in a corner `V = A(x, y)` with
-`F^dV = V ∩ (rad A)^d`, every layer has dimension at most one, elements of the
-same degree lie in the same ray, and `U_{r'} ⊊ U_r` forces a larger degree. These layers
-are not the pieces `A₀(x,y)_d` (Example 2.12); Lemma 3.7 itself, for the categorical
-filtration `J^d`, is `rayDegree`. -/
-theorem rayDegree_radical (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFiniteRight k A)
-    (F : PrimitiveIdempotents A) (x y : Fin F.m) :
-    (∀ d, Module.finrank k (F.corner (k := k) x y ⊓ radFilt k A d : Submodule k A) ≤
-        Module.finrank k (F.corner (k := k) x y ⊓ radFilt k A (d + 1) : Submodule k A) + 1) ∧
-      (∀ (f g : A) (d : ℕ), f ∈ F.corner (k := k) x y → g ∈ F.corner (k := k) x y →
-        f ∈ radFilt k A d → f ∉ radFilt k A (d + 1) → g ∈ radFilt k A d →
-        g ∉ radFilt k A (d + 1) → F.ray (k := k) x y f = F.ray (k := k) x y g) ∧
-      (∀ f g : A, f ∈ F.corner (k := k) x y → g ∈ F.corner (k := k) x y →
-        F.endpointSpan (k := k) x y g < F.endpointSpan (k := k) x y f →
-        ∀ d d', f ∈ radFilt k A d → g ∈ radFilt k A d' → g ∉ radFilt k A (d' + 1) → d < d') :=
-  ⟨F.finrank_radFilt_le hA x y, fun _ _ _ hf hg h1 h2 h3 h4 ↦ F.ray_eq_of_degree hA hf hg h1 h2 h3 h4,
-    fun _ _ hf hg hlt _ _ h1 h2 h3 ↦ F.degree_lt_of_lt hA hf hg hlt h1 h2 h3⟩
-
-/-- Proposition 3.8 (`prop:projective-ray-product`), for a length-graded
-representation-finite algebra whose idempotents have degree `0` and whose
-degree-`0` local corners are `k e_x` (the case of `A₀`, see `lenA0`).
-(1) Each nonzero ray contains the nonzero vectors of a unique homogeneous line.
-(2) For homogeneous `f, h`, `fh ∈ M(f, h)` iff `fh = 0`.
-(3) The ray table is associative: `([f][g])[h] ≠ 0` iff `[f]([g][h]) ≠ 0`, both
-being `[fgh]`. -/
-theorem projectiveRayProduct (G : LenGrading k A) (F : PrimitiveIdempotents A)
-    (he0 : ∀ x, G.IsHom 0 (F.e x))
-    (hcorner0 : ∀ (x : Fin F.m) (a : A), a ∈ F.corner (k := k) x x → G.IsHom 0 a →
-      ∃ c : k, a = c • F.e x)
-    (hA : IsRepresentationFiniteRight k A) :
-    (∀ (x y : Fin F.m) (f : A), f ∈ F.corner (k := k) x y → f ≠ 0 →
-      ∃ g d, G.IsHom d g ∧ g ≠ 0 ∧ g ∈ F.ray (k := k) x y f ∧
-        ∀ g' ∈ F.ray (k := k) x y f, ∀ d', G.IsHom d' g' → g' ∈ k ∙ g) ∧
-    (∀ (x y z : Fin F.m) (f h : A) (p q : ℕ), G.IsHom p f → G.IsHom q h →
-      (f * h ∈ F.insertionSpan (k := k) x y z f h ↔ f * h = 0)) ∧
-    (∀ (x y z w : Fin F.m) (f g h : A), f ∈ F.corner (k := k) x y → f ≠ 0 →
-      g ∈ F.corner (k := k) y z → g ≠ 0 → h ∈ F.corner (k := k) z w → h ≠ 0 →
-      ((f * g ∉ F.insertionSpan (k := k) x y z f g ∧
-          f * g * h ∉ F.insertionSpan (k := k) x z w (f * g) h) ↔
-        (g * h ∉ F.insertionSpan (k := k) y z w g h ∧
-          f * (g * h) ∉ F.insertionSpan (k := k) x y w f (g * h)))) := by
-  refine ⟨fun x y f hf hf0 ↦ ?_, fun x y z f h p q hp hq ↦
-    F.mul_mem_insertionSpan_iff G he0 hcorner0 hp hq,
-    fun x y z w f g h hf hf0 hg hg0 hh hh0 ↦
-      F.rayProduct_assoc G he0 hcorner0 hA hf hf0 hg hg0 hh hh0⟩
-  obtain ⟨g, d, hgd, hg0, hg⟩ := F.exists_hom_mem_ray G he0 hcorner0 hA hf hf0
-  have hgc := F.ray_subset_corner hf hg
-  refine ⟨g, d, hgd, hg0, hg, fun g' hg' d' hg'd ↦ ?_⟩
-  have hg'c := F.ray_subset_corner hf hg'
-  have hg'0 := F.ne_zero_of_mem_ray hf hf0 hg'
-  exact F.mem_span_of_ray_eq G he0 hcorner0 hgc hg'c hg'0 hgd hg'd
-    ((F.ray_eq_of_mem hf hg').trans (F.ray_eq_of_mem hf hg).symm)
-
 /-- Lemma 4.9 (`lem:poset-weights`). If the incidence algebra of a finite
 poset is representation-finite, every additive weight is a difference of
 object values. -/
@@ -319,31 +267,6 @@ theorem gradedStandardForm (S : IndSkeleton k A) (hbasic : IsBasicAlgebra A) :
   obtain ⟨b, Φ0, hEq, hlin, hβ⟩ := hstd
   haveI := hEq
   exact ⟨b, ⟨S.algEquivA0 b he hprim hb Φ0 hlin fun x ↦ (hβ x).some⟩⟩
-
-/-- Lemma 3.7 (`lem:ray-degree`), for the categorical filtration `F^dA(x,y) = J^d(P_y,P_x)`
-(`posFiltA`, transported to `A` along a complete set `e` of primitive idempotents): every piece
-`A₀(x,y)_d` has dimension at most one; initial forms give a bijection between the nonzero rays
-of a corner and its nonzero pieces (a nonzero element of degree `d` has initial form spanning
-`A₀(x,y)_d`; same ray iff same degree; every nonzero piece is reached); and `U_{r'} ⊊ U_r`
-forces `deg_J r' > deg_J r`. -/
-theorem rayDegree (S : IndSkeleton k A) (b : S.ArrowBases) {n : ℕ} {e : Fin n → A}
-    (he : CompleteOrthogonalIdempotents e) (hprim : ∀ i, IsPrimitiveIdempotent (e i))
-    (hbasic : ∀ i j, (∃ x y : A, e i * x * e j = x ∧ e j * y * e i = y ∧ x * y = e i ∧
-      y * x = e j) → i = j)
-    (hA : IsRepresentationFiniteRight k A) (F : PrimitiveIdempotents A) (x y : Fin F.m) :
-    let P := S.posFiltA b he hprim hbasic
-    (∀ d, Module.finrank k (P.piece F x y d) ≤ 1) ∧
-    (∀ (f : A) (d : ℕ), f ∈ F.corner (k := k) x y → f ∈ P.F d → f ∉ P.F (d + 1) →
-      P.σ d f ≠ 0 ∧ P.piece F x y d = k ∙ P.σ d f) ∧
-    (∀ (f g : A) (d d' : ℕ), f ∈ F.corner (k := k) x y → g ∈ F.corner (k := k) x y →
-      f ∈ P.F d → f ∉ P.F (d + 1) → g ∈ P.F d' → g ∉ P.F (d' + 1) →
-      (F.ray (k := k) x y f = F.ray (k := k) x y g ↔ d = d')) ∧
-    (∀ d, P.piece F x y d ≠ ⊥ →
-      ∃ f ∈ F.corner (k := k) x y, f ∈ P.F d ∧ f ∉ P.F (d + 1)) ∧
-    (∀ (f g : A), f ∈ F.corner (k := k) x y → g ∈ F.corner (k := k) x y →
-      F.endpointSpan (k := k) x y g < F.endpointSpan (k := k) x y f →
-      ∀ d d', f ∈ P.F d → g ∈ P.F d' → g ∉ P.F (d' + 1) → d < d') :=
-  S.rayDegree_J b he hprim hbasic hA F x y
 
 end ARQuiver
 

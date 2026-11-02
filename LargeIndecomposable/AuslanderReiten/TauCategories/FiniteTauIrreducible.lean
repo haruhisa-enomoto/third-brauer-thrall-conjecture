@@ -1,6 +1,7 @@
 module
 
-public import LargeIndecomposable.AuslanderReiten.Irreducible.IrreducibleRadicalSquare
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLadderRadical
+public import LargeIndecomposable.AuslanderReiten.Irreducible.IrreducibleCofinite
 public import LargeIndecomposable.AuslanderReiten.TauCategories.ResidueDimension
 
 set_option backward.isDefEq.respectTransparency.types false

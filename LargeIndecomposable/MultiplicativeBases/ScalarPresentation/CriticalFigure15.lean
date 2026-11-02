@@ -1,7 +1,12 @@
 module
 
 public import LargeIndecomposable.MultiplicativeBases.ScalarPresentation.CriticalCleavingTransfer
-public import LargeIndecomposable.Foundations.PathCategories.HomogeneousRelationQuotient
+public import LargeIndecomposable.Foundations.CategoryTheory.LinearIdealQuotient
+public import LargeIndecomposable.Foundations.PathCategories.LinearPathCategory
+public import Mathlib.Algebra.DirectSum.Decomposition
+public import Mathlib.LinearAlgebra.Finsupp.Supported
+public import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
+public import Mathlib.RingTheory.GradedAlgebra.Homogeneous.Submodule
 public import LargeIndecomposable.Foundations.CategoryTheory.LinearIdealQuotientLift
 
 @[expose] public section

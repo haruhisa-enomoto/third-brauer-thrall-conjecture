@@ -2,7 +2,9 @@ module
 
 public import LargeIndecomposable.RayCategories.Basic.Residue
 public import LargeIndecomposable.RepresentationType.DistributiveIdeals.FiniteIdeals
-public import LargeIndecomposable.RepresentationType.Basic.RepresentationFiniteDistributiveHom
+public import LargeIndecomposable.RayCategories.Distributive.FiniteIdealHomChain
+public import LargeIndecomposable.RayCategories.Distributive.KupischCyclicity
+public import LargeIndecomposable.RepresentationType.Basic.RepresentationFiniteIdeals
 public import LargeIndecomposable.RayCategories.Basic.Basic
 
 /-!

@@ -1,7 +1,9 @@
 module
 
 public import LargeIndecomposable.MildContours.PennyFarthings.OpenLengthTwo
-public import LargeIndecomposable.MildContours.Basic.CoreExc
+public import LargeIndecomposable.MildContours.PennyFarthings.OpenAssembly
+public import LargeIndecomposable.MildContours.PennyFarthings.OpenCase2
+public import LargeIndecomposable.MildContours.Diamonds.Conclusion
 public import LargeIndecomposable.MildContours.DumbBells.RemainingFacts
 
 /-!

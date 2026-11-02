@@ -5,7 +5,7 @@ Authors: The Tau Ceti contributors
 -/
 module
 
-public import LargeIndecomposable.Foundations.CategoryTheory.LinearEnd
+public import Mathlib.CategoryTheory.Linear.Basic
 public import LargeIndecomposable.Quivers.Reflection.Indecomposable
 import Mathlib.Algebra.Module.Projective
 import Mathlib.CategoryTheory.PathCategory.MorphismProperty
@@ -347,17 +347,6 @@ theorem reflectionFunctor_map_bijective (hs : Function.Surjective (incomingSum M
     Function.Bijective fun η : M ⟶ N ↦ (reflectionFunctor i hi).map η :=
   ⟨reflectionFunctor_map_injective hi hs, reflectionFunctor_map_surjective hi hs⟩
 
-/-- Reflection preserves the dimension of the endomorphism space when the incoming sum at
-the sink is surjective. -/
-theorem finrank_end_reflectRep (hs : Function.Surjective (incomingSum M i)) :
-    Module.finrank k (End (reflectRep M hi)) = Module.finrank k (End M) := by
-  let e := LinearEquiv.ofBijective ((reflectionFunctor i hi).mapLinearMap k
-    (X := M) (Y := M)) (reflectionFunctor_map_bijective hi hs)
-  have he := e.finrank_eq
-  rw [reflectionFunctor_obj] at he
-  rw [(End.linearEquiv (R := k)).finrank_eq, (End.linearEquiv (R := k)).finrank_eq]
-  exact he.symm
-
 /-- **The reflection functor at a sink reflects isomorphisms**, between representations whose
 incoming sums there are onto. Fullness produces morphisms `f : M ⟶ N` and `g : N ⟶ M` reflecting
 to the two halves of the given isomorphism, and faithfulness turns the two triangle identities
@@ -420,19 +409,6 @@ section VertexSimple
 variable {k : Type u} {Q : Type u} [Field k] [Quiver.{u} Q] [Fintype Q]
   [∀ a b : Q, Fintype (a ⟶ b)]
 variable {M : QuiverRep.{u, u, u, u} k Q} {i : Q}
-
-/-- **Reflection at a sink carries an indecomposable representation other than the vertex simple
-there to an indecomposable representation of the reflected quiver.** The vertex simple `Sᵢ` is
-genuinely excluded: reflection sends it to the zero representation, by
-`LargeIndecomposable.Foundations.subsingleton_reflectRep_obj_self`. Together with
-`LargeIndecomposable.Foundations.dimVector_reflectRep_of_indecomposable`, which computes the dimension vector of the result
-as `sᵢ · dim M` under the additional hypothesis that the vertex spaces at the sources of the arrows
-into `i` are finite-dimensional, this is the inductive step of the reflection-functor proof of
-Gabriel's theorem. -/
-theorem indecomposable_reflectRep_of_not_nonempty_iso_simpleRep (hi : IsSink i)
-    (hM : Indecomposable M) (hne : ¬ Nonempty (M ≅ simpleRep k Q i)) :
-    Indecomposable (reflectRep M hi) :=
-  indecomposable_reflectRep hi hM (incomingSum_surjective_of_indecomposable hi hM hne)
 
 end VertexSimple
 

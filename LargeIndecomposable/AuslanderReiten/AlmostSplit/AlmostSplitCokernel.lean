@@ -1,6 +1,8 @@
 module
 
-public import LargeIndecomposable.Modules.Homological.CategoricalProjectiveCover
+public import LargeIndecomposable.Foundations.CategoryTheory.MinimalMorphism
+public import Mathlib.CategoryTheory.Abelian.Projective.Dimension
+public import Mathlib.CategoryTheory.Preadditive.Projective.Basic
 public import LargeIndecomposable.AuslanderReiten.AlmostSplit.AlmostSplitUniqueness
 public import Mathlib.CategoryTheory.Abelian.Opposite
 public import Mathlib.CategoryTheory.Simple
@@ -325,44 +327,6 @@ noncomputable def cokernelIsoSimpleTarget_of_mono_rightAlmostSplit_projective
     rw [← heq, hezero, comp_zero]
   letI : IsIso e := isIso_of_epi_of_nonzero he
   exact asIso e
-
-/-- In an abelian category with enough projectives, a monic right
-almost-split morphism has projective target. -/
-theorem projective_of_mono_rightAlmostSplit
-    [EnoughProjectives C]
-    {X Y : C} (f : X ⟶ Y) [Mono f]
-    (hf : IsRightAlmostSplit f) : Projective Y := by
-  classical
-  by_contra hY
-  let P := Classical.choice (EnoughProjectives.presentation Y)
-  have hPnot : ¬ IsSplitEpi P.f := by
-    intro hsplit
-    obtain ⟨s⟩ := hsplit.exists_splitEpi
-    apply hY
-    exact LargeIndecomposable.projective_of_retract
-      (inferInstance : Projective P.p) s.section_ P.f s.id
-  obtain ⟨h, hh⟩ := hf.factors P.f hPnot
-  haveI : Epi f := epi_of_epi_fac hh
-  haveI : IsIso f := isIso_of_mono_of_epi f
-  exact hf.not_isSplitEpi inferInstance
-
-omit [Abelian C] in
-/-- In a category with enough projectives, a right almost-split map ending at
-a nonprojective object is epic. -/
-theorem IsRightAlmostSplit.epi_of_not_projective
-    [EnoughProjectives C]
-    {X Y : C} (f : X ⟶ Y) (hf : IsRightAlmostSplit f)
-    (hY : ¬ Projective Y) : Epi f := by
-  classical
-  let P := Classical.choice (EnoughProjectives.presentation Y)
-  have hPnot : ¬ IsSplitEpi P.f := by
-    intro hsplit
-    obtain ⟨s⟩ := hsplit.exists_splitEpi
-    apply hY
-    exact LargeIndecomposable.projective_of_retract
-      (inferInstance : Projective P.p) s.section_ P.f s.id
-  obtain ⟨h, hh⟩ := hf.factors P.f hPnot
-  exact epi_of_epi_fac hh
 
 /-- The cokernel projection of a left-minimal left almost-split monomorphism
 is right almost split. -/

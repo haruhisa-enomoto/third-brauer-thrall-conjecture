@@ -1,6 +1,8 @@
 module
 
-public import LargeIndecomposable.RepresentationType.Basic.RepresentationFiniteOpposite
+public import LargeIndecomposable.RepresentationType.Basic.RepresentationFiniteUniverse
+public import Mathlib.Algebra.Algebra.Opposite
+public import Mathlib.LinearAlgebra.Dual.Lemmas
 public import LargeIndecomposable.Modules.SplitBasic.BasicReduction
 public import LargeIndecomposable.Modules.Idempotents.IdempotentProjectiveCategory
 public import Mathlib.CategoryTheory.Preadditive.Opposite

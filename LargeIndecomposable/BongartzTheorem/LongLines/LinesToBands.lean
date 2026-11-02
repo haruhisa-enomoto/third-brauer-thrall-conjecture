@@ -61,19 +61,4 @@ theorem d7Node_of_longLine (hL : LongLineNode.{u}) : D7Node.{u} := by
     (2 * CLine.bound (RaySmall.{0} S.toIdempotents.RayCategory)))
   exact nonempty_monomialBand L hLn hnc e
 
-/-- **Theorem A** from the critical node and long lines. -/
-theorem theoremA_of_critical_longLine (hC : CriticalNode.{u}) (hL : LongLineNode.{u}) :
-    TheoremA.{u} :=
-  theoremA_of_critical_d7 hC (d7Node_of_longLine hL)
-
-/-- **Corollary 1.1** from the critical node and long lines. -/
-theorem corollaryDimension_of_critical_longLine (hC : CriticalNode.{u}) (hL : LongLineNode.{u}) :
-    CorollaryDimension.{u} :=
-  corollaryDimension_of_critical_d7 hC (d7Node_of_longLine hL)
-
-/-- **The radical corollary** from the critical node and long lines. -/
-theorem corollaryRadical_of_critical_longLine (hC : CriticalNode.{u}) (hL : LongLineNode.{u}) :
-    CorollaryRadical.{u} :=
-  corollaryRadical_of_critical_d7 hC (d7Node_of_longLine hL)
-
 end LargeIndecomposable

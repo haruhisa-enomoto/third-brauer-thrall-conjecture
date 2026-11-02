@@ -1,7 +1,10 @@
 module
 
 public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLeftLadderPropagation
-public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaRightLadderConstruction
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaRightLadderPropagation
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaSpecialMorphism
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaKrullSchmidtNormalForm
+public import LargeIndecomposable.AuslanderReiten.TauCategories.FiniteTauCategory
 public import LargeIndecomposable.Foundations.CategoryTheory.SplitMorphismComplement
 
 set_option backward.isDefEq.respectTransparency.types false

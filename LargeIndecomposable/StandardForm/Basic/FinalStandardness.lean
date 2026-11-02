@@ -308,31 +308,6 @@ namespace RaySys.Mult
 variable {V R : Type} [Fintype V] [DecidableEq V] [Fintype R] [DecidableEq R] {T : Mult V R}
   {k : Type u} [Field k] [IsAlgClosed k]
 
-/-- **Theorem 11.8(3), standardness**: the linearization of a finite ray category `Q` with
-`kQ` representation-finite is standard, in every characteristic. By Theorem 11.8(1) `kQ` is
-presented by the ray table of its `A₀`; by Definition 3.9 it is presented by `Q`; Lemma 3.6
-identifies the two tables, so `kQ ≅ A₀`, and the converse of Corollary 4.15 applies. -/
-theorem isStandard_of_isFiniteRayCategory (hQ : T.IsFiniteRayCategory k)
-    (hfin : IsRepresentationFiniteRight k (T.Lin k)) : IsStandard k (T.Lin k) := by
-  have hbasic := isBasic_of_isFiniteRayCategory hQ
-  letI : IsNoetherianRing (T.Lin k)ᵐᵒᵖ := IsNoetherianRing.of_finite k (T.Lin k)ᵐᵒᵖ
-  intro S
-  rcases subsingleton_or_nontrivial (T.Lin k) with hs | hn
-  · exact S.isStandard_of_subsingleton
-  obtain ⟨b, v₀, hF, F₁, ι₁, β₁, h₁⟩ := rayA_eq_rayA0 k (T.Lin k) hbasic hfin hn S
-  obtain ⟨-, F, ι, -, -, hP⟩ := hQ
-  obtain ⟨ψ', σ, hψ'⟩ := exists_algEquiv_idempotents (k := k) hbasic F F₁
-  have hP₁ := hP.map ψ' F₁ σ hψ'
-  haveI : ∀ x y : S.ARVertex, Subsingleton (x ⟶ y) := S.hasAtMostOneArrow
-  haveI : ∀ x y : S.ARVertex, FiniteDimensional k
-      (MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) x ⟶
-        MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) y) :=
-    fun x y ↦ S.finiteDimensional_meshHom b x y
-  obtain ⟨m, ν, hmul, he⟩ := hP₁.exists_tableIso hfin h₁
-  exact S.isStandard_of_algEquiv b
-    ((Classical.choice (RaySys.nonempty_algEquiv_of_match' T (S.A0MultAR b v₀ hF) m ν hmul he
-      k)).trans (MeshWalk.thetaA0 (S.arMeshData b) v₀ hF))
-
 end RaySys.Mult
 
 end LargeIndecomposable
@@ -776,15 +751,5 @@ end LargeIndecomposable
 namespace LargeIndecomposable
 
 universe u
-
-/-- **Theorem 11.8(3)** (`thm:final-standardness`): for every finite ray category `Q` with `kQ`
-representation-finite, over an algebraically closed field of any characteristic, `W(Q)` is free
-abelian and `kQ` is standard, `k(Γ_{kQ}) ≃ ind(mod kQ)`. -/
-theorem finalStandardness_rayCategory (k : Type u) [Field k] [IsAlgClosed k] {V R : Type}
-    [Fintype V] [DecidableEq V] [Fintype R] [DecidableEq R] (Q : RaySys.Mult V R)
-    (hQ : Q.IsFiniteRayCategory k) (hfin : IsRepresentationFiniteRight k (Q.Lin k)) :
-    Module.Free ℤ Q.W ∧ IsStandard k (Q.Lin k) :=
-  ⟨RaySys.Mult.W_free_of_isFiniteRayCategory hQ hfin,
-    RaySys.Mult.isStandard_of_isFiniteRayCategory hQ hfin⟩
 
 end LargeIndecomposable

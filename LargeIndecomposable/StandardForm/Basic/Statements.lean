@@ -8,8 +8,10 @@ public import LargeIndecomposable.StandardForm.Basic.StatementsPartOne
 public import LargeIndecomposable.StandardForm.Basic.StandardAlgebras
 public import LargeIndecomposable.Modules.KrullSchmidt.SkeletonExists
 public import LargeIndecomposable.Modules.Corners.BasicAlgebraCorner
-public import LargeIndecomposable.RayCategories.RayTables.RayStandard
-public import LargeIndecomposable.MultiplicativeBases.Normed.FinalBasis
+public import LargeIndecomposable.MultiplicativeBases.Normed.A0Normed
+public import LargeIndecomposable.RayCategories.RayTables.RayProduct
+public import LargeIndecomposable.RayCategories.RayTables.RayTransport
+public import LargeIndecomposable.StandardForm.Hochschild.CoefficientBound
 public import LargeIndecomposable.StandardForm.Basic.StandardRay
 
 /-!
@@ -76,87 +78,5 @@ theorem theoremA_of_ringChar_ne_two (hA : IsRepresentationFiniteRight k A) (hcha
   haveI : FiniteDimensional k he.Corner := corner_finite he
   exact nonbasicBasis he hfull hbasic
     (basic_hasNormedBasis k he.Corner hbasic (corner_isRepresentationFinite hA he) hchar)
-
-/-- **Theorem A** (the source paper; Theorem 11.7(1), `thm:final-basis`). Every
-finite-dimensional representation-finite algebra over an algebraically closed
-field has a normed multiplicative basis. Outside characteristic two this is
-`theoremA_of_ringChar_ne_two`; in characteristic two the basic corner has one by
-Proposition 8.3 with Corollary 10.5 (`basic_hasNormedBasis_char2`), and Lemma 2.1
-lifts it to `A`. -/
-theorem standardFormTheoremA (hA : IsRepresentationFiniteRight k A) :
-    HasNormedMultiplicativeBasis k A := by
-  by_cases hchar : ringChar k = 2
-  · haveI : CharP k 2 := ringChar.of_eq hchar
-    obtain ⟨e, he, hfull, hbasic⟩ := exists_basic_full_corner k A
-    haveI : FiniteDimensional k he.Corner := corner_finite he
-    exact nonbasicBasis he hfull hbasic
-      (basic_hasNormedBasis_char2 k he.Corner hbasic (corner_isRepresentationFinite hA he))
-  · exact theoremA_of_ringChar_ne_two k A hA hchar
-
-/-- Corollary 5.5 (`cor:away-from-two-basis`). Let `A` be basic and
-representation-finite, and `char k ≠ 2`. (1) `A ≅ k ray A`, and `A` is
-standard. (2) The ray basis is a normed multiplicative basis of `A`, with one
-representative of every nonzero ray. -/
-theorem awayFromTwoBasis (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (hchar : ringChar k ≠ 2)
-    (F : PrimitiveIdempotents A) :
-    IsStandard k A ∧
-      ∃ b : Module.Basis (F.NonzeroRay k) k A,
-        IsNormedMultiplicativeBasis b ∧ F.IsRayTransversal b ∧
-          F.KillsZeroRayProducts b := by
-  letI : IsNoetherianRing Aᵐᵒᵖ := IsNoetherianRing.of_finite k Aᵐᵒᵖ
-  have hstd := theoremB k A hbasic hA hchar
-  obtain ⟨S⟩ := exists_indSkeleton hA
-  exact ⟨hstd, S.hasRayBasis_of_isStandard hbasic (hstd S) F⟩
-
-/-- Theorem 11.7(2) (`thm:final-basis`). For a basic algebra, the normed
-multiplicative basis can be chosen with one representative of every nonzero
-ray, the primitive idempotents representing the identity rays. -/
-theorem finalBasis_ray (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFiniteRight k A)
-    (F : PrimitiveIdempotents A) :
-    ∃ b : Module.Basis (F.NonzeroRay k) k A,
-      IsNormedMultiplicativeBasis b ∧ F.IsRayTransversal b := by
-  by_cases hchar : ringChar k = 2
-  · haveI : CharP k 2 := ringChar.of_eq hchar
-    exact finalBasis_ray_char2 k A hbasic hA F
-  · obtain ⟨b, hb, htr, -⟩ := (awayFromTwoBasis k A hbasic hA hchar F).2
-    exact ⟨b, hb, htr⟩
-
-/-- Theorem 11.7(3) (`thm:final-basis`). For a basic algebra and
-characteristic different from two, these representatives induce an
-isomorphism `k ray A ≅ A`. -/
-theorem finalBasis_rayLinearization (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (hchar : ringChar k ≠ 2)
-    (F : PrimitiveIdempotents A) :
-    ∃ b : Module.Basis (F.NonzeroRay k) k A,
-      IsNormedMultiplicativeBasis b ∧ F.IsRayTransversal b ∧
-        F.KillsZeroRayProducts b :=
-  (awayFromTwoBasis k A hbasic hA hchar F).2
-
-/-- Theorem 11.8(2) (`thm:final-standardness`). In every characteristic, a
-basic representation-finite algebra is standard if and only if
-`A ≅ k ray A`, expressed by a multiplicative ray transversal that kills zero
-ray products. -/
-theorem standard_iff_rayLinearization (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (F : PrimitiveIdempotents A) :
-    IsStandard k A ↔
-      ∃ b : Module.Basis (F.NonzeroRay k) k A,
-        IsMultiplicativeBasis b ∧ F.IsRayTransversal b ∧
-          F.KillsZeroRayProducts b := by
-  letI : IsNoetherianRing Aᵐᵒᵖ := IsNoetherianRing.of_finite k Aᵐᵒᵖ
-  constructor
-  · intro hstd
-    obtain ⟨S⟩ := exists_indSkeleton hA
-    obtain ⟨b, hb, htr, hkill⟩ := S.hasRayBasis_of_isStandard hbasic (hstd S) F
-    exact ⟨b, hb.multiplicative, htr, hkill⟩
-  · rintro ⟨b, hm, ht, hz⟩ S
-    by_cases hchar : ringChar k = 2
-    · haveI : CharP k 2 := ringChar.of_eq hchar
-      obtain ⟨b'⟩ := S.nonempty_arrowBases
-      rcases subsingleton_or_nontrivial A with hs | hn
-      · exact S.isStandard_of_subsingleton
-      · obtain ⟨ψ⟩ := S.algEquivA0_of_rayBasis b' hbasic hA hn F hm ht hz
-        exact S.isStandard_of_algEquiv b' ψ
-    · exact theoremB k A hbasic hA hchar S
 
 end LargeIndecomposable

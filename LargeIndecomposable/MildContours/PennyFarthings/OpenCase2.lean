@@ -6,7 +6,8 @@ public import LargeIndecomposable.MildContours.Diamonds.Conclusion
 public import LargeIndecomposable.Cleaving.Shapes.ShapePC1
 public import LargeIndecomposable.Cleaving.Shapes.ShapePC2
 public import LargeIndecomposable.Cleaving.Shapes.ShapePC4
-public import LargeIndecomposable.Cleaving.Shapes.ShapePC5
+public import LargeIndecomposable.Cleaving.Shapes.ShapeD6
+public import LargeIndecomposable.Cleaving.Basic.Tools
 public import LargeIndecomposable.Cleaving.Shapes.ShapePC6
 public import LargeIndecomposable.Cleaving.Families.FamPC7
 public import LargeIndecomposable.Cleaving.Families.FamPC8
@@ -754,53 +755,6 @@ theorem into_c {w : P} (ζ : w ⟶ c) (hζ : IsIrreducible ζ) (hζγ : ¬∃ u,
       rcases hγ.2.2 _ h ζ e.symm with h' | h'
       · exact hζγ ⟨inv h, by rw [← e]; simp⟩
       · exact hζ.2.1 h'
-
-/-- **Arrows out of `c` kill `a₁ γ`** (an `Ẽ₆` centred at `x₁`, and `rad_c` for loops). -/
-theorem aγ_kill {v : P} (ζ : c ⟶ v) (hζ : IsIrreducible ζ) : a₁.1 ≫ γ ≫ ζ = 0 := by
-  by_cases hvc : v = c
-  · subst hvc; exact D.rad_c hq a₁ hw hM hMo hE hNTo hno γ hγ hcx hct haγ ζ hζ.2.1
-  by_contra h5
-  obtain ⟨hτ0, hτn, hαα, hα1, hαa, hbα, htx⟩ :=
-    D.core hq a₁ hw hM hMo hE hNTo hno γ hγ hcx hct haγ
-  obtain ⟨c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11⟩ :=
-    D.common hq a₁ hw hM hMo hE hNTo hno γ hγ hcx hct haγ
-  have hab := D.ab_eq hq a₁ hw
-  have hα := D.α.2
-  have ha := a₁.2
-  have hb := D.β.2
-  have hαα0 : D.α.1 ≫ D.α.1 ≠ 0 := fun h ↦ hτ0 (by rw [h, comp_zero])
-  have nfs := fun {s w : P} (f : s ⟶ w) (hf : f ≠ 0) (hs : s ≠ x.out) ↦
-    D.nftm_src hq a₁ hw hM hMo hE hNTo hno f hf hs
-  have nft := fun {s w : P} (f : s ⟶ w) (hf : f ≠ 0) (hs : w ≠ x.out) ↦
-    D.nftm_tgt hq a₁ hw hM hMo hE hNTo hno f hf hs
-  have hvx : v ≠ x.out := by
-    rintro rfl
-    exact h5 (by rw [D.no_back_x hq a₁ hw hM hMo hE hNTo hno γ hγ hcx hct haγ hcx hct ζ,
-      comp_zero, comp_zero])
-  have hvt : v ≠ D.t.out := by
-    rintro rfl
-    exact h5 (by rw [D.no_back_t hq a₁ hw hM hMo hE hNTo hno γ hγ hcx hct haγ hcx hct ζ,
-      comp_zero, comp_zero])
-  have hγζ : γ ≫ ζ ≠ 0 := fun h ↦ h5 (by rw [h, comp_zero])
-  have h6 := D.αaγ_zero hq a₁ hw hM hMo hE hNTo hno γ hγ hcx hct haγ
-  refine hM.not_pc5 _ hτn hτ0 a₁.1 (D.α.1 ≫ a₁.1) D.β.1 (D.β.1 ≫ D.α.1) γ ζ
-    (nfs _ hb.1 htx) (nfs _ hγ.1 htx) (nfs _ hγζ htx) (nft _ ha.1 htx)
-    (by rw [hab]; exact D.nftm_endo hq a₁ hw hM hMo hE hNTo hno _ hαα0 hαα)
-    (nft _ haγ hcx) (nft _ (by simpa using h5) hvx) (nft _ hαa htx) (nfs _ hζ.1 hcx)
-    (nfs _ hbα htx)
-    ha.2.1 (not_isIso_comp_left' _ hα.2.1) hb.2.1 (not_isIso_comp_left' _ hb.2.1)
-    hγ.2.1 hζ.2.1 c1 (D.K_lemma hq a₁ hw hM hMo hE hNTo hno γ hγ hcx hct haγ ζ h5) c2 c3 c4 c5
-    c6 ?_ c9 c10 c11
-  rintro ⟨g, hg⟩
-  have g0 : g ≠ 0 := fun h ↦ h5 (by rw [← hg, h, comp_zero])
-  rcases D.first_t hq a₁ hw hM hMo hE hNTo hno γ hγ hcx hct haγ g g0
-    (fun h ↦ hvt (eq_of_isIso h).symm) with ⟨X, rfl⟩ | ⟨h, rfl⟩
-  · apply h5
-    rw [← hg, show (D.α.1 ≫ a₁.1) ≫ D.β.1 ≫ X = D.α.1 ≫ D.α.1 ≫ D.α.1 ≫ X by
-      simp only [Category.assoc]; rw [← Category.assoc a₁.1, hab]; simp,
-      D.τ_right hq a₁ hw hM hMo hE hNTo hno X (fun h ↦ hvx (eq_of_isIso h).symm)]
-  · apply h5
-    rw [← hg, show (D.α.1 ≫ a₁.1) ≫ γ ≫ h = (D.α.1 ≫ a₁.1 ≫ γ) ≫ h by simp, h6, zero_comp]
 
 /-- `β h ≠ γ g` when `γ g ≠ 0`, given `β α a₁ γ = 0`. -/
 lemma K_gen (hs : (D.β.1 ≫ D.α.1 ≫ a₁.1) ≫ γ = 0) {w : P} (g : c ⟶ w) (hg : γ ≫ g ≠ 0) :

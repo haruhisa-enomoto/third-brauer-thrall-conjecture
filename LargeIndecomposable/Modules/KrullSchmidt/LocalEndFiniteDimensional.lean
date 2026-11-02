@@ -1,8 +1,16 @@
 module
 
 public import LargeIndecomposable.Foundations.Ring.LocalRingJacobson
-public import LargeIndecomposable.Foundations.CategoryTheory.LinearEndTransport
-public import LargeIndecomposable.Modules.KrullSchmidt.FiniteIndecomposableSkeleton
+public import LargeIndecomposable.Foundations.CategoryTheory.LinearMat
+public import Mathlib.Algebra.Algebra.Equiv
+public import Mathlib.Algebra.Module.Equiv.Basic
+public import Mathlib.CategoryTheory.Conj
+public import Mathlib.CategoryTheory.Linear.LinearFunctor
+public import LargeIndecomposable.RepresentationType.Basic.RepresentationFinite
+public import Mathlib.CategoryTheory.InducedCategory
+public import Mathlib.Data.Fintype.Basic
+public import Mathlib.Data.Fintype.EquivFin
+public import Mathlib.LinearAlgebra.FreeModule.Finite.Matrix
 public import Mathlib.Algebra.Category.ModuleCat.Biproducts
 public import Mathlib.LinearAlgebra.Projection
 public import Mathlib.RingTheory.HopkinsLevitzki
@@ -177,39 +185,6 @@ theorem moduleCat_end_isLocalRing_of_finite [Module.Finite k A]
 namespace IndecomposableModuleSkeleton
 
 variable [Module.Finite k A] (S : IndecomposableModuleSkeleton k A)
-
-/-- Every diagonal endomorphism ring in the finite skeleton is Artinian. -/
-noncomputable instance categoryEndIsArtinian (i : S.Category) :
-    IsArtinianRing (CategoryTheory.End i) := by
-  letI : Module.Finite k (CategoryTheory.End i) := categoryHomFinite S i i
-  exact IsArtinianRing.of_finite k (CategoryTheory.End i)
-
-/-- Every diagonal endomorphism ring in the chosen finite indecomposable
-skeleton is local. -/
-noncomputable instance categoryEndIsLocal (i : S.Category) :
-    IsLocalRing (CategoryTheory.End i) := by
-  letI : Module.Finite k (S.inclusion.obj i) := S.category_obj_finite i
-  letI : IsLocalRing (CategoryTheory.End (S.inclusion.obj i)) :=
-    moduleCat_end_isLocalRing_of_finite (k := k) (A := A)
-      (S.inclusion.obj i) (S.category_obj_indecomposable i)
-  exact RingEquiv.isLocalRing_noncommutative
-    (CategoryTheory.Functor.endAlgEquivOfFullyFaithful
-      (k := k) S.inclusion i).symm.toRingEquiv
-
-/-- On a diagonal block of the indecomposable skeleton, the ring Jacobson
-radical consists exactly of the noninvertible endomorphisms. -/
-theorem categoryEnd_mem_ringJacobson_iff_not_isUnit (i : S.Category)
-    (f : CategoryTheory.End i) :
-    f ∈ Ring.jacobson (CategoryTheory.End i) ↔ ¬ IsUnit f := by
-  exact mem_ringJacobson_iff_not_isUnit (CategoryTheory.End i) f
-
-/-- A composite through a distinct indecomposable skeleton object cannot be
-invertible. -/
-theorem not_isUnit_comp_of_ne {i j : S.Category} (hij : i ≠ j)
-    (f : i ⟶ j) (g : j ⟶ i) :
-    ¬ IsUnit (CategoryTheory.End.of (f ≫ g)) := by
-  intro hfg
-  exact hij (S.category_eq_of_iso (nonempty_iso_of_isUnit_comp f g hfg))
 
 end IndecomposableModuleSkeleton
 

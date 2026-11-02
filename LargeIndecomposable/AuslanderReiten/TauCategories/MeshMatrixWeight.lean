@@ -1,7 +1,14 @@
 module
 
-public import LargeIndecomposable.AuslanderReiten.TauCategories.PositiveWeightStrictness
-
+public import LargeIndecomposable.AuslanderReiten.AlmostSplit.AlgebraicallyClosedResidue
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaKrullSchmidtWeight
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaReversedDomination
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaKrullSchmidtDirectFinite
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaRightLadderIteration
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLadderRadical
+public import Mathlib.CategoryTheory.Preadditive.Biproducts
+public import LargeIndecomposable.AuslanderReiten.TauCategories.FiniteTauCategory
+public import LargeIndecomposable.Foundations.CategoryTheory.SplitMorphismComplement
 set_option backward.isDefEq.respectTransparency.types false
 
 /-!
@@ -74,104 +81,5 @@ theorem additiveLabelWeight_rightMiddle (weight : Ind → ℤ) (target : Ind) :
 def meshColumnWeight [DecidablePred T.IsProjective]
     (weight : Ind → ℤ) (target : Ind) : ℤ :=
   ∑ source, weight source * meshMatrix T source target
-
-/-- The categorical right-mesh Euler defect equals the weighted mesh-matrix
-column sum. -/
-theorem rightMeshLabelWeightDefect_eq_meshColumnWeight
-    [DecidablePred T.IsProjective] (weight : Ind → ℤ) (target : Ind) :
-    rightMeshLabelWeightDefect T weight target =
-      meshColumnWeight T weight target := by
-  classical
-  let W := T.additiveObjectWeightOfLabelWeight weight
-  have hRight : W.weight (T.rightMesh (T.obj target)).X₃ = weight target := by
-    calc
-      W.weight (T.rightMesh (T.obj target)).X₃ = W.weight (T.obj target) :=
-        W.iso_invariant ⟨T.rightTermIso (T.obj target)⟩
-      _ = weight target := T.additiveObjectWeightOfLabelWeight_obj weight target
-  have hMiddle : W.weight (T.rightMesh (T.obj target)).X₂ =
-      ∑ source, weight source * (arrowMultiplicity T.toFiniteRightTauCategoryData source target : ℤ) := by
-    calc
-      _ = ∑ source, (arrowMultiplicity T.toFiniteRightTauCategoryData source target : ℤ) * weight source :=
-        additiveLabelWeight_rightMiddle T weight target
-      _ = ∑ source, weight source * (arrowMultiplicity T.toFiniteRightTauCategoryData source target : ℤ) := by
-        apply Finset.sum_congr rfl
-        intro source hsource
-        exact mul_comm _ _
-  have indicatorSum (x : Ind) :
-      ∑ source, weight source * (if source = x then (1 : ℤ) else 0) =
-        weight x := by
-    simp
-  by_cases hTarget : T.IsProjective target
-  · have hLeft : W.weight (T.rightMesh (T.obj target)).X₁ = 0 :=
-      W.weight_eq_zero_of_isZero hTarget
-    rw [rightMeshLabelWeightDefect, hLeft, hMiddle, hRight, zero_sub]
-    simp only [meshColumnWeight, meshMatrix_apply_of_projective T hTarget,
-      mul_sub, Finset.sum_sub_distrib]
-    rw [indicatorSum]
-    abel
-  · have hLeft : W.weight (T.rightMesh (T.obj target)).X₁ =
-        weight (tau T ⟨target, hTarget⟩) := by
-      calc
-        W.weight (T.rightMesh (T.obj target)).X₁ =
-            W.weight (T.obj (tau T ⟨target, hTarget⟩)) :=
-          W.iso_invariant ⟨T.tauPlusIso ⟨target, hTarget⟩⟩
-        _ = weight (tau T ⟨target, hTarget⟩) :=
-          T.additiveObjectWeightOfLabelWeight_obj weight _
-    rw [rightMeshLabelWeightDefect, hLeft, hMiddle, hRight]
-    simp only [meshColumnWeight, meshMatrix_apply_of_nonprojective T hTarget,
-      mul_add, mul_sub, Finset.sum_add_distrib, Finset.sum_sub_distrib]
-    rw [indicatorSum, indicatorSum]
-    abel
-
-/-- Matrix-column nonnegativity and off-projective vanishing are exactly the
-Euler clauses of a positive right-additive label weight. -/
-theorem isPositiveRightAdditiveLabelWeight_of_meshColumnWeight
-    [DecidablePred T.IsProjective] (weight : Ind → ℤ)
-    (weight_pos : ∀ x, 0 < weight x)
-    (column_nonnegative : ∀ x, 0 ≤ meshColumnWeight T weight x)
-    (column_eq_zero_of_nonprojective :
-      ∀ x, ¬ T.IsProjective x → meshColumnWeight T weight x = 0) :
-    IsPositiveRightAdditiveLabelWeight T weight := by
-  refine ⟨weight_pos, fun x ↦ ⟨?_, ?_⟩⟩
-  · rw [rightMeshLabelWeightDefect_eq_meshColumnWeight]
-    exact column_nonnegative x
-  · intro hx
-    rw [rightMeshLabelWeightDefect_eq_meshColumnWeight]
-    exact column_eq_zero_of_nonprojective x hx
-
-/-- A positive integral solution of the source paper's unit-column equation is
-automatically a positive right-additive label weight. -/
-theorem isPositiveRightAdditiveLabelWeight_of_meshColumnUnit
-    [DecidablePred T.IsProjective] (P : Ind) (hP : T.IsProjective P)
-    (weight : Ind → ℤ) (weight_pos : ∀ x, 0 < weight x)
-    (unitEquation : ∀ x,
-      meshColumnWeight T weight x = if x = P then 1 else 0) :
-    IsPositiveRightAdditiveLabelWeight T weight := by
-  apply isPositiveRightAdditiveLabelWeight_of_meshColumnWeight T weight weight_pos
-  · intro x
-    rw [unitEquation]
-    split <;> omega
-  · intro x hx
-    rw [unitEquation]
-    have hne : x ≠ P := by
-      intro h
-      subst x
-      exact hx hP
-    simp [hne]
-
-/-- Over an algebraically closed field, a positive solution of the unit-column
-equation supplies the full Hom--mesh inverse package. -/
-theorem HomMeshInverseData.ofMeshColumnUnit
-    {k : Type s} [Field k] [IsAlgClosed k] [Linear k C]
-    [∀ X Y : C, FiniteDimensional k (X ⟶ Y)]
-    [DecidablePred T.IsProjective]
-    (P : Ind) (hP : T.IsProjective P)
-    (weight : Ind → ℤ) (weight_pos : ∀ x, 0 < weight x)
-    (unitEquation : ∀ x,
-      meshColumnWeight T weight x = if x = P then 1 else 0) :
-    HomMeshInverseData (k := k) T :=
-  HomMeshInverseData.ofPositiveRightAdditiveLabelWeight T weight
-    (isPositiveRightAdditiveLabelWeight_of_meshColumnUnit
-      T P hP weight weight_pos unitEquation)
 
 end LargeIndecomposable.FiniteTauMatrix

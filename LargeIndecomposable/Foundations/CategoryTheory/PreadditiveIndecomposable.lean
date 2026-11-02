@@ -5,7 +5,6 @@ Authors: The Tau Ceti contributors
 -/
 module
 
-public import LargeIndecomposable.Foundations.CategoryTheory.LinearEnd
 public import Mathlib.CategoryTheory.Idempotents.Basic
 public import Mathlib.CategoryTheory.Limits.Shapes.BinaryBiproducts
 public import Mathlib.CategoryTheory.Linear.Basic
@@ -14,7 +13,10 @@ public import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 public import Mathlib.RingTheory.LocalRing.Defs
 public import Mathlib.RingTheory.Artinian.Defs
 import LargeIndecomposable.Foundations.Ring.LocalRing
-import LargeIndecomposable.Modules.KrullSchmidt.Indecomposable
+import Mathlib.RingTheory.FiniteLength
+import Mathlib.RingTheory.Nilpotent.Basic
+import Mathlib.RingTheory.SimpleModule.Basic
+import Mathlib.Algebra.Module.LinearMap.End
 import Mathlib.RingTheory.Artinian.Module
 import Mathlib.RingTheory.HopkinsLevitzki
 
@@ -255,35 +257,6 @@ theorem indecomposable_of_finrank_end_eq_one {k : Type*} [DivisionRing k] [Linea
   rcases IsIdempotentElem.iff_eq_zero_or_one.mp (smul_left_injective k hid he) with rfl | rfl
   · exact Or.inl (zero_smul k (𝟙 X))
   · exact Or.inr (one_smul k (𝟙 X))
-
-/-- **A nonzero object with no nontrivial idempotent endomorphism has a local endomorphism ring**,
-in a linear category over a commutative Artinian ring `R` when the endomorphisms of the object are
-finitely generated over `R`. Then `End X` has finite length over itself, and a ring of finite length
-with no idempotents besides `0` and `1` is local by Fitting's lemma
-(`LargeIndecomposable.Foundations.isLocalRing_of_isIndecomposableModule_self`). -/
-theorem isLocalRing_end_of_idempotent_eq_zero_or_id {R : Type*} [CommRing R] [IsArtinianRing R]
-    [Linear R C] {X : C} [Module.Finite R (X ⟶ X)] (hX : ¬ IsZero X)
-    (h : ∀ e : X ⟶ X, e ≫ e = e → e = 0 ∨ e = 𝟙 X) : IsLocalRing (End X) := by
-  have : Module.Finite R (End X) := Module.Finite.equiv End.linearEquiv.symm
-  have hA : IsFiniteLength (End X) (End X) := isFiniteLength_iff_isNoetherian_isArtinian.2
-    ⟨isNoetherian_of_tower R inferInstance, isArtinian_of_tower R inferInstance⟩
-  refine isLocalRing_of_isIndecomposableModule_self hA ((isIndecomposableModule_self_iff _).2
-    ⟨nontrivial_of_ne 1 0 fun h ↦ hX ((IsZero.iff_id_eq_zero X).2 congr(($h).asHom)),
-      fun e he ↦ ?_⟩)
-  rcases h e.asHom congr($(he.eq).asHom) with h | h
-  · exact Or.inl (End.ext h)
-  · exact Or.inr (End.ext h)
-
-/-- **Fitting's lemma: an indecomposable object has a local endomorphism ring**, in an
-idempotent-complete linear category over a commutative Artinian ring `R` when the endomorphisms of
-the object are finitely generated over `R`, for instance in a Hom-finite linear category over a
-field. Indecomposability leaves `0` and `1` as the only idempotents of `End X`
-(`LargeIndecomposable.Foundations.idempotent_eq_zero_or_id_of_indecomposable`). -/
-theorem isLocalRing_end_of_indecomposable {R : Type*} [CommRing R] [IsArtinianRing R] [Linear R C]
-    [HasBinaryBiproducts C] [IsIdempotentComplete C] {X : C} [Module.Finite R (X ⟶ X)]
-    (hX : Indecomposable X) : IsLocalRing (End X) :=
-  isLocalRing_end_of_idempotent_eq_zero_or_id (R := R) hX.1 fun _ he ↦
-    idempotent_eq_zero_or_id_of_indecomposable hX he
 
 /-- **An object with a local endomorphism ring is indecomposable**, the converse of
 `LargeIndecomposable.Foundations.isLocalRing_end_of_indecomposable`. -/

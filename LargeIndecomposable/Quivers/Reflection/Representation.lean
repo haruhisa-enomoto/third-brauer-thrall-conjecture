@@ -7,7 +7,78 @@ module
 
 public import LargeIndecomposable.Foundations.CategoryTheory.EqToHom
 public import LargeIndecomposable.Quivers.Reflection.Basic
-public import LargeIndecomposable.Quivers.Reflection.DimensionVector
+public import Mathlib.Combinatorics.Quiver.Basic
+public import Mathlib.Algebra.BigOperators.Ring.Finset
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import Mathlib.LinearAlgebra.QuadraticForm.Basic
+public import LargeIndecomposable.Quivers.Paths.UnderlyingGraph
+public import Mathlib.Combinatorics.SimpleGraph.LapMatrix
+public import Mathlib.Data.Fintype.Pi
+public import Mathlib.LinearAlgebra.BilinearForm.Properties
+public import Mathlib.LinearAlgebra.FreeModule.Finite.Basic
+public import Mathlib.Data.Int.Interval
+public import Mathlib.Combinatorics.Quiver.Cast
+public import Mathlib.Combinatorics.Quiver.Path.Vertices
+public import Mathlib.Basic.Finite.Prod
+public import Mathlib.Basic.Finite.Sigma
+public import Mathlib.SetTheory.Cardinal.Finite
+public import Mathlib.Combinatorics.Quiver.Symmetric
+public import Mathlib.Data.Fintype.EquivFin
+public import Mathlib.Combinatorics.Quiver.Path
+public import Mathlib.Tactic.Ring
+public import Mathlib.Data.Rat.Star
+public import Mathlib.RingTheory.Localization.Integer
+public import Mathlib.LinearAlgebra.BilinearForm.IsometryEquiv
+public import Mathlib.LinearAlgebra.Matrix.BilinearForm
+public import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+public import Mathlib.LinearAlgebra.SymplecticGroup
+public import Mathlib.LinearAlgebra.BilinearForm.Basic
+public import Mathlib.LinearAlgebra.LinearIndependent.Defs
+public import Mathlib.LinearAlgebra.Matrix.Nondegenerate
+public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Algebra.Module.Submodule.Bilinear
+public import Mathlib.LinearAlgebra.BilinearForm.TensorProduct
+public import Mathlib.LinearAlgebra.BilinearForm.Hom
+public import Mathlib.RingTheory.Ideal.Operations
+public import Mathlib.LinearAlgebra.QuadraticForm.IsometryEquiv
+public import Mathlib.LinearAlgebra.QuadraticForm.Radical
+public import Mathlib.LinearAlgebra.Determinant
+public import Mathlib.LinearAlgebra.Basis.SMul
+public import Mathlib.LinearAlgebra.Prod
+public import Mathlib.LinearAlgebra.Quotient.Basic
+public import Mathlib.RingTheory.LocalRing.Module
+public import Mathlib.LinearAlgebra.Projection
+public import Mathlib.Algebra.GroupWithZero.NonZeroDivisors
+public import Mathlib.Algebra.Group.Subgroup.Ker
+public import Mathlib.GroupTheory.Commutator.Basic
+public import Mathlib.GroupTheory.Subgroup.Center
+public import Mathlib.LinearAlgebra.BilinearForm.Isometry
+public import Mathlib.Algebra.Ring.NonZeroDivisors
+public import Mathlib.LinearAlgebra.GeneralLinearGroup.Basic
+public import Mathlib.LinearAlgebra.Matrix.Ideal
+public import Mathlib.Data.Matrix.Basic
+public import Mathlib.Data.Matrix.Basis
+public import Mathlib.Algebra.CharP.Defs
+public import Mathlib.LinearAlgebra.Matrix.Trace
+public import Mathlib.Algebra.Ring.Invertible
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.RingTheory.Ideal.BigOperators
+public import Mathlib.RingTheory.Ideal.Maps
+public import Mathlib.Tactic.NoncommRing
+public import Mathlib.LinearAlgebra.Charpoly.BaseChange
+public import Mathlib.LinearAlgebra.TensorProduct.Pi
+public import Mathlib.LinearAlgebra.TensorProduct.Tower
+public import Mathlib.RingTheory.Localization.BaseChange
+public import Mathlib.LinearAlgebra.TensorProduct.Prod
+public import Mathlib.RingTheory.TensorProduct.IsBaseChangePi
+public import Mathlib.Algebra.Order.Algebra
+public import Mathlib.Algebra.Ring.Hom.InjSurj
+public import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
+public import Mathlib.Algebra.DirectSum.Module
+public import Mathlib.LinearAlgebra.PerfectPairing.Restrict
+public import Mathlib.LinearAlgebra.Basis.Fin
+public import Mathlib.LinearAlgebra.Reflection
 public import LargeIndecomposable.Quivers.Representations.DimensionVector
 public import LargeIndecomposable.Quivers.Representations.FiniteDimensional
 public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
@@ -653,33 +724,6 @@ theorem dimVector_reflectRep_self_add
   rw [hker, hrange.symm, add_comm, hsum, finrank_pi_incoming M i hM]
   exact Finset.sum_congr rfl fun b _ ↦ congrArg (Fintype.card (b ⟶ i) * ·)
     (dimVector_apply M b).symm
-
-/-- **The reflection acts on dimension vectors by the simple reflection at the sink.** The
-hypothesis is that the sum of the arrows into `i` is onto; it is exactly what makes the kernel at
-`i` have the dimension the reflection `sᵢ` predicts, and it fails for the vertex simple `Sᵢ`. As
-in `LargeIndecomposable.Foundations.dimVector_reflectRep_self_add`, only the vertex spaces at the sources of arrows into
-`i` need be finite-dimensional; away from `i` the dimension vector is unchanged. -/
-theorem dimVector_reflectRep [DecidableEq Q]
-    (hM : ∀ e : Σ b : Q, (b ⟶ i), FiniteDimensional k (M.obj e.1))
-    (hs : Function.Surjective (incomingSum M i)) :
-    (fun j : Q ↦ (dimVector (reflectRep M hi) j : ℤ))
-      = vertexPreReflection Q i (fun j ↦ (dimVector M j : ℤ)) := by
-  funext j
-  rcases eq_or_ne j i with rfl | hj
-  · have hzero : ∀ v : Q, Fintype.card (j ⟶ v) = 0 := fun v ↦
-      Fintype.card_eq_zero_iff.mpr (hi.isEmpty_hom v)
-    rw [vertexPreReflection_apply_self]
-    have h := dimVector_reflectRep_self_add M hi hM hs
-    have h' : ((dimVector (reflectRep M hi) j : ℤ)) + (dimVector M j : ℤ)
-        = ∑ b : Q, ((Fintype.card (b ⟶ j) : ℤ) * (dimVector M b : ℤ)) := by
-      exact_mod_cast congrArg (fun n : ℕ ↦ (n : ℤ)) h
-    have hsimp : ∑ v : Q, ((Fintype.card (j ⟶ v) : ℤ) + (Fintype.card (v ⟶ j) : ℤ))
-          * (dimVector M v : ℤ)
-        = ∑ v : Q, (Fintype.card (v ⟶ j) : ℤ) * (dimVector M v : ℤ) :=
-      Finset.sum_congr rfl fun v _ ↦ by simp [hzero v]
-    rw [hsimp]
-    linarith [h']
-  · rw [vertexPreReflection_apply_of_ne Q i _ hj, dimVector_reflectRep_of_ne M hi hj]
 
 end DimVector
 

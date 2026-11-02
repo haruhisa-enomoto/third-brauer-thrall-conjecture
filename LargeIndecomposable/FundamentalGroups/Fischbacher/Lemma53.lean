@@ -1,7 +1,6 @@
 module
 
-public import LargeIndecomposable.FundamentalGroups.Fischbacher.ZJoin
-
+public import LargeIndecomposable.FundamentalGroups.Fischbacher.ZChain
 /-!
 # Fischbacher §5.3: the key fact and the case of a common first arrow
 

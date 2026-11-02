@@ -591,30 +591,6 @@ theorem dimVector_sourceReflectRep_self_add
   exact Finset.sum_congr rfl fun b _ ↦ congrArg (Fintype.card (i ⟶ b) * ·)
     (dimVector_apply M b).symm
 
-/-- **Source reflection acts on dimension vectors by the simple reflection.** -/
-theorem dimVector_sourceReflectRep [DecidableEq Q]
-    (hM : ∀ e : Σ b : Q, (i ⟶ b), FiniteDimensional k (M.obj e.1))
-    (hinj : Function.Injective (outgoingMap M i)) :
-    (fun j : Q ↦ (dimVector (sourceReflectRep M hi) j : ℤ)) =
-      vertexPreReflection Q i (fun j ↦ (dimVector M j : ℤ)) := by
-  funext j
-  rcases eq_or_ne j i with rfl | hj
-  · have hzero : ∀ v : Q, Fintype.card (v ⟶ j) = 0 := fun v ↦
-      Fintype.card_eq_zero_iff.mpr (hi.isEmpty_hom v)
-    rw [vertexPreReflection_apply_self]
-    have h := dimVector_sourceReflectRep_self_add M hi hM hinj
-    have h' : ((dimVector (sourceReflectRep M hi) j : ℤ)) + (dimVector M j : ℤ) =
-        ∑ b : Q, (Fintype.card (j ⟶ b) : ℤ) * (dimVector M b : ℤ) := by
-      exact_mod_cast congrArg (fun n : ℕ ↦ (n : ℤ)) h
-    have hsimp : ∑ v : Q,
-        ((Fintype.card (j ⟶ v) : ℤ) + (Fintype.card (v ⟶ j) : ℤ)) *
-          (dimVector M v : ℤ) =
-        ∑ v : Q, (Fintype.card (j ⟶ v) : ℤ) * (dimVector M v : ℤ) :=
-      Finset.sum_congr rfl fun v _ ↦ by simp [hzero v]
-    rw [hsimp]
-    linarith [h']
-  · rw [vertexPreReflection_apply_of_ne Q i _ hj, dimVector_sourceReflectRep_of_ne M hi hj]
-
 omit [Fintype Q] [∀ a b : Q, Fintype (a ⟶ b)] in
 /-- **Source reflection preserves finite-dimensionality** of every vertex space. -/
 theorem finiteDimensional_sourceReflectRep_obj

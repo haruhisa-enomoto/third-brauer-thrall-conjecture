@@ -1,9 +1,13 @@
 module
 
-public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLeftLadderNormalization
-public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLeftSuccessorSpecialness
-public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLeftLadderRadicalLayer
-
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaKrullSchmidtConormalForm
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLeftLadderBasic
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaRightLadderPropagation
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaSpecialMorphism
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaKrullSchmidtNormalForm
+public import LargeIndecomposable.Foundations.CategoryTheory.SplitMorphismComplement
+public import LargeIndecomposable.AuslanderReiten.TauCategories.FiniteTauCategory
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLeftLadderPropagation
 set_option backward.isDefEq.respectTransparency.types false
 
 /-!
@@ -34,14 +38,6 @@ variable {C : Type u} [Category.{v} C] [Preadditive C]
   [HasFiniteBiproducts C] [HasBinaryBiproducts C]
   [IsIdempotentComplete C]
 variable {Ind : Type w} [Fintype Ind]
-
-/-- The unconditional categorical builder supplied by target normalization
-and dual successor specialness. -/
-def specialLeftLadderBuilder
-    (T : FiniteTauCategoryData C Ind) : SpecialLeftLadderBuilder T where
-  normalize a ha := chooseSpecialConormalization T a ha
-  rawSuccessor_special s :=
-    isSpecial_chosenLeftMesh_rawComplementSuccessor T s.p s.special
 
 abbrev PackedSpecialCosplitState (T : FiniteTauCategoryData C Ind) :=
   Σ Y : C, SpecialCosplitState T Y
@@ -217,39 +213,6 @@ def infiniteSpecialLeftLadderFromZero
       hzero := fun n ↦ (R n).hzero
       meshIso := fun n ↦ (R n).meshIso }
 
-/-- The unconditional chosen infinite left ladder, with both dual-special
-operations supplied by the categorical construction in this package. -/
-def chosenInfiniteSpecialLeftLadderFromZero
-    (T : FiniteTauCategoryData C Ind) (U₀ : C) :
-    InfiniteSpecialLeftLadderFromZero T U₀ :=
-  infiniteSpecialLeftLadderFromZero T (specialLeftLadderBuilder T) U₀
-
-/-- The compiled dual radical layer applies directly to the flat ladder.
-A nonzero degree-n morphism out of the original boundary object forces the
-domain of the nth left-ladder arrow to be nonzero. -/
-theorem InfiniteSpecialLeftLadderFromZero.terminalDomain_not_isZero
-    {T : FiniteTauCategoryData C Ind} {U₀ : C}
-    (L : InfiniteSpecialLeftLadderFromZero T U₀)
-    (n : ℕ) {W : C} (q : U₀ ⟶ W)
-    (hq : q ∈ (T.radical.ideal.pow n).hom U₀ W)
-    (hqne : q ≠ 0) :
-    ¬ IsZero (L.Y n) := by
-  let r : L.Y 0 ⟶ W := L.initialSourceIso.inv ≫ q
-  have hr : r ∈ (T.radical.ideal.pow n).hom (L.Y 0) W :=
-    (T.radical.ideal.pow n).precomp L.initialSourceIso.inv hq
-  have hrne : r ≠ 0 := by
-    intro hrzero
-    apply hqne
-    calc
-      q = L.initialSourceIso.hom ≫
-          (L.initialSourceIso.inv ≫ q) := by simp
-      _ = 0 := by rw [show L.initialSourceIso.inv ≫ q = 0 from hrzero,
-        comp_zero]
-  exact not_isZero_domain_of_nonzero_mem_pow
-    T.radical n (fun k ↦ T.leftMesh (L.Y k))
-    L.Y L.Z L.U L.b L.f L.g L.h L.comm L.hzero
-    (fun k ↦ T.leftTau (L.Y k)) L.meshIso L.b_zero r hr hrne
-
 structure FiniteSpecialLeftLadderFromZero
     (T : FiniteTauCategoryData C Ind) (U₀ : C) (n : ℕ) where
   Y : Fin (n + 1) → C
@@ -294,26 +257,6 @@ def finiteSpecialLeftLadderFromZero
     (B : SpecialLeftLadderBuilder T) (U₀ : C) (n : ℕ) :
     FiniteSpecialLeftLadderFromZero T U₀ n :=
   (infiniteSpecialLeftLadderFromZero T B U₀).prefix n
-
-/-- The unconditional chosen finite prefix of a zero-initial special left
-ladder. -/
-def chosenFiniteSpecialLeftLadderFromZero
-    (T : FiniteTauCategoryData C Ind) (U₀ : C) (n : ℕ) :
-    FiniteSpecialLeftLadderFromZero T U₀ n :=
-  finiteSpecialLeftLadderFromZero T (specialLeftLadderBuilder T) U₀ n
-
-/-- The dual radical-layer conclusion on the literal terminal object of the
-chosen finite prefix. -/
-theorem chosenFiniteSpecialLeftLadderFromZero_terminalDomain_not_isZero
-    (T : FiniteTauCategoryData C Ind) (U₀ : C)
-    (n : ℕ) {W : C} (q : U₀ ⟶ W)
-    (hq : q ∈ (T.radical.ideal.pow n).hom U₀ W)
-    (hqne : q ≠ 0) :
-    ¬ IsZero
-      ((chosenFiniteSpecialLeftLadderFromZero T U₀ n).Y (Fin.last n)) := by
-  change ¬ IsZero ((chosenInfiniteSpecialLeftLadderFromZero T U₀).Y n)
-  exact (chosenInfiniteSpecialLeftLadderFromZero T U₀).terminalDomain_not_isZero
-    n q hq hqne
 
 def FiniteSpecialLeftLadderFromZero.paddedArrow
     {T : FiniteTauCategoryData C Ind} {U₀ : C} {n : ℕ}

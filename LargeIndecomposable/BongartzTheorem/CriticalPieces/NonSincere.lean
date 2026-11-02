@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.BongartzTheorem.LongLines.SSCLines
+public import LargeIndecomposable.BongartzTheorem.LongLines.LinesToBands
 public import LargeIndecomposable.Coverings.Pieces.PairRestrict
 
 /-!
@@ -154,25 +154,5 @@ theorem bongartzDistributive_of_dichotomy' (hDich : DichotomyNode'.{u}) :
         (longNotInContourNode_of_mulBasis mulBasisNode)))))
     (crownNode_of (crownLongNode_of (prop2Node_of mulBasisNode
       (longNotInContourNode_of_mulBasis mulBasisNode)))) hDich
-
-/-- The line node from the ssc large-line theorem. -/
-theorem lineNode_of_ssc (hS : SSCNode.{u}) : LineNode.{u} :=
-  lineNode_of (hullNode_of_stage stageStepNode) (d7Node_of_longLine (longLineNode_of_ssc hS))
-
-/-- **Theorem A** from the support-free critical node and the ssc theorem. -/
-theorem theoremA_of_critical'_ssc (hC : CriticalNode'.{u}) (hS : SSCNode.{u}) : TheoremA.{u} :=
-  theoremA_of_bongartz (bongartzDistributive_of_dichotomy' (dichotomyNode'_of hC (lineNode_of_ssc hS)))
-
-/-- **Corollary 1.1** from the support-free critical node and the ssc theorem. -/
-theorem corollaryDimension_of_critical'_ssc (hC : CriticalNode'.{u}) (hS : SSCNode.{u}) :
-    CorollaryDimension.{u} :=
-  corollaryDimension_of_bongartz'
-    (bongartzDistributive_of_dichotomy' (dichotomyNode'_of hC (lineNode_of_ssc hS)))
-
-/-- **The radical corollary** from the support-free critical node and the ssc theorem. -/
-theorem corollaryRadical_of_critical'_ssc (hC : CriticalNode'.{u}) (hS : SSCNode.{u}) :
-    CorollaryRadical.{u} :=
-  corollaryRadical_of_bongartz'
-    (bongartzDistributive_of_dichotomy' (dichotomyNode'_of hC (lineNode_of_ssc hS)))
 
 end LargeIndecomposable

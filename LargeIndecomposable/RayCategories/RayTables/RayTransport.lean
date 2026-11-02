@@ -1,6 +1,7 @@
 module
 
-public import LargeIndecomposable.RayCategories.RayTables.GradedRays
+public import LargeIndecomposable.RayCategories.RayTables.RayProduct
+public import LargeIndecomposable.MultiplicativeBases.Normed.A0Normed
 public import LargeIndecomposable.MultiplicativeBases.Normed.NormedTransport
 public import LargeIndecomposable.Modules.Idempotents.BasicLabels
 public import LargeIndecomposable.Modules.Corners.BasicAlgebraCorner
@@ -150,30 +151,6 @@ def rayEquiv : F.NonzeroRay k ≃ F'.NonzeroRay k where
     change ψ '' (ψ.symm '' r.1) = r.1
     rw [Set.image_image]
     simp only [AlgEquiv.apply_symm_apply, Set.image_id'])
-
-/-- **Ray bases transport along an algebra isomorphism matching the idempotents.** -/
-theorem hasRayBasis_of_algEquiv (h : F'.HasRayBasis k) : F.HasRayBasis k := by
-  obtain ⟨b', hn, ⟨hmem, hid⟩, hkill⟩ := h
-  set R := F.rayEquiv ψ F' σ hψ
-  let b : Module.Basis (F.NonzeroRay k) k A := (b'.map ψ.symm.toLinearEquiv).reindex R.symm
-  have hb : ∀ r, b r = ψ.symm (b' (R r)) := fun r ↦ by
-    simp only [b, Module.Basis.reindex_apply, Equiv.symm_symm]; rfl
-  have hbψ : ∀ r, ψ (b r) = b' (R r) := fun r ↦ by rw [hb, ψ.apply_symm_apply]
-  refine ⟨b, (hn.map_algEquiv ψ).reindex R.symm, ⟨fun r ↦ ?_, fun r i hi ↦ ?_⟩,
-    fun r s i j l hr hs hM ↦ ?_⟩
-  · obtain ⟨g, hg, hgb⟩ := (hmem (R r))
-    rw [hb, ← hgb, ψ.symm_apply_apply]
-    exact hg
-  · have : F'.e (σ i) ∈ (R r).1 := ⟨F.e i, hi, hψ i⟩
-    rw [hb, hid (R r) (σ i) this, F.symm_e ψ F' σ hψ, σ.symm_apply_apply]
-  · have hr' := F.corner_fwd ψ F' σ hψ hr
-    have hs' := F.corner_fwd ψ F' σ hψ hs
-    have hM' := F.insertionSpan_fwd ψ F' σ hψ hM
-    rw [map_mul, hbψ, hbψ] at hM'
-    rw [hbψ] at hr' hs'
-    have := hkill (R r) (R s) _ _ _ hr' hs' hM'
-    apply ψ.injective
-    rw [map_mul, hbψ, hbψ, this, map_zero]
 
 end PrimitiveIdempotents
 

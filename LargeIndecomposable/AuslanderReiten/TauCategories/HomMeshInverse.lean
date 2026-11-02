@@ -192,19 +192,4 @@ theorem meshMatrix_mul_homDimensionMatrix
     meshMatrix T * homDimensionMatrix T.toFiniteRightTauCategoryData k = 1 :=
   mul_eq_one_comm.mp (homDimensionMatrix_mul_meshMatrix T D)
 
-/-- Complete matrix form of the magnitude formula for a finite strict tau-
-category satisfying the residue-dimension condition. -/
-theorem homMesh_inverse_and_total
-    (D : HomMeshInverseData (k := k) T)
-    [DecidablePred T.IsProjective] :
-    homDimensionMatrix T.toFiniteRightTauCategoryData k * meshMatrix T = 1 ∧
-      meshMatrix T * homDimensionMatrix T.toFiniteRightTauCategoryData k = 1 ∧
-      LargeIndecomposable.ARCount.matrixTotal (meshMatrix T) =
-        LargeIndecomposable.ARCount.eulerMagnitude
-          (arrowMultiplicity T.toFiniteRightTauCategoryData) T.IsProjective := by
-  refine ⟨homDimensionMatrix_mul_meshMatrix T D,
-    meshMatrix_mul_homDimensionMatrix T D, ?_⟩
-  exact LargeIndecomposable.ARCount.matrixTotal_meshMatrix_eq_eulerMagnitude
-    (arrowMultiplicity T.toFiniteRightTauCategoryData) T.IsProjective (tau T)
-
 end LargeIndecomposable.FiniteTauMatrix

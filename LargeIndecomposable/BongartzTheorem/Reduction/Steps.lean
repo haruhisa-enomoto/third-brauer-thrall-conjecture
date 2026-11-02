@@ -3,7 +3,8 @@ module
 public import LargeIndecomposable.BongartzTheorem.Reduction.DataForm
 public import LargeIndecomposable.Coverings.UniversalCover.PairData
 public import LargeIndecomposable.FundamentalGroups.Basic.SmallFree
-public import LargeIndecomposable.MultiplicativeBases.Twisted.TwistBridge
+public import LargeIndecomposable.RayCategories.Basic.RayQuiver
+public import LargeIndecomposable.RayCategories.RoiterVanishing.Roiter
 public import LargeIndecomposable.Crowns.Basic.CrownReduction
 public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasisQuot
 public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasisStd
@@ -121,21 +122,6 @@ theorem bongartzDistributive_of_nodes (hStd : StandardnessNode.{u}) (hCrown : Cr
   · exact Or.inl ⟨pairCoveringData e htf Sp hS K hsupp h₁ h₂⟩
   · exact Or.inr hband
 
-/-- The algebra is a twisted linearization of (the small model of) its
-ray category, the twist coming from a contour function (BGRS multiplicative
-bases; Gabriel–Roiter 13.17 a)). -/
-def TwistNode : Prop :=
-  ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
-    [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
-    IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
-      letI := S.distribHomStructure hd
-      letI := S.locallySmall hd
-      letI := S.isRayCategory hd
-      letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-      letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-      ∃ C : ContourFn (RaySmall.{0} S.toIdempotents.RayCategory) (Additive kˣ),
-        Nonempty (TwistedLin (RaySmall.{0} S.toIdempotents.RayCategory) k (twistOf k C) ≃ₐ[k] B)
-
 /-- Crown case: contour functions are exact (BO13a, proof of
 Theorem 2, via Proposition 2 and the §3.1 lemma). -/
 def CrownH2Node : Prop :=
@@ -147,32 +133,6 @@ def CrownH2Node : Prop :=
       letI := S.isRayCategory hd
       ¬ChainBounded S.toIdempotents.RayCategory →
         ∀ C : ContourFn (RaySmall.{0} S.toIdempotents.RayCategory) (Additive kˣ), C.Exact
-
-/-- Standardness from the twist node: in the chain-bounded case by Roiter's
-theorem, in the crown case by `CrownH2Node`. -/
-theorem standardnessNode_of (hT : TwistNode.{u}) (hC : CrownH2Node.{u}) :
-    StandardnessNode.{u} := by
-  intro k _ _ B _ _ _ ι _ _ S hB hd
-  letI := S.distribHomStructure hd
-  letI := S.locallySmall hd
-  letI := S.isRayCategory hd
-  letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-  letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-  have := S.isFiniteRayCategory hd
-  obtain ⟨C, ⟨e⟩⟩ := hT k B ι S hB hd
-  by_cases hCB : ChainBounded S.toIdempotents.RayCategory
-  · obtain ⟨e'⟩ := twistedLinEquiv_of_chainBounded k (RaySmall.leftCancel (S.leftCancel hd))
-      (RaySmall.rightCancel (S.rightCancel hd)) (RaySmall.chainBounded hCB) C
-    exact ⟨e'.symm.trans e⟩
-  · obtain ⟨e'⟩ := twistedLinEquiv_of_exact k C (hC k B ι S hB hd hCB C)
-    exact ⟨e'.symm.trans e⟩
-
-/-- **Bongartz's Theorem 6 (data form)** from the remaining nodes: the BGRS
-twist, the crown case (contour functions and fundamental group), and the
-dichotomy on the universal cover. -/
-theorem bongartzDistributive_of_nodes' (hT : TwistNode.{u}) (hH : CrownH2Node.{u})
-    (hCrown : CrownNode.{u}) (hDich : DichotomyNode.{u}) : BongartzDistributive.{u} :=
-  bongartzDistributive_of_nodes (standardnessNode_of hT hH) hCrown hDich
 
 /-- Crown case with a long morphism: the fundamental group is free. -/
 def CrownLongNode : Prop :=
@@ -228,13 +188,6 @@ theorem crownH2Node_of (h : CrownLongH2Node.{u}) : CrownH2Node.{u} := by
   · exact h k B ι S hB hd hCB hL C
   · exact ⟨fun _ ↦ 0, C.isCoboundary_zero_of_noEss (noEssContour_of_not_hasLong hL)⟩
 
-/-- **Bongartz's Theorem 6 (data form)** from the BGRS twist node, the crown
-case with a long morphism (fundamental group and contour functions), and the
-dichotomy on the universal cover. -/
-theorem bongartzDistributive_of_nodes'' (hT : TwistNode.{u}) (hH : CrownLongH2Node.{u})
-    (hCrown : CrownLongNode.{u}) (hDich : DichotomyNode.{u}) : BongartzDistributive.{u} :=
-  bongartzDistributive_of_nodes' hT (crownH2Node_of hH) (crownNode_of hCrown) hDich
-
 /-- BO13a Proposition 2 (with the crown-freeness of `P/μ` used in the proof of
 its Theorem 2): a crown and a long morphism give a long morphism `μ` that
 occurs in no contour, with `P/μ` chain-bounded. -/
@@ -278,12 +231,6 @@ theorem crownLongH2Node_of (h : Prop2Node.{u}) : CrownLongH2Node.{u} := by
   obtain ⟨a, b, μ, hμ, hμr, hμ0, hlong, hcont, hCB'⟩ := h k B ι S hB hd hCB hL
   exact exact_of_residue μ hμ hμr hμ0 hlong hcont
     (RaySmall.leftCancel (S.leftCancel hd)) (RaySmall.rightCancel (S.rightCancel hd)) hCB' C
-
-/-- **Bongartz's Theorem 6 (data form)** from the BGRS twist node, BO13a
-Proposition 2, and the dichotomy on the universal cover. -/
-theorem bongartzDistributive_of_prop2 (hT : TwistNode.{u}) (hP2 : Prop2Node.{u})
-    (hDich : DichotomyNode.{u}) : BongartzDistributive.{u} :=
-  bongartzDistributive_of_nodes'' hT (crownLongH2Node_of hP2) (crownLongNode_of hP2) hDich
 
 /-! ### Nodes in multiplicative-basis form -/
 

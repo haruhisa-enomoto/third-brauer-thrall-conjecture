@@ -1,8 +1,7 @@
 module
 
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.NonSincere
-public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointCocycle
-
+public import LargeIndecomposable.BongartzTheorem.CriticalPieces.SinkCount
 /-!
 # Point–brick data without sincerity
 
@@ -156,20 +155,5 @@ namespace LargeIndecomposable
 open Statement
 
 universe u
-
-/-- **Theorem A** from support-free point–brick data and the ssc theorem. -/
-theorem theoremA_of_point'_ssc (hP : RayCat.PointBrickNode'.{u}) (hS : SSCNode.{u}) :
-    TheoremA.{u} :=
-  theoremA_of_critical'_ssc (RayCat.criticalNode'_of_point' hP) hS
-
-/-- **Corollary 1.1** from support-free point–brick data and the ssc theorem. -/
-theorem corollaryDimension_of_point'_ssc (hP : RayCat.PointBrickNode'.{u}) (hS : SSCNode.{u}) :
-    CorollaryDimension.{u} :=
-  corollaryDimension_of_critical'_ssc (RayCat.criticalNode'_of_point' hP) hS
-
-/-- **The radical corollary** from support-free point–brick data and the ssc theorem. -/
-theorem corollaryRadical_of_point'_ssc (hP : RayCat.PointBrickNode'.{u}) (hS : SSCNode.{u}) :
-    CorollaryRadical.{u} :=
-  corollaryRadical_of_critical'_ssc (RayCat.criticalNode'_of_point' hP) hS
 
 end LargeIndecomposable

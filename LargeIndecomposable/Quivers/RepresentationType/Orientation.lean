@@ -5,7 +5,10 @@ Authors: The Tau Ceti contributors
 -/
 module
 
-public import LargeIndecomposable.Quivers.Paths.Reorient
+public import Mathlib.Combinatorics.Quiver.Symmetric
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Combinatorics.Quiver.Cast
+public import Mathlib.Combinatorics.Quiver.Path.Vertices
 public import LargeIndecomposable.Quivers.RepresentationType.Embedding
 public import LargeIndecomposable.Quivers.RepresentationType.Reflection
 public import LargeIndecomposable.Quivers.Reflection.Forest
@@ -82,26 +85,6 @@ theorem isFiniteRepType_iff_of_isAcyclic_underlyingGraph {V : Type v} [Finite V]
     inferInstance
   rw [← isFiniteRepType_reflectList_iff l q hfin hl]
   exact (isFiniteRepType_iff_of_homEquiv.{u, v, w, max w x} fun a b ↦ (he a b).some).symm
-
-/-- **Reorienting a forest does not change whether it has finite representation type.** If a
-finite quiver `Q` has at most one arrow between any two vertices, counted in both directions, and
-its underlying graph is acyclic, then turning around any of its arrows gives a quiver
-`LargeIndecomposable.Foundations.Reorient Q σ` with finite representation type exactly when `Q` has it. -/
-theorem isFiniteRepType_reorient_iff {Q : Type v} [q : _root_.Quiver.{w} Q] [Finite Q]
-    (hsub : ∀ a b : Q, Subsingleton ((a ⟶ b) ⊕ (b ⟶ a)))
-    (hG : (underlyingGraph Q).IsAcyclic) (σ : ∀ ⦃i j : Q⦄, (i ⟶ j) → Bool) :
-    IsFiniteRepType.{u, v, w, max v w x} k (Reorient Q σ) ↔
-      IsFiniteRepType.{u, v, w, max v w x} k Q := by
-  classical
-  refine isFiniteRepType_iff_of_isAcyclic_underlyingGraph _ (reorientQuiver σ) hsub hG
-    fun a b ↦ ⟨?_⟩
-  -- split the arrows `a ⟶ b` and `b ⟶ a` according to whether `σ` turns them around
-  refine (Equiv.sumCongr (Equiv.sumCompl fun f : @_root_.Quiver.Hom Q q a b ↦ σ f = true).symm
-    (Equiv.sumCompl fun f : @_root_.Quiver.Hom Q q b a ↦ σ f = true).symm).trans ?_
-  refine ((Equiv.sumCongr (Equiv.sumComm _ _) (Equiv.refl _)).trans
-    (Equiv.sumSumSumComm _ _ _ _)).trans ?_
-  exact (Equiv.sumCongr (reorientHomEquiv σ a b).symm
-    ((Equiv.sumComm _ _).trans (reorientHomEquiv σ b a).symm))
 
 section Copy
 

@@ -2,8 +2,8 @@ module
 
 public import Mathlib.Algebra.BigOperators.Fin
 public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaKrullSchmidtNormalForm
-public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaNakayamaPair
-
+public import Mathlib.CategoryTheory.Preadditive.Biproducts
+public import LargeIndecomposable.AuslanderReiten.TauCategories.FiniteTauCategory
 set_option backward.isDefEq.respectTransparency.types false
 
 /-!
@@ -186,126 +186,6 @@ theorem morphismWeight_eq_of_arrowIso
     W.iso_invariant ⟨Arrow.rightFunc.mapIso e⟩
   simp only [morphismWeight]
   rw [hleft, hright]
-
-/-- One invertible ladder square preserves source-minus-target weight. -/
-theorem morphismWeight_eq_of_invertibleLadderStep
-    (W : AdditiveObjectWeight C)
-    {XPrev YPrev XNext YNext : C}
-    {aPrev : XPrev ⟶ YPrev} {aNext : XNext ⟶ YNext}
-    (hstep : NakayamaLadder.InvertibleLadderStep T aPrev aNext)
-    (hEuler : W.IsRightMeshEulerAt T YPrev) :
-    W.morphismWeight aPrev = W.morphismWeight aNext := by
-  obtain ⟨f, g, comm, ⟨eRight⟩, _⟩ := hstep
-  have h₁ : W.weight (T.rightMesh YPrev).X₁ = W.weight XNext :=
-    W.iso_invariant ⟨ShortComplex.π₁.mapIso eRight⟩
-  have h₂ :
-      W.weight (T.rightMesh YPrev).X₂ =
-        W.weight (biprod YNext XPrev) :=
-    W.iso_invariant ⟨ShortComplex.π₂.mapIso eRight⟩
-  have h₃ : W.weight (T.rightMesh YPrev).X₃ = W.weight YPrev :=
-    W.iso_invariant ⟨ShortComplex.π₃.mapIso eRight⟩
-  dsimp only [IsRightMeshEulerAt] at hEuler
-  rw [h₁, h₂, h₃, W.biprod_additive] at hEuler
-  simp only [morphismWeight]
-  omega
-
-/-- Every two vertical arrows in a finite invertible ladder have the same
-source-minus-target weight. -/
-theorem morphismWeight_eq_of_invertibleLadderOfDistance
-    (W : AdditiveObjectWeight C) (hEuler : W.IsRightMeshEuler T) (n : ℕ)
-    {X₀ Y₀ Xₙ Yₙ : C} {start : X₀ ⟶ Y₀} {finish : Xₙ ⟶ Yₙ}
-    (h : NakayamaLadder.InvertibleLadderOfDistance T n start finish) :
-    W.morphismWeight start = W.morphismWeight finish := by
-  obtain ⟨X, Y, a, ⟨eStart⟩, ⟨eFinish⟩, hstep⟩ := h
-  have hstart : W.morphismWeight start = W.morphismWeight (a 0) :=
-    W.morphismWeight_eq_of_arrowIso eStart
-  have hfinish :
-      W.morphismWeight (a (Fin.last n)) = W.morphismWeight finish :=
-    W.morphismWeight_eq_of_arrowIso eFinish
-  have hchain :
-      ∀ i : Fin (n + 1),
-        W.morphismWeight (a 0) = W.morphismWeight (a i) := by
-    intro i
-    induction i using Fin.induction with
-    | zero => rfl
-    | succ i ih =>
-        exact ih.trans
-          (W.morphismWeight_eq_of_invertibleLadderStep
-            (hstep i) (hEuler _))
-  exact hstart.trans ((hchain (Fin.last n)).trans hfinish)
-
-/-- Source-minus-target weight is constant along any finite invertible
-ladder. -/
-theorem morphismWeight_eq_of_invertibleLadder
-    (W : AdditiveObjectWeight C) (hEuler : W.IsRightMeshEuler T)
-    {X₀ Y₀ Xₙ Yₙ : C} {start : X₀ ⟶ Y₀} {finish : Xₙ ⟶ Yₙ}
-    (h : NakayamaLadder.InvertibleLadder T start finish) :
-    W.morphismWeight start = W.morphismWeight finish := by
-  obtain ⟨n, hn⟩ := h
-  exact W.morphismWeight_eq_of_invertibleLadderOfDistance hEuler n hn
-
-/-- The exact right-additive version of finite-ladder transport.  Euler
-equality is required only on nonprojective-supported right endpoints, and
-`hSupport` is precisely Iyama's projective-free prefix theorem. -/
-theorem morphismWeight_eq_of_invertibleLadderOfDistance_offProjectives
-    (W : AdditiveObjectWeight C)
-    (hEuler : W.IsRightMeshEulerOffProjectives T)
-    (hSupport : NakayamaLadder.HasNonprojectiveRightSupport T)
-    (n : ℕ)
-    {X₀ Y₀ Xₙ Yₙ : C} {start : X₀ ⟶ Y₀} {finish : Xₙ ⟶ Yₙ}
-    (h : NakayamaLadder.InvertibleLadderOfDistance T n start finish) :
-    W.morphismWeight start = W.morphismWeight finish := by
-  obtain ⟨X, Y, a, ⟨eStart⟩, ⟨eFinish⟩, hstep⟩ := h
-  have hstart : W.morphismWeight start = W.morphismWeight (a 0) :=
-    W.morphismWeight_eq_of_arrowIso eStart
-  have hfinish :
-      W.morphismWeight (a (Fin.last n)) = W.morphismWeight finish :=
-    W.morphismWeight_eq_of_arrowIso eFinish
-  have hchain :
-      ∀ i : Fin (n + 1),
-        W.morphismWeight (a 0) = W.morphismWeight (a i) := by
-    intro i
-    induction i using Fin.induction with
-    | zero => rfl
-    | succ i ih =>
-        exact ih.trans
-          (W.morphismWeight_eq_of_invertibleLadderStep
-            (hstep i) (hEuler _ (hSupport X Y a hstep i)))
-  exact hstart.trans ((hchain (Fin.last n)).trans hfinish)
-
-/-- Source-minus-target weight is constant along a finite ladder under the
-precise off-projective Euler and support hypotheses. -/
-theorem morphismWeight_eq_of_invertibleLadder_offProjectives
-    (W : AdditiveObjectWeight C)
-    (hEuler : W.IsRightMeshEulerOffProjectives T)
-    (hSupport : NakayamaLadder.HasNonprojectiveRightSupport T)
-    {X₀ Y₀ Xₙ Yₙ : C} {start : X₀ ⟶ Y₀} {finish : Xₙ ⟶ Yₙ}
-    (h : NakayamaLadder.InvertibleLadder T start finish) :
-    W.morphismWeight start = W.morphismWeight finish := by
-  obtain ⟨n, hn⟩ := h
-  exact W.morphismWeight_eq_of_invertibleLadderOfDistance_offProjectives
-    hEuler hSupport n hn
-
-/-- The two endpoint maps of a genuine Nakayama pair have equal
-source-minus-target weight. -/
-theorem morphismWeight_muMinus_eq_muPlus_of_nakayamaPair
-    (W : AdditiveObjectWeight C) (hEuler : W.IsRightMeshEuler T) {A B : Ind}
-    (h : T.NakayamaPair A B) :
-    W.morphismWeight (T.muMinus A) =
-      W.morphismWeight (T.muPlus B) :=
-  W.morphismWeight_eq_of_invertibleLadder hEuler h
-
-/-- A genuine Nakayama pair has equal endpoint weights under Iyama's exact
-off-projective hypotheses. -/
-theorem morphismWeight_muMinus_eq_muPlus_of_nakayamaPair_offProjectives
-    (W : AdditiveObjectWeight C)
-    (hEuler : W.IsRightMeshEulerOffProjectives T)
-    (hSupport : NakayamaLadder.HasNonprojectiveRightSupport T)
-    {A B : Ind} (h : T.NakayamaPair A B) :
-    W.morphismWeight (T.muMinus A) =
-      W.morphismWeight (T.muPlus B) :=
-  W.morphismWeight_eq_of_invertibleLadder_offProjectives
-    hEuler hSupport h
 
 end AdditiveObjectWeight
 

@@ -153,19 +153,6 @@ variable {k : Type u} {Q : Type v} [Field k] [Quiver.{w} Q]
 variable {M : QuiverRep.{u, v, w, max v w x} k Q} {i : Q}
 variable [Fintype Q] [∀ a b : Q, Fintype (a ⟶ b)]
 
-/-- **A nonnegative reflected dimension vector forces the outgoing map to be injective.** For an
-indecomposable representation `M` and a source `i`, if the dimension vector of `M` reflected at
-`i` is nonnegative, then the outgoing map of `M` at `i` is injective. -/
-theorem outgoingMap_injective_of_vertexPreReflection_nonneg [DecidableEq Q]
-    (hi : IsSource i) (hM : Indecomposable M)
-    (h : 0 ≤ vertexPreReflection Q i fun j ↦ (dimVector M j : ℤ)) :
-    Function.Injective (outgoingMap M i) := by
-  rcases outgoingMap_injective_or_forall_subsingleton hi hM with hinj | hsub
-  · exact hinj
-  · rw [dimVector_eq_single_of_forall_subsingleton hi.path_self_eq_nil hM hsub,
-      vertexPreReflection_single_self Q hi.isEmpty_hom_self] at h
-    exact (by simpa using Pi.le_def.mp h i : False).elim
-
 end Nonnegative
 
 /-! ### The vertex simple as the exceptional case -/
@@ -175,53 +162,7 @@ section VertexSimple
 variable {k : Type u} {Q : Type u} [Field k] [Quiver.{u} Q]
 variable {M : QuiverRep.{u, u, u, u} k Q} {i : Q}
 
-/-- **The map collecting the arrows out of a source is injective for every indecomposable
-representation other than the vertex simple there.** The vertex simple `Sᵢ` is genuinely excluded,
-by `LargeIndecomposable.Foundations.outgoingMap_not_injective`. -/
-theorem outgoingMap_injective_of_indecomposable (hi : IsSource i) (hM : Indecomposable M)
-    (hne : ¬ Nonempty (M ≅ simpleRep k Q i)) : Function.Injective (outgoingMap M i) :=
-  (outgoingMap_injective_or_forall_subsingleton hi hM).resolve_right fun h ↦
-    hne (nonempty_iso_simpleRep_of_forall_subsingleton hi.path_self_eq_nil hM h)
-
-/-- **Reflection at a source carries an indecomposable representation other than the vertex simple
-there to an indecomposable representation of the reflected quiver.** Together with
-`LargeIndecomposable.Foundations.dimVector_sourceReflectRep_of_indecomposable`, which computes the dimension vector of the
-result as `sᵢ · dim M` under the additional hypothesis that the vertex spaces at the targets of
-the arrows out of `i` are finite-dimensional, this is the step that rebuilds an indecomposable
-along a reflection sequence, dual to
-`LargeIndecomposable.Foundations.indecomposable_reflectRep_of_not_nonempty_iso_simpleRep`. -/
-theorem indecomposable_sourceReflectRep_of_not_nonempty_iso_simpleRep
-    [Finite (Σ b : Q, (i ⟶ b))] (hi : IsSource i) (hM : Indecomposable M)
-    (hne : ¬ Nonempty (M ≅ simpleRep k Q i)) :
-    Indecomposable (sourceReflectRep M hi) :=
-  indecomposable_sourceReflectRep hi hM (outgoingMap_injective_of_indecomposable hi hM hne)
-
 variable [Fintype Q] [∀ a b : Q, Fintype (a ⟶ b)]
-
-/-- **Reflection at a source acts on the dimension vector of an indecomposable representation by
-the simple reflection there**, unless that representation is the vertex simple at the source. -/
-theorem dimVector_sourceReflectRep_of_indecomposable [DecidableEq Q] (hi : IsSource i)
-    (hM : Indecomposable M) (hne : ¬ Nonempty (M ≅ simpleRep k Q i))
-    (hfin : ∀ e : Σ b : Q, (i ⟶ b), FiniteDimensional k (M.obj e.1)) :
-    (fun j : Q ↦ (dimVector (sourceReflectRep M hi) j : ℤ))
-      = vertexPreReflection Q i (fun j ↦ (dimVector M j : ℤ)) :=
-  dimVector_sourceReflectRep M hi hfin (outgoingMap_injective_of_indecomposable hi hM hne)
-
-/-- **A representation whose dimension vector the simple reflection keeps nonnegative is not the
-vertex simple.** The dimension vector of `Sᵢ` is the simple dimension vector `αᵢ`, which the
-reflection at a loopless vertex `i` negates. This universe-aligned comparison with `Sᵢ` complements
-`LargeIndecomposable.Foundations.outgoingMap_injective_of_vertexPreReflection_nonneg`, the general-universe injectivity
-result used by the reflection induction. -/
-theorem not_nonempty_iso_simpleRep_of_vertexPreReflection_nonneg [DecidableEq Q]
-    (hloop : IsEmpty (i ⟶ i)) (h : 0 ≤ vertexPreReflection Q i fun j ↦ (dimVector M j : ℤ)) :
-    ¬ Nonempty (M ≅ simpleRep k Q i) := by
-  rintro ⟨e⟩
-  have hdim : (fun j : Q ↦ (dimVector M j : ℤ)) = Pi.single i 1 := by
-    funext j
-    rw [dimVector_eq_of_iso e, dimVector_simpleRep]
-    simp [Pi.single_apply]
-  rw [hdim, vertexPreReflection_single_self Q hloop] at h
-  simpa using Pi.le_def.mp h i
 
 end VertexSimple
 

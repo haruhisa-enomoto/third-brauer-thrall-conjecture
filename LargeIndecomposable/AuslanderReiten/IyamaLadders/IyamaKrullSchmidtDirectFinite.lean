@@ -2,8 +2,10 @@ module
 
 public import Mathlib.Logic.Equiv.Fin.Basic
 public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaKrullSchmidtNormalForm
-public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaNakayamaBoundary
-
+public import Mathlib.CategoryTheory.Preadditive.Biproducts
+public import LargeIndecomposable.AuslanderReiten.TauCategories.FiniteTauCategory
+public import LargeIndecomposable.AuslanderReiten.IyamaLadders.IyamaLadderRadical
+public import LargeIndecomposable.Foundations.CategoryTheory.SplitMorphismComplement
 set_option backward.isDefEq.respectTransparency.types false
 
 /-!

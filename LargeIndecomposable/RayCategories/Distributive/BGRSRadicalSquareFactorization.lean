@@ -1,6 +1,10 @@
 module
 
-public import LargeIndecomposable.RepresentationType.Obstructions.RepresentationFiniteRayValency
+public import LargeIndecomposable.RayCategories.Distributive.FiniteIdealHomChain
+public import LargeIndecomposable.RayCategories.Distributive.KupischCyclicity
+public import LargeIndecomposable.RepresentationType.Basic.RepresentationFiniteIdeals
+public import LargeIndecomposable.RayCategories.Contours.RayPathInterlacement
+public import Mathlib.Tactic
 public import Mathlib.Tactic.Module
 
 @[expose] public section

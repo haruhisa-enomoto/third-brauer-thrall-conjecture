@@ -322,12 +322,6 @@ theorem qSet_empty : σ.qSet ∅ = ∅ := by
     (σ.indecomposable j).nontrivial
   exact bot_ne_top htrace
 
-/-- The empty set is closed for quotient generation. -/
-theorem qClosure_isClosed_empty :
-    σ.qClosure.IsClosed ∅ := by
-  rw [σ.qClosure.isClosed_iff]
-  exact qSet_empty σ
-
 section Epi
 
 variable {R₀ : Type u₀} [Ring R₀]
@@ -558,35 +552,6 @@ theorem sSet_empty : σ.sSet ∅ = ∅ := by
   letI : Nontrivial (σ.obj j) :=
     (σ.indecomposable j).nontrivial
   exact top_ne_bot hreject
-
-/-- The empty set is closed for submodule generation. -/
-theorem sClosure_isClosed_empty :
-    σ.sClosure.IsClosed ∅ := by
-  rw [σ.sClosure.isClosed_iff]
-  exact sSet_empty σ
-
-/-- Membership in the quotient closure, unfolded to its presentation. -/
-@[simp]
-theorem mem_qClosure_iff_inFac (S : Set ι) (j : ι) :
-    j ∈ σ.qClosure S ↔ σ.InFac S (σ.obj j) :=
-  Iff.rfl
-
-/-- Membership in the submodule closure, unfolded to its presentation. -/
-@[simp]
-theorem mem_sClosure_iff_inSub (S : Set ι) (j : ι) :
-    j ∈ σ.sClosure S ↔ σ.InSub S (σ.obj j) :=
-  Iff.rfl
-
-/-- Membership in the quotient closure, expressed by the trace criterion. -/
-theorem mem_qClosure_iff_trace_eq_top (S : Set ι) (j : ι) :
-    j ∈ σ.qClosure S ↔ σ.trace S (σ.obj j) = ⊤ :=
-  mem_qSet_iff_trace_eq_top σ S j
-
-/-- Membership in the submodule closure, expressed by the reject
-criterion. -/
-theorem mem_sClosure_iff_reject_eq_bot (S : Set ι) (j : ι) :
-    j ∈ σ.sClosure S ↔ σ.reject S (σ.obj j) = ⊥ :=
-  mem_sSet_iff_reject_eq_bot σ S j
 
 /-- Postcomposition carries the selected trace into the selected trace.
 This is the fully invariant property used in the anti-exchange proof. -/

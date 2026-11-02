@@ -2,7 +2,9 @@ module
 
 public import LargeIndecomposable.Modules.SplitBasic.SplitBasicOpposite
 public import LargeIndecomposable.RayCategories.Distributive.SplitBasicRayCategory
-public import LargeIndecomposable.Foundations.PathCategories.LoopPathPower
+public import LargeIndecomposable.Foundations.PathCategories.LinearPathLift
+public import Mathlib.Combinatorics.Quiver.Path
+public import Mathlib.Data.Fintype.EquivFin
 public import LargeIndecomposable.RayCategories.Contours.ProperPathInterlacement
 public import LargeIndecomposable.MultiplicativeBases.ScalarPresentation.SingularPairMatching
 
@@ -734,19 +736,6 @@ theorem opRayPath_comp
   | cons q a ih =>
       simp only [Quiver.Path.comp_cons, opRayPath_cons, ih]
       simp
-
-/-- Reversal commutes with a literal power of a closed path. -/
-@[simp] theorem opRayPath_loopPow
-    {i : LargeIndecomposable.RayVertex
-      (LargeIndecomposable.BGRSRayCategory S.ProjectiveCategory)}
-    (p : Quiver.Path i i) (n : ℕ) :
-    opRayPath S (Quiver.Path.loopPow p n) =
-      Quiver.Path.loopPow (opRayPath S p) n := by
-  induction n with
-  | zero => simp
-  | succ n ih =>
-      rw [Quiver.Path.loopPow_succ, opRayPath_comp, ih,
-        Quiver.Path.loopPow_succ_left]
 
 /-- Reversing a ray-quiver path sends its ray value to the opposite ray of
 the original value. -/

@@ -558,30 +558,6 @@ theorem minimalLeftAlmostSplitDecomposition_nonempty (z : ι) :
     MinimalLeftAlmostSplitDecomposition.exists_of_leftAlmostSplit_of_finiteLength
       σ f hf hE
 
-/-- In the finite-skeleton setting, the quotient-side mixed criterion no
-longer needs an almost-split existence hypothesis. -/
-theorem qClosed_compl_pair_iff_hasIrreducible_of_finiteSkeleton
-    {p z : ι} (hpz : p ≠ z)
-    (hp : σ.IsRelativeSplitProjective Set.univ p)
-    (hz : ¬ σ.IsRelativeSplitProjective Set.univ z) :
-    σ.qClosure.IsClosed ({p, z} : Set ι)ᶜ ↔
-      HasIrreducibleMorphism (σ.obj p) (σ.obj z) :=
-  σ.qClosed_compl_pair_iff_hasIrreducible_of_rightAR hpz hp hz
-    (Classical.choice
-      (σ.minimalRightAlmostSplitDecomposition_nonempty (K := K) z))
-
-/-- The submodule-side mixed criterion is unconditionally available under
-the same finite-skeleton hypotheses. -/
-theorem sClosed_compl_pair_iff_hasIrreducible_of_finiteSkeleton
-    {z i : ι} (hzi : z ≠ i)
-    (hz : ¬ σ.IsRelativeSplitInjective Set.univ z)
-    (hi : σ.IsRelativeSplitInjective Set.univ i) :
-    σ.sClosure.IsClosed ({z, i} : Set ι)ᶜ ↔
-      HasIrreducibleMorphism (σ.obj z) (σ.obj i) :=
-  σ.sClosed_compl_pair_iff_hasIrreducible_of_leftAR hzi hz hi
-    (Classical.choice
-      (σ.minimalLeftAlmostSplitDecomposition_nonempty (K := K) z))
-
 end FiniteSkeleton
 
 section FiniteDimensionalAlgebra
@@ -645,34 +621,6 @@ theorem minimalLeftAlmostSplitDecomposition_nonempty_of_finiteDimensional
   letI (i : ι) : FiniteDimensional K (σ.obj i) :=
     Module.Finite.trans R (σ.obj i)
   exact σ.minimalLeftAlmostSplitDecomposition_nonempty (K := K) z
-
-/-- Paper-facing finite-dimensional-algebra form of the quotient-side mixed
-criterion. -/
-theorem qClosed_compl_pair_iff_hasIrreducible_of_finiteDimensional
-    (K : Type uK) [Field K] [Algebra K R] [FiniteDimensional K R]
-    [Finite ι] {p z : ι} (hpz : p ≠ z)
-    (hp : σ.IsRelativeSplitProjective Set.univ p)
-    (hz : ¬ σ.IsRelativeSplitProjective Set.univ z) :
-    σ.qClosure.IsClosed ({p, z} : Set ι)ᶜ ↔
-      HasIrreducibleMorphism (σ.obj p) (σ.obj z) :=
-  σ.qClosed_compl_pair_iff_hasIrreducible_of_rightAR hpz hp hz
-    (Classical.choice
-      (σ.minimalRightAlmostSplitDecomposition_nonempty_of_finiteDimensional
-        K z))
-
-/-- Paper-facing finite-dimensional-algebra form of the dual mixed
-criterion. -/
-theorem sClosed_compl_pair_iff_hasIrreducible_of_finiteDimensional
-    (K : Type uK) [Field K] [Algebra K R] [FiniteDimensional K R]
-    [Finite ι] {z i : ι} (hzi : z ≠ i)
-    (hz : ¬ σ.IsRelativeSplitInjective Set.univ z)
-    (hi : σ.IsRelativeSplitInjective Set.univ i) :
-    σ.sClosure.IsClosed ({z, i} : Set ι)ᶜ ↔
-      HasIrreducibleMorphism (σ.obj z) (σ.obj i) :=
-  σ.sClosed_compl_pair_iff_hasIrreducible_of_leftAR hzi hz hi
-    (Classical.choice
-      (σ.minimalLeftAlmostSplitDecomposition_nonempty_of_finiteDimensional
-        K z))
 
 end FiniteDimensionalAlgebra
 

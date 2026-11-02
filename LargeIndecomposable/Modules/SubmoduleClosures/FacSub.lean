@@ -1,7 +1,9 @@
 module
 
 public import Mathlib.CategoryTheory.FintypeCat
-public import LargeIndecomposable.Foundations.ConvexGeometry.Basic
+public import Mathlib.Data.Set.Finite.Powerset
+public import Mathlib.Order.Closure
+public import Mathlib.Order.Preorder.Finite
 public import LargeIndecomposable.RepresentationType.Basic.FiniteType
 
 set_option backward.isDefEq.respectTransparency.types false
@@ -231,22 +233,6 @@ theorem sSet_idempotent (S : Set ι) :
     exact inSub_trans σ (Classical.choice hj)
   · exact sSet_monotone σ (subset_sSet σ S)
 
-/-- Quotient closure as a genuine closure operator on the representative
-type. -/
-def qClosure : SetClosure ι where
-  toFun := σ.qSet
-  monotone' := qSet_monotone σ
-  le_closure' := subset_qSet σ
-  idempotent' := qSet_idempotent σ
-
-/-- Submodule closure as a genuine closure operator on the representative
-type. -/
-def sClosure : SetClosure ι where
-  toFun := σ.sSet
-  monotone' := sSet_monotone σ
-  le_closure' := subset_sSet σ
-  idempotent' := sSet_idempotent σ
-
 /-- Membership in quotient closure is witnessed by finitely many selected
 representatives. -/
 theorem qSet_finite_witness {S : Set ι} {j : ι}
@@ -280,15 +266,5 @@ theorem sSet_finite_witness {S : Set ι} {j : ι}
       mem := fun t ↦ ⟨t, rfl⟩
       map := P.map
       mono := P.mono }⟩
-
-/-- Quotient closure is finitary. -/
-theorem qClosure_isFinitary : σ.qClosure.IsFinitary := by
-  intro S j hj
-  exact qSet_finite_witness σ hj
-
-/-- Submodule closure is finitary. -/
-theorem sClosure_isFinitary : σ.sClosure.IsFinitary := by
-  intro S j hj
-  exact sSet_finite_witness σ hj
 
 end LargeIndecomposable.IndecomposableSkeleton

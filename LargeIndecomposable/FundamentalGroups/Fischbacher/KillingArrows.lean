@@ -3,8 +3,9 @@ module
 public import LargeIndecomposable.RayCategories.Basic.ResidueQuiver
 public import LargeIndecomposable.RayCategories.Basic.Long
 public import LargeIndecomposable.RayCategories.Contours.Interlaced
-public import LargeIndecomposable.Cleaving.Basic.RadSquareZero
-
+public import LargeIndecomposable.Coverings.UniversalCover.Cover
+public import LargeIndecomposable.Foundations.Group.FreeGroupoidFree
+public import Mathlib.CategoryTheory.IsConnected
 /-!
 # Fischbacher's reduction: killing arrows without changing the fundamental group
 

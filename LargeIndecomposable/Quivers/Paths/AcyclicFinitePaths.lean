@@ -6,7 +6,8 @@ Authors: The Tau Ceti contributors
 module
 
 public import LargeIndecomposable.Quivers.Paths.BoundedPaths
-public import LargeIndecomposable.Quivers.Paths.LoopPower
+public import Mathlib.Combinatorics.Quiver.Path
+public import Mathlib.Data.Fintype.EquivFin
 public import LargeIndecomposable.Quivers.Paths.Acyclic
 
 /-! Ported from TauCeti (`TauCeti.RepresentationTheory.Quiver.Acyclic.FinitePaths`, commit 580b6f9d5, Apache 2.0). -/
@@ -85,25 +86,6 @@ end Quiver.IsAcyclic
 theorem finite_paths_of_isAcyclic [Finite V] [∀ a b : V, Finite (a ⟶ b)]
     (h : Quiver.IsAcyclic V) : Finite (Σ a b : V, _root_.Quiver.Path a b) :=
   h.finite_paths
-
-/-- **A quiver with finitely many paths is acyclic**: the powers of an oriented cycle are already
-infinitely many paths. No finiteness of the vertices or of the arrows is needed. -/
-theorem isAcyclic_of_finite_paths (h : Finite (Σ a b : V, _root_.Quiver.Path a b)) :
-    Quiver.IsAcyclic V := by
-  have := h
-  refine Quiver.isAcyclic_def.mpr fun a p => ?_
-  have : Finite (_root_.Quiver.Path a a) :=
-    Finite.of_injective
-      (fun q : _root_.Quiver.Path a a => (⟨a, a, q⟩ : Σ a b : V, _root_.Quiver.Path a b))
-      fun _ _ hxy => by simpa using hxy
-  exact p.eq_nil_of_finite
-
-/-- **For a finite quiver with finite arrow types, acyclicity is finiteness of the path space.**
-This is the extensional form of acyclicity, the hypothesis under which the path algebra is a
-finite module. -/
-theorem isAcyclic_iff_finite_paths [Finite V] [∀ a b : V, Finite (a ⟶ b)] :
-    Quiver.IsAcyclic V ↔ Finite (Σ a b : V, _root_.Quiver.Path a b) :=
-  ⟨finite_paths_of_isAcyclic, isAcyclic_of_finite_paths⟩
 
 end
 

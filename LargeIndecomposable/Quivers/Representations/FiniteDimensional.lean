@@ -5,8 +5,56 @@ Authors: The Tau Ceti contributors
 -/
 module
 
-public import LargeIndecomposable.Foundations.ExactCategories.ExtensionClosed
-public import LargeIndecomposable.Quivers.Representations.AsModule
+public import Mathlib.Algebra.Homology.ShortComplex.Basic
+public import Mathlib.CategoryTheory.Limits.Shapes.BinaryBiproducts
+public import Mathlib.Algebra.Homology.ShortComplex.ShortExact
+public import Mathlib.CategoryTheory.Limits.Shapes.Opposites.Kernels
+public import Mathlib.CategoryTheory.MorphismProperty.Limits
+public import Mathlib.CategoryTheory.ObjectProperty.ClosedUnderIsomorphisms
+public import Mathlib.CategoryTheory.Abelian.Exact
+public import Mathlib.CategoryTheory.Abelian.Monomorphisms
+public import Mathlib.CategoryTheory.ObjectProperty.Opposite
+public import Mathlib.Algebra.Homology.CommSq
+public import Mathlib.CategoryTheory.Limits.Shapes.Kernels
+public import Mathlib.CategoryTheory.Limits.Shapes.Pullback.IsPullback.Basic
+public import Mathlib.CategoryTheory.Preadditive.AdditiveFunctor
+public import Mathlib.CategoryTheory.Preadditive.Biproducts
+public import Mathlib.Algebra.Homology.ShortComplex.ExactFunctor
+public import Mathlib.CategoryTheory.Abelian.ShortExact
+public import Mathlib.CategoryTheory.Equivalence
+public import Mathlib.CategoryTheory.ObjectProperty.ContainsZero
+public import Mathlib.CategoryTheory.ObjectProperty.FiniteProducts
+public import Mathlib.CategoryTheory.ObjectProperty.Small
+public import Mathlib.CategoryTheory.ObjectProperty.Extensions
+public import Mathlib.Combinatorics.Quiver.Cast
+public import Mathlib.Combinatorics.Quiver.Path.Vertices
+public import Mathlib.Basic.Finite.Prod
+public import Mathlib.Basic.Finite.Sigma
+public import Mathlib.SetTheory.Cardinal.Finite
+public import Mathlib.Combinatorics.Quiver.Symmetric
+public import Mathlib.Data.Fintype.EquivFin
+public import Mathlib.Algebra.Algebra.NonUnitalHom
+public import Mathlib.LinearAlgebra.Dimension.Finite
+public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
+public import Mathlib.LinearAlgebra.FreeModule.Finite.Basic
+public import Mathlib.RingTheory.Adjoin.Basic
+public import Mathlib.RingTheory.Idempotents
+public import Mathlib.Algebra.DirectSum.Module
+public import Mathlib.LinearAlgebra.Projection
+public import Mathlib.Algebra.Module.Submodule.Pointwise
+public import Mathlib.Algebra.Ring.Subring.Basic
+public import Mathlib.Algebra.Ring.Action.Pointwise.Set
+public import Mathlib.Algebra.Star.BigOperators
+public import Mathlib.Algebra.Star.StarProjection
+public import Mathlib.Algebra.BigOperators.Finprod
+public import Mathlib.LinearAlgebra.Basis.VectorSpace
+public import Mathlib.LinearAlgebra.Dimension.Constructions
+public import Mathlib.RingTheory.Noetherian.Basic
+public import LargeIndecomposable.Quivers.Representations.DimensionVector
+public import Mathlib.Algebra.Category.ModuleCat.Algebra
+public import Mathlib.CategoryTheory.Linear.FunctorCategory
+public import Mathlib.CategoryTheory.Linear.LinearFunctor
+public import Mathlib.Algebra.Module.Shrink
 public import Mathlib.Algebra.Category.FGModuleCat.EssentiallySmall
 public import Mathlib.Algebra.Category.ModuleCat.Abelian
 public import Mathlib.CategoryTheory.Abelian.FunctorCategory
@@ -116,23 +164,6 @@ theorem IsFinDim.of_epi {M N : QuiverRep.{u, v, w, t} k Q} (hM : IsFinDim k Q M)
   exact Module.Finite.of_surjective (f.app x).hom
     ((ModuleCat.epi_iff_surjective (f.app x)).mp inferInstance)
 
-/-- A finite biproduct of pointwise finite-dimensional representations is pointwise
-finite-dimensional. No finiteness of the quiver is required. -/
-theorem isFinDim_biproduct {ι : Type*} [Finite ι]
-    (M : ι → QuiverRep.{u, v, w, t} k Q) (hM : ∀ i, IsFinDim k Q (M i)) :
-    IsFinDim k Q (Limits.biproduct M) := by
-  intro v
-  -- Reindex to `Fin n` because `ModuleCat.biproductIsoPi` requires an index type in `Type`.
-  obtain ⟨n, ⟨r⟩⟩ := Finite.exists_equiv_fin ι
-  let M' (i : Fin n) := M (r.symm i)
-  have (i : Fin n) : FiniteDimensional k ((M' i).obj v) := hM (r.symm i) v
-  let i : Limits.biproduct M ≅ Limits.biproduct M' :=
-    Limits.biproduct.whiskerEquiv r (fun j ↦ eqToIso (by simp [M']))
-  let E := (evaluation (Paths Q) (ModuleCat k)).obj v
-  let e := E.mapIso i ≪≫ E.mapBiproduct M' ≪≫
-    ModuleCat.biproductIsoPi (fun i ↦ (M' i).obj v)
-  exact Module.Finite.equiv e.toLinearEquiv.symm
-
 section ExactStructure
 
 variable (k : Type u) (Q : Type v) [Field k] [Quiver.{w} Q]
@@ -159,136 +190,8 @@ instance : ObjectProperty.ContainsZero (IsFinDim.{u, v, w, t} k Q) where
       ModuleCat.subsingleton_of_isZero hi
     infer_instance
 
-/-- Pointwise finite-dimensional representations are closed under extensions. -/
-theorem isExtensionClosed_pointwiseFiniteDimensionalQuiverRepresentations :
-    (ExactStructure.abelian (QuiverRep.{u, v, w, t} k Q)).IsExtensionClosed
-      (IsFinDim k Q) := by
-  refine ⟨fun {S} hS h₁ h₃ => ?_⟩
-  rw [isFinDim_iff] at h₁ h₃ ⊢
-  intro i
-  let E := (evaluation (Paths Q) (ModuleCat k)).obj i
-  have hSi : (S.map E).ShortExact :=
-    ((ExactStructure.abelian_conflation _).mp hS).map_of_exact E
-  have : Module.Finite k (S.map E).X₁ := by
-    simpa only [ShortComplex.map_X₁, E, evaluation_obj_obj] using h₁ i
-  have : Module.Finite k (S.map E).X₃ := by
-    simpa only [ShortComplex.map_X₃, E, evaluation_obj_obj] using h₃ i
-  have hfin : Module.Finite k (S.map E).X₂ :=
-    Module.Finite.of_exact
-      ((ShortComplex.ShortExact.moduleCat_exact_iff_function_exact _).mp hSi.exact)
-      hSi.moduleCat_surjective_g
-  simpa only [ShortComplex.map_X₂, E, evaluation_obj_obj] using hfin
-
-/-- Binary products keep the finite-dimensional full subcategory additive, as required by its
-induced exact structure. -/
-instance : ObjectProperty.IsClosedUnderBinaryProducts (IsFinDim.{u, v, w, t} k Q) := by
-  have h := isExtensionClosed_pointwiseFiniteDimensionalQuiverRepresentations k Q
-  exact h.isClosedUnderBinaryProducts
-
-/-- Finite products stay in the pointwise finite-dimensional subcategory. Together with closure
-under subobjects and quotients, this makes the full subcategory abelian. -/
-instance : ObjectProperty.IsClosedUnderFiniteProducts (IsFinDim.{u, v, w, t} k Q) :=
-  ObjectProperty.IsClosedUnderFiniteProducts.mk'
-
-/-- The inclusion of pointwise finite-dimensional representations preserves finite limits. -/
-instance : PreservesFiniteLimits (ObjectProperty.ι (IsFinDim.{u, v, w, t} k Q)) := by
-  have := ObjectProperty.preservesKernels_ι (IsFinDim.{u, v, w, t} k Q)
-  exact Functor.preservesFiniteLimits_of_preservesKernels _
-
-/-- The inclusion of pointwise finite-dimensional representations preserves finite colimits. -/
-instance : PreservesFiniteColimits (ObjectProperty.ι (IsFinDim.{u, v, w, t} k Q)) := by
-  have := ObjectProperty.preservesCokernels_ι (IsFinDim.{u, v, w, t} k Q)
-  exact Functor.preservesFiniteColimits_of_preservesCokernels _
-
-/-- The exact structure on pointwise finite-dimensional quiver representations. -/
-noncomputable def pointwiseFiniteDimensionalQuiverRepresentationsExactStructure :
-    ExactStructure (ObjectProperty.FullSubcategory (IsFinDim.{u, v, w, t} k Q)) :=
-  (ExactStructure.abelian _).fullSubcategory _
-    (isExtensionClosed_pointwiseFiniteDimensionalQuiverRepresentations k Q)
-
-/-- Conflations of pointwise finite-dimensional quiver representations are exactly their short exact
-sequences in the ambient functor category. -/
-@[simp]
-theorem pointwiseFiniteDimensionalQuiverRepresentationsExactStructure_conflation_iff
-    (S : ShortComplex (ObjectProperty.FullSubcategory (IsFinDim.{u, v, w, t} k Q))) :
-    (pointwiseFiniteDimensionalQuiverRepresentationsExactStructure k Q).Conflation S ↔
-      (S.map (ObjectProperty.ι (IsFinDim k Q))).ShortExact :=
-  (ExactStructure.fullSubcategory_conflation_iff
-    (isExtensionClosed_pointwiseFiniteDimensionalQuiverRepresentations k Q) S).trans
-    (ExactStructure.abelian_conflation _)
-
 end ExactStructure
 
 variable (k Q) [Finite Q]
-
-/-- Over a finite quiver, the module carried by a representation with finite-dimensional vertex
-spaces is finite-dimensional, being the direct sum of those spaces. This is the quiver counterpart
-of Mathlib's instance `Module.Finite k ρ.asModule` for `Representation.asModule`. -/
-instance [DecidableEq Q] (M : QuiverRep.{u, v, w, t} k Q)
-    [∀ i, Module.Finite k (QuiverRep.vertexSpace k Q M i)] :
-    Module.Finite k (QuiverRep.asModule k Q M) :=
-  .equiv (QuiverRep.asModuleEquiv k Q M).symm
-
-/-- A pointwise finite-dimensional representation of a finite quiver gives a finite module over
-the path algebra under `QuiverRep.asModule`. -/
-theorem module_finite_asModule_of_isFinDim [DecidableEq Q]
-    (M : QuiverRep.{u, v, w, t} k Q) (hM : IsFinDim k Q M) :
-    Module.Finite (pathAlgebra k Q) (QuiverRep.asModule k Q M) := by
-  have (i : Q) : Module.Finite k (QuiverRep.vertexSpace k Q M i) := hM ((Paths.of Q).obj i)
-  exact Module.Finite.of_restrictScalars_finite k _ _
-
-/-- **A pointwise finite-dimensional representation of a finite quiver is carried to a
-finite-dimensional module** by `LargeIndecomposable.Foundations.quiverRepEquivalence`.  That module is the direct sum of
-the vertex spaces, so finite-dimensionality at every vertex is finite-dimensionality of the module.
-Finite-dimensionality over `k` is what makes the module Artinian and Noetherian over `kQ`, by
-`isArtinian_of_tower` and `isNoetherian_of_tower`, and so is the route by which a theorem about
-modules of finite length reaches a finite-dimensional representation. -/
-theorem module_finite_quiverRepEquivalenceFunctorObj_of_isFinDim
-    (M : QuiverRep.{u, v, w, t} k Q) (hM : IsFinDim k Q M) :
-    Module.Finite k ((quiverRepEquivalence.{u, v, w, t} k Q).functor.obj M) := by
-  classical
-  rw [isFinDim_iff] at hM
-  have (i : Q) : Module.Finite k (QuiverRep.vertexSpace k Q M i) := hM ((Paths.of Q).obj i)
-  let hshrink : Module.Finite k (QuiverRep.asModuleShrink k Q M : Type t) :=
-    Module.Finite.equiv ((QuiverRep.asModuleShrinkEquiv k Q M).restrictScalars k).symm
-  exact Module.Finite.equiv
-    ((quiverRepEquivalenceFunctorObjShrinkIso k Q M).toLinearEquiv.restrictScalars k).symm
-
-/-- The path-algebra module of a pointwise finite-dimensional representation is finitely
-generated over the path algebra, being finite-dimensional over the ground field. -/
-theorem module_finite_pathAlgebra_quiverRepEquivalenceFunctorObj_of_isFinDim
-    (M : QuiverRep.{u, v, w, t} k Q) (hM : IsFinDim k Q M) :
-    Module.Finite (pathAlgebra k Q) ((quiverRepEquivalence.{u, v, w, t} k Q).functor.obj M) :=
-  have := module_finite_quiverRepEquivalenceFunctorObj_of_isFinDim k Q M hM
-  Module.Finite.of_restrictScalars_finite k (pathAlgebra k Q) _
-
-/-- Pointwise finite-dimensional representations of a finite quiver form an essentially small
-category, via their finitely generated modules over the path algebra. -/
-instance : EssentiallySmall.{max (max u v) w}
-    (ObjectProperty.FullSubcategory (IsFinDim.{u, v, w, t} k Q)) := by
-  classical
-  apply essentiallySmall_of_fully_faithful
-    ((ModuleCat.isFG (pathAlgebra k Q)).lift
-      ((ObjectProperty.ι (IsFinDim k Q)) ⋙ (quiverRepEquivalence k Q).functor) (fun M => by
-        let hmodule : Module.Finite (pathAlgebra k Q) (QuiverRep.asModule k Q M.1) :=
-          module_finite_asModule_of_isFinDim k Q M.1 M.property
-        let hshrink : Module.Finite (pathAlgebra k Q)
-            (QuiverRep.asModuleShrink k Q M.1) :=
-          Module.Finite.equiv (QuiverRep.asModuleShrinkEquiv k Q M.1).symm
-        exact Module.Finite.equiv
-          ((quiverRepEquivalenceFunctorObjShrinkIso k Q M.1).toLinearEquiv.symm)))
-
-/-- A path algebra module finite-dimensional over the base field gives a representation with
-finite-dimensional vertex spaces. -/
-theorem isFinDim_quiverRepFunctor_obj (M : ModuleCat (pathAlgebra k Q))
-    (hM : FiniteDimensional k M) :
-    IsFinDim k Q ((quiverRepFunctor k Q).obj M) := by
-  have := hM
-  rw [isFinDim_iff]
-  intro v
-  -- The objects of `Paths Q` are the vertices of `Q`.
-  change Q at v
-  rw [quiverRepFunctor_obj, quiverRepOfModule_obj]
-  infer_instance
 
 end LargeIndecomposable.Foundations

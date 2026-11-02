@@ -2,9 +2,20 @@ module
 
 public import LargeIndecomposable.Modules.Duality.ContragredientFunctor
 public import LargeIndecomposable.Modules.Duality.Biduality
-public import LargeIndecomposable.Modules.Duality.ContravariantTransport
-public import LargeIndecomposable.Modules.Duality.DualityConsequences
-
+public import Mathlib.CategoryTheory.Adjunction.Limits
+public import Mathlib.CategoryTheory.Limits.Constructions.EpiMono
+public import Mathlib.CategoryTheory.Limits.Preserves.Shapes.Products
+public import Mathlib.CategoryTheory.Limits.Shapes.Opposites.Products
+public import Mathlib.CategoryTheory.Preadditive.Injective.Basic
+public import LargeIndecomposable.Modules.SubmoduleClosures.FacSub
+public import Mathlib.Logic.Equiv.Fintype
+public import Mathlib.RingTheory.Polynomial.Basic
+public import Mathlib.Order.Grade
+public import Mathlib.Data.Set.Card
+public import Mathlib.Data.Set.Finite.Powerset
+public import Mathlib.Order.Closure
+public import Mathlib.Order.Preorder.Finite
+public import LargeIndecomposable.Modules.SubmoduleClosures.AdditiveSubcategory
 set_option backward.isDefEq.respectTransparency.types false
 
 @[expose] public section
@@ -706,19 +717,6 @@ def dualLabelEquiv : ι ≃ κ where
   invFun := reverseMapLabel K R σ τ
   left_inv := reverseMapLabel_dualMapLabel K R σ τ
   right_inv := dualMapLabel_reverseMapLabel K R σ τ
-
-/-- The concrete duality aligned with the two chosen skeletons. -/
-noncomputable def alignedBiduality :
-    LargeIndecomposable.IndecomposableSkeleton.AlignedBiduality σ τ where
-  forward :=
-    { categoryEquiv := dualityEquivalence K R
-      labelEquiv := dualLabelEquiv K R σ τ
-      objIso := dualMapObjIso K R σ τ }
-  backward :=
-    { categoryEquiv := reverseDualityEquivalence K R
-      labelEquiv := (dualLabelEquiv K R σ τ).symm
-      objIso := reverseMapObjIso K R σ τ }
-  backward_label := rfl
 
 end SkeletonAlignment
 

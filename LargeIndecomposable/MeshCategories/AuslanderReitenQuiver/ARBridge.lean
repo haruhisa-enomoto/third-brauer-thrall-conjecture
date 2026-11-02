@@ -2,8 +2,13 @@ module
 
 public import LargeIndecomposable.RepresentationType.Basic.RightModules
 public import LargeIndecomposable.AuslanderReiten.RightModules.RightModuleIntrinsicArrowMultiplicity
-public import LargeIndecomposable.AuslanderReiten.AlmostSplit.AlmostSplitSummandIrreducible
-
+public import Mathlib.CategoryTheory.Preadditive.Biproducts
+public import Mathlib.RingTheory.LocalRing.Basic
+public import Mathlib.CategoryTheory.Abelian.Projective.Basic
+public import LargeIndecomposable.Foundations.CategoryTheory.CategoricalRadicalIdeal
+public import LargeIndecomposable.Foundations.CategoryTheory.MinimalMorphism
+public import LargeIndecomposable.Foundations.CategoryTheory.SplitMorphismComplement
+public import LargeIndecomposable.AuslanderReiten.Irreducible.IrreducibleAbelian
 /-!
 # Bridge to general Auslander--Reiten theory
 

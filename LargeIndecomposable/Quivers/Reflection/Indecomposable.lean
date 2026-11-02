@@ -5,12 +5,21 @@ Authors: The Tau Ceti contributors
 -/
 module
 
-public import LargeIndecomposable.Foundations.CategoryTheory.LinearEnd
+public import Mathlib.CategoryTheory.Linear.Basic
 public import Mathlib.CategoryTheory.Abelian.FunctorCategory
 public import Mathlib.LinearAlgebra.Projection
 public import LargeIndecomposable.Foundations.CategoryTheory.PreadditiveIndecomposable
 public import LargeIndecomposable.Quivers.Reflection.Representation
-public import LargeIndecomposable.Quivers.Representations.Simple
+public import LargeIndecomposable.Quivers.Paths.Acyclic
+public import LargeIndecomposable.Quivers.Representations.DimensionVector
+public import LargeIndecomposable.Quivers.Representations.Basic
+public import Mathlib.Algebra.Category.ModuleCat.EpiMono
+public import Mathlib.CategoryTheory.Limits.FunctorCategory.EpiMono
+public import Mathlib.CategoryTheory.Simple
+public import Mathlib.Algebra.Category.ModuleCat.Simple
+public import Mathlib.Algebra.Category.ModuleCat.Ulift
+public import Mathlib.CategoryTheory.Preadditive.Schur
+public import Mathlib.Order.Preorder.Finite
 import Mathlib.CategoryTheory.PathCategory.MorphismProperty
 
 /-! Ported from TauCeti (`TauCeti.RepresentationTheory.Quiver.Reflection.Indecomposable`, commit 580b6f9d5, Apache 2.0). -/
@@ -485,36 +494,7 @@ private theorem map_eq_zero_of_forall_subsingleton
   · have := h a ha
     exact Subsingleton.elim _ _
 
-/-- **An indecomposable representation concentrated at one vertex is the vertex simple there**,
-provided that vertex carries no closed path but the trivial one. -/
-theorem nonempty_iso_simpleRep_of_forall_subsingleton
-    (hloop : ∀ p : Quiver.Path i i, p = Quiver.Path.nil) (hM : Indecomposable M)
-    (h : ∀ a : Q, a ≠ i → Subsingleton (M.obj a)) : Nonempty (M ≅ simpleRep k Q i) := by
-  obtain ⟨y, hy, hspan⟩ := exists_ne_zero_span_eq_top_of_forall_subsingleton hloop hM h
-  have := isIso_simpleRepHom y (map_eq_zero_of_forall_subsingleton hloop h y) hy hspan fun a ha ↦
-    @ModuleCat.isZero_of_subsingleton k _ (M.obj a) (h a ha)
-  exact ⟨(asIso (simpleRepHom y (map_eq_zero_of_forall_subsingleton hloop h y))).symm⟩
-
 variable [Fintype Q] [∀ a b : Q, Fintype (a ⟶ b)]
-
-/-- **The sum of the arrows into a sink is onto for every indecomposable representation other than
-the vertex simple there.** The vertex simple `Sᵢ` is genuinely excluded, by
-`LargeIndecomposable.Foundations.incomingSum_not_surjective`. -/
-theorem incomingSum_surjective_of_indecomposable (hi : IsSink i) (hM : Indecomposable M)
-    (hne : ¬ Nonempty (M ≅ simpleRep k Q i)) : Function.Surjective (incomingSum M i) :=
-  (incomingSum_surjective_or_forall_subsingleton hi hM).resolve_right fun h ↦
-    hne (nonempty_iso_simpleRep_of_forall_subsingleton hi.path_self_eq_nil hM h)
-
-/-- **The reflection at a sink acts on the dimension vector of an indecomposable representation by
-the simple reflection there**, unless that representation is the vertex simple at the sink, which
-the reflection annihilates instead. This is the identity `dim (C⁺ᵢ M) = sᵢ · dim M` with its
-hypothesis discharged. -/
-theorem dimVector_reflectRep_of_indecomposable [DecidableEq Q] (hi : IsSink i)
-    (hM : Indecomposable M) (hne : ¬ Nonempty (M ≅ simpleRep k Q i))
-    (hfin : ∀ e : Σ b : Q, (b ⟶ i), FiniteDimensional k (M.obj e.1)) :
-    (fun j : Q ↦ (dimVector (reflectRep M hi) j : ℤ))
-      = vertexPreReflection Q i (fun j ↦ (dimVector M j : ℤ)) :=
-  dimVector_reflectRep M hi hfin (incomingSum_surjective_of_indecomposable hi hM hne)
 
 end VertexSimple
 

@@ -1,6 +1,7 @@
 module
 
-public import LargeIndecomposable.BongartzTheorem.CriticalPieces.CriticalPair
+public import LargeIndecomposable.BongartzTheorem.Reduction.DichotomySteps
+public import LargeIndecomposable.RepresentationEmbeddings.CoveringConstruction.KroneckerGlue
 public import LargeIndecomposable.Coverings.Pieces.PointPair
 
 /-!
@@ -85,18 +86,5 @@ def PointBrickNode : Prop :=
           (∀ C' : Finset (Cover x₀), Convex (C' : Set (Cover x₀)) → C'.card < C.card →
             PieceRepFin k C') →
           ∃ (Sp : Finset (Cover x₀)) (_ : Convex (Sp : Set (Cover x₀))), PointBrick (k := k) Sp
-
-/-- **`CriticalPairNode` from `PointBrickNode`.** -/
-theorem criticalPairNode_of_point (h : PointBrickNode.{u}) : CriticalPairNode.{u} := by
-  intro k _ _ B _ _ _ ι _ _ S hB hd
-  letI := S.distribHomStructure hd
-  letI := S.locallySmall hd
-  letI := S.isRayCategory hd
-  letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-  letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-  intro e x₀ htf C hC hrep hmin
-  obtain ⟨Sp, hSp, hpb⟩ := h k B ι S hB hd e x₀ htf C hC hrep hmin
-  obtain ⟨K, hK⟩ := pair_of_pointBrick hpb
-  exact ⟨Sp, hSp, K, hK⟩
 
 end LargeIndecomposable.RayCat

@@ -1,6 +1,8 @@
 module
 
-public import LargeIndecomposable.Crowns.Basic.CrownOrder
+public import LargeIndecomposable.RayCategories.Basic.OneSided
+public import LargeIndecomposable.Crowns.Basic.CrownFunctor
+public import LargeIndecomposable.RayCategories.Basic.ResidueQuiver
 public import LargeIndecomposable.RayCategories.RoiterVanishing.KeyLemma
 
 /-!
