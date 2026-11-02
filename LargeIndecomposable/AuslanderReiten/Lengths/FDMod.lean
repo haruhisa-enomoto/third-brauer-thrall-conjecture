@@ -3,6 +3,8 @@ module
 public import LargeIndecomposable.AuslanderReiten.Lengths.HaradaSai
 public import Mathlib.Algebra.Category.ModuleCat.Basic
 public import Mathlib.CategoryTheory.InducedCategory
+public import Mathlib.CategoryTheory.Preadditive.Basic
+public import Mathlib.Algebra.Category.ModuleCat.Basic
 
 /-!
 # The category of finite-dimensional modules; the Harada–Sai lemma
@@ -74,6 +76,31 @@ def ofLin {X Y : FDMod k A} (f : X →ₗ[A] Y) : X ⟶ Y := InducedCategory.hom
 
 @[simp] lemma ofLin_lin {X Y : FDMod k A} (f : X ⟶ Y) : ofLin (lin f) = f := rfl
 
+instance : Preadditive (FDMod k A) :=
+  inferInstanceAs (Preadditive (InducedCategory (ModuleCat.{u} A) (toModuleCatObj (k := k) (A := A))))
+
+instance : Functor.Additive (toModuleCat (k := k) (A := A)) where
+
+@[simp] lemma lin_zero {X Y : FDMod k A} : lin (0 : X ⟶ Y) = 0 := rfl
+
+@[simp] lemma lin_add {X Y : FDMod k A} (f g : X ⟶ Y) : lin (f + g) = lin f + lin g := rfl
+
+@[simp] lemma lin_neg {X Y : FDMod k A} (f : X ⟶ Y) : lin (-f) = -lin f := rfl
+
+@[simp] lemma lin_sub {X Y : FDMod k A} (f g : X ⟶ Y) : lin (f - g) = lin f - lin g := rfl
+
+@[simp] lemma lin_sum {X Y : FDMod k A} {ι : Type*} (s : Finset ι) (f : ι → (X ⟶ Y)) :
+    lin (∑ i ∈ s, f i) = ∑ i ∈ s, lin (f i) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => rfl
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, lin_add, ih]
+
+@[simp] lemma ofLin_zero {X Y : FDMod k A} : ofLin (0 : X →ₗ[A] Y) = 0 := rfl
+
+@[simp] lemma ofLin_add {X Y : FDMod k A} (f g : X →ₗ[A] Y) :
+    ofLin (f + g) = ofLin f + ofLin g := rfl
+
 lemma lin_injective {X Y : FDMod k A} : Function.Injective (lin : (X ⟶ Y) → (X →ₗ[A] Y)) :=
   fun f g h => by rw [← ofLin_lin f, ← ofLin_lin g, h]
 
@@ -109,7 +136,8 @@ instance {X Y : FDMod k A} : LinearMapClass (X ⟶ Y) A X Y where
   map_add f := (lin f).map_add
   map_smulₛₗ f := (lin f).map_smul
 
-@[simp] lemma coe_lin {X Y : FDMod k A} (f : X ⟶ Y) : ⇑(lin f) = ⇑f := rfl
+/-- Applying a morphism is applying its linear map; `simp` normalizes to `lin`. -/
+@[simp] lemma coe_eq_lin {X Y : FDMod k A} (f : X ⟶ Y) : ⇑f = ⇑(lin f) := rfl
 
 end FDMod
 

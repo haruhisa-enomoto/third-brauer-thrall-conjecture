@@ -127,7 +127,7 @@ lemma RASFam.not_bijective {P : FDMod k A → Prop} {X : FDMod k A} (F : RASFam 
   intro hb
   let e := LinearEquiv.ofBijective (FDMod.lin (F.g i)) hb
   apply F.notSplit
-  refine ⟨Function.update (fun j ↦ (0 : X →ₗ[A] F.E j)) i e.symm.toLinearMap, ?_⟩
+  refine ⟨Function.update (fun j ↦ (0 : X ⟶ F.E j)) i (FDMod.ofLin e.symm.toLinearMap), ?_⟩
   rw [Finset.sum_eq_single i]
   · ext x
     simp only [Function.update_self, LinearMap.coe_comp, Function.comp_apply, LinearMap.id_coe,

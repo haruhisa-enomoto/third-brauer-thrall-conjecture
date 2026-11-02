@@ -28,17 +28,17 @@ variable {k A : Type u} [Field k] [Ring A] [Algebra k A]
 /-- `g` restricted to the range of an endomorphism `φ` with `g φ = g`. -/
 lemma isRightAS_range {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g) (φ : E ⟶ E)
     (hφ : φ ≫ g = g) :
-    IsRightAS (show FDMod.ofSub (LinearMap.range (FDMod.lin φ)) ⟶ Z from
-      FDMod.lin g ∘ₗ (LinearMap.range (FDMod.lin φ)).subtype) := by
-  refine ⟨fun ⟨s, hs⟩ ↦ hg.1 ⟨s ≫ (show FDMod.ofSub (LinearMap.range (FDMod.lin φ)) ⟶ E from
-    (LinearMap.range (FDMod.lin φ)).subtype), hs⟩, fun W u hu ↦ ?_⟩
+    IsRightAS (FDMod.ofLin (FDMod.lin g ∘ₗ (LinearMap.range (FDMod.lin φ)).subtype) :
+      FDMod.ofSub (LinearMap.range (FDMod.lin φ)) ⟶ Z) := by
+  refine ⟨fun ⟨s, hs⟩ ↦ hg.1 ⟨s ≫ (FDMod.ofLin (LinearMap.range (FDMod.lin φ)).subtype :
+    FDMod.ofSub (LinearMap.range (FDMod.lin φ)) ⟶ E), hs⟩, fun W u hu ↦ ?_⟩
   obtain ⟨v, hv⟩ := hg.2 W u hu
-  refine ⟨show W →ₗ[A] LinearMap.range (FDMod.lin φ) from
-    (FDMod.lin φ ∘ₗ FDMod.lin v).codRestrict _ fun w ↦ LinearMap.mem_range_self _ _, ?_⟩
+  refine ⟨FDMod.ofLin ((FDMod.lin φ ∘ₗ FDMod.lin v).codRestrict _
+    fun w ↦ LinearMap.mem_range_self _ _ : W →ₗ[A] LinearMap.range (FDMod.lin φ)), ?_⟩
   rw [← hv]
-  refine LinearMap.ext fun w ↦ ?_
+  refine FDMod.hom_ext (LinearMap.ext fun w ↦ ?_)
   change FDMod.lin g (FDMod.lin φ (FDMod.lin v w)) = FDMod.lin g (FDMod.lin v w)
-  exact LinearMap.congr_fun hφ (FDMod.lin v w)
+  exact LinearMap.congr_fun (congrArg FDMod.lin hφ) (FDMod.lin v w)
 
 /-- **Minimal right almost split maps exist.** -/
 theorem exists_minimal_rightAS [FiniteDimensional k A] (Z : FDMod k A)
