@@ -49,14 +49,17 @@ theorem FDMod.exists_rightAS [FiniteDimensional k A] (Z : FDMod k A)
     [IsLocalRing (Module.End A Z)] : ∃ (E : FDMod k A) (g : E ⟶ Z), IsRightAS g := by
   by_cases hZ : IsFreeSummand A Z
   · obtain ⟨U, hU1, hU2⟩ := exists_rightAlmostSplit_of_freeSummand.{u, u, u, u} (k := k) hZ
-    refine ⟨FDMod.ofSub U, U.subtype, fun ⟨s, hs⟩ ↦ hU1 ⟨s, hs⟩, fun W v hv ↦ ?_⟩
-    obtain ⟨t, ht⟩ := hU2 W v fun ⟨s, hs⟩ ↦ hv ⟨s, hs⟩
-    exact ⟨t, ht⟩
+    refine ⟨FDMod.ofSub U, FDMod.ofLin U.subtype,
+      fun ⟨s, hs⟩ ↦ hU1 ⟨FDMod.lin s, (FDMod.comp_eq_id_iff _ _).1 hs⟩, fun W v hv ↦ ?_⟩
+    obtain ⟨t, ht⟩ := hU2 W (FDMod.lin v) fun ⟨s, hs⟩ ↦
+      hv ⟨FDMod.ofLin s, (FDMod.comp_eq_id_iff _ _).2 hs⟩
+    exact ⟨FDMod.ofLin t, (FDMod.comp_eq_iff _ _ _).2 ht⟩
   · obtain ⟨P⟩ := FreePres.exists k A Z
     obtain ⟨E, hE1, hE2⟩ := exists_rightAlmostSplit.{u, u, u, u} (k := k) hZ P
-    refine ⟨FDMod.ofSubProd Z (Fin P.n₁ → DA k A) E, LinearMap.fst A Z _ ∘ₗ E.subtype,
-      fun ⟨s, hs⟩ ↦ hE1 ⟨s, hs⟩, fun W v hv ↦ ?_⟩
-    obtain ⟨t, ht⟩ := hE2 W v fun ⟨s, hs⟩ ↦ hv ⟨s, hs⟩
-    exact ⟨t, ht⟩
+    refine ⟨FDMod.ofSubProd Z (Fin P.n₁ → DA k A) E, FDMod.ofLin (LinearMap.fst A Z _ ∘ₗ E.subtype),
+      fun ⟨s, hs⟩ ↦ hE1 ⟨FDMod.lin s, (FDMod.comp_eq_id_iff _ _).1 hs⟩, fun W v hv ↦ ?_⟩
+    obtain ⟨t, ht⟩ := hE2 W (FDMod.lin v) fun ⟨s, hs⟩ ↦
+      hv ⟨FDMod.ofLin s, (FDMod.comp_eq_id_iff _ _).2 hs⟩
+    exact ⟨FDMod.ofLin t, (FDMod.comp_eq_iff _ _ _).2 ht⟩
 
 end LargeIndecomposable.AR

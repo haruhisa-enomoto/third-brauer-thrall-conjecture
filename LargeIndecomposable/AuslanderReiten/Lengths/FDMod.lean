@@ -93,6 +93,14 @@ lemma id_def (X : FDMod k A) : 𝟙 X = ofLin (LinearMap.id : X →ₗ[A] X) := 
 @[simp] lemma ofLin_comp {X Y Z : FDMod k A} (f : X →ₗ[A] Y) (g : Y →ₗ[A] Z) :
     ofLin f ≫ ofLin g = ofLin (g ∘ₗ f) := rfl
 
+lemma comp_eq_iff {X Y Z : FDMod k A} (f : X ⟶ Y) (g : Y ⟶ Z) (h : X ⟶ Z) :
+    f ≫ g = h ↔ lin g ∘ₗ lin f = lin h :=
+  ⟨fun e => by rw [← lin_comp, e], fun e => hom_ext (by rw [lin_comp, e])⟩
+
+lemma comp_eq_id_iff {X Y : FDMod k A} (f : X ⟶ Y) (g : Y ⟶ X) :
+    f ≫ g = 𝟙 X ↔ lin g ∘ₗ lin f = LinearMap.id := by
+  rw [comp_eq_iff, lin_id]
+
 instance {X Y : FDMod k A} : FunLike (X ⟶ Y) X Y where
   coe f := lin f
   coe_injective f g h := lin_injective (LinearMap.coe_injective h)

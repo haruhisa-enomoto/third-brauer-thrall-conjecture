@@ -161,7 +161,7 @@ lemma tot_comp_pieceAct {X Y : Rep k (pieceQuiver S)} (hX : RespectsCover X)
 def toFDModHom {X Y : Rep k (pieceQuiver S)} (hX : RespectsCover X) (hY : RespectsCover Y)
     [∀ i, FiniteDimensional k (X.obj i)] [∀ i, FiniteDimensional k (Y.obj i)] (φ : X ⟶ Y) :
     toFDMod X hX ⟶ toFDMod Y hY :=
-  show PieceMod X hX →ₗ[PieceAlg k S] PieceMod Y hY from
+  AR.FDMod.ofLin
   { toFun := φ.tot
     map_add' := map_add φ.tot
     map_smul' := fun a x ↦ LinearMap.congr_fun (tot_comp_pieceAct hX hY φ a) x }
@@ -230,23 +230,23 @@ variable {X Y : Rep k (pieceQuiver S)} (hX : RespectsCover X) (hY : RespectsCove
 
 /-- The underlying `k`-linear map of total spaces. -/
 def totOf (f : toFDMod X hX ⟶ toFDMod Y hY) : X.Tot →ₗ[k] Y.Tot :=
-  (show PieceMod X hX →ₗ[PieceAlg k S] PieceMod Y hY from f).restrictScalars k
+  (AR.FDMod.lin f : PieceMod X hX →ₗ[PieceAlg k S] PieceMod Y hY).restrictScalars k
 
 lemma totOf_idm (f : toFDMod X hX ⟶ toFDMod Y hY) (q : (pieceQuiver S).V) :
     totOf hX hY f ∘ₗ X.idm q = Y.idm q ∘ₗ totOf hX hY f := by
   refine LinearMap.ext fun x ↦ ?_
-  have h := (show PieceMod X hX →ₗ[PieceAlg k S] PieceMod Y hY from f).map_smul
-    (RingQuot.mkAlgHom k _ (FinQuiver.vertex k _ q)) (show PieceMod X hX from x)
-  rw [PieceMod.smul_def, PieceMod.smul_def, pieceAct_mk, pieceAct_mk, Rep.pdAct_vertex,
+  have h := (AR.FDMod.lin f : PieceMod X hX →ₗ[PieceAlg k S] PieceMod Y hY).map_smul
+    (RingQuot.mkAlgHom k _ (FinQuiver.vertex k _ q)) (x : PieceMod X hX)
+  erw [PieceMod.smul_def, PieceMod.smul_def, pieceAct_mk, pieceAct_mk, Rep.pdAct_vertex,
     Rep.pdAct_vertex, Rep.pdVert_id, Rep.pdVert_id] at h
   exact h
 
 lemma totOf_arrOp (f : toFDMod X hX ⟶ toFDMod Y hY) (c : (pieceQuiver S).A) :
     totOf hX hY f ∘ₗ X.arrOp c = Y.arrOp c ∘ₗ totOf hX hY f := by
   refine LinearMap.ext fun x ↦ ?_
-  have h := (show PieceMod X hX →ₗ[PieceAlg k S] PieceMod Y hY from f).map_smul
-    (RingQuot.mkAlgHom k _ (FinQuiver.arrow k _ c)) (show PieceMod X hX from x)
-  rw [PieceMod.smul_def, PieceMod.smul_def, pieceAct_mk, pieceAct_mk, Rep.pdAct_arrow,
+  have h := (AR.FDMod.lin f : PieceMod X hX →ₗ[PieceAlg k S] PieceMod Y hY).map_smul
+    (RingQuot.mkAlgHom k _ (FinQuiver.arrow k _ c)) (x : PieceMod X hX)
+  erw [PieceMod.smul_def, PieceMod.smul_def, pieceAct_mk, pieceAct_mk, Rep.pdAct_arrow,
     Rep.pdAct_arrow, Rep.pdArr_id, Rep.pdArr_id] at h
   exact h
 
