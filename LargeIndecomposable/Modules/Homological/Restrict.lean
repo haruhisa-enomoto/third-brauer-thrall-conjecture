@@ -238,9 +238,9 @@ include hφ in
 `A'`.** -/
 theorem isRightAS_unres {E Z : FDMod k A'} {g : E ⟶ Z} (hg : IsRightAS (resHom φ g)) :
     IsRightAS g := by
-  refine ⟨fun hs ↦ hg.1 ((splitEpi_res_iff hφ g).2 hs), fun W v hv ↦ ?_⟩
-  obtain ⟨t, ht⟩ := hg.2 (resFD φ W) (resHom φ v) fun hs ↦ hv ((splitEpi_res_iff hφ v).1 hs)
-  exact ⟨unresHom hφ t, LinearMap.ext fun w ↦ LinearMap.congr_fun ht (ofX w)⟩
+  refine ⟨fun hs ↦ hg.1 ((FDMod.exists_comp_eq_id_iff _).2 (((splitEpi_res_iff hφ g).2 ((FDMod.exists_comp_eq_id_iff _).1 (hs))))), fun W v hv ↦ ?_⟩
+  obtain ⟨t, ht⟩ := hg.2 (resFD φ W) (resHom φ v) fun hs ↦ hv ((FDMod.exists_comp_eq_id_iff _).2 (((splitEpi_res_iff hφ v).1 ((FDMod.exists_comp_eq_id_iff _).1 (hs)))))
+  exact ⟨unresHom hφ t, (FDMod.hom_ext (LinearMap.ext fun w ↦ LinearMap.congr_fun (congrArg FDMod.lin ht) (ofX w)))⟩
 
 include hφ in
 /-- **A right almost split map over `A'` is right almost split among the `A`-modules killed by
@@ -255,9 +255,9 @@ theorem rightAS_res_factor {E Z : FDMod k A'} {g : E ⟶ Z} (hg : IsRightAS g) (
   have hv' : ¬∃ s : Z ⟶ descend hφ W hW, FDMod.lin v' ∘ₗ FDMod.lin s = LinearMap.id := by
     rintro ⟨s, hs⟩
     exact hv ⟨resHom φ s ≫ d, LinearMap.ext fun z ↦ LinearMap.congr_fun hs (toX z)⟩
-  obtain ⟨t', ht'⟩ := hg.2 _ v' hv'
-  refine ⟨d' ≫ resHom φ t', LinearMap.ext fun w ↦ ?_⟩
-  have := LinearMap.congr_fun ht' (show descend hφ W hW from w)
+  obtain ⟨t', ht'⟩ := hg.2 _ v' (mt (FDMod.exists_comp_eq_id_iff _).1 hv')
+  refine ⟨d' ≫ resHom φ t', (FDMod.hom_ext (LinearMap.ext fun w ↦ ?_))⟩
+  have := LinearMap.congr_fun (congrArg FDMod.lin (ht')) (show descend hφ W hW from w)
   exact this
 
 end RAS
