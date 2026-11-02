@@ -55,6 +55,9 @@ def rankOne {M N : Type u} [AddCommGroup M] [Module k M] [AddCommGroup N] [Modul
     (φ : M →ₗ[k] k) (v : N) : M →ₗ[k] N :=
   (LinearMap.toSpanSingleton k N v).comp φ
 
+lemma rankOne_apply {M N : Type u} [AddCommGroup M] [Module k M] [AddCommGroup N] [Module k N]
+    (φ : M →ₗ[k] k) (v : N) (x : M) : rankOne φ v x = φ x • v := rfl
+
 /-- If `c • x = φ(x) v` for all `x` with `c ≠ 0`, the space has dimension at most one. -/
 lemma rank_le_one_of_eq_rankOne {M : Type u} [AddCommGroup M] [Module k M] {c : k} (hc : c ≠ 0)
     (φ : M →ₗ[k] k) (v : M) (h : ∀ x, φ x • v = c • x) : Module.rank k M ≤ 1 := by
