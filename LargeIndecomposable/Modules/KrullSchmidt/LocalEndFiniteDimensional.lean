@@ -182,10 +182,4 @@ theorem moduleCat_end_isLocalRing_of_finite [Module.Finite k A]
   · exact Or.inl hf
   · exact Or.inr hf.isUnit_one_sub
 
-namespace IndecomposableModuleSkeleton
-
-variable [Module.Finite k A] (S : IndecomposableModuleSkeleton k A)
-
-end IndecomposableModuleSkeleton
-
 end LargeIndecomposable
