@@ -184,7 +184,7 @@ theorem isEndpoint_map_scale {t : k} (ht : t ≠ 0) {x y : Fin F.m} {N : Submodu
 include he0 in
 /-- The scaling maps preserve every endpoint subbimodule (the chain has one
 member of each dimension). -/
-theorem scale_mem (hA : IsRepresentationFiniteRight k B) {t : k} (ht : t ≠ 0) {x y : Fin F.m}
+theorem scale_mem (hA : IsRepresentationFinite k Bᵐᵒᵖ) {t : k} (ht : t ≠ 0) {x y : Fin F.m}
     {N : Submodule k B} (hN : F.IsEndpointSubbimodule x y N) {n : B} (hn : n ∈ N) :
     G.scale t n ∈ N := by
   have hM := F.isEndpoint_map_scale G he0 ht hN
@@ -201,7 +201,7 @@ theorem scale_mem (hA : IsRepresentationFiniteRight k B) {t : k} (ht : t ≠ 0) 
 
 include he0 in
 /-- **Endpoint subbimodules are homogeneous** (`k` infinite). -/
-theorem proj_mem [Infinite k] (hA : IsRepresentationFiniteRight k B) {x y : Fin F.m}
+theorem proj_mem [Infinite k] (hA : IsRepresentationFinite k Bᵐᵒᵖ) {x y : Fin F.m}
     {N : Submodule k B} (hN : F.IsEndpointSubbimodule x y N) {n : B} (hn : n ∈ N) (d : ℕ) :
     G.proj d n ∈ N := by
   rw [← Submodule.Quotient.mk_eq_zero, ← Module.forall_dual_apply_eq_zero_iff k]
@@ -464,7 +464,7 @@ theorem endpointRadical_ge {x y : Fin F.m} {g : B} {d : ℕ} (hgd : G.IsHom d g)
 
 /-! ### Layers -/
 
-variable [Infinite k] (hA : IsRepresentationFiniteRight k B)
+variable [Infinite k] (hA : IsRepresentationFinite k Bᵐᵒᵖ)
 
 include he0 hA in
 theorem exists_hom_mem {x y : Fin F.m} {N : Submodule k B} (hN : F.IsEndpointSubbimodule x y N)

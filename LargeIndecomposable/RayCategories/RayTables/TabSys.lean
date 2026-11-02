@@ -211,7 +211,7 @@ theorem repr_eq_zero_of_mem_span {T : Set R} {a : P.Lin k}
   by_contra h
   exact hr (ha (Finsupp.mem_support_iff.2 h))
 
-variable (hfin : IsRepresentationFiniteRight k (P.Lin k))
+variable (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ)
 
 include hfin in
 /-- **At most one positive local ray is not a product** (`dim rad/rad² ≤ 1`, Lemma 3.1(3)). -/

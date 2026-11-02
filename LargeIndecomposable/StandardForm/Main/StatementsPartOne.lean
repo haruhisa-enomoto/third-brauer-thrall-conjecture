@@ -71,8 +71,8 @@ theorem splitRepresentationTransfer {B D : Type v} [Ring B] [Algebra k B]
     (C : Subalgebra k B) (q : C →ₐ[k] D) (hq : Function.Surjective q)
     (π : B →ₗ[k] D) (hπ : ∀ c : C, π c = q c)
     (hbimod : ∀ (c c' : C) (b : B), π (c * b * c') = q c * π b * q c')
-    (hB : IsRepresentationFiniteRight k B) :
-    IsRepresentationFiniteRight k D :=
+    (hB : IsRepresentationFinite k Bᵐᵒᵖ) :
+    IsRepresentationFinite k Dᵐᵒᵖ :=
   splitRepresentationTransfer_of π hbimod hq hπ hB
 
 end AnyField
@@ -84,22 +84,22 @@ variable {k : Type u} [Field k] [IsAlgClosed k] {A : Type v} [Ring A] [Algebra k
 
 /-- Lemma 3.1(1) (`lem:endpoint-chains`), first part. A representation-finite
 algebra has finitely many two-sided ideals. -/
-theorem finite_twoSidedIdeals (hA : IsRepresentationFiniteRight k A) :
+theorem finite_twoSidedIdeals (hA : IsRepresentationFinite k Aᵐᵒᵖ) :
     (Set.univ : Set (TwoSidedIdeal A)).Finite :=
   finite_twoSidedIdeals_of hA
 
 /-- Lemma 3.1(1) (`lem:endpoint-chains`), second part. Every idempotent corner
 `eAe` of a representation-finite algebra is representation-finite. -/
-theorem corner_isRepresentationFinite (hA : IsRepresentationFiniteRight k A) {e : A}
+theorem corner_isRepresentationFinite (hA : IsRepresentationFinite k Aᵐᵒᵖ) {e : A}
     (he : IsIdempotentElem e) :
-    IsRepresentationFiniteRight k he.Corner :=
+    IsRepresentationFinite k he.Cornerᵐᵒᵖ :=
   corner_isRepresentationFinite_of he hA
 
 /-- Lemma 3.1(2) (`lem:endpoint-chains`). For a basic representation-finite
 algebra, each local corner `R_x = e_x A e_x` is isomorphic to `k[t]/(t^N)`
 with `N ≥ 1`. -/
 theorem localCorner_truncatedPolynomial (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (F : PrimitiveIdempotents A) (x : Fin F.m) :
+    (hA : IsRepresentationFinite k Aᵐᵒᵖ) (F : PrimitiveIdempotents A) (x : Fin F.m) :
     ∃ N : ℕ, 1 ≤ N ∧ Nonempty ((F.complete.idem x).Corner ≃ₐ[k]
       Polynomial k ⧸ Ideal.span {(Polynomial.X : Polynomial k) ^ N}) :=
   F.localCorner_iso k hA x
@@ -108,7 +108,7 @@ theorem localCorner_truncatedPolynomial (hbasic : IsBasicAlgebra A)
 `A(x, y)` form a chain with one-dimensional successive quotients, and every
 nonzero `f` generates its subbimodule from one side. -/
 theorem endpointSubbimodules_chain (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (F : PrimitiveIdempotents A) (x y : Fin F.m) :
+    (hA : IsRepresentationFinite k Aᵐᵒᵖ) (F : PrimitiveIdempotents A) (x y : Fin F.m) :
     IsChain (· ≤ ·) {N : Submodule k A | F.IsEndpointSubbimodule x y N} ∧
       (∀ N N' : Submodule k A, F.IsEndpointSubbimodule x y N →
         F.IsEndpointSubbimodule x y N' → N < N' →
@@ -128,7 +128,7 @@ theorem endpointSubbimodules_chain (hbasic : IsBasicAlgebra A)
 using `e_x` for `[e_x]`, gives a basis of `A` whose intersection with every
 two-sided ideal is a basis of that ideal. -/
 theorem rayTransversal_basis (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (F : PrimitiveIdempotents A)
+    (hA : IsRepresentationFinite k Aᵐᵒᵖ) (F : PrimitiveIdempotents A)
     (b : F.NonzeroRay k → A) (hb : F.IsRayTransversal b) :
     LinearIndependent k b ∧ Submodule.span k (Set.range b) = ⊤ ∧
       ∀ I : TwoSidedIdeal A, ∀ a : A,
@@ -139,7 +139,7 @@ theorem rayTransversal_basis (hbasic : IsBasicAlgebra A)
 on the representatives, and a nonzero ray product has a nonzero product for
 every choice of representatives. -/
 theorem rayProduct_independent (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (F : PrimitiveIdempotents A) (x y z : Fin F.m)
+    (hA : IsRepresentationFinite k Aᵐᵒᵖ) (F : PrimitiveIdempotents A) (x y z : Fin F.m)
     (f f' h h' : A) (hf : f ∈ F.corner (k := k) x y) (hf0 : f ≠ 0)
     (hh : h ∈ F.corner (k := k) y z) (hh0 : h ≠ 0)
     (hf' : f' ∈ F.ray (k := k) x y f) (hh' : h' ∈ F.ray (k := k) y z h) :
@@ -154,7 +154,7 @@ poset is representation-finite, every additive weight is a difference of
 object values. -/
 theorem posetWeights {P : Type v} [PartialOrder P] [Fintype P] [DecidableEq P]
     [LocallyFiniteOrder P]
-    (hP : IsRepresentationFiniteRight k (IncidenceAlgebra k P))
+    (hP : IsRepresentationFinite k (IncidenceAlgebra k P)ᵐᵒᵖ)
     {G : Type w} [AddCommGroup G] (wt : P → P → G)
     (hwt : ∀ x y z : P, x ≤ y → y ≤ z → wt x z = wt x y + wt y z) :
     ∃ ζ : P → G, ∀ x y : P, x ≤ y → wt x y = ζ y - ζ x := by
@@ -259,7 +259,7 @@ representation-finite, and a standard basic `A` is isomorphic to `A₀`. (The
 converse, `A ≅ A₀ ⟹ A` standard, is used only in Part III, Theorem 11.8; here
 Theorem B obtains standardness directly from Proposition 5.4.) -/
 theorem gradedStandardForm (S : IndSkeleton k A) (hbasic : IsBasicAlgebra A) :
-    (∀ b : S.ArrowBases, IsRepresentationFiniteRight k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ) ∧
+    (∀ b : S.ArrowBases, IsRepresentationFinite k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ) ∧
       (S.IsStandard → ∃ b : S.ArrowBases,
         Nonempty (A ≃ₐ[k] (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ)) := by
   refine ⟨fun b ↦ ?_, fun hstd ↦ ?_⟩

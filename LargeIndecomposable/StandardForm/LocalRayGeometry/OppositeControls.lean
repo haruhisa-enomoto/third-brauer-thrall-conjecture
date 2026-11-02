@@ -403,7 +403,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 include f1 f2 g1 g2 q01 q02 hfg hfq hqg hq2 hdf hdg hdq R1 R2 R3 R4 in
 /-- **The four-leaf star is excluded.** -/
-theorem star_false (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) : False :=
+theorem star_false (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) : False :=
   S.P.table_false (starV b c a) (S.starG f g q0) (S.starρ b c a f g q0 fg fq qg q2)
     (S.star_src f1 g1 q01 hfg hfq hqg hq2) (S.star_tgt f2 g2 q02 hfg hfq hqg hq2)
     (S.star_wt hfg hfq hqg hq2)
@@ -420,7 +420,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 /-- **Strong star vanishing** (`eq:strong-star-vanishing`; Case 1 of Lemma 8.11): for `f`
 generated only at its target and `g` generated only at its source, with `q² ≠ 0` at the
 middle vertex, `fg = 0`. -/
-theorem strong_star (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f g : R}
+theorem strong_star (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f g : R}
     (hfR : S.CycR f) (hfL : ¬ S.CycL f) (hgL : S.CycL g) (hgR : ¬ S.CycR g)
     (hfg : S.P.tgt f = S.P.src g) (hq2 : S.q (S.P.tgt f) * S.q (S.P.tgt f) ≠ 0) :
     ⌜f⌝ * ⌜g⌝ = 0 := by

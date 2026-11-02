@@ -1,12 +1,13 @@
 module
 
 public import LargeIndecomposable.MultiplicativeBases.Normed.NormedBasis
+public import LargeIndecomposable.RepresentationType.Basic.RepresentationFinite
 
 /-!
 # Right modules, representation-finite algebras, and the radical of `ind(mod A)`
 
 * Right `A`-modules are modelled as `ModuleCat Aᵐᵒᵖ`.
-* `IsRepresentationFiniteRight k A`: finitely many isomorphism classes of
+* `IsRepresentationFinite k Aᵐᵒᵖ`: finitely many isomorphism classes of
   finite-dimensional indecomposable right modules.
 * `IndSkeleton k A`: one representative of each isomorphism class of
   finite-dimensional indecomposable right modules, indexed by `Fin n`; the
@@ -45,18 +46,6 @@ variable (k : Type u) [Field k] (A : Type v) [Ring A] [Algebra k A]
 /-- Right `A`-modules: left modules over `Aᵐᵒᵖ`. -/
 abbrev RightModuleCat := ModuleCat.{v} Aᵐᵒᵖ
 
-/-- A finite-dimensional indecomposable right `A`-module. -/
-def IsFiniteIndecomposableRight (M : RightModuleCat A) : Prop :=
-  Module.Finite k M ∧ Indecomposable M
-
-/-- `A` is representation-finite: there are finitely many isomorphism classes
-of finite-dimensional indecomposable right `A`-modules. -/
-def IsRepresentationFiniteRight : Prop :=
-  ∃ n : ℕ, ∃ X : Fin n → RightModuleCat A,
-    (∀ i, IsFiniteIndecomposableRight k A (X i)) ∧
-      ∀ M : RightModuleCat A, IsFiniteIndecomposableRight k A M →
-        ∃ i, Nonempty (M ≅ X i)
-
 /-- A complete irredundant list of finite-dimensional indecomposable right
 `A`-modules. -/
 structure IndSkeleton where
@@ -64,9 +53,9 @@ structure IndSkeleton where
   n : ℕ
   /-- The chosen representatives. -/
   obj : Fin n → RightModuleCat A
-  isFiniteIndecomposable : ∀ i, IsFiniteIndecomposableRight k A (obj i)
+  isFiniteIndecomposable : ∀ i, IsFiniteIndecomposable k Aᵐᵒᵖ (obj i)
   pairwise : ∀ i j, Nonempty (obj i ≅ obj j) → i = j
-  complete : ∀ M : RightModuleCat A, IsFiniteIndecomposableRight k A M →
+  complete : ∀ M : RightModuleCat A, IsFiniteIndecomposable k Aᵐᵒᵖ M →
     ∃ i, Nonempty (M ≅ obj i)
 
 variable {k A}

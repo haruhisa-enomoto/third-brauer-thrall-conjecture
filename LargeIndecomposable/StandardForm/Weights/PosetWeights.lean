@@ -341,7 +341,7 @@ theorem thinRep_indecomposable (hconn : IsConn D) (x₀ : D) : Indecomposable (t
 
 include hρ0 in
 theorem thinRep_isFiniteIndecomposable (hconn : IsConn D) (x₀ : D) :
-    IsFiniteIndecomposableRight k (IncidenceAlgebra k P) (thinRep hD hρ) :=
+    IsFiniteIndecomposable k (IncidenceAlgebra k P)ᵐᵒᵖ (thinRep hD hρ) :=
   ⟨thinRep_finite hD hρ, thinRep_indecomposable hD hρ hρ0 hconn x₀⟩
 
 /-- Isomorphic thin representations differ by object values. -/
@@ -407,7 +407,7 @@ theorem connIn_restrict {Q D : Set P} (hDQ : D ⊆ Q)
 variable [Infinite k]
 
 /-- **Distinct components of `U` lie in distinct components of `Q ∖ {s}`**, for an up-set `Q` and a minimal `s ∈ Q`. -/
-theorem sep (hrep : IsRepresentationFiniteRight k (IncidenceAlgebra k P)) (Q : Set P)
+theorem sep (hrep : IsRepresentationFinite k (IncidenceAlgebra k P)ᵐᵒᵖ) (Q : Set P)
     (hQ : IsUpperSet Q) (s : P) (hs : s ∈ Q) (hmin : ∀ x ∈ Q, ¬ x < s) (y₁ y₂ : P)
     (h₁ : s < y₁) (h₂ : s < y₂) (hc : ConnIn (Q \ {s}) y₁ y₂) : ConnIn {y | s < y} y₁ y₂ := by
   classical
@@ -610,7 +610,7 @@ open PosetWeights in
 /-- **Lemma 4.9** (`lem:poset-weights`), over an infinite field. -/
 theorem posetWeights_of {k : Type u} [Field k] [Infinite k] {P : Type v} [PartialOrder P]
     [Fintype P] [DecidableEq P] [LocallyFiniteOrder P] [DecidableLE P]
-    (hP : IsRepresentationFiniteRight k (IncidenceAlgebra k P))
+    (hP : IsRepresentationFinite k (IncidenceAlgebra k P)ᵐᵒᵖ)
     {G : Type*} [AddCommGroup G] (wt : P → P → G)
     (hwt : ∀ x y z : P, x ≤ y → y ≤ z → wt x z = wt x y + wt y z) :
     ∃ ζ : P → G, ∀ x y : P, x ≤ y → wt x y = ζ y - ζ x := by
@@ -627,8 +627,8 @@ namespace LargeIndecomposable
 incidence algebra: `μ(a,b) = Z_a / Z_b`. -/
 theorem ratio_of_mult {k : Type*} [Field k] [Infinite k] {P : Type*} [PartialOrder P]
     [Fintype P] [DecidableEq P] [LocallyFiniteOrder P] [DecidableLE P]
-    (hP : IsRepresentationFiniteRight k (IncidenceAlgebra k P) ∨
-      IsRepresentationFiniteRight k (IncidenceAlgebra k Pᵒᵈ))
+    (hP : IsRepresentationFinite k (IncidenceAlgebra k P)ᵐᵒᵖ ∨
+      IsRepresentationFinite k (IncidenceAlgebra k Pᵒᵈ)ᵐᵒᵖ)
     (μ : P → P → k) (hμ0 : ∀ a b, a ≤ b → μ a b ≠ 0)
     (hμmul : ∀ a b c, a ≤ b → b ≤ c → μ a c = μ a b * μ b c) :
     ∃ Z : P → k, (∀ a, Z a ≠ 0) ∧ ∀ a b, a ≤ b → μ a b = Z a / Z b := by

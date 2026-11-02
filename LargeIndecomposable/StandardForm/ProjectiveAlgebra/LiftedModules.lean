@@ -374,7 +374,7 @@ theorem exists_ne_zero (hX : Supp Dg T X) (h1 : 𝟙 (F X.1) ≠ 0) : ∃ y : VX
 include hfd in
 /-- **`V_X̃|_T` is finite-dimensional and indecomposable.** -/
 theorem VM_isFiniteIndecomposable (H : HeightData Dg) (hX : Supp Dg T X) (h1 : 𝟙 (F X.1) ≠ 0) :
-    IsFiniteIndecomposableRight k (covT D Dg T) (VM D Dg T X) := by
+    IsFiniteIndecomposable k (covT D Dg T)ᵐᵒᵖ (VM D Dg T X) := by
   obtain ⟨y₀, hy₀⟩ := exists_ne_zero hX h1
   have hsm : ∀ (c : k) (y : VX D Dg T X), ((c • 𝟙 (VM D Dg T X)) : VM D Dg T X ⟶ _).hom y = c • y :=
     fun c y ↦ algebraMap_smul_VX c y

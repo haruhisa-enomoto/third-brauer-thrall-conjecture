@@ -145,7 +145,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **Lemma 8.10** (`lem:unequal-endpoint-action`), length part: `q_x^{a+1} f = 0`, i.e.
 `dim A₀(x, y) ≤ a + 1`. -/
-theorem unequal_endpoint_action (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f : R}
+theorem unequal_endpoint_action (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f : R}
     (hf : S.CycL f) {a : ℕ} (ha : 2 ≤ a)
     (h : ⌜f⌝ * S.q (S.P.tgt f) = S.q (S.P.src f) ^ a * ⌜f⌝) (h0 : ⌜f⌝ * S.q (S.P.tgt f) ≠ 0) :
     S.q (S.P.src f) ^ (a + 1) * ⌜f⌝ = 0 := by
@@ -373,7 +373,7 @@ theorem unequal_endpoint_action (hfin : IsRepresentationFiniteRight k (S.P.Lin k
   · exact (hYend a (by omega)).1
 
 /-- **Lemma 8.10**, socle part: `f q_y` is annihilated by both endpoint radicals. -/
-theorem unequal_endpoint_socle (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f : R}
+theorem unequal_endpoint_socle (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f : R}
     (hf : S.CycL f) {a : ℕ} (ha : 2 ≤ a)
     (h : ⌜f⌝ * S.q (S.P.tgt f) = S.q (S.P.src f) ^ a * ⌜f⌝) (h0 : ⌜f⌝ * S.q (S.P.tgt f) ≠ 0) :
     S.q (S.P.src f) * (⌜f⌝ * S.q (S.P.tgt f)) = 0 ∧

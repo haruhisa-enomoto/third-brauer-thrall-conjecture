@@ -84,7 +84,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **Lemma 8.14**, first assertion (`lem:generating-paths`): a generating ray of a Hom of
 dimension at least two has no factorization `a q_y b` through a nonidentity local radical. -/
-theorem gen_no_rad (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f a b : R} (hf : S.IsGen f)
+theorem gen_no_rad (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f a b : R} (hf : S.IsGen f)
     (hd : S.Dim2 f) (h : ⌜a⌝ * S.q (S.P.tgt a) * ⌜b⌝ = ⌜f⌝) : False := by
   have hab : ⌜a⌝ * S.q (S.P.tgt a) ≠ 0 := fun h0 ↦ S.rr_ne f (by rw [← h, h0, zero_mul])
   obtain ⟨a', ha'⟩ := S.mul_left_ray hab

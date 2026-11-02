@@ -50,7 +50,7 @@ theorem prim_action_gen_op {f : R} (hf : S.IsGen f) (hprim : Prim (S.χ (S.P.tgt
 
 /-- **The core of Lemma C.2** (`lem:nondeep-two-object-return`, first paragraph): for an external
 return `el = q_b^a` with `q_b^{a+1} ≠ 0`, both Homs are generated only at `b`, and `le = 0`. -/
-theorem ret_core (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {b y : V} {e l : R} {a : ℕ}
+theorem ret_core (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {b y : V} {e l : R} {a : ℕ}
     (he : S.IsGen e) (hl : S.IsGen l) (e1 : S.P.src e = b) (e2 : S.P.tgt e = y)
     (l1 : S.P.src l = y) (l2 : S.P.tgt l = b) (hby : y ≠ b) (hel : ⌜e⌝ * ⌜l⌝ = S.q b ^ a)
     (ha : 1 ≤ a) (ha1 : S.q b ^ (a + 1) ≠ 0) (hS : ¬ S.InS b y) (hprim : Prim (S.χ b)) :
@@ -118,7 +118,7 @@ theorem wt_of_eq_qpow {t : R} {x : V} {n : ℕ} (h : ⌜t⌝ = S.q x ^ n) : S.P.
 
 /-- **Lemma C.2(1)** (`lem:nondeep-two-object-return`): an external return `el = q_b^a` with
 `q_b^{a+1} ≠ 0` has `a = 2`, `N_b = 4` and `le = 0`; both Homs are generated only at `b`. -/
-theorem nondeep_return (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {b y : V} {e l : R} {a : ℕ}
+theorem nondeep_return (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {b y : V} {e l : R} {a : ℕ}
     (he : S.IsGen e) (hl : S.IsGen l) (e1 : S.P.src e = b) (e2 : S.P.tgt e = y)
     (l1 : S.P.src l = y) (l2 : S.P.tgt l = b) (hby : y ≠ b) (hel : ⌜e⌝ * ⌜l⌝ = S.q b ^ a)
     (ha : 1 ≤ a) (ha1 : S.q b ^ (a + 1) ≠ 0) (hS : ¬ S.InS b y) (hprim : Prim (S.χ b)) :
@@ -459,7 +459,7 @@ theorem not_rf_deg {u w : R} (h : S.P.deg (S.P.wt w) < S.P.deg (S.P.wt u)) : ¬ 
 
 /-- **Proposition 8.25(1), length bound** (Steps 1–3 of Appendix C.2): if a left-sided
 generating ray `f : b → y` has `q̂_b² f ≠ 0`, then `q̂_b³ = 0`. -/
-theorem len_L (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem len_L (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {f : R} (hf : S.IsGen f) (hT : S.TL χ f)
     (hq2f : S.qh χ (S.P.src f) ^ 2 * ⌜f⌝ ≠ 0) : S.qh χ (S.P.src f) ^ 3 = 0 := by
   set b := S.P.src f with hb
@@ -601,7 +601,7 @@ theorem len_L (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.
     intro i j hij
     fin_cases i <;> fin_cases j <;> simp [Tab.tL6] at hij <;> assumption
 /-- **Proposition 8.25(1), length bound, right-sided form.** -/
-theorem len_R (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem len_R (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {f : R} (hf : S.IsGen f) (hT : S.TR χ f)
     (hq2f : ⌜f⌝ * S.qh χ (S.P.tgt f) ^ 2 ≠ 0) : S.qh χ (S.P.tgt f) ^ 3 = 0 := by
   have := S.op.len_L k (S.P.op_isRepresentationFinite k hfin) hχ hprim ((S.op_isGen_iff f).2 hf)
@@ -614,7 +614,7 @@ theorem len_R (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.
 
 /-- Endpoint layer preservation, generating inputs (Appendix C.2): for generating left-sided
 `f, h` out of `b`, the product `f v` is never `q̂_b h` with `q̂_b² h ≠ 0`. -/
-theorem layer_gen_L (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem layer_gen_L (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {f h v : R} (hf : S.IsGen f) (hh : S.IsGen h) (hTf : S.TL χ f)
     (hTh : S.TL χ h) (hsrc : S.P.src h = S.P.src f)
     (hv : ⌜f⌝ * ⌜v⌝ = S.qh χ (S.P.src f) * ⌜h⌝)
@@ -683,7 +683,7 @@ theorem tl_factor {r r0 : R} {i : ℕ} (hT : S.TL χ r)
 
 /-- **Proposition 8.25(1), endpoint layer preservation**: if `r = q̂_b^i r₀` with `r₀`
 generating and `rs` are left-sided, then `r₀ s` is generating and `rs = q̂_b^i (r₀ s)`. -/
-theorem layer_L (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem layer_L (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r s t r0 : R} {i : ℕ} (hTr : S.TL χ r) (hTt : S.TL χ t)
     (hrs : ⌜r⌝ * ⌜s⌝ = ⌜t⌝) (hr0 : S.IsGen r0) (hri : ⌜r⌝ = S.qh χ (S.P.src r) ^ i * ⌜r0⌝) :
     ∃ t0, S.IsGen t0 ∧ ⌜r0⌝ * ⌜s⌝ = ⌜t0⌝ ∧ ⌜t⌝ = S.qh χ (S.P.src r) ^ i * ⌜t0⌝ := by
@@ -747,7 +747,7 @@ def NondeepRet (b : V) (e l : R) : Prop :=
     ¬ S.InS b (S.P.tgt e) ∧ S.TL χ e ∧ S.TR χ l ∧ ⌜e⌝ * ⌜l⌝ = S.qh χ b ^ 2 ∧ S.qh χ b ^ 3 ≠ 0
 
 /-- A generating two-sided ray with a nonzero reverse product reaches the return corner. -/
-theorem inS_of_rev (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hprim : Prim χ) {f w : R}
+theorem inS_of_rev (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hprim : Prim χ) {f w : R}
     (hf : S.IsGen f) (hB : S.TB χ f) (hc : S.P.tgt f ≠ S.P.src f) (w1 : S.P.src w = S.P.tgt f)
     (w2 : S.P.tgt w = S.P.src f) (hw : ⌜f⌝ * ⌜w⌝ ≠ 0) : S.InS (S.P.src f) (S.P.tgt f) := by
   obtain ⟨hsh, h1, h2⟩ := hB
@@ -768,7 +768,7 @@ theorem inS_of_rev (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hprim : P
 /-- **Proposition 8.25(4)** (`prop:proper-ray-products`, Appendix C.2 "absence of external
 two-sided action"): at the base of a nondeep external return there is no generating two-sided
 ray to a vertex outside the return corner. -/
-theorem no_ext_two_sided (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem no_ext_two_sided (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {b : V} {e l f : R} (hN : S.NondeepRet χ b e l) (hf : S.IsGen f)
     (hB : S.TB χ f) (f1 : S.P.src f = b) (hcS : ¬ S.InS b (S.P.tgt f)) : False := by
   obtain ⟨he, hl, e1, e2, l2, hyS, hTe, hTl, hel, hq3⟩ := hN
@@ -877,7 +877,7 @@ theorem no_ext_two_sided (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ
 /-- **Proposition 8.25(2)** (with `N_x = 3`: `q̂_x² ≠ 0`, `q̂_x³ = 0`): a product of generating rays of types `B, L` with proper
 shiftable output `q̂_x^k f` has `k = 1` and `N_x = 3`, and its first factor has a primitive
 reverse. -/
-theorem BL_proper (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem BL_proper (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r s t f : R} {n : ℕ} (hr : S.IsGen r) (hs : S.IsGen s) (hBr : S.TB χ r)
     (hLs : S.TL χ s) (hrs : ⌜r⌝ * ⌜s⌝ = ⌜t⌝) (hf : S.IsGen f)
     (ht : ⌜t⌝ = S.qh χ (S.P.src r) ^ n * ⌜f⌝) (hn : 1 ≤ n) (hsh : S.Shift χ t) :
@@ -966,7 +966,7 @@ theorem BL_proper (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < 
         rw [← hw, ← mul_assoc, ha, hrs, ht, pow_one, hsf])
 
 /-- **Proposition 8.25(1), endpoint layer preservation, right-sided form.** -/
-theorem layer_R (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem layer_R (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r s t s0 : R} {i : ℕ} (hTs : S.TR χ s) (hTt : S.TR χ t)
     (hrs : ⌜r⌝ * ⌜s⌝ = ⌜t⌝) (hs0 : S.IsGen s0) (hsi : ⌜s⌝ = ⌜s0⌝ * S.qh χ (S.P.tgt s) ^ i) :
     ∃ t0, S.IsGen t0 ∧ ⌜r⌝ * ⌜s0⌝ = ⌜t0⌝ ∧ ⌜t⌝ = ⌜t0⌝ * S.qh χ (S.P.tgt s) ^ i := by
@@ -1006,7 +1006,7 @@ theorem op_nondeep {b : V} {e l : R} (hN : S.NondeepRet χ b e l) (hprim : Prim 
   · rw [S.op_qh, ← Tab.toOp_pow]; exact hq3
 
 /-- **Proposition 8.25(4), incoming form.** -/
-theorem no_ext_two_sided_in (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem no_ext_two_sided_in (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {b : V} {e l f : R} (hN : S.NondeepRet χ b e l) (hf : S.IsGen f)
     (hB : S.TB χ f) (f2 : S.P.tgt f = b) (hcS : ¬ S.InS b (S.P.src f)) : False := by
   have hN' := hN
@@ -1027,7 +1027,7 @@ Deviation (Appendix C.2, Steps 1–4): with the retraction criterion of Lemma 8.
 complementary-path tree needs only the cover factorizations, which hold for `j = 1`
 without further hypotheses; so `j = 1` is excluded directly and the quotient `A'` of
 Step 4 (with the induction hypothesis) is not used. -/
-theorem LR_proper (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem LR_proper (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r s t : R} (hr : S.IsGen r) (hs : S.IsGen s) (hTr : S.TL χ r)
     (hTs : S.TR χ s) (hrs : ⌜r⌝ * ⌜s⌝ = ⌜t⌝) (hsh : S.Shift χ t) (hprop : ¬ S.IsGen t) :
     (S.P.tgt s = S.P.src r ∧ S.NondeepRet χ (S.P.src r) r s) ∨
@@ -1354,7 +1354,7 @@ theorem LR_proper (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < 
 
 /-- **Proposition 8.25(2)**, return-corner form (`prop:proper-ray-products`(2)): in
 `BL_proper`, the first factor `r : x → y` reaches the primitive return corner, `y ∈ S_x`. -/
-theorem BL_proper_inS (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem BL_proper_inS (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r s t f : R} {n : ℕ} (hr : S.IsGen r) (hs : S.IsGen s) (hBr : S.TB χ r)
     (hLs : S.TL χ s) (hrs : ⌜r⌝ * ⌜s⌝ = ⌜t⌝) (hf : S.IsGen f)
     (ht : ⌜t⌝ = S.qh χ (S.P.src r) ^ n * ⌜f⌝) (hn : 1 ≤ n) (hsh : S.Shift χ t) :
@@ -1373,7 +1373,7 @@ theorem BL_proper_inS (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 
 /-- **Lemma C.2** (`lem:nondeep-two-object-return`): at a supporting
 vertex `b`, generating rays `e : b → y`, `l : y → b` with `y ∉ S_b`, `el = q̂_b^a` and
 `q̂_b^{a+1} ≠ 0` have types `L` and `R`, `N_b = 4`, `el = q̂_b²` and `le = 0`. -/
-theorem nondeep_return_types (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hprim : Prim χ)
+theorem nondeep_return_types (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hprim : Prim χ)
     {b y : V} {e l : R} {a : ℕ} (hsupp : S.Supp χ b)
     (he : S.IsGen e) (hl : S.IsGen l) (e1 : S.P.src e = b) (e2 : S.P.tgt e = y)
     (l1 : S.P.src l = y) (l2 : S.P.tgt l = b) (hby : y ≠ b) (hel : ⌜e⌝ * ⌜l⌝ = S.qh χ b ^ a)

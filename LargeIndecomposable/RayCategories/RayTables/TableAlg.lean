@@ -30,8 +30,8 @@ universe u
 /-- Representation-finiteness passes to quotient algebras. -/
 theorem isRepresentationFinite_of_surjective {k : Type u} [Field k] {A B : Type u} [Ring A]
     [Algebra k A] [Ring B] [Algebra k B] [FiniteDimensional k A] [FiniteDimensional k B]
-    (φ : A →ₐ[k] B) (hφ : Function.Surjective φ) (hA : IsRepresentationFiniteRight k A) :
-    IsRepresentationFiniteRight k B :=
+    (φ : A →ₐ[k] B) (hφ : Function.Surjective φ) (hA : IsRepresentationFinite k Aᵐᵒᵖ) :
+    IsRepresentationFinite k Bᵐᵒᵖ :=
   splitRepresentationTransfer_of (C := ⊤) (q := φ.comp (Subalgebra.val ⊤))
     φ.toLinearMap (fun c c' b ↦ by simp [map_mul]) (fun d ↦ by
       obtain ⟨a, rfl⟩ := hφ d; exact ⟨⟨a, trivial⟩, rfl⟩) (fun c ↦ rfl) hA
@@ -333,7 +333,7 @@ end Mor
 /-- **Representation-finiteness passes along surjective table morphisms.** -/
 theorem Mor.isRepresentationFinite {P : Mult V R} {P' : Mult V' R'} (m : Mor P P') (k : Type u)
     [Field k] (hs : ∀ r', ∃ r, m.f r = some r')
-    (h : IsRepresentationFiniteRight k (P.Lin k)) : IsRepresentationFiniteRight k (P'.Lin k) :=
+    (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) : IsRepresentationFinite k (P'.Lin k)ᵐᵒᵖ :=
   isRepresentationFinite_of_surjective (m.alg k) (m.alg_surjective k hs) h
 
 end RaySys

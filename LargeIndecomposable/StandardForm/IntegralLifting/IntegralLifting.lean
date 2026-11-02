@@ -97,7 +97,7 @@ theorem dim2_of_TL {r : R} (hT : S.TL χ r) : S.Dim2 r := by
 
 /-- The rest after a two-sided first arrow of a generating left-sided ray is generating and
 left-sided, of smaller degree. -/
-theorem rest_TL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem rest_TL (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r a w : R} (hr : S.IsGen r) (hT : S.TL χ r) (ha : S.Ord a)
     (hB : S.TB χ a) (hw : ⌜a⌝ * ⌜w⌝ = ⌜r⌝) :
     S.IsGen w ∧ S.TL χ w ∧ S.P.deg (S.P.wt w) < S.P.deg (S.P.wt r) := by
@@ -123,7 +123,7 @@ theorem DLf_succ (n : ℕ) (r : R) : S.DLf χ ω X (n + 1) r =
   rw [DLf]
 
 /-- Fuel independence. -/
-theorem DLf_eq_DL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem DLf_eq_DL (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r : R} (hr : S.IsGen r) (hT : S.TL χ r) (n : ℕ)
     (hn : (S.P.deg (S.P.wt r)).toNat + 1 ≤ n) : S.DLf χ ω X n r = S.DL χ ω X r := by
   induction hm : (S.P.deg (S.P.wt r)).toNat using Nat.strong_induction_on generalizing r n with
@@ -143,7 +143,7 @@ theorem DLf_eq_DL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < 
 
 open Classical in
 /-- **The first-arrow recursion.** -/
-theorem DL_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem DL_eq (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r a w : R} (hr : S.IsGen r) (hT : S.TL χ r) (ha : S.OL r a)
     (hw : ⌜a⌝ * ⌜w⌝ = ⌜r⌝) :
     S.DL χ ω X r = if S.TB χ a then ω a + S.DL χ ω X w else X a := by
@@ -165,7 +165,7 @@ theorem DL_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.
 /-- **Lemma 9.4** (`lem:one-sided-path-coefficients`), product equations with generating
 left-sided output: `d_t = d_r` for a left-sided first factor, `d_t = d_r + d_s` for a
 two-sided one. -/
-theorem DL_prod (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem DL_prod (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s)
     {r u v : R} (hr : S.IsGen r) (hT : S.TL χ r) (huv : ⌜u⌝ * ⌜v⌝ = ⌜r⌝)
@@ -506,7 +506,7 @@ theorem ω_qpow
 /-- **Theorem 9.1, cases 2 and 3**: generating inputs of types `B, L`. -/
 theorem eq_BL_gen
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s)
-    (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+    (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r0 s0 t : R} (hr0 : S.IsGen r0) (hB : S.TB χ r0) (hs0 : S.IsGen s0)
     (hL : S.TL χ s0) (h : ⌜r0⌝ * ⌜s0⌝ = ⌜t⌝) (ht : S.Shift χ t) :
     S.DD χ ω X Y t = ω r0 + S.DL χ ω X s0 := by
@@ -578,7 +578,7 @@ theorem hω_op
 
 open Classical in
 /-- The last-arrow recursion (the dual of `DL_eq`). -/
-theorem DR_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem DR_eq (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r b w : R} (hr : S.IsGen r) (hT : S.TR χ r) (hb : S.OR r b)
     (hw : ⌜w⌝ * ⌜b⌝ = ⌜r⌝) :
     S.DR χ ω Y r = if S.TB χ b then ω b + S.DR χ ω Y w else Y b := by
@@ -590,7 +590,7 @@ theorem DR_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.
   · rw [if_neg (fun h ↦ hB ((S.op_TB b).1 h))] at this; rw [if_neg hB]; exact this
 
 /-- **Lemma 9.4, dual**: product equations with generating right-sided output. -/
-theorem DR_prod (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem DR_prod (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s)
     {r u v : R} (hr : S.IsGen r) (hT : S.TR χ r) (huv : ⌜u⌝ * ⌜v⌝ = ⌜r⌝)
@@ -606,7 +606,7 @@ theorem DR_prod (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.
   change S.op.DL χ ω Y r = S.op.DL χ ω Y u + ω v
   rw [e, add_comm]
 
-theorem rest_TR (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem rest_TR (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {r b w : R} (hr : S.IsGen r) (hT : S.TR χ r) (hb : S.Ord b)
     (hB : S.TB χ b) (hw : ⌜w⌝ * ⌜b⌝ = ⌜r⌝) :
     S.IsGen w ∧ S.TR χ w ∧ S.P.deg (S.P.wt w) < S.P.deg (S.P.wt r) := by
@@ -645,7 +645,7 @@ variable (hRC2 : ∀ a b x, S.NdRow χ a b x → X a + Y b = 2 * ω (S.qr x))
 
 include hRC2 in
 /-- The coefficient equation of a nondeep return (`eq:nondeep-coefficient-row`). -/
-theorem nondeep_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem nondeep_eq (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {x : V} {e l : R} (hN : S.NondeepRet χ x e l) :
     S.DL χ ω X e + S.DR χ ω Y l = 2 * ω (S.qr x) := by
   have hN' := hN
@@ -668,7 +668,7 @@ include hRC1 in
 /-- **Theorem 9.1, case 2, crown rows**: generating inputs of types `L, R` with generating
 two-sided output (`eq:generating-crown-row`, after stripping two-sided prefixes and
 suffixes). -/
-theorem crown_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem crown_eq (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s)
     {r0 s0 t : R} (hr0 : S.IsGen r0) (hTr : S.TL χ r0) (hs0 : S.IsGen s0) (hTs : S.TR χ s0)
@@ -765,7 +765,7 @@ theorem crown_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S
 
 include hRC1 hRC2 in
 /-- **Theorem 9.1, cases 2 and 4**: generating inputs of types `L, R` with two-sided output. -/
-theorem eq_LR_gen (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem eq_LR_gen (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s)
     {r0 s0 t : R} (hr0 : S.IsGen r0) (hTr : S.TL χ r0) (hs0 : S.IsGen s0) (hTs : S.TR χ s0)
@@ -869,7 +869,7 @@ theorem ω_local
   rw [this, l1]; push_cast [Nat.cast_sub hi]; ring
 
 /-- **Theorem 9.1, products with left-sided output** (cases 1, 2, 3, 5). -/
-theorem eq_TL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem eq_TL (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s)
     {r s t : R} (hr0 : r ≠ S.P.e (S.P.src r)) (hs0 : s ≠ S.P.e (S.P.src s))
@@ -976,7 +976,7 @@ theorem eq_TL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.
 
 include hRC1 hRC2 in
 /-- **Theorem 9.1, products with two-sided output** (cases 2, 4, 5). -/
-theorem eq_TB (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem eq_TB (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s)
     {r s t : R} (hr0 : r ≠ S.P.e (S.P.src r)) (hs0 : s ≠ S.P.e (S.P.src s))
@@ -1035,7 +1035,7 @@ theorem eq_TB (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.
   ring
 
 /-- **Theorem 9.1, products with right-sided output** (the dual of `eq_TL`). -/
-theorem eq_TR (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem eq_TR (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s)
     {r s t : R} (hr0 : r ≠ S.P.e (S.P.src r)) (hs0 : s ≠ S.P.e (S.P.src s))
@@ -1054,7 +1054,7 @@ theorem eq_TR (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.
 include hRC1 hRC2 in
 /-- **The integer coefficients solve all nonzero-product Leibniz equations**
 (proof of Theorem 9.1, `α` well defined). -/
-theorem isSol_DD (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem isSol_DD (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hω : ∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → ω t = ω r + ω s) :
     S.IsSol χ (S.DD χ ω X Y) := by
@@ -1141,7 +1141,7 @@ theorem sol_TB (hχ : 0 < S.P.deg χ) (hprim : Prim χ) {M : Type*} [AddCommGrou
   rw [if_pos hEL, if_pos hER]
 
 /-- The recursion of `DL` computes any solution modulo two. -/
-theorem DL_mod (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem DL_mod (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {d : R → ZMod 2} (hd : S.IsSol χ d)
     (hωd : ∀ r, S.TB χ r → (ω r : ZMod 2) = d r) (hXd : ∀ a, (X a : ZMod 2) = d a)
     {r : R} (hr : S.IsGen r) (hT : S.TL χ r) : (S.DL χ ω X r : ZMod 2) = d r := by
@@ -1204,7 +1204,7 @@ theorem sol_layer (hχ : 0 < S.P.deg χ) (hprim : Prim χ) {M : Type*} [AddCommG
     abel
 
 /-- The coefficients reduce to a given solution modulo two on left-sided rays. -/
-theorem DD_mod_TL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem DD_mod_TL (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {d : R → ZMod 2} (hd : S.IsSol χ d)
     (hωd : ∀ r, S.TB χ r → (ω r : ZMod 2) = d r) (hXd : ∀ a, (X a : ZMod 2) = d a)
     {r : R} (hT : S.TL χ r) : (S.DD χ ω X Y r : ZMod 2) = d r := by
@@ -1223,7 +1223,7 @@ theorem DD_mod_TL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < 
 
 /-- **The coefficients reduce to a given solution modulo two** (`βα = id` in the proof of
 Theorem 9.1). -/
-theorem DD_mod (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem DD_mod (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {d : R → ZMod 2} (hd : S.IsSol χ d)
     (hωd : ∀ r, S.TB χ r → (ω r : ZMod 2) = d r) (hXd : ∀ a, (X a : ZMod 2) = d a)
     (hYd : ∀ b, (Y b : ZMod 2) = d b) (r : R) : (S.DD χ ω X Y r : ZMod 2) = d r := by
@@ -1269,7 +1269,7 @@ theorem crown_row_sol (hχ : 0 < S.P.deg χ) (hprim : Prim χ) {M : Type*} [AddC
   · exact S.sol_TR hχ hprim hd hw0 hTb.1.1 hw hTv hTb
 
 /-- A nondeep row holds modulo two for every solution. -/
-theorem nd_row_sol (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem nd_row_sol (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {d : R → ZMod 2} (hd : S.IsSol χ d) {a b : R} {x : V}
     (hr : S.NdRow χ a b x) : d a + d b = 0 := by
   obtain ⟨e, l, hN, ha, hb⟩ := hr
@@ -1334,7 +1334,7 @@ omit [IsAlgClosed k] in
 theorem Xc_mod (d : R → ZMod 2) (a : R) : ((Xc d a : ℤ) : ZMod 2) = d a := by
   rw [Xc, Int.cast_natCast, ZMod.natCast_zmod_val]
 
-theorem rc1 (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
+theorem rc1 (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
     {d : R → ZMod 2} (hd : S.IsSol χ d) :
     ∀ a b f, S.CrownRow χ a b f → Xc d a + S.Yc χ ω d b = ω f := by
   classical
@@ -1350,7 +1350,7 @@ theorem rc1 (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.de
     have := e2.symm.trans e1; exact add_right_cancel this
   rw [hff, Xc, Xc, haa]; ring
 
-theorem rc2 (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
+theorem rc2 (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
     {d : R → ZMod 2} (hd : S.IsSol χ d) :
     ∀ a b x, S.NdRow χ a b x → Xc d a + S.Yc χ ω d b = 2 * ω (S.qr x) := by
   classical
@@ -1370,7 +1370,7 @@ theorem rc2 (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.de
     have := e2.trans e1.symm; exact add_right_cancel this
   rw [hxx, Xc, Xc, haa]; ring
 
-theorem Yc_mod (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem Yc_mod (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {d : R → ZMod 2} (hd : S.IsSol χ d)
     (hωd : ∀ r, S.TB χ r → (ω r : ZMod 2) = d r) (b : R) : ((S.Yc χ ω d b : ℤ) : ZMod 2) = d b := by
   classical
@@ -1388,7 +1388,7 @@ theorem Yc_mod (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P
 nonzero-product Leibniz equations lifts to an integer solution. The hypothesis `hW` is the
 lifting property of `W_χ = W(Q_χ)` (free by Lemma 9.2 and the induction hypothesis of
 Prop 8.3). -/
-theorem integral_lifting (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem integral_lifting (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hW : ∀ w : R → ZMod 2,
       (∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → w t = w r + w s) →

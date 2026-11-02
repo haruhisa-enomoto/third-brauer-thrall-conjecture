@@ -26,7 +26,7 @@ open scoped BigOperators
 namespace LargeIndecomposable.Categorical
 
 open LargeIndecomposable
-open LargeIndecomposable.CategoricalIdeal
+
 open LargeIndecomposable.CategoricalRadical
 
 universe v u
@@ -92,7 +92,7 @@ finite additive generator. -/
 theorem sandwich_mem_jacobson_pow
     (G : C) (hG : IsFiniteAddGenerator G) :
     ∀ (n : ℕ) {X Y : C} {f : X ⟶ Y},
-      f ∈ ((homIdeal : HomIdeal C).pow n).hom X Y →
+      f ∈ ((homIdeal : MorphismIdeal C).pow n).hom X Y →
       ∀ (a : G ⟶ X) (b : Y ⟶ G),
         End.of (a ≫ f ≫ b) ∈
           (Ring.jacobson (End G)) ^ n
@@ -101,7 +101,7 @@ theorem sandwich_mem_jacobson_pow
       rw [Submodule.pow_zero, Ideal.one_eq_top]
       exact Set.mem_univ _
   | n + 1, X, Y, f, hf => by
-      rw [HomIdeal.pow_succ] at hf
+      rw [MorphismIdeal.pow_succ] at hf
       intro a b
       induction hf using AddSubgroup.closure_induction with
       | mem f hf =>
@@ -234,10 +234,10 @@ with the same exponent. -/
 theorem homIdeal_isNilpotent_of_generator_jacobson
     (G : C) (hG : IsFiniteAddGenerator G)
     (hJ : IsNilpotent (Ring.jacobson (End G))) :
-    (homIdeal : HomIdeal C).IsNilpotent := by
+    (homIdeal : MorphismIdeal C).IsNilpotent := by
   obtain ⟨N, hN⟩ := hJ
   refine ⟨N, ?_⟩
-  apply HomIdeal.ext_hom
+  apply MorphismIdeal.ext_hom
   intro X Y
   apply le_antisymm
   · intro f hf
@@ -255,7 +255,7 @@ radical nilpotence. -/
 theorem homIdeal_isNilpotent_of_artinian_generator
     (G : C) (hG : IsFiniteAddGenerator G)
     [IsArtinianRing (End G)] :
-    (homIdeal : HomIdeal C).IsNilpotent := by
+    (homIdeal : MorphismIdeal C).IsNilpotent := by
   apply homIdeal_isNilpotent_of_generator_jacobson G hG
   simpa only [Ideal.jacobson_bot] using
     (IsArtinianRing.isNilpotent_jacobson_bot (R := End G))

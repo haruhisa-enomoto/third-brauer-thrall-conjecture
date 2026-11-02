@@ -128,7 +128,7 @@ theorem last_TB (hχ : 0 < S.P.deg χ) (hprim : Prim χ) {r b t a : R} (hb : S.T
 
 /-- **Lemma 9.6** (`lem:nondeep-boundary-arrows`): the first arrow of the outgoing ray of a
 nondeep return is left-sided. -/
-theorem nondeep_first_TL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem nondeep_first_TL (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {x : V} {e l a : R} (hN : S.NondeepRet χ x e l) (ha : S.OL e a) :
     S.TL χ a := by
   obtain ⟨he, hl, e1, e2, l2, hyS, hTe, hTl, hel, hq3⟩ := hN
@@ -243,7 +243,7 @@ theorem nondeep_first_TL (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ
 
 /-- **Lemma 9.6, dual**: the last arrow of the incoming ray of a nondeep return is
 right-sided. -/
-theorem nondeep_last_TR (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem nondeep_last_TR (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {x : V} {e l b : R} (hN : S.NondeepRet χ x e l) (hb : S.OR l b) :
     S.TR χ b :=
   (S.op_TL b).1 (S.op.nondeep_first_TL k (S.P.op_isRepresentationFinite k hfin) hχ hprim
@@ -286,7 +286,7 @@ theorem op_crownRow {a b f : R} : S.op.CrownRow χ b a f ↔ S.CrownRow χ a b f
 
 /-- **Lemma 9.5, first part** (`lem:crown-output-comparison`): two two-sided rays whose paths
 start with the same ordinary left-sided arrow are comparable by right factorization. -/
-theorem crown_compare (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem crown_compare (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {a f t v w : R} (ha : S.TL χ a) (hoa : S.Ord a) (hf : S.TB χ f)
     (ht : S.TB χ t) (hfa : ⌜a⌝ * ⌜v⌝ = ⌜f⌝) (hta : ⌜a⌝ * ⌜w⌝ = ⌜t⌝) :
     S.P.RF f t ∨ S.P.RF t f := by
@@ -363,7 +363,7 @@ theorem crown_compare (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 
   · exact nUa dt hqtr
 
 /-- One direction of the uniqueness: `f h = t` forces `f = t`. -/
-theorem crown_row_step (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem crown_row_step (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {a b b' f t h : R} (hf : S.CrownRow χ a b f) (ht : S.CrownRow χ a b' t)
     (hh : ⌜f⌝ * ⌜h⌝ = ⌜t⌝) : f = t := by
   obtain ⟨-, hBf, -, -, v, -, hv, -, -, -, hTv, -, -, -⟩ := hf
@@ -396,7 +396,7 @@ theorem crown_row_step (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ :
 
 /-- **Lemma 9.5** (`lem:crown-output-comparison`, last assertion): crown rows sharing the
 variable `X_a` have the same output ray. -/
-theorem crown_row_unique_a (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem crown_row_unique_a (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {a b b' f t : R} (hf : S.CrownRow χ a b f) (ht : S.CrownRow χ a b' t) :
     f = t := by
   have hf' := hf
@@ -410,7 +410,7 @@ theorem crown_row_unique_a (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (h
     exact (S.crown_row_step k hfin hχ hprim ht hf hc).symm
 
 /-- **Lemma 9.5, dual**: crown rows sharing `Y_b` have the same output ray. -/
-theorem crown_row_unique_b (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem crown_row_unique_b (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {a a' b f t : R} (hf : S.CrownRow χ a b f) (ht : S.CrownRow χ a' b t) :
     f = t :=
   S.op.crown_row_unique_a k (S.P.op_isRepresentationFinite k hfin) hχ hprim
@@ -423,7 +423,7 @@ theorem op_ndRow {a b : R} {x : V} (hprim : Prim χ) (h : S.NdRow χ a b x) :
   exact ⟨l, e, S.op_nondeep hN hprim, (S.op_OL l b).2 hb, (S.op_OR e a).2 ha⟩
 
 /-- A generating two-sided ray with a nonzero reverse product has a primitive reverse. -/
-theorem prim_rev_of_TB (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hprim : Prim χ) {f w : R}
+theorem prim_rev_of_TB (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hprim : Prim χ) {f w : R}
     (hf : S.IsGen f) (hB : S.TB χ f) (w1 : S.P.src w = S.P.tgt f) (w2 : S.P.tgt w = S.P.src f)
     (hw : ⌜f⌝ * ⌜w⌝ ≠ 0) : ∃ g, S.PrimRev f g := by
   have hc : S.P.tgt f ≠ S.P.src f := fun h ↦ hB.1.1 (S.gen_loop_e hf h.symm)
@@ -442,7 +442,7 @@ theorem prim_rev_of_TB (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hprim
     (by rw [hsb.2]; exact hprim) w1 w2 hw hg (by rw [g1, w1]) (by rw [g2, w2])⟩
 
 /-- The variable `X_a` of a nondeep row occurs in no crown row. -/
-theorem crown_nd_disjoint_a (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem crown_nd_disjoint_a (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {a b b' f : R} {x : V} (hf : S.CrownRow χ a b f) (hn : S.NdRow χ a b' x) :
     False := by
   obtain ⟨hgf, hBf, hTa, -, v, -, hv, -, -, -, -, -, -, ⟨hoa, -⟩⟩ := hf
@@ -490,7 +490,7 @@ theorem crown_nd_disjoint_a (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (
       k2.symm 2 (by omega) (by rw [← hh', hq2x, (S.prod_of hv).1, ← a1, e1])
 
 /-- The variable `Y_b` of a nondeep row occurs in no crown row (the dual). -/
-theorem crown_nd_disjoint_b (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem crown_nd_disjoint_b (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {a a' b f : R} {x : V} (hf : S.CrownRow χ a b f) (hn : S.NdRow χ a' b x) :
     False :=
   S.op.crown_nd_disjoint_a k (S.P.op_isRepresentationFinite k hfin) hχ hprim

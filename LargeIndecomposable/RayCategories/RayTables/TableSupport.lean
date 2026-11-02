@@ -193,7 +193,7 @@ variable [IsAlgClosed k]
 /-- **Forbidden configurations for incidence tables** (Lemma 8.8 with the table after it). -/
 theorem inc_forbidden {n : ℕ} {le : Fin n → Fin n → Bool} [Fact (PosetRep.Ax le)]
     (e : PosetRep.Pos n le ≃o Q) (d : Fin n → ℕ) (hu : PosetRep.UniqOK le)
-    (hc : PosetRep.CountOK le d) : ¬ IsRepresentationFiniteRight k ((inc Q).Lin k) := by
+    (hc : PosetRep.CountOK le d) : ¬ IsRepresentationFinite k ((inc Q).Lin k)ᵐᵒᵖ := by
   intro h
   have := incidence_finiteDimensional (k := k) (P := Q)
   exact PosetRep.forbidden k e d hu hc (isRepresentationFinite_of_algEquiv (incEquiv k) h)
@@ -464,8 +464,8 @@ include hT in
 /-- **Lemma 4.10 for a projective support**: its incidence algebra is representation-finite
 when `kP` is. -/
 theorem projSup_isRepresentationFinite (k : Type u) [Field k]
-    (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k ((inc (P.ProjSup T)).Lin k) := by
+    (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((inc (P.ProjSup T)).Lin k)ᵐᵒᵖ := by
   refine (P.projSupMor T hT).isRepresentationFinite k (fun p ↦ ?_)
     (P.cover_isRepresentationFinite k (P.psv T) P.wt P.wt_mul (P.psg T) h)
   obtain ⟨⟨a, b⟩, v, hv⟩ := p
@@ -649,8 +649,8 @@ def injSupMor : Mor (P.cover (P.isv T) P.wt P.wt_mul (P.isg T)) (inc (P.InjSup T
 include hT in
 /-- **Lemma 4.10 for an injective support.** -/
 theorem injSup_isRepresentationFinite (k : Type u) [Field k]
-    (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k ((inc (P.InjSup T)).Lin k) := by
+    (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((inc (P.InjSup T)).Lin k)ᵐᵒᵖ := by
   refine (P.injSupMor T hT).isRepresentationFinite k (fun p ↦ ?_)
     (P.cover_isRepresentationFinite k (P.isv T) P.wt P.wt_mul (P.isg T) h)
   obtain ⟨⟨a, b⟩, v, hv⟩ := p

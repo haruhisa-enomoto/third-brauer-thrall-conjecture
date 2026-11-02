@@ -5,7 +5,7 @@ public import LargeIndecomposable.Foundations.PathCategories.PathMaps
 /-!
 # Full translation subquivers
 
-The source paper (`eq:mesh-object-quotient`). Let `S` be a set of
+That paper (`eq:mesh-object-quotient`). Let `S` be a set of
 vertices closed under `τ` and `τ⁻¹` wherever defined, and `Q_S` the full
 translation subquiver on `S`. In the path category, killing the identities
 outside `S` kills exactly the paths through vertices outside `S`. A mesh
@@ -20,6 +20,10 @@ This file provides:
   it stays in `S` and to zero otherwise; it is multiplicative;
 * `TranslationQuiver.restrict`, the translation quiver structure on `FullSub S`,
   and the restricted coefficients.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -86,7 +86,7 @@ theorem proj_zero_mem_ideal {x y : V} {F : LinearPaths.obj (k := k) x ⟶ Linear
     (hF : (RelationCategory.functor k (meshRelations c)).map F = 0) :
     LinearPaths.proj (k := k) 0 x y F = 0 := by
   rw [RelationCategory.functor_map_eq_zero_iff] at hF
-  change F ∈ TwoSidedHomIdeal.HomIdeal.generatedHomSubmodule k _ _ _ at hF
+  change F ∈ MorphismIdeal.generatedHomSubmodule k _ _ _ at hF
   induction hF using Submodule.span_induction with
   | mem g hg =>
       obtain ⟨A, B, r, hr, a, b, rfl⟩ := hg

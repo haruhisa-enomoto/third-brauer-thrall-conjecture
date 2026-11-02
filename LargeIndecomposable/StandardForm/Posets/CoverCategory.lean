@@ -89,7 +89,7 @@ include H in
 /-- **The graded covering category is thin and directed** (Lemma 4.8, first
 part, with the height). -/
 theorem isThin [Infinite k] [∀ x y : ι, FiniteDimensional k (F x ⟶ F y)]
-    (hF : IsRepresentationFiniteRight k (Alg F)ᵐᵒᵖ) : Thin.IsThin k (CovObj D) where
+    (hF : IsRepresentationFinite k (Alg F)ᵐᵒᵖᵐᵒᵖ) : Thin.IsThin k (CovObj D) where
   fin o o' := inferInstanceAs (FiniteDimensional k (CovHom o o'))
   thin o o' := finrank_part_le_one H hF _ _ _
   endo o f := by

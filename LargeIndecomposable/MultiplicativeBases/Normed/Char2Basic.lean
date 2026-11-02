@@ -53,7 +53,7 @@ def Cor105AR : Prop :=
       (MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) x ⟶
         MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) y) :=
     fun x y ↦ S.finiteDimensional_meshHom b x y
-  ∀ (v₀ : S.ARVertex) (hF : IsRepresentationFiniteRight k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ)
+  ∀ (v₀ : S.ARVertex) (hF : IsRepresentationFinite k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ)
     {ι : Type} [Fintype ι] [DecidableEq ι] (Wd : ι → MeshWalk.MeshWt S.arTranslationQuiver ℤ)
     (Rw : ι → Σ x : S.arTranslationQuiver.nonprojective,
       Quiver.Path (S.arTranslationQuiver.tau x).1 x.1),
@@ -67,7 +67,7 @@ def rayA0AR (v₀ : S.ARVertex) : Type :=
 
 /-- The ray table of `A₀` for the Auslander–Reiten mesh data. -/
 def A0MultAR (v₀ : S.ARVertex)
-    (hF : IsRepresentationFiniteRight k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ) :
+    (hF : IsRepresentationFinite k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ) :
     RaySys.Mult (S.arMeshData b).PV (S.rayA0AR b v₀) :=
   haveI : ∀ x y : S.ARVertex, Subsingleton (x ⟶ y) := S.hasAtMostOneArrow
   haveI : ∀ x y : S.ARVertex, FiniteDimensional k
@@ -78,13 +78,13 @@ def A0MultAR (v₀ : S.ARVertex)
 
 /-- **A basic algebra in characteristic two has a normed multiplicative ray basis**, given
 Corollary 10.5 for its algebra `A₀` (proof of Proposition 8.3(1)). -/
-theorem exists_normedRayBasis_char2 (h2 : (2 : k) = 0) (hA : IsRepresentationFiniteRight k A)
+theorem exists_normedRayBasis_char2 (h2 : (2 : k) = 0) (hA : IsRepresentationFinite k Aᵐᵒᵖ)
     {n : ℕ} {e : Fin n → A} (he : CompleteOrthogonalIdempotents e)
     (hprim : ∀ i, IsPrimitiveIdempotent (e i))
     (hbasic : ∀ i j, (∃ x y : A, e i * x * e j = x ∧ e j * y * e i = y ∧ x * y = e i ∧
       y * x = e j) → i = j) (hn : n ≠ 0)
     (hcor : S.Cor105AR b) :
-    ∃ (v₀ : S.ARVertex) (hF : IsRepresentationFiniteRight k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ)
+    ∃ (v₀ : S.ARVertex) (hF : IsRepresentationFinite k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ)
       (F : PrimitiveIdempotents A) (bF : Module.Basis (F.NonzeroRay k) k A),
       IsNormedMultiplicativeBasis bF ∧ F.IsRayTransversal bF ∧
         ∃ (ι : (S.arMeshData b).PV ≃ Fin F.m) (β : S.rayA0AR b v₀ → A),

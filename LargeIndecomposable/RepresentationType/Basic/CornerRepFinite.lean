@@ -318,13 +318,13 @@ theorem corner_finite [FiniteDimensional k A] : Module.Finite k he.Corner := by
 open Coind in
 /-- **Lemma 3.1(1)**, second part: every idempotent corner of a
 representation-finite algebra is representation-finite. -/
-theorem corner_isRepresentationFinite_of [FiniteDimensional k A] (hA : IsRepresentationFiniteRight k A) :
-    IsRepresentationFiniteRight k he.Corner := by
+theorem corner_isRepresentationFinite_of [FiniteDimensional k A] (hA : IsRepresentationFinite k Aᵐᵒᵖ) :
+    IsRepresentationFinite k he.Cornerᵐᵒᵖ := by
   classical
   obtain ⟨N, X, hX, hcomp⟩ := hA
   haveI : Module.Finite k he.Corner := corner_finite he
   let P : Fin N → Prop := fun i ↦ ∃ V : RightModuleCat he.Corner,
-    IsFiniteIndecomposableRight k he.Corner V ∧ Nonempty ((functor he).obj V ≅ X i)
+    IsFiniteIndecomposable k he.Cornerᵐᵒᵖ V ∧ Nonempty ((functor he).obj V ≅ X i)
   let T := {i // P i}
   let eT := Fintype.equivFin T
   refine ⟨Fintype.card T, fun j ↦ (eT.symm j).2.choose, fun j ↦ (eT.symm j).2.choose_spec.1, ?_⟩

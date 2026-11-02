@@ -5,7 +5,7 @@ public import Mathlib.CategoryTheory.Quotient.Linear
 public import Mathlib.LinearAlgebra.Span.Basic
 public import Mathlib.CategoryTheory.Quotient.Preadditive
 public import LargeIndecomposable.Foundations.CategoryTheory.CategoricalRadical
-public import LargeIndecomposable.Foundations.CategoryTheory.HomIdeal
+public import LargeIndecomposable.Foundations.CategoryTheory.MorphismIdeal
 public import Mathlib.CategoryTheory.Endomorphism
 public import Mathlib.CategoryTheory.Functor.ReflectsIso.Basic
 public import Mathlib.CategoryTheory.Idempotents.Basic
@@ -35,7 +35,7 @@ noncomputable section
 
 open CategoryTheory CategoryTheory.Limits
 open LargeIndecomposable
-open LargeIndecomposable.CategoricalIdeal
+
 open LargeIndecomposable.Iyama
 open scoped ModuleCat.Algebra ZeroObject
 

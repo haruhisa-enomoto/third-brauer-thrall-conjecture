@@ -153,7 +153,7 @@ variable {k : Type u} [Field k] {V : Type} [Quiver.{0} V] [Fintype V] [Decidable
 variable [IsAlgClosed k] [hone : ∀ x y : V, Subsingleton (x ⟶ y)]
   [∀ x y : V, Fintype (x ⟶ y)]
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (v₀ : V) (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (v₀ : V) (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
   {ι : Type} [Fintype ι] [DecidableEq ι] (Wd : ι → MeshWt Q ℤ)
 
 theorem dualWt_map_snd : (dualWt Wd).map lenCoord = lenW := rfl
@@ -308,7 +308,7 @@ theorem char2_A0 (J : D.InjData) (h1 : DegOne D) [Fintype Q.nonprojective]
   set Θ := ΘD D v₀ hF Wd
   set G := lenA0 D (hfinObj (c := c))
   set Wl := latA0 (dualWt Wd) (hfinObj (c := c)) D
-  have hfinS : IsRepresentationFiniteRight k (S.P.Lin k) := A0TabL_isRepresentationFinite D v₀ hF (dualWt Wd) lenCoord (hdg_dual D v₀ Wd)
+  have hfinS : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ := A0TabL_isRepresentationFinite D v₀ hF (dualWt Wd) lenCoord (hdg_dual D v₀ Wd)
   have hG := ΘD_lenHom D v₀ hF Wd
   have hW := ΘD_latHom D v₀ hF Wd
   set χ : ι → DLat ι := fun i ↦ rowWt (dualWt Wd) (Rw i)
@@ -423,7 +423,7 @@ theorem indicator_span_A0 (J : D.InjData) (h1 : DegOne D) [Fintype Q.nonprojecti
   set Θ := ΘD D v₀ hF Wd
   set G := lenA0 D (hfinObj (c := c))
   set Wl := latA0 (dualWt Wd) (hfinObj (c := c)) D
-  have hfinS : IsRepresentationFiniteRight k (S.P.Lin k) := A0TabL_isRepresentationFinite D v₀ hF (dualWt Wd) lenCoord (hdg_dual D v₀ Wd)
+  have hfinS : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ := A0TabL_isRepresentationFinite D v₀ hF (dualWt Wd) lenCoord (hdg_dual D v₀ Wd)
   have hG := ΘD_lenHom D v₀ hF Wd
   have hW := ΘD_latHom D v₀ hF Wd
   set χ : ι → DLat ι := fun i ↦ rowWt (dualWt Wd) (Rw i)

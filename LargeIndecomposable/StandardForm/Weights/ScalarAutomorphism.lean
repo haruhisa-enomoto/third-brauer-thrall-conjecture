@@ -186,7 +186,7 @@ include hd hfd in
 /-- **A weight fixes `V_X̃` up to isomorphism**: a `d`-scaled automorphism from
 an isomorphism `V_X̃^{σ_d} ≅ V_X̃` over a finite covering algebra. -/
 theorem exists_twistAut [IsAlgClosed k] [Infinite k] (H : HeightData Dg)
-    (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ) (X : ι × G) : Nonempty (ScAut D Dg d X) := by
+    (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ) (X : ι × G) : Nonempty (ScAut D Dg d X) := by
   set T := suppT D Dg X
   have hX : Supp Dg T X := supp_suppT X
   have hM := VM_isFiniteIndecomposable H hX (id_ne_zero (L := L) X.1)
@@ -267,7 +267,7 @@ theorem compFam_exists (A : ScAut D Dg d X) (B : ScAut D Dg d Y) (f : F X.1 ⟶ 
   (compFam hd A B f hf).exists_hom
 
 variable [IsAlgClosed k] [Infinite k] (H : HeightData Dg)
-  (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
 
 include hd H hF in
 /-- **The chosen automorphisms**: natural on the lifted projectives. -/

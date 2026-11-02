@@ -188,8 +188,8 @@ theorem hR (s : IP Q) (t : Mult.CR P.toMult C.v P.wt C.g) (t' : IP Q)
 include C in
 /-- **A configuration makes the incidence algebra of the poset representation-finite**
 (Lemmas 8.9 and C.1). -/
-theorem isRepresentationFinite (k : Type u) [Field k] (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k ((inc Q).Lin k) :=
+theorem isRepresentationFinite (k : Type u) [Field k] (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((inc Q).Lin k)ᵐᵒᵖ :=
   Mor.retract_isRepresentationFinite C.mor C.emb (fun _ ↦ rfl) C.emb_injective C.hL C.hR k
     (P.cover_isRepresentationFinite k C.v P.wt P.wt_mul C.g h)
 

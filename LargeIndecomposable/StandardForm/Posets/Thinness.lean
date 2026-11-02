@@ -231,7 +231,7 @@ include H in
 /-- **Thinness** (Lemma 4.8, first part): every graded piece has dimension at
 most one. -/
 theorem finrank_part_le_one [Infinite k] [∀ x y : ι, FiniteDimensional k (F x ⟶ F y)]
-    (hF : IsRepresentationFiniteRight k (Alg F)ᵐᵒᵖ) (g : G) (x y : ι) :
+    (hF : IsRepresentationFinite k (Alg F)ᵐᵒᵖᵐᵒᵖ) (g : G) (x y : ι) :
     Module.finrank k (D.part g x y) ≤ 1 := by
   classical
   by_cases hxy : x = y ∧ g = 1

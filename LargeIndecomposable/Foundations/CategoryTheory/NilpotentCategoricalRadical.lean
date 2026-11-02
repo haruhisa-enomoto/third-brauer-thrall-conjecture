@@ -32,13 +32,12 @@ universe v u
 
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
-open CategoricalIdeal
 
 /-- A realization of the categorical radical as a nilpotent two-sided
 additive Hom ideal. -/
 structure NilpotentRadicalData (C : Type u) [Category.{v} C]
     [Preadditive C] where
-  ideal : HomIdeal C
+  ideal : MorphismIdeal C
   mem_iff :
     ∀ {X Y : C} (f : X ⟶ Y),
       f ∈ ideal.hom X Y ↔ IsRadicalMorphism f
@@ -60,7 +59,7 @@ theorem eq_zero_of_mem_every_power
     {X Y : C} {f : X ⟶ Y}
     (hf : ∀ n, f ∈ (R.ideal.pow n).hom X Y) :
     f = 0 :=
-  HomIdeal.eq_zero_of_mem_every_power R.nilpotent hf
+  MorphismIdeal.eq_zero_of_mem_every_power R.nilpotent hf
 
 /-- A radical endomorphism is nilpotent when the categorical radical Hom
 ideal is nilpotent. -/
@@ -75,13 +74,13 @@ theorem isNilpotent_end_of_mem_ideal
     intro n
     induction n with
     | zero =>
-        change (𝟙 X) ∈ (⊤ : HomIdeal C).hom X X
+        change (𝟙 X) ∈ (⊤ : MorphismIdeal C).hom X X
         change True
         trivial
     | succ n ih =>
         rw [pow_succ, CategoryTheory.End.mul_def]
-        rw [HomIdeal.pow_succ_eq_mul_pow]
-        exact HomIdeal.comp_mem_mul hf ih
+        rw [MorphismIdeal.pow_succ_eq_mul_pow]
+        exact MorphismIdeal.comp_mem_mul hf ih
   refine ⟨N, ?_⟩
   have h := hpow N
   rw [hN] at h

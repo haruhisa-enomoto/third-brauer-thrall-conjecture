@@ -421,7 +421,7 @@ include huniq hex in
 representation-infinite. -/
 theorem not_isRepresentationFinite_bound [IsAlgClosed k] (hd : ∃ v, 0 < d v)
     (hN : ∑ v, d v ^ 2 + d r * d p ≤ ∑ a : Arr E, d (tgt a) * d (src a)) :
-    ¬ IsRepresentationFiniteRight k (BAlg k hE hpm hmr) := by
+    ¬ IsRepresentationFinite k (BAlg k hE hpm hmr)ᵐᵒᵖ := by
   classical
   intro hA
   obtain ⟨N, X, -, hX⟩ := exists_labels_iso hA

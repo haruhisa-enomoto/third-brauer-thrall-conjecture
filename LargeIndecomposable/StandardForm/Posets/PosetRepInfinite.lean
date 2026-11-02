@@ -378,7 +378,7 @@ paths: if `d ≠ 0` and `∑ d_v² ≤ ∑_{x → y} d_x d_y`, the incidence alg
 representation-infinite. -/
 theorem not_isRepresentationFinite [IsAlgClosed k] (hd : ∃ v, 0 < d v)
     (hN : ∑ v, d v ^ 2 ≤ ∑ a : Arr E, d (tgt a) * d (src a)) :
-    ¬ IsRepresentationFiniteRight k (IncidenceAlgebra k P) := by
+    ¬ IsRepresentationFinite k (IncidenceAlgebra k P)ᵐᵒᵖ := by
   classical
   intro hA
   haveI : FiniteDimensional k (IncidenceAlgebra k P) := by

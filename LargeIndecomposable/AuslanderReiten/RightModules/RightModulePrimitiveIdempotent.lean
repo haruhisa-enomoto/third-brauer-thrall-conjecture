@@ -16,6 +16,10 @@ duality identifies `Hom_A(X, D(Ae))` with `D(Xe)`.  On a finite
 indecomposable skeleton these literal modules give the source, sink, and
 weight satisfying both factor mesh unit equations used in the frozen
 manuscript.
+
+## References
+
+* *The magnitude conjecture for module categories*, <https://github.com/haruhisa-enomoto/magnitude-conjecture>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -324,7 +328,7 @@ theorem leftIdealFGObj_projective {e : A} (he : IsIdempotentElem e) :
   apply fgProjective_of_moduleProjective
   exact leftIdeal_moduleProjective he
 
-/-- The source paper's injective `I(e)=D(Ae)` as a literal finitely generated
+/-- That paper's injective `I(e)=D(Ae)` as a literal finitely generated
 right module. -/
 abbrev primitiveInjectiveFGObj (e : A) : FinitelyGeneratedCategory A :=
   (dualFunctor k A).obj (Opposite.op (leftIdealFGObj (k := k) e))

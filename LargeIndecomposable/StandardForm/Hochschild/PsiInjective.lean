@@ -198,7 +198,7 @@ theorem img_comp {Y X Z : V} (F : LinearPaths.obj (k := k) Y ⟶ LinearPaths.obj
 
 theorem img_meshRelation (x : Q.nonprojective) : img (c := c) (meshRelation c x) = 0 := by
   rw [img, RelationCategory.functor_map_eq_zero_iff]
-  refine TwoSidedHomIdeal.HomIdeal.relation_mem_linearSpan _ ⟨x, rfl, rfl, ?_⟩
+  refine MorphismIdeal.relation_mem_linearSpan _ ⟨x, rfl, rfl, ?_⟩
   simp
 
 variable {Ld}
@@ -213,10 +213,10 @@ theorem δL_sandwich (hz : ∀ x, zE Ld x = 0) {Y X : V} (x : Q.nonprojective)
 /-- **When the mesh errors vanish, the derivation kills the mesh ideal.** -/
 theorem δL_ideal (hz : ∀ x, zE Ld x = 0) {Y X : V}
     {F : LinearPaths.obj (k := k) Y ⟶ LinearPaths.obj (k := k) X}
-    (hF : F ∈ (TwoSidedHomIdeal.HomIdeal.linearSpan k (meshRelations c)).hom
+    (hF : F ∈ (MorphismIdeal.linearSpan k (meshRelations c)).hom
       (LinearPaths.obj Y) (LinearPaths.obj X)) : δL Ld F = 0 := by
-  rw [TwoSidedHomIdeal.HomIdeal.linearSpan_hom] at hF
-  change F ∈ TwoSidedHomIdeal.HomIdeal.generatedHomSubmodule k (meshRelations c) _ _ at hF
+  rw [MorphismIdeal.linearSpan_hom] at hF
+  change F ∈ MorphismIdeal.generatedHomSubmodule k (meshRelations c) _ _ at hF
   induction hF using Submodule.span_induction with
   | mem f hf =>
     obtain ⟨A, B, r, hr, a, b, rfl⟩ := hf

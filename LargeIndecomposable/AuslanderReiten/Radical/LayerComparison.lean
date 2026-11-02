@@ -27,7 +27,7 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 open scoped ModuleCat.Algebra
 
 attribute [local instance] HasFiniteBiproducts.of_hasFiniteProducts
@@ -43,7 +43,7 @@ variable {k A : Type w} [Field k] [Ring A] [Algebra k A] [FiniteDimensional k A]
 indecomposables. -/
 theorem mem_radPow_iff (n : ℕ) {X Y : S.Ind} (f : X ⟶ Y) :
     f ∈ S.radPow n X Y ↔
-      S.toFG.map f ∈ (StrictLayers.Ipow n : HomIdeal (ModCat A)).hom _ _ := by
+      S.toFG.map f ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _ := by
   induction n generalizing X Y with
   | zero => exact ⟨fun _ ↦ trivial, fun _ ↦ Submodule.mem_top⟩
   | succ n ih =>
@@ -61,14 +61,14 @@ theorem mem_radPow_iff (n : ℕ) {X Y : S.Ind} (f : X ⟶ Y) :
             have h : S.toFG.map (c • a) = (c • 𝟙 _) ≫ S.toFG.map a := by
               simp [Functor.map_smul]
             rw [h]
-            exact (StrictLayers.Ipow (n + 1) : HomIdeal (ModCat A)).precomp _ ha
+            exact (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).precomp _ ha
       · intro hf
-        suffices H : ∀ h ∈ (StrictLayers.Ipow (n + 1) : HomIdeal (ModCat A)).hom
+        suffices H : ∀ h ∈ (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).hom
             (S.toFG.obj X) (S.toFG.obj Y), (S.homEquivFG X Y).symm h ∈ S.radPow (n + 1) X Y by
           have h := H _ hf
           rwa [← homEquivFG_apply, LinearEquiv.symm_apply_apply] at h
         intro h hh
-        rw [StrictLayers.Ipow, HomIdeal.pow_succ_eq_mul_pow] at hh
+        rw [StrictLayers.Ipow, MorphismIdeal.pow_succ_eq_mul_pow] at hh
         induction hh using AddSubgroup.closure_induction with
         | mem h hh =>
             obtain ⟨M, a, b, ha, hb, rfl⟩ := hh
@@ -97,8 +97,8 @@ theorem mem_radPow_iff (n : ℕ) {X Y : S.Ind} (f : X ⟶ Y) :
             · rw [isRadical_iff, ha']
               exact isRadicalMorphism_postcomp _ ((mem_homIdeal_iff a).1 ha)
             · rw [ih, hb']
-              exact (StrictLayers.Ipow n : HomIdeal (ModCat A)).precomp _
-                ((StrictLayers.Ipow n : HomIdeal (ModCat A)).precomp _ hb)
+              exact (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).precomp _
+                ((StrictLayers.Ipow n : MorphismIdeal (ModCat A)).precomp _ hb)
         | zero => simp
         | add a b _ _ ha hb => rw [map_add]; exact add_mem ha hb
         | neg a _ ha => rw [map_neg]; exact neg_mem ha

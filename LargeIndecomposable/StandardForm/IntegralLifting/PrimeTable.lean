@@ -317,7 +317,7 @@ variable [∀ x y : S.ARVertex, Subsingleton (x ⟶ y)]
     (S.arCoefficients b) x ⟶ MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) y)]
   [∀ x y : S.ARVertex, FiniteDimensional (ZMod 2) (MeshWalk.meshFam S.arTranslationQuiver
     (S.oneC (ZMod 2)) x ⟶ MeshWalk.meshFam S.arTranslationQuiver (S.oneC (ZMod 2)) y)]
-  (v₀ : S.ARVertex) (hF : IsRepresentationFiniteRight k (Alg (S.arMeshData b).F0)ᵐᵒᵖ)
+  (v₀ : S.ARVertex) (hF : IsRepresentationFinite k (Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ)
   {ι : Type} [Fintype ι] [DecidableEq ι] (Wd : ι → MeshWt S.arTranslationQuiver ℤ)
 
 instance : Fintype (RayA0 (S.arMeshData b) v₀) := MeshWalk.instFintypeRayA0 (S.arMeshData b) v₀

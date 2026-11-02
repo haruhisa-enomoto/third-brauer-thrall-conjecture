@@ -32,7 +32,7 @@ namespace LargeIndecomposable.Iyama
 
 universe v u w
 
-open CategoricalRadical CategoricalIdeal
+open CategoricalRadical
 
 variable {C : Type u} [Category.{v} C] [Preadditive C]
   [HasFiniteBiproducts C] [HasBinaryBiproducts C]

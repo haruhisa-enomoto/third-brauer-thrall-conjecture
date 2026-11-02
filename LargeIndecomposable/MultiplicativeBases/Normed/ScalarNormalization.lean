@@ -51,7 +51,7 @@ variable {k : Type u} [Field k] [IsAlgClosed k] [Infinite k] {V : Type} [Quiver.
   [hone : ∀ x y : V, Subsingleton (x ⟶ y)] [∀ x y : V, Fintype (x ⟶ y)]
   {L : LocalFamily (k := k) (meshFam Q c)} {D : MeshData (meshFam Q c) L}
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
 
 variable (Q c v₀ D) in
 /-- The grading of `A₀` by the deck group. -/

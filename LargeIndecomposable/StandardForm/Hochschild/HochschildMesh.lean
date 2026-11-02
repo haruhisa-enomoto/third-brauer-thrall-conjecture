@@ -56,7 +56,7 @@ theorem mesh_zero (x : Q.nonprojective) :
       (arrowMor c (Q.mate x a.1 a.2) ≫ arrowMor c a.2) = 0 := by
   have h : (RelationCategory.functor k (meshRelations c)).map (meshRelation c x) = 0 := by
     rw [RelationCategory.functor_map_eq_zero_iff]
-    exact TwoSidedHomIdeal.HomIdeal.relation_mem_linearSpan _ ⟨x, rfl, rfl, by simp⟩
+    exact MorphismIdeal.relation_mem_linearSpan _ ⟨x, rfl, rfl, by simp⟩
   rw [← h, meshRelation, Functor.map_sum]
   refine Finset.sum_congr rfl fun a _ ↦ ?_
   rw [Functor.map_smul]

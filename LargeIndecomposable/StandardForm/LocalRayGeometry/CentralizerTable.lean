@@ -499,8 +499,8 @@ theorem incl_injective : Function.Injective ((S.incl hχ hprim).alg k) := by
 
 /-- **Lemma 9.2** (`lem:centralizer-ray-algebra`), representation-finiteness: `B_χ = kQ_χ` is
 representation-finite (Lemma 4.6 applied to `C_χ ⊆ A₀`, the quotient `C_χ → B_χ` and `π`). -/
-theorem Qχ_isRepresentationFinite (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) :
-    IsRepresentationFiniteRight k ((S.Qχ hχ hprim).Lin k) := by
+theorem Qχ_isRepresentationFinite (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((S.Qχ hχ hprim).Lin k)ᵐᵒᵖ := by
   set ι := (S.incl hχ hprim).alg k
   set e := AlgEquiv.ofInjective ι (S.incl_injective hχ hprim k)
   let q : ι.range →ₐ[k] (S.Qχ hχ hprim).Lin k := ((S.quot hχ hprim).alg k).comp e.symm.toAlgHom

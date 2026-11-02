@@ -88,7 +88,7 @@ theorem ray_trans {x y : Fin F.m} {f g h : B} (hg : g ∈ F.corner (k := k) x y)
   rw [← F.ray_eq_of_mem hh h2]; exact h1
 
 /-- **Two ray presentations of the same algebra have isomorphic tables** (Lemma 3.6). -/
-theorem IsRayPres.mul_iff (hB : IsRepresentationFiniteRight k B) (h : F.IsRayPres (k := k) T ι β)
+theorem IsRayPres.mul_iff (hB : IsRepresentationFinite k Bᵐᵒᵖ) (h : F.IsRayPres (k := k) T ι β)
     (h' : F.IsRayPres (k := k) T' ι' β') {r s t : R} {r' s' t' : R'}
     (hr : ι' (T'.src r') = ι (T.src r) ∧ ι' (T'.tgt r') = ι (T.tgt r) ∧
       β r ∈ F.ray (k := k) (ι (T.src r)) (ι (T.tgt r)) (β' r'))
@@ -183,7 +183,7 @@ theorem IsRayPres.matchFn_left_inv (h : F.IsRayPres (k := k) T ι β) (h' : F.Is
   exact (h.inj r r'' this).symm
 
 /-- **Weight lifting transfers along ray presentations of one algebra.** -/
-theorem IsRayPres.lift2 (hB : IsRepresentationFiniteRight k B) (h : F.IsRayPres (k := k) T ι β)
+theorem IsRayPres.lift2 (hB : IsRepresentationFinite k Bᵐᵒᵖ) (h : F.IsRayPres (k := k) T ι β)
     (h' : F.IsRayPres (k := k) T' ι' β') (hL : T'.Lift2) : T.Lift2 := by
   intro w hw
   set φ := h.matchFn h'
@@ -259,7 +259,7 @@ namespace Sys
 
 variable {V R L : Type} [AddCommGroup L] [DecidableEq L] [Fintype V] [DecidableEq V] [Fintype R]
   [DecidableEq R] (S : Sys V R L) (k : Type u) [Field k] [IsAlgClosed k]
-  (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (c : R → R → k)
+  (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (c : R → R → k)
 
 local notation:max "⌜" r "⌝" => Sys.rr S r
 

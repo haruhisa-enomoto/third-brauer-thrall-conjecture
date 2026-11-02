@@ -117,7 +117,7 @@ theorem pow_action' {s : R} {a : ℕ} (h : S.q (S.P.src s) * ⌜s⌝ = ⌜s⌝ *
 variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **Corollary 8.13** (`cor:active-zero-pairs`). -/
-theorem active_zero (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {r s : R}
+theorem active_zero (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {r s : R}
     (hrs0 : ⌜r⌝ * ⌜s⌝ = 0) (hst : S.stem r s ≠ 0) :
     S.IsGen r ∧ S.IsGen s ∧ S.stem r s = ⌜r⌝ * S.q (S.P.tgt r) * ⌜s⌝ ∧
       S.q (S.P.src r) * (⌜r⌝ * S.q (S.P.tgt r) * ⌜s⌝) = 0 ∧

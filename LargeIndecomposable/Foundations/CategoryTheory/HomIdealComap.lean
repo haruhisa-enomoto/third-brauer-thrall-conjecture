@@ -24,7 +24,7 @@ noncomputable section
 
 open CategoryTheory
 
-namespace LargeIndecomposable.CategoricalIdeal.HomIdeal
+namespace MorphismIdeal
 
 universe u v w
 
@@ -32,7 +32,7 @@ variable {C : Type u} {D : Type v}
 variable [Category.{w} C] [Category.{w} D] [Preadditive C] [Preadditive D]
 
 /-- Pull a Hom ideal back along an additive functor. -/
-def comap (F : C ⥤ D) [F.Additive] (I : HomIdeal D) : HomIdeal C where
+def comap (F : C ⥤ D) [F.Additive] (I : MorphismIdeal D) : MorphismIdeal C where
   hom X Y :=
     { carrier := {f | F.map f ∈ I.hom (F.obj X) (F.obj Y)}
       zero_mem' := by simp
@@ -52,7 +52,7 @@ def comap (F : C ⥤ D) [F.Additive] (I : HomIdeal D) : HomIdeal C where
     simpa only [F.map_comp] using I.postcomp (F.map g) hf
 
 @[simp]
-theorem mem_comap_iff (F : C ⥤ D) [F.Additive] (I : HomIdeal D)
+theorem mem_comap_iff (F : C ⥤ D) [F.Additive] (I : MorphismIdeal D)
     {X Y : C} (f : X ⟶ Y) :
     f ∈ (comap F I).hom X Y ↔
       F.map f ∈ I.hom (F.obj X) (F.obj Y) :=
@@ -61,7 +61,7 @@ theorem mem_comap_iff (F : C ⥤ D) [F.Additive] (I : HomIdeal D)
 /-- A morphism in a power of a pulled-back ideal maps into the same power of
 the original ideal. -/
 theorem map_mem_pow_of_mem_comap_pow
-    (F : C ⥤ D) [F.Additive] (I : HomIdeal D) :
+    (F : C ⥤ D) [F.Additive] (I : MorphismIdeal D) :
     ∀ (n : ℕ) {X Y : C} {f : X ⟶ Y},
       f ∈ ((comap F I).pow n).hom X Y →
         F.map f ∈ (I.pow n).hom (F.obj X) (F.obj Y) := by
@@ -83,7 +83,7 @@ theorem map_mem_pow_of_mem_comap_pow
           simpa using neg_mem hf
 
 /-- Powers of a Hom ideal add their exponents under ideal multiplication. -/
-theorem pow_add (I : HomIdeal C) (m n : ℕ) :
+theorem pow_add (I : MorphismIdeal C) (m n : ℕ) :
     I.pow (m + n) = I.pow m ⋆ᵢ I.pow n := by
   induction n with
   | zero => simp
@@ -94,7 +94,7 @@ variable {k : Type*} [Semiring k] [Linear k C]
 
 /-- A Hom ideal in a linear category, regarded pointwise as a linear
 submodule. -/
-def homSubmodule (I : HomIdeal C) (X Y : C) : Submodule k (X ⟶ Y) where
+def homSubmodule (I : MorphismIdeal C) (X Y : C) : Submodule k (X ⟶ Y) where
   carrier := {f | f ∈ I.hom X Y}
   zero_mem' := (I.hom X Y).zero_mem
   add_mem' := (I.hom X Y).add_mem
@@ -105,11 +105,11 @@ def homSubmodule (I : HomIdeal C) (X Y : C) : Submodule k (X ⟶ Y) where
     simpa only [CategoryTheory.Linear.smul_comp, Category.id_comp] using h
 
 @[simp]
-theorem mem_homSubmodule_iff (I : HomIdeal C) (X Y : C) (f : X ⟶ Y) :
+theorem mem_homSubmodule_iff (I : MorphismIdeal C) (X Y : C) (f : X ⟶ Y) :
     f ∈ homSubmodule (k := k) I X Y ↔ f ∈ I.hom X Y :=
   Iff.rfl
 
-end LargeIndecomposable.CategoricalIdeal.HomIdeal
+end MorphismIdeal
 
 namespace LargeIndecomposable
 

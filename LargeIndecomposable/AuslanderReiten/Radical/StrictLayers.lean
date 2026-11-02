@@ -50,7 +50,7 @@ set_option linter.style.haveILetI false
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 
 namespace LargeIndecomposable.StrictLayers
 
@@ -59,33 +59,33 @@ universe v u
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
 /-- The `n`-th power of the categorical radical. -/
-abbrev Ipow (n : ℕ) : HomIdeal C := HomIdeal.pow (homIdeal : HomIdeal C) n
+abbrev Ipow (n : ℕ) : MorphismIdeal C := MorphismIdeal.pow (homIdeal : MorphismIdeal C) n
 
 theorem mem_Ipow_one_iff {X Y : C} (f : X ⟶ Y) :
-    f ∈ (Ipow 1 : HomIdeal C).hom X Y ↔ IsRadicalMorphism f := by
-  rw [Ipow, HomIdeal.pow_one, mem_homIdeal_iff]
+    f ∈ (Ipow 1 : MorphismIdeal C).hom X Y ↔ IsRadicalMorphism f := by
+  rw [Ipow, MorphismIdeal.pow_one, mem_homIdeal_iff]
 
 /-- A radical map followed by a map of `I^n` lies in `I^{n+1}`. -/
 theorem rad_comp_mem {X Y Z : C} {f : X ⟶ Y} {g : Y ⟶ Z} (hf : IsRadicalMorphism f)
-    {n : ℕ} (hg : g ∈ (Ipow n : HomIdeal C).hom Y Z) :
-    f ≫ g ∈ (Ipow (n + 1) : HomIdeal C).hom X Z := by
-  rw [Ipow, HomIdeal.pow_succ_eq_mul_pow]
-  exact HomIdeal.comp_mem_mul ((mem_homIdeal_iff f).2 hf) hg
+    {n : ℕ} (hg : g ∈ (Ipow n : MorphismIdeal C).hom Y Z) :
+    f ≫ g ∈ (Ipow (n + 1) : MorphismIdeal C).hom X Z := by
+  rw [Ipow, MorphismIdeal.pow_succ_eq_mul_pow]
+  exact MorphismIdeal.comp_mem_mul ((mem_homIdeal_iff f).2 hf) hg
 
 /-- A map of `I^n` followed by a radical map lies in `I^{n+1}`. -/
 theorem comp_rad_mem {X Y Z : C} {n : ℕ} {f : X ⟶ Y}
-    (hf : f ∈ (Ipow n : HomIdeal C).hom X Y) {g : Y ⟶ Z} (hg : IsRadicalMorphism g) :
-    f ≫ g ∈ (Ipow (n + 1) : HomIdeal C).hom X Z := by
-  rw [Ipow, HomIdeal.pow_succ]
-  exact HomIdeal.comp_mem_mul hf ((mem_homIdeal_iff g).2 hg)
+    (hf : f ∈ (Ipow n : MorphismIdeal C).hom X Y) {g : Y ⟶ Z} (hg : IsRadicalMorphism g) :
+    f ≫ g ∈ (Ipow (n + 1) : MorphismIdeal C).hom X Z := by
+  rw [Ipow, MorphismIdeal.pow_succ]
+  exact MorphismIdeal.comp_mem_mul hf ((mem_homIdeal_iff g).2 hg)
 
 theorem rad_comp_rad_mem {X Y Z : C} {f : X ⟶ Y} {g : Y ⟶ Z} (hf : IsRadicalMorphism f)
-    (hg : IsRadicalMorphism g) : f ≫ g ∈ (Ipow 2 : HomIdeal C).hom X Z :=
+    (hg : IsRadicalMorphism g) : f ≫ g ∈ (Ipow 2 : MorphismIdeal C).hom X Z :=
   rad_comp_mem hf ((mem_Ipow_one_iff g).2 hg)
 
 theorem mem_Ipow_of_succ {X Y : C} {n : ℕ} {f : X ⟶ Y}
-    (hf : f ∈ (Ipow (n + 1) : HomIdeal C).hom X Y) : f ∈ (Ipow n : HomIdeal C).hom X Y :=
-  HomIdeal.pow_succ_le_pow _ n X Y hf
+    (hf : f ∈ (Ipow (n + 1) : MorphismIdeal C).hom X Y) : f ∈ (Ipow n : MorphismIdeal C).hom X Y :=
+  MorphismIdeal.pow_succ_le_pow _ n X Y hf
 
 /-- `1 + q` is invertible for a radical endomorphism `q`. -/
 theorem isIso_one_add_of_rad {X : C} {q : X ⟶ X} (hq : IsRadicalMorphism q) :
@@ -105,7 +105,7 @@ structure RightRadicalApprox (Y : C) where
   lift : ∀ {W : C} (w : W ⟶ E), w ≫ p = 0 → ∃ s : W ⟶ T, s ≫ i = w
   i_mono : Mono i
   i_rad : IsRadicalMorphism i
-  sq : ∀ {Z : C} (g : T ⟶ Z), g ∈ (Ipow 2 : HomIdeal C).hom T Z →
+  sq : ∀ {Z : C} (g : T ⟶ Z), g ∈ (Ipow 2 : MorphismIdeal C).hom T Z →
     ∃ q : E ⟶ Z, IsRadicalMorphism q ∧ i ≫ q = g
 
 variable [HasBinaryBiproducts C]
@@ -123,14 +123,14 @@ variable {Y : C} (P : RightRadicalApprox Y)
 /-- `eq:right-radical-surjection`: every map of `I^{n+1}(W, Y)` is `w ≫ p` with
 `w ∈ I^n(W, E)`. -/
 theorem exists_lift_of_mem {W : C} {n : ℕ} {g : W ⟶ Y}
-    (hg : g ∈ (Ipow (n + 1) : HomIdeal C).hom W Y) :
-    ∃ w : W ⟶ P.E, w ∈ (Ipow n : HomIdeal C).hom W P.E ∧ w ≫ P.p = g := by
-  rw [Ipow, HomIdeal.pow_succ] at hg
+    (hg : g ∈ (Ipow (n + 1) : MorphismIdeal C).hom W Y) :
+    ∃ w : W ⟶ P.E, w ∈ (Ipow n : MorphismIdeal C).hom W P.E ∧ w ≫ P.p = g := by
+  rw [Ipow, MorphismIdeal.pow_succ] at hg
   induction hg using AddSubgroup.closure_induction with
   | mem h hh =>
       obtain ⟨M, u, v, hu, hv, rfl⟩ := hh
       obtain ⟨v', hv'⟩ := P.factors v ((mem_homIdeal_iff v).1 hv)
-      exact ⟨u ≫ v', (Ipow n : HomIdeal C).postcomp v' hu, by rw [Category.assoc, hv']⟩
+      exact ⟨u ≫ v', (Ipow n : MorphismIdeal C).postcomp v' hu, by rw [Category.assoc, hv']⟩
   | zero => exact ⟨0, zero_mem _, by simp⟩
   | add a b _ _ ha hb =>
       obtain ⟨w₁, hw₁, rfl⟩ := ha
@@ -146,15 +146,15 @@ end RightRadicalApprox
 `p` radical, then `u` is a split monomorphism. -/
 theorem isSplitMono_of_perturbation (hnf : HasSplitRadicalNormalForm C)
     {U E Y : C} (u : U ⟶ E) (p : E ⟶ Y) (hp : IsRadicalMorphism p)
-    (hpert : ∀ h ∈ (Ipow 2 : HomIdeal C).hom U Y, Mono (u ≫ p + h)) :
+    (hpert : ∀ h ∈ (Ipow 2 : MorphismIdeal C).hom U Y, Mono (u ≫ p + h)) :
     IsSplitMono u := by
   obtain ⟨Z, U', e, j, r, hj, hr, hu⟩ := hnf u
   -- the inclusion of `U'` into `U`
   let ι : U' ⟶ U := biprod.inr ≫ e.inv
   let h : U ⟶ Y := -(e.hom ≫ biprod.snd ≫ r ≫ p)
-  have hh : h ∈ (Ipow 2 : HomIdeal C).hom U Y := by
+  have hh : h ∈ (Ipow 2 : MorphismIdeal C).hom U Y := by
     apply neg_mem
-    exact (Ipow 2 : HomIdeal C).precomp _ ((Ipow 2 : HomIdeal C).precomp _
+    exact (Ipow 2 : MorphismIdeal C).precomp _ ((Ipow 2 : MorphismIdeal C).precomp _
       (rad_comp_rad_mem hr hp))
   have hu' : u = e.hom ≫ biprod.desc j r := by
     rw [← hu]; simp
@@ -195,9 +195,9 @@ be radical with `a + h` monic for every `h ∈ I²(U, Y)`. Then
 theorem strict (hnf : HasSplitRadicalNormalForm C)
     (approx : ∀ Y : C, RightRadicalApprox Y) :
     ∀ (n : ℕ) {U Y : C} (a : U ⟶ Y), IsRadicalMorphism a →
-      (∀ h ∈ (Ipow 2 : HomIdeal C).hom U Y, Mono (a + h)) →
-      ∀ {W : C} (z : W ⟶ U), z ≫ a ∈ (Ipow (n + 1) : HomIdeal C).hom W Y →
-        z ∈ (Ipow n : HomIdeal C).hom W U := by
+      (∀ h ∈ (Ipow 2 : MorphismIdeal C).hom U Y, Mono (a + h)) →
+      ∀ {W : C} (z : W ⟶ U), z ≫ a ∈ (Ipow (n + 1) : MorphismIdeal C).hom W Y →
+        z ∈ (Ipow n : MorphismIdeal C).hom W U := by
   intro n
   induction n with
   | zero =>
@@ -232,7 +232,7 @@ theorem strict (hnf : HasSplitRadicalNormalForm C)
       have hb_rad : IsRadicalMorphism b := isRadicalMorphism_postcomp _ P.i_rad
       have hc_rad : IsRadicalMorphism c := isRadicalMorphism_postcomp _ P.i_rad
       -- the complementary monomorphism has the perturbation property
-      have hbpert : ∀ h ∈ (Ipow 2 : HomIdeal C).hom P.T V, Mono (b + h) := by
+      have hbpert : ∀ h ∈ (Ipow 2 : MorphismIdeal C).hom P.T V, Mono (b + h) := by
         intro h hh
         obtain ⟨q, hq, rfl⟩ := P.sq h hh
         let qV : V ⟶ V := ιV ≫ q
@@ -241,7 +241,7 @@ theorem strict (hnf : HasSplitRadicalNormalForm C)
         have hqU : IsRadicalMorphism qU := isRadicalMorphism_precomp _ hq
         haveI : IsIso (𝟙 V + qV) := isIso_one_add_of_rad hqV
         let a' : U ⟶ Y := a + -(qU ≫ inv (𝟙 V + qV) ≫ f)
-        have ha'mem : -(qU ≫ inv (𝟙 V + qV) ≫ f) ∈ (Ipow 2 : HomIdeal C).hom U Y := by
+        have ha'mem : -(qU ≫ inv (𝟙 V + qV) ≫ f) ∈ (Ipow 2 : MorphismIdeal C).hom U Y := by
           apply neg_mem
           rw [← Category.assoc]
           exact rad_comp_rad_mem (isRadicalMorphism_postcomp _ hqU) hf
@@ -291,17 +291,17 @@ theorem strict (hnf : HasSplitRadicalNormalForm C)
       have hsc : s ≫ c = w ≫ ρ - z := by
         change s ≫ P.i ≫ ρ = _
         rw [← Category.assoc, hs, Preadditive.sub_comp, Category.assoc, hρ, Category.comp_id]
-      have hsmem : s ∈ (Ipow n : HomIdeal C).hom _ _ :=
-        ih b hb_rad hbpert s (by rw [hsb]; exact (Ipow (n + 1) : HomIdeal C).postcomp _ hw)
+      have hsmem : s ∈ (Ipow n : MorphismIdeal C).hom _ _ :=
+        ih b hb_rad hbpert s (by rw [hsb]; exact (Ipow (n + 1) : MorphismIdeal C).postcomp _ hw)
       have hz' : z = w ≫ ρ - s ≫ c := by rw [hsc]; abel
       rw [hz']
-      exact sub_mem ((Ipow (n + 1) : HomIdeal C).postcomp _ hw) (comp_rad_mem hsmem hc_rad)
+      exact sub_mem ((Ipow (n + 1) : MorphismIdeal C).postcomp _ hw) (comp_rad_mem hsmem hc_rad)
 
 /-- The reverse implication of Lemma 2.5: `z ∈ I^n` implies `z ≫ a ∈ I^{n+1}`
 for radical `a`. -/
 theorem comp_mem_of_mem {U Y W : C} {a : U ⟶ Y} (ha : IsRadicalMorphism a) {n : ℕ}
-    {z : W ⟶ U} (hz : z ∈ (Ipow n : HomIdeal C).hom W U) :
-    z ≫ a ∈ (Ipow (n + 1) : HomIdeal C).hom W Y :=
+    {z : W ⟶ U} (hz : z ∈ (Ipow n : MorphismIdeal C).hom W U) :
+    z ≫ a ∈ (Ipow (n + 1) : MorphismIdeal C).hom W Y :=
   comp_rad_mem hz ha
 
 end Strict
@@ -310,9 +310,9 @@ end Strict
 as `i ≫ q` with `q` radical) satisfies the perturbation hypothesis of Lemma 2.5:
 `i + h = i ≫ (1 + q)` is monic for every `h ∈ I²`. -/
 theorem perturbation_of_factor {T E : C} (i : T ⟶ E) [Mono i]
-    (hsq : ∀ (g : T ⟶ E), g ∈ (Ipow 2 : HomIdeal C).hom T E →
+    (hsq : ∀ (g : T ⟶ E), g ∈ (Ipow 2 : MorphismIdeal C).hom T E →
       ∃ q : E ⟶ E, IsRadicalMorphism q ∧ i ≫ q = g) :
-    ∀ h ∈ (Ipow 2 : HomIdeal C).hom T E, Mono (i + h) := by
+    ∀ h ∈ (Ipow 2 : MorphismIdeal C).hom T E, Mono (i + h) := by
   intro h hh
   obtain ⟨q, hq, rfl⟩ := hsq h hh
   haveI := isIso_one_add_of_rad hq
@@ -325,7 +325,7 @@ end LargeIndecomposable.StrictLayers
 namespace LargeIndecomposable.StrictLayers
 
 open CategoryTheory CategoryTheory.Limits
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 
 universe v' u'
 
@@ -337,7 +337,7 @@ variable {Y : C} (P : RightRadicalApprox Y)
 
 /-- The kernel map of a right radical approximation has the perturbation
 property of Lemma 2.5. -/
-theorem i_perturbation : ∀ h ∈ (Ipow 2 : HomIdeal C).hom P.T P.E, Mono (P.i + h) := by
+theorem i_perturbation : ∀ h ∈ (Ipow 2 : MorphismIdeal C).hom P.T P.E, Mono (P.i + h) := by
   haveI := P.i_mono
   exact perturbation_of_factor P.i (fun g hg ↦ P.sq g hg)
 
@@ -345,18 +345,18 @@ theorem i_perturbation : ∀ h ∈ (Ipow 2 : HomIdeal C).hom P.T P.E, Mono (P.i 
 `z ∈ I^{n+1}`. -/
 theorem layer_injective (hnf : HasSplitRadicalNormalForm C)
     (approx : ∀ Y : C, RightRadicalApprox Y) {W : C} {n : ℕ} (z : W ⟶ P.T)
-    (hz : z ≫ P.i ∈ (Ipow (n + 2) : HomIdeal C).hom W P.E) :
-    z ∈ (Ipow (n + 1) : HomIdeal C).hom W P.T :=
+    (hz : z ≫ P.i ∈ (Ipow (n + 2) : MorphismIdeal C).hom W P.E) :
+    z ∈ (Ipow (n + 1) : MorphismIdeal C).hom W P.T :=
   strict hnf approx (n + 1) P.i P.i_rad P.i_perturbation z hz
 
 /-- Exactness at the middle term on layers (Prop 2.6(1)): if `w ∈ I^{n+1}`
 and `w ≫ p ∈ I^{n+3}`, then `w ≡ z ≫ i` modulo `I^{n+2}` for some `z ∈ I^n`. -/
 theorem layer_exact (hnf : HasSplitRadicalNormalForm C)
     (approx : ∀ Y : C, RightRadicalApprox Y) {W : C} {n : ℕ} (w : W ⟶ P.E)
-    (hw : w ∈ (Ipow (n + 1) : HomIdeal C).hom W P.E)
-    (hwp : w ≫ P.p ∈ (Ipow (n + 3) : HomIdeal C).hom W Y) :
-    ∃ z : W ⟶ P.T, z ∈ (Ipow n : HomIdeal C).hom W P.T ∧
-      w - z ≫ P.i ∈ (Ipow (n + 2) : HomIdeal C).hom W P.E := by
+    (hw : w ∈ (Ipow (n + 1) : MorphismIdeal C).hom W P.E)
+    (hwp : w ≫ P.p ∈ (Ipow (n + 3) : MorphismIdeal C).hom W Y) :
+    ∃ z : W ⟶ P.T, z ∈ (Ipow n : MorphismIdeal C).hom W P.T ∧
+      w - z ≫ P.i ∈ (Ipow (n + 2) : MorphismIdeal C).hom W P.E := by
   obtain ⟨w', hw', hw'p⟩ := P.exists_lift_of_mem (n := n + 2) hwp
   have hker : (w - w') ≫ P.p = 0 := by rw [Preadditive.sub_comp, hw'p, sub_self]
   obtain ⟨s, hs⟩ := P.lift _ hker
@@ -369,12 +369,12 @@ theorem layer_exact (hnf : HasSplitRadicalNormalForm C)
 
 /-- The lowest degree (Prop 2.6(1)): `w ≫ p ∈ I²` implies `w ∈ I`. -/
 theorem layer_exact_zero {W : C} (w : W ⟶ P.E)
-    (hwp : w ≫ P.p ∈ (Ipow 2 : HomIdeal C).hom W Y) :
-    w ∈ (Ipow 1 : HomIdeal C).hom W P.E := by
+    (hwp : w ≫ P.p ∈ (Ipow 2 : MorphismIdeal C).hom W Y) :
+    w ∈ (Ipow 1 : MorphismIdeal C).hom W P.E := by
   obtain ⟨w', hw', hw'p⟩ := P.exists_lift_of_mem (n := 1) hwp
   have hker : (w - w') ≫ P.p = 0 := by rw [Preadditive.sub_comp, hw'p, sub_self]
   obtain ⟨s, hs⟩ := P.lift _ hker
-  have hsi : s ≫ P.i ∈ (Ipow 1 : HomIdeal C).hom W P.E :=
+  have hsi : s ≫ P.i ∈ (Ipow 1 : MorphismIdeal C).hom W P.E :=
     (mem_Ipow_one_iff _).2 (isRadicalMorphism_precomp _ P.i_rad)
   have : w = s ≫ P.i + w' := by rw [hs]; abel
   rw [this]

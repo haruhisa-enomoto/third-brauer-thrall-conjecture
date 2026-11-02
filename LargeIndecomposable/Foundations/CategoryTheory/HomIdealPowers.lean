@@ -1,7 +1,6 @@
 module
 
-public import LargeIndecomposable.Foundations.CategoryTheory.HomIdeal
-
+public import LargeIndecomposable.Foundations.CategoryTheory.MorphismIdeal
 set_option backward.isDefEq.respectTransparency.types false
 
 /-!
@@ -21,36 +20,36 @@ noncomputable section
 
 open CategoryTheory
 
-namespace LargeIndecomposable.CategoricalIdeal.HomIdeal
+namespace MorphismIdeal
 
 universe v u
 
 variable {C : Type u} [Category.{v} C] [Preadditive C]
 
 /-- Pointwise inclusion of categorical Hom ideals. -/
-def IdealLE (I J : HomIdeal C) : Prop :=
+def IdealLE (I J : MorphismIdeal C) : Prop :=
   ∀ X Y, I.hom X Y ≤ J.hom X Y
 
-instance : LE (HomIdeal C) := ⟨IdealLE⟩
+instance : LE (MorphismIdeal C) := ⟨IdealLE⟩
 
-theorem le_def {I J : HomIdeal C} :
+theorem le_def {I J : MorphismIdeal C} :
     I ≤ J ↔ ∀ X Y, I.hom X Y ≤ J.hom X Y :=
   Iff.rfl
 
 /-- Two Hom ideals are equal when their Hom subgroups agree pointwise. -/
 @[ext]
-theorem ext_hom {I J : HomIdeal C}
+theorem ext_hom {I J : MorphismIdeal C}
     (h : ∀ X Y, I.hom X Y = J.hom X Y) :
     I = J := by
   cases I with
   | mk Ih Ipre Ipost =>
       cases J with
       | mk Jh Jpre Jpost =>
-          simp only [HomIdeal.mk.injEq]
+          simp only [MorphismIdeal.mk.injEq]
           funext X Y
           exact h X Y
 
-instance : PartialOrder (HomIdeal C) where
+instance : PartialOrder (MorphismIdeal C) where
   le := IdealLE
   le_refl I := fun _ _ ↦ le_rfl
   le_trans _ _ _ hIJ hJK := fun X Y ↦
@@ -59,7 +58,7 @@ instance : PartialOrder (HomIdeal C) where
     ext_hom fun X Y ↦ le_antisymm (hIJ X Y) (hJI X Y)
 
 /-- The zero categorical Hom ideal. -/
-def zero (C : Type u) [Category.{v} C] [Preadditive C] : HomIdeal C where
+def zero (C : Type u) [Category.{v} C] [Preadditive C] : MorphismIdeal C where
   hom := fun _ _ ↦ ⊥
   precomp := by
     intro X Y Z f g hg
@@ -72,43 +71,43 @@ def zero (C : Type u) [Category.{v} C] [Preadditive C] : HomIdeal C where
     subst f
     simp
 
-instance : Bot (HomIdeal C) := ⟨zero C⟩
+instance : Bot (MorphismIdeal C) := ⟨zero C⟩
 
 @[simp]
 theorem bot_hom (X Y : C) :
-    (⊥ : HomIdeal C).hom X Y = ⊥ :=
+    (⊥ : MorphismIdeal C).hom X Y = ⊥ :=
   rfl
 
-instance : OrderBot (HomIdeal C) where
+instance : OrderBot (MorphismIdeal C) where
   bot := ⊥
   bot_le _ := fun _ _ ↦ bot_le
 
 /-- The whole categorical Hom ideal. -/
-def whole (C : Type u) [Category.{v} C] [Preadditive C] : HomIdeal C where
+def whole (C : Type u) [Category.{v} C] [Preadditive C] : MorphismIdeal C where
   hom := fun _ _ ↦ ⊤
   precomp := by simp
   postcomp := by simp
 
-instance : Top (HomIdeal C) := ⟨whole C⟩
+instance : Top (MorphismIdeal C) := ⟨whole C⟩
 
 @[simp]
 theorem top_hom (X Y : C) :
-    (⊤ : HomIdeal C).hom X Y = ⊤ :=
+    (⊤ : MorphismIdeal C).hom X Y = ⊤ :=
   rfl
 
-instance : OrderTop (HomIdeal C) where
+instance : OrderTop (MorphismIdeal C) where
   top := ⊤
   le_top _ := fun _ _ ↦ le_top
 
 /-- Composites of one morphism from `I` followed by one from `J`. -/
-def compositeGenerators (I J : HomIdeal C) (X Z : C) :
+def compositeGenerators (I J : MorphismIdeal C) (X Z : C) :
     Set (X ⟶ Z) :=
   {h | ∃ (Y : C) (f : X ⟶ Y) (g : Y ⟶ Z),
       f ∈ I.hom X Y ∧ g ∈ J.hom Y Z ∧ f ≫ g = h}
 
 /-- Product of two categorical Hom ideals: the additive subgroup generated
 by composites `f ≫ g` with `f ∈ I` and `g ∈ J`. -/
-def mul (I J : HomIdeal C) : HomIdeal C where
+def mul (I J : MorphismIdeal C) : MorphismIdeal C where
   hom X Z := AddSubgroup.closure (compositeGenerators I J X Z)
   precomp := by
     intro X Y Z a g hg
@@ -141,7 +140,7 @@ infixl:70 " ⋆ᵢ " => mul
 
 /-- A single allowed composite belongs to the product ideal. -/
 theorem comp_mem_mul
-    {I J : HomIdeal C} {X Y Z : C}
+    {I J : MorphismIdeal C} {X Y Z : C}
     {f : X ⟶ Y} {g : Y ⟶ Z}
     (hf : f ∈ I.hom X Y) (hg : g ∈ J.hom Y Z) :
     f ≫ g ∈ (I ⋆ᵢ J).hom X Z :=
@@ -149,7 +148,7 @@ theorem comp_mem_mul
 
 /-- Multiplication is monotone in both variables. -/
 theorem mul_mono
-    {I I' J J' : HomIdeal C}
+    {I I' J J' : MorphismIdeal C}
     (hI : I ≤ I') (hJ : J ≤ J') :
     I ⋆ᵢ J ≤ I' ⋆ᵢ J' := by
   intro X Z h hh
@@ -163,7 +162,7 @@ theorem mul_mono
 
 /-- Every product lies in its left factor, since the left factor is closed
 under postcomposition. -/
-theorem mul_le_left (I J : HomIdeal C) :
+theorem mul_le_left (I J : MorphismIdeal C) :
     I ⋆ᵢ J ≤ I := by
   intro X Z h hh
   induction hh using AddSubgroup.closure_induction with
@@ -176,7 +175,7 @@ theorem mul_le_left (I J : HomIdeal C) :
 
 /-- Every product lies in its right factor, since the right factor is closed
 under precomposition. -/
-theorem mul_le_right (I J : HomIdeal C) :
+theorem mul_le_right (I J : MorphismIdeal C) :
     I ⋆ᵢ J ≤ J := by
   intro X Z h hh
   induction hh using AddSubgroup.closure_induction with
@@ -188,38 +187,38 @@ theorem mul_le_right (I J : HomIdeal C) :
   | neg f _ hf => exact neg_mem hf
 
 @[simp]
-theorem top_mul (I : HomIdeal C) :
+theorem top_mul (I : MorphismIdeal C) :
     ⊤ ⋆ᵢ I = I := by
   apply le_antisymm (mul_le_right _ _) ?_
   intro X Y f hf
   have hcomp :
-      (𝟙 X) ≫ f ∈ ((⊤ : HomIdeal C) ⋆ᵢ I).hom X Y :=
+      (𝟙 X) ≫ f ∈ ((⊤ : MorphismIdeal C) ⋆ᵢ I).hom X Y :=
     comp_mem_mul (by simp) hf
   simpa using hcomp
 
 @[simp]
-theorem mul_top (I : HomIdeal C) :
+theorem mul_top (I : MorphismIdeal C) :
     I ⋆ᵢ ⊤ = I := by
   apply le_antisymm (mul_le_left _ _) ?_
   intro X Y f hf
   have hcomp :
-      f ≫ 𝟙 Y ∈ (I ⋆ᵢ (⊤ : HomIdeal C)).hom X Y :=
+      f ≫ 𝟙 Y ∈ (I ⋆ᵢ (⊤ : MorphismIdeal C)).hom X Y :=
     comp_mem_mul hf (by simp)
   simpa using hcomp
 
 @[simp]
-theorem bot_mul (I : HomIdeal C) :
+theorem bot_mul (I : MorphismIdeal C) :
     ⊥ ⋆ᵢ I = ⊥ :=
   le_antisymm (mul_le_left _ _) bot_le
 
 @[simp]
-theorem mul_bot (I : HomIdeal C) :
+theorem mul_bot (I : MorphismIdeal C) :
     I ⋆ᵢ ⊥ = ⊥ :=
   le_antisymm (mul_le_right _ _) bot_le
 
 /-- Associativity follows from associativity and bilinearity of categorical
 composition; the closure induction accounts for finite additive sums. -/
-theorem mul_assoc (I J K : HomIdeal C) :
+theorem mul_assoc (I J K : MorphismIdeal C) :
     (I ⋆ᵢ J) ⋆ᵢ K = I ⋆ᵢ (J ⋆ᵢ K) := by
   apply le_antisymm
   · intro X Z h hh
@@ -259,25 +258,25 @@ theorem mul_assoc (I J K : HomIdeal C) :
 
 /-- Right-recursive powers of a categorical Hom ideal.  The zeroth power is
 the whole Hom ideal. -/
-def pow (I : HomIdeal C) : ℕ → HomIdeal C
+def pow (I : MorphismIdeal C) : ℕ → MorphismIdeal C
   | 0 => ⊤
   | n + 1 => pow I n ⋆ᵢ I
 
 @[simp]
-theorem pow_zero (I : HomIdeal C) : pow I 0 = ⊤ :=
+theorem pow_zero (I : MorphismIdeal C) : pow I 0 = ⊤ :=
   rfl
 
 @[simp]
-theorem pow_succ (I : HomIdeal C) (n : ℕ) :
+theorem pow_succ (I : MorphismIdeal C) (n : ℕ) :
     pow I (n + 1) = pow I n ⋆ᵢ I :=
   rfl
 
 @[simp]
-theorem pow_one (I : HomIdeal C) : pow I 1 = I := by
+theorem pow_one (I : MorphismIdeal C) : pow I 1 = I := by
   rw [show 1 = 0 + 1 by rfl, pow_succ, pow_zero, top_mul]
 
 /-- Powers also have the left-recursive form. -/
-theorem pow_succ_eq_mul_pow (I : HomIdeal C) :
+theorem pow_succ_eq_mul_pow (I : MorphismIdeal C) :
     ∀ n : ℕ, pow I (n + 1) = I ⋆ᵢ pow I n
   | 0 => by simp
   | n + 1 => by
@@ -290,18 +289,18 @@ theorem pow_succ_eq_mul_pow (I : HomIdeal C) :
         _ = I ⋆ᵢ pow I (n + 1) := by rw [← pow_succ]
 
 /-- Pointwise inclusion is preserved by every power. -/
-theorem pow_mono {I J : HomIdeal C} (hIJ : I ≤ J) :
+theorem pow_mono {I J : MorphismIdeal C} (hIJ : I ≤ J) :
     ∀ n, pow I n ≤ pow J n
   | 0 => le_rfl
   | n + 1 => mul_mono (pow_mono hIJ n) hIJ
 
 /-- Ideal powers form a descending chain. -/
-theorem pow_succ_le_pow (I : HomIdeal C) (n : ℕ) :
+theorem pow_succ_le_pow (I : MorphismIdeal C) (n : ℕ) :
     pow I (n + 1) ≤ pow I n :=
   mul_le_left _ _
 
 /-- Larger exponents give smaller powers. -/
-theorem pow_le_pow_of_le (I : HomIdeal C) {m n : ℕ}
+theorem pow_le_pow_of_le (I : MorphismIdeal C) {m n : ℕ}
     (hmn : m ≤ n) :
     pow I n ≤ pow I m := by
   induction hmn with
@@ -310,7 +309,7 @@ theorem pow_le_pow_of_le (I : HomIdeal C) {m n : ℕ}
       exact (pow_succ_le_pow I n).trans ih
 
 /-- The pointwise intersection of all powers. -/
-def powerIntersection (I : HomIdeal C) : HomIdeal C where
+def powerIntersection (I : MorphismIdeal C) : MorphismIdeal C where
   hom X Y := ⨅ n, (pow I n).hom X Y
   precomp := by
     intro X Y Z f g hg
@@ -325,18 +324,18 @@ def powerIntersection (I : HomIdeal C) : HomIdeal C where
 
 @[simp]
 theorem mem_powerIntersection_iff
-    {I : HomIdeal C} {X Y : C} {f : X ⟶ Y} :
+    {I : MorphismIdeal C} {X Y : C} {f : X ⟶ Y} :
     f ∈ (powerIntersection I).hom X Y ↔
       ∀ n, f ∈ (pow I n).hom X Y := by
   simp [powerIntersection]
 
 /-- A categorical Hom ideal is nilpotent if one of its powers is zero. -/
-def IsNilpotent (I : HomIdeal C) : Prop :=
+def IsNilpotent (I : MorphismIdeal C) : Prop :=
   ∃ N : ℕ, pow I N = ⊥
 
 /-- Nilpotence forces the intersection of all powers to vanish. -/
 theorem powerIntersection_eq_bot_of_isNilpotent
-    {I : HomIdeal C} (hI : IsNilpotent I) :
+    {I : MorphismIdeal C} (hI : IsNilpotent I) :
     powerIntersection I = ⊥ := by
   obtain ⟨N, hN⟩ := hI
   apply le_antisymm
@@ -349,7 +348,7 @@ theorem powerIntersection_eq_bot_of_isNilpotent
 
 /-- Elementwise form of the same separatedness conclusion. -/
 theorem eq_zero_of_mem_every_power
-    {I : HomIdeal C} (hI : IsNilpotent I)
+    {I : MorphismIdeal C} (hI : IsNilpotent I)
     {X Y : C} {f : X ⟶ Y}
     (hf : ∀ n, f ∈ (pow I n).hom X Y) :
     f = 0 := by
@@ -358,4 +357,4 @@ theorem eq_zero_of_mem_every_power
   rw [hN] at hfN
   simpa using hfN
 
-end LargeIndecomposable.CategoricalIdeal.HomIdeal
+end MorphismIdeal

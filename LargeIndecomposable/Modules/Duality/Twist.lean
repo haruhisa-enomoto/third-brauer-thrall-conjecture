@@ -84,7 +84,7 @@ theorem twist_finite (σ : B ≃ₐ[k] B) (M : RightModuleCat B) [Module.Finite 
 variable [FiniteDimensional k B]
 
 theorem twist_isFiniteIndecomposable (σ : B ≃ₐ[k] B) {M : RightModuleCat B}
-    (hM : IsFiniteIndecomposableRight k B M) : IsFiniteIndecomposableRight k B (twist σ M) := by
+    (hM : IsFiniteIndecomposable k Bᵐᵒᵖ M) : IsFiniteIndecomposable k Bᵐᵒᵖ (twist σ M) := by
   haveI := hM.1
   haveI : Module.Finite k Bᵐᵒᵖ := inferInstance
   haveI : IsLocalRing (End M) :=
@@ -123,8 +123,8 @@ theorem twist_reflect (σ : B ≃ₐ[k] B) {M M' : RightModuleCat B} (e : twist 
 
 /-- **A fixed power of every automorphism of a representation-finite algebra fixes
 every indecomposable class** (the permutation image is a finite group). -/
-theorem twist_pow_iso (hB : IsRepresentationFiniteRight k B) :
-    ∃ N : ℕ, 0 < N ∧ ∀ (τ : B ≃ₐ[k] B) (M : RightModuleCat B), IsFiniteIndecomposableRight k B M →
+theorem twist_pow_iso (hB : IsRepresentationFinite k Bᵐᵒᵖ) :
+    ∃ N : ℕ, 0 < N ∧ ∀ (τ : B ≃ₐ[k] B) (M : RightModuleCat B), IsFiniteIndecomposable k Bᵐᵒᵖ M →
       Nonempty (twist (τ ^ N) M ≅ M) := by
   classical
   obtain ⟨n, X, hX, hcov⟩ := hB

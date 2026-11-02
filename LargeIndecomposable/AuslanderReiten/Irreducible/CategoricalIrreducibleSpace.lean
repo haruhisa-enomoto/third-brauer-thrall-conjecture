@@ -14,18 +14,18 @@ set_option backward.isDefEq.respectTransparency.types false
 set_option autoImplicit false
 noncomputable section
 open CategoryTheory
-open LargeIndecomposable.CategoricalIdeal
+
 open LargeIndecomposable.CategoricalRadical
 namespace LargeIndecomposable.CategoricalIrreducible
 universe u v w
 variable (k : Type u) [Field k] {C : Type v} [Category.{w} C] [Preadditive C] [Linear k C]
 
 /-- The intrinsic categorical radical as a linear subspace. -/
-def radical (X Y : C) : Submodule k (X ⟶ Y) := HomIdeal.homSubmodule homIdeal X Y
+def radical (X Y : C) : Submodule k (X ⟶ Y) := MorphismIdeal.homSubmodule homIdeal X Y
 
 /-- The square of the intrinsic radical as a linear subspace. -/
 def radicalSquare (X Y : C) : Submodule k (X ⟶ Y) :=
-  HomIdeal.homSubmodule (homIdeal ⋆ᵢ homIdeal) X Y
+  MorphismIdeal.homSubmodule (homIdeal ⋆ᵢ homIdeal) X Y
 
 /-- The radical-square denominator inside the radical numerator. -/
 def denominator (X Y : C) : Submodule k (radical k X Y) :=

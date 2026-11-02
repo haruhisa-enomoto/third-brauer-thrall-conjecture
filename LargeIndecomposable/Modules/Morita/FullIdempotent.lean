@@ -253,13 +253,13 @@ open Coind in
 representation-finite, so is `A`. -/
 theorem isRepresentationFinite_of_full [FiniteDimensional k A]
     (hfull : ∀ a : A, a ∈ Submodule.span k {x | ∃ p q : A, x = p * e * q})
-    (hC : IsRepresentationFiniteRight k he.Corner) : IsRepresentationFiniteRight k A := by
+    (hC : IsRepresentationFinite k he.Cornerᵐᵒᵖ) : IsRepresentationFinite k Aᵐᵒᵖ := by
   classical
   obtain ⟨n, V, hV, hcov⟩ := hC
   haveI : Module.Finite k he.Corner := corner_finite he
   haveI : Module.Finite k he.Cornerᵐᵒᵖ := inferInstance
-  have hloc : ∀ (W : RightModuleCat he.Corner), IsFiniteIndecomposableRight k he.Corner W →
-      IsFiniteIndecomposableRight k A ((functor he).obj W) := by
+  have hloc : ∀ (W : RightModuleCat he.Corner), IsFiniteIndecomposable k he.Cornerᵐᵒᵖ W →
+      IsFiniteIndecomposable k Aᵐᵒᵖ ((functor he).obj W) := by
     intro W hW
     haveI := hW.1
     haveI : IsLocalRing (End W) :=

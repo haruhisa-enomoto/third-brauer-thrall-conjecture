@@ -123,7 +123,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **Lemma 8.14, path part** (`lem:generating-paths`): every factor of a generating ray in
 a Hom of dimension at least two is generating. -/
-theorem gen_factor (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f a m b : R}
+theorem gen_factor (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f a m b : R}
     (hf : S.IsGen f) (hd : S.Dim2 f) (h : ⌜a⌝ * ⌜m⌝ * ⌜b⌝ = ⌜f⌝) : S.IsGen m := by
   obtain ⟨g, g1, g2, hg⟩ := S.exists_gen m
   obtain ⟨i, j, hij⟩ := hg m g1.symm g2.symm
@@ -167,7 +167,7 @@ theorem gen_factor (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f a m b :
 
 /-- **Lemma 8.14, vertex-simplicity**: a generating ray in a Hom of dimension at least two has
 no local nonidentity factor. -/
-theorem no_loop_factor (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f a m b : R}
+theorem no_loop_factor (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f a m b : R}
     (hf : S.IsGen f) (hd : S.Dim2 f) (h : ⌜a⌝ * ⌜m⌝ * ⌜b⌝ = ⌜f⌝) (hl : S.P.src m = S.P.tgt m) :
     m = S.P.e (S.P.src m) :=
   S.gen_loop_e (S.gen_factor k hfin hf hd h) hl
@@ -314,7 +314,7 @@ theorem no_cross (hχ : 0 < S.P.deg χ) (hprim : Prim χ) {f ai wi aj wj h : R}
 
 /-- **Two distinct first arrows of a left-sided generating ray** (Appendix C.1, first step):
 one is left-sided and the other two-sided. -/
-theorem first_arrow_types (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem first_arrow_types (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {f a1 a2 : R} (hf : S.IsGen f) (hT : S.TL χ f) (h1 : S.OL f a1)
     (h2 : S.OL f a2) (hne : a1 ≠ a2) :
     (S.TL χ a1 ∧ S.TB χ a2) ∨ (S.TB χ a1 ∧ S.TL χ a2) := by
@@ -520,7 +520,7 @@ theorem op_OL (f a : R) : S.op.OL f a ↔ S.OR f a := by
 
 /-- **Two distinct last arrows of a right-sided generating ray**: one is right-sided and the
 other two-sided (the dual of `first_arrow_types`). -/
-theorem last_arrow_types (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem last_arrow_types (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {f b1 b2 : R} (hf : S.IsGen f) (hT : S.TR χ f) (h1 : S.OR f b1)
     (h2 : S.OR f b2) (hne : b1 ≠ b2) :
     (S.TR χ b1 ∧ S.TB χ b2) ∨ (S.TB χ b1 ∧ S.TR χ b2) := by
@@ -568,7 +568,7 @@ theorem or_cofactor_ne {f b1 b2 w1 : R} (h1 : S.Ord b1) (h2 : S.OR f b2) (hne : 
 /-- **The right-sided case of Appendix C.1**: a right-sided generating ray has no two last
 arrows of types `B` and `R`. With a primitive reverse of the two-sided arrow the six-lift
 tree occurs; otherwise the eight-lift tree occurs. -/
-theorem right_two_last (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem right_two_last (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {f α β : R} (hf : S.IsGen f) (hT : S.TR χ f) (hα : S.OR f α)
     (hβ : S.OR f β) (hne : α ≠ β) (hαB : S.TB χ α) (hβR : S.TR χ β) : False := by
   obtain ⟨oα, γ, hγ⟩ := hα
@@ -809,7 +809,7 @@ theorem right_two_last (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ :
 
 /-- **Proposition 9.10** (`prop:controlled-contours`), right-sided form: all ordinary paths
 of a right-sided generating ray end with the same arrow. -/
-theorem unique_last (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem unique_last (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {f b1 b2 : R} (hf : S.IsGen f) (hT : S.TR χ f) (h1 : S.OR f b1)
     (h2 : S.OR f b2) : b1 = b2 := by
   by_contra hne
@@ -831,7 +831,7 @@ theorem op_OR (f a : R) : S.op.OR f a ↔ S.OL f a := by
 
 /-- **Proposition 9.10**, left-sided form: all ordinary paths of a left-sided generating ray
 start with the same arrow. -/
-theorem unique_first (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem unique_first (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ) {f a1 a2 : R} (hf : S.IsGen f) (hT : S.TL χ f) (h1 : S.OL f a1)
     (h2 : S.OL f a2) : a1 = a2 :=
   S.op.unique_last k (S.P.op_isRepresentationFinite k hfin) hχ hprim ((S.op_isGen_iff f).2 hf)

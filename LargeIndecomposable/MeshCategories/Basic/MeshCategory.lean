@@ -1,7 +1,7 @@
 module
 
-public import LargeIndecomposable.Foundations.CategoryTheory.TwoSidedHomIdeal
-
+public import LargeIndecomposable.Foundations.CategoryTheory.MorphismIdeal
+public import Mathlib
 /-!
 # Translation quivers and scalar mesh categories
 
@@ -72,7 +72,6 @@ end PathCategory
 
 section RelationCategory
 
-open TwoSidedHomIdeal
 
 variable (k : Type u) [CommRing k] {C : Type v} [Category.{w} C] [Preadditive C]
   [Linear k C]
@@ -80,33 +79,33 @@ variable (k : Type u) [CommRing k] {C : Type v} [Category.{w} C] [Preadditive C]
 /-- The quotient of a linear category by the two-sided ideal linearly generated
 by the relations `R`. -/
 def RelationCategory (R : ∀ X Y : C, Set (X ⟶ Y)) :=
-  CategoryTheory.Quotient (HomIdeal.linearSpan k R).rel
+  CategoryTheory.Quotient (MorphismIdeal.linearSpan k R).rel
 
 variable (R : ∀ X Y : C, Set (X ⟶ Y))
 
 instance : Category (RelationCategory k R) :=
-  inferInstanceAs (Category (CategoryTheory.Quotient (HomIdeal.linearSpan k R).rel))
+  inferInstanceAs (Category (CategoryTheory.Quotient (MorphismIdeal.linearSpan k R).rel))
 
 instance : Preadditive (RelationCategory k R) :=
-  (HomIdeal.linearSpan k R).quotientPreadditive
+  (MorphismIdeal.linearSpan k R).quotientPreadditive
 
 instance : Linear k (RelationCategory k R) :=
-  (HomIdeal.linearSpan k R).quotientLinear
+  (MorphismIdeal.linearSpan k R).quotientLinear
 
 /-- The quotient functor onto a relation category. -/
 def RelationCategory.functor : C ⥤ RelationCategory k R :=
-  CategoryTheory.Quotient.functor (HomIdeal.linearSpan k R).rel
+  CategoryTheory.Quotient.functor (MorphismIdeal.linearSpan k R).rel
 
 instance : (RelationCategory.functor k R).Full :=
-  inferInstanceAs (CategoryTheory.Quotient.functor (HomIdeal.linearSpan k R).rel).Full
+  inferInstanceAs (CategoryTheory.Quotient.functor (MorphismIdeal.linearSpan k R).rel).Full
 
 instance : (RelationCategory.functor k R).Additive :=
   CategoryTheory.Quotient.functor_additive _
     (fun {_ _} f₁ f₂ g₁ g₂ hf hg ↦
-      (HomIdeal.linearSpan k R).add_compatible f₁ f₂ g₁ g₂ hf hg)
+      (MorphismIdeal.linearSpan k R).add_compatible f₁ f₂ g₁ g₂ hf hg)
 
 instance : (RelationCategory.functor k R).Linear k :=
-  (HomIdeal.linearSpan k R).quotientFunctorLinear
+  (MorphismIdeal.linearSpan k R).quotientFunctorLinear
 
 end RelationCategory
 
@@ -196,7 +195,7 @@ end LargeIndecomposable
 
 namespace LargeIndecomposable
 
-open CategoryTheory TwoSidedHomIdeal
+open CategoryTheory
 
 universe u' v' w'
 
@@ -206,8 +205,8 @@ variable {k : Type u'} [CommRing k] {C : Type v'} [Category.{w'} C] [Preadditive
 ideal. -/
 theorem RelationCategory.functor_map_eq_zero_iff (R : ∀ X Y : C, Set (X ⟶ Y)) {X Y : C}
     (f : X ⟶ Y) :
-    (RelationCategory.functor k R).map f = 0 ↔ f ∈ (HomIdeal.linearSpan k R).hom X Y :=
-  (HomIdeal.linearSpan k R).map_eq_zero_iff f
+    (RelationCategory.functor k R).map f = 0 ↔ f ∈ (MorphismIdeal.linearSpan k R).hom X Y :=
+  (MorphismIdeal.linearSpan k R).map_eq_zero_iff f
 
 theorem RelationCategory.functor_map_surjective (R : ∀ X Y : C, Set (X ⟶ Y)) {X Y : C}
     (g : (RelationCategory.functor k R).obj X ⟶ (RelationCategory.functor k R).obj Y) :

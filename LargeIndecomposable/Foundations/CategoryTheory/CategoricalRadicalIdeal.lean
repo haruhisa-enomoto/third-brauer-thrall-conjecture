@@ -1,8 +1,7 @@
 module
 
 public import LargeIndecomposable.Foundations.CategoryTheory.CategoricalRadical
-public import LargeIndecomposable.Foundations.CategoryTheory.HomIdeal
-
+public import LargeIndecomposable.Foundations.CategoryTheory.MorphismIdeal
 set_option backward.isDefEq.respectTransparency.types false
 
 /-!
@@ -61,7 +60,7 @@ theorem isRadicalMorphism_add {X Y : C} {f r : X ⟶ Y}
   infer_instance
 
 /-- The canonical categorical Jacobson radical Hom ideal. -/
-def homIdeal : CategoricalIdeal.HomIdeal C where
+def homIdeal : MorphismIdeal C where
   hom _ _ :=
     { carrier := {f | IsRadicalMorphism f}
       zero_mem' := isRadicalMorphism_zero
@@ -72,7 +71,7 @@ def homIdeal : CategoricalIdeal.HomIdeal C where
 
 @[simp]
 theorem mem_homIdeal_iff {X Y : C} (f : X ⟶ Y) :
-    f ∈ (homIdeal : CategoricalIdeal.HomIdeal C).hom X Y ↔
+    f ∈ (homIdeal : MorphismIdeal C).hom X Y ↔
       IsRadicalMorphism f :=
   Iff.rfl
 

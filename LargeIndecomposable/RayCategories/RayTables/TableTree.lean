@@ -185,7 +185,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 include hsrc htgt hwt hmul hretL hretR in
 /-- **A forbidden tree configuration contradicts finite representation type.** -/
-theorem table_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) (d : Fin n → ℕ)
+theorem table_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) (d : Fin n → ℕ)
     (hu : UniqOK le) (hc : CountOK le d) : False :=
   inc_forbidden k (OrderIso.refl _) d hu hc
     ((Conf.ofTable P v g ρt hsrc htgt hwt hmul hretL hretR).isRepresentationFinite k hfin)

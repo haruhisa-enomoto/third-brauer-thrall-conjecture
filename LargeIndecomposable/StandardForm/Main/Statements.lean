@@ -45,7 +45,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 Every basic finite-dimensional representation-finite algebra over an
 algebraically closed field of characteristic different from two is
 standard. -/
-theorem theoremB (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFiniteRight k A)
+theorem theoremB (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFinite k Aᵐᵒᵖ)
     (hchar : ringChar k ≠ 2) :
     IsStandard k A := by
   letI : IsNoetherianRing Aᵐᵒᵖ := IsNoetherianRing.of_finite k Aᵐᵒᵖ
@@ -64,7 +64,7 @@ characteristic different from two has a normed multiplicative basis. The
 standard equivalence of Theorem B identifies `A` with `A₀` (restricting to the
 projective labels), and `A₀` has a normed multiplicative basis by
 Proposition 4.14 and Corollary 3.3. -/
-theorem basic_hasNormedBasis (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFiniteRight k A)
+theorem basic_hasNormedBasis (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFinite k Aᵐᵒᵖ)
     (hchar : ringChar k ≠ 2) : HasNormedMultiplicativeBasis k A := by
   letI : IsNoetherianRing Aᵐᵒᵖ := IsNoetherianRing.of_finite k Aᵐᵒᵖ
   obtain ⟨S⟩ := exists_indSkeleton hA
@@ -76,7 +76,7 @@ theorem basic_hasNormedBasis (hbasic : IsBasicAlgebra A) (hA : IsRepresentationF
 for `char k ≠ 2`, via Corollary 5.5(2) and Lemma 2.1): the basic algebra `eAe`
 is a representation-finite full corner, it has a normed multiplicative basis,
 and Lemma 2.1 lifts it to `A`. -/
-theorem theoremA_of_ringChar_ne_two (hA : IsRepresentationFiniteRight k A) (hchar : ringChar k ≠ 2) :
+theorem theoremA_of_ringChar_ne_two (hA : IsRepresentationFinite k Aᵐᵒᵖ) (hchar : ringChar k ≠ 2) :
     HasNormedMultiplicativeBasis k A := by
   obtain ⟨e, he, hfull, hbasic⟩ := exists_basic_full_corner k A
   haveI : FiniteDimensional k he.Corner := corner_finite he

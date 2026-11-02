@@ -187,7 +187,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k] [DecidableRel (α := P) (· ⋖ 
 /-- **Lemma 8.8 for a poset whose cover graph is acyclic.** -/
 theorem tree_not_isRepresentationFinite (hT : (coverGraph P).IsAcyclic) (d : P → ℕ)
     (hd : ∃ v, 0 < d v) (hN : ∑ v, d v ^ 2 ≤ ∑ a : Arr (P := P) (· ⋖ ·), d (tgt a) * d (src a)) :
-    ¬ IsRepresentationFiniteRight k (IncidenceAlgebra k P) :=
+    ¬ IsRepresentationFinite k (IncidenceAlgebra k P)ᵐᵒᵖ :=
   not_isRepresentationFinite (k := k) d covBy_lt (subsingleton_ePath hT) nonempty_ePath hd hN
 
 /-! ### Duals -/
@@ -225,7 +225,7 @@ theorem sum_arr_dual [DecidableRel (α := Pᵒᵈ) (· ⋖ ·)] (d : P → ℕ) 
 theorem tree_not_isRepresentationFinite_dual [DecidableRel (α := Pᵒᵈ) (· ⋖ ·)]
     (hT : (coverGraph P).IsAcyclic) (d : P → ℕ)
     (hd : ∃ v, 0 < d v) (hN : ∑ v, d v ^ 2 ≤ ∑ a : Arr (P := P) (· ⋖ ·), d (tgt a) * d (src a)) :
-    ¬ IsRepresentationFiniteRight k (IncidenceAlgebra k Pᵒᵈ) := by
+    ¬ IsRepresentationFinite k (IncidenceAlgebra k Pᵒᵈ)ᵐᵒᵖ := by
   refine tree_not_isRepresentationFinite (P := Pᵒᵈ) k (isAcyclic_dual hT)
     (fun v ↦ d (OrderDual.ofDual v)) (by obtain ⟨v, hv⟩ := hd; exact ⟨OrderDual.toDual v, hv⟩) ?_
   rw [sum_arr_dual d]

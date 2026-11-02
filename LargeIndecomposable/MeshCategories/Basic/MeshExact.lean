@@ -51,9 +51,9 @@ abbrev qArr (x : Q.nonprojective) (a : Σ y : V, y ⟶ x.1) : obj c (Q.tau x).1 
 /-- The mesh relation holds in `C(Q, c)`. -/
 theorem qArr_comp_zero (x : Q.nonprojective) :
     ∑ a : Σ y : V, y ⟶ x.1, qArr c x a ≫ arrowMor c a.2 = 0 := by
-  have hrel : meshRelation c x ∈ (TwoSidedHomIdeal.HomIdeal.linearSpan k (meshRelations c)).hom
+  have hrel : meshRelation c x ∈ (MorphismIdeal.linearSpan k (meshRelations c)).hom
       (LinearPaths.obj (Q.tau x).1) (LinearPaths.obj x.1) :=
-    TwoSidedHomIdeal.HomIdeal.relation_mem_linearSpan _ ⟨x, rfl, rfl, by simp⟩
+    MorphismIdeal.relation_mem_linearSpan _ ⟨x, rfl, rfl, by simp⟩
   rw [← RelationCategory.functor_map_eq_zero_iff, meshRelation, Functor.map_sum] at hrel
   rw [← hrel]
   refine Finset.sum_congr rfl fun a _ ↦ ?_

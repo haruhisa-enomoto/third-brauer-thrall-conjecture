@@ -239,7 +239,7 @@ theorem op_unitM_corner_mul (x y : D.PV) (f : D.F0 x ⟶ D.F0 y) :
 
 /-- **`A₀` has a normed multiplicative basis** (Proposition 4.14 with
 Corollary 3.3). -/
-theorem hasNormedBasis_A0 (v₀ : V) (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ) :
+theorem hasNormedBasis_A0 (v₀ : V) (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ) :
     HasNormedMultiplicativeBasis k (Alg D.F0)ᵐᵒᵖ := by
   have hfin' : ∀ x y : V, FiniteDimensional k (obj c x ⟶ obj c y) := fun x y ↦ hfd x y
   obtain ⟨bv, hmem, hspan, hne, hid, hmul⟩ := exists_deckVectors (Q := Q) (c := c) (v₀ := v₀) hF

@@ -39,7 +39,7 @@ namespace Sys
 
 variable {V R L : Type} [AddCommGroup L] [DecidableEq L] [Fintype V] [DecidableEq V] [Fintype R]
   [DecidableEq R] (S : Sys V R L) (k : Type u) [Field k] [IsAlgClosed k]
-  (hfin : IsRepresentationFiniteRight k (S.P.Lin k))
+  (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ)
 
 omit [IsAlgClosed k] in
 /-- A bilinear map on `kP` transported along `Θ`. -/

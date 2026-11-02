@@ -75,7 +75,7 @@ theorem isRepresentationFinite_op_of_left {n : ℕ} (X : Fin n → ModuleCat.{v}
     (hX : ∀ i, Module.Finite k (X i) ∧ IsLocalRing (End (X i)))
     (hcov : ∀ M : ModuleCat.{v} A, Module.Finite k M → Indecomposable M →
       ∃ i, Nonempty (M ≅ X i)) :
-    IsRepresentationFiniteRight k Aᵐᵒᵖ := by
+    IsRepresentationFinite k Aᵐᵒᵖᵐᵒᵖ := by
   haveI : Module.Finite k Aᵐᵒᵖ := inferInstance
   haveI : Module.Finite k Aᵐᵒᵖᵐᵒᵖ := inferInstance
   refine ⟨n, fun i ↦ (toOpOp (A := A)).functor.obj (X i), fun i ↦ ?_, fun N hN ↦ ?_⟩
@@ -223,7 +223,7 @@ theorem exists_iso_evObj (M : ModuleCat.{w} (Alg D.F0)) [Module.Finite k M]
 
 include J in
 /-- **Proposition 2.10(2)**: `A₀` is representation-finite. -/
-theorem isRepresentationFinite_A0 : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ := by
+theorem isRepresentationFinite_A0 : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ := by
   classical
   let eι := Fintype.equivFin ι
   refine isRepresentationFinite_op_of_left (fun i ↦ evObj (D := D) (eι.symm i))

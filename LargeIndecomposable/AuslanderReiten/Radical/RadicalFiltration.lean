@@ -154,22 +154,22 @@ universe w
 variable {k A : Type w} [Field k] [Ring A] [Algebra k A] [FiniteDimensional k A]
   [IsNoetherianRing Aᵐᵒᵖ] (S : IndSkeleton k A)
 
-open LargeIndecomposable.CategoricalIdeal LargeIndecomposable.CategoricalRadical in
+open LargeIndecomposable.CategoricalRadical in
 /-- The image of `J^n` in `mod A` lies in the `n`-th power of the
 radical ideal. -/
 theorem map_mem_pow_of_mem_radPow {n : ℕ} {X Y : S.Ind} {f : X ⟶ Y}
     (hf : f ∈ S.radPow n X Y) :
-    S.toFG.map f ∈ (HomIdeal.pow S.toVendor.fgNilpotentRadicalData.ideal n).hom _ _ := by
+    S.toFG.map f ∈ (MorphismIdeal.pow S.toVendor.fgNilpotentRadicalData.ideal n).hom _ _ := by
   induction n generalizing X with
   | zero => trivial
   | succ n ih =>
-      rw [HomIdeal.pow_succ_eq_mul_pow]
+      rw [MorphismIdeal.pow_succ_eq_mul_pow]
       change f ∈ Submodule.span k _ at hf
       induction hf using Submodule.span_induction with
       | mem h hh =>
           obtain ⟨W, f₁, g₁, hf₁, hg₁, rfl⟩ := hh
           rw [Functor.map_comp]
-          apply HomIdeal.comp_mem_mul
+          apply MorphismIdeal.comp_mem_mul
           · exact (S.toVendor.fgNilpotentRadicalData.mem_iff _).2 ((S.isRadical_iff f₁).1 hf₁)
           · exact ih hg₁
       | zero => rw [Functor.map_zero]; exact zero_mem _
@@ -178,7 +178,7 @@ theorem map_mem_pow_of_mem_radPow {n : ℕ} {X Y : S.Ind} {f : X ⟶ Y}
           have h : S.toFG.map (c • a) = (c • 𝟙 _) ≫ S.toFG.map a := by
             simp [Functor.map_smul]
           rw [h]
-          exact HomIdeal.precomp _ _ ha
+          exact MorphismIdeal.precomp _ _ ha
 
 /-- For a representation-finite algebra the radical of `ind(mod A)` is
 nilpotent. -/

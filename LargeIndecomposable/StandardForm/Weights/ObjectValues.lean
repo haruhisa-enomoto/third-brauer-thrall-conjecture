@@ -125,7 +125,7 @@ theorem part_arrow [hone : ∀ x y : V, Subsingleton (x ⟶ y)] {y x : V} (a : y
 variable [IsAlgClosed k] [Infinite k] [hone : ∀ x y : V, Subsingleton (x ⟶ y)]
   {L : LocalFamily (k := k) (meshFam Q c)} {D : MeshData (meshFam Q c) L}
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
   {d : D.PV × Deck Q v₀ → D.PV × Deck Q v₀ → k}
   (hd : Thin.IsWeight (O := CovObj (grading0 D (deckGrading Q c v₀))) Set.univ d)
 

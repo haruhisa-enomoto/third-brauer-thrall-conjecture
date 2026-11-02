@@ -233,7 +233,7 @@ theorem ar_comp_zero (x : S.ARVertex) (hx : x ∈ S.nonprojectiveVertices) :
           (S.arTranslationQuiver.mate ⟨x, hx⟩ a.1 a.2)) ≫
       ScalarMeshCategory.arrowMor (S.arCoefficients b) a.2 = 0 := by
   have hrel : meshRelation (S.arCoefficients b) ⟨x, hx⟩ ∈ (S.meshIdeal b).hom _ _ :=
-    LargeIndecomposable.TwoSidedHomIdeal.HomIdeal.relation_mem_linearSpan _
+    MorphismIdeal.relation_mem_linearSpan _
       ⟨⟨x, hx⟩, rfl, rfl, by simp⟩
   rw [← S.meshQuot_map_eq_zero_iff, meshRelation, Functor.map_sum] at hrel
   rw [← hrel]

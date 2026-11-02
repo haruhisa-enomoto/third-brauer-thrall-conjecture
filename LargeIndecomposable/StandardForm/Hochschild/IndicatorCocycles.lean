@@ -106,7 +106,7 @@ theorem stem_of_killed_src {t w : R} (h : S.q (S.P.src t) * ⌜t⌝ = 0) :
 variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **A correction value is killed by both endpoint radicals** (Cor 8.13). -/
-theorem eps_killed (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u v t : R}
+theorem eps_killed (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {u v t : R}
     (h : S.eps u v = ⌜t⌝) : ⌜t⌝ * S.q (S.P.tgt t) = 0 ∧ S.q (S.P.src t) * ⌜t⌝ = 0 := by
   have huv : ⌜u⌝ * ⌜v⌝ = 0 := by
     by_contra h0; rw [S.eps_of_mul_ne h0] at h; exact S.rr_ne t h.symm
@@ -123,7 +123,7 @@ theorem eps_killed (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u v t : R
   refine ⟨by rw [t2, e2]; exact h3, by rw [t1]; exact h2⟩
 
 /-- The stem product of a correction value with a ray. -/
-theorem stemL_eps (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (u v w : R) :
+theorem stemL_eps (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (u v w : R) :
     S.stemL (S.eps u v) w = S.eps u v * ⌜w⌝ := by
   classical
   rcases S.eps_cases u v with h | ⟨t, ht⟩
@@ -131,7 +131,7 @@ theorem stemL_eps (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (u v w : R)
   · rw [ht, S.stemL_rr, S.stem_of_killed_tgt (S.eps_killed k hfin ht).1]
 
 /-- The stem product of a ray with a correction value. -/
-theorem stemR_eps (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (u v w : R) :
+theorem stemR_eps (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (u v w : R) :
     S.stemR u (S.eps v w) = ⌜u⌝ * S.eps v w := by
   classical
   rcases S.eps_cases v w with h | ⟨t, ht⟩
@@ -139,7 +139,7 @@ theorem stemR_eps (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (u v w : R)
   · rw [ht, S.stemR_rr, S.stem_of_killed_src (S.eps_killed k hfin ht).2]
 
 /-- **`dε = 0`** (proof of Lemma 11.1), the four cases of its table. -/
-theorem deps_zero (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (u v w : R) :
+theorem deps_zero (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (u v w : R) :
     (⌜u⌝ * ⌜v⌝ = 0 → ⌜v⌝ * ⌜w⌝ = 0 → S.eps u v * ⌜w⌝ = ⌜u⌝ * S.eps v w) ∧
     (∀ t', ⌜u⌝ * ⌜v⌝ = 0 → ⌜v⌝ * ⌜w⌝ = ⌜t'⌝ → S.eps u v * ⌜w⌝ = S.eps u t') ∧
     (∀ t, ⌜u⌝ * ⌜v⌝ = ⌜t⌝ → ⌜v⌝ * ⌜w⌝ = 0 → S.eps t w = ⌜u⌝ * S.eps v w) ∧
@@ -164,7 +164,7 @@ theorem deps_zero (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (u v w : R)
     · rw [S.eps_of_mul_ne h0, S.eps_of_mul_ne (e ▸ h0)]
 
 /-- **Nested insertions vanish** (Prop 11.2(3)). -/
-theorem eps_nested (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u v t : R}
+theorem eps_nested (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {u v t : R}
     (h : S.eps u v = ⌜t⌝) (w : R) : S.eps t w = 0 ∧ S.eps w t = 0 := by
   obtain ⟨h1, h2⟩ := S.eps_killed k hfin h
   constructor
@@ -176,7 +176,7 @@ theorem eps_nested (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u v t : R
     · exact S.eps_of_mul_ne h0
 
 /-- A nonzero correction is `r q_y s` on a composable zero pair of generating rays. -/
-theorem eps_ne_zero_spec (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u v : R}
+theorem eps_ne_zero_spec (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {u v : R}
     (h : S.eps u v ≠ 0) : ⌜u⌝ * ⌜v⌝ = 0 ∧ S.IsGen u ∧ S.IsGen v ∧ S.P.tgt u = S.P.src v ∧
       S.eps u v = ⌜u⌝ * S.q (S.P.tgt u) * ⌜v⌝ := by
   have huv : ⌜u⌝ * ⌜v⌝ = 0 := by
@@ -191,7 +191,7 @@ theorem eps_ne_zero_spec (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u v
   rw [h1, mul_assoc, h2, mul_zero]
 
 /-- **Corrections vanish on local left inputs** (proof of Prop 11.3(3)). -/
-theorem eps_local_left (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u : R}
+theorem eps_local_left (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {u : R}
     (hu : S.P.src u = S.P.tgt u) (v : R) : S.eps u v = 0 := by
   by_contra h
   obtain ⟨h0, g1, -, hm, -⟩ := S.eps_ne_zero_spec k hfin h
@@ -201,7 +201,7 @@ theorem eps_local_left (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u : R
   exact S.rr_ne v h0
 
 /-- **Corrections vanish on local right inputs.** -/
-theorem eps_local_right (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (u : R) {v : R}
+theorem eps_local_right (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (u : R) {v : R}
     (hv : S.P.src v = S.P.tgt v) : S.eps u v = 0 := by
   by_contra h
   obtain ⟨h0, -, g2, hm, -⟩ := S.eps_ne_zero_spec k hfin h
@@ -327,7 +327,7 @@ theorem eq_zero_of_basis3 {N : Type*} [AddCommGroup N] [Module K N]
 
 /-- **The cocycle equation on a basis triple** (proof of Lemma 11.1): one positive and one
 negative term, with the same value. -/
-theorem coch_expr (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (a : R → R → K) (u v w : R) :
+theorem coch_expr (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (a : R → R → K) (u v w : R) :
     S.P.b K u * S.coch K a (S.P.b K v) (S.P.b K w) - S.coch K a (S.P.b K u * S.P.b K v) (S.P.b K w)
       + S.coch K a (S.P.b K u) (S.P.b K v * S.P.b K w) - S.coch K a (S.P.b K u) (S.P.b K v) * S.P.b K w
       = (a (S.posP u v w).1 (S.posP u v w).2 - a (S.negP u v w).1 (S.negP u v w).2) •
@@ -375,7 +375,7 @@ def EdgeOK (a : R → R → K) : Prop :=
 
 /-- **Prop 11.2(1)**: the supported cochain is a cocycle iff its coefficients satisfy the
 equalities. -/
-theorem coch_isCocycle_iff (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (a : R → R → K) :
+theorem coch_isCocycle_iff (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (a : R → R → K) :
     LenGrading.IsCocycle₂ (S.coch K a) ↔ S.EdgeOK K a := by
   constructor
   · intro h u v w hX
@@ -429,7 +429,7 @@ theorem coch_sum {ι : Type*} (s : Finset ι) (a : ι → R → R → K) :
   | insert i s hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, coch_add, ih]
 
 /-- **Mixed insertions vanish** (`eq:mixed-insertions-zero`). -/
-theorem coch_nested (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (a b : R → R → K)
+theorem coch_nested (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (a b : R → R → K)
     (x y z : S.P.Lin K) :
     S.coch K a (S.coch K b x y) z = 0 ∧ S.coch K a x (S.coch K b y z) = 0 := by
   constructor
@@ -462,7 +462,7 @@ theorem coch_nested (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (a b : R 
 
 /-- **Prop 11.3(1)**: `m + Σ a_z ε_z` is associative when the coefficients satisfy the
 equalities. -/
-theorem family_assoc (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {a : R → R → K}
+theorem family_assoc (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {a : R → R → K}
     (ha : S.EdgeOK K a) (x y z : S.P.Lin K) :
     (x * y + S.coch K a x y) * z + S.coch K a (x * y + S.coch K a x y) z =
       x * (y * z + S.coch K a y z) + S.coch K a x (y * z + S.coch K a y z) := by
@@ -518,7 +518,7 @@ theorem const_of_edgeOK {a : R → R → K} (ha : S.EdgeOK K a) {z z' : R × R}
   | trans x y z _ _ ih1 ih2 => exact ih1.trans ih2
 
 /-- **Prop 11.2(2)**: a supported cocycle is a combination of indicator cocycles. -/
-theorem coch_eq_sum_muE (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {a : R → R → K}
+theorem coch_eq_sum_muE (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {a : R → R → K}
     (ha : LenGrading.IsCocycle₂ (S.coch K a)) [Fintype (Quotient S.pairSetoid)] :
     S.coch K a = ∑ c : Quotient S.pairSetoid,
       (a (Quotient.out c).1 (Quotient.out c).2) • S.muE K c := by

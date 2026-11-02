@@ -210,7 +210,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 include f1 f2 g1 g2 q01 q02 hfq hq2 hqg hfg hdf hdg hdq X1 X2 X3 X4 X5 X6 X7 X8 in
 /-- **The seven-object category of Case 2 is excluded.** -/
-theorem c2_false (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) : False :=
+theorem c2_false (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) : False :=
   S.P.bound_false k hfin t7_uniq t7_cov42 t7_cov25 ![1, 2, 3, 2, 1, 1, 1] ⟨0, by decide⟩ t7_count
     (Tab.ConfZ.ofTable S.P 4 5 (c2V b c a) (S.c2G f g q0) (S.c2ρ b c a f g q0 fq q2 qg)
       (S.c2_src f1 g1 q01 hfq hq2 hqg) (S.c2_tgt f2 g2 q02 hfq hq2 hqg)
@@ -254,7 +254,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **Lemma 8.11(1)** (`lem:opposite-controls`): for generating `f : b → c`, `g : c → a`
 whose Homs are cyclic at `c` but not at the other endpoints, `f q² = 0` or `q² g = 0`. -/
-theorem opposite_controls (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f g : R}
+theorem opposite_controls (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f g : R}
     (hfR : S.CycR f) (hfL : ¬ S.CycL f) (hgL : S.CycL g) (hgR : ¬ S.CycR g)
     (hfg : S.P.tgt f = S.P.src g) :
     ⌜f⌝ * S.q (S.P.tgt f) ^ 2 = 0 ∨ S.q (S.P.tgt f) ^ 2 * ⌜g⌝ = 0 := by
@@ -383,7 +383,7 @@ theorem opposite_controls (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f 
     linarith
 
 /-- **Lemma 8.11(2)**, first part: `f q^n g = 0` for `n ≥ 2`. -/
-theorem opposite_controls_high (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f g : R}
+theorem opposite_controls_high (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f g : R}
     (hfR : S.CycR f) (hfL : ¬ S.CycL f) (hgL : S.CycL g) (hgR : ¬ S.CycR g)
     (hfg : S.P.tgt f = S.P.src g) (n : ℕ) (hn : 2 ≤ n) :
     ⌜f⌝ * S.q (S.P.tgt f) ^ n * ⌜g⌝ = 0 := by
@@ -392,7 +392,7 @@ theorem opposite_controls_high (hfin : IsRepresentationFiniteRight k (S.P.Lin k)
   · rw [show n = (n - 2) + 2 by omega, pow_add, mul_assoc, mul_assoc, h, mul_zero, mul_zero]
 
 /-- **Lemma 8.11(2)**, socle part: the source radical kills `f q^n g`. -/
-theorem opposite_controls_src (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f g : R}
+theorem opposite_controls_src (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f g : R}
     (hfR : S.CycR f) (hfL : ¬ S.CycL f) (hgL : S.CycL g) (hgR : ¬ S.CycR g)
     (hfg : S.P.tgt f = S.P.src g) (n : ℕ) :
     S.q (S.P.src f) * (⌜f⌝ * S.q (S.P.tgt f) ^ n * ⌜g⌝) = 0 := by
@@ -403,7 +403,7 @@ theorem opposite_controls_src (hfin : IsRepresentationFiniteRight k (S.P.Lin k))
     exact S.opposite_controls_high k hfin hfR hfL hgL hgR hfg _ (by omega)
 
 /-- **Lemma 8.11(2)**, socle part: the target radical kills `f q^n g`. -/
-theorem opposite_controls_tgt (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f g : R}
+theorem opposite_controls_tgt (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f g : R}
     (hfR : S.CycR f) (hfL : ¬ S.CycL f) (hgL : S.CycL g) (hgR : ¬ S.CycR g)
     (hfg : S.P.tgt f = S.P.src g) (n : ℕ) :
     ⌜f⌝ * S.q (S.P.tgt f) ^ n * ⌜g⌝ * S.q (S.P.tgt g) = 0 := by

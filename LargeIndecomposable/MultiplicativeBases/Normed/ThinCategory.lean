@@ -133,8 +133,8 @@ representation-finite (supplied by Lemma 4.10). -/
 def SupRepFinite : Prop :=
   letI : PartialOrder (SupP s P fv) := supOrder hT hfv
   letI : LocallyFiniteOrder (SupP s P fv) := Fintype.toLocallyFiniteOrder
-  IsRepresentationFiniteRight k (IncidenceAlgebra k (SupP s P fv)) ∨
-    IsRepresentationFiniteRight k (IncidenceAlgebra k (SupP s P fv)ᵒᵈ)
+  IsRepresentationFinite k (IncidenceAlgebra k (SupP s P fv))ᵐᵒᵖ ∨
+    IsRepresentationFinite k (IncidenceAlgebra k (SupP s P fv)ᵒᵈ)ᵐᵒᵖ
 
 end Support
 

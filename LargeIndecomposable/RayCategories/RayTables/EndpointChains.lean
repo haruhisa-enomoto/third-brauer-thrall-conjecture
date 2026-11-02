@@ -278,7 +278,7 @@ theorem genIdeal_corner {x y : Fin F.m} {N : Submodule k A} (hN : F.IsEndpointSu
 
 /-- **Finitely many endpoint subbimodules**: each is recovered from the ideal
 it generates. -/
-theorem finite_subbimodules (hA : IsRepresentationFiniteRight k A) (x y : Fin F.m) :
+theorem finite_subbimodules (hA : IsRepresentationFinite k Aᵐᵒᵖ) (x y : Fin F.m) :
     {N : Submodule k A | F.IsEndpointSubbimodule x y N}.Finite := by
   apply Set.Finite.of_finite_image (f := genIdeal)
   · exact (finite_twoSidedIdeals_of hA).subset (Set.subset_univ _)
@@ -472,7 +472,7 @@ theorem exists_socle_layer {x y : Fin F.m} {L N : Submodule k A}
     exact (not_le_of_gt hLP) this
 
 /-- **Lemma 3.1(3)**: the endpoint subbimodules form a chain. -/
-theorem isChain_subbimodules (hA : IsRepresentationFiniteRight k A) (x y : Fin F.m) :
+theorem isChain_subbimodules (hA : IsRepresentationFinite k Aᵐᵒᵖ) (x y : Fin F.m) :
     IsChain (· ≤ ·) {N : Submodule k A | F.IsEndpointSubbimodule x y N} := by
   intro N₁ h₁ N₂ h₂ _
   by_contra hcon
@@ -567,7 +567,7 @@ theorem finrank_succ_of_consecutive {x y : Fin F.m} {N N' : Submodule k A}
     exact this
 
 /-- **Lemma 3.1(3)**, last part: `R_x f R_y = R_x f` or `f R_y`. -/
-theorem endpointSpan_one_sided (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} {f : A}
+theorem endpointSpan_one_sided (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y : Fin F.m} {f : A}
     (hf : f ∈ F.corner (k := k) x y) :
     F.endpointSpan (k := k) x y f =
         Submodule.span k {g | ∃ a ∈ F.corner (k := k) x x, g = a * f} ∨

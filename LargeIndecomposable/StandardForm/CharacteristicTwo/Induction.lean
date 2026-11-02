@@ -44,13 +44,13 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 /-- Weight lifting for every representation-finite ray table with fewer than `n` rays. -/
 def LiftBelow (n : ℕ) : Prop :=
   ∀ (V R L : Type) [AddCommGroup L] [Fintype V] [DecidableEq V] [Fintype R] [DecidableEq R]
-    (T : RaySys.Tab V R L), Fintype.card R < n → IsRepresentationFiniteRight k (T.Lin k) → T.Lift2
+    (T : RaySys.Tab V R L), Fintype.card R < n → IsRepresentationFinite k (T.Lin k)ᵐᵒᵖ → T.Lift2
 
 /-- **Corollary 10.5 under the induction hypothesis**, for every basic representation-finite
 algebra. -/
 def Cor105Hyp : Prop :=
   ∀ (A : Type u) [Ring A] [Algebra k A] [FiniteDimensional k A] [IsNoetherianRing Aᵐᵒᵖ],
-    IsBasicAlgebra A → IsRepresentationFiniteRight k A → LiftBelow k (Module.finrank k A) →
+    IsBasicAlgebra A → IsRepresentationFinite k Aᵐᵒᵖ → LiftBelow k (Module.finrank k A) →
       ∀ (S : IndSkeleton k A) (b : S.ArrowBases), S.Cor105AR b
 
 variable {k}
@@ -65,7 +65,7 @@ theorem ne_zero_of_complete {B : Type u} [Ring B] [Nontrivial B] {n : ℕ} {e : 
 /-- **The connected case of the induction.** -/
 theorem lift2_conn (h2 : (2 : k) = 0) (hcor : Cor105Hyp k) {V R L : Type} [AddCommGroup L]
     [Fintype V] [DecidableEq V] [Fintype R] [DecidableEq R] (T : RaySys.Tab V R L)
-    (hfin : IsRepresentationFiniteRight k (T.Lin k)) (hc : T.Conn) (hV : Nonempty V)
+    (hfin : IsRepresentationFinite k (T.Lin k)ᵐᵒᵖ) (hc : T.Conn) (hV : Nonempty V)
     (hIH : LiftBelow k (Fintype.card R)) : T.Lift2 := by
   classical
   haveI : IsNoetherianRing (T.Lin k)ᵐᵒᵖ := IsNoetherianRing.of_finite k (T.Lin k)ᵐᵒᵖ
@@ -135,7 +135,7 @@ theorem lift2_all (h2 : (2 : k) = 0) (hcor : Cor105Hyp k) (n : ℕ) : LiftBelow 
 Corollary 10.5 (Proposition 8.3(1)). -/
 theorem exists_normedRayBasis_basic_char2 (h2 : (2 : k) = 0) (hcor : Cor105Hyp k)
     (A : Type u) [Ring A] [Algebra k A] [FiniteDimensional k A] (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (hn : Nontrivial A) :
+    (hA : IsRepresentationFinite k Aᵐᵒᵖ) (hn : Nontrivial A) :
     ∃ (F : PrimitiveIdempotents A) (bF : Module.Basis (F.NonzeroRay k) k A),
       IsNormedMultiplicativeBasis bF ∧ F.IsRayTransversal bF := by
   haveI : IsNoetherianRing Aᵐᵒᵖ := IsNoetherianRing.of_finite k Aᵐᵒᵖ

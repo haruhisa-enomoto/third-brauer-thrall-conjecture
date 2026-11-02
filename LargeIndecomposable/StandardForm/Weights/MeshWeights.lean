@@ -405,7 +405,7 @@ theorem aconn_path {Y X : V} (p : Quiver.Path Y X) (v : Deck Q v₀) :
 
 section Lift
 
-variable (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ) (x₀ : D.PV)
+variable (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ) (x₀ : D.PV)
   (hK : ∀ X : V, ∃ g, aconn Q v₀ (x₀.1, 1) (X, g))
 
 /-- The base lift of each label. -/

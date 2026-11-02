@@ -32,7 +32,7 @@ open CategoryTheory CategoryTheory.Limits
 
 namespace LargeIndecomposable.Iyama
 
-open CategoricalIdeal CategoricalRadical
+open CategoricalRadical
 
 universe v u
 
@@ -241,7 +241,7 @@ theorem TauApproximation.exists_radical_factor_of_mem_square
   have hr' : r ∈ (R.ideal ⋆ᵢ R.ideal).hom S.X₁ S.X₂ := by
     simpa using hr
   change r ∈ AddSubgroup.closure
-    (CategoricalIdeal.HomIdeal.compositeGenerators
+    (MorphismIdeal.compositeGenerators
       R.ideal R.ideal S.X₁ S.X₂) at hr'
   clear hr
   induction hr' using AddSubgroup.closure_induction with
@@ -275,7 +275,7 @@ theorem TauApproximation.exists_radical_factor_into_of_mem_square
   have hr' : r ∈ (R.ideal ⋆ᵢ R.ideal).hom W S.X₃ := by
     simpa using hr
   change r ∈ AddSubgroup.closure
-    (CategoricalIdeal.HomIdeal.compositeGenerators
+    (MorphismIdeal.compositeGenerators
       R.ideal R.ideal W S.X₃) at hr'
   clear hr
   induction hr' using AddSubgroup.closure_induction with

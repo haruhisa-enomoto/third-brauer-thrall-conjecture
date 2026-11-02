@@ -154,7 +154,7 @@ theorem not_mem_endpointRadical {x y : Fin F.m} {g : A} (hg : g ∈ F.corner (k 
   exact hg0 ((Submodule.mem_bot k).1 (this (F.mem_endpointSpan_self hg)))
 
 /-- **`R(f)` is the unique maximal subbimodule of `U(f)`.** -/
-theorem le_endpointRadical (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} {g : A}
+theorem le_endpointRadical (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y : Fin F.m} {g : A}
     (hg : g ∈ F.corner (k := k) x y) {N : Submodule k A} (hN : F.IsEndpointSubbimodule x y N)
     (hNU : N ≤ F.endpointSpan (k := k) x y g) (hgN : g ∉ N) :
     N ≤ F.endpointRadical (k := k) x y g := by
@@ -177,7 +177,7 @@ theorem le_endpointRadical (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m
     exact N.sub_mem (N.smul_mem _ hn) (N.smul_mem _ (h hr))
 
 /-- **`[f] = U(f) ∖ R(f)`** (`eq:ray-layer`). -/
-theorem mem_ray_iff (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} {f : A}
+theorem mem_ray_iff (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y : Fin F.m} {f : A}
     (hf : f ∈ F.corner (k := k) x y) (hf0 : f ≠ 0) (g : A) :
     g ∈ F.ray (k := k) x y f ↔
       g ∈ F.endpointSpan (k := k) x y f ∧ g ∉ F.endpointRadical (k := k) x y f := by
@@ -207,7 +207,7 @@ theorem mem_ray_iff (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} {f : 
         rw [F.e_mul_of_mem hf]⟩
 
 /-- **A ray is determined by its subbimodule.** -/
-theorem ray_eq_of_endpointSpan_eq (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} {f g : A}
+theorem ray_eq_of_endpointSpan_eq (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y : Fin F.m} {f g : A}
     (hf : f ∈ F.corner (k := k) x y) (hf0 : f ≠ 0) (hg : g ∈ F.corner (k := k) x y)
     (h : F.endpointSpan (k := k) x y g = F.endpointSpan (k := k) x y f) :
     F.ray (k := k) x y g = F.ray (k := k) x y f := by
@@ -232,7 +232,7 @@ theorem endpointSpan_eq_of_mem_ray {x y : Fin F.m} {f g : A} (hf : f ∈ F.corne
 
 /-- **Every nonzero subbimodule is cyclic**: `N = U(g)`, `g` taken outside the
 largest subbimodule below `N`. -/
-theorem exists_cyclic (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} {N : Submodule k A}
+theorem exists_cyclic (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y : Fin F.m} {N : Submodule k A}
     (hN : F.IsEndpointSubbimodule x y N) (hN0 : N ≠ ⊥) :
     ∃ g ∈ N, g ≠ 0 ∧ N = F.endpointSpan (k := k) x y g := by
   set S := {M : Submodule k A | F.IsEndpointSubbimodule x y M ∧ M < N}
@@ -297,7 +297,7 @@ theorem transversal_ray {x y : Fin F.m} (s : F.NonzeroRay k) (hs : b s ∈ F.cor
 
 include hb in
 /-- **Distinct rays of a corner have distinct subbimodules.** -/
-theorem transversal_ext (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} {s s' : F.NonzeroRay k}
+theorem transversal_ext (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y : Fin F.m} {s s' : F.NonzeroRay k}
     (hs : b s ∈ F.corner (k := k) x y) (hs' : b s' ∈ F.corner (k := k) x y)
     (h : F.endpointSpan (k := k) x y (b s) = F.endpointSpan (k := k) x y (b s')) : s = s' := by
   obtain ⟨-, -, -, hs0, -⟩ := F.transversal_spec hb s'
@@ -307,7 +307,7 @@ theorem transversal_ext (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} {
 
 include hb in
 /-- **The transversal spans every subbimodule of a corner.** -/
-theorem le_span_transversal (hA : IsRepresentationFiniteRight k A) {x y : Fin F.m} :
+theorem le_span_transversal (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y : Fin F.m} :
     ∀ (n : ℕ) (N : Submodule k A), Module.finrank k N = n → F.IsEndpointSubbimodule x y N →
       N ≤ Submodule.span k (b '' {s | b s ∈ N}) := by
   intro n
@@ -364,7 +364,7 @@ theorem eAe_mem_corner (x y : Fin F.m) (a : A) : F.e x * a * F.e y ∈ F.corner 
   ⟨a, by change F.e x * (a * F.e y) = _; rw [mul_assoc]⟩
 
 include hb in
-theorem span_transversal (hA : IsRepresentationFiniteRight k A) :
+theorem span_transversal (hA : IsRepresentationFinite k Aᵐᵒᵖ) :
     Submodule.span k (Set.range b) = ⊤ := by
   refine eq_top_iff.2 fun a _ ↦ ?_
   rw [F.eq_sum_corners a]
@@ -373,7 +373,7 @@ theorem span_transversal (hA : IsRepresentationFiniteRight k A) :
     (F.le_span_transversal hb hA _ _ rfl (F.corner_isEndpoint x y) (F.eAe_mem_corner x y a))
 
 include hb in
-theorem linearIndependent_transversal (hA : IsRepresentationFiniteRight k A) :
+theorem linearIndependent_transversal (hA : IsRepresentationFinite k Aᵐᵒᵖ) :
     LinearIndependent k b := by
   classical
   refine linearIndependent_iff'.2 fun S g hsum s₀ hs₀ ↦ ?_
@@ -437,7 +437,7 @@ def idealSubmodule (I : TwoSidedIdeal A) : Submodule k A where
 
 include hb in
 /-- **Corollary 3.3.** -/
-theorem rayTransversal_isBasis (hA : IsRepresentationFiniteRight k A) :
+theorem rayTransversal_isBasis (hA : IsRepresentationFinite k Aᵐᵒᵖ) :
     LinearIndependent k b ∧ Submodule.span k (Set.range b) = ⊤ ∧
       ∀ I : TwoSidedIdeal A, ∀ a : A, a ∈ I ↔ a ∈ Submodule.span k (b '' {r | b r ∈ I}) := by
   refine ⟨F.linearIndependent_transversal hb hA, F.span_transversal hb hA, fun I a ↦ ⟨fun ha ↦ ?_,

@@ -306,8 +306,8 @@ theorem hR (s : IPZ Q Z) (t : Mult.CR P.toMult C.v P.wt C.g) (t' : IPZ Q Z)
 
 include C in
 /-- **A bound configuration makes the bound incidence algebra representation-finite.** -/
-theorem isRepresentationFinite (k : Type u) [Field k] (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k ((incZ hZ).Lin k) :=
+theorem isRepresentationFinite (k : Type u) [Field k] (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((incZ hZ).Lin k)ᵐᵒᵖ :=
   Mor.retract_isRepresentationFinite (C.mor hZ) C.emb (fun _ ↦ rfl) C.emb_injective (C.hL hZ)
     (C.hR hZ) k (P.cover_isRepresentationFinite k C.v P.wt P.wt_mul C.g h)
 

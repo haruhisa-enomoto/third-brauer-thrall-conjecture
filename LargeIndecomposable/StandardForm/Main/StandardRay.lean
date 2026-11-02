@@ -238,7 +238,7 @@ theorem isStandard_of_subsingleton [Subsingleton A] : S.IsStandard := by
 
 /-- **`A ≅ k ray A` gives `A ≅ A₀`** in characteristic two (Proposition 8.3(2) with Lemma 3.6). -/
 theorem algEquivA0_of_rayBasis [CharP k 2] (hbasic : IsBasicAlgebra A)
-    (hA : IsRepresentationFiniteRight k A) (hn : Nontrivial A) (F : PrimitiveIdempotents A)
+    (hA : IsRepresentationFinite k Aᵐᵒᵖ) (hn : Nontrivial A) (F : PrimitiveIdempotents A)
     {b : Module.Basis (F.NonzeroRay k) k A} (hm : IsMultiplicativeBasis b)
     (ht : F.IsRayTransversal b) (hz : F.KillsZeroRayProducts b) :
     Nonempty (A ≃ₐ[k] S.A0 b') := by

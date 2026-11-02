@@ -190,7 +190,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 include γ1 α1 l1 β1 γ2 α2 l2 β2 hf hqy hqz haq1 haq2 hζ hbq1 hbq2 dγ dα dl dβ
   X1 X2 X3 X4 X5 X6 in
 /-- **The six-lift tree is excluded** (`eq:six-lift-tree`). -/
-theorem s6_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) : False :=
+theorem s6_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) : False :=
   P.table_false (s6V x y z t) (P.s6G γ α β qz) (P.s6ρ x y z t γ α lam β f qy qz aq ζ bq)
     (P.s6_src γ1 α1 l1 β1 hf hqy hqz haq1 haq2 hζ hbq1 hbq2)
     (P.s6_tgt γ2 α2 l2 β2 hf hqy hqz haq1 haq2 hζ hbq1 hbq2)
@@ -365,7 +365,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 include γ1 α1 η1 β1 qy1 qz1 γ2 α2 η2 β2 qy2 qz2 hγq hf hf' hbq dγ dα dη dβ dqy dqz
   Y1 Y2 Y3 Y4 Y5 Y6 Y7 Y8 Y9 Y10 Y11 in
 /-- **The eight-lift tree with arms `(3,3,1)` is excluded** (`eq:eight-lift-tree`). -/
-theorem s8_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) : False :=
+theorem s8_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) : False :=
   P.table_false (s8V x y z t) (P.s8G γ α β qy qz) (P.s8ρ x y z t γ α η β f qy qz γq bq)
     (P.s8_src γ1 α1 η1 β1 qy1 qz1 hγq hf hbq)
     (P.s8_tgt γ2 α2 η2 β2 qy2 qz2 hγq hf hbq)
@@ -522,7 +522,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 include q11 q12 e1 e2 l1 l2 h11 h12 h21 hqe hlq dq de dl Z1 Z2 Z3 Z4 Z5 Z6 in
 /-- **The proper six-tree is excluded** (`eq:proper-six-tree`). -/
-theorem q6_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) : False :=
+theorem q6_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) : False :=
   P.table_false (q6V b y) (P.q6G q1 q2 q3 e l) (P.q6ρ b y q1 q2 q3 e qe l lq)
     (P.q6_src q11 e1 l1 h11 h12 hqe hlq) (P.q6_tgt q12 e2 l2 h11 h12 hqe hlq)
     (P.q6_wt h11 h12 hqe hlq) (P.q6_mul q11 q12 e1 e2 l1 l2 h11 h12 h21 hqe hlq)
@@ -665,7 +665,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 include g1 g2 f1 f2 r1 r2 s1 s2 hgf hfg hgq hqg hgr hsg dg df dr ds W1 W2 W3 W4 W5 W6 in
 /-- **The complementary-path tree is excluded** (Appendix C.2, Step 3). -/
-theorem c6_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) : False :=
+theorem c6_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) : False :=
   P.table_false (c6V x y z) (P.c6G g f r s) (P.c6ρ x y z g f r s qx qz gq gr sg)
     (P.c6_src g1 f1 r1 s1 hgf hfg hgq hgr hsg) (P.c6_tgt g2 f2 r2 s2 hgf hfg hgq hgr hsg)
     (P.c6_wt hgf hfg hgq hgr hsg) (P.c6_mul g1 g2 f1 f2 r1 r2 s1 s2 hgf hfg hgq hqg hgr hsg)

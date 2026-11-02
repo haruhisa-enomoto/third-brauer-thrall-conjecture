@@ -42,7 +42,7 @@ variable {k : Type u} [Field k] [IsAlgClosed k] {B : Type u} [Ring B] [Algebra k
 
 /-- **Lemma 3.6, as an isomorphism of tables**: two ray presentations of one
 representation-finite algebra have isomorphic tables. -/
-theorem IsRayPres.exists_tableIso (hB : IsRepresentationFiniteRight k B)
+theorem IsRayPres.exists_tableIso (hB : IsRepresentationFinite k Bᵐᵒᵖ)
     (h : F.IsRayPres (k := k) T ι β) (h' : F.IsRayPres (k := k) T' ι' β') :
     ∃ (m : R ≃ R') (ν : V ≃ V'), (∀ r s, T'.mul (m r) (m s) = (T.mul r s).map m) ∧
       ∀ x, m (T.e x) = T'.e (ν x) := by
@@ -106,7 +106,7 @@ def RayProductIndependent : Prop :=
           f' * h' ≠ 0 ∧ F.ray (k := k) x z (f * h) = F.ray (k := k) x z (f' * h'))
 
 theorem rayProductIndependent_of [IsAlgClosed k] [FiniteDimensional k A]
-    (hA : IsRepresentationFiniteRight k A) : F.RayProductIndependent (k := k) :=
+    (hA : IsRepresentationFinite k Aᵐᵒᵖ) : F.RayProductIndependent (k := k) :=
   fun _ _ _ _ _ _ _ hf hf0 hh hh0 hf' hh' ↦
     F.rayProduct_independent_of hA hf hf0 hh hh0 hf' hh'
 
@@ -224,7 +224,7 @@ variable {k : Type u} [Field k] {V : Type} [Quiver.{0} V] [Fintype V] [Decidable
   {L : LocalFamily (k := k) (meshFam Q c)} (D : MeshData (meshFam Q c) L)
   [IsAlgClosed k] [hone : ∀ x y : V, Subsingleton (x ⟶ y)] [∀ x y : V, Fintype (x ⟶ y)]
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (v₀ : V) (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (v₀ : V) (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
 
 /-- **An algebra isomorphic to `A₀` is presented by the ray table of `A₀`.** -/
 theorem exists_rayPres_of_algEquiv {B : Type u} [Ring B] [Algebra k B] [FiniteDimensional k B]
@@ -252,7 +252,7 @@ variable {k : Type u} [Field k] [IsAlgClosed k] {A : Type u} [Ring A] [Algebra k
 
 /-- **An algebra isomorphic to `A₀` is presented by the ray table of `A₀`.** -/
 theorem exists_rayPres_A0 (φ : A ≃ₐ[k] S.A0 b) (v₀ : S.ARVertex)
-    (hF : IsRepresentationFiniteRight k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ) :
+    (hF : IsRepresentationFinite k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ) :
     ∃ (F : PrimitiveIdempotents A) (ι : (S.arMeshData b).PV ≃ Fin F.m)
       (β : S.rayA0AR b v₀ → A), F.IsRayPres (k := k) (S.A0MultAR b v₀ hF) ι β := by
   haveI : ∀ x y : S.ARVertex, Subsingleton (x ⟶ y) := S.hasAtMostOneArrow
@@ -269,11 +269,11 @@ representation-finite algebra is presented by the ray table of its algebra `A₀
 (the initial-form identification `ray A = ray A₀`); `A₀ ≅ k ray A₀` and `A₀` is
 representation-finite. -/
 theorem rayA_eq_rayA0 (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
-    [FiniteDimensional k A] (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFiniteRight k A)
+    [FiniteDimensional k A] (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFinite k Aᵐᵒᵖ)
     (hn : Nontrivial A) :
     letI : IsNoetherianRing Aᵐᵒᵖ := IsNoetherianRing.of_finite k Aᵐᵒᵖ
     ∀ S : IndSkeleton k A, ∃ (b : S.ArrowBases) (v₀ : S.ARVertex)
-      (hF : IsRepresentationFiniteRight k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ)
+      (hF : IsRepresentationFinite k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ)
       (F : PrimitiveIdempotents A) (ι : (S.arMeshData b).PV ≃ Fin F.m)
       (β : S.rayA0AR b v₀ → A), F.IsRayPres (k := k) (S.A0MultAR b v₀ hF) ι β := by
   letI : IsNoetherianRing Aᵐᵒᵖ := IsNoetherianRing.of_finite k Aᵐᵒᵖ
@@ -414,7 +414,7 @@ variable {k : Type u} [Field k] [IsAlgClosed k] [Infinite k] {V : Type} [Quiver.
   [hone : ∀ x y : V, Subsingleton (x ⟶ y)] [∀ x y : V, Fintype (x ⟶ y)]
   {L : LocalFamily (k := k) (meshFam Q c)} {D : MeshData (meshFam Q c) L}
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
 
 include hF in
 theorem nz_of_deckV_ne {x y : D.PV} {g : Deck Q v₀} (h : deckV D v₀ hF x y g ≠ 0) :
@@ -521,7 +521,7 @@ variable {V R : Type} [Fintype V] [DecidableEq V] [Fintype R] [DecidableEq R] {T
 linearization**: `Q` is identified with the ray table of `A₀`, whose scalar-weight group is free
 (Proposition 7.2(1)). -/
 theorem W_free_of_rayPres (hbasic : IsBasicAlgebra (T.Lin k))
-    (hfin : IsRepresentationFiniteRight k (T.Lin k)) (r₀ : R) {F : PrimitiveIdempotents (T.Lin k)}
+    (hfin : IsRepresentationFinite k (T.Lin k)ᵐᵒᵖ) (r₀ : R) {F : PrimitiveIdempotents (T.Lin k)}
     {ι : V ≃ Fin F.m} (hP : F.IsRayPres (k := k) T ι (T.b k)) (hc : T.Conn) :
     Module.Free ℤ T.W := by
   classical
@@ -652,7 +652,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 by strong induction on the number of rays, splitting along components. -/
 theorem W_free (n : ℕ) : ∀ (V R L : Type) [AddCommGroup L] [Fintype V] [DecidableEq V]
     [Fintype R] [DecidableEq R] (P : Tab V R L), Fintype.card R < n →
-      IsRepresentationFiniteRight k (P.Lin k) → Module.Free ℤ P.toMult.W := by
+      IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ → Module.Free ℤ P.toMult.W := by
   induction n with
   | zero => intro V R L _ _ _ _ _ P hP; omega
   | succ n ih =>
@@ -695,7 +695,7 @@ variable {k : Type u} [Field k] {V : Type} [Quiver.{0} V] [Fintype V] [Decidable
   {L : LocalFamily (k := k) (meshFam Q c)} (D : MeshData (meshFam Q c) L)
   [IsAlgClosed k] [hone : ∀ x y : V, Subsingleton (x ⟶ y)] [∀ x y : V, Fintype (x ⟶ y)]
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (v₀ : V) (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (v₀ : V) (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
 
 /-- **`W(ray A₀)` is free**, also for disconnected `A₀`. -/
 theorem W_A0_free : Module.Free ℤ (A0Mult D v₀ hF).W :=
@@ -713,7 +713,7 @@ variable {V R : Type} [Fintype V] [DecidableEq V] [Fintype R] [DecidableEq R] {T
 representation-finite, `W(Q)` is free abelian. `Q` is identified with the ray table of the
 algebra `A₀` of `kQ` (Theorem 11.8(1) and Lemma 3.6), whose scalar-weight group is free. -/
 theorem W_free_of_isFiniteRayCategory (hQ : T.IsFiniteRayCategory k)
-    (hfin : IsRepresentationFiniteRight k (T.Lin k)) : Module.Free ℤ T.W := by
+    (hfin : IsRepresentationFinite k (T.Lin k)ᵐᵒᵖ) : Module.Free ℤ T.W := by
   classical
   have hbasic := isBasic_of_isFiniteRayCategory hQ
   letI : IsNoetherianRing (T.Lin k)ᵐᵒᵖ := IsNoetherianRing.of_finite k (T.Lin k)ᵐᵒᵖ

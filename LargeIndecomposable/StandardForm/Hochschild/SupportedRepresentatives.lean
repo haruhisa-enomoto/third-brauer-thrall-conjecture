@@ -41,7 +41,7 @@ local notation:max "⌜" r "⌝" => Sys.rr S r
 
 /-- **The lifting hypothesis of Theorem 9.1(3) from the induction hypothesis** (Lemma 9.2). -/
 theorem hWl_of_liftBelow (k : Type u) [Field k] [IsAlgClosed k]
-    (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {χ : L} (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
+    (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {χ : L} (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
     (hLB : LiftBelow k (Fintype.card R)) :
     ∀ w : R → ZMod 2,
       (∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → w t = w r + w s) →
@@ -63,7 +63,7 @@ of Proposition 8.2 holds for every table with representation-finite linearizatio
 than `dim A₀` rays, every solution modulo two of the Leibniz equations lifts to an integer
 solution (and hence to `ℤ/4`). -/
 theorem integralPartialLifting (k : Type u) [Field k] [IsAlgClosed k]
-    (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {χ : L} (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
+    (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {χ : L} (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
     (hLB : LiftBelow k (Fintype.card R)) {d : R → ZMod 2} (hd : S.IsSol χ d) :
     ∃ D : R → ℤ, S.IsSol χ D ∧ ∀ r, (D r : ZMod 2) = d r :=
   S.integral_lifting k hfin hχ hprim (S.hWl_of_liftBelow k hfin hχ hprim hLB) hd
@@ -108,7 +108,7 @@ variable {k : Type u} [Field k] {V : Type} [Quiver.{0} V] [Fintype V] [Decidable
 variable [IsAlgClosed k] [hone : ∀ x y : V, Subsingleton (x ⟶ y)]
   [∀ x y : V, Fintype (x ⟶ y)]
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (v₀ : V) (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (v₀ : V) (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
   {ι : Type} [Fintype ι] [DecidableEq ι] (Wd : ι → MeshWt Q ℤ)
 
 /-- **Proposition 10.3 for `A₀`** in coefficients, for the rows `Rw`. -/
@@ -125,7 +125,7 @@ theorem cor105_of_IStarA0 [CharP k 2] (Rw : ι → Σ x : Q.nonprojective, Quive
   intro i ⟨q, hq, φ, hr, hd, hcoc, hc, hnc⟩
   set S := SysD D v₀ hF Wd
   set Θ := ΘD D v₀ hF Wd
-  have hfinS : IsRepresentationFiniteRight k (S.P.Lin k) :=
+  have hfinS : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ :=
     A0TabL_isRepresentationFinite D v₀ hF (dualWt Wd) lenCoord (hdg_dual D v₀ Wd)
   have hG := ΘD_lenHom D v₀ hF Wd
   have hW := ΘD_latHom D v₀ hF Wd
@@ -156,7 +156,7 @@ def IStarAR [CharP k 2] : Prop :=
       (MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) x ⟶
         MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) y) :=
     fun x y ↦ S.finiteDimensional_meshHom b x y
-  ∀ (v₀ : S.ARVertex) (hF : IsRepresentationFiniteRight k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ)
+  ∀ (v₀ : S.ARVertex) (hF : IsRepresentationFinite k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ)
     {ι : Type} [Fintype ι] [DecidableEq ι] (Wd : ι → MeshWalk.MeshWt S.arTranslationQuiver ℤ)
     (Rw : ι → Σ x : S.arTranslationQuiver.nonprojective,
       Quiver.Path (S.arTranslationQuiver.tau x).1 x.1),
@@ -190,7 +190,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 /-- **Proposition 10.3** for every basic representation-finite algebra (in coefficients). -/
 def IStarHyp [CharP k 2] : Prop :=
   ∀ (A : Type u) [Ring A] [Algebra k A] [FiniteDimensional k A] [IsNoetherianRing Aᵐᵒᵖ],
-    IsBasicAlgebra A → IsRepresentationFiniteRight k A → ∀ (S : IndSkeleton k A) (b : S.ArrowBases),
+    IsBasicAlgebra A → IsRepresentationFinite k Aᵐᵒᵖ → ∀ (S : IndSkeleton k A) (b : S.ArrowBases),
       S.IStarAR b
 
 /-- **Corollary 10.5 under the induction hypothesis**, given Proposition 10.3. -/

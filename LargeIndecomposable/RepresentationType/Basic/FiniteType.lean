@@ -10,7 +10,7 @@ set_option backward.isDefEq.respectTransparency.types false
 /-!
 # Chosen representatives of indecomposable modules
 
-The source paper works with a chosen set `ind A` of representatives rather
+That paper works with a chosen set `ind A` of representatives rather
 than with a quotient of all modules by isomorphism.  This file packages that
 choice as a type `ι` and a family of finitely generated modules indexed by
 `ι`.
@@ -18,6 +18,10 @@ choice as a type `ι` and a family of finitely generated modules indexed by
 The structure is not restricted to representation-finite rings.  Later
 finite-type statements add `[Finite ι]`; the arbitrary-type structural
 theorems use the same interface without that hypothesis.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

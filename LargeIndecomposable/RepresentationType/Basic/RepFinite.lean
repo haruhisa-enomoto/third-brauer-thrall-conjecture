@@ -35,8 +35,8 @@ variable {k : Type u} [Field k] {A : Type v} [Ring A] [Algebra k A] [FiniteDimen
 
 /-- Every finite-dimensional right module over a representation-finite algebra
 is a biproduct of at most `dim M` modules from the finite list. -/
-theorem exists_labels_iso (hA : IsRepresentationFiniteRight k A) :
-    ∃ (N : ℕ) (X : Fin N → RightModuleCat A), (∀ i, IsFiniteIndecomposableRight k A (X i)) ∧
+theorem exists_labels_iso (hA : IsRepresentationFinite k Aᵐᵒᵖ) :
+    ∃ (N : ℕ) (X : Fin N → RightModuleCat A), (∀ i, IsFiniteIndecomposable k Aᵐᵒᵖ (X i)) ∧
       ∀ (M : RightModuleCat A), Module.Finite k M →
         ∃ (n : ℕ) (l : Fin n → Fin N), n ≤ Module.finrank k M ∧
           Nonempty (M ≅ ⨁ fun j ↦ X (l j)) := by
@@ -46,7 +46,7 @@ theorem exists_labels_iso (hA : IsRepresentationFiniteRight k A) :
   haveI : Module.Finite k Aᵐᵒᵖ := inferInstance
   obtain ⟨d⟩ := LargeIndecomposable.finiteIndecomposableDecomposition_module_exists
     (k := k) (A := Aᵐᵒᵖ) M
-  have hsum : ∀ j, IsFiniteIndecomposableRight k A (d.summand j) := fun j ↦
+  have hsum : ∀ j, IsFiniteIndecomposable k Aᵐᵒᵖ (d.summand j) := fun j ↦
     ⟨d.summand_finite hM j, d.indecomposable j⟩
   choose l hl using fun j ↦ hcomp (d.summand j) (hsum j)
   refine ⟨d.n, l, ?_, ⟨d.isoBiproduct ≪≫ biproduct.mapIso fun j ↦ (hl j).some⟩⟩
@@ -137,7 +137,7 @@ theorem quotModule_finite (I : TwoSidedIdeal A) :
 
 /-- **Lemma 3.1(1)**, first part: a representation-finite algebra has finitely
 many two-sided ideals. -/
-theorem finite_twoSidedIdeals_of (hA : IsRepresentationFiniteRight k A) :
+theorem finite_twoSidedIdeals_of (hA : IsRepresentationFinite k Aᵐᵒᵖ) :
     (Set.univ : Set (TwoSidedIdeal A)).Finite := by
   classical
   obtain ⟨N, X, -, hdec⟩ := exists_labels_iso hA

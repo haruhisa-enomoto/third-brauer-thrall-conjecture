@@ -1,8 +1,8 @@
 module
 
 public import LargeIndecomposable.MeshCategories.Basic.MeshGrading
-public import LargeIndecomposable.Foundations.CategoryTheory.TwoSidedHomIdeal
-
+public import LargeIndecomposable.Foundations.CategoryTheory.MorphismIdeal
+public import Mathlib
 /-!
 # Sectional paths
 
@@ -80,7 +80,7 @@ end TranslationQuiver
 
 namespace ScalarMeshCategory
 
-open TranslationQuiver TwoSidedHomIdeal
+open TranslationQuiver
 
 variable {k : Type u} [Field k] {Q : TranslationQuiver V} [∀ x : V, Fintype (Σ y : V, y ⟶ x)]
   (c : MeshCoefficients k Q)
@@ -101,7 +101,7 @@ theorem not_isSectional_of_mesh {s t : V} (x : Q.nonprojective) {y : V} (a : y �
 vanishes on the whole ideal. -/
 theorem coeff_eq_zero_of_mem_ideal {x y : V} (p : Quiver.Path x y) (hp : Q.IsSectional p)
     {f : LinearPaths.obj (k := k) x ⟶ LinearPaths.obj y}
-    (hf : f ∈ HomIdeal.generatedHomSubmodule k (meshRelations c) _ _) :
+    (hf : f ∈ MorphismIdeal.generatedHomSubmodule k (meshRelations c) _ _) :
     LinearPaths.toFinsupp f p = 0 := by
   induction hf using Submodule.span_induction with
   | mem g hg =>

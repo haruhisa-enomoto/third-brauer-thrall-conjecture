@@ -50,7 +50,7 @@ theorem comm_pow {f : R} (h : S.q (S.P.src f) * ⌜f⌝ = ⌜f⌝ * S.q (S.P.tgt
 variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **Lemma 8.21(1)** (`lem:primitive-cyclic-corners`): the generating reverse is primitive. -/
-theorem prim_reverse (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {f h0 : R}
+theorem prim_reverse (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {f h0 : R}
     (hf : S.IsGen f) (hxy : S.P.src f ≠ S.P.tgt f) (hL : S.CycL f) (hR : S.CycR f)
     (hqf : S.q (S.P.src f) * ⌜f⌝ = ⌜f⌝ * S.q (S.P.tgt f)) (hqf0 : S.q (S.P.src f) * ⌜f⌝ ≠ 0)
     (hprim : Prim (S.χ (S.P.src f))) (h01 : S.P.src h0 = S.P.tgt f)
@@ -392,7 +392,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **Lemma 9.8** (`lem:external-hom-chain`): generating rays out of `x` with surviving
 `q_x`-action and targets outside `S_x` are comparable. -/
-theorem ext_chain (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {x : V}
+theorem ext_chain (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {x : V}
     (hprim : Prim (S.χ x)) (hq2 : S.q x ^ 2 ≠ 0) {f h : R} (hf : S.IsGen f) (hh : S.IsGen h)
     (f1 : S.P.src f = x) (h1 : S.P.src h = x) (hqf : S.q x * ⌜f⌝ ≠ 0) (hqh : S.q x * ⌜h⌝ ≠ 0)
     (hfS : ¬ S.InS x (S.P.tgt f)) (hhS : ¬ S.InS x (S.P.tgt h)) :
@@ -478,7 +478,7 @@ theorem ext_chain (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {x : V}
 /-- **Lemma 8.21(2), the chain** (`lem:primitive-cyclic-corners`(2)): the generating outgoing
 rays of `x` with primitive reverses and surviving equal actions `q_x f = f q_y ≠ 0` are
 comparable under factorization ("incomparability would be a crown"). -/
-theorem partner_chain (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {x : V} {f f' h h' : R}
+theorem partner_chain (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {x : V} {f f' h h' : R}
     (hf : S.IsGen f) (hf' : S.IsGen f') (f1 : S.P.src f = x) (f1' : S.P.src f' = x)
     (hfh : S.PrimRev f h) (hfh' : S.PrimRev f' h')
     (hq : S.q x * ⌜f⌝ = ⌜f⌝ * S.q (S.P.tgt f)) (hq0 : S.q x * ⌜f⌝ ≠ 0)
@@ -632,7 +632,7 @@ theorem partners_of_rf {a b c : V} (hbc : b ≠ c)
 
 /-- **Two partners of `a` are mutual partners** when one has local length at least three
 (`lem:primitive-cyclic-corners`(3), first paragraph). -/
-theorem partner_comparison (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {a b c : V}
+theorem partner_comparison (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {a b c : V}
     (hb : S.Partner a b) (hc : S.Partner a c) (hbc : b ≠ c) (h3 : S.q b ^ 2 ≠ 0 ∨ S.q c ^ 2 ≠ 0) :
     S.Partner b c ∧ S.Partner c b := by
   obtain ⟨-, u, u', hgu, u1, u2, hu, hqu, hqu0⟩ := hb
@@ -660,7 +660,7 @@ theorem partner_symm {a b : V} (hb : S.Partner a b) (h3 : S.q a ^ 2 ≠ 0) : S.P
   rwa [e1, e2] at hP
 
 /-- **`V_a ⊆ V_b`** for a partner `b` of `a` with `N_a, N_b ≥ 3`. -/
-theorem inS_subset (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {a b : V} (hb : S.Partner a b)
+theorem inS_subset (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {a b : V} (hb : S.Partner a b)
     (ha3 : S.q a ^ 2 ≠ 0) (hb3 : S.q b ^ 2 ≠ 0) {c : V} (hc : S.InS a c) : S.InS b c := by
   rcases hc with rfl | hc
   · exact Or.inr (S.partner_symm hb ha3)
@@ -669,7 +669,7 @@ theorem inS_subset (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {a b : V} 
     · exact Or.inr (S.partner_comparison k hfin hb hc hbc (Or.inl hb3)).1
 
 /-- **`V_a = V_b`** for a partner `b` of `a` with `N_a, N_b ≥ 3`. -/
-theorem inS_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {a b : V} (hb : S.Partner a b)
+theorem inS_eq (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {a b : V} (hb : S.Partner a b)
     (ha3 : S.q a ^ 2 ≠ 0) (hb3 : S.q b ^ 2 ≠ 0) (c : V) : S.InS a c ↔ S.InS b c :=
   ⟨S.inS_subset k hfin hb ha3 hb3, S.inS_subset k hfin (S.partner_symm hb ha3) hb3 ha3⟩
 
@@ -677,7 +677,7 @@ theorem inS_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {a b : V} (hb 
 `N_x, N_{x'} ≥ 3`, the vertex sets `V_x, V_{x'}` of the primitive return corners are disjoint or
 equal. (Primitivity is not needed for this part; with it, every nontrivial factorization of
 `q_x` passes through `S_x`, `partner_of_factor`.) -/
-theorem inS_disjoint_or_eq (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {x x' : V}
+theorem inS_disjoint_or_eq (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {x x' : V}
     (hx3 : S.q x ^ 2 ≠ 0) (hx3' : S.q x' ^ 2 ≠ 0) {v : V} (hv : S.InS x v) (hv' : S.InS x' v) :
     ∀ y, S.InS x y ↔ S.InS x' y := by
   rcases hv with rfl | hv
@@ -736,7 +736,7 @@ theorem op_inS_iff {x y : V} (hq2 : S.q x ^ 2 ≠ 0) (hprim : Prim (S.χ x)) :
   unfold InS; rw [S.op_partner_iff hq2 hprim]
 
 /-- **Lemma 9.8, incoming form.** -/
-theorem ext_chain_in (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {x : V}
+theorem ext_chain_in (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {x : V}
     (hprim : Prim (S.χ x)) (hq2 : S.q x ^ 2 ≠ 0) {f h : R} (hf : S.IsGen f) (hh : S.IsGen h)
     (f2 : S.P.tgt f = x) (h2 : S.P.tgt h = x) (hqf : ⌜f⌝ * S.q x ≠ 0) (hqh : ⌜h⌝ * S.q x ≠ 0)
     (hfS : ¬ S.InS x (S.P.src f)) (hhS : ¬ S.InS x (S.P.src h)) :

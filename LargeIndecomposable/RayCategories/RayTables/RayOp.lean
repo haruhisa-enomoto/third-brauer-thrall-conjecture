@@ -136,8 +136,8 @@ def linOpEquiv : P.op.Lin k ≃ₐ[k] (P.Lin k)ᵐᵒᵖ :=
   AlgEquiv.ofLinearEquiv (P.linOpL k) (P.linOpL_one k) (P.linOpL_mul k)
 
 /-- **The opposite table is representation-finite with `kP`.** -/
-theorem op_isRepresentationFinite (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k (P.op.Lin k) :=
+theorem op_isRepresentationFinite (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k (P.op.Lin k)ᵐᵒᵖ :=
   isRepresentationFinite_of_algEquiv (P.linOpEquiv k).symm (isRepresentationFinite_op h)
 
 end Tab

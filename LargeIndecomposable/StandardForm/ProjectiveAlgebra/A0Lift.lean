@@ -46,7 +46,7 @@ variable {k : Type u} [Field k] {V : Type} [Quiver.{0} V] [Fintype V] [Decidable
 variable [IsAlgClosed k] [hone : ∀ x y : V, Subsingleton (x ⟶ y)]
   [∀ x y : V, Fintype (x ⟶ y)]
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (v₀ : V) (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (v₀ : V) (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
 
 /-- A nonzero composite of deck pieces is a product of rays of `A₀`. -/
 theorem A0Mult_of_comp {x y z : D.PV} {g h : Deck Q v₀} {f : D.F0 x ⟶ D.F0 y}

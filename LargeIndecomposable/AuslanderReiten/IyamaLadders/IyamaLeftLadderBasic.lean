@@ -35,7 +35,7 @@ open scoped ZeroObject
 
 namespace LargeIndecomposable.Iyama.LeftLadder
 
-open CategoricalIdeal CategoricalRadical
+open CategoricalRadical
 
 universe v u w
 

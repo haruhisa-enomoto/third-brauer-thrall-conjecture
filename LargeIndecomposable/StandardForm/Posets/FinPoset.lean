@@ -155,7 +155,7 @@ theorem pos_count (d : Fin n → ℕ) (hc : CountOK le d) :
 covers whose dimension count holds has representation-infinite incidence algebra. -/
 theorem forbidden (k : Type u) [Field k] [IsAlgClosed k] {Q : Type} [PartialOrder Q] [Fintype Q]
     [DecidableEq Q] [LocallyFiniteOrder Q] (e : Pos n le ≃o Q) (d : Fin n → ℕ) (hu : UniqOK le)
-    (hc : CountOK le d) : ¬ IsRepresentationFiniteRight k (IncidenceAlgebra k Q) := by
+    (hc : CountOK le d) : ¬ IsRepresentationFinite k (IncidenceAlgebra k Q)ᵐᵒᵖ := by
   have h0 := not_isRepresentationFinite (k := k) (P := Pos n le) (fun v ↦ d v.v) covBy_lt
     (pos_uniq hu) nonempty_ePath (by obtain ⟨i, hi⟩ := hc.1; exact ⟨⟨i⟩, hi⟩) (pos_count d hc)
   have := incidence_finiteDimensional (k := k) (P := Q)
@@ -180,7 +180,7 @@ def flipIso : Pos n (flip le) ≃o (Pos n le)ᵒᵈ where
 theorem forbidden_dual (k : Type u) [Field k] [IsAlgClosed k] {Q : Type} [PartialOrder Q]
     [Fintype Q] [DecidableEq Q] [LocallyFiniteOrder Q] (e : Pos n le ≃o Q) (d : Fin n → ℕ)
     (hu : UniqOK (flip le)) (hc : CountOK (flip le) d) :
-    ¬ IsRepresentationFiniteRight k (IncidenceAlgebra k Qᵒᵈ) :=
+    ¬ IsRepresentationFinite k (IncidenceAlgebra k Qᵒᵈ)ᵐᵒᵖ :=
   forbidden k (flipIso.trans e.dual) d hu hc
 
 end PosetRep

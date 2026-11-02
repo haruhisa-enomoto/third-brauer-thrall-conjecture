@@ -345,7 +345,7 @@ include hred in
 theorem corner_step_inj (s p : D.PV)
     {F : LinearPaths.obj (k := ZMod 4) s.1 ⟶ LinearPaths.obj (k := ZMod 4) p.1}
     (hFw : ρW W p.1 (evO W F (wO W s)) = 0) :
-    ∃ G ∈ (TwoSidedHomIdeal.HomIdeal.linearSpan (ZMod 4) (meshRelations u)).hom
+    ∃ G ∈ (MorphismIdeal.linearSpan (ZMod 4) (meshRelations u)).hom
       (LinearPaths.obj s.1) (LinearPaths.obj p.1), ∃ H, F = G + (2 : ZMod 4) • H := by
   rw [ρW_evO_wO] at hFw
   have h1 : imgk (c := c) (LinearPaths.redP Z4.red F) = 0 := by
@@ -360,7 +360,7 @@ include hmesh hred in
 theorem corner_inj (s p : D.PV)
     (F : LinearPaths.obj (k := ZMod 4) s.1 ⟶ LinearPaths.obj (k := ZMod 4) p.1)
     (hFw : evO W F (wO W s) = 0) :
-    F ∈ (TwoSidedHomIdeal.HomIdeal.linearSpan (ZMod 4) (meshRelations u)).hom
+    F ∈ (MorphismIdeal.linearSpan (ZMod 4) (meshRelations u)).hom
       (LinearPaths.obj s.1) (LinearPaths.obj p.1) := by
   obtain ⟨G, hG, H, rfl⟩ := corner_step_inj W hred s p (F := F) (by rw [hFw, map_zero])
   have hG0 : evO W G = 0 := evL_ideal hmesh hG

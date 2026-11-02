@@ -135,8 +135,8 @@ def compMor {C : V → Prop} (hC : P.Closed C) : Mor P.toMult (P.sub (compData h
 
 open Classical in
 theorem comp_isRepresentationFinite {C : V → Prop} (hC : P.Closed C) (k : Type u) [Field k]
-    (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k ((P.sub (compData hC)).Lin k) :=
+    (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((P.sub (compData hC)).Lin k)ᵐᵒᵖ :=
   (compMor hC).isRepresentationFinite k (fun r' ↦ ⟨r'.1, by
     simp only [compMor, dif_pos (show C (P.src r'.1) from r'.2)]⟩) h
 
@@ -200,7 +200,7 @@ namespace Sys
 
 variable {V R L : Type} [AddCommGroup L] [DecidableEq L] [Fintype V] [DecidableEq V] [Fintype R]
   [DecidableEq R] (S : Sys V R L) (k : Type u) [Field k] [IsAlgClosed k]
-  (hfin : IsRepresentationFiniteRight k (S.P.Lin k))
+  (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ)
 
 theorem coch_zero : S.coch k (0 : R → R → k) = 0 :=
   S.bilin_ext k fun u v ↦ by rw [coch_b, Pi.zero_apply, Pi.zero_apply, zero_smul]; rfl

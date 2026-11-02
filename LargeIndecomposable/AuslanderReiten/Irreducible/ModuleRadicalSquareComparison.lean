@@ -11,7 +11,7 @@ set_option backward.isDefEq.respectTransparency.types false
 set_option autoImplicit false
 noncomputable section
 open CategoryTheory
-open LargeIndecomposable.CategoricalIdeal
+
 open LargeIndecomposable.CategoricalRadical
 namespace LargeIndecomposable.IndecomposableSkeleton
 universe u v w
@@ -21,7 +21,7 @@ variable {ι : Type v} (S : IndecomposableSkeleton.{u,v,w} R ι)
 /-- The intrinsic product ideal has the same Hom subgroup as the existing
 arbitrary-middle radical-square factorization predicate. -/
 theorem intrinsic_radicalSquare_eq (x y : ι) :
-    ((homIdeal : HomIdeal (FGModuleCat.{w} R)) ⋆ᵢ homIdeal).hom (S.obj x) (S.obj y) =
+    ((homIdeal : MorphismIdeal (FGModuleCat.{w} R)) ⋆ᵢ homIdeal).hom (S.obj x) (S.obj y) =
       S.radicalSquareHomAddSubgroup x y := by
   apply le_antisymm
   · apply (AddSubgroup.closure_le _).2
@@ -31,6 +31,6 @@ theorem intrinsic_radicalSquare_eq (x y : ι) :
   · intro f hf
     obtain ⟨M, a, b, ha, hb, rfl⟩ :=
       (S.hasRadicalSquareFactorization_iff_categoricalRadical f).mp hf
-    exact HomIdeal.comp_mem_mul ha hb
+    exact MorphismIdeal.comp_mem_mul ha hb
 
 end LargeIndecomposable.IndecomposableSkeleton

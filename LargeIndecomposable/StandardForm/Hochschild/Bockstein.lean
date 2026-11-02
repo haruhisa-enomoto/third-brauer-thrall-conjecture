@@ -373,7 +373,7 @@ variable (k : Type u) [Field k] [IsAlgClosed k]
 variable {χ}
 
 /-- **Solutions with values in `𝔽₂` lift to `𝒪 = ℤ/4`**: Theorem 9.1(3). -/
-theorem exists_Z4_isSol (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem exists_Z4_isSol (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hW : ∀ w : R → ZMod 2,
       (∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → w t = w r + w s) →
@@ -387,7 +387,7 @@ theorem exists_Z4_isSol (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ 
 
 variable (χ) in
 /-- **Condition (2) of Lemma 10.4.** -/
-theorem cond2 (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem cond2 (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hW : ∀ w : R → ZMod 2,
       (∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → w t = w r + w s) →
@@ -459,7 +459,7 @@ variable (χ) in
 /-- **Corollary 10.5 over `𝔽₂`** (`cor:zero-supported-coverage`): given Proposition 10.3, a
 cocycle of character `χ` which is not a coboundary yields one supported on the stem lines of
 zero products which is not a coboundary. -/
-theorem cor105_coeff₂ (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem cor105_coeff₂ (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hW : ∀ w : R → ZMod 2,
       (∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → w t = w r + w s) →
@@ -518,7 +518,7 @@ variable [CharP k 2]
 variable (χ) in
 /-- **Corollary 10.5 in coefficients** (`cor:zero-supported-coverage`), over `k`: the
 corollary over `𝔽₂`, extended to `k`. -/
-theorem cor105_coeff (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (hχ : 0 < S.P.deg χ)
+theorem cor105_coeff (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (hχ : 0 < S.P.deg χ)
     (hprim : Prim χ)
     (hW : ∀ w : R → ZMod 2,
       (∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → w t = w r + w s) →

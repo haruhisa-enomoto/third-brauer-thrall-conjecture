@@ -152,12 +152,12 @@ theorem scaleEquiv_pow (N : ℕ) (a : cov D s) :
       rw [ent_scale, ent_scale, ent_scale, smul_smul, pow_succ, mul_comm]
 
 variable [Infinite k] [IsAlgClosed k] (H : HeightData D)
-  [∀ x y : ι, FiniteDimensional k (F x ⟶ F y)] (hF : IsRepresentationFiniteRight k (Alg F)ᵐᵒᵖ)
+  [∀ x y : ι, FiniteDimensional k (F x ⟶ F y)] (hF : IsRepresentationFinite k (Alg F)ᵐᵒᵖᵐᵒᵖ)
 
 include H hF in
 /-- **Weights fix every indecomposable class** (Lemma 4.13, first step). -/
 theorem weight_twist_iso (M : RightModuleCat (cov D s))
-    (hM : IsFiniteIndecomposableRight k (cov D s) M) : Nonempty (twist (scaleEquiv hd) M ≅ M) := by
+    (hM : IsFiniteIndecomposable k (cov D s)ᵐᵒᵖ M) : Nonempty (twist (scaleEquiv hd) M ≅ M) := by
   classical
   have hrep := isRepresentationFinite_cov D s hF
   obtain ⟨N, hN, hpow⟩ := twist_pow_iso hrep

@@ -25,7 +25,7 @@ universe u v
 variable {k : Type u} [Field k] {A : Type v} [Ring A] [Algebra k A]
 
 /-- **A representation-finite algebra has an indecomposable skeleton.** -/
-theorem exists_indSkeleton (hA : IsRepresentationFiniteRight k A) : Nonempty (IndSkeleton k A) := by
+theorem exists_indSkeleton (hA : IsRepresentationFinite k Aᵐᵒᵖ) : Nonempty (IndSkeleton k A) := by
   classical
   obtain ⟨n, X, hX, hcov⟩ := hA
   let cls : Fin n → Finset (Fin n) := fun i ↦ Finset.univ.filter fun j ↦ Nonempty (X j ≅ X i)

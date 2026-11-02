@@ -179,8 +179,8 @@ def restrictEquiv : (P.restrict W).Lin k ≃ₐ[k] (P.isIdempotentElem_eW k W).C
     (P.inclW_one k W) (P.inclW_injective k W) (P.mem_range_inclW k W)
 
 /-- **Representation-finiteness passes to full subtables** (Lemma 3.1(1)). -/
-theorem restrict_isRepresentationFinite (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k ((P.restrict W).Lin k) := by
+theorem restrict_isRepresentationFinite (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((P.restrict W).Lin k)ᵐᵒᵖ := by
   have := corner_finite (k := k) (P.isIdempotentElem_eW k W)
   exact isRepresentationFinite_of_algEquiv (P.restrictEquiv k W).symm
     (corner_isRepresentationFinite_of (P.isIdempotentElem_eW k W) h)
@@ -464,12 +464,12 @@ theorem infl_full (a : (P.infl v).Lin k) :
   rfl
 
 /-- **Repeated labels preserve representation-finiteness.** -/
-theorem infl_isRepresentationFinite (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k ((P.infl v).Lin k) := by
+theorem infl_isRepresentationFinite (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((P.infl v).Lin k)ᵐᵒᵖ := by
   have h1 := P.restrict_isRepresentationFinite k (Wv v) h
   have h2 := (P.secMor v).isRepresentationFinite k (P.secMor_surjective v) h1
   have := corner_finite (k := k) ((P.infl v).isIdempotentElem_eW k (Wk v))
-  have h3 : IsRepresentationFiniteRight k ((P.infl v).isIdempotentElem_eW k (Wk v)).Corner :=
+  have h3 : IsRepresentationFinite k ((P.infl v).isIdempotentElem_eW k (Wk v))ᵐᵒᵖ.Corner :=
     isRepresentationFinite_of_algEquiv ((P.infl v).restrictEquiv k (Wk v)) h2
   exact isRepresentationFinite_of_full ((P.infl v).isIdempotentElem_eW k (Wk v))
     (P.infl_full k v) h3
@@ -665,8 +665,8 @@ theorem coverMor_injective : Function.Injective ((P.coverMor v γ hγ g).alg k) 
 
 /-- **Lemma 4.7 for ray tables** (`lem:homogeneous-projection`): every graded cover of a
 representation-finite table is representation-finite. -/
-theorem cover_isRepresentationFinite (h : IsRepresentationFiniteRight k (P.Lin k)) :
-    IsRepresentationFiniteRight k ((P.cover v γ hγ g).Lin k) := by
+theorem cover_isRepresentationFinite (h : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k ((P.cover v γ hγ g).Lin k)ᵐᵒᵖ := by
   have hB := P.infl_isRepresentationFinite k v h
   set α := (P.coverMor v γ hγ g).alg k
   let e := AlgEquiv.ofInjective α (P.coverMor_injective k v γ hγ g)

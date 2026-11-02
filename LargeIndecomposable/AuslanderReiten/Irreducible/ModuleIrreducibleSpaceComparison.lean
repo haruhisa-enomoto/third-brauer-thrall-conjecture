@@ -14,7 +14,7 @@ noncomputable section
 open CategoryTheory
 open scoped ModuleCat.Algebra
 open LargeIndecomposable
-open LargeIndecomposable.CategoricalIdeal
+
 open LargeIndecomposable.CategoricalRadical
 namespace LargeIndecomposable.IndecomposableSkeleton
 universe u v
@@ -53,14 +53,14 @@ theorem intrinsicDenominator_map (x y : ι) :
   rw [Submodule.mem_map]
   constructor
   · rintro ⟨g, hg, rfl⟩
-    change g.val ∈ ((homIdeal : HomIdeal (FGModuleCat.{u} R)) ⋆ᵢ homIdeal).hom _ _ at hg
+    change g.val ∈ ((homIdeal : MorphismIdeal (FGModuleCat.{u} R)) ⋆ᵢ homIdeal).hom _ _ at hg
     rw [S.intrinsic_radicalSquare_eq x y] at hg
     exact hg
   · intro hf
     refine ⟨(S.intrinsicRadicalEquiv (k := k) x y).symm f, ?_,
       (S.intrinsicRadicalEquiv (k := k) x y).apply_symm_apply f⟩
     change (ConcreteCategory.ofHom f.val : S.obj x ⟶ S.obj y) ∈
-      ((homIdeal : HomIdeal (FGModuleCat.{u} R)) ⋆ᵢ homIdeal).hom _ _
+      ((homIdeal : MorphismIdeal (FGModuleCat.{u} R)) ⋆ᵢ homIdeal).hom _ _
     rw [S.intrinsic_radicalSquare_eq x y]
     exact hf
 

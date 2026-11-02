@@ -271,7 +271,7 @@ include hbimod in
 /-- **Lemma 4.6** (`lem:split-representation-transfer`). -/
 theorem splitRepresentationTransfer_of [FiniteDimensional k B] [FiniteDimensional k D]
     (hq : Function.Surjective q) (hπ : ∀ c : C, π c = q c)
-    (hB : IsRepresentationFiniteRight k B) : IsRepresentationFiniteRight k D := by
+    (hB : IsRepresentationFinite k Bᵐᵒᵖ) : IsRepresentationFinite k Dᵐᵒᵖ := by
   classical
   obtain ⟨N, X, hX, hdec⟩ := exists_labels_iso hB
   haveI : Module.Finite k Cᵐᵒᵖ := inferInstance
@@ -285,7 +285,7 @@ theorem splitRepresentationTransfer_of [FiniteDimensional k B] [FiniteDimensiona
       (k := k) (A := Cᵐᵒᵖ) (Res C (X l))).some
   let Z : (Σ l, Fin (dl l).n) → ModuleCat.{v} Cᵐᵒᵖ := fun t ↦ (dl t.1).summand t.2
   let P : (Σ l, Fin (dl l).n) → Prop := fun t ↦ ∃ M : ModuleCat.{v} Dᵐᵒᵖ,
-    IsFiniteIndecomposableRight k D M ∧ Nonempty (Infl q M ≅ Z t)
+    IsFiniteIndecomposable k Dᵐᵒᵖ M ∧ Nonempty (Infl q M ≅ Z t)
   let T := {t // P t}
   let eT := Fintype.equivFin T
   refine ⟨Fintype.card T, fun j ↦ (eT.symm j).2.choose, fun j ↦ (eT.symm j).2.choose_spec.1, ?_⟩

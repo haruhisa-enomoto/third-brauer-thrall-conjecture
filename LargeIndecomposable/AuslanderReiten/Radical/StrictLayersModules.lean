@@ -34,7 +34,7 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 open scoped ModuleCat.Algebra
 
 attribute [local instance] HasFiniteBiproducts.of_hasFiniteProducts
@@ -91,11 +91,11 @@ def rightRadicalApprox (Y : ModCat A) : StrictLayers.RightRadicalApprox Y where
   i_rad := (S.toVendor.moduleRightTau Y).f_radical
   sq := by
     intro Z g hg
-    rw [StrictLayers.Ipow, HomIdeal.pow_succ] at hg
+    rw [StrictLayers.Ipow, MorphismIdeal.pow_succ] at hg
     induction hg using AddSubgroup.closure_induction with
     | mem h hh =>
         obtain ⟨M, u, v, hu, hv, rfl⟩ := hh
-        rw [HomIdeal.pow_one, mem_homIdeal_iff] at hu
+        rw [MorphismIdeal.pow_one, mem_homIdeal_iff] at hu
         obtain ⟨b, hb⟩ := (S.toVendor.moduleRightTau Y).factors_from_left u hu
         exact ⟨b ≫ v, isRadicalMorphism_precomp b ((mem_homIdeal_iff v).1 hv),
           by rw [← Category.assoc, hb]⟩
@@ -111,10 +111,10 @@ def rightRadicalApprox (Y : ModCat A) : StrictLayers.RightRadicalApprox Y where
 include S in
 /-- **Lemma 2.5** (`lem:strict-radical-layers`) in `mod A`. -/
 theorem strict_radical_layers (n : ℕ) {U Y : ModCat A} (a : U ⟶ Y) (ha : IsRadicalMorphism a)
-    (hpert : ∀ h ∈ (StrictLayers.Ipow 2 : HomIdeal (ModCat A)).hom U Y, Mono (a + h))
+    (hpert : ∀ h ∈ (StrictLayers.Ipow 2 : MorphismIdeal (ModCat A)).hom U Y, Mono (a + h))
     {W : ModCat A} (z : W ⟶ U)
-    (hz : z ≫ a ∈ (StrictLayers.Ipow (n + 1) : HomIdeal (ModCat A)).hom W Y) :
-    z ∈ (StrictLayers.Ipow n : HomIdeal (ModCat A)).hom W U :=
+    (hz : z ≫ a ∈ (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).hom W Y) :
+    z ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom W U :=
   StrictLayers.strict S.hasSplitRadicalNormalForm S.rightRadicalApprox n a ha hpert z hz
 
 end LargeIndecomposable.IndSkeleton

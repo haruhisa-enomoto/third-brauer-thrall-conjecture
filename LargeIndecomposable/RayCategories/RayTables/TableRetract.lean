@@ -136,8 +136,8 @@ theorem alg_injective : Function.Injective (m.alg k) := fun x y h ↦ by
 
 include hg hginj hL hR in
 /-- **Lemma 8.9 for ray tables** (`lem:representation-transfer`). -/
-theorem retract_isRepresentationFinite (h : IsRepresentationFiniteRight k (T.Lin k)) :
-    IsRepresentationFiniteRight k (S.Lin k) := by
+theorem retract_isRepresentationFinite (h : IsRepresentationFinite k (T.Lin k)ᵐᵒᵖ) :
+    IsRepresentationFinite k (S.Lin k)ᵐᵒᵖ := by
   set α := m.alg k
   let e := AlgEquiv.ofInjective α (m.alg_injective g hg hginj k)
   refine splitRepresentationTransfer_of (C := α.range) (q := e.symm.toAlgHom)

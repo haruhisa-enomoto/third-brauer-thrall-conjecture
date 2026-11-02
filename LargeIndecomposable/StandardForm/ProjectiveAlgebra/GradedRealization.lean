@@ -34,7 +34,7 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 open scoped ModuleCat.Algebra
 
 attribute [local instance] HasFiniteBiproducts.of_hasFiniteProducts
@@ -362,10 +362,10 @@ variable {k A : Type w} [Field k] [IsAlgClosed k] [Ring A] [Algebra k A] [Finite
 `J^{d+1}`. -/
 theorem realize_proj_mem_of_mem_ideal (d : ℕ) {x y : S.ARVertex}
     {g : LinearPaths.obj (k := k) x ⟶ LinearPaths.obj y}
-    (hg : g ∈ (LargeIndecomposable.TwoSidedHomIdeal.HomIdeal.linearSpan k (meshRelations (S.arCoefficients b))).hom
+    (hg : g ∈ (MorphismIdeal.linearSpan k (meshRelations (S.arCoefficients b))).hom
       (LinearPaths.obj x) (LinearPaths.obj y)) :
     S.realize b x y (LinearPaths.proj d x y g) ∈ S.radPow (d + 1) (S.label x) (S.label y) := by
-  change g ∈ LargeIndecomposable.TwoSidedHomIdeal.HomIdeal.generatedHomSubmodule k _ (LinearPaths.obj x) (LinearPaths.obj y) at hg
+  change g ∈ MorphismIdeal.generatedHomSubmodule k _ (LinearPaths.obj x) (LinearPaths.obj y) at hg
   induction hg using Submodule.span_induction with
   | mem h hh =>
       obtain ⟨P, R, r, hr, a, b', rfl⟩ := hh
@@ -692,8 +692,8 @@ variable {k A : Type w} [Field k] [IsAlgClosed k] [Ring A] [Algebra k A] [Finite
   [IsNoetherianRing Aᵐᵒᵖ] (S : IndSkeleton k A) (b : S.ArrowBases)
 
 /-- The mesh ideal of `k(Γ_A)` in the linear path category. -/
-abbrev meshIdeal : LargeIndecomposable.TwoSidedHomIdeal.HomIdeal (LinearPaths k S.ARVertex) :=
-  LargeIndecomposable.TwoSidedHomIdeal.HomIdeal.linearSpan k
+abbrev meshIdeal : MorphismIdeal (LinearPaths k S.ARVertex) :=
+  MorphismIdeal.linearSpan k
     (meshRelations (S.arCoefficients b))
 
 /-- The identity of an indecomposable is not radical. -/
@@ -849,12 +849,12 @@ theorem mem_meshIdeal_of_realize_mem (N : ℕ) : ∀ {W Y : S.ARVertex}
       -- the components `w_i` in `mod A`
       let w : ∀ i, S.fg (S.index W) ⟶ S.fg (S.midLabel (S.index Y) i) := fun i ↦
         S.toFG.map ((S.vCoeff b Y i)⁻¹ • S.realize b W _ (G ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩))
-      have hw : ∀ i, w i ∈ (StrictLayers.Ipow N : HomIdeal (ModCat A)).hom _ _ := by
+      have hw : ∀ i, w i ∈ (StrictLayers.Ipow N : MorphismIdeal (ModCat A)).hom _ _ := by
         intro i
         have h0 := S.realize_mem b (hG ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩)
         exact (S.mem_radPow_iff N _).1 (Submodule.smul_mem _ _ h0)
       have hsum : ∑ i, w i ≫ S.beta (S.index Y) i ∈
-          (StrictLayers.Ipow (N + 2) : HomIdeal (ModCat A)).hom _ _ := by
+          (StrictLayers.Ipow (N + 2) : MorphismIdeal (ModCat A)).hom _ _ := by
         have e : ∀ i, w i ≫ S.beta (S.index Y) i = S.toFG.map
             (((S.vCoeff b Y i)⁻¹ • S.realize b W _ (G ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩)) ≫ S.betaI Y i) := by
           intro i
@@ -864,7 +864,7 @@ theorem mem_meshIdeal_of_realize_mem (N : ℕ) : ∀ {W Y : S.ARVertex}
         rw [Finset.sum_congr rfl (fun i _ ↦ e i), ← Functor.map_sum]
         exact (S.mem_radPow_iff (N + 2) _).1 hsumInd
       -- from `w_i ∈ J^{N+1}` to `G_i` in the ideal, by the induction hypothesis
-      have hstep : ∀ i, w i ∈ (StrictLayers.Ipow (N + 1) : HomIdeal (ModCat A)).hom _ _ →
+      have hstep : ∀ i, w i ∈ (StrictLayers.Ipow (N + 1) : MorphismIdeal (ModCat A)).hom _ _ →
           G ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩ ∈ (S.meshIdeal b).hom _ _ := by
         intro i hi
         apply ih (hG _)
@@ -882,8 +882,8 @@ theorem mem_meshIdeal_of_realize_mem (N : ℕ) : ∀ {W Y : S.ARVertex}
           · let y : S.nonprojectiveVertices := ⟨Y, hY⟩
             let h : S.fg (S.index W) ⟶ S.fg (S.index (S.arTranslationQuiver.tau y).1) :=
               z ≫ (S.tau.tauPlusIso (S.vendorNonprojective y)).hom
-            have hh : h ∈ (StrictLayers.Ipow m : HomIdeal (ModCat A)).hom _ _ :=
-              (StrictLayers.Ipow m : HomIdeal (ModCat A)).postcomp _ hz
+            have hh : h ∈ (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).hom _ _ :=
+              (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).postcomp _ hz
             let hInd : S.label W ⟶ S.label (S.arTranslationQuiver.tau y).1 :=
               (S.homEquivFG (S.ind (S.index W)) (S.ind (S.index (S.arTranslationQuiver.tau y).1))).symm h
             have hIndMap : S.toFG.map hInd = h := S.map_homEquivFG_symm _
@@ -912,7 +912,7 @@ theorem mem_meshIdeal_of_realize_mem (N : ℕ) : ∀ {W Y : S.ARVertex}
             -- the mesh relation at `Y`
             have hmesh : H ≫ meshRelation (S.arCoefficients b) y ∈ (S.meshIdeal b).hom _ _ := by
               apply (S.meshIdeal b).precomp
-              exact LargeIndecomposable.TwoSidedHomIdeal.HomIdeal.relation_mem_linearSpan
+              exact MorphismIdeal.relation_mem_linearSpan
                 _ ⟨y, rfl, rfl, by simp⟩
             have hdecomp : ∑ a, G a ≫ LinearPaths.arrow a.2 - H ≫ meshRelation (S.arCoefficients b) y =
                 ∑ i, (G ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩ -

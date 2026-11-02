@@ -297,7 +297,7 @@ end KDual
 open KDual in
 /-- **The opposite of a representation-finite algebra is representation-finite.** -/
 theorem isRepresentationFinite_op {k : Type u} [Field k] {B : Type u} [Ring B] [Algebra k B]
-    [FiniteDimensional k B] (hB : IsRepresentationFiniteRight k B) : IsRepresentationFiniteRight k Bᵐᵒᵖ := by
+    [FiniteDimensional k B] (hB : IsRepresentationFinite k Bᵐᵒᵖ) : IsRepresentationFinite k Bᵐᵒᵖᵐᵒᵖ := by
   classical
   obtain ⟨n, Y, hY, hcov⟩ := hB
   have hlocY : ∀ i, IsLocalRing (End (Y i)) := fun i ↦ by

@@ -41,14 +41,14 @@ namespace ScalarMeshCategory
 
 variable (c : MeshCoefficients k Q)
 
-open TwoSidedHomIdeal LinearPaths
+open LinearPaths
 
 /-- The mesh relation vanishes in `C(Q, c)`. -/
 theorem mesh_sum_zero (x : Q.nonprojective) :
     ∑ a : (Σ y : V, y ⟶ x.1), ((c x a.1 a.2 : kˣ) : k) •
       (arrowMor c (Q.mate x a.1 a.2) ≫ arrowMor c a.2) = 0 := by
-  have hrel : meshRelation c x ∈ (HomIdeal.linearSpan k (meshRelations c)).hom _ _ :=
-    HomIdeal.relation_mem_linearSpan _ ⟨x, rfl, rfl, by simp⟩
+  have hrel : meshRelation c x ∈ (MorphismIdeal.linearSpan k (meshRelations c)).hom _ _ :=
+    MorphismIdeal.relation_mem_linearSpan _ ⟨x, rfl, rfl, by simp⟩
   rw [← RelationCategory.functor_map_eq_zero_iff, meshRelation, Functor.map_sum] at hrel
   rw [← hrel]
   refine Finset.sum_congr rfl fun a _ ↦ ?_
@@ -81,7 +81,7 @@ theorem proj_two_comp (x z : Q.nonprojective)
 mesh relation at `X`.** -/
 theorem proj_two_mem_span (x : Q.nonprojective)
     {f : LinearPaths.obj (k := k) (Q.tau x).1 ⟶ LinearPaths.obj x.1}
-    (hf : f ∈ HomIdeal.generatedHomSubmodule k (meshRelations c) _ _) :
+    (hf : f ∈ MorphismIdeal.generatedHomSubmodule k (meshRelations c) _ _) :
     proj 2 _ _ f ∈ k ∙ meshRelation c x := by
   induction hf using Submodule.span_induction with
   | mem g hg =>
@@ -148,7 +148,7 @@ theorem mesh_coeffs (x : Q.nonprojective) (lam : (Σ y : V, y ⟶ x.1) → k)
     refine Finset.sum_congr rfl fun a _ ↦ ?_
     rw [Functor.map_smul, ← LinearPaths.path_comp_path, Functor.map_comp]
     rfl
-  have hRmem : R ∈ HomIdeal.generatedHomSubmodule k (meshRelations c) _ _ :=
+  have hRmem : R ∈ MorphismIdeal.generatedHomSubmodule k (meshRelations c) _ _ :=
     (RelationCategory.functor_map_eq_zero_iff (k := k) _ R).1 hR0
   have hR2 : R ∈ LinearPaths.degreePart (k := k) 2 (Q.tau x).1 x.1 := by
     refine Submodule.sum_mem _ fun a _ ↦ Submodule.smul_mem _ _ ?_

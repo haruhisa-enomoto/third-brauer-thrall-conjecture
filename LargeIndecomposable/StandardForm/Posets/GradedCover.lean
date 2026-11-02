@@ -198,7 +198,7 @@ theorem covProj_bimod (c c' : cov D s) (b : (Alg (F ∘ lab s))ᵐᵒᵖ) :
 of the graded covering category of a representation-finite graded algebra is
 representation-finite. -/
 theorem isRepresentationFinite_cov [∀ x y : ι, FiniteDimensional k (F x ⟶ F y)]
-    (hF : IsRepresentationFiniteRight k (Alg F)ᵐᵒᵖ) : IsRepresentationFiniteRight k (cov D s) := by
+    (hF : IsRepresentationFinite k (Alg F)ᵐᵒᵖᵐᵒᵖ) : IsRepresentationFinite k (cov D s)ᵐᵒᵖ := by
   have hB := isRepresentationFinite_comp (lab s) hF
   exact splitRepresentationTransfer_of (C := cov D s) (q := AlgHom.id k (cov D s))
     (covProj D s) (covProj_bimod D s) (fun d ↦ ⟨d, rfl⟩) (covProj_of_mem D s) hB

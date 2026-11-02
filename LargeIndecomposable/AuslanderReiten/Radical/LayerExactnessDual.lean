@@ -38,7 +38,7 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits Opposite
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 open scoped ModuleCat.Algebra
 
 attribute [local instance] HasFiniteBiproducts.of_hasFiniteProducts
@@ -120,10 +120,10 @@ theorem midInc_midDesc {W : ModCat A} (x : Fin S.n) (v : ∀ i, S.fg (S.midLabel
   · simp
 
 theorem midDesc_mem {W : ModCat A} (x : Fin S.n) (v : ∀ i, S.fg (S.midLabel x i) ⟶ W) {n : ℕ}
-    (hv : ∀ i, v i ∈ (StrictLayers.Ipow n : HomIdeal (ModCat A)).hom _ _) :
-    S.midDesc x v ∈ (StrictLayers.Ipow n : HomIdeal (ModCat A)).hom _ _ :=
-  Submodule.sum_mem (HomIdeal.homSubmodule (k := k) _ _ _) fun i _ ↦
-    (StrictLayers.Ipow n : HomIdeal (ModCat A)).precomp _ (hv i)
+    (hv : ∀ i, v i ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _) :
+    S.midDesc x v ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _ :=
+  Submodule.sum_mem (MorphismIdeal.homSubmodule (k := k) _ _ _) fun i _ ↦
+    (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).precomp _ (hv i)
 
 theorem f_midDesc {W : ModCat A} (x : Fin S.n) (v : ∀ i, S.fg (S.midLabel x i) ⟶ W) :
     (S.rightMesh x).f ≫ S.midDesc x v = ∑ i, ((S.rightMesh x).f ≫ S.midProj x i) ≫ v i := by
@@ -134,9 +134,9 @@ implies `v_i ∈ J` for every summand. -/
 theorem colayer_exact_zero {W : ModCat A} (y : S.nonprojectiveVertices)
     (v : ∀ i, S.fg (S.midLabel (S.index y.1) i) ⟶ W)
     (hsum : ∑ i, ((S.rightMesh (S.index y.1)).f ≫ S.midProj (S.index y.1) i) ≫ v i ∈
-      (StrictLayers.Ipow 2 : HomIdeal (ModCat A)).hom _ W)
+      (StrictLayers.Ipow 2 : MorphismIdeal (ModCat A)).hom _ W)
     (i : Fin (S.arity (S.index y.1))) :
-    v i ∈ (StrictLayers.Ipow 1 : HomIdeal (ModCat A)).hom _ W := by
+    v i ∈ (StrictLayers.Ipow 1 : MorphismIdeal (ModCat A)).hom _ W := by
   have h := (S.coApprox y).layer_exact_zero (S.midDesc _ v).op (by
     rw [← StrictLayers.mem_Ipow_unop_iff]
     change (Iso.refl _).inv ≫ (S.rightMesh (S.index y.1)).f ≫ S.midDesc _ v ∈ _
@@ -144,19 +144,19 @@ theorem colayer_exact_zero {W : ModCat A} (y : S.nonprojectiveVertices)
     exact hsum)
   rw [← StrictLayers.mem_Ipow_unop_iff] at h
   rw [← S.midInc_midDesc _ v i]
-  exact (StrictLayers.Ipow 1 : HomIdeal (ModCat A)).precomp _ h
+  exact (StrictLayers.Ipow 1 : MorphismIdeal (ModCat A)).precomp _ h
 
 /-- **Proposition 2.6(1)**, second sequence, exactness at the middle term: if
 every `v_i ∈ J^{n+1}` and `∑ α_i v_i ∈ J^{n+3}`, then there is
 `u ∈ J^n(x, W)` with `v_i - β_i u ∈ J^{n+2}` for every summand. -/
 theorem colayer_exact {W : ModCat A} (y : S.nonprojectiveVertices)
     (v : ∀ i, S.fg (S.midLabel (S.index y.1) i) ⟶ W) {n : ℕ}
-    (hv : ∀ i, v i ∈ (StrictLayers.Ipow (n + 1) : HomIdeal (ModCat A)).hom _ W)
+    (hv : ∀ i, v i ∈ (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).hom _ W)
     (hsum : ∑ i, ((S.rightMesh (S.index y.1)).f ≫ S.midProj (S.index y.1) i) ≫ v i ∈
-      (StrictLayers.Ipow (n + 3) : HomIdeal (ModCat A)).hom _ W) :
-    ∃ u : S.fg (S.index y.1) ⟶ W, u ∈ (StrictLayers.Ipow n : HomIdeal (ModCat A)).hom _ _ ∧
+      (StrictLayers.Ipow (n + 3) : MorphismIdeal (ModCat A)).hom _ W) :
+    ∃ u : S.fg (S.index y.1) ⟶ W, u ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _ ∧
       ∀ i, v i - S.beta (S.index y.1) i ≫ u ∈
-        (StrictLayers.Ipow (n + 2) : HomIdeal (ModCat A)).hom _ W := by
+        (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).hom _ W := by
   obtain ⟨z, hz, hwz⟩ := (S.coApprox y).layer_exact S.hasSplitRadicalNormalForm_op S.opApprox
     (S.midDesc _ v).op
     (by rw [← StrictLayers.mem_Ipow_unop_iff]; exact S.midDesc_mem _ v hv)
@@ -167,8 +167,8 @@ theorem colayer_exact {W : ModCat A} (y : S.nonprojectiveVertices)
       exact hsum)
   rw [← StrictLayers.mem_Ipow_unop_iff] at hz hwz
   refine ⟨(S.tau.rightTermIso (S.tau.obj (S.index y.1))).inv ≫ z.unop,
-    (StrictLayers.Ipow n : HomIdeal (ModCat A)).precomp _ hz, fun i ↦ ?_⟩
-  have h := (StrictLayers.Ipow (n + 2) : HomIdeal (ModCat A)).precomp
+    (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).precomp _ hz, fun i ↦ ?_⟩
+  have h := (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).precomp
     (S.midInc (S.index y.1) i) hwz
   change S.midInc _ i ≫ (S.midDesc _ v - (S.rightMesh (S.index y.1)).g ≫ z.unop) ∈ _ at h
   rw [Preadditive.comp_sub, S.midInc_midDesc] at h
@@ -184,8 +184,8 @@ theorem colayer_exact {W : ModCat A} (y : S.nonprojectiveVertices)
 theorem colayer_injective {W : ModCat A} (y : S.nonprojectiveVertices) {n : ℕ}
     (u : S.fg (S.index y.1) ⟶ W)
     (hu : ∀ i, S.beta (S.index y.1) i ≫ u ∈
-      (StrictLayers.Ipow (n + 2) : HomIdeal (ModCat A)).hom _ W) :
-    u ∈ (StrictLayers.Ipow (n + 1) : HomIdeal (ModCat A)).hom _ W := by
+      (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).hom _ W) :
+    u ∈ (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).hom _ W := by
   have h := (S.coApprox y).layer_injective S.hasSplitRadicalNormalForm_op S.opApprox
     ((S.tau.rightTermIso (S.tau.obj (S.index y.1))).hom ≫ u).op (by
       rw [← StrictLayers.mem_Ipow_unop_iff]
@@ -203,9 +203,9 @@ theorem colayer_injective {W : ModCat A} (y : S.nonprojectiveVertices) {n : ℕ}
               simp only [Category.assoc]
       rw [e]
       exact sum_mem fun i _ ↦
-        (StrictLayers.Ipow (n + 2) : HomIdeal (ModCat A)).precomp _ (hu i))
+        (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).precomp _ (hu i))
   rw [← StrictLayers.mem_Ipow_unop_iff] at h
-  have := (StrictLayers.Ipow (n + 1) : HomIdeal (ModCat A)).precomp (S.tau.rightTermIso (S.tau.obj (S.index y.1))).inv h
+  have := (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).precomp (S.tau.rightTermIso (S.tau.obj (S.index y.1))).inv h
   rwa [Quiver.Hom.unop_op, Iso.inv_hom_id_assoc] at this
 
 end LargeIndecomposable.IndSkeleton

@@ -53,7 +53,7 @@ variable {k : Type u} [Field k] {V : Type} [Quiver.{0} V] [Fintype V] [Decidable
 variable [IsAlgClosed k] [hone : ∀ x y : V, Subsingleton (x ⟶ y)]
   [∀ x y : V, Fintype (x ⟶ y)]
   [hfd : ∀ x y : V, FiniteDimensional k (meshFam Q c x ⟶ meshFam Q c y)]
-  (v₀ : V) (hF : IsRepresentationFiniteRight k (Alg D.F0)ᵐᵒᵖ)
+  (v₀ : V) (hF : IsRepresentationFinite k (Alg D.F0)ᵐᵒᵖᵐᵒᵖ)
 
 /-- The chosen deck-homogeneous vectors of Proposition 4.14. -/
 def deckV : ∀ x y : D.PV, Deck Q v₀ → (D.F0 x ⟶ D.F0 y) :=
@@ -370,7 +370,7 @@ theorem thetaA0_b (t : RayA0 D v₀) : thetaA0 D v₀ hF ((A0Tab D v₀ hF).b k 
     (basisR_complete D v₀ hF) (srcR D v₀) (tgtR D v₀) (basisR_corner D v₀ hF) (srcR_eR D v₀ hF)
     (tgtR_eR D v₀ hF) t
 
-theorem A0Tab_isRepresentationFinite : IsRepresentationFiniteRight k ((A0Tab D v₀ hF).Lin k) :=
+theorem A0Tab_isRepresentationFinite : IsRepresentationFinite k ((A0Tab D v₀ hF).Lin k)ᵐᵒᵖ :=
   isRepresentationFinite_of_surjective (thetaA0 D v₀ hF).symm.toAlgHom
     (thetaA0 D v₀ hF).symm.surjective hF
 
@@ -412,7 +412,7 @@ theorem thetaA0L_b (hdg : dg.comp (Wt.res (v₀ := v₀) c D) = (lenW (Q := Q)).
   thetaA0_b D v₀ hF t
 
 theorem A0TabL_isRepresentationFinite (hdg : dg.comp (Wt.res (v₀ := v₀) c D) = (lenW (Q := Q)).res (v₀ := v₀) c D) :
-    IsRepresentationFiniteRight k ((A0TabL D v₀ hF Wt dg hdg).Lin k) :=
+    IsRepresentationFinite k ((A0TabL D v₀ hF Wt dg hdg).Lin k)ᵐᵒᵖ :=
   A0Tab_isRepresentationFinite D v₀ hF
 
 /-- **Setting 8.4 for `A₀` with weights in `L'`.** -/

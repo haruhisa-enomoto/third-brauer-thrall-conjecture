@@ -32,7 +32,7 @@ namespace LargeIndecomposable.Iyama.LeftLadder
 
 universe v u
 
-open CategoricalIdeal CategoricalRadical
+open CategoricalRadical
 
 variable {C : Type u} [Category.{v} C]
 
@@ -294,7 +294,7 @@ theorem forwardComposite_succ
 /-- A chain of radical connecting maps has its length-`n` composite in the
 `n`th ideal power. -/
 theorem forwardComposite_mem_pow
-    (I : HomIdeal C)
+    (I : MorphismIdeal C)
     (Z : ℕ → C) (g : ∀ n : ℕ, Z n ⟶ Z (n + 1))
     (hg : ∀ n : ℕ, g n ∈ I.hom (Z n) (Z (n + 1))) :
     ∀ n : ℕ,
@@ -302,7 +302,7 @@ theorem forwardComposite_mem_pow
   | 0 => by simp
   | n + 1 => by
       rw [I.pow_succ]
-      exact HomIdeal.comp_mem_mul
+      exact MorphismIdeal.comp_mem_mul
         (forwardComposite_mem_pow I Z g hg n) (hg n)
 
 /-- The exact abstract output needed from every explicit left-ladder step. -/
@@ -416,7 +416,7 @@ theorem exists_nonzero_coremainder_in_radical_power
       forwardComposite Z g n ≫ h n ∈
         (R.ideal.pow (n + 1)).hom (Z 0) (U (n + 1)) := by
     rw [R.ideal.pow_succ]
-    exact HomIdeal.comp_mem_mul (hprefix n) (hh n)
+    exact MorphismIdeal.comp_mem_mul (hprefix n) (hh n)
   by_contra hexists
   have hkill (n : ℕ) :
       forwardComposite Z g n ≫ h n = 0 := by

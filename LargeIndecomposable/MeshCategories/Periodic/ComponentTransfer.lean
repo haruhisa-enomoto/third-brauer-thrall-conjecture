@@ -37,14 +37,13 @@ namespace LargeIndecomposable
 
 universe u v w
 
-open TwoSidedHomIdeal
 
 variable {k : Type u} [CommRing k] {V : Type v} [Quiver.{w} V] {Q : TranslationQuiver V}
   [∀ x : V, Fintype (Σ y : V, y ⟶ x)]
 
 /-- The mesh ideal of `C(Q, c)`, as a submodule of the Hom spaces of `kQ`. -/
 abbrev meshIdealSub (c : MeshCoefficients k Q) (X Y : LinearPaths k V) :=
-  HomIdeal.generatedHomSubmodule k (meshRelations c) X Y
+  MorphismIdeal.generatedHomSubmodule k (meshRelations c) X Y
 
 theorem meshRelation_mem_meshIdealSub (c : MeshCoefficients k Q) (x : Q.nonprojective) :
     meshRelation c x ∈ meshIdealSub c _ _ :=

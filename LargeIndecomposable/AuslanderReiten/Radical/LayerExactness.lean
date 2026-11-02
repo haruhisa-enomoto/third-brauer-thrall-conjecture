@@ -38,7 +38,7 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 open scoped ModuleCat.Algebra
 
 attribute [local instance] HasFiniteBiproducts.of_hasFiniteProducts
@@ -76,11 +76,11 @@ def approxOfRightTau {Y : C} (M : ShortComplex C) (hM : LargeIndecomposable.Iyam
   i_rad := hM.f_radical
   sq := by
     intro Z g hg
-    rw [Ipow, HomIdeal.pow_succ] at hg
+    rw [Ipow, MorphismIdeal.pow_succ] at hg
     induction hg using AddSubgroup.closure_induction with
     | mem h hh =>
         obtain ⟨N, u, v, hu, hv, rfl⟩ := hh
-        rw [HomIdeal.pow_one, mem_homIdeal_iff] at hu
+        rw [MorphismIdeal.pow_one, mem_homIdeal_iff] at hu
         obtain ⟨b, hb⟩ := hM.factors_from_left u hu
         exact ⟨b ≫ v, isRadicalMorphism_precomp b ((mem_homIdeal_iff v).1 hv),
           by rw [← Category.assoc, hb]⟩
@@ -188,44 +188,44 @@ theorem midLift_p {W : ModCat A} (x : Fin S.n) (w : ∀ i, W ⟶ S.fg (S.midLabe
   simp [midLift, Preadditive.sum_comp, beta_eq]
 
 theorem midLift_mem {W : ModCat A} (x : Fin S.n) (w : ∀ i, W ⟶ S.fg (S.midLabel x i)) {n : ℕ}
-    (hw : ∀ i, w i ∈ (StrictLayers.Ipow n : HomIdeal (ModCat A)).hom _ _) :
-    S.midLift x w ∈ (StrictLayers.Ipow n : HomIdeal (ModCat A)).hom _ _ :=
-  Submodule.sum_mem (HomIdeal.homSubmodule (k := k) _ _ _) fun i _ ↦
-    (StrictLayers.Ipow n : HomIdeal (ModCat A)).postcomp _ (hw i)
+    (hw : ∀ i, w i ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _) :
+    S.midLift x w ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _ :=
+  Submodule.sum_mem (MorphismIdeal.homSubmodule (k := k) _ _ _) fun i _ ↦
+    (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).postcomp _ (hw i)
 
 /-- **Proposition 2.6(1)(2)**, lowest degree: `∑ w_i β_i ∈ J²` implies
 `w_i ∈ J` for every summand. -/
 theorem layer_exact_zero {W : ModCat A} (x : Fin S.n) (w : ∀ i, W ⟶ S.fg (S.midLabel x i))
-    (hsum : ∑ i, w i ≫ S.beta x i ∈ (StrictLayers.Ipow 2 : HomIdeal (ModCat A)).hom W (S.fg x))
+    (hsum : ∑ i, w i ≫ S.beta x i ∈ (StrictLayers.Ipow 2 : MorphismIdeal (ModCat A)).hom W (S.fg x))
     (i : Fin (S.arity x)) :
-    w i ∈ (StrictLayers.Ipow 1 : HomIdeal (ModCat A)).hom W _ := by
+    w i ∈ (StrictLayers.Ipow 1 : MorphismIdeal (ModCat A)).hom W _ := by
   have h := (S.vertexApprox x).layer_exact_zero (S.midLift x w) (by rw [midLift_p]; exact hsum)
   rw [← S.midLift_midProj x w i]
-  exact (StrictLayers.Ipow 1 : HomIdeal (ModCat A)).postcomp _ h
+  exact (StrictLayers.Ipow 1 : MorphismIdeal (ModCat A)).postcomp _ h
 
 /-- **Proposition 2.6(1)(2)**, exactness at the middle term: if every
 `w_i ∈ J^{n+1}` and `∑ w_i β_i ∈ J^{n+3}`, then there is `z ∈ J^n(W, τx)` with
 `w_i - z α_i ∈ J^{n+2}` for every summand. Here `α_i = f ≫ π_i` are the
 components of the first map `f` of the mesh. -/
 theorem layer_exact {W : ModCat A} (x : Fin S.n) (w : ∀ i, W ⟶ S.fg (S.midLabel x i)) {n : ℕ}
-    (hw : ∀ i, w i ∈ (StrictLayers.Ipow (n + 1) : HomIdeal (ModCat A)).hom W _)
+    (hw : ∀ i, w i ∈ (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).hom W _)
     (hsum : ∑ i, w i ≫ S.beta x i ∈
-      (StrictLayers.Ipow (n + 3) : HomIdeal (ModCat A)).hom W (S.fg x)) :
-    ∃ z : W ⟶ (S.rightMesh x).X₁, z ∈ (StrictLayers.Ipow n : HomIdeal (ModCat A)).hom _ _ ∧
+      (StrictLayers.Ipow (n + 3) : MorphismIdeal (ModCat A)).hom W (S.fg x)) :
+    ∃ z : W ⟶ (S.rightMesh x).X₁, z ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _ ∧
       ∀ i, w i - z ≫ (S.rightMesh x).f ≫ S.midProj x i ∈
-        (StrictLayers.Ipow (n + 2) : HomIdeal (ModCat A)).hom W _ := by
+        (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).hom W _ := by
   obtain ⟨z, hz, hwz⟩ := (S.vertexApprox x).layer_exact S.hasSplitRadicalNormalForm
     S.rightRadicalApprox (S.midLift x w) (S.midLift_mem x w hw) (by rw [midLift_p]; exact hsum)
   refine ⟨z, hz, fun i ↦ ?_⟩
-  have h := (StrictLayers.Ipow (n + 2) : HomIdeal (ModCat A)).postcomp (S.midProj x i) hwz
+  have h := (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).postcomp (S.midProj x i) hwz
   rw [Preadditive.sub_comp, S.midLift_midProj, Category.assoc] at h
   exact h
 
 /-- **Proposition 2.6(1)**, injectivity of the first map on layers. -/
 theorem layer_injective {W : ModCat A} (x : Fin S.n) {n : ℕ} (z : W ⟶ (S.rightMesh x).X₁)
     (hz : ∀ i, z ≫ (S.rightMesh x).f ≫ S.midProj x i ∈
-      (StrictLayers.Ipow (n + 2) : HomIdeal (ModCat A)).hom W _) :
-    z ∈ (StrictLayers.Ipow (n + 1) : HomIdeal (ModCat A)).hom _ _ := by
+      (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).hom W _) :
+    z ∈ (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).hom _ _ := by
   apply (S.vertexApprox x).layer_injective S.hasSplitRadicalNormalForm S.rightRadicalApprox z
   have : z ≫ (S.vertexApprox x).i = S.midLift x (fun i ↦ z ≫ (S.rightMesh x).f ≫ S.midProj x i) := by
     change z ≫ (S.rightMesh x).f = _

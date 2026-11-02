@@ -410,7 +410,7 @@ open Classical in
 /-- The indicator coefficients of a supported coefficient cochain. -/
 def indOf (u : S.C2 χ k) (x y : R) : k := if h : S.I2 χ (x, y) then u ⟨(x, y), h⟩ else 0
 
-theorem coch_indOf (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u : S.C2 χ k}
+theorem coch_indOf (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) {u : S.C2 χ k}
     (hu : u ∈ S.Usub χ k) : S.coch k (S.indOf χ k u) = S.Φ2 χ k u := by
   classical
   refine (S.P.basis k).ext fun x ↦ (S.P.basis k).ext fun y ↦ ?_
@@ -423,7 +423,7 @@ theorem coch_indOf (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) {u : S.C2 
   · rw [zero_smul]
 
 /-- **Corollary 10.5** (`cor:zero-supported-coverage`) on `Λ ≅ kP`, given Proposition 10.3. -/
-theorem cor105_of_IStar [CharP k 2] (hfin : IsRepresentationFiniteRight k (S.P.Lin k))
+theorem cor105_of_IStar [CharP k 2] (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ)
     (hχ : 0 < S.P.deg χ) (hprim : Prim χ)
     (hWl : ∀ w : R → ZMod 2,
       (∀ r s t, S.TB χ r → S.TB χ s → S.TB χ t → ⌜r⌝ * ⌜s⌝ = ⌜t⌝ → w t = w r + w s) →

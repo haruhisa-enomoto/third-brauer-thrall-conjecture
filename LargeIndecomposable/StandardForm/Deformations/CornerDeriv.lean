@@ -68,7 +68,7 @@ structure Hyp : Prop where
     ∃ F : LinearPaths.obj (k := R) (lab s) ⟶ LinearPaths.obj (k := R) (lab p),
       evL N φ F (w s) = n
   inj : ∀ s p (F : LinearPaths.obj (k := R) (lab s) ⟶ LinearPaths.obj (k := R) (lab p)),
-    evL N φ F (w s) = 0 → F ∈ (TwoSidedHomIdeal.HomIdeal.linearSpan R (meshRelations u)).hom
+    evL N φ F (w s) = 0 → F ∈ (MorphismIdeal.linearSpan R (meshRelations u)).hom
       (LinearPaths.obj (lab s)) (LinearPaths.obj (lab p))
 
 variable {u N MM Lf φ g lab e w ψ} (H : Hyp u N MM Lf φ g lab e w ψ)

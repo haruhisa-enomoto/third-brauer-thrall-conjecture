@@ -134,7 +134,7 @@ theorem mem_insertionSpan_of_mem_ray {x y z : Fin F.m} {f h f' h' : A}
     (F.mul_mem_insertionSpan hf hh hn)))
 
 /-- **Lemma 3.6.** -/
-theorem rayProduct_independent_of (hA : IsRepresentationFiniteRight k A) {x y z : Fin F.m}
+theorem rayProduct_independent_of (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y z : Fin F.m}
     {f f' h h' : A} (hf : f ∈ F.corner (k := k) x y) (hf0 : f ≠ 0)
     (hh : h ∈ F.corner (k := k) y z) (hh0 : h ≠ 0)
     (hf' : f' ∈ F.ray (k := k) x y f) (hh' : h' ∈ F.ray (k := k) y z h) :
@@ -192,7 +192,7 @@ def rayProduct (x y z : Fin F.m) (f h : A) : Set A :=
   if f * h ∈ F.insertionSpan (k := k) x y z f h then {0} else F.ray (k := k) x z (f * h)
 
 /-- **Lemma 3.6, first part**: the ray product does not depend on the representatives. -/
-theorem rayProduct_eq_of_mem (hA : IsRepresentationFiniteRight k A) {x y z : Fin F.m}
+theorem rayProduct_eq_of_mem (hA : IsRepresentationFinite k Aᵐᵒᵖ) {x y z : Fin F.m}
     {f f' h h' : A} (hf : f ∈ F.corner (k := k) x y) (hf0 : f ≠ 0)
     (hh : h ∈ F.corner (k := k) y z) (hh0 : h ≠ 0)
     (hf' : f' ∈ F.ray (k := k) x y f) (hh' : h' ∈ F.ray (k := k) y z h) :

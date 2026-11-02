@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MultiplicativeBases.ScalarPresentation.CriticalCleavingTransfer
-public import LargeIndecomposable.Foundations.CategoryTheory.LinearIdealQuotient
+public import LargeIndecomposable.Foundations.CategoryTheory.MorphismIdeal
 public import LargeIndecomposable.Foundations.PathCategories.LinearPathCategory
 public import Mathlib.Algebra.DirectSum.Decomposition
 public import Mathlib.LinearAlgebra.Finsupp.Supported
@@ -45,7 +45,6 @@ attribute [local instance] HasFiniteBiproducts.of_hasFiniteProducts
 
 namespace LargeIndecomposable.CriticalSingularFigure15
 
-open LargeIndecomposable.PreadditiveHomIdeal
 open LargeIndecomposable.CriticalSingularCleaving
 open LargeIndecomposable.ClosedZigzagCrossUniverse
 
@@ -612,8 +611,8 @@ def relation (X Y : FreeLinearSource k) : Set (X ⟶ Y) :=
       (hY : Y = freeVertexObj (k := k) .rightEndpoint),
     f = eqToHom hX ≫ mainComposite (k := k) ≫ eqToHom hY.symm}
 
-abbrev relationIdeal : HomIdeal (FreeLinearSource k) :=
-  HomIdeal.linearSpan k (relation (k := k))
+abbrev relationIdeal : MorphismIdeal (FreeLinearSource k) :=
+  MorphismIdeal.linearSpan k (relation (k := k))
 
 /-- The bound linear source of Figure 15. -/
 abbrev LinearSource := CategoryTheory.Quotient (relationIdeal (k := k)).rel
@@ -650,7 +649,7 @@ abbrev generatorHom {a b : Vertex} (e : a ⟶ b) :
 theorem mainComposite_zero :
     (quotientFunctor (k := k)).map (mainComposite (k := k)) = 0 := by
   rw [(relationIdeal (k := k)).map_eq_zero_iff]
-  apply HomIdeal.relation_mem_linearSpan (relation (k := k))
+  apply MorphismIdeal.relation_mem_linearSpan (relation (k := k))
   exact ⟨rfl, rfl, by simp⟩
 
 section QuotientLift
@@ -663,10 +662,10 @@ variable (F : FreeLinearSource k ⥤ C) [F.Additive] [F.Linear k]
 theorem relationIdeal_isKilledBy
     (hmain : F.map (mainComposite (k := k)) = 0) :
     (relationIdeal (k := k)).IsKilledBy F := by
-  apply HomIdeal.linearSpan_le (relation (k := k))
-    (HomIdeal.functorKernel (k := k) F)
+  apply MorphismIdeal.linearSpan_le (relation (k := k))
+    (MorphismIdeal.functorKernel (k := k) F)
   intro X Y r hr
-  rw [HomIdeal.mem_functorKernel_iff]
+  rw [MorphismIdeal.mem_functorKernel_iff]
   rcases hr with ⟨hX, hY, rfl⟩
   subst X
   subst Y

@@ -33,7 +33,7 @@ variable {V R L : Type} [AddCommGroup L] [DecidableEq L] [Fintype V] [DecidableE
 
 /-- **A forbidden bound configuration.** -/
 theorem bound_false (k : Type u) [Field k] [IsAlgClosed k]
-    (hfin : IsRepresentationFiniteRight k (P.Lin k)) {n : ℕ} {le : Fin n → Fin n → Bool}
+    (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) {n : ℕ} {le : Fin n → Fin n → Bool}
     [Fact (Ax le)] (hu : UniqOK le) {p m r : Fin n} (hpm : covB le p m = true)
     (hmr : covB le m r = true) (d : Fin n → ℕ) (hd : ∃ i, 0 < d i)
     (hN : ∑ i, d i ^ 2 + d r * d p ≤ ∑ i, ∑ j, if covB le i j then d i * d j else 0)

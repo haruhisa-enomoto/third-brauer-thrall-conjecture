@@ -51,7 +51,7 @@ theorem ax_of_lf {n : ℕ} {le : Fin n → Fin n → Bool} (r : Fin n → R)
 variable (k : Type u) [Field k] [IsAlgClosed k]
 
 /-- **A forbidden configuration in a faithful projective support.** -/
-theorem projSup_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) {n : ℕ}
+theorem projSup_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) {n : ℕ}
     {le : Fin n → Fin n → Bool} (x : V) (r : Fin n → R) (hr : Function.Injective r)
     (hsrc : ∀ i, P.src (r i) = x) (hle : ∀ i j, le i j = true ↔ P.RF (r i) (r j))
     (d : Fin n → ℕ) (hu : UniqOK le) (hc : CountOK le d) : False := by
@@ -79,7 +79,7 @@ theorem projSup_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) {n : ℕ}
 
 /-- **A forbidden configuration in a faithful injective support** (order: `r ≤ s` if
 `r = v s`). -/
-theorem injSup_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) {n : ℕ}
+theorem injSup_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) {n : ℕ}
     {le : Fin n → Fin n → Bool} (x : V) (r : Fin n → R) (hr : Function.Injective r)
     (htgt : ∀ i, P.tgt (r i) = x) (hle : ∀ i j, le i j = true ↔ P.LF (r i) (r j))
     (d : Fin n → ℕ) (hu : UniqOK le) (hc : CountOK le d) : False := by
@@ -113,7 +113,7 @@ theorem tCrown_uniq : UniqOK tCrown := by unfold UniqOK; decide
 theorem tCrown_count : CountOK tCrown ![1, 1, 1, 1] := by unfold CountOK; decide
 
 /-- **A four-point crown in a faithful projective support is excluded.** -/
-theorem crown_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) (x : V) (l1 l2 u1 u2 : R)
+theorem crown_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) (x : V) (l1 l2 u1 u2 : R)
     (hsrc : P.src l1 = x ∧ P.src l2 = x ∧ P.src u1 = x ∧ P.src u2 = x)
     (h11 : P.RF l1 u1) (h12 : P.RF l1 u2) (h21 : P.RF l2 u1) (h22 : P.RF l2 u2)
     (n1 : ¬ P.RF l1 l2) (n2 : ¬ P.RF l2 l1) (n3 : ¬ P.RF u1 u2) (n4 : ¬ P.RF u2 u1)
@@ -141,7 +141,7 @@ theorem tStar4_uniq : UniqOK tStar4 := by unfold UniqOK; decide
 theorem tStar4_count : CountOK tStar4 ![1, 2, 1, 1, 1] := by unfold CountOK; decide
 
 /-- **A four-leaf star `p₀ → p₁ → l₁, l₂, l₃` in a faithful projective support is excluded.** -/
-theorem star4_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) (x : V) (p0 p1 l1 l2 l3 : R)
+theorem star4_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) (x : V) (p0 p1 l1 l2 l3 : R)
     (hsrc : P.src p0 = x ∧ P.src p1 = x ∧ P.src l1 = x ∧ P.src l2 = x ∧ P.src l3 = x)
     (h01 : P.RF p0 p1) (h1 : P.RF p1 l1) (h2 : P.RF p1 l2) (h3 : P.RF p1 l3)
     (n10 : ¬ P.RF p1 p0) (n1 : ∀ l ∈ [l1, l2, l3], ¬ P.RF l p0 ∧ ¬ P.RF l p1)
@@ -176,7 +176,7 @@ theorem tSix_uniq : UniqOK tSix := by unfold UniqOK; decide
 theorem tSix_count : CountOK tSix ![2, 2, 1, 1, 1, 1] := by unfold CountOK; decide
 
 /-- **The six-point tree in a faithful projective support is excluded.** -/
-theorem six_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) (x : V) (r : Fin 6 → R)
+theorem six_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) (x : V) (r : Fin 6 → R)
     (hsrc : ∀ i, P.src (r i) = x) (hpos : ∀ i j, tSix i j = true → P.RF (r i) (r j))
     (hneg : ∀ i j, tSix i j = false → ¬ P.RF (r i) (r j)) : False := by
   have hle : ∀ i j, tSix i j = true ↔ P.RF (r i) (r j) := fun i j ↦
@@ -188,7 +188,7 @@ theorem six_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) (x : V) (r : 
 
 /-- A table configuration in a faithful projective support, given by positive and negative
 comparisons. -/
-theorem table_supp_false (hfin : IsRepresentationFiniteRight k (P.Lin k)) {n : ℕ}
+theorem table_supp_false (hfin : IsRepresentationFinite k (P.Lin k)ᵐᵒᵖ) {n : ℕ}
     (le : Fin n → Fin n → Bool) (x : V) (r : Fin n → R) (d : Fin n → ℕ) (hu : UniqOK le)
     (hc : CountOK le d) (hanti : ∀ i j, le i j = true → le j i = true → i = j)
     (hsrc : ∀ i, P.src (r i) = x) (hpos : ∀ i j, le i j = true → P.RF (r i) (r j))

@@ -49,7 +49,7 @@ variable {k : Type u} [Field k]
 instance of Lemma 4.6 with `C = B`). -/
 theorem isRepresentationFinite_of_algEquiv {B D : Type v} [Ring B] [Algebra k B] [Ring D]
     [Algebra k D] [FiniteDimensional k B] [FiniteDimensional k D] (φ : B ≃ₐ[k] D)
-    (hB : IsRepresentationFiniteRight k B) : IsRepresentationFiniteRight k D :=
+    (hB : IsRepresentationFinite k Bᵐᵒᵖ) : IsRepresentationFinite k Dᵐᵒᵖ :=
   splitRepresentationTransfer_of (C := ⊤) (q := φ.toAlgHom.comp (Subalgebra.val ⊤))
     φ.toLinearMap (fun c c' b ↦ by simp [map_mul]) (fun d ↦ ⟨⟨φ.symm d, trivial⟩, by simp⟩)
     (fun c ↦ rfl) hB
@@ -368,7 +368,7 @@ theorem full_op (a : (Alg (FS F (F ∘ σ)))ᵐᵒᵖ) :
 /-- **Repeated labels** (Lemma 4.7, first step): if `Alg F` is
 representation-finite, so is `Alg (F ∘ σ)`. -/
 theorem isRepresentationFinite_comp [∀ x y : ι, FiniteDimensional k (F x ⟶ F y)]
-    (hF : IsRepresentationFiniteRight k (Alg F)ᵐᵒᵖ) : IsRepresentationFiniteRight k (Alg (F ∘ σ))ᵐᵒᵖ := by
+    (hF : IsRepresentationFinite k (Alg F)ᵐᵒᵖᵐᵒᵖ) : IsRepresentationFinite k (Alg (F ∘ σ))ᵐᵒᵖᵐᵒᵖ := by
   have := corner_finite (k := k) (isIdempotent_op_embL (F := F) σ)
   have := corner_finite (k := k) (isIdempotent_op_embR (F := F) σ)
   have h1 := isRepresentationFinite_of_algEquiv (cornerL σ) hF

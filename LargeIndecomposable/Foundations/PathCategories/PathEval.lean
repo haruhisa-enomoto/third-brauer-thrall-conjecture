@@ -128,10 +128,10 @@ theorem mem_ideal_induction {Y X : V} {M : Type*} [AddCommGroup M] [Module R M]
       (b : LinearPaths.obj (k := R) x.1 ⟶ LinearPaths.obj (k := R) X),
       T (a ≫ meshRelation u x ≫ b) = 0)
     {F : LinearPaths.obj (k := R) Y ⟶ LinearPaths.obj (k := R) X}
-    (hF : F ∈ (TwoSidedHomIdeal.HomIdeal.linearSpan R (meshRelations u)).hom
+    (hF : F ∈ (MorphismIdeal.linearSpan R (meshRelations u)).hom
       (LinearPaths.obj Y) (LinearPaths.obj X)) : T F = 0 := by
-  rw [TwoSidedHomIdeal.HomIdeal.linearSpan_hom] at hF
-  change F ∈ TwoSidedHomIdeal.HomIdeal.generatedHomSubmodule R (meshRelations u) _ _ at hF
+  rw [MorphismIdeal.linearSpan_hom] at hF
+  change F ∈ MorphismIdeal.generatedHomSubmodule R (meshRelations u) _ _ at hF
   induction hF using Submodule.span_induction with
   | mem f hf =>
     obtain ⟨A, B, r, hr, a, b, rfl⟩ := hf
@@ -151,7 +151,7 @@ variable {N φ u}
 theorem evL_ideal (hmesh : ∀ x : Q.nonprojective, ∑ a : Σ y : V, y ⟶ x.1,
       ((u x a.1 a.2 : Rˣ) : R) • (φ a.2 ∘ₗ φ (Q.mate x a.1 a.2)) = 0) {Y X : V}
     {F : LinearPaths.obj (k := R) Y ⟶ LinearPaths.obj (k := R) X}
-    (hF : F ∈ (TwoSidedHomIdeal.HomIdeal.linearSpan R (meshRelations u)).hom
+    (hF : F ∈ (MorphismIdeal.linearSpan R (meshRelations u)).hom
       (LinearPaths.obj Y) (LinearPaths.obj X)) : evL N φ F = 0 :=
   mem_ideal_induction u (evL N φ) (fun x a b ↦ by
     rw [evL_comp, evL_comp, evL_meshRelation, hmesh, LinearMap.comp_zero, LinearMap.zero_comp])
@@ -245,7 +245,7 @@ theorem δL_ideal (hmesh : ∀ x : Q.nonprojective, ∑ a : Σ y : V, y ⟶ x.1,
     (hz : ∀ x : Q.nonprojective, ∑ a : Σ y : V, y ⟶ x.1, ((u x a.1 a.2 : Rˣ) : R) •
       (φ a.2 ∘ₗ g (Q.mate x a.1 a.2) + g a.2 ∘ₗ φ (Q.mate x a.1 a.2)) = 0) {Y X : V}
     {F : LinearPaths.obj (k := R) Y ⟶ LinearPaths.obj (k := R) X}
-    (hF : F ∈ (TwoSidedHomIdeal.HomIdeal.linearSpan R (meshRelations u)).hom
+    (hF : F ∈ (MorphismIdeal.linearSpan R (meshRelations u)).hom
       (LinearPaths.obj Y) (LinearPaths.obj X)) : δL N φ g F = 0 :=
   mem_ideal_induction u (δL N φ g) (fun x a b ↦ by
     rw [δL_comp, δL_comp, δL_meshRelation, hz, evL_comp, evL_meshRelation, hmesh]

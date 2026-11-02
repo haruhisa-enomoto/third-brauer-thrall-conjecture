@@ -83,13 +83,13 @@ omit [IsAlgClosed k] in
 (which counts right modules). -/
 lemma primitiveIdempotents_isRepresentationFinite {A : Type u} [Ring A] [Algebra k A] [FiniteDimensional k A]
     (h : Statement.IsRepresentationFinite A) :
-    LargeIndecomposable.IsRepresentationFiniteRight k A :=
+    LargeIndecomposable.IsRepresentationFinite k Aᵐᵒᵖ :=
   (isRepresentationFinite_iff_moduleForm k Aᵐᵒᵖ).1 (isRepresentationFinite_mop (k := k) h)
 
 omit [IsAlgClosed k] in
 /-- ... and conversely. -/
 lemma of_right_isRepresentationFinite {A : Type u} [Ring A] [Algebra k A] [FiniteDimensional k A]
-    (h : LargeIndecomposable.IsRepresentationFiniteRight k A) :
+    (h : LargeIndecomposable.IsRepresentationFinite k Aᵐᵒᵖ) :
     Statement.IsRepresentationFinite A := by
   have h1 : Statement.IsRepresentationFinite Aᵐᵒᵖ := (isRepresentationFinite_iff_moduleForm k Aᵐᵒᵖ).2 h
   have h2 := isRepresentationFinite_mop (k := k) h1

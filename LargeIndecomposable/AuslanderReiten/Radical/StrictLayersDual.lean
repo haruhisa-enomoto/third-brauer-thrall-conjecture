@@ -32,7 +32,7 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits Opposite
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 
 namespace LargeIndecomposable.StrictLayers
 
@@ -62,17 +62,17 @@ theorem isRadicalMorphism_unop_iff {X Y : Cᵒᵖ} (f : X ⟶ Y) :
 
 /-- The powers of the radical are self-dual. -/
 theorem mem_Ipow_op_iff (n : ℕ) : ∀ {X Y : C} (f : X ⟶ Y),
-    f.op ∈ (Ipow n : HomIdeal Cᵒᵖ).hom _ _ ↔ f ∈ (Ipow n : HomIdeal C).hom X Y := by
+    f.op ∈ (Ipow n : MorphismIdeal Cᵒᵖ).hom _ _ ↔ f ∈ (Ipow n : MorphismIdeal C).hom X Y := by
   induction n with
   | zero => intro X Y f; exact ⟨fun _ ↦ trivial, fun _ ↦ trivial⟩
   | succ n ih =>
       intro X Y f
       constructor
       · intro hf
-        rw [Ipow, HomIdeal.pow_succ] at hf
-        rw [Ipow, HomIdeal.pow_succ_eq_mul_pow]
-        suffices ∀ g : op Y ⟶ op X, g ∈ (HomIdeal.pow (homIdeal : HomIdeal Cᵒᵖ) n ⋆ᵢ homIdeal).hom _ _ →
-            g.unop ∈ (homIdeal ⋆ᵢ HomIdeal.pow (homIdeal : HomIdeal C) n).hom X Y from this _ hf
+        rw [Ipow, MorphismIdeal.pow_succ] at hf
+        rw [Ipow, MorphismIdeal.pow_succ_eq_mul_pow]
+        suffices ∀ g : op Y ⟶ op X, g ∈ (MorphismIdeal.pow (homIdeal : MorphismIdeal Cᵒᵖ) n ⋆ᵢ homIdeal).hom _ _ →
+            g.unop ∈ (homIdeal ⋆ᵢ MorphismIdeal.pow (homIdeal : MorphismIdeal C) n).hom X Y from this _ hf
         intro g hg
         induction hg using AddSubgroup.closure_induction with
         | mem g hg =>
@@ -85,8 +85,8 @@ theorem mem_Ipow_op_iff (n : ℕ) : ∀ {X Y : C} (f : X ⟶ Y),
         | add a b _ _ ha hb => rw [unop_add]; exact add_mem ha hb
         | neg a _ ha => rw [unop_neg]; exact neg_mem ha
       · intro hf
-        rw [Ipow, HomIdeal.pow_succ] at hf
-        rw [Ipow, HomIdeal.pow_succ_eq_mul_pow]
+        rw [Ipow, MorphismIdeal.pow_succ] at hf
+        rw [Ipow, MorphismIdeal.pow_succ_eq_mul_pow]
         induction hf using AddSubgroup.closure_induction with
         | mem g hg =>
             obtain ⟨M, a, b, ha, hb, rfl⟩ := hg
@@ -98,7 +98,7 @@ theorem mem_Ipow_op_iff (n : ℕ) : ∀ {X Y : C} (f : X ⟶ Y),
         | neg a _ ha => rw [op_neg]; exact neg_mem ha
 
 theorem mem_Ipow_unop_iff (n : ℕ) {X Y : Cᵒᵖ} (f : X ⟶ Y) :
-    f.unop ∈ (Ipow n : HomIdeal C).hom _ _ ↔ f ∈ (Ipow n : HomIdeal Cᵒᵖ).hom X Y :=
+    f.unop ∈ (Ipow n : MorphismIdeal C).hom _ _ ↔ f ∈ (Ipow n : MorphismIdeal Cᵒᵖ).hom X Y :=
   (mem_Ipow_op_iff n f.unop).symm
 
 section NormalForm
@@ -208,8 +208,8 @@ def approxOfLeftTau {Y : C} (M : ShortComplex C) (hM : LargeIndecomposable.Iyama
   i_rad := (isRadicalMorphism_op_iff _).2 hM.g_radical
   sq := by
     intro Z g hg
-    rw [← mem_Ipow_unop_iff, Ipow, HomIdeal.pow_succ_eq_mul_pow] at hg
-    suffices ∀ h : Z.unop ⟶ M.X₃, h ∈ (homIdeal ⋆ᵢ HomIdeal.pow homIdeal 1).hom _ _ →
+    rw [← mem_Ipow_unop_iff, Ipow, MorphismIdeal.pow_succ_eq_mul_pow] at hg
+    suffices ∀ h : Z.unop ⟶ M.X₃, h ∈ (homIdeal ⋆ᵢ MorphismIdeal.pow homIdeal 1).hom _ _ →
         ∃ q : Z.unop ⟶ M.X₂, IsRadicalMorphism q ∧ q ≫ M.g = h by
       obtain ⟨q, hq, hqg⟩ := this _ hg
       exact ⟨q.op, (isRadicalMorphism_op_iff q).2 hq, by rw [← op_comp, hqg, Quiver.Hom.op_unop]⟩
@@ -217,7 +217,7 @@ def approxOfLeftTau {Y : C} (M : ShortComplex C) (hM : LargeIndecomposable.Iyama
     induction hh using AddSubgroup.closure_induction with
     | mem h' hh' =>
         obtain ⟨N, u, v, hu, hv, rfl⟩ := hh'
-        rw [HomIdeal.pow_one, mem_homIdeal_iff] at hv
+        rw [MorphismIdeal.pow_one, mem_homIdeal_iff] at hv
         obtain ⟨b, hb⟩ := hM.factors_into_right v hv
         exact ⟨u ≫ b, isRadicalMorphism_postcomp b ((mem_homIdeal_iff u).1 hu),
           by rw [Category.assoc, hb]⟩

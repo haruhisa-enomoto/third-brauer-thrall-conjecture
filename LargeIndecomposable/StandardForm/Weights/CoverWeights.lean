@@ -32,7 +32,7 @@ universe u v z
 variable {k : Type u} [Field k] [Infinite k] {𝒞 : Type v} [Category.{u} 𝒞] [Preadditive 𝒞]
   [Linear k 𝒞] {ι : Type} [Fintype ι] [DecidableEq ι] {F : ι → 𝒞} {G : Type} [Group G]
   [DecidableEq G] {D : HomGrading (k := k) F G} (H : HeightData D)
-  [∀ x y : ι, FiniteDimensional k (F x ⟶ F y)] (hF : IsRepresentationFiniteRight k (Alg F)ᵐᵒᵖ)
+  [∀ x y : ι, FiniteDimensional k (F x ⟶ F y)] (hF : IsRepresentationFinite k (Alg F)ᵐᵒᵖᵐᵒᵖ)
 
 attribute [local instance] Thin.opLinear
 

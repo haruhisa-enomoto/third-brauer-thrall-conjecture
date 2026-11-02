@@ -247,14 +247,14 @@ dual weights, the connecting map is surjective — every two-cocycle `c` over `�
 `χ` (of `A⁽²⁾ ≅ 𝔽₂P`) is `(dδ)/2` for a one-cochain `δ` over `ℤ/4` whose reduction is a
 derivation. -/
 theorem integralBockstein [CharP k 2] (A : Type u') [Ring A] [Algebra k A] [FiniteDimensional k A]
-    [IsNoetherianRing Aᵐᵒᵖ] (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFiniteRight k A)
+    [IsNoetherianRing Aᵐᵒᵖ] (hbasic : IsBasicAlgebra A) (hA : IsRepresentationFinite k Aᵐᵒᵖ)
     (S : IndSkeleton k A) (b : S.ArrowBases) :
     haveI : ∀ x y : S.ARVertex, Subsingleton (x ⟶ y) := S.hasAtMostOneArrow
     haveI : ∀ x y : S.ARVertex, FiniteDimensional k
         (MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) x ⟶
           MeshWalk.meshFam S.arTranslationQuiver (S.arCoefficients b) y) :=
       fun x y ↦ S.finiteDimensional_meshHom b x y
-    ∀ (v₀ : S.ARVertex) (hF : IsRepresentationFiniteRight k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖ)
+    ∀ (v₀ : S.ARVertex) (hF : IsRepresentationFinite k (CatAlg.Alg (S.arMeshData b).F0)ᵐᵒᵖᵐᵒᵖ)
       {ι : Type} [Fintype ι] [DecidableEq ι] (Wd : ι → MeshWalk.MeshWt S.arTranslationQuiver ℤ)
       (Rw : ι → Σ x : S.arTranslationQuiver.nonprojective,
         Quiver.Path (S.arTranslationQuiver.tau x).1 x.1) (i : ι),

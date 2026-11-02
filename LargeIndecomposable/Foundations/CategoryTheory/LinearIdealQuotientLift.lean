@@ -1,7 +1,6 @@
 module
 
-public import LargeIndecomposable.Foundations.CategoryTheory.LinearIdealQuotient
-
+public import LargeIndecomposable.Foundations.CategoryTheory.MorphismIdeal
 @[expose] public section
 
 /-!
@@ -18,14 +17,14 @@ noncomputable section
 
 open CategoryTheory
 
-namespace LargeIndecomposable.PreadditiveHomIdeal.HomIdeal
+namespace MorphismIdeal
 
 universe u₁ v₁ u₂ v₂ w
 
 variable {k : Type w} [Ring k]
 variable {C : Type u₁} [Category.{v₁} C] [Preadditive C] [Linear k C]
 variable {D : Type u₂} [Category.{v₂} D] [Preadditive D] [Linear k D]
-variable (I : HomIdeal C) (F : C ⥤ D) [F.Additive] [F.Linear k]
+variable (I : MorphismIdeal C) (F : C ⥤ D) [F.Additive] [F.Linear k]
 
 local instance quotientPreadditiveInstance :
     Preadditive (CategoryTheory.Quotient I.rel) :=
@@ -37,7 +36,7 @@ local instance quotientLinearInstance :
 
 /-- The two-sided Hom ideal consisting of the morphisms killed by a linear
 functor. -/
-def functorKernel : HomIdeal C where
+def functorKernel : MorphismIdeal C where
   hom X Y := (LinearMap.ker (F.mapLinearMap k)).toAddSubgroup
   precomp := by
     intro X Y Z f g hg
@@ -126,4 +125,4 @@ theorem quotientLift_faithful (hI : I.IsKilledBy F)
   change F.map f = F.map g at hfg
   rw [F.map_sub, hfg, sub_self]
 
-end LargeIndecomposable.PreadditiveHomIdeal.HomIdeal
+end MorphismIdeal

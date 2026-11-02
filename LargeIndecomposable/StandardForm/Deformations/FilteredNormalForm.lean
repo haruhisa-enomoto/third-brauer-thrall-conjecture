@@ -407,7 +407,7 @@ theorem pathFunctor_map {x y : S.ARVertex} (f : LinearPaths.obj (k := k) x ⟶ L
 theorem realize_eq_zero_of_mem (hL : ∀ x, L.error x = 0) {x y : S.ARVertex}
     {f : LinearPaths.obj (k := k) x ⟶ LinearPaths.obj y} (hf : f ∈ (S.meshIdeal b).hom _ _) :
     L.realize x y f = 0 := by
-  change f ∈ LargeIndecomposable.TwoSidedHomIdeal.HomIdeal.generatedHomSubmodule k _
+  change f ∈ MorphismIdeal.generatedHomSubmodule k _
     (LinearPaths.obj x) (LinearPaths.obj y) at hf
   induction hf using Submodule.span_induction with
   | mem g hg =>

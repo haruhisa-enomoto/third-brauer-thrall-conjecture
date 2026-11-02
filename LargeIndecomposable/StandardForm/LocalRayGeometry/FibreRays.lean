@@ -44,7 +44,7 @@ namespace Sys
 
 variable {V R L : Type} [AddCommGroup L] [DecidableEq L] [Fintype V] [DecidableEq V] [Fintype R]
   [DecidableEq R] (S : Sys V R L) (k : Type u) [Field k] [IsAlgClosed k]
-  (hfin : IsRepresentationFiniteRight k (S.P.Lin k)) (c : R → R → k)
+  (hfin : IsRepresentationFinite k (S.P.Lin k)ᵐᵒᵖ) (c : R → R → k)
 
 local notation:max "⌜" r "⌝" => Sys.rr S r
 

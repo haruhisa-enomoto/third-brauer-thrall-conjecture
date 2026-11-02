@@ -43,7 +43,7 @@ theorem objectQuotient_map_eq_zero_iff (D : Set V) {x y : V} (f : obj c x ⟶ ob
     (RelationCategory.functor k (identityRelations c D)).map f = 0 ↔
       f ∈ CatAlg.MeshData.through (k := k) (fun x ↦ obj c x) D x y := by
   rw [RelationCategory.functor_map_eq_zero_iff]
-  change f ∈ TwoSidedHomIdeal.HomIdeal.generatedHomSubmodule k _ _ _ ↔ _
+  change f ∈ MorphismIdeal.generatedHomSubmodule k _ _ _ ↔ _
   constructor
   · intro hf
     induction hf using Submodule.span_induction with

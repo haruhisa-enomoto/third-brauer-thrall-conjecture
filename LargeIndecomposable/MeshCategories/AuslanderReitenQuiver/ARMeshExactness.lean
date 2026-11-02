@@ -37,7 +37,7 @@ set_option linter.unusedSectionVars false
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits
-open LargeIndecomposable.CategoricalRadical LargeIndecomposable.CategoricalIdeal
+open LargeIndecomposable.CategoricalRadical
 open scoped ModuleCat.Algebra
 
 attribute [local instance] HasFiniteBiproducts.of_hasFiniteProducts
@@ -83,12 +83,12 @@ theorem cov_homog (d : ℕ) {W Y : S.ARVertex}
   have hsumInd := S.sum_inv_v_betaI_mem b G hG hreal
   let w : ∀ i, S.fg (S.index W) ⟶ S.fg (S.midLabel (S.index Y) i) := fun i ↦
     S.toFG.map ((S.vCoeff b Y i)⁻¹ • S.realize b W _ (G ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩))
-  have hw : ∀ i, w i ∈ (StrictLayers.Ipow d : HomIdeal (ModCat A)).hom _ _ := by
+  have hw : ∀ i, w i ∈ (StrictLayers.Ipow d : MorphismIdeal (ModCat A)).hom _ _ := by
     intro i
     have h0 := S.realize_mem b (hG ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩)
     exact (S.mem_radPow_iff d _).1 (Submodule.smul_mem _ _ h0)
   have hsum' : ∑ i, w i ≫ S.beta (S.index Y) i ∈
-      (StrictLayers.Ipow (d + 2) : HomIdeal (ModCat A)).hom _ _ := by
+      (StrictLayers.Ipow (d + 2) : MorphismIdeal (ModCat A)).hom _ _ := by
     have e : ∀ i, w i ≫ S.beta (S.index Y) i = S.toFG.map
         (((S.vCoeff b Y i)⁻¹ • S.realize b W _ (G ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩)) ≫ S.betaI Y i) := by
       intro i
@@ -97,7 +97,7 @@ theorem cov_homog (d : ℕ) {W Y : S.ARVertex}
       exact (S.map_homEquivFG_symm _).symm
     rw [Finset.sum_congr rfl (fun i _ ↦ e i), ← Functor.map_sum]
     exact (S.mem_radPow_iff (d + 2) _).1 hsumInd
-  have hstep : ∀ i, w i ∈ (StrictLayers.Ipow (d + 1) : HomIdeal (ModCat A)).hom _ _ →
+  have hstep : ∀ i, w i ∈ (StrictLayers.Ipow (d + 1) : MorphismIdeal (ModCat A)).hom _ _ →
       G ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩ ∈ (S.meshIdeal b).hom _ _ := by
     intro i hi
     apply S.mem_meshIdeal_of_realize_mem b d (hG _)
@@ -105,7 +105,7 @@ theorem cov_homog (d : ℕ) {W Y : S.ARVertex}
     have := Submodule.smul_mem _ (S.vCoeff b Y i) h1
     rwa [smul_smul, mul_inv_cancel₀ (S.vCoeff_ne_zero b Y i), one_smul] at this
   -- every summand in the ideal: enough for both conclusions
-  have hall : (∀ i, w i ∈ (StrictLayers.Ipow (d + 1) : HomIdeal (ModCat A)).hom _ _) →
+  have hall : (∀ i, w i ∈ (StrictLayers.Ipow (d + 1) : MorphismIdeal (ModCat A)).hom _ _) →
       (Y ∉ S.nonprojectiveVertices → ∀ a, G a ∈ (S.meshIdeal b).hom _ _) ∧
       ∀ hY : Y ∈ S.nonprojectiveVertices,
         ∃ H : LinearPaths.obj (k := k) W ⟶ LinearPaths.obj (S.arTranslationQuiver.tau ⟨Y, hY⟩).1,
@@ -127,8 +127,8 @@ theorem cov_homog (d : ℕ) {W Y : S.ARVertex}
         let y : S.nonprojectiveVertices := ⟨Y, hY⟩
         let h : S.fg (S.index W) ⟶ S.fg (S.index (S.arTranslationQuiver.tau y).1) :=
           z ≫ (S.tau.tauPlusIso (S.vendorNonprojective y)).hom
-        have hh : h ∈ (StrictLayers.Ipow m : HomIdeal (ModCat A)).hom _ _ :=
-          (StrictLayers.Ipow m : HomIdeal (ModCat A)).postcomp _ hz
+        have hh : h ∈ (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).hom _ _ :=
+          (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).postcomp _ hz
         let hInd : S.label W ⟶ S.label (S.arTranslationQuiver.tau y).1 :=
           (S.homEquivFG (S.ind (S.index W)) (S.ind (S.index (S.arTranslationQuiver.tau y).1))).symm h
         have hIndMap : S.toFG.map hInd = h := S.map_homEquivFG_symm _
@@ -179,7 +179,7 @@ theorem cov_mono_homog (m : ℕ) {W : S.ARVertex} (y : S.nonprojectiveVertices)
       (Submodule.smul_mem _ _ h1)
   let z : S.fg (S.index W) ⟶ (S.rightMesh (S.index y.1)).X₁ :=
     S.toFG.map (S.realize b _ _ H) ≫ (S.tau.tauPlusIso (S.vendorNonprojective y)).inv
-  have hz : z ∈ (StrictLayers.Ipow (m + 1) : HomIdeal (ModCat A)).hom _ _ := by
+  have hz : z ∈ (StrictLayers.Ipow (m + 1) : MorphismIdeal (ModCat A)).hom _ _ := by
     apply S.layer_injective (S.index y.1) z
     intro i
     have := (S.mem_radPow_iff (m + 2) _).1 (hα i)
@@ -187,7 +187,7 @@ theorem cov_mono_homog (m : ℕ) {W : S.ARVertex} (y : S.nonprojectiveVertices)
     simp only [z, Category.assoc]
     exact this
   rw [S.mem_radPow_iff]
-  have := (StrictLayers.Ipow (m + 1) : HomIdeal (ModCat A)).postcomp
+  have := (StrictLayers.Ipow (m + 1) : MorphismIdeal (ModCat A)).postcomp
     (S.tau.tauPlusIso (S.vendorNonprojective y)).hom hz
   simp only [z, Category.assoc, Iso.inv_hom_id, Category.comp_id] at this
   exact this
@@ -268,7 +268,7 @@ theorem contra_homog (d : ℕ) {W : S.ARVertex} (y : S.nonprojectiveVertices)
   -- the family `v'_i = v_i R_i` in `mod A`
   let v' : ∀ i, S.fg (S.midLabel (S.index y.1) i) ⟶ S.fg (S.index W) := fun i ↦
     S.toFG.map (S.vCoeff b y.1 i • R i)
-  have hv' : ∀ i, v' i ∈ (StrictLayers.Ipow d : HomIdeal (ModCat A)).hom _ _ := fun i ↦
+  have hv' : ∀ i, v' i ∈ (StrictLayers.Ipow d : MorphismIdeal (ModCat A)).hom _ _ := fun i ↦
     (S.mem_radPow_iff d _).1 (Submodule.smul_mem _ _ (hR i))
   have hT : ∑ i, S.alphaI y i ≫ (S.vCoeff b y.1 i • R i) ∈ S.radPow (d + 2) _ _ := by
     have e : ∑ i, S.alphaI y i ≫ (S.vCoeff b y.1 i • R i) =
@@ -290,10 +290,10 @@ theorem contra_homog (d : ℕ) {W : S.ARVertex} (y : S.nonprojectiveVertices)
     have := S.comp_mem_radPow (S.alphaI_sub_mem b y i) (Submodule.smul_mem _ (S.vCoeff b y.1 i) (hR i))
     rwa [add_comm] at this
   have hsumα : ∑ i, ((S.rightMesh (S.index y.1)).f ≫ S.midProj (S.index y.1) i) ≫ v' i ∈
-      (StrictLayers.Ipow (d + 2) : HomIdeal (ModCat A)).hom _ _ := by
+      (StrictLayers.Ipow (d + 2) : MorphismIdeal (ModCat A)).hom _ _ := by
     have h1 := (S.mem_radPow_iff (d + 2) _).1 hT
     rw [Functor.map_sum] at h1
-    have h2 := (StrictLayers.Ipow (d + 2) : HomIdeal (ModCat A)).precomp
+    have h2 := (StrictLayers.Ipow (d + 2) : MorphismIdeal (ModCat A)).precomp
       (S.tau.tauPlusIso (S.vendorNonprojective y)).hom h1
     have e : (S.tau.tauPlusIso (S.vendorNonprojective y)).hom ≫
         ∑ i, S.toFG.map (S.alphaI y i ≫ (S.vCoeff b y.1 i • R i)) =

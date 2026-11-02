@@ -14,6 +14,10 @@ representation-finite algebra.
 
 No finite-dimensionality, directedness, algebra presentation, or module
 classification is used in the construction.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -107,7 +111,7 @@ def radicalSquareInRadicalSubmodule (x y : Iota) :
   (sigma.radicalSquareHomSubmodule (K := K) x y).comap
     (sigma.radicalHom (K := K) x y).subtype
 
-/-- The source paper's `K`-linear irreducible-morphism space
+/-- That paper's `K`-linear irreducible-morphism space
 `Irr(X,Y) = rad(X,Y) / rad²(X,Y)`. -/
 abbrev irreducibleHomSpace (x y : Iota) :=
   (sigma.radicalHom (K := K) x y) ⧸

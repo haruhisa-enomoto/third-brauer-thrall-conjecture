@@ -5,7 +5,7 @@ public import LargeIndecomposable.MeshCategories.Periodic.PeriodicComponents
 /-!
 # Object quotients of scalar mesh categories
 
-The source paper (`eq:mesh-object-quotient`) and Subsection 5.2.
+That paper (`eq:mesh-object-quotient`) and Subsection 5.2.
 
 * The retraction `kQ → kQ_S` maps the mesh ideal of `Q` into that of `Q_S`
   (`restrict_mem_meshIdealSub`): a mesh relation based in `S` restricts to the
@@ -14,6 +14,10 @@ The source paper (`eq:mesh-object-quotient`) and Subsection 5.2.
 * In the object quotient `C/[D]`, a morphism of `kQ` vanishes exactly when it
   lies in the mesh ideal plus the paths through `D`
   (`objectQuotient_map_eq_zero_iff`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -30,7 +34,7 @@ namespace LargeIndecomposable
 
 universe u v w
 
-open ScalarMeshCategory TranslationQuiver TwoSidedHomIdeal
+open ScalarMeshCategory TranslationQuiver
 
 variable {k : Type u} [Field k] {V : Type v} [Quiver.{w} V] {Q : TranslationQuiver V}
   [∀ x : V, Fintype (Σ y : V, y ⟶ x)]
@@ -150,8 +154,8 @@ theorem oqFunctor_map_eq_zero_iff (D : Set V) {x y : V}
   · intro h
     change FD.map (FC.map f) = 0 at h
     rw [RelationCategory.functor_map_eq_zero_iff] at h
-    change FC.map f ∈ HomIdeal.generatedHomSubmodule k _ _ _ at h
-    have hle : HomIdeal.generatedHomSubmodule k (identityRelations c D) (FC.obj (LinearPaths.obj x))
+    change FC.map f ∈ MorphismIdeal.generatedHomSubmodule k _ _ _ at h
+    have hle : MorphismIdeal.generatedHomSubmodule k (identityRelations c D) (FC.obj (LinearPaths.obj x))
         (FC.obj (LinearPaths.obj y)) ≤
         (meshIdealSub c _ _ ⊔ through k D x y).map (FC.mapLinearMap k) := by
       refine Submodule.span_le.2 ?_
@@ -183,7 +187,7 @@ theorem oqFunctor_map_eq_zero_iff (D : Set V) {x y : V}
           RelationCategory.functor_map_eq_zero_iff]
         have hid : 𝟙 (FC.obj (LinearPaths.obj v)) ∈ identityRelations c D _ _ :=
           ⟨v, hvD, rfl, rfl, by simp⟩
-        have := HomIdeal.composite_mem_linearSpan (K := k) (identityRelations c D)
+        have := MorphismIdeal.composite_mem_linearSpan (K := k) (identityRelations c D)
           (FC.map (LinearPaths.path p₁)) hid (FC.map (LinearPaths.path p₂))
         simpa using this
     | zero => simp

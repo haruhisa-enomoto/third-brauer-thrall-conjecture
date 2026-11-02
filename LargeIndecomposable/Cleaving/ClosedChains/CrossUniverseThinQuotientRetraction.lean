@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Foundations.CategoryTheory.LinearIdealQuotient
+public import LargeIndecomposable.Foundations.CategoryTheory.MorphismIdeal
 public import LargeIndecomposable.Cleaving.ClosedChains.CrossUniverseAssembly
 public import LargeIndecomposable.Cleaving.ClosedChains.ThinPathRetraction
 
@@ -26,7 +26,6 @@ open CategoryTheory.Limits
 
 namespace LargeIndecomposable.ClosedZigzagCrossUniverse
 
-open LargeIndecomposable.PreadditiveHomIdeal
 
 universe u v w x z
 
@@ -39,7 +38,7 @@ abbrev ThinQuotientFreeCategory := LinearPathCategory.Category k Q
 /-- The path-coefficient projection on a pair of chosen free
 representatives. -/
 def thinQuotientPathProjection
-    (I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
+    (I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
     [Preadditive (CategoryTheory.Quotient I.rel)]
     [Linear k (CategoryTheory.Quotient I.rel)]
     [(CategoryTheory.Quotient.functor I.rel).Additive]
@@ -66,7 +65,7 @@ def thinQuotientPathProjection
   · exact 0
 
 @[simp] theorem thinQuotientPathProjection_apply_of_nonempty
-    (I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
+    (I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
     [Preadditive (CategoryTheory.Quotient I.rel)]
     [Linear k (CategoryTheory.Quotient I.rel)]
     [(CategoryTheory.Quotient.functor I.rel).Additive]
@@ -93,7 +92,7 @@ def thinQuotientPathProjection
   rfl
 
 @[simp] theorem thinQuotientPathProjection_apply_of_isEmpty
-    (I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
+    (I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
     [Preadditive (CategoryTheory.Quotient I.rel)]
     [Linear k (CategoryTheory.Quotient I.rel)]
     [(CategoryTheory.Quotient.functor I.rel).Additive]
@@ -119,7 +118,7 @@ def thinQuotientPathProjection
 linear Hom ideal.  The coefficient table is evaluated in the ambient target,
 whereas normalization is an equality in the bound source. -/
 structure ThinQuotientPathCoefficientData
-    (I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
+    (I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
     [Preadditive (CategoryTheory.Quotient I.rel)]
     [Linear k (CategoryTheory.Quotient I.rel)]
     [(CategoryTheory.Quotient.functor I.rel).Additive]
@@ -168,7 +167,7 @@ structure ThinQuotientPathCoefficientData
 
 namespace ThinQuotientPathCoefficientData
 
-variable {I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q))}
+variable {I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q))}
 variable [Preadditive (CategoryTheory.Quotient I.rel)]
 variable [Linear k (CategoryTheory.Quotient I.rel)]
 variable [(CategoryTheory.Quotient.functor I.rel).Additive]
@@ -493,7 +492,7 @@ passing to the quotient.
 /-- Scalar coefficient data for a quotient in which all parallel free paths
 have the same image. -/
 structure IdentifiedQuotientPathCoefficientData
-    (I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
+    (I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
     [Preadditive (CategoryTheory.Quotient I.rel)]
     [Linear k (CategoryTheory.Quotient I.rel)]
     [(CategoryTheory.Quotient.functor I.rel).Additive]
@@ -546,7 +545,7 @@ structure IdentifiedQuotientPathCoefficientData
 
 namespace IdentifiedQuotientPathCoefficientData
 
-variable {I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q))}
+variable {I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q))}
 variable [Preadditive (CategoryTheory.Quotient I.rel)]
 variable [Linear k (CategoryTheory.Quotient I.rel)]
 variable [(CategoryTheory.Quotient.functor I.rel).Additive]
@@ -869,7 +868,7 @@ produces the path-indexed data above.
 /-- Occurrence-sensitive endpoint coefficients for a bound quiver whose
 parallel paths agree in the quotient. -/
 structure CompatibleIdentifiedQuotientEndpointData
-    (I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
+    (I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q)))
     [Preadditive (CategoryTheory.Quotient I.rel)]
     [Linear k (CategoryTheory.Quotient I.rel)]
     [(CategoryTheory.Quotient.functor I.rel).Additive]
@@ -914,7 +913,7 @@ structure CompatibleIdentifiedQuotientEndpointData
 
 namespace CompatibleIdentifiedQuotientEndpointData
 
-variable {I : HomIdeal (ThinQuotientFreeCategory (k := k) (Q := Q))}
+variable {I : MorphismIdeal (ThinQuotientFreeCategory (k := k) (Q := Q))}
 variable [Preadditive (CategoryTheory.Quotient I.rel)]
 variable [Linear k (CategoryTheory.Quotient I.rel)]
 variable [(CategoryTheory.Quotient.functor I.rel).Additive]
