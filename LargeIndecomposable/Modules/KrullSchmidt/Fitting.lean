@@ -79,13 +79,13 @@ def Decomp.ofCompl {E : FDMod k A} (U V : Submodule A E) (hUV : IsCompl U V)
     | .inl i => dU.nt i
     | .inr i => dV.nt i
   inc i := match i with
-    | .inl i => show dU.obj i →ₗ[A] E from U.subtype ∘ₗ FDMod.lin (dU.inc i)
-    | .inr i => show dV.obj i →ₗ[A] E from V.subtype ∘ₗ FDMod.lin (dV.inc i)
+    | .inl i => (FDMod.ofLin (show dU.obj i →ₗ[A] E from U.subtype ∘ₗ FDMod.lin (dU.inc i)))
+    | .inr i => (FDMod.ofLin (show dV.obj i →ₗ[A] E from V.subtype ∘ₗ FDMod.lin (dV.inc i)))
   proj i := match i with
-    | .inl i => show E →ₗ[A] dU.obj i from
-        FDMod.lin (dU.proj i) ∘ₗ Submodule.projectionOnto U V hUV
-    | .inr i => show E →ₗ[A] dV.obj i from
-        FDMod.lin (dV.proj i) ∘ₗ Submodule.projectionOnto V U hUV.symm
+    | .inl i => (FDMod.ofLin (show E →ₗ[A] dU.obj i from
+        FDMod.lin (dU.proj i) ∘ₗ Submodule.projectionOnto U V hUV))
+    | .inr i => (FDMod.ofLin (show E →ₗ[A] dV.obj i from
+        FDMod.lin (dV.proj i) ∘ₗ Submodule.projectionOnto V U hUV.symm))
   sum_id := by
     rw [Fintype.sum_sum_type]
     ext x
@@ -195,14 +195,14 @@ theorem FDMod.exists_rasFam [FiniteDimensional k A] (Z : FDMod k A) (hZ : IsInde
   refine ⟨RASFam.mk d.ι d.obj (fun i ↦ ⟨d.indec i, d.nt i⟩) (fun i ↦ d.inc i ≫ g) ?_ ?_⟩
   · rintro ⟨h, hh⟩
     apply hg1
-    refine ⟨show Z →ₗ[A] E from ∑ i, FDMod.lin (d.inc i) ∘ₗ FDMod.lin (h i), ?_⟩
-    show FDMod.lin g ∘ₗ (∑ i, FDMod.lin (d.inc i) ∘ₗ FDMod.lin (h i)) = LinearMap.id
+    refine ⟨(FDMod.ofLin (show Z →ₗ[A] E from ∑ i, FDMod.lin (d.inc i) ∘ₗ FDMod.lin (h i))), ?_⟩
+    apply FDMod.hom_ext; show FDMod.lin g ∘ₗ (∑ i, FDMod.lin (d.inc i) ∘ₗ FDMod.lin (h i)) = LinearMap.id
     rw [← hh]
     ext x
     simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.sum_apply, map_sum,
       FDMod.lin_comp]
   · intro W v hv
-    obtain ⟨t, ht⟩ := hg2 W v fun ⟨s, hs⟩ ↦ hv ⟨s, hs⟩
+    obtain ⟨t, ht⟩ := hg2 W v fun ⟨s, hs⟩ ↦ hv ⟨s, ((FDMod.comp_eq_id_iff _ _).1 (hs))⟩
     refine ⟨fun i ↦ t ≫ d.proj i, ?_⟩
     have hid := d.sum_id
     rw [← ht]

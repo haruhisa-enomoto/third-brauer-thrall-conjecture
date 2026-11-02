@@ -177,13 +177,13 @@ theorem FDMod.exists_leftAS [FiniteDimensional k A] (X : FDMod k A)
   let f : X →ₗ[A] FDMod.dunop E' := trUnop (FDMod.lin g) ∘ₗ evA (k := k) (A := A) X
   have hf : ∀ (m : X) (e : E'), (show Module.Dual k E' from f m) e =
       (show Module.Dual k X from FDMod.lin g e) m := fun _ _ ↦ rfl
-  refine ⟨FDMod.dunop E', f, ⟨fun ⟨r, hr⟩ ↦ hg.1 ⟨?_, ?_⟩, fun W u hu ↦ ?_⟩⟩
-  · exact (evEquivOp E').symm.toLinearMap ∘ₗ trOp (FDMod.lin r)
-  · apply LinearMap.ext; intro ξ; apply LinearMap.ext; intro m
+  refine ⟨FDMod.dunop E', (FDMod.ofLin (f)), ⟨fun ⟨r, hr⟩ ↦ hg.1 ⟨?_, ?_⟩, fun W u hu ↦ ?_⟩⟩
+  · exact (FDMod.ofLin ((evEquivOp E').symm.toLinearMap ∘ₗ trOp (FDMod.lin r)))
+  · apply FDMod.hom_ext; apply LinearMap.ext; intro ξ; apply LinearMap.ext; intro m
     have h1 := congrArg (fun t : FDMod.dop (FDMod.dunop E') ↦
       (show Module.Dual k (FDMod.dunop E') from t) (f m))
       ((evEquivOp E').apply_symm_apply (trOp (FDMod.lin r) ξ))
-    have h2 : FDMod.lin r (f m) = m := LinearMap.congr_fun hr m
+    have h2 : FDMod.lin r (f m) = m := LinearMap.congr_fun (congrArg FDMod.lin hr) m
     change (show Module.Dual k (FDMod.dunop E') from evOp (k := k) (A := A) (N := E')
       ((evEquivOp E').symm (trOp (FDMod.lin r) ξ))) (f m) = (show Module.Dual k X from ξ)
         (FDMod.lin r (f m)) at h1
@@ -191,11 +191,11 @@ theorem FDMod.exists_leftAS [FiniteDimensional k A] (X : FDMod k A)
     exact h1
   · haveI : IsScalarTower k Aᵐᵒᵖ (FDMod.dop W) :=
       inferInstanceAs (IsScalarTower k Aᵐᵒᵖ (DOp (k := k) A W))
-    have hnot : ¬∃ s : FDMod.dop X ⟶ FDMod.dop W, s ≫ trOp (FDMod.lin u) = 𝟙 _ := by
+    have hnot : ¬∃ s : FDMod.dop X ⟶ FDMod.dop W, s ≫ (FDMod.ofLin (trOp (FDMod.lin u))) = 𝟙 _ := by
       rintro ⟨s, hs⟩
-      refine hu ⟨(evEq (k := k) (A := A) X).symm.toLinearMap ∘ₗ
-        trUnop (k := k) (A := A) (FDMod.lin s) ∘ₗ evA (k := k) (A := A) W, ?_⟩
-      apply LinearMap.ext; intro m
+      refine hu ⟨FDMod.ofLin ((evEq (k := k) (A := A) X).symm.toLinearMap ∘ₗ
+        trUnop (k := k) (A := A) (FDMod.lin s) ∘ₗ evA (k := k) (A := A) W), ?_⟩
+      apply FDMod.hom_ext; apply LinearMap.ext; intro m
       apply (evEq (k := k) (A := A) X).injective
       change (evEq (k := k) (A := A) X) ((evEq (k := k) (A := A) X).symm
         (trUnop (k := k) (A := A) (FDMod.lin s) (evA (k := k) (A := A) W (FDMod.lin u m)))) =
@@ -204,11 +204,11 @@ theorem FDMod.exists_leftAS [FiniteDimensional k A] (X : FDMod k A)
       apply LinearMap.ext; intro ξ
       change (show Module.Dual k W from FDMod.lin s ξ) (FDMod.lin u m) =
         (show Module.Dual k X from ξ) m
-      exact congrArg (fun t ↦ (show Module.Dual k X from t) m) (LinearMap.congr_fun hs ξ)
-    obtain ⟨v, hv⟩ := hg.2 (FDMod.dop W) (trOp (FDMod.lin u)) hnot
-    refine ⟨(evEq (k := k) (A := A) W).symm.toLinearMap ∘ₗ
-      trUnop (k := k) (A := A) (FDMod.lin v), ?_⟩
-    apply LinearMap.ext; intro m
+      exact congrArg (fun t ↦ (show Module.Dual k X from t) m) (LinearMap.congr_fun (congrArg FDMod.lin hs) ξ)
+    obtain ⟨v, hv⟩ := hg.2 (FDMod.dop W) (FDMod.ofLin (trOp (FDMod.lin u))) hnot
+    refine ⟨FDMod.ofLin ((evEq (k := k) (A := A) W).symm.toLinearMap ∘ₗ
+      trUnop (k := k) (A := A) (FDMod.lin v)), ?_⟩
+    apply FDMod.hom_ext; apply LinearMap.ext; intro m
     apply (evEq (k := k) (A := A) W).injective
     change (evEq (k := k) (A := A) W) ((evEq (k := k) (A := A) W).symm
       (trUnop (k := k) (A := A) (FDMod.lin v) (f m))) = (evEq (k := k) (A := A) W) (FDMod.lin u m)
@@ -216,6 +216,6 @@ theorem FDMod.exists_leftAS [FiniteDimensional k A] (X : FDMod k A)
     apply LinearMap.ext; intro ζ
     change (show Module.Dual k X from FDMod.lin g (FDMod.lin v ζ)) m =
       (show Module.Dual k W from ζ) (FDMod.lin u m)
-    exact congrArg (fun t ↦ (show Module.Dual k X from t) m) (LinearMap.congr_fun hv ζ)
+    exact congrArg (fun t ↦ (show Module.Dual k X from t) m) (LinearMap.congr_fun (congrArg FDMod.lin hv) ζ)
 
 end LargeIndecomposable.AR
