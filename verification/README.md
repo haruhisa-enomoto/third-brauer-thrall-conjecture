@@ -7,4 +7,7 @@
 - [2026-11-02](2026-11-02/README.md): hosted Palomar preflight of the release commit:
   passed.
 
+- [2026-11-03](2026-11-03/README.md): library reorganized, statements unchanged; build,
+  axiom audit, declaration scan, `lake comparator` and hosted Palomar preflight: passed.
+
 [`module-origins.json`](module-origins.json) records the origin of reused modules.

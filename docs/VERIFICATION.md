@@ -14,10 +14,10 @@ embeddings, representation-finite algebras and dimensions as cardinals.
 
 ## Results
 
-The [record of November 1, 2026](../verification/2026-11-01/README.md) gives the local
-results and hashes. The hosted Palomar preflight
-[passed on November 2, 2026](../verification/2026-11-02/README.md) on a 4-CPU, 16 GB
-runner. A preflight is an advisory report, not registry acceptance.
+The [record of November 3, 2026](../verification/2026-11-03/README.md) gives the local
+results, the hosted Palomar preflight (passed on a 4-CPU, 16 GB runner) and the hashes
+for the current library. A preflight is an advisory report, not registry acceptance.
+Earlier records are in [`verification/`](../verification/README.md).
 
 An independent agent audit of an earlier revision checked the definitions in
 `Statement.lean`, the final proof assembly and selected steps of the proofs in

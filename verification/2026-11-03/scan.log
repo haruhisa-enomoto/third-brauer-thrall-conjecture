@@ -1,0 +1,5 @@
+warning: mathlib: repository has local changes:
+  /home/italing/work/third-brauer-thrall-conjecture/.lake/packages/mathlib
+warning: batteries: repository has local changes:
+  /home/italing/work/third-brauer-thrall-conjecture/.lake/packages/batteries
+scanned 60758 declarations; axioms #[Quot.sound, Classical.choice, propext]; other #[]
