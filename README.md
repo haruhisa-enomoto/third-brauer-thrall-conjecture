@@ -114,7 +114,9 @@ The repository follows the layout of the
 [comparator.json](comparator.json) and the metadata in
 [formalization.yaml](formalization.yaml). The workflow
 [Palomar preflight](.github/workflows/palomar-preflight.yml) runs Palomar's
-mechanical verification for a chosen commit.
+mechanical verification for a chosen commit. It
+[passed](verification/2026-11-02/README.md) for the release commit. This is an advisory
+report; the formalization has not been submitted to the registry.
 
 ## Website
 
