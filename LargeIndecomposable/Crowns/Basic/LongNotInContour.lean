@@ -182,10 +182,4 @@ theorem longMorphismNotInContour_of_mulBasis (hM : TwistedMulBasisExists.{u}) : 
   longMorphismNotInContour_of hM fun k _ _ ↦
     ⟨MulBasis.l6Shapes k, MulBasis.l8Shapes k, MulBasis.f93Shape k⟩
 
-/-- **Bongartz's Theorem 6 (data form)** from BGRS multiplicative bases and the
-dichotomy on the universal cover. -/
-theorem bongartzDistributive_of_mulBasis_dichotomy (hM : TwistedMulBasisExists.{u})
-    (hDich : CoverDichotomy.{u}) : BongartzDistributive.{u} :=
-  bongartzDistributive_of_mulBasis hM (longMorphismNotInContour_of_mulBasis hM) hDich
-
 end LargeIndecomposable
