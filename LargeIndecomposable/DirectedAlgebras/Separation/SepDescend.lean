@@ -35,7 +35,7 @@ theorem isoM_res_radP (z : D.ι) (hzT : z ∈ T') (hz : LivesOn T' (projE (k := 
   let D' := D.quot hT
   have hez : D.qmap T' (D.e z) ≠ 0 := D'.ne z hzT
   let Φ : D.RadP z ⟶ resFD (D.qmap T') (D'.RadP z) :=
-    show D.RadP z →ₗ[A] resFD (D.qmap T') (D'.RadP z) from
+    FDMod.ofLin
     { toFun r := ofX (⟨⟨D.qmap T' ((r : P) : A), by
           change D.qmap T' ((r : P) : A) * D.qmap T' (D.e z) = D.qmap T' ((r : P) : A)
           rw [← map_mul, show ((r : P) : A) * D.e z = (r : P) from (r : P).2]⟩, by
@@ -69,7 +69,7 @@ theorem isoM_res_radP (z : D.ι) (hzT : z ∈ T') (hz : LivesOn T' (projE (k := 
       · exact absurd h hez
     rw [← mul_assoc, D.chi_spec z (hT.1 hzT), h2, zero_smul]
   let Ψ : resFD (D.qmap T') (D'.RadP z) ⟶ D.RadP z :=
-    show resFD (D.qmap T') (D'.RadP z) →ₗ[A] D.RadP z from
+    FDMod.ofLin
     { toFun b := ⟨actQ P hz (val b) ez, hmemΨ b⟩
       map_add' a b := by
         apply Subtype.ext

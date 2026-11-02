@@ -47,7 +47,7 @@ lemma PredN.trans {U X : FDMod k A} {n : ℕ} (hX : PredN U n X) :
 
 lemma IsoM.symm {X Y : FDMod k A} (h : IsoM X Y) : IsoM Y X := by
   obtain ⟨g, hg⟩ := h
-  exact ⟨(LinearEquiv.ofBijective (FDMod.lin g) hg).symm.toLinearMap,
+  exact ⟨(FDMod.ofLin ((LinearEquiv.ofBijective (FDMod.lin g) hg).symm.toLinearMap)),
     (LinearEquiv.ofBijective (FDMod.lin g) hg).symm.bijective⟩
 
 lemma IsoM.trans {X Y Z : FDMod k A} (h : IsoM X Y) (h' : IsoM Y Z) : IsoM X Z := by

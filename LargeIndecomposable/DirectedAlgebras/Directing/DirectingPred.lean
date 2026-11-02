@@ -62,8 +62,8 @@ theorem Directing.extVanish_pred [FiniteDimensional k A] {M U : FDMod k A} (hM :
   · obtain ⟨j, h1, h2⟩ := hboth
     have hInd : IsInd (d.obj j) := ⟨d.indec j, d.nt j⟩
     exact hM.2 (Reach₁.trans (Reach₁.trans
-      (Reach₁.step hM.1 hInd (show M ⟶ d.obj j from ij j) h1 (hij j))
-      (Reach₁.step hInd hU (show d.obj j ⟶ U from pj j) h2 (hpj j))) hUM)
+      (Reach₁.step hM.1 hInd (show M ⟶ d.obj j from (FDMod.ofLin (ij j))) h1 (hij j))
+      (Reach₁.step hInd hU (show d.obj j ⟶ U from (FDMod.ofLin (pj j))) h2 (hpj j))) hUM)
   · push Not at hboth
     apply hns
     let e₂ : E →ₗ[A] E := ∑ j ∈ Finset.univ.filter (fun j ↦ ij j = 0),

@@ -128,6 +128,14 @@ lemma comp_eq_id_iff {X Y : FDMod k A} (f : X ⟶ Y) (g : Y ⟶ X) :
     f ≫ g = 𝟙 X ↔ lin g ∘ₗ lin f = LinearMap.id := by
   rw [comp_eq_iff, lin_id]
 
+lemma exists_comp_eq_id_iff {X Y : FDMod k A} (g : X ⟶ Y) :
+    (∃ s : Y ⟶ X, s ≫ g = 𝟙 Y) ↔ ∃ s : Y ⟶ X, lin g ∘ₗ lin s = LinearMap.id :=
+  exists_congr fun s => comp_eq_id_iff s g
+
+lemma exists_comp_eq_id_iff' {X Y : FDMod k A} (f : X ⟶ Y) :
+    (∃ r : Y ⟶ X, f ≫ r = 𝟙 X) ↔ ∃ r : Y ⟶ X, lin r ∘ₗ lin f = LinearMap.id :=
+  exists_congr fun r => comp_eq_id_iff f r
+
 instance {X Y : FDMod k A} : FunLike (X ⟶ Y) X Y where
   coe f := lin f
   coe_injective f g h := lin_injective (LinearMap.coe_injective h)

@@ -70,14 +70,14 @@ def descendQ (M : FDMod k A) (hM : LivesOn T' M) : FDMod k (D.QAlg T') :=
 
 /-- The identity from the restriction of the descent to `M`. -/
 def descIsoQ (M : FDMod k A) (hM : LivesOn T' M) : resFD (D.qmap T') (descendQ M hM) ⟶ M :=
-  show resFD (D.qmap T') (descendQ M hM) →ₗ[A] M from
+  FDMod.ofLin
   { toFun x := (show M from x)
     map_add' _ _ := rfl
     map_smul' a x := actQ_qmap M hM a x }
 
 /-- The identity from `M` to the restriction of its descent. -/
 def descIsoQInv (M : FDMod k A) (hM : LivesOn T' M) : M ⟶ resFD (D.qmap T') (descendQ M hM) :=
-  show M →ₗ[A] resFD (D.qmap T') (descendQ M hM) from
+  FDMod.ofLin
   { toFun x := (show resFD (D.qmap T') (descendQ M hM) from x)
     map_add' _ _ := rfl
     map_smul' a x := (actQ_qmap M hM a x).symm }

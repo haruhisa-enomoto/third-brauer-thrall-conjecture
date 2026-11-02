@@ -35,7 +35,7 @@ theorem isoM_res_proj (z : D.ι) (hz : LivesOn T' (projE (k := k) (D.idem z))) :
   let ez : P := ⟨D.e z, e_mem (D.idem z)⟩
   -- `Φ : a ↦ qmap a`
   let Φ : P ⟶ resFD (D.qmap T') (projE (k := k) ((D.quot hT).idem z)) :=
-    show P →ₗ[A] resFD (D.qmap T') (projE (k := k) ((D.quot hT).idem z)) from
+    FDMod.ofLin
     { toFun a := ofX (⟨D.qmap T' (a : A), by
         change D.qmap T' (a : A) * D.qmap T' (D.e z) = D.qmap T' (a : A)
         rw [← map_mul, show (a : A) * D.e z = a from a.2]⟩ : leftIdeal ((D.quot hT).idem z))
@@ -49,7 +49,7 @@ theorem isoM_res_proj (z : D.ι) (hz : LivesOn T' (projE (k := k) (D.idem z))) :
         rw [map_mul] }
   -- `Ψ : b' ↦ b' • e_z` in the descent of `P(z)`
   let Ψ : resFD (D.qmap T') (projE (k := k) ((D.quot hT).idem z)) ⟶ P :=
-    show resFD (D.qmap T') (projE (k := k) ((D.quot hT).idem z)) →ₗ[A] P from
+    FDMod.ofLin
     { toFun b := actQ P hz ((toX b : leftIdeal ((D.quot hT).idem z)) : D.QAlg T') ez
       map_add' a b := by
         change actQ P hz (((toX a : leftIdeal _) : D.QAlg T') + (toX b : leftIdeal _)) ez = _

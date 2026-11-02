@@ -51,7 +51,7 @@ lemma toX_injective {X : FDMod k A'} : Function.Injective (toX (φ := φ) (X := 
 
 /-- An `A'`-linear map as an `A`-linear map. -/
 def resHom (φ : A →ₐ[k] A') {X Y : FDMod k A'} (f : X ⟶ Y) : resFD φ X ⟶ resFD φ Y :=
-  show resFD φ X →ₗ[A] resFD φ Y from
+  FDMod.ofLin
   { toFun x := ofX (FDMod.lin f (toX x))
     map_add' x y := map_add (FDMod.lin f) (toX x) (toX y)
     map_smul' a x := map_smul (FDMod.lin f) (φ a) (toX x) }
@@ -59,7 +59,7 @@ def resHom (φ : A →ₐ[k] A') {X Y : FDMod k A'} (f : X ⟶ Y) : resFD φ X �
 /-- An `A`-linear map between restrictions is `A'`-linear. -/
 def unresHom (hφ : Function.Surjective φ) {X Y : FDMod k A'} (f : resFD φ X ⟶ resFD φ Y) :
     X ⟶ Y :=
-  show X →ₗ[A'] Y from
+  FDMod.ofLin
   { toFun x := toX (FDMod.lin f (ofX x))
     map_add' x y := map_add (FDMod.lin f) (ofX x) (ofX y)
     map_smul' a' x := by
@@ -202,14 +202,14 @@ def descend : FDMod k A' :=
 
 /-- The identity from the restriction of the descent back to `M`. -/
 def descIso : resFD φ (descend hφ M hM) ⟶ M :=
-  show resFD φ (descend hφ M hM) →ₗ[A] M from
+  FDMod.ofLin
   { toFun x := (show M from x)
     map_add' _ _ := rfl
     map_smul' a x := descSMul_eq hφ M hM a x }
 
 /-- The identity from `M` to the restriction of its descent. -/
 def descIsoInv : M ⟶ resFD φ (descend hφ M hM) :=
-  show M →ₗ[A] resFD φ (descend hφ M hM) from
+  FDMod.ofLin
   { toFun x := (show resFD φ (descend hφ M hM) from x)
     map_add' _ _ := rfl
     map_smul' a x := (descSMul_eq hφ M hM a x).symm }
