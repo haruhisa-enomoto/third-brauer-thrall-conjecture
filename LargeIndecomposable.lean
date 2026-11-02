@@ -158,7 +158,6 @@ public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasisQuot
 public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasisStd
 public import LargeIndecomposable.Cleaving.Basic.PathCat
 public import LargeIndecomposable.Cleaving.Basic.PathCatRep
-public import LargeIndecomposable.Cleaving.Basic.PathCatGauge
 public import LargeIndecomposable.Cleaving.Basic.PathCatCleaving
 public import LargeIndecomposable.Crowns.Basic.MinimalCrown
 public import LargeIndecomposable.Cleaving.Basic.Thin

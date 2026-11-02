@@ -132,6 +132,9 @@ lemma lift_map_ofPath {a b : Q} (p : Quiver.Path a b) :
 
 end Lift
 
+lemma ofPath_comp {a b c : Q} (p : Quiver.Path a b) (q : Quiver.Path b c) :
+    ofPath p ≫ ofPath q = ofPath (p.comp q) := rfl
+
 end PathCat
 
 end RayCat

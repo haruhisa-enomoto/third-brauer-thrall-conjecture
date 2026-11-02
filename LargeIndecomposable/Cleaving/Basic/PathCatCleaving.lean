@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.PathCatGauge
+public import LargeIndecomposable.Cleaving.Basic.PathCatRep
 public import LargeIndecomposable.RayCategories.RoiterVanishing.KeyLemma
 
 /-!
