@@ -61,16 +61,18 @@ lemma pdMod_smul (hS : Convex (S : Set (Cover x₀))) (X : Rep k (pieceQuiver S)
 /-- **Push-down of a morphism.** -/
 def pdHom (hS : Convex (S : Set (Cover x₀))) {X Y : Rep k (pieceQuiver S)}
     (hX : RespectsCover X) (hY : RespectsCover Y) [∀ i, FiniteDimensional k (X.obj i)]
-    [∀ i, FiniteDimensional k (Y.obj i)] (φ : X ⟶ Y) : pdMod hS X hX ⟶ pdMod hS Y hY where
-  toFun := φ.tot
-  map_add' := map_add φ.tot
-  map_smul' b x := by
-    obtain ⟨z, rfl⟩ := linPres_surjective P k b
-    change φ.tot (linAct hS hX (linPres P k z) x) = linAct hS hY (linPres P k z) (φ.tot x)
-    rw [linAct_linPres, linAct_linPres]
-    have := Rep.commute_pdAct (pieceProj S) X φ.tot (Rep.Hom.isPdHom_tot _ φ).1
-      (Rep.Hom.isPdHom_tot _ φ).2 z
-    exact LinearMap.congr_fun this x
+    [∀ i, FiniteDimensional k (Y.obj i)] (φ : X ⟶ Y) : pdMod hS X hX ⟶ pdMod hS Y hY :=
+  AR.FDMod.ofLin
+  { toFun := φ.tot
+    map_add' := map_add φ.tot
+    map_smul' := fun b x ↦ by
+      obtain ⟨z, rfl⟩ := linPres_surjective P k b
+      change φ.tot (linAct hS hX (linPres P k z) x) = linAct hS hY (linPres P k z) (φ.tot x)
+      rw [linAct_linPres, linAct_linPres]
+      have := Rep.commute_pdAct (pieceProj S) X φ.tot (Rep.Hom.isPdHom_tot _ φ).1
+        (Rep.Hom.isPdHom_tot _ φ).2 z
+      exact LinearMap.congr_fun this x
+  }
 
 @[simp] lemma pdHom_lin (hS : Convex (S : Set (Cover x₀))) {X Y : Rep k (pieceQuiver S)}
     (hX : RespectsCover X) (hY : RespectsCover Y) [∀ i, FiniteDimensional k (X.obj i)]

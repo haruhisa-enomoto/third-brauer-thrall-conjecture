@@ -86,7 +86,7 @@ theorem Directing.split [FiniteDimensional k A] {M E : FDMod k A} (hM : Directin
     intro j hb
     apply hns
     let e := LinearEquiv.ofBijective (pj j) hb
-    refine ⟨show M →ₗ[A] E from FDMod.lin (d.inc j) ∘ₗ e.symm.toLinearMap, ?_⟩
+    refine ⟨(FDMod.ofLin (show M →ₗ[A] E from FDMod.lin (d.inc j) ∘ₗ e.symm.toLinearMap)), ?_⟩
     ext x
     exact e.apply_symm_apply x
   -- no `iⱼ` is a split monomorphism
@@ -108,14 +108,14 @@ theorem Directing.split [FiniteDimensional k A] {M E : FDMod k A} (hM : Directin
         simp only [LinearMap.sub_apply, LinearMap.id_apply, LinearMap.coe_comp,
           Function.comp_apply]
         rw [show r (FDMod.lin i m) = m from LinearMap.congr_fun hr m, sub_self])
-    exact ⟨s', hs'⟩
+    exact ⟨(FDMod.ofLin (s')), hs'⟩
   -- some summand receives `i` nonzero and maps nonzero by `p`
   by_cases hboth : ∃ j, ij j ≠ 0 ∧ pj j ≠ 0
   · obtain ⟨j, h1, h2⟩ := hboth
     have hInd : IsInd (d.obj j) := ⟨d.indec j, d.nt j⟩
     exact hM.2 (Reach₁.trans
-      (Reach₁.step hM.1 hInd (show M ⟶ d.obj j from ij j) h1 (hij j))
-      (Reach₁.step hInd hM.1 (show d.obj j ⟶ M from pj j) h2 (hpj j)))
+      (Reach₁.step hM.1 hInd (show M ⟶ d.obj j from (FDMod.ofLin (ij j))) h1 (hij j))
+      (Reach₁.step hInd hM.1 (show d.obj j ⟶ M from (FDMod.ofLin (pj j))) h2 (hpj j)))
   · push Not at hboth
     -- the summands receiving `i` are killed by `p`, so `p` is injective on the others
     apply hns
@@ -139,6 +139,6 @@ theorem Directing.split [FiniteDimensional k A] {M E : FDMod k A} (hM : Directin
         rw [this, LinearMap.zero_apply, map_zero]
     obtain ⟨s', hs'⟩ := split_of_endo (FDMod.lin i) (FDMod.lin p) hp hex e₂ (fun x ↦ (hpe x))
       hei
-    exact ⟨s', hs'⟩
+    exact ⟨(FDMod.ofLin (s')), hs'⟩
 
 end LargeIndecomposable.AR

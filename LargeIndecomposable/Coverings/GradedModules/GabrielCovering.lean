@@ -47,7 +47,7 @@ theorem grRASFam_proj [FiniteDimensional k A] (htf : TorsionFree G) (Z : FDMod k
   let Uobj := FDMod.ofSub U
   obtain ⟨d⟩ := exists_grDecomp Uobj (μ.sub hU)
   refine ⟨RASFam.mk d.ι d.obj (fun i ↦ ⟨d.gr i, d.indec i, d.nt i⟩)
-    (fun i ↦ show d.obj i →ₗ[A] Z from U.subtype ∘ₗ d.inc i) ?_ ?_⟩
+    (fun i ↦ (FDMod.ofLin (show d.obj i →ₗ[A] Z from U.subtype ∘ₗ d.inc i))) ?_ ?_⟩
   · rintro ⟨h, hh⟩
     apply hUc.1
     rw [eq_top_iff]; intro z _
@@ -59,13 +59,13 @@ theorem grRASFam_proj [FiniteDimensional k A] (htf : TorsionFree G) (Z : FDMod k
   · intro W v hv
     have hrange : LinearMap.range (FDMod.lin v) ≤ U := by
       by_cases htop : LinearMap.range (FDMod.lin v) = ⊤
-      · exact absurd (hZ.lift _ (LinearMap.range_eq_top.1 htop)) fun ⟨s, hs⟩ ↦ hv ⟨s, hs⟩
+      · exact absurd (hZ.lift _ (LinearMap.range_eq_top.1 htop)) fun ⟨s, hs⟩ ↦ hv ⟨(FDMod.ofLin (s)), hs⟩
       · obtain ⟨V, hV, hle⟩ :=
           (eq_top_or_exists_le_coatom (LinearMap.range (FDMod.lin v))).resolve_left htop
         rw [hZ.maximal_unique hV hUc] at hle
         exact hle
     let t : W →ₗ[A] U := (FDMod.lin v).codRestrict U fun w ↦ hrange (LinearMap.mem_range_self _ w)
-    refine ⟨fun i ↦ show W →ₗ[A] d.obj i from d.proj i ∘ₗ t, ?_⟩
+    refine ⟨fun i ↦ (FDMod.ofLin (show W →ₗ[A] d.obj i from d.proj i ∘ₗ t)), ?_⟩
     ext w
     have := LinearMap.congr_fun d.sum_id (t w)
     simp only [LinearMap.sum_apply, LinearMap.coe_comp, Function.comp_apply, LinearMap.id_coe,
@@ -109,7 +109,7 @@ theorem exists_map_grInd [FiniteDimensional k A] (N : FDMod k A) [Nontrivial N] 
       simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.zero_apply] at this
       rw [this, map_zero]
   obtain ⟨i, hi⟩ := this
-  exact ⟨d.obj i, ⟨d.gr i, d.indec i, d.nt i⟩, d.proj i ∘ₗ φ, hi⟩
+  exact ⟨d.obj i, ⟨d.gr i, d.indec i, d.nt i⟩, (FDMod.ofLin (d.proj i ∘ₗ φ)), hi⟩
 
 /-- **Gabriel's covering theorem (density).** -/
 theorem gabriel_density [FiniteDimensional k A] (htf : TorsionFree G) (hrad : GrRadHyp Γ)

@@ -33,9 +33,9 @@ def Decomp.ofIdem {E : FDMod k A} {ι : Type u} [Fintype ι] (π : ι → (E →
   obj i := FDMod.ofSub (LinearMap.range (π i))
   indec := hind
   nt := hnt
-  inc i := show LinearMap.range (π i) →ₗ[A] E from (LinearMap.range (π i)).subtype
-  proj i := show E →ₗ[A] LinearMap.range (π i) from
-    LinearMap.codRestrict _ (π i) fun x ↦ LinearMap.mem_range_self _ x
+  inc i := (FDMod.ofLin (show LinearMap.range (π i) →ₗ[A] E from (LinearMap.range (π i)).subtype))
+  proj i := (FDMod.ofLin (show E →ₗ[A] LinearMap.range (π i) from
+    LinearMap.codRestrict _ (π i) fun x ↦ LinearMap.mem_range_self _ x))
   sum_id := by
     apply LinearMap.ext; intro x
     rw [LinearMap.sum_apply]

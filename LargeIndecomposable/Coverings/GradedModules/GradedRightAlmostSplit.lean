@@ -165,7 +165,7 @@ theorem grRASFam [FiniteDimensional k' A'] (htf : TorsionFree G) (Z : FDMod k' A
   obtain ⟨d⟩ := exists_grDecomp Eobj γE
   let gE : E →ₗ[A'] Z := LinearMap.fst A' Z _ ∘ₗ E.subtype
   refine ⟨RASFam.mk d.ι d.obj (fun i ↦ ⟨d.gr i, d.indec i, d.nt i⟩)
-    (fun i ↦ show d.obj i →ₗ[A'] Z from gE ∘ₗ d.inc i) ?_ ?_⟩
+    (fun i ↦ (FDMod.ofLin (show d.obj i →ₗ[A'] Z from gE ∘ₗ d.inc i))) ?_ ?_⟩
   · rintro ⟨h, hh⟩
     apply hras.1
     refine ⟨∑ i, d.inc i ∘ₗ FDMod.lin (h i), ?_⟩
@@ -174,8 +174,8 @@ theorem grRASFam [FiniteDimensional k' A'] (htf : TorsionFree G) (Z : FDMod k' A
     simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.sum_apply, map_sum]
     rfl
   · intro W v hv
-    obtain ⟨t, ht⟩ := hras.2 W (FDMod.lin v) fun ⟨s, hs⟩ ↦ hv ⟨s, hs⟩
-    refine ⟨fun i ↦ show W →ₗ[A'] d.obj i from d.proj i ∘ₗ t, ?_⟩
+    obtain ⟨t, ht⟩ := hras.2 W (FDMod.lin v) fun ⟨s, hs⟩ ↦ hv ⟨(FDMod.ofLin (s)), hs⟩
+    refine ⟨fun i ↦ (FDMod.ofLin (show W →ₗ[A'] d.obj i from d.proj i ∘ₗ t)), ?_⟩
     rw [← ht]
     ext x
     have := LinearMap.congr_fun d.sum_id (t x)
