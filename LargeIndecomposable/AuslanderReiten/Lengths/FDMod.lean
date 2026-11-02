@@ -1,6 +1,8 @@
 module
 
 public import LargeIndecomposable.AuslanderReiten.Lengths.HaradaSai
+public import Mathlib.Algebra.Category.ModuleCat.Basic
+public import Mathlib.CategoryTheory.InducedCategory
 
 /-!
 # The category of finite-dimensional modules; the Harada–Sai lemma
@@ -43,23 +45,63 @@ variable {k A}
 
 instance : CoeSort (FDMod k A) (Type u) := ⟨FDMod.carrier⟩
 
-instance : Category (FDMod k A) where
-  Hom X Y := X →ₗ[A] Y
-  id X := LinearMap.id
-  comp f g := g ∘ₗ f
+/-- The underlying object of `ModuleCat A`. -/
+abbrev toModuleCatObj (X : FDMod k A) : ModuleCat.{u} A := ModuleCat.of A X
 
-lemma comp_def {X Y Z : FDMod k A} (f : X ⟶ Y) (g : Y ⟶ Z) :
-    f ≫ g = (show Y →ₗ[A] Z from g) ∘ₗ (show X →ₗ[A] Y from f) := rfl
+/-- Morphisms are morphisms of the underlying `A`-modules in `ModuleCat A`: `FDMod k A` is the
+category induced from `ModuleCat A`. -/
+instance : Category (FDMod k A) :=
+  inferInstanceAs (Category (InducedCategory (ModuleCat.{u} A) (toModuleCatObj (k := k) (A := A))))
 
-lemma id_def (X : FDMod k A) : 𝟙 X = (LinearMap.id : X →ₗ[A] X) := rfl
+/-- The fully faithful functor to `ModuleCat A`. -/
+def toModuleCat : FDMod k A ⥤ ModuleCat.{u} A :=
+  inducedFunctor (toModuleCatObj (k := k) (A := A))
+
+/-- `toModuleCat` is fully faithful. -/
+def toModuleCatFullyFaithful : (toModuleCat (k := k) (A := A)).FullyFaithful :=
+  fullyFaithfulInducedFunctor _
+
+instance : (toModuleCat (k := k) (A := A)).Full := InducedCategory.full _
+instance : (toModuleCat (k := k) (A := A)).Faithful := InducedCategory.faithful _
 
 /-- The underlying linear map. -/
-def lin {X Y : FDMod k A} (f : X ⟶ Y) : X →ₗ[A] Y := f
+def lin {X Y : FDMod k A} (f : X ⟶ Y) : X →ₗ[A] Y := InducedCategory.Hom.hom f |>.hom
+
+/-- The morphism given by an `A`-linear map. -/
+def ofLin {X Y : FDMod k A} (f : X →ₗ[A] Y) : X ⟶ Y := InducedCategory.homMk (ModuleCat.ofHom f)
+
+@[simp] lemma lin_ofLin {X Y : FDMod k A} (f : X →ₗ[A] Y) : lin (ofLin f) = f := rfl
+
+@[simp] lemma ofLin_lin {X Y : FDMod k A} (f : X ⟶ Y) : ofLin (lin f) = f := rfl
+
+lemma lin_injective {X Y : FDMod k A} : Function.Injective (lin : (X ⟶ Y) → (X →ₗ[A] Y)) :=
+  fun f g h => by rw [← ofLin_lin f, ← ofLin_lin g, h]
+
+@[ext] lemma hom_ext {X Y : FDMod k A} {f g : X ⟶ Y} (h : lin f = lin g) : f = g :=
+  lin_injective h
 
 @[simp] lemma lin_comp {X Y Z : FDMod k A} (f : X ⟶ Y) (g : Y ⟶ Z) :
     lin (f ≫ g) = lin g ∘ₗ lin f := rfl
 
 @[simp] lemma lin_id (X : FDMod k A) : lin (𝟙 X) = LinearMap.id := rfl
+
+lemma comp_def {X Y Z : FDMod k A} (f : X ⟶ Y) (g : Y ⟶ Z) :
+    f ≫ g = ofLin (lin g ∘ₗ lin f) := rfl
+
+lemma id_def (X : FDMod k A) : 𝟙 X = ofLin (LinearMap.id : X →ₗ[A] X) := rfl
+
+@[simp] lemma ofLin_comp {X Y Z : FDMod k A} (f : X →ₗ[A] Y) (g : Y →ₗ[A] Z) :
+    ofLin f ≫ ofLin g = ofLin (g ∘ₗ f) := rfl
+
+instance {X Y : FDMod k A} : FunLike (X ⟶ Y) X Y where
+  coe f := lin f
+  coe_injective f g h := lin_injective (LinearMap.coe_injective h)
+
+instance {X Y : FDMod k A} : LinearMapClass (X ⟶ Y) A X Y where
+  map_add f := (lin f).map_add
+  map_smulₛₗ f := (lin f).map_smul
+
+@[simp] lemma coe_lin {X Y : FDMod k A} (f : X ⟶ Y) : ⇑(lin f) = ⇑f := rfl
 
 end FDMod
 
