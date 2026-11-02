@@ -16,6 +16,10 @@ multiplicative basis and a ray transversal of `A`.
 The hypotheses on `μ_i` (relative, homogeneous, associative family, spanning) are taken as
 the `FamilyHyp` of Theorem 7.7; they are discharged where `A₀`, its gradings and the
 indicator classes are constructed.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

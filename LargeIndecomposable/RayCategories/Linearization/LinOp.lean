@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.Cleaving
+public import LargeIndecomposable.Cleaving.Functors.Cleaving
 public import LargeIndecomposable.RayCategories.Distributive.LinearizationTable
 public import LargeIndecomposable.Modules.Duality.OppositeDuality
 

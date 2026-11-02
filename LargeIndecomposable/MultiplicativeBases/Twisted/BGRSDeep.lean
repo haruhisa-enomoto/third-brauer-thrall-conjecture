@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.Distributive.BGRSRayCategory
-public import LargeIndecomposable.MildContours.Basic.Global
+public import LargeIndecomposable.MildContours.Setup.Global
 
 /-!
 # Deep rays and annihilation by the radical

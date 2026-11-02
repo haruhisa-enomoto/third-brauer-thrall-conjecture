@@ -7,12 +7,16 @@ public import LargeIndecomposable.Foundations.Gradings.GModLemmas
 /-!
 # Twice a first-order lift
 
-The source paper (proof of Lemma 10.2): "take module and map corrections for
+That paper (proof of Lemma 10.2): "take module and map corrections for
 a first-order `𝔽₂`-cocycle and use twice their lifts over `𝒪`. Every equation is linear in `ε`;
 multiplication by two makes it depend only on the modulo-two base matrices."
 
 For a cocycle `μ̃ = 2μ̄` over `𝒪`, a lifted action `ν` of `M` for `μ̄` gives the lifted action
 `2ν` of a lift `M̃` (`actLiftTw`), and a lifted map `(f, g)` gives `(f̃, 2g)` (`isLiftHom_tw`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

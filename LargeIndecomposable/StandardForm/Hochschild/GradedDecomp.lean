@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.ExtProjective
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.ExtProjective
 
 /-!
 # Graded decomposition (Lemma 6.3(1))
@@ -18,6 +18,10 @@ level is nonzero, hence invertible by `eq:normalized-hom-degrees` (`exists_inv`)
 otherwise the level sums `E_r` satisfy `E_r E_s = 0` for `r ≤ s` and force `e = 0`.
 The result (`exists_gdecomp`) is a finite family of graded inclusions and
 projections with `Σ inc_a pr_a = 1`, which is the input of `extVanish_of_decomp`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

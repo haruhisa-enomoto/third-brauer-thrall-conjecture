@@ -9,6 +9,10 @@ public import LargeIndecomposable.RayCategories.RayTables.RaySetting
 factorization order isomorphic to a table poset that passes the `decide` checks of
 `FinPoset` (unique lower covers and the dimension count), finite representation type is
 contradicted. The axioms of the table poset follow from those of the factorization order.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

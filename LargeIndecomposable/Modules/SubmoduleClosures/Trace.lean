@@ -18,6 +18,10 @@ between trace generation and `Fac(add S)` literal rather than implicit.
 
 The dual object is the intersection of the kernels of all maps into
 explicit finite sums from `add S`.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -304,7 +308,7 @@ theorem inFac_iff_trace_eq_top (S : Set ι)
     infer_instance
 
 /-- Membership in quotient closure is the trace criterion used throughout
-the source paper. -/
+that paper. -/
 theorem mem_qSet_iff_trace_eq_top (S : Set ι) (j : ι) :
     j ∈ σ.qSet S ↔ σ.trace S (σ.obj j) = ⊤ :=
   inFac_iff_trace_eq_top σ S (σ.obj j)

@@ -18,6 +18,10 @@ defines the automorphism `σ_d` of the covering algebra `cov D s` scaling the
 `(p, q)`-entry by `d(s p, s q)` (`scaleEquiv`). By divisibility of weights
 (Lemma 4.11(2)) `σ_d = σ_e^N` for the `N` of `twist_pow_iso`, so `σ_d` fixes
 every finite-dimensional indecomposable class (`weight_twist_iso`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

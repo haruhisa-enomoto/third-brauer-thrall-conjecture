@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RayCategories.Basic.ResidueQuiver
+public import LargeIndecomposable.RayCategories.Quotients.ResidueQuiver
 public import LargeIndecomposable.RayCategories.Basic.Long
 public import LargeIndecomposable.RayCategories.Contours.Interlaced
 public import LargeIndecomposable.Coverings.UniversalCover.Cover

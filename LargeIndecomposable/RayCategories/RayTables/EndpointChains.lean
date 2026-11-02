@@ -21,6 +21,10 @@ primitive idempotents `e_x`, put `R_x = e_xAe_x`.
   subbimodules; so the subbimodules form a chain, with one-dimensional
   successive quotients.
 * For `f ≠ 0`, `R_xfR_y = R_xf` or `fR_y`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

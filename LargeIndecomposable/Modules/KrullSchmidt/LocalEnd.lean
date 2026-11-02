@@ -30,6 +30,10 @@ The idempotent characterization and Fitting's lemma are adapted from
 `Modules/KrullSchmidt/LocalEndIndecomposable.lean` in
 `multiplicative-bases-deformations` at commit
 `7b9f39f221d8a420a1531f487a3b93ae6d26ce85` (themselves adapted from LargeIndecomposable).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

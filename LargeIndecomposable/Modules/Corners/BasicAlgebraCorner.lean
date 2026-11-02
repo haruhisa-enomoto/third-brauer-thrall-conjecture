@@ -12,6 +12,10 @@ one from each isomorphism class of indecomposable projectives". Here: take a
 complete set `f_s` of primitive orthogonal idempotents, one representative `f_r`
 in each class of `f_s A ≅ f_t A`, and `e = Σ f_r`. Then `AeA = A`
 (`full_basicCorner`) and `eAe` is basic (`isBasicAlgebra_basicCorner`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

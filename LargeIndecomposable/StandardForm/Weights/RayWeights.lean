@@ -6,7 +6,7 @@ public import LargeIndecomposable.MultiplicativeBases.Normed.ScalarNormalization
 /-!
 # The scalar-weight group `W(P)` of `A₀` (Definition 7.1, Proposition 7.2)
 
-The source paper. For a finite ray category `Q`,
+That paper. For a finite ray category `Q`,
 `W(Q) = ℤ⟨[r] : r ≠ 0, 1⟩ / ⟨[rs] − [r] − [s] : rs ≠ 0⟩` (`def:scalar-weight-group`).
 For `P = ray A₀` we use the deck-homogeneous pieces of `A₀` as the nonzero rays
 (Proposition 4.14: each homogeneous ray line lies in one deck degree and the
@@ -22,9 +22,13 @@ of object values" (Proposition 7.2(2), `L_addWeight_eq_diff`), from the generic
 Deviation in Proposition 7.2(1): the deck group of the formalization is the
 fundamental group of the coned complex (`DeckGrading.lean`), so the lifted
 projective category need not be connected. We use the stabilizer `H` of the
-component of a base object in place of `G = π₁(K)`; for connected `A` the source paper's
+component of a base object in place of `G = π₁(K)`; for connected `A` that paper's
 argument then gives `W(P) ≅ ℤ^{n−1} ⊕ H_ab` (`Φ ∘ Ψ = 1`). Its freeness, needed
 later, follows: `W(P)` is finitely generated and embeds in a torsion-free group.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

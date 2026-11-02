@@ -7,8 +7,12 @@ public import LargeIndecomposable.RayCategories.RayTables.RayConfigs
 
 A configuration (`Tab.Conf`) of a finite poset whose cover paths are unique is determined by
 rays on the cover arrows, provided every path product is nonzero: `ρ a b` is the product along
-the unique path (`Conf.ofArrows`). This is how the source paper presents its trees ("every path
+the unique path (`Conf.ofArrows`). This is how that paper presents its trees ("every path
 survives").
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

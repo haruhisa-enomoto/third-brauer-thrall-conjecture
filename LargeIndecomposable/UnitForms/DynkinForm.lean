@@ -21,6 +21,10 @@ Thus `M` is positive definite."
 vector `z ≥ 0` supported on a configuration of edges, `qform` is bounded above
 by the same expression over the configuration (`qform_le_of_pattern`); this is
 how the forbidden subtrees are excluded.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

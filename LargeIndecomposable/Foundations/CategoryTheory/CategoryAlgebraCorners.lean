@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.Modules.Morita.FullIdempotent
-public import LargeIndecomposable.StandardForm.Basic.SplitTransfer
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.SplitTransfer
 public import LargeIndecomposable.Foundations.CategoryTheory.CategoryAlgebra
 
 /-!
@@ -20,6 +20,10 @@ For a family `F : ι → C` and a relabelling `σ : κ → ι`, both `Alg F` and
 `isRepresentationFinite_of_full`) and its corner `Alg (F ∘ σ)` (Lemma 3.1(1))
 (`isRepresentationFinite_comp`). Algebras are taken opposite, so that right
 modules are the modules `Rep F X` of `CategoryAlgebra.lean`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

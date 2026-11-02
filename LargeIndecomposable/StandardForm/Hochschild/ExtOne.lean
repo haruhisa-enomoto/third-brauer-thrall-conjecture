@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.A0Graded
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.A0Graded
 
 /-!
 # `Ext¹` between normalized modules (Lemma 6.3, `n = 1`)
@@ -21,6 +21,10 @@ section of the right almost split map, a contradiction."
 Here: the evaluated mesh maps `πE`, `ιτ` (`exact_E`, `ιτ_injective`), the right
 almost split property (`exists_factor`, `not_retraction`), and the vanishing
 (`extOne_vanish`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

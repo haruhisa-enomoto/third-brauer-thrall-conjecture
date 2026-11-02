@@ -1,8 +1,8 @@
 module
 
-public import LargeIndecomposable.MildContours.Basic.Theorem3
+public import LargeIndecomposable.MildContours.Contours.Theorem3
 public import LargeIndecomposable.MildContours.Diamonds.CaseA
-public import LargeIndecomposable.RayCategories.Basic.OneSided
+public import LargeIndecomposable.RayCategories.Distributive.OneSided
 public import LargeIndecomposable.RayCategories.Basic.MorphismDepth
 public import LargeIndecomposable.Cleaving.Shapes.ShapeDB23A
 public import LargeIndecomposable.Cleaving.Shapes.ShapeDB23B

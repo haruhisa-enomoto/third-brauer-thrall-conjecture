@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.Distributive.SplitBasicPrimitiveIdempotents
-public import LargeIndecomposable.RayCategories.Basic.Residue
+public import LargeIndecomposable.RayCategories.Quotients.Residue
 public import LargeIndecomposable.RayCategories.Distributive.SplitBasicRayCategory
 public import LargeIndecomposable.RayCategories.RayTables.EndpointChains
 

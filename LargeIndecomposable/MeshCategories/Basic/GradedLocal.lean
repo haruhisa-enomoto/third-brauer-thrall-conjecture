@@ -12,6 +12,10 @@ between distinct objects vanish; so this ideal is the categorical radical."
 For a finite-dimensional scalar mesh category on a finite translation quiver we
 take as radical the span of the images of paths of positive length
 (`radN 1`) and verify the axioms of `LocalFamily`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

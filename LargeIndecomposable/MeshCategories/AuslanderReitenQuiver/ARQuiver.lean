@@ -33,9 +33,13 @@ Formalization:
   nonzero.
 * `k(Γ_A)` is the scalar mesh category `C(Γ_A, c)` of Definition 2.4.
 
-The source paper shows that a different choice of bases or almost split
+That paper shows that a different choice of bases or almost split
 sequences changes `k(Γ_A)` only by an object-fixing isomorphism; Definition 1.2 is formalized with an
 existential choice of bases.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

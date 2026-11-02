@@ -18,6 +18,10 @@ is retained explicitly for the radical-power argument in Lemma 6.4.1(1)(i).
 
 The construction is entirely categorical: it uses no presentation or
 classification of a concrete algebra or its modules.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

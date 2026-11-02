@@ -6,11 +6,15 @@ public import LargeIndecomposable.MeshCategories.StarModels.StarCase
 /-!
 # The odd quotients of even `A` (Appendix A)
 
-The source paper, "The odd quotients of even A": with all
+That paper, "The odd quotients of even A": with all
 mesh coefficients one, "a correction to an arrow gives a relation between a row
 path and its one-arrow rotation, with opposite classes"; rows are reduced by the
 sum of their levels to words in the middle arrows `ε`, and "going around the
 cycle gives `w_j = -w_j`".
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

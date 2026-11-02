@@ -18,6 +18,10 @@ specialness into an unconditional dependent left-ladder construction.  It
 then exposes flat infinite families and exact finite prefixes for Iyama,
 *Tau-categories I*, Lemma 6.4.1(1)(ii).  The construction is entirely
 categorical and uses no concrete algebra or module classification.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

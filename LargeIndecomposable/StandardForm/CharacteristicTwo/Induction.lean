@@ -2,13 +2,13 @@ module
 
 public import LargeIndecomposable.MultiplicativeBases.Normed.Char2Basic
 public import LargeIndecomposable.RayCategories.RayTables.TableInduction
-public import LargeIndecomposable.StandardForm.Basic.A0Lift
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.A0Lift
 public import LargeIndecomposable.Modules.KrullSchmidt.SkeletonExists
 
 /-!
 # The dimension induction (Proposition 8.3) in characteristic two
 
-The source paper. The induction is run on representation-finite ray tables `T`
+That paper. The induction is run on representation-finite ray tables `T`
 (Definition 3.9: `kT` is its own ray linearization). Its conclusion is the weight lifting
 property of `T` (Proposition 8.3(3), in the form `hW` used by Theorem 9.1):
 
@@ -20,6 +20,10 @@ property of `T` (Proposition 8.3(3), in the form `hW` used by Theorem 9.1):
 
 Corollary 10.5 enters the characteristic-two step and itself uses the induction hypothesis
 (through Lemma 9.2 and Theorem 9.1); here it is the hypothesis `Cor105Hyp`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

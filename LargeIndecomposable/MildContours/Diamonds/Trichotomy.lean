@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.MildContours.Basic.Lemma22
+public import LargeIndecomposable.MildContours.Contours.Lemma22
 public import LargeIndecomposable.Cleaving.Shapes.ShapeDM5
 public import LargeIndecomposable.Cleaving.Shapes.ShapeSE6
 

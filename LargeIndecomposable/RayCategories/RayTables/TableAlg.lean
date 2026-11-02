@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.RayTables.RayTable
-public import LargeIndecomposable.StandardForm.Basic.SplitTransfer
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.SplitTransfer
 
 /-!
 # The linearization `kP` of a ray table

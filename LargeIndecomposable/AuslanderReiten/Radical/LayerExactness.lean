@@ -23,6 +23,10 @@ Here `α_i : τx → E_i` and `β_i : E_i → x` are the components of the two m
 At a projective vertex the left term is zero, which gives Proposition 2.6(2).
 The statements are proved in `mod A`, from Lemma 2.5, and hold for every
 finitely generated `W`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

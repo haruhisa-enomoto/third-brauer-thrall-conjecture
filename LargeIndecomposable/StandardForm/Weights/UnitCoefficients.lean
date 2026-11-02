@@ -17,6 +17,10 @@ Here `H²(K; G) = 0` for an abelian group `G` is proved from the acyclic matchin
 of Lemma 4.2 (`Morse.exists_cochain`): the matched edge of each triangle is
 solved for, in increasing order of the potential. For the mesh complex this
 gives the rescaling (`exists_unit_rescaling`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

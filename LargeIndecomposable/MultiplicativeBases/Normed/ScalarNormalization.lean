@@ -4,7 +4,7 @@ public import LargeIndecomposable.StandardForm.Weights.ObjectValues
 public import LargeIndecomposable.MultiplicativeBases.Normed.Descent
 public import LargeIndecomposable.MultiplicativeBases.Normed.A0Basis
 public import LargeIndecomposable.MeshCategories.Coverings.DeckCountable
-public import LargeIndecomposable.StandardForm.Basic.A0RepFinite
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.A0RepFinite
 public import LargeIndecomposable.Modules.Idempotents.ProjectiveIdempotents
 
 /-!
@@ -20,6 +20,10 @@ each nonzero deck-homogeneous piece of `A₀`, closed under composition up to ze
 (`exists_deckVectors`); these form a multiplicative basis of
 `A₀ = (Alg F₀)ᵒᵖ` containing the primitive idempotents of the labels
 (`exists_multBasis_A0`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

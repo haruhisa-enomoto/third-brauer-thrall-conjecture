@@ -3,7 +3,7 @@ module
 public import LargeIndecomposable.RayCategories.Distributive.ProjectiveCategoryRays
 public import LargeIndecomposable.RayCategories.Distributive.InsertionSpan
 public import LargeIndecomposable.RayCategories.Distributive.LinearizationTable
-public import LargeIndecomposable.RayCategories.Basic.FromDistributive
+public import LargeIndecomposable.RayCategories.Distributive.FromDistributive
 public import LargeIndecomposable.RayCategories.Basic.Small
 public import LargeIndecomposable.RayCategories.RayTables.RayPres
 

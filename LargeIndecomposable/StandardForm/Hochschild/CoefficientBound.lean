@@ -8,7 +8,7 @@ public import LargeIndecomposable.StandardForm.IntegralLifting.PrimeCoker
 /-!
 # Proposition 10.3 in coefficients
 
-The source paper (`prop:integral-bockstein`): "In Lemma 10.2, the map `j` is
+That paper (`prop:integral-bockstein`): "In Lemma 10.2, the map `j` is
 zero by (mod-four-mesh-annihilator). Injectivity of `Ψ₄` gives `i_* = 0`."
 
 In coefficients (`RaySys.Sys.IStar`): for a cochain `z` of character `χ` over `𝒪 = ℤ/4` with
@@ -18,6 +18,10 @@ the cocycle `Φ₂(2z) = 2Φ₂(z)` of `A⁽⁴⁾ = 𝒪P` is twice the cocycle
 coboundary are `d₁` of coefficients (`coef_of_hcobdry`). For `A` this runs in the prime-field
 model `C⁽²⁾` with `Θ₂ : 𝔽₂P ≅ A⁽²⁾` (`IndSkeleton.tab₂`) and the rows of
 `IndSkeleton.prime_cokerSpan`. This proves `IStarHyp`, hence `Cor105Hyp` (`cor105Hyp`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

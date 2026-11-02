@@ -10,7 +10,12 @@ public import Mathlib.Algebra.Category.ModuleCat.Simple
 
 The simple module `S_x = P_x / rad P_x` of a projective label and the identity
 `dim Hom_A(P_y, S_x) = δ_{xy}` used in the proof of Proposition 2.10, stated for
-an `IndSkeleton`.-/
+an `IndSkeleton`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
+-/
 
 @[expose] public section
 

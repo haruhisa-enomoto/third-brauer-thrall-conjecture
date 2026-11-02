@@ -14,6 +14,10 @@ ideal, and (for surjective `red`) every element of the mesh ideal over `k` lifts
 over `𝒪`. This is the right exactness used in Lemma B.2
 ("Right exactness of tensor product
 gives `coker D_m(E₄) ⊗ 𝔽₂ ≅ coker D_m(C⁽²⁾)`").
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

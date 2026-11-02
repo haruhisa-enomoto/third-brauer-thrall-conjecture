@@ -5,7 +5,7 @@ public import LargeIndecomposable.MeshCategories.Traces.TraceE78Char2
 /-!
 # Exceptional twisted traces in characteristic two (Appendix B)
 
-The source paper. For a star of type `E` with short
+That paper. For a star of type `E` with short
 arm `a` (`L a = 0`), medium arm `b` (`L b = 1`) and long arm `c`, write `x, y` for the
 closed paths along `c, b`; then `x^m = y³ = (x + y)² = 0` with `m = L c + 2`.
 
@@ -17,6 +17,10 @@ closed paths along `c, b`; then `x^m = y³ = (x + y)² = 0` with `m = L c + 2`.
   `[ξ₃] = 0`. In degree four, the first relation with `w = ξ₁` gives `[ξ₄] = 0`, and the
   second with `w = ξ₃` gives `[ξ₅] = 0`. Degree five is already spanned by `ξ₆`."
   (`trace_E6_twist_c2`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

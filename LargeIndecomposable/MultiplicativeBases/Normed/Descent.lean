@@ -22,6 +22,10 @@ the cover by translating sheets (`tr`), with the same morphisms (`trHom`). The
 values `f` are the transport of `(root, 1)` under the homomorphism from the free
 group to permutations of `objects × kˣ` lifting the generators (`Ψ`): this is
 "a value at one root determines consistent values everywhere".
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

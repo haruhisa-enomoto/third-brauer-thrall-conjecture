@@ -13,6 +13,10 @@ mesh coefficients of the corresponding tree edge, and these are opposite."
 
 Here the cokernel of `D_m` is the quotient `MeshFamily c ⧸ imageD c m`, and the
 coefficients are *opposite on mates*: `c_{y, σ a} = - c_{x, a}` for `a : y → x`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

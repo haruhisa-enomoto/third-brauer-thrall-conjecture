@@ -12,6 +12,10 @@ set `S` of spanning rows, at most one in each periodic component, together with 
 mesh weights `W_R` (`R ∈ S`) such that the weight of the row `R'` minus `ν` of its vertex
 is `1` if `R' = R` and `0` otherwise. This is the input of Proposition 7.5: by Lemma 7.4
 these give integer ray weights dual to the residual characters.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

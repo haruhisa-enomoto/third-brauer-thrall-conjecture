@@ -12,6 +12,10 @@ free groupoid (`IsFreeGroupoid.endIsFreeOfConnectedFree`, by a spanning tree).
 Here the free groupoid on any quiver is shown to be free in Mathlib's sense, and
 the vertex group at `X₀` is identified with the vertex group of the free
 groupoid on the connected component of `X₀`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

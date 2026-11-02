@@ -6,11 +6,15 @@ public import LargeIndecomposable.Foundations.CategoryTheory.CategoryAlgebra
 # Dual representables and injective copresentations
 
 For the category algebra `Λ` of a family `F`, the dual representable
-`J_p = (D C(F p, F q))_q` is the module `D(e_p Λ)` (in the source paper's
+`J_p = (D C(F p, F q))_q` is the module `D(e_p Λ)` (in that paper's
 right-module notation `D(Λ e_p)`). A
 functional `λ` on a module `X` gives `θ_λ : X → J_p`,
 `θ_λ(x)_q(h) = λ(h · x)`. Every finite-dimensional module embeds into a finite
 sum of the `J_p`, which gives the injective copresentations used in Lemma 2.9.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

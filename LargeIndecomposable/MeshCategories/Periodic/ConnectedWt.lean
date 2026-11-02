@@ -10,6 +10,10 @@ Strengthening of `connected_cokerSpan` for Proposition 7.5: the spanning row (if
 a finite connected stable translation quiver in characteristic two has a winding mesh
 weight in which the weight of the row minus `ν` of its vertex is one
 (`connected_cokerSpan_wt`; the weight is `floorWt`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

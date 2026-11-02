@@ -3,7 +3,7 @@ module
 public import LargeIndecomposable.MultiplicativeBases.ScalarPresentation.DeepRayPath
 public import LargeIndecomposable.RayCategories.Contours.ProperPathInterlacement
 public import LargeIndecomposable.RayCategories.Basic.MorphismDepth
-public import LargeIndecomposable.RayCategories.Basic.FromDistributive
+public import LargeIndecomposable.RayCategories.Distributive.FromDistributive
 
 /-!
 # Proportional values of parallel paths

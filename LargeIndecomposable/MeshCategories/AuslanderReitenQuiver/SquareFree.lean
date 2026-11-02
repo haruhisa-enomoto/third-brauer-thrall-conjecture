@@ -13,14 +13,19 @@ Lemma 2.2 (`lem:square-free`): for a basic
 representation-finite algebra over an algebraically closed field, `Γ_A` has
 no loops and at most one arrow between each ordered pair of vertices.
 
-The source paper's proof: an irreducible map is a monomorphism or an
+That paper's proof: an irreducible map is a monomorphism or an
 epimorphism, so its source and target have different dimensions; this
 excludes loops. If there are two arrows `X → Y` with `dim X > dim Y`, then `Y`
 is nonprojective, the middle term of the almost split sequence ending at `Y`
 contains `X²`, hence `dim τY ≥ 2 dim X − dim Y > dim X`, and the mates give two
 arrows `τY → X`. Repeating gives indecomposables of strictly increasing
 dimension, contrary to finite representation type. The case `dim X < dim Y`
-is dual.-/
+is dual.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
+-/
 
 @[expose] public section
 

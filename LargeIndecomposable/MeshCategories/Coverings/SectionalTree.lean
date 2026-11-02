@@ -18,6 +18,10 @@ arrow between two vertices. This file builds the type `SecPath` of sectional
 paths from `x₀`, shows it is finite when sectional paths are bounded, and
 equips it with the oriented tree structure (edges from a path to its sectional
 one-arrow extensions).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

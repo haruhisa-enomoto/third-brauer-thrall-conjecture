@@ -10,7 +10,7 @@ set_option backward.isDefEq.respectTransparency.types false
 /-!
 # Additive subcategories and indecomposable support
 
-The adapter needed by the source paper: a full, replete
+The adapter needed by that paper: a full, replete
 subcategory of finitely generated modules which is closed under finite direct
 sums and direct summands is completely determined by its indecomposable
 support.
@@ -18,6 +18,10 @@ support.
 No Krull--Schmidt multiplicity-uniqueness theorem is used.  The only uniqueness
 input is the existing radical argument
 `IndecomposableSkeleton.not_splitMono_of_labels_ne`.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

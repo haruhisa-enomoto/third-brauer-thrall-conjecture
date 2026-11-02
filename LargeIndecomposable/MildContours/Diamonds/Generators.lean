@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MildContours.Diamonds.Closure6
-public import LargeIndecomposable.MildContours.Basic.Assembly
+public import LargeIndecomposable.MildContours.Contours.Assembly
 public import LargeIndecomposable.Cleaving.Shapes.ShapeD4B
 
 /-!

@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.LiftedModules
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.LiftedModules
 
 /-!
 # The automorphism `Φ` of the cover induced by a weight
@@ -20,6 +20,10 @@ support (`exists_twistAut`, from `weight_twist_iso`). Conjugating composition
 with `f : X̃ → Ỹ` by these gives a natural family, hence by Lemma 4.8 a morphism
 `Φ f` (`Φ`). `Φ` is linear, multiplicative, injective, and multiplies a
 morphism `z₁ → z₂` of `L` by `d(z₁, z₂)` (`Φ_proj`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

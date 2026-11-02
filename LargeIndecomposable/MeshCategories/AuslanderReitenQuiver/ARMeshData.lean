@@ -20,6 +20,10 @@ the right mesh maps at `x` are the arrows ending at `x`, and at a nonprojective
 are exact, with first map given by `c_{x,a} (σa)`; at a projective `x` the
 right mesh map is a monomorphism. Exactness is reduced to homogeneous families
 of paths (`ARMeshExactness.lean`) by the path-length grading.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

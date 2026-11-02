@@ -23,6 +23,10 @@ Here the splitting is built from diagonal idempotents whose degree-`0` corners a
 (`Diag`, `exists_splitD`); for `S = Λ₀ ≅ kⁿ` (`Vertices`) this is `exists_split`. A split
 semisimple `S` with matrix blocks is handled in `Refinements/SplitSemisimple.lean` by lifting
 matrix units and transporting the splitting of the root corners.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

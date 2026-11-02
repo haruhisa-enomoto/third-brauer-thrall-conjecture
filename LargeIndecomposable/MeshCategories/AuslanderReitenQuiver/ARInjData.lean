@@ -3,7 +3,7 @@ module
 public import LargeIndecomposable.MeshCategories.AuslanderReitenQuiver.ARMeshData
 public import LargeIndecomposable.Foundations.Gradings.GradedHomDimension
 public import LargeIndecomposable.Modules.Idempotents.ProjectiveIdempotents
-public import LargeIndecomposable.StandardForm.Basic.InjectiveLabels
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.InjectiveLabels
 
 /-!
 # The labels `P_x, S_x, I_x` of `k(Γ_A)`
@@ -18,6 +18,10 @@ the original simple `S_x = P_x / rad P_x` and the original injective
 * `dim C(P_y, I_x) = dim I_x e_y = dim e_yAe_x = dim C(P_x, P_y)`,
 
 all through `eq:graded-hom-dimensions` (`finrank_meshHom`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

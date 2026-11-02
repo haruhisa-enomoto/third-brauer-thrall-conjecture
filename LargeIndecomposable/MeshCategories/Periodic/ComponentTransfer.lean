@@ -17,6 +17,10 @@ Proof of Proposition 5.1 (`prop:periodic-localization`), last paragraph, and
 Consequently, if `D_m(C(Q_S))` is surjective and the rows through vertices
 outside `S` are already in the image of `D_m(C(Q))`, then every row at a vertex
 of `S` is in that image (`row_mem_imageD_of_restrict`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

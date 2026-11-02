@@ -11,6 +11,10 @@ mesh relations are homogeneous, so the degree projections of `kQ` descend to
 `C(Q, c)` is finite-dimensional, only finitely many degree parts are nonzero,
 so all sufficiently long paths vanish (`exists_pathMor_eq_zero`); this is the
 first step of the proof of Proposition 4.1.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

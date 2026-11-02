@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.MatFam
+public import LargeIndecomposable.Cleaving.ThinCategories.MatFam
 public import LargeIndecomposable.Cleaving.Shapes.ShapeF8R1D
 
 /-!

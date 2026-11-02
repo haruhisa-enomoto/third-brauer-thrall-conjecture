@@ -18,6 +18,10 @@ We work in a star with three arms, deleting every vertex at depth at least two:
 the retained vertices form the `D₄` with centre `o` and leaves `a_i`. The
 functional takes the value `M i j` on `o a_i o a_j o` and on `a_i o a_j o a_i`,
 where `M` is the cyclic matrix with rows and columns summing to zero.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

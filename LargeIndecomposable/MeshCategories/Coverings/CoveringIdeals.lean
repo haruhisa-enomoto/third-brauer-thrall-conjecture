@@ -20,6 +20,10 @@ the linear path category. Its contextual ideal is spanned by the composites
 relations of the cover map onto relations of the base, every base relation
 starting at `φ X` lifting to one starting at `X`. Then `φ` preserves and
 reflects ideal membership (`mapPaths_mem_ideal_iff`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

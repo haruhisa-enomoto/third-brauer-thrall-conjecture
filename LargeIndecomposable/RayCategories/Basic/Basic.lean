@@ -21,7 +21,7 @@ with zero morphisms such that
 The class `IsRayCategory` records the consequences of these axioms used in
 this development (skeletal, locally finite, finite hom sets, nonzero
 identities, nilpotent non-identity endomorphisms); the BGRS ray category of a
-distributive algebra satisfies them (`RayCategories/Basic/FromDistributive.lean`).
+distributive algebra satisfies them (`RayCategories/Distributive/FromDistributive.lean`).
 -/
 
 @[expose] public section

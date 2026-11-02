@@ -19,6 +19,10 @@ We record this without assumptions on the characteristic: every positive trace i
 an integer multiple of the trace of the alternating word `altE` starting with `x`;
 that trace vanishes in odd degree for the trivial twist, in even degree for the
 interchange, and in degree above `N = L c + 2`, where `c` is the long arm.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

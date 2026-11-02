@@ -12,6 +12,10 @@ fibres are the orbits of `g (v, t) = (σ v, t + c₀)`, with `σ` fixing the cen
 Every coefficient system `c` on `Q` becomes the signed preprojective one after
 rescaling arrows and entire mesh relations: the scales of `StarGauge` are
 `g`-invariant, so they descend to `Q`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

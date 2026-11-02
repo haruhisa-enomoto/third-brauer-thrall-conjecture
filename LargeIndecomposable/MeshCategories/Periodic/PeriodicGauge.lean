@@ -19,6 +19,10 @@ In height coordinates an edge line is indexed by `ℤ` and the equations read
 endpoint when it sits at height `h + 2`, and the parent's scales are already
 absorbed into `S`. A solution periodic of even period `P` exists after choosing
 one factor of `η'` per period (`exists_periodic_line`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.A0Table
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.A0Table
 public import LargeIndecomposable.StandardForm.Hochschild.TransportFamily
 public import LargeIndecomposable.StandardForm.Hochschild.WeightHH
 public import LargeIndecomposable.StandardForm.Weights.CharBasis
@@ -19,6 +19,10 @@ weight `w = (w_R)_{R ∈ S} × length` built from the dual mesh weights of Propo
 `(e_R, deg)`, part of an evident integer basis (`latBasis`); this replaces Proposition 7.5
 and Lemma 7.4 here (which need a connected Auslander–Reiten quiver). Corollary 10.5 is an
 explicit hypothesis of `char2_A0`; it is discharged by `cor105Hyp` in `FinalBasis.lean`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

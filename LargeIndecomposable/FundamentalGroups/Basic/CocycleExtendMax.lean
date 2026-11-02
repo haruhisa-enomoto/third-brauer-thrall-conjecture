@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.FundamentalGroups.Basic.CocycleExtend
-public import LargeIndecomposable.RayCategories.Basic.Op
+public import LargeIndecomposable.RayCategories.Opposite.Op
 
 /-!
 # Extending a cocycle across a maximal point

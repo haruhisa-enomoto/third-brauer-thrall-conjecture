@@ -12,6 +12,10 @@ public import LargeIndecomposable.StandardForm.Posets.FinPoset
   `T`, ordered by `r ≤ s` if `r v = s` for a ray `v`. Its incidence table is a quotient of
   the graded cover on the objects `(tgt r, wt r)` (the action on `H(X, -)`), so it is
   representation-finite when `kP` is (Lemma 4.10).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

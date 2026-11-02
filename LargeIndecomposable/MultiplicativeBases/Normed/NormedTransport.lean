@@ -9,6 +9,10 @@ Corollary 5.5(2): "The ray basis transports to
 a normed multiplicative basis of `A`." An algebra isomorphism preserves
 products, idempotents, primitivity and the radical powers, so it transports
 normed multiplicative bases (`HasNormedMultiplicativeBasis.of_algEquiv`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

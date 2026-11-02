@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MultiplicativeBases.Twisted.ArrowTwist
-public import LargeIndecomposable.RayCategories.Basic.OneSided
+public import LargeIndecomposable.RayCategories.Distributive.OneSided
 public import LargeIndecomposable.Cleaving.ClosedChains.RadicalPowerParameter
 public import LargeIndecomposable.RayCategories.Distributive.BGRSRayArrowRadical
 

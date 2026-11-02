@@ -19,6 +19,10 @@ separates target normalization from complementary-successor specialness;
 subsequent modules construct both fields categorically.
 
 No concrete algebra or module classification occurs in this file.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -7,7 +7,7 @@ public import LargeIndecomposable.StandardForm.Weights.MeshWeights
 /-!
 # The winding mesh weight of a periodic component (Proposition 7.5)
 
-The source paper (`prop:primitive-parameter-characters`): "Lift `p_i`
+That paper (`prop:primitive-parameter-characters`): "Lift `p_i`
 to `ℤΔ`, starting at a vertex `(x, j)` over `τv_i`. Its endpoint lies over `v_i` […] The
 closed walk `p_i t_{v_i}⁻¹` winds once around the component."
 
@@ -17,6 +17,10 @@ transformations `(v, t) ↦ (ρ v, t + c₀)`, an integer mesh weight measuring 
 an arrow lifted to `X → Y` gets weight `⌊Y_t / c₀⌋ − ⌊X_t / c₀⌋`, which does not depend on
 the lift (`floorWt`). For the candidate row of a word of length `c₀/2 + 1` (Appendix B) the
 weight of the row minus `ν` is one (`floorWt_candRow`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

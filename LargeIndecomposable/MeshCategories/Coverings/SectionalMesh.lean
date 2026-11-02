@@ -11,6 +11,10 @@ maps to the mesh relation of `Q` at `π X`, so `π` preserves the mesh ideal; an
 every mesh relation of `Q` starting at `π Z` lifts to one starting at `Z`, so
 `π` reflects it (`RelSystem.mem_ideal_of_mapPaths_mem`). In particular, if
 paths of length at least `N` vanish in `C(Q, c)`, they vanish upstairs.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

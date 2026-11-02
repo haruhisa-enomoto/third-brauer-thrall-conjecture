@@ -21,6 +21,10 @@ mesh data of `C⁽²⁾` (`primeMeshData`) obtained by descent of the exact mesh
 (`arMeshExact`, Proposition 2.6), with injective labels (`primeInjData`) and degree-one arrows.
 Lemma 6.3 then holds for `C⁽²⁾` (`primeExtVanish`): the same proof, for the descended mesh data,
 replaces the base change of `Ext`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

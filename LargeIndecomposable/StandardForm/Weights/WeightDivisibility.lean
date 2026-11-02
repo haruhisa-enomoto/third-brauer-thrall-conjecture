@@ -19,6 +19,10 @@ extension by products of `k*`). Given `d` and `n`, an `n`-th root on `T'`
 extends over the source `s` by Lemma 4.9 (`ratio_of_mult`), and the defect on
 the new lines is constant along comparabilities of the support poset (the
 kernel), so it has a consistent `n`-th root.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

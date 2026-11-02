@@ -17,6 +17,10 @@ middle edge is `{h - 1, h}`, and the deck generator is
 `(d, s) ↦ (2h - 1 - d, s + c₀)` with `c₀` odd. The coefficients are recorded by
 `C a b s` (the coefficient at `(a, s + 2)` of the arrow from `(b, s + 1)`). We
 solve the equations on the half `d ≥ h` and fold the other half onto it.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -5,7 +5,7 @@ public import Mathlib
 /-!
 # Krull dimension bounds for finitely generated algebras (for Lemma 8.8)
 
-The source paper (`lem:dimension-infinity`): "Every component of such a zero
+That paper (`lem:dimension-infinity`): "Every component of such a zero
 set has dimension at least `N − F`. The change-of-basis group has dimension `D`, and its
 simultaneous scalar subgroup stabilizes every representation. An orbit has dimension equal
 to that of the group minus that of the stabilizer, so each orbit has dimension at most
@@ -20,6 +20,10 @@ The dimension theory used:
 * `card_le_of_inj_localization`: a polynomial algebra embedding in a localization of a
   polynomial ring in `n` variables has at most `n` variables (transcendence degree);
 * `height_ge_of_chain`: a chain of primes bounds the height from below.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

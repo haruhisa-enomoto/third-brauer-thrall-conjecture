@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.MildContours.Basic.ExcAssembly
+public import LargeIndecomposable.MildContours.Assembly.ExcAssembly
 public import LargeIndecomposable.Crowns.Basic.LongNotInContour
 public import LargeIndecomposable.BongartzTheorem.Reduction.DataForm
 public import LargeIndecomposable.BongartzTheorem.Reduction.CoverDichotomy
@@ -8,7 +8,7 @@ public import LargeIndecomposable.BongartzTheorem.Reduction.CoverDichotomy
 /-!
 # The main results from the dichotomy step alone
 
-`ScalarProportionality` is proved (`MildContours/Basic/ExcAssembly.lean`), so BGRS multiplicative bases hold
+`ScalarProportionality` is proved (`MildContours/Assembly/ExcAssembly.lean`), so BGRS multiplicative bases hold
 (`twistedMulBasisExists_of_scalar`). Bongartz's Theorem 6, Theorem A and both corollaries
 now depend only on `CoverDichotomy` (the dichotomy on the universal cover).
 -/

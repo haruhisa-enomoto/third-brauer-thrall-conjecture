@@ -19,6 +19,10 @@ scales `M e h` (the arrow over the edge with child endpoint `e` at source height
 scales are known, and `exists_periodic_line_vertex` gives the arrow scales and
 the child's relation scales, with period `per · c₀`. The other arms of the orbit
 are obtained by applying `g`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

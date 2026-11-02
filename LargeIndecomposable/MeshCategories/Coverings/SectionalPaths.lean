@@ -16,6 +16,10 @@ least `N` vanish. Hence every sectional path has length less than `N`."
 
 A path is recorded by its list of arrows (`arrowList`), and it is sectional when
 no two consecutive arrows form a mesh pair `(σ a, a)`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -18,6 +18,10 @@ additive function `tr` on words, compatible with these relations, with
 `tr (u v) = tr (v θ(u))` and `tr (x_i^q) = 0` for arms fixed by `θ`. It descends
 to an additive map on the quotient ring `R`, in which the calculations of
 Appendix A are ring identities.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

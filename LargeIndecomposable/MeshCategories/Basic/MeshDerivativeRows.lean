@@ -6,7 +6,7 @@ public import LargeIndecomposable.Foundations.PathCategories.PathGrading
 /-!
 # Rows and columns of the mesh derivative
 
-Subsection 5.1 of the source paper.
+Subsection 5.1 of that paper.
 
 For a scalar mesh category `C = C(Q, c)` the derivative `D_m` of
 `eq:mesh-derivative` is linear. Its target `V_{m+1}` is spanned by the *rows*
@@ -20,6 +20,10 @@ two entries (`column_eq`). This file sets up these objects:
 * `row c x w`, the row of a path, and `surjective_iff_rows`: `D_m` is
   surjective exactly when every row of length `m + 1` lies in the image;
 * `column_eq`, the two entries of a correction column.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

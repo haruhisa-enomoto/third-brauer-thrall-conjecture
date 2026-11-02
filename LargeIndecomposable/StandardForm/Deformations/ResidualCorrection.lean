@@ -18,6 +18,10 @@ Deviation from the source: the source takes `I` to be exactly the components wit
 nonzero class; we keep all components with a candidate row (a superset), which is what
 the spanning statement needs. The component models and degrees of the rows are recorded
 by `connected_cokerSpan` and the files `StarDSpan`, `StarESpan`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

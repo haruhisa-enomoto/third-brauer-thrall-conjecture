@@ -13,6 +13,10 @@ cocycles; they are normalized relative to the transported identities; an indicat
 of character `χ` has character `χ` and internal degree `deg χ`; and the family
 `m + Σ t_E μ_E` is associative (Proposition 11.3(1)). These are the hypotheses of
 Theorem 7.7 other than spanning.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

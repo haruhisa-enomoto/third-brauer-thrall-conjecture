@@ -15,6 +15,10 @@ the prime-field model `C⁽²⁾` inherits these properties
 "since it does so after the faithful field extension to `k`". Here (`MeshExact.descend`):
 exactness of the meshes of `C(Q, c)` over `k`, for a gauge `c = η · (ι ∘ u) · μ μ`, implies that of
 `C(Q, u)` over the subfield `K`, through the form functor and its retractions (`FormFunctor`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

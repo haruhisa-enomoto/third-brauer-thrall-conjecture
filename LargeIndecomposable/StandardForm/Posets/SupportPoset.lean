@@ -19,6 +19,10 @@ surjective algebra map from the category algebra of the support (Lemma 4.7) to
 the incidence algebra, sending a morphism to its action on `M`
 (`qSrc`, `qSnk`). Hence the incidence algebra is representation-finite
 (Lemma 4.6 applied to the quotient).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

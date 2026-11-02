@@ -14,12 +14,16 @@ kernel inclusion `Z⟨b⟩ → P⟨a⟩` is also radical. […] Hence `b − a �
 Here the cover is `P = ⊕_ℓ M_{x_ℓ}⟨d_ℓ⟩ → M_i`, `ℓ` running over homogeneous bases of
 the spaces `C_d(P_x, X_i)` (`cπ`, with graded `k`-section `cs`).
 
-Deviation: this cover need not be minimal. Minimality is used in the source paper only to
+Deviation: this cover need not be minimal. Minimality is used in that paper only to
 see that kernel summands `Z⟨b⟩` have `b ≥ 2`. Here the bound is proved for the
 nonprojective summands directly (`two_le_shift`): every component
 `Z → M_{x_ℓ}` has degree `b − d_ℓ`, and it vanishes when `b − d_ℓ ≤ 0`, by
 `eq:normalized-hom-degrees`, since `Z ≠ P_{x_ℓ}`. Projective summands contribute
 zero whatever their shift.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

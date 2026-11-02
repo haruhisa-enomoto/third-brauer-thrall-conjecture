@@ -14,6 +14,10 @@ an allowed degree is an integer multiple of the trace of one word `W₀`, then a
 cokernel classes are multiples of the class of the row given by `W₀` at the centre
 (`star_span_deg`). This is the analogue of `star_surjective_deg` with a spanning
 word instead of vanishing traces.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

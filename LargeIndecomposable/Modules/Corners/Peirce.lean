@@ -15,6 +15,10 @@ It is used to identify a basic algebra with the algebra `A₀` of its projective
 labels (Corollary 5.5: "Restrict the resulting
 isomorphism `ind(mod A) ≅ C` to the labelled projective objects and take
 opposite algebras").
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

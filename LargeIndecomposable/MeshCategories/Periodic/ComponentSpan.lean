@@ -13,6 +13,10 @@ on a `τ`-closed subquiver `Q_S` (`inclRow_mem_imageD`): if its classes lie in t
 `D_m(C(Q_S))`, its inclusion lies in the image of `D_m(C(Q))`, provided the rows through
 vertices outside `S` do. Consequently spanning rows transfer
 (`rowClass_mem_rowSpan_of_restrict`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

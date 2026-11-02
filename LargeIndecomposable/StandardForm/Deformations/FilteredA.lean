@@ -1,7 +1,7 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.StandardAlgebras
-public import LargeIndecomposable.StandardForm.Basic.GradedRealizationIso
+public import LargeIndecomposable.StandardForm.Main.StandardAlgebras
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.GradedRealizationIso
 public import LargeIndecomposable.StandardForm.Deformations.PositiveDeformation
 
 /-!
@@ -15,6 +15,10 @@ Here: the projective corner `(Alg (P_p)_p)ᵒᵖ` of `ind(mod A)` is filtered by
 powers of its entries; the initial forms of Proposition 2.6 (`phi`) identify the layers with
 the length-graded pieces of `A₀` multiplicatively (`posFiltProj`). The Peirce isomorphism
 transports this to `A` (`posFiltA`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

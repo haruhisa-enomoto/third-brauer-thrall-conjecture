@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.RayArguments.CentralizerTable
+public import LargeIndecomposable.StandardForm.LocalRayGeometry.CentralizerTable
 public import LargeIndecomposable.StandardForm.Hochschild.HochschildCochains
 
 /-!
@@ -13,6 +13,10 @@ The correction `ε(r, s) = r * s` on pairs with `rs = 0` (and `0` otherwise) is 
 of the stem product (associative, Prop 8.12) and the ray product. The identity `dε = 0` of
 the proof of Lemma 11.1 is proved here in the monoid with zero `M P`, case by case on the
 table of that proof; nested insertions vanish by Cor 8.11.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

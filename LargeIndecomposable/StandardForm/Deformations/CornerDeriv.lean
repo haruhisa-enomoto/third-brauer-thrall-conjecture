@@ -6,7 +6,7 @@ public import LargeIndecomposable.Foundations.Gradings.GModLemmas
 /-!
 # A first-order functor on the projective corner trivializes the deformation
 
-The source paper (proof of Lemma 10.2): "If its value is zero, arrow changes
+That paper (proof of Lemma 10.2): "If its value is zero, arrow changes
 remove all first-order mesh errors. The Hom category of the lifted modules becomes constant.
 Restricting to its actual projective corner trivializes the algebra deformation."
 
@@ -17,6 +17,10 @@ relations exactly and to first order. At projective labels `p` the module is reg
 evaluation at `w_p` identifies `RQ(p, s)` modulo the mesh ideal with `N_p e_s`. Then `μ` is a
 Hochschild coboundary (`eq_hcobdry`), through the derivation `Δ(b) = ∑_p ψ_p Δ_p(w_p b)` with
 `Δ_p(n) = ∑_s δ(n e_s)(w_s)`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

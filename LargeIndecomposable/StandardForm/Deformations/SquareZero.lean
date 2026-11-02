@@ -5,7 +5,7 @@ public import LargeIndecomposable.StandardForm.Hochschild.GradedExt
 /-!
 # Square-zero lifts of modules and maps (Lemma 6.6)
 
-The source paper (`lem:square-zero-selected-lifts`): for a
+That paper (`lem:square-zero-selected-lifts`): for a
 Hochschild two-cocycle `μ` of internal degree `q > 0` of a graded algebra `Λ`
 over `R` (a field or `ℤ/4`), put `Λ_μ = (Λ ⊗ R[ε]/(ε²), m + εμ)`. "Write a
 lifted action as `ma + εν_i(m,a)`. Its equation is
@@ -20,8 +20,12 @@ degree-`q` coordinate change. […] For a degree-`r` map `f`, write its lift as
 Formalization: the lifted module and maps are recorded by their first-order
 equations (`ActLift`, `IsLiftHom`), with `R[ε]`-linear structure
 `ε·(f, g) = (0, f)`; the regular lift at a cyclic projective is `ν = μ`
-(`CycProj.actLift`, the source paper's "If `M_i = e_xΛ`, the regular module `e_xΛ_μ`
+(`CycProj.actLift`, that paper's "If `M_i = e_xΛ`, the regular module `e_xΛ_μ`
 is such a lift"). The additional gradings of the lemma are in `SquareZeroWeight.lean`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

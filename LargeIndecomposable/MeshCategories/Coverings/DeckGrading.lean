@@ -26,6 +26,10 @@ grades `C(Q, c)` (`WeightGrading.lean`): this is the covering formula
 cone edges length zero; triangles preserve length, so length is a
 homomorphism `ℓ : G → ℤ` with `ℓ (deg p) = |p|` (`len_degW`); this is the
 height of the source.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

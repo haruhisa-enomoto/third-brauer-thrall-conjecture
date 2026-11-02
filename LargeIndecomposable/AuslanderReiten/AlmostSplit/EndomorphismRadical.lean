@@ -12,7 +12,11 @@ The anti-exchange argument uses the Jacobson radical of the local
 endomorphism ring of an indecomposable finite-length module.  Mathlib
 proves that the Jacobson radical of an Artinian ring is nilpotent.  This
 file identifies its elements with the noninvertible endomorphisms and
-packages the iteration-on-images argument needed by the source paper.
+packages the iteration-on-images argument needed by that paper.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

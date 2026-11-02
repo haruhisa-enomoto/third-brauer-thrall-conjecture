@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.Coverings.UniversalCover.CoverPath
-public import LargeIndecomposable.RayCategories.Basic.ArrSetIdeal
+public import LargeIndecomposable.RayCategories.Quotients.ArrSetIdeal
 public import LargeIndecomposable.FundamentalGroups.Fischbacher.KillingArrows
 
 /-!

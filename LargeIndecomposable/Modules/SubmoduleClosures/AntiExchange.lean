@@ -8,10 +8,14 @@ set_option backward.isDefEq.respectTransparency.types false
 # Anti-exchange for quotient closure
 
 This file formalizes the trace-and-radical proof of anti-exchange from
-the source paper.  The proof works on a chosen indecomposable skeleton and
+that paper.  The proof works on a chosen indecomposable skeleton and
 assumes that each indecomposable endomorphism ring is Artinian.  That is
 the exact ring-theoretic input used to make its Jacobson radical
 nilpotent.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

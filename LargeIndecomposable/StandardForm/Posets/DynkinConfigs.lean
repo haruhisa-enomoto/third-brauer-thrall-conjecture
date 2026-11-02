@@ -21,6 +21,10 @@ definiteness of principal submatrices."
 
 With the configuration bound (`qform_le_config`), the extra edges of the whole
 graph only lower `zᵀMz`, so each configuration gives `zᵀMz ≤ 0`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

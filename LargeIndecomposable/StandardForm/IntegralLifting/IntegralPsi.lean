@@ -7,7 +7,7 @@ public import LargeIndecomposable.StandardForm.IntegralLifting.IntegralCoker
 /-!
 # Lemma 10.2 for twice a cocycle of `A⁽²⁾` (Proposition 10.3)
 
-The source paper. For a Hochschild cocycle `μ̄` of `A⁽²⁾` of positive degree
+That paper. For a Hochschild cocycle `μ̄` of `A⁽²⁾` of positive degree
 `q`, the cocycle `μ̃ = 2μ̄` of `𝒪P` is a coboundary (`exists_hcobdry_twice`): the corrections of
 the lifted modules and arrows are twice those of `μ̄` (`IntegralTransport`); their mesh errors are
 twice a family of degree `q + 2 ≥ 3`, a derivative by Lemma B.2 (`two_smul_mem_imageD`), so an
@@ -16,6 +16,10 @@ arrow change removes them; the projective corner of the lifted modules is `𝒪P
 
 This is the composite `j = 0` and injectivity of `Ψ₄` used in the proof of Proposition 10.3,
 restricted to the classes `i_*[μ̄]`, which is all that proof uses.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -19,6 +19,10 @@ rays and the spaces `M(f,h)` (`ray_fwd`, `insertionSpan_fwd`), hence ray bases
 The rays are defined relative to a complete set of primitive idempotents. In a
 basic algebra any two complete sets are conjugate (`exists_algEquiv_idempotents`),
 so a ray basis for one set gives one for any other.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -20,6 +20,10 @@ compatibly with composition and with the length grading (`wπ_degProj`). It grad
 element of `A₀`, the arrow maps and all evaluated morphisms shift weights
 (`act_shift`, `fA_shift`, `rs_shift`), and an evaluated morphism shifting by `γ` comes
 from the weight-`γ` part of `C` (`mem_wP_of_shift`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

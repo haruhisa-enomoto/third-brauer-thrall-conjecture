@@ -11,6 +11,10 @@ Definition 4.5 (`def:graded-covering-category`): objects `(x, g)`, morphisms
 data (`HomGrading`, `HeightData`) and a representation-finite algebra this is a
 thin directed `k`-linear category with a height and finitely many outgoing lines
 at each object (`isThin`, `hgt_lt`, `succ_finite`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -5,13 +5,17 @@ public import LargeIndecomposable.AuslanderReiten.Radical.StrictLayersModules
 /-!
 # Radical powers of `ind(mod A)` and of `mod A`
 
-For morphisms between indecomposables, the source paper-literal radical power
+For morphisms between indecomposables, that paper-literal radical power
 `J^n` of `ind(mod A)` (composites of `n` radical maps through indecomposable
 modules) coincides with the `n`-th power of the categorical radical of
 `mod A` (composites through arbitrary finitely generated modules). This is
 the general form of `mem_radPow_two_iff`: an intermediate module is
 decomposed into indecomposable summands, and the components of radical maps
 are radical.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

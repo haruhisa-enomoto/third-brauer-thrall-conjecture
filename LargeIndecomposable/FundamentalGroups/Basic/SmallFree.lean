@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.Basic.Small
-public import LargeIndecomposable.RayCategories.Basic.AlgConnected
+public import LargeIndecomposable.RayCategories.Distributive.AlgConnected
 
 /-!
 # Fischbacher's theorem for the small model

@@ -8,7 +8,7 @@ public import Mathlib.Tactic.Ring
 /-!
 # Twisted traces of types `A` and `D` (Appendix A, "Types A and D")
 
-The source paper, assuming `char k ≠ 2` in the form
+That paper, assuming `char k ≠ 2` in the form
 "`m + m = 0` implies `m = 0`" on the target group:
 
 * a path rooted at an end (one arm): `x_1 = 0` by the centre relation;
@@ -17,6 +17,10 @@ The source paper, assuming `char k ≠ 2` in the form
 * type `D` with the short arms `a, b` and long arm `c`, with trivial twist or
   with the short-arm interchange;
 * `D_4` with a three-cycle of the arms.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -13,6 +13,10 @@ dimension have their radical endomorphisms factoring through `Σ`). In the
 object quotient `C/[Σ]` the kernel on `C(x, y)` is the span of composites
 through objects of `Σ`; hence such a label has endomorphism ring `k` in
 `C/[Σ]`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

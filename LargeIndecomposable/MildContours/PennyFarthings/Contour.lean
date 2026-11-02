@@ -1,7 +1,7 @@
 module
 
-public import LargeIndecomposable.MildContours.Basic.Assembly
-public import LargeIndecomposable.MildContours.Basic.Global
+public import LargeIndecomposable.MildContours.Contours.Assembly
+public import LargeIndecomposable.MildContours.Setup.Global
 public import LargeIndecomposable.Cleaving.Shapes.ShapePF1
 public import LargeIndecomposable.Cleaving.Shapes.ShapePF2
 public import LargeIndecomposable.Cleaving.Shapes.ShapeD4B

@@ -14,6 +14,10 @@ conclusion on incoming stars."
 
 In height coordinates the vertex `(p, t)` of `ℤΔ` has `t = 2j + |p|`, and
 `π(p, t) = τ^{-j}(end p)`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

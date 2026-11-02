@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RayCategories.Basic.Residue
+public import LargeIndecomposable.RayCategories.Quotients.Residue
 public import LargeIndecomposable.MultiplicativeBases.Normed.NormedBasis
 public import LargeIndecomposable.RayCategories.RayTables.Rays
 

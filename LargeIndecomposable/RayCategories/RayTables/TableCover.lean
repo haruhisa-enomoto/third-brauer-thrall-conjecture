@@ -15,6 +15,10 @@ public import LargeIndecomposable.Modules.Morita.FullIdempotent
 * `cover P γ v g`: the full subcategory of the graded covering category on the objects
   `(v i, g i)`, for a grading `γ` of the rays; representation-finite with `kP` by the split
   transfer of Lemma 4.6 (`lem:homogeneous-projection`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

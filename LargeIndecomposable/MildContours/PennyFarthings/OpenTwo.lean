@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MildContours.PennyFarthings.Open
-public import LargeIndecomposable.MildContours.Basic.SepD5
+public import LargeIndecomposable.MildContours.Setup.SepD5
 public import LargeIndecomposable.Cleaving.Families.FamM43A
 public import LargeIndecomposable.Cleaving.Families.FamM43B
 public import LargeIndecomposable.Cleaving.Families.FamM44A

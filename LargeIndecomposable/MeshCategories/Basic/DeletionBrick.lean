@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.InjectiveLabels
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.InjectiveLabels
 
 /-!
 # Lemma 5.2: object quotients have bricks
@@ -17,6 +17,10 @@ We run this argument for `C` through the evaluation `ev : add C ≃ mod A₀`
 (full faithfulness and essential surjectivity, Lemma 2.9 and Proposition 2.10):
 the length of `X` is `dim ev(X)`, the image of `ev(r)` is `ev(W)` for a family
 `W` of smaller labels, and `r` factors through `W`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

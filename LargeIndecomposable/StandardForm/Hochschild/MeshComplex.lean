@@ -31,6 +31,10 @@ and triangles. Here the eliminations are an acyclic matching (`meshMatching`):
 
 Once every triangle is eliminated, the remaining complex is a graph and the
 vertex groups are free (`Morse.isFreeGroup_end`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

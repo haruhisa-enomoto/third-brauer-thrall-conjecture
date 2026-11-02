@@ -7,6 +7,10 @@ public import LargeIndecomposable.StandardForm.Deformations.PositiveDeformation
 
 A positive filtered deformation `B` of `Λ` (Definition 6.2) has `dim B = dim Λ`: each layer
 `F^d/F^{d+1}` is identified with `Λ_d` by the leading-term map.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -17,6 +17,10 @@ functor out of the fundamental groupoid into the semidirect groupoid `SD`
 (morphisms: a walk class together with values along it). Its first component is
 the identity (`Ψ_fst`, "simply connected"), and its values along walks from the
 basepoint are the object values: `pot (γ ≫ e) = pot γ · W e γ` (`pot_comp`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

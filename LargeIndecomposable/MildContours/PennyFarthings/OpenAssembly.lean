@@ -1,15 +1,14 @@
 module
 
 public import LargeIndecomposable.MildContours.PennyFarthings.OpenTwo
-public import LargeIndecomposable.MildContours.Basic.Theorem3
+public import LargeIndecomposable.MildContours.Contours.Theorem3
 
 /-!
 # The open penny-farthing: [mild] LPF
 
 `LPFStmt` ([mild] LPF): an open penny-farthing has `n = 2`; proved in
 `MildContours/PennyFarthings/OpenLengthTwo.lean` (`RayCat.lpfStmt`). The case `n = 2` is handled: exit at `x₀` by a tiny point (`PFData.tiny_x0`), exits
-only at `x₁` in `MildContours/PennyFarthings/OpenCase2.lean` (`PFData.case2_exc`), assembled in
-`MildContours/Basic/CoreExc.lean` (`pfOpenStmt_of_exc`).
+only at `x₁` in `MildContours/PennyFarthings/OpenCase2.lean` (`PFData.case2_exc`).
 -/
 
 @[expose] public section

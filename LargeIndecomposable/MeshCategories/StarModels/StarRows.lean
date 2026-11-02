@@ -12,6 +12,10 @@ surjective." and "If a path from `v` to `θ v` meets the centre `o`, cut it ther
 Twisted rotation gives a path from `o` to `θ o = o`, and Lemma A.3 expresses it
 in the `x_i`. A path avoiding `o` stays on one arm. That arm is fixed pointwise
 by `θ` … the process ends in zero."
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

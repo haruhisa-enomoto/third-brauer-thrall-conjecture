@@ -12,6 +12,10 @@ subbimodule `M(f,h)` is unchanged. If `fh ∉ M(f,h)`, the chain property forces
 `M(f,h) ⊊ U(fh)` […] so `M(f,h) ⊆ R(fh)`. Thus the changed product remains in
 `U(fh) ∖ R(fh)`, is nonzero and has ray `[fh]`. If `fh ∈ M(f,h)`, the changed
 product is still in `M(f,h)`."
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

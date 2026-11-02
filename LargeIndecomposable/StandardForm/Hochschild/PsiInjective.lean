@@ -15,6 +15,10 @@ its `ε`-part: a derivation `δ` of `C` into the `k`-linear maps between evaluat
 modules with `(rs φ, δ φ)` a lifted map for every `φ`. We build `δ` on paths
 (`δp`), extend it linearly to the path category (`δL`), show that it kills the mesh
 ideal once the mesh errors vanish (`δL_ideal`), and descend it to `C` (`δC`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

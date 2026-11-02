@@ -6,7 +6,7 @@ public import LargeIndecomposable.StandardForm.IntegralLifting.IntegralCoker
 /-!
 # Lifting graded modules and maps to `ℤ/4` (Proposition 10.1, the lifting steps)
 
-The source paper (proof of `prop:fixed-integral-companion`): "Lift the action
+That paper (proof of `prop:fixed-integral-companion`): "Lift the action
 matrices arbitrarily to free graded `𝒪`-modules. Their associativity defect is even. Division
 by two, followed by reduction, gives an `Ext²` class of degree zero. Equation
 (prime-field-ext-vanishing) supplies a correction. Since `(2𝒪)² = 0`, this single correction
@@ -18,6 +18,10 @@ Setting: a graded `𝔽₂`-algebra `Λ`, a graded `𝒪`-algebra `Λ̃` (`𝒪 
 `ρ : M̃ → M` whose kernel is `2M̃` and the annihilator of two (`IsLift`). Twice a lift
 (`tw`) and division by two (`half`) are well defined; maps of degree `d` lift when
 `Ext¹_d` vanishes (`exists_liftHom`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -7,7 +7,7 @@ public import LargeIndecomposable.StandardForm.Hochschild.WeightHH
 /-!
 # Proposition 7.5: the residual characters are part of an integer basis
 
-The source paper (`prop:primitive-parameter-characters`): "In the
+That paper (`prop:primitive-parameter-characters`): "In the
 weight lattice `L = W(P)`, the residual characters `χ_i` form part of an integer basis."
 
 Here `χ_i = w(p_i) − ν_{v_i}` for a mesh weight `W_u` with values in `W(P)` restricting to
@@ -20,6 +20,10 @@ finite rank, the `χ_i` are part of a basis (`exists_basis_of_dual`).
 
 Deviation: the source identifies `χ_i` with the deck class `±θ_{g_i}` and uses a lemma on the
 periodic core; we use the dual mesh weights instead.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

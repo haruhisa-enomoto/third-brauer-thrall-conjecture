@@ -16,6 +16,10 @@ Cochains are encoded as functions of sequences `ℕ → Λ` (only the first `n`
 entries matter for the cochains used later); the coface maps then satisfy the
 cosimplicial identities as identities of sequence operations (`coface_comm`),
 and `d ∘ d = 0` (`d_d`) follows by the usual pairing of terms.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

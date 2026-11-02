@@ -20,6 +20,10 @@ degrees `2, 4, 8, 14`."
 We run the induction of Lemma A.6 on the number of `y`'s in a fixed word degree `n`,
 with values in a subgroup `A` of the target containing the candidate class of degree
 `n` (`all_mem`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

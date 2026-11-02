@@ -21,6 +21,10 @@ Hochschild cohomology", in the form used: a
 normalized relative cocycle which is the coboundary of some one-cochain of degree `q` is
 the coboundary of a normalized relative one-cochain of degree `q`. The correction is the
 inner derivation of `u = ∑ f(e_j) e_j`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

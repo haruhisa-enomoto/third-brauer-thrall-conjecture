@@ -5,7 +5,7 @@ public import LargeIndecomposable.MeshCategories.Basic.ReductionMesh
 /-!
 # Base change of scalar mesh categories along a field extension
 
-The source paper (Section 10): "The all-one meshes […] define a graded category
+That paper (Section 10): "The all-one meshes […] define a graded category
 `C⁽²⁾` with `k ⊗_{𝔽₂} C⁽²⁾ = C`. […] Evaluation identifies `C⁽²⁾` with their full Hom category,
 since it does so after the faithful field extension to `k`."
 
@@ -17,6 +17,10 @@ for every `K`-linear `θ : k → K`, applying `θ` to the coefficients of path c
 from `K` (`retE_comp_redE`, `retE_redE_comp`) and `retE u θ (λ • redE φ) = θ λ • φ`. Consequently
 `redE` is injective, carries `K`-independent families to `k`-independent ones, its image spans,
 and the Hom spaces over `K` and `k` have the same dimension (`finrank_redE`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

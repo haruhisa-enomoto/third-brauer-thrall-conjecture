@@ -21,6 +21,10 @@ This file: the second part (`a_even_long`). A row of degree `m + 1 ≥ 3` lifts 
 of length `2 + n r ≥ 2 + r > 2n`, which vanishes in `Π(A_{2n})` (`ASort.long_mem`);
 in characteristic two the all-one coefficients are the signed ones, so it gives the
 zero class (`phiL_eq_zero_of_mem`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

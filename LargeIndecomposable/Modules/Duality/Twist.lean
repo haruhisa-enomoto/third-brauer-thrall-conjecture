@@ -19,6 +19,10 @@ For an automorphism `σ` of a representation-finite algebra, the twist
 `N` (the order of the permutation group) of any automorphism fixes every class
 (`twist_pow_iso`). With the divisibility of weights this gives the triviality of
 the action.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

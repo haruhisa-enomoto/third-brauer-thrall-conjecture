@@ -15,6 +15,10 @@ permits at most one degree, `d = 2s + 2`, spanned by a single central row path."
 A row of word degree `j` occurs with twist `θ^n` only when `j = 1 + n s`. With `s ≥ 2`,
 the candidate degrees `4, 8, 14` (ordinary) and `5` (reflection of `E₆`) force `n = 1`,
 so `j = s + 1`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -17,6 +17,10 @@ coboundary unless `χ = relW R` for a row `R ∈ S`; and if a cocycle `μ_i` of 
 `relW R` has nonzero class, every cocycle of that character is a multiple of `μ_i` up to a
 coboundary, in the same internal degree (`char_part`). With the character decomposition
 this gives the spanning hypothesis of Theorem 7.7 (`span_A0`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

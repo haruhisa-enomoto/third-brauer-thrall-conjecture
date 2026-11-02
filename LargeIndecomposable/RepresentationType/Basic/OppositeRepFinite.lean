@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.A0RepFinite
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.A0RepFinite
 
 /-!
 # Representation-finiteness of the opposite algebra

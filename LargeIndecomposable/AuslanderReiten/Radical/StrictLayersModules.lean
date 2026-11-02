@@ -19,6 +19,10 @@ The hypotheses of the abstract Lemma 2.5 (`StrictLayers.strict`) hold in
 Both are supplied by the general Auslander--Reiten theory
 (`moduleRightMesh`, `moduleRightTau`, `labelRightMesh_f_mono`,
 `exists_splitMono_radical_normalForm`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

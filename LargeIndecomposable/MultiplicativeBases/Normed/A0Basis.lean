@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.LiftedEvaluation
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.LiftedEvaluation
 public import LargeIndecomposable.MultiplicativeBases.Normed.NormedBasis
 
 /-!
@@ -16,6 +16,10 @@ spanned by chosen vectors `b(x, y, g)` closed under composition up to zero,
 with identities `b(x, x, 1) = 𝟙`, the matrix units of the `b(x, y, g)` form a
 basis of `(Alg F)ᵒᵖ` (`basisA0`) which is multiplicative and contains the
 idempotents of the labels (`basisA0_isMultiplicative`, `basisA0_idempotents`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

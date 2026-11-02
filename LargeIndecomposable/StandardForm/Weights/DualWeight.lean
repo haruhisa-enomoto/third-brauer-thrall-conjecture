@@ -13,6 +13,10 @@ component (`exists_ext_wt`). The values on the unmatched edges of the collapse o
 are prescribed (the given weight inside `T`, zero elsewhere), and the matched edges are
 solved from their triangles (`Morse.zval`); the triangles which solve edges inside a
 periodic component lie in that component.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

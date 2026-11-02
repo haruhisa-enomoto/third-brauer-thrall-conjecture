@@ -17,6 +17,10 @@ changes its coefficients to `λ'_i = λ_i a(χ_i)`."
 The lattice grading is `LatGrading` (finitely supported projections, as for the
 length grading); characters are additive maps `L → Additive kˣ`, extended from
 the prescribed values on the `χ_i` through the basis (`exists_character`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

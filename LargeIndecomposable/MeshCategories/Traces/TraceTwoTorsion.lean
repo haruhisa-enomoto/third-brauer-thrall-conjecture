@@ -6,7 +6,7 @@ public import LargeIndecomposable.MeshCategories.StarModels.StarCase
 /-!
 # Twisted traces killed by two (Lemma B.2, the trace calculations)
 
-The source paper (proof of `lem:integral-mesh-cokernels`),
+That paper (proof of `lem:integral-mesh-cokernels`),
 over an arbitrary coefficient group (no division by two):
 
 * type `D`: "In either case the fixed long-arm power gives `0 = [(-x-y)^j] = ±2[w_j]`.
@@ -16,6 +16,10 @@ over an arbitrary coefficient group (no division by two):
 * `E₇`, `E₈`: the candidate classes `[yx³]`, `[(yx³)²]`, `[(yx³)(yx⁴)²]` of word degrees
   `4, 8, 14` are killed by two (`trace_E78_two`), by the identities of Lemma A.6 without
   its final division.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

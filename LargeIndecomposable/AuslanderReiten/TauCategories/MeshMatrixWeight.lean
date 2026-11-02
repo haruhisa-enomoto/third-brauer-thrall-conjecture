@@ -18,6 +18,10 @@ The categorical Euler defect of a label weight on a chosen right mesh is the
 corresponding weighted column sum of the mesh matrix.  This identifies the
 matrix unit equations in the frozen manuscript with Iyama's positive
 right-additivity hypothesis.
+
+## References
+
+* *The magnitude conjecture for module categories*, <https://github.com/haruhisa-enomoto/magnitude-conjecture>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -77,7 +81,7 @@ theorem additiveLabelWeight_rightMiddle (weight : Ind → ℤ) (target : Ind) :
         (arrowMultiplicity T.toFiniteRightTauCategoryData source target : ℤ) * weight source :=
       (sum_arrowMultiplicity_mul_int T target weight).symm
 
-/-- Weighted column sum of the source paper-oriented mesh matrix. -/
+/-- Weighted column sum of that paper-oriented mesh matrix. -/
 def meshColumnWeight [DecidablePred T.IsProjective]
     (weight : Ind → ℤ) (target : Ind) : ℤ :=
   ∑ source, weight source * meshMatrix T source target

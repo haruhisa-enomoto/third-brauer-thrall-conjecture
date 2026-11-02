@@ -13,6 +13,10 @@ strictly decreasing from a triangle to the triangles matching its other
 edges, each matched edge is expressed through the remaining ones — the
 source's "eliminate these edges and triangles from one end of the chain" —
 and `Π` is isomorphic to the free groupoid on the unmatched edges.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

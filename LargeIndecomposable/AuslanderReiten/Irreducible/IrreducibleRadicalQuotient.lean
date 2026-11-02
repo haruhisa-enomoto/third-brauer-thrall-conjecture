@@ -8,7 +8,7 @@ set_option backward.isDefEq.respectTransparency.types false
 /-!
 # Irreducible morphisms and the categorical radical quotient
 
-This file formalizes the source paper convention
+This file formalizes that paper convention
 `Irr(X,Y) = rad(X,Y) / rad²(X,Y)` for two representatives in a complete
 indecomposable skeleton.  The construction uses additive Hom-groups and is
 therefore independent of a ground field.
@@ -22,6 +22,10 @@ categorical radical ideal, not the square of either endpoint endomorphism
 ring.
 
 No algebra presentation or classification of modules is used.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -387,7 +391,7 @@ def radicalSquareInRadical (x y : ι) :
   (σ.radicalSquareHomAddSubgroup x y).comap
     (σ.radicalHomAddSubgroup x y).subtype
 
-/-- The source paper's field-free quotient
+/-- That paper's field-free quotient
 `Irr(X,Y) = rad(X,Y) / rad²(X,Y)`. -/
 abbrev irreducibleHomQuotient (x y : ι) :=
   (σ.radicalHomAddSubgroup x y) ⧸ σ.radicalSquareInRadical x y

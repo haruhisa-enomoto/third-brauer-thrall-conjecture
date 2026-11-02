@@ -8,7 +8,7 @@ public import LargeIndecomposable.StandardForm.Posets.UBound
 /-!
 # The graded first-arrow sequence of `Π(Δ)`
 
-The source paper (proof of the bound by the `U_d`): "The
+That paper (proof of the bound by the `U_d`): "The
 first-arrow presentation of each simple gives, as in (A.1), an exact sequence
 `e_iΠ⟨2⟩ → ⊕_{j∼i} e_jΠ⟨1⟩ → e_iΠ → S_i → 0`. Exactness at the middle term is
 proved as for (A.1)."
@@ -17,6 +17,10 @@ We fix the endpoint `j` and the degree. Write `h_i(d) = dim e_i Π_d e_j`. The
 middle exactness (`exact_star`, proved for Proposition 4.1) and the grading of
 the ideal give `∑_{l∼i} h_l(d+1) ≤ h_i(d+2) + h_i(d)` and
 `∑_{l∼i} h_l(0) ≤ h_i(1)`; these are the inequalities `κ ≥ 0` of `UBound`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

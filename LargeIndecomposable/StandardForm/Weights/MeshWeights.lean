@@ -5,7 +5,7 @@ public import LargeIndecomposable.StandardForm.Weights.RayWeights
 /-!
 # Integer mesh weights and their restriction to rays (Lemma 7.4)
 
-The source paper (`def:integer-weights`,
+That paper (`def:integer-weights`,
 `lem:integer-weight-lifting`). An *integer mesh weight* assigns `w(a)` to arrows
 and `ν_v` to mesh rows with `w(σa) + w(a) = ν_v`; it restricts to an integer ray
 weight, and "this restriction gives an exact sequence
@@ -21,10 +21,14 @@ Formalization. The deck group of the formalization is the fundamental group of
 the coned complex, so we work in the component `K₀` of a base vertex in the
 lifted Auslander–Reiten quiver (`aconn`), whose stabilizer plays the role of the
 paper's `G = π₁(K)`. The connectivity of the lifted projective category used by
-the source paper is replaced by the **support lemma** (`supp_conn`): the lifted
+that paper is replaced by the **support lemma** (`supp_conn`): the lifted
 projectives with nonzero maps to one lifted object are connected in `L`, by
 Lemma 4.8 and the locality of degree-one endomorphisms; hence the lifted
 projectives of `K₀` lie in one component of `L` (`conn_of_aconn`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

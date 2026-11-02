@@ -13,6 +13,10 @@ modulo the deleted vertices when its values on the terms of each contextual
 relation cancel and it vanishes on lists through deleted vertices
 (`vfun_eq_zero_of_mem`). The constant term (`len0`) shows that the vertex
 idempotents of retained vertices are nonzero.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

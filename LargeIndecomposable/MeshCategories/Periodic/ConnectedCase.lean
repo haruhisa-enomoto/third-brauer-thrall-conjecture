@@ -15,6 +15,10 @@ finite tree models." This file treats a finite connected stable translation
 quiver: by Proposition 4.1 it is covered by a star model; the types `A` and `D`
 are settled here, and the types `E` are passed in as a hypothesis (they are
 treated with the brick hypothesis in `ECase.lean`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

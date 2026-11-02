@@ -27,6 +27,10 @@ together are `dTopPaths`.
 Labels: the star has short arms `a, b` with one vertex each and the long arm `c`;
 the spine vertex at depth `j` of the long arm has line position `j + 1` and the
 centre has position `1`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

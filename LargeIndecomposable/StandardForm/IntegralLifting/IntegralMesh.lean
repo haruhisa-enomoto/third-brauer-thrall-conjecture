@@ -14,6 +14,10 @@ unit coefficients `ũ` reducing to `c` (`WData.mesh_exact`). The mesh error of t
 with the lifted coefficients reduces to zero, so it is twice an `A⁽²⁾`-map of degree two
 (`exists_halfMap`); such a map is a combination of the length-two paths at the row, and
 subtracting twice its coefficients corrects the mesh coefficients.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

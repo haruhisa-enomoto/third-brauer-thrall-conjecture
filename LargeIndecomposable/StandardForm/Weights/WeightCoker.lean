@@ -18,6 +18,10 @@ cokernel (`cokerProj`). Consequently, when the rows of `S` span the cokernels, a
 relative weight `χ` lies in the span of the rows of `S` of relative weight `χ`
 (`mem_rowSpan_char`), and so does the class `Ψ[μ]` of a cocycle of character `χ`
 (`Ψc_mem_rowSpan_char`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

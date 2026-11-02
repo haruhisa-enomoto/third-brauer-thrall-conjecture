@@ -17,6 +17,10 @@ representation-finite, so is `A` (`isRepresentationFinite_of_full`). Repeated
 labels are handled by placing them, together with the distinct labels, in one
 category algebra in which the distinct labels form a full idempotent
 (`CategoryAlgebraCorners.lean`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

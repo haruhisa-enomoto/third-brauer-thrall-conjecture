@@ -15,6 +15,10 @@ Proof of Proposition 4.1, Steps 3 and 4.
   the height by one ... the difference `H(Fx) - H(x)` is therefore constant along
   arrows and hence constant on the connected quiver. Its action on translation
   orbits is a tree automorphism `ρ`" — `height_form`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

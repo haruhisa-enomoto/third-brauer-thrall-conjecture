@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.Distributive.RayTablePresentation
-public import LargeIndecomposable.StandardForm.Basic.FinalStandardness
+public import LargeIndecomposable.StandardForm.Main.FinalStandardness
 public import LargeIndecomposable.RayCategories.RayTables.RayTransport
 public import LargeIndecomposable.RepresentationType.Basic.RepresentationFiniteForms
 public import LargeIndecomposable.Modules.Duality.OppositeDuality

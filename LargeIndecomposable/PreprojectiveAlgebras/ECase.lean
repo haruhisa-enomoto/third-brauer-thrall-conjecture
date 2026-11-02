@@ -20,6 +20,10 @@ First the exclusion on a periodic star model: if the deck generator `g` fixes th
 retained vertices after `n` steps and `n c₀ = d`, closed paths of degree `d`
 of `Π` of the retained part lift to closed paths of `Q`, and the brick
 hypothesis fails (`not_brick_star`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -120,7 +124,7 @@ variable {V : Type v'} [Quiver.{w} V] [∀ x y : V, Subsingleton (x ⟶ y)] {Q :
 
 include hπ hτ hsurj hdeck hfib h0 hθ in
 /-- **Periods dividing two: deletion to `D₄`** (Lemma A.5 and
-the source paper). -/
+that paper). -/
 theorem not_brick_D4 (n : ℕ) (hn : n * c0 = 4) (hθn : ∀ i, (θ ^ n) i = i) :
     ¬ BrickHypothesis c := by
   refine not_brick_star hQ π c hπ hτ hsurj ρ hρ c0 hρp hdeck hfib
@@ -143,7 +147,7 @@ theorem not_brick_D4 (n : ℕ) (hn : n * c0 = 4) (hθn : ∀ i, (θ ^ n) i = i) 
 
 include hπ hτ hsurj hdeck hfib in
 /-- **Periods four and eight of `E₈`: deletion to `E₇`** (Lemma A.7 and
-the source paper). -/
+that paper). -/
 theorem not_brick_E7 {a b c' : Fin 3} (hab : a ≠ b) (hac : a ≠ c') (hbc : b ≠ c') (hLa : L a = 0)
     (hLb : L b = 1) (hLc : L c' = 3) (hρid : ∀ v, ρ v = v) (n : ℕ) (hn : n * c0 = 16) :
     ¬ BrickHypothesis c := by

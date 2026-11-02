@@ -19,6 +19,10 @@ Lemma 4.9 on the support poset of Lemma 4.10, and rescale the `f_y`. The
 representation-finiteness of the incidence algebra of the support poset is a
 hypothesis here; it is supplied by Lemma 4.10 for the graded covering category
 (`SupportPoset.lean`). Sinks are sources of the opposite category.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

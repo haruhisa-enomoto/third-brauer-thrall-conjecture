@@ -21,20 +21,24 @@ its powers, under two hypotheses which hold for `mod A`:
 * every object `Y` has a *right radical approximation*: a radical map
   `p : E → Y` through which every radical map into `Y` factors, with a radical
   monic kernel `i : T → E` such that every map in `I²(T, Z)` is `i ≫ q` with `q`
-  radical (in the source paper, `p` is the sum of the minimal right almost split
+  radical (in that paper, `p` is the sum of the minimal right almost split
   maps of the summands of `Y`, with `rad P → P` at projective summands, and `i`
   is a sum of left almost split inclusions);
 * the Krull–Schmidt normal form: every map becomes, after an isomorphism of its
-  source, a row of a split monomorphism and a radical map (the source paper's
+  source, a row of a split monomorphism and a radical map (that paper's
   "split off the invertible blocks of `u`").
 
-The proof is the source paper's: the identity
+The proof is that paper's: the identity
 `p ∘ J^n(W, E) = J^{n+1}(W, Y)` (`eq:right-radical-surjection`), splitting off
 the given monomorphism, the complementary monomorphism `b` with the same
 perturbation property, and induction on the radical degree for all such
 monomorphisms simultaneously. In Lean composition is written `z ≫ a` for the
 manuscript's `a ∘ z`, and the exponents are shifted: `z ≫ a ∈ I^{n+1}` implies
 `z ∈ I^n`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

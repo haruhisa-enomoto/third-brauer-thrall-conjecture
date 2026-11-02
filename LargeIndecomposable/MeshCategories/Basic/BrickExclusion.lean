@@ -13,6 +13,10 @@ it has no brick." In general: if every retained vertex carries a closed path
 whose lift is nonzero in `Π(Δ)` modulo the deleted vertices, then every
 retained object of the object quotient has a nonzero radical endomorphism
 besides the identity, and the brick hypothesis fails for that quotient.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

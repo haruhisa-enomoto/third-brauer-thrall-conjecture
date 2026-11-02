@@ -9,6 +9,10 @@ For a stable translation quiver (every vertex nonprojective and noninjective,
 `TranslationQuiver.IsStable`) the translation is a permutation `τ` of the
 vertices. The mate bijections give `y → x` iff `τ x → y`, and `τ` preserves
 arrows. These facts are used throughout the proof of Proposition 4.1.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

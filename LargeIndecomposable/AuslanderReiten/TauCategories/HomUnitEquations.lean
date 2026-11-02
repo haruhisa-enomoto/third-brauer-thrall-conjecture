@@ -8,9 +8,13 @@ set_option backward.isDefEq.respectTransparency.types false
 # Hom-dimension weights and the two unit equations
 
 Once the Hom-dimension matrix and the mesh matrix are inverse, a row represented
-by a label `P` satisfies the source paper's column equation `Phi^T d = e_P`, while a
+by a label `P` satisfies that paper's column equation `Phi^T d = e_P`, while a
 column represented by `I` satisfies `Phi d = e_I`.  Nonzero maps from `P`, or
 to `I`, make the corresponding integral weights strictly positive.
+
+## References
+
+* *The magnitude conjecture for module categories*, <https://github.com/haruhisa-enomoto/magnitude-conjecture>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -142,12 +146,12 @@ def leftMeshLabelWeightDefect
     W.weight (T.leftMesh (T.obj source)).X₂ +
       W.weight (T.leftMesh (T.obj source)).X₃
 
-/-- Weighted row sum of the source paper-oriented mesh matrix. -/
+/-- Weighted row sum of that paper-oriented mesh matrix. -/
 def meshRowWeight [DecidablePred T.IsProjective]
     (weight : Ind → ℤ) (source : Ind) : ℤ :=
   ∑ target, meshMatrix T source target * weight target
 
-/-- The row of Hom dimensions represented by `P` satisfies the source paper's
+/-- The row of Hom dimensions represented by `P` satisfies that paper's
 unit-column equation `Phi^T d = e_P`. -/
 theorem meshColumnWeight_homFromWeight
     [DecidablePred T.IsProjective]
@@ -159,7 +163,7 @@ theorem meshColumnWeight_homFromWeight
   simpa [meshColumnWeight, homFromWeight, Matrix.mul_apply, Matrix.one_apply,
     eq_comm] using h
 
-/-- The column of Hom dimensions represented by `I` satisfies the source paper's
+/-- The column of Hom dimensions represented by `I` satisfies that paper's
 unit-row equation `Phi d = e_I`. -/
 theorem meshRowWeight_homToWeight
     [DecidablePred T.IsProjective]

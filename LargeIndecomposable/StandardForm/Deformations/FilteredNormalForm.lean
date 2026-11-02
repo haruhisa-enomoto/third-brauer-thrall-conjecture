@@ -1,12 +1,12 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.GradedRealizationIso
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.GradedRealizationIso
 public import LargeIndecomposable.MeshCategories.Basic.MeshCorrections
 
 /-!
 # Proposition 5.4: successive correction of irreducible representatives
 
-The source paper. Let `C = kQ/(r_1, …, r_t)` be a
+That paper. Let `C = kQ/(r_1, …, r_t)` be a
 finite-dimensional graded category with homogeneous quadratic relations such
 that the derivatives `D_{q-1}` are surjective for `q ≥ 3`, and let `E` be a
 finite filtered category with a graded identification `gr E = C`. Choose lifts
@@ -16,7 +16,7 @@ parallel change of the arrows in degree `q - 1` cancels them; a term using two
 corrections has degree at least `2q - 2 > q`. The filtration is finite, so the
 process ends, and the resulting homomorphism `C → E` is an isomorphism.
 
-This file proves the proposition in the case used by the source paper
+This file proves the proposition in the case used by that paper
 (Corollary 5.5): `E = ind(mod A)` filtered by the powers of its radical,
 `C = k(Γ_A) = C(Γ_A, c)`, and the identification of Proposition 2.6(3). The
 surjectivity of the derivatives is a hypothesis
@@ -24,6 +24,10 @@ surjectivity of the derivatives is a hypothesis
 characteristic two by Proposition 5.3.
 
 This file: lift families and their realizations.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

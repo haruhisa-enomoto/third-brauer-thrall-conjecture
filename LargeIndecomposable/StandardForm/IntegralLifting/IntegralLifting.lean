@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.RayArguments.CrownRows
+public import LargeIndecomposable.StandardForm.LocalRayGeometry.CrownRows
 
 /-!
 # Integral lifting of the nonzero-product Leibniz equations (Theorem 9.1(3))
@@ -16,6 +16,10 @@ two-sided rays (the freeness of `W_χ`, from the induction hypothesis, enters on
 the coefficients of generating one-sided rays by the first-arrow recursion
 (`lem:one-sided-path-coefficients`, with paths replaced by unique first arrows), canonical
 integer lifts `X_a`, and `Y_b` read off from the rows (Lemma 9.5).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

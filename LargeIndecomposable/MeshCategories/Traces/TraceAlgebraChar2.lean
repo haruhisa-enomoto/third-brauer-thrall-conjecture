@@ -9,6 +9,10 @@ Appendix B works in the centre
 corner over a field of characteristic two. When `m + m = 0` on the target, a twisted
 trace kills `2 r` for every `r`, so it factors through the quotient `Rc` of the free
 ring by the relations and by `2`; in `Rc` we have `2 = 0`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

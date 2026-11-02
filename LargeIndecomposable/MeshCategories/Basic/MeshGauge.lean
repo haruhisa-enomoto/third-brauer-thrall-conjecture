@@ -5,7 +5,7 @@ public import LargeIndecomposable.MeshCategories.Coverings.CoveringIdeals
 /-!
 # Rescaling arrows and mesh relations
 
-The source paper and Appendix A: "rescaling arrows and entire
+That paper and Appendix A: "rescaling arrows and entire
 mesh relations changes the mesh derivative by invertible diagonal maps". Given
 arrow scalars `μ` and relation scalars `η` with
 `c'_{x,a} = η_x c_{x,a} μ_{σ a} μ_a`, the linear functor `kQ → kQ` multiplying
@@ -13,6 +13,10 @@ each path by the product of the scalars of its arrows (`gaugeMap`) sends the
 mesh relation `r_x(c)` to `η_x⁻¹ r_x(c')`, hence the mesh ideal of `c` into that
 of `c'` (`gaugeMap_mem_ideal`). A single path therefore lies in one ideal iff it
 lies in the other.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

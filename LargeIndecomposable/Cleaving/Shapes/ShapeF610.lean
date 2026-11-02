@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.ThinDiagram
+public import LargeIndecomposable.Cleaving.Diagrams.ThinDiagram
 
 /-!
 # The thin diagram `F610`

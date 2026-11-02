@@ -490,7 +490,7 @@ def emit(sh, M, par, res, N, out, doc):
     mats = all_mats(sh, R1)
     L = []
     L.append('module\n')
-    L.append('public import LargeIndecomposable.Cleaving.Basic.MatFam')
+    L.append('public import LargeIndecomposable.Cleaving.ThinCategories.MatFam')
     L.append(f'public import LargeIndecomposable.Cleaving.Shapes.Shape{N}\n')
     L.append('/-!')
     L.append(f'# `{N}` is representation-infinite\n')

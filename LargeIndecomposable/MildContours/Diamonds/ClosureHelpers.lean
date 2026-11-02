@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MildContours.Diamonds.RadicalGenerator
-public import LargeIndecomposable.MildContours.Basic.Global
+public import LargeIndecomposable.MildContours.Setup.Global
 
 /-!
 # Diamond: the closure of `P_x`, helpers

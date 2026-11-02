@@ -22,6 +22,10 @@ its subspace `I i` spanned by the contextual relations starting at `i`, so that
 `P_i = S i / I i`. Only the inequality `∑_{j∼i} n_j ≤ 2 n_i - 1` is used later.
 
 This file: first-arrow decompositions of paths.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

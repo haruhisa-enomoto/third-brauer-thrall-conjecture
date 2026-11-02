@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MildContours.Diamonds.Closure1
-public import LargeIndecomposable.Cleaving.Basic.ToolsMod
+public import LargeIndecomposable.Cleaving.Diagrams.ToolsMod
 public import LargeIndecomposable.Cleaving.Shapes.ShapeOut3
 
 /-!

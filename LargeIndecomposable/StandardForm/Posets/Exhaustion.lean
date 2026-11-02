@@ -13,6 +13,10 @@ Consequently `L` has a multiplicative basis."
 This file proves the abstract form for a thin directed category with a height
 function, finitely many outgoing lines at each object and countably many
 objects. Sinks are sources of the opposite category (`extend_sink`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -13,6 +13,10 @@ from `τ X` for any `X = (v, t)` (`liftZ`); the class of the image of the lift i
 `coker D_m` is `phiD X p`. Since contextual relations of `Π(Δ)` lift term by term
 with the same endpoints and heights, the linear extension `phiL X` of `phiD X`
 kills the ideal of `Π(Δ)` (`phiL_eq_zero_of_mem`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -11,6 +11,10 @@ Appendix A, "Types A and D":
 as a star with one arm … For the reflection of `A_{2n-1}`, rooted at its middle
 vertex, the two closed paths at the centre are `x` and `-x`, and reflection sends
 `x` to `-x`."
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

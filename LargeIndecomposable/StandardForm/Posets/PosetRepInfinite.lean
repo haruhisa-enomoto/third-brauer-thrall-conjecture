@@ -6,7 +6,7 @@ public import LargeIndecomposable.RepresentationType.Basic.RepFinite
 /-!
 # Lemma 8.8 for incidence algebras of posets with unique paths
 
-The source paper (`lem:dimension-infinity` and the table after it): "For the
+That paper (`lem:dimension-infinity` and the table after it): "For the
 relation-free diagrams used below the required vectors are […] These counts depend only on
 the underlying graphs; for a tree any orientation is allowed."
 
@@ -17,6 +17,10 @@ is conjugation by `∏ GL_{d v}` (`isoConj`). If `∑ d_v² ≤ ∑_{x → y} d_
 incidence algebra is representation-infinite (`not_isRepresentationFinite`): finite
 representation type would give finitely many orbits (`exists_labels_iso`), contradicting
 `OrbitDim.orbits_not_finite` with `F = 0`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

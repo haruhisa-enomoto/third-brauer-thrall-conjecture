@@ -16,6 +16,10 @@ The module of a point of the zero set is a module over the bound algebra, throug
 matrix units of the incidence algebra; isomorphisms of such modules are conjugations
 (`conj_of_iso`), and `OrbitDim.orbits_not_finite` applies with the `F` entries of the
 composite along the relation.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

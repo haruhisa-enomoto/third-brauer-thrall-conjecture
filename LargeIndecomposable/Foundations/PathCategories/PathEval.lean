@@ -13,6 +13,10 @@ linearly to `RQ` (`evL`). Arrow corrections `g_a` give the `ε`-part `δ` of the
 
 This is the ring-generic part of the proof of Proposition 7.6 (`PsiInjective`), used over
 `ℤ/4` for Lemma 10.2.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

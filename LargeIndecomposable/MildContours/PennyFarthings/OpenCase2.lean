@@ -7,7 +7,7 @@ public import LargeIndecomposable.Cleaving.Shapes.ShapePC1
 public import LargeIndecomposable.Cleaving.Shapes.ShapePC2
 public import LargeIndecomposable.Cleaving.Shapes.ShapePC4
 public import LargeIndecomposable.Cleaving.Shapes.ShapeD6
-public import LargeIndecomposable.Cleaving.Basic.Tools
+public import LargeIndecomposable.Cleaving.Diagrams.Tools
 public import LargeIndecomposable.Cleaving.Shapes.ShapePC6
 public import LargeIndecomposable.Cleaving.Families.FamPC7
 public import LargeIndecomposable.Cleaving.Families.FamPC8

@@ -12,6 +12,10 @@ define a ray table (`multOfBasis`): the table of Construction 3.? / Definition 3
 off from the basis ("`b_r b_s = b_{rs}` or `0`"). Its
 associativity comes from that of `Λ`, and its linearization is isomorphic to `Λ`
 (`linEquiv`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

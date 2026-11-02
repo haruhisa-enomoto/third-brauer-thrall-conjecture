@@ -24,6 +24,10 @@ Here the stage invariant is `Stage` (the error `⋆_g - m_λ` raises degree by
 `q`); `degPart_cocycle` is `dφ_q = 0`, `stage_succ` the change of variables.
 The associativity of `m_t` over `k[t]` is used only through its specializations
 (`FamilyHyp.assoc`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

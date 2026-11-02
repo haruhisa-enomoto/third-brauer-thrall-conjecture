@@ -15,6 +15,10 @@ basic representation-finite algebra `A`: the rows of Proposition 6.1 with their 
 weights (`residual_dual`), the filtered structure of `A` over `A₀` (`posFiltA`), and the
 characteristic-two step on `A₀` (`char2_A0`). Corollary 10.5 is a hypothesis here; it is
 discharged by `cor105Hyp` in `FinalBasis.lean`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

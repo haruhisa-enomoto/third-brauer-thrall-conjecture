@@ -9,7 +9,11 @@ public import LargeIndecomposable.RayCategories.RayTables.TableAlg
 For a ray table `P` with a degree function on the rays, the linearization `𝒪P` over any
 commutative ring is graded by the degrees of the rays (`galgLin`), and reduction of
 coefficients along a ring map is a ring map `𝒪P → kP` (`redLin`). This is the algebra
-`A^{(4)} = 𝒪P` of the source paper.
+`A^{(4)} = 𝒪P` of that paper.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

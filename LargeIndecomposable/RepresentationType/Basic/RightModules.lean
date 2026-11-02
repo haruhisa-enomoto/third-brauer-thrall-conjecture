@@ -18,9 +18,14 @@ public import LargeIndecomposable.MultiplicativeBases.Normed.NormedBasis
 * `Irr(X, Y) = J(X, Y) / J²(X, Y)`.
 * Almost split sequences.
 
-Conventions of the source paper: modules are
+Conventions of that paper: modules are
 finite-dimensional right modules, and maps compose from left to right, so the
-manuscript's `fg` is Lean's `f ≫ g`.-/
+manuscript's `fg` is Lean's `f ≫ g`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
+-/
 
 @[expose] public section
 

@@ -8,6 +8,10 @@ public import LargeIndecomposable.MeshCategories.Coverings.DegreeDeck
 Appendix A, "The odd quotients of even A": after normalizing all mesh coefficients to one (Lemma A.1(2)), rows are
 reduced by the sum of their levels to words in the middle arrows, which vanish
 when two is invertible.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

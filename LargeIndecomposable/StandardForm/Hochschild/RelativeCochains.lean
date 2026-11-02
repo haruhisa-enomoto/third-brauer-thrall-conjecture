@@ -12,6 +12,10 @@ identities and respect the categorical grading and the integer ray weights." A n
 relative two-cochain of character `χ` on `Λ ≅ kP` is `Φ₂` of its coefficients (`realize`);
 it is a coboundary exactly when its coefficients are `d₁` of coefficients (`coef_of_isCobdry`,
 `isCobdry_of_coef`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

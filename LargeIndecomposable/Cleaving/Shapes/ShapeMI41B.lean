@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.Tools
+public import LargeIndecomposable.Cleaving.Diagrams.Tools
 
 /-!
 # The thin diagram `MI41B`

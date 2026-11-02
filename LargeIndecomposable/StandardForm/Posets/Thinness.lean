@@ -16,6 +16,10 @@ dimension at most one."
 Height is a homomorphism `hgt : G → ℤ` such that nonzero homogeneous morphisms
 have nonnegative height, and those of height zero are scalar multiples of
 identities in degree one (`HeightData`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -18,6 +18,10 @@ the path for type `A`, and the trivalent vertex for types `D` and `E`. The
 transformation, so it descends to the component; each vertex has at most one
 neighbour at depth at most its own. This depth function drives the
 contraction onto the core circle in `MeshComplex.lean`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

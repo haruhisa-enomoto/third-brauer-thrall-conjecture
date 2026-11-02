@@ -10,11 +10,15 @@ set_option backward.isDefEq.respectTransparency.types false
 # An abstract almost-split interface for the forward cofinite-two criterion
 
 This file isolates the Auslander--Reiten input needed for the forward half
-of the source paper's mixed cofinite-two criterion.  It proves the usual
+of that paper's mixed cofinite-two criterion.  It proves the usual
 correspondence between the indecomposable summands of a minimal almost-split
 middle term and irreducible morphisms.  It also proves that a supplied
 finite-length almost-split map can be replaced by a minimal one.  Existence
 of ordinary almost-split maps is still left as a separate input.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.TreeTable
+public import LargeIndecomposable.Cleaving.Diagrams.TreeTable
 
 /-!
 # The `D̃₆` shape of BO13a figure 6.1

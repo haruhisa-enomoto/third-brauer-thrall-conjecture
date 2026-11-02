@@ -16,6 +16,10 @@ The representative choice and the corner idempotents are adapted from
 `LargeIndecomposable/Foundations/BasicCorner.lean` of
 `multiplicative-bases-deformations`, commit
 `7b9f39f221d8a420a1531f487a3b93ae6d26ce85`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

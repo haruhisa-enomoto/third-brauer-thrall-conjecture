@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.FundamentalGroups.Fischbacher.ZIncomp
-public import LargeIndecomposable.RayCategories.Basic.Op
+public import LargeIndecomposable.RayCategories.Opposite.Op
 public import LargeIndecomposable.RayCategories.RoiterVanishing.KeyLemma
 
 /-!

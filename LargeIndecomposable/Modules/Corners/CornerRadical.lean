@@ -11,6 +11,10 @@ the same block description with `e_i (rad B₀)^n e_j` in each block." For an
 idempotent `e` the radical of `eAe` is `e (rad A) e` (`cornerVal_mem_jacobson`,
 `cornerMk_mem_jacobson`); when `AeA = A` the same holds for all radical powers
 (`corner_mem_radPow`), by inserting `1 ∈ AeA` between the factors.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

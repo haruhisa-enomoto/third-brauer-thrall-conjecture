@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RayCategories.Basic.ResidueQuiver
+public import LargeIndecomposable.RayCategories.Quotients.ResidueQuiver
 
 /-!
 # Long morphisms

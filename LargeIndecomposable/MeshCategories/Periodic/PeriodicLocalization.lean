@@ -20,6 +20,10 @@ rotations, and elimination from that end puts it in the image of `D_m`
 The counting is organized by the potential `d·δ(v_i) + (d - 1 - i)`, minimized
 over the positions `i < d` of the path, where `δ(v)` is the number of times `τ`
 can be applied to `v`. One rotation lowers it by exactly one.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

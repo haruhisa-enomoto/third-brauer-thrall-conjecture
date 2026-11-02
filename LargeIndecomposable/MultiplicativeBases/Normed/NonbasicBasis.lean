@@ -19,6 +19,10 @@ single-entry matrices `E_{iα,jβ}(b)`": here `u_s b v_t`. "Their multiplication
 […]. The single-entry matrices `E_{iα,iα}(e_i)` form a complete set of primitive
 orthogonal idempotents. The radical powers of `A` have the same block
 description with `e_i (rad B₀)^n e_j` in each block."
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

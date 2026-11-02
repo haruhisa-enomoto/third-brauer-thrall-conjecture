@@ -12,6 +12,10 @@ vertices; `x` is the closed path along the short arm and `p, q` the others, so
 subtracting the cubic relations gives `x² = 0`, `v³ = -xvx`,
 `v²x + vxv + xv² = 0`", and the words `x, v; xv, vx, v²; xvx, xv², vxv;
 xvxv, vxv²; xvxv²` span the positive part, with all words of degree six zero.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

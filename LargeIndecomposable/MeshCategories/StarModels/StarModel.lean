@@ -12,6 +12,10 @@ model `StarV L` has the centre `none` and, on arm `i`, the vertices
 `some ⟨i, k⟩` for `k ≤ L i`, the vertex `k` being at distance `k + 1` from the
 centre. Paths are stars with at most two arms; `D_n`, `E_6`, `E_7`, `E_8` have
 three arms of lengths `(1, 1, n - 3)`, `(1, 2, 2)`, `(1, 2, 3)`, `(1, 2, 4)`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

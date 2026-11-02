@@ -13,6 +13,10 @@ associative."
 For a graded `Λ`-module `M` with a homogeneous basis `β` and `Ext²_0(M, M) = 0`, the free
 module `ι → 𝒪` carries a graded `Λ̃`-action lifting that of `M` (`exists_liftMod`). The
 unit is automatic: the action of `1` is an idempotent congruent to the identity.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

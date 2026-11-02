@@ -12,6 +12,10 @@ Proposition 4.1, Step 2: a star with
 three arms of `L i + 1` vertices and `∑ (L i + 1)/(L i + 2) < 2` is `D_n`
 (two arms of one vertex) or `E_6, E_7, E_8` (arms of `1, 2, 2`, `1, 2, 3`,
 `1, 2, 4` vertices).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -10,6 +10,10 @@ is injective on rays, such that a ray of `T` whose product with an embedded ray 
 itself embedded (on either side). The projection of `kT` onto the embedded rays is then an
 `S`-bimodule retraction, and Lemma 4.6 shows that `kS` is representation-finite when `kT`
 is.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

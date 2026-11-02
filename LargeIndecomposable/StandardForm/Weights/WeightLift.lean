@@ -15,6 +15,10 @@ lifted action equations and the arrow-lifting equations are linear, and all fixe
 in them shift weights, so the weight-`χ` parts of the corrections are again solutions
 (`wLift`, `wLiftData`). Their mesh errors shift by `ν_x + χ` (`zE_wshift`), hence lie in
 `C(τx, x)` of weight `ν_x + χ` (`exists_liftData_wt`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

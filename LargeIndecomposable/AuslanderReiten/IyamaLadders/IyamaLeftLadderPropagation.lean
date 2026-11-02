@@ -14,6 +14,10 @@ This is the categorical dual of the right-ladder calculation in Iyama,
 *Tau-categories I*, Lemma 6.4.1(1)(i).  The explicit matrix is obtained by
 opposing the right-ladder matrix and then writing the biproducts back in the
 original category.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

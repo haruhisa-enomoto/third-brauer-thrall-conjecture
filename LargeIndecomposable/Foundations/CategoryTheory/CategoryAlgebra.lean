@@ -13,6 +13,10 @@ category we realize `Λ` as `⊕_{x,y} C(F x, F y)` with the product in path ord
 `Λ`-modules are then left modules over this ring; `R_X = (C(F y, X))_y` with
 `(a · m)_x = ∑_y a_{xy} ≫ m_y`. The algebra `A₀` of Construction 2.8 is the
 category algebra of the projective labels.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -17,6 +17,10 @@ reversibility implies `U_{8+j} = U_{8-j}` for `0 ≤ j ≤ 8`. In particular
 The matrices `U_d` are integer matrices determined by the recurrence; we list
 them in a fixed labelling of the vertices and check the recurrence, the
 nonnegativity and `U_16 = I` by direct computation.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

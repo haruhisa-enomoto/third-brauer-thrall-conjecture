@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RepresentationEmbeddings.CoveringConstruction.KroneckerGlue
-public import LargeIndecomposable.RayCategories.Basic.ArrSetIdeal
+public import LargeIndecomposable.RayCategories.Quotients.ArrSetIdeal
 
 /-!
 # The simple representation at a point of a piece

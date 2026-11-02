@@ -15,6 +15,10 @@ This file formalizes the annihilator-propagation calculation in Iyama,
 an annihilator to the next rung up to its complementary term.  Iteration and
 nilpotence then force one complementary composite to be nonzero in the
 corresponding radical power.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

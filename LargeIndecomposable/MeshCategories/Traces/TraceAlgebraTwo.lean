@@ -10,6 +10,10 @@ and put `v = y - z = x + 2y`"): when `m + m = 0` forces `m = 0` on the target,
 a twisted trace kills every element `r` with `2^n r` in the ideal of relations.
 It therefore factors through the quotient `R₂` of the free ring by the
 `2`-saturation of the relations, where `2 r = 0` implies `r = 0`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

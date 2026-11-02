@@ -23,6 +23,10 @@ the left mesh of `τx`. Its dual radical approximation gives, for a family
   `∑ α_i v_i ∈ J^{n+3}`, then `v_i ≡ β_i u` modulo `J^{n+2}` for one
   `u ∈ J^n(x, W)`;
 * (injectivity) if every `β_i u ∈ J^{n+2}`, then `u ∈ J^{n+1}`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

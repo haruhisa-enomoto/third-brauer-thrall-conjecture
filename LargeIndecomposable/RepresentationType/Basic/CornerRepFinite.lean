@@ -15,6 +15,10 @@ representation-finite. The source uses induction `V ↦ V ⊗_C eA`, whose unit
 `V → (V ⊗_C eA)e` is an isomorphism. We use the adjoint form, coinduction
 `V ↦ Hom_C(Ae, V)`, whose counit `Hom_C(Ae, V)e → V` is an isomorphism; this
 avoids tensor products over the noncommutative ring `C`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

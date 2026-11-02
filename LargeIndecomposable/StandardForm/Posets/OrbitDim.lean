@@ -5,7 +5,7 @@ public import LargeIndecomposable.Foundations.Ring.KrullTrdeg
 /-!
 # Lemma 8.8, geometric part: finitely many orbits cannot cover a large zero set
 
-The source paper (`lem:dimension-infinity`): "The representation variety is
+That paper (`lem:dimension-infinity`): "The representation variety is
 a nonempty zero set of at most `F` scalar polynomial equations in affine `N`-space; the zero
 arrow assignment is a point. Every component of such a zero set has dimension at least
 `N − F`. The change-of-basis group has dimension `D`, and its simultaneous scalar subgroup
@@ -24,6 +24,10 @@ Formalization of the dimension count:
   normalization and transcendence degree);
 * (step 3) by the Nullstellensatz a prime over `I` contains some `J_{x,c}`, so
   `dim k[x]/I ≤ D − 1`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

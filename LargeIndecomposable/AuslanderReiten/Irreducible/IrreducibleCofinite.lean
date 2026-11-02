@@ -10,7 +10,7 @@ set_option backward.isDefEq.respectTransparency.types false
 # Irreducible maps and the converse cofinite-two criterion
 
 This file formalizes the elementary (non-Auslander--Reiten) half of
-the source paper's mixed cofinite-two criterion.  If `P` is projective and
+that paper's mixed cofinite-two criterion.  If `P` is projective and
 there is an irreducible map `P ⟶ Z`, then deleting the labels of `P` and `Z`
 leaves a quotient-closed support.  The dual injective statement is included
 as well.
@@ -18,6 +18,10 @@ as well.
 The definition of irreducibility is categorical: the map itself is neither
 a split monomorphism nor a split epimorphism, and in every factorization the
 first factor is a split monomorphism or the second is a split epimorphism.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -15,6 +15,10 @@ A path of the doubled tree lifts to `ℤΔ` (`forget` is a covering), its image
 under `π` is a long path of `Q`, hence zero; `π` reflects the mesh ideal, the
 rescaling of Step 2 moves it to the signed mesh ideal, and forgetting heights
 lands in the ideal of `Π(Δ)`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

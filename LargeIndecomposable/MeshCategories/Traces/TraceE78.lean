@@ -22,6 +22,10 @@ With two invertible only degrees three, five and nine survive (part (2)); we
 record the vanishing in all other word degrees, which is what the period
 exclusion uses. A word `y x^{g₁} ⋯ y x^{g_k}` is `blk [g₁, …, g_k]`; the
 induction runs on the number `k` of `y`'s, in a fixed word degree.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

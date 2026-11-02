@@ -18,6 +18,10 @@ these are `IndSkeleton.prime_cokerSpan`) which are killed by two over every coef
 (`ReductionMesh`), every family of degree `m + 1 ≥ 3` is, up to `2·(families)`, an
 `𝒪`-combination of these rows plus a derivative, so twice it is a derivative
 (`two_smul_mem_imageD`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

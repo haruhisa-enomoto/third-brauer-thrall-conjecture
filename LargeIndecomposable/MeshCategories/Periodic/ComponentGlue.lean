@@ -11,6 +11,10 @@ Proof of Proposition 5.3, reduction to components: on a finite translation quive
 under `τ^{±1}` and every vertex of `K` is the translate of a vertex of `K`, so
 the full translation subquiver on `K` is stable; it is connected by arrows and
 translation edges.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

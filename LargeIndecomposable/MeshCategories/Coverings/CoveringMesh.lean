@@ -11,6 +11,10 @@ with translation, pulling the coefficients of `Q` back along `π` makes `π` map
 the mesh relation at `X` to the mesh relation at `π X`, so `π` preserves the
 mesh ideal. This is how the twisted
 trace calculation (Lemma A.2) passes relations downstairs.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

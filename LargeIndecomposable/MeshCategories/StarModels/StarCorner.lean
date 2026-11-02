@@ -18,6 +18,10 @@ We prove the iteration in the following form: every path from `o` to `v` is,
 modulo the relations, a word in the `x_i` followed by the geodesic from `o` to
 `v` (`normal_form`). (In `StarV L` the arm `i` has `L i + 1` vertices, so the
 manuscript's `L_i` is `L i + 1`.)
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -447,7 +451,7 @@ theorem cpow_zb_mem (i : Fin t) : ∀ (n r : ℕ) (hr : r ≤ L i), L i - r = n 
       have := Submodule.sub_mem _ h3 h1
       rwa [sub_sub_cancel] at this
 
-/-- **`x_i^{L_i+1} = 0`** (in the source paper's indexing; arm `i` has `L i + 1`
+/-- **`x_i^{L_i+1} = 0`** (in that paper's indexing; arm `i` has `L i + 1`
 vertices): moving a power down its arm. -/
 theorem xp_pow_mem (i : Fin t) :
     LinearPaths.path (wordP (L := L) (List.replicate (L i + 2) i)) ∈ I k (o L) (o L) := by

@@ -9,6 +9,10 @@ public import LargeIndecomposable.Modules.KrullSchmidt.FiniteModuleDecomposition
 Lemma 3.1(1), first part: "The annihilator of
 the right module `A/I` is `I`. Finite representation type gives only finitely
 many isomorphism classes of modules of dimension at most `dim_k A`."
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

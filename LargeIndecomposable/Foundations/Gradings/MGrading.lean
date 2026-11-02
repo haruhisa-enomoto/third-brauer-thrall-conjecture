@@ -15,6 +15,10 @@ supported orthogonal projections. A linear map *shifts by* `γ` if it sends weig
 weight `g + γ`; the weight-`γ` part of an arbitrary linear map is `pr γ φ`. Homogeneous
 solutions of linear equations are obtained by applying `pr` to arbitrary solutions,
 since `pr` commutes with composition by shifting maps (`pr_comp_left`, `pr_comp_right`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

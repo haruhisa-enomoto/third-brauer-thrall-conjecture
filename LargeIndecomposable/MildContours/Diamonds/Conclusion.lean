@@ -3,7 +3,7 @@ module
 public import LargeIndecomposable.MildContours.Diamonds.ClosureHelpers
 public import LargeIndecomposable.Cleaving.Families.FamMEX1
 public import LargeIndecomposable.Cleaving.Families.FamMEX2
-public import LargeIndecomposable.MildContours.Basic.Theorem3
+public import LargeIndecomposable.MildContours.Contours.Theorem3
 
 /-!
 # Diamond: the exceptional case and the conclusion

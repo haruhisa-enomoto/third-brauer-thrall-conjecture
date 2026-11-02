@@ -21,6 +21,10 @@ multiplying along walks gives object values `ζ_X`" (`ζ`, `ζ_arrow`).
 "Conjugation by these values fixes every arrow and hence every morphism, so `Φ`
 multiplies each morphism `X̃ → Ỹ` by `ζ_Ỹ / ζ_X̃`" (`Φ_eq_ratio`), and on `L`
 this gives `d(x, y) = ζ_y / ζ_x` (`weight_eq_ratio`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

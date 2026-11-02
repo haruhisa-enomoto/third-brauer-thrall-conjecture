@@ -10,6 +10,10 @@ The paper proves many statements together with "the dual assertion", obtained "b
 the opposite algebra". `Tab.op` reverses rays and products; its linearization is the opposite
 algebra of `kP` (`linOpEquiv`), so it is representation-finite when `kP` is
 (`isRepresentationFinite_op`); `Sys.op` carries Setting 8.4 over.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -15,6 +15,10 @@ spanning property passes to the all-one presentation over `k` by the gauge of Le
 (`cokerSpan_gauge`), and from there to `𝔽₂` by a coefficient retraction `k → 𝔽₂`
 (`cokerSpan_descend`): applying the retraction to a relation
 `row = ∑ αᵢ rowᵢ + D f` over `k` gives `row = ∑ θ(αᵢ) rowᵢ + D(θ f)` over `𝔽₂`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -18,6 +18,10 @@ through `D` (`oqFunctor_map_eq_zero_iff`). We add the identities of the deleted
 vertices to a relation system (`RelSystem.del`), lift relations along a
 covering from a fixed start (`ofStar_liftStar_mem`), rescale to signed
 coefficients, and forget heights into `Π(Δ)` modulo the deleted vertices.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

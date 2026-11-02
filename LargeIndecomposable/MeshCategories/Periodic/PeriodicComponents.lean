@@ -17,6 +17,10 @@ and a path with all vertices in `T` stays in one component.
 
 `meshDerivativeSurjective_of_components`: if `D_m` is surjective on every
 periodic component, it is surjective on `C(Q, c)`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -14,6 +14,10 @@ a primitive idempotent is isomorphic to `e_i A` for one idempotent of a complete
 set (`exists_iso_ideal`: some `e e_i e` is a unit of the local corner `eAe`, so
 `eA` is a retract of `e_i A`), and for a basic algebra distinct `e_i A` are not
 isomorphic (`eq_of_iso_ideal`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

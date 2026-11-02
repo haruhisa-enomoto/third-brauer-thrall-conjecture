@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MildContours.Diamonds.CaseD
-public import LargeIndecomposable.MildContours.Basic.SetupOp
+public import LargeIndecomposable.MildContours.Setup.SetupOp
 public import LargeIndecomposable.Crowns.Lemma5.DualNeighbour
 public import LargeIndecomposable.RayCategories.Basic.RayFirstArrow
 

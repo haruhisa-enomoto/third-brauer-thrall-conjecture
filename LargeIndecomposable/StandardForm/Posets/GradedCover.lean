@@ -23,6 +23,10 @@ retraction. Indeed, for `p ∈ H(i,j)`, `q ∈ H(l,m)` and `b ∈ B'(j,l)`,
 cancellation of the degrees of `p` and `q` in the grading group gives
 `π(pbq) = p π(b) q`. Lemma 4.6 therefore applies with `C = D = H`."
 (`isRepresentationFinite_cov`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -5,11 +5,15 @@ public import LargeIndecomposable.RayCategories.RayTables.TableConf
 /-!
 # Incidence tables with zero relations
 
-For Case 2 of Lemma 8.11 the source paper uses a tree category with
+For Case 2 of Lemma 8.11 that paper uses a tree category with
 one zero relation (`F = 1` in Lemma 8.8). Here: the incidence table of a finite poset with a
 set `Z` of comparable pairs declared zero, closed under extension (`incZ`), and configurations
 of it in a ray table (`ConfZ`), which make its linearization representation-finite when `kP`
 is (Lemmas 8.9 and C.1 as in `TableConf`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.GradedRealizationIso
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.GradedRealizationIso
 public import LargeIndecomposable.AuslanderReiten.Radical.LayerExactnessDual
 
 /-!
@@ -13,7 +13,7 @@ ideal:
 
 * (`cov_homog`) if `∑_a G_a a` lies in the mesh ideal, then at a projective
   vertex every `G_a` does, and at a nonprojective vertex `y` there is `H` with
-  `G_a ≡ c_{y,a} H (σa)` for every arrow `a` ending at `y` (the source paper's
+  `G_a ≡ c_{y,a} H (σa)` for every arrow `a` ending at `y` (that paper's
   "comes from `h ∈ C_{n-2}(W, τY)`", as in the injectivity step of (3));
 * (`cov_mono_homog`) if every `H (σa)` lies in the mesh ideal, so does `H`;
 * (`contra_homog`) if `∑_a c_{y,a} (σa) V_a` lies in the mesh ideal, then
@@ -22,6 +22,10 @@ ideal:
 
 The first two use the first sequence of (1), the last two the second
 sequence (`LayerExactnessDual.lean`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MultiplicativeBases.Twisted.MulBasis
-public import LargeIndecomposable.RayCategories.Basic.Op
+public import LargeIndecomposable.RayCategories.Opposite.Op
 public import LargeIndecomposable.Modules.Duality.OppositeDuality
 
 /-!

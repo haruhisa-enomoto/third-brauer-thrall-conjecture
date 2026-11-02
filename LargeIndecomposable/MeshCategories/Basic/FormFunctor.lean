@@ -17,6 +17,10 @@ arrows, and for every `K`-linear `θ : k → K` the *retraction*
 `Π θ = retE θ ∘ gauge⁻¹ : C(Q, c) → C(Q, u)`, a bimodule map over the image of `Fm`
 (`Π_comp_Fm`, `Π_Fm_comp`) with `Π θ (t • Fm φ) = θ t • φ` (`Π_smul_Fm`). Hence `Fm` is injective
 and the Hom spaces have equal dimensions (`finrank_Fm`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

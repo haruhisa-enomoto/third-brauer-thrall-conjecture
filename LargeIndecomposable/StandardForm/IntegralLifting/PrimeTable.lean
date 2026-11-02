@@ -18,6 +18,10 @@ corner of `A⁽²⁾` at the endpoints of `t` in the length degree of `t` contai
 nonzero vector `e_t` (`eT`); `ι₂ e_t` is a nonzero multiple of `b_t`. The `e_t` form a
 multiplicative basis of `A⁽²⁾` with the multiplication table of `A₀`, hence
 `𝔽₂P ≅ A⁽²⁾` (`Θ₂`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

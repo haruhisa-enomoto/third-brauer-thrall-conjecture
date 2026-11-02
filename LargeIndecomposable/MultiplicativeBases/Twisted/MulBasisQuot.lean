@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.ClosedChains.ClosedChainOf
-public import LargeIndecomposable.RayCategories.Basic.ResidueQuiver
+public import LargeIndecomposable.RayCategories.Quotients.ResidueQuiver
 
 /-!
 # Quotients of algebras with twisted multiplicative bases

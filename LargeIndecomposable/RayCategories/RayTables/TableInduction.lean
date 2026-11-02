@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.RayTables.RayPres
-public import LargeIndecomposable.StandardForm.RayArguments.CentralizerTable
+public import LargeIndecomposable.StandardForm.LocalRayGeometry.CentralizerTable
 public import LargeIndecomposable.RayCategories.RayTables.TabSys
 public import LargeIndecomposable.StandardForm.Hochschild.IndicatorRel
 
@@ -17,6 +17,10 @@ induction … applied to each connected factor"):
   when it holds for both pieces (`lift2_of_split`);
 * a representation-finite ray table presents its own linearization (`self_rayPres`), which is
   basic.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

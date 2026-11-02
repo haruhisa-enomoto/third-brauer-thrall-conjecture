@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RayCategories.Basic.FromDistributive
+public import LargeIndecomposable.RayCategories.Distributive.FromDistributive
 public import LargeIndecomposable.RayCategories.Basic.Factor
 public import Mathlib.CategoryTheory.EssentiallySmall
 

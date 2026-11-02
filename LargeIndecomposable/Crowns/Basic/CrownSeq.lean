@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.ClosedChains.ClosedChainOf
-public import LargeIndecomposable.RayCategories.Basic.Op
+public import LargeIndecomposable.RayCategories.Opposite.Op
 public import LargeIndecomposable.RayCategories.Basic.MorphismDepth
 
 /-!

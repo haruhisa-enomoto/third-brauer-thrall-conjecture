@@ -13,6 +13,10 @@ changes neither its cokernel nor the brick property." For
 functor `Φ : C(Q, c) → C(Q, c')` with `Φ(a) = μ_a a`; and for `f'_a = μ_a⁻¹ Φ(f_a)`,
 `D'(f') = η Φ(D f)`. Hence each row of `C(Q, c')` lies in the image of `D'_m`
 when the corresponding row of `C(Q, c)` lies in that of `D_m`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

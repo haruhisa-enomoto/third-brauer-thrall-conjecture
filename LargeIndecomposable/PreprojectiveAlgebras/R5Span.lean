@@ -9,7 +9,7 @@ public import Mathlib.Data.List.Induction
 /-!
 # The centre corner of `E₈` in characteristic two (Appendix B)
 
-The source paper. In
+That paper. In
 `R₅ = k⟨x, y⟩/(x⁵, y³, (x + y)²)` over a ring with `2 = 0`, put
 `ω₃ = yx³y`, `ω₄ = yx⁴y`, `ω₅ = ω₄x³y`. "The following words span `R₅`:
 `xⁱ`, `xⁱyxʲ` (`j ≤ 4`), `xⁱω₃`, `xⁱω₄xʲ` (`j ≤ 3`), `xⁱω₅`. Their span contains `1`
@@ -17,6 +17,10 @@ and is closed under multiplication on the right by `x, y`. … The highest word 
 the list is fourteen." We prove the closure (`spn_mul_x`, `spn_mul_y`), so that every
 word of degree `n` lies in the span `spn n` of the listed words of degree `n`, and
 `spn n = 0` for `n ≥ 15`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

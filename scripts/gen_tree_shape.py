@@ -71,7 +71,7 @@ w = L.append
 w('module\n')
 w('public import LargeIndecomposable.Cleaving.Shapes.ShapeD6')
 if spec.get('mild', False):
-    w('public import LargeIndecomposable.Cleaving.Basic.Tools')
+    w('public import LargeIndecomposable.Cleaving.Diagrams.Tools')
 w('')
 w('/-!')
 w(f'# The tree diagram `{N}`\n')

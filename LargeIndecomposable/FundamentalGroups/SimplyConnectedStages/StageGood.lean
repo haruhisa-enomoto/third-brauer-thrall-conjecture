@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.FundamentalGroups.SimplyConnectedStages.StageSC
-public import LargeIndecomposable.RayCategories.Basic.NestQuot
+public import LargeIndecomposable.RayCategories.Quotients.NestQuot
 public import LargeIndecomposable.RayCategories.Basic.LoopFree
 public import LargeIndecomposable.Coverings.UniversalCover.LocalSC
 public import LargeIndecomposable.Coverings.UniversalCover.CoverCountable

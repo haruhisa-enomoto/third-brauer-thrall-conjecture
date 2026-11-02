@@ -14,6 +14,10 @@ case let `p ≤ q ≤ r` be its arm lengths."
 Seen from a root `o`, each other vertex has a unique parent (`TreeBFS`); its
 other neighbours are its children. This file sets up parents, children and
 ancestors.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

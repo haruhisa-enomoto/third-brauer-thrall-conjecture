@@ -18,6 +18,10 @@ form of that theorem formally implies the right-mesh form.
 
 The relation `NakayamaPair` remains an external parameter here.  Its genuine
 definition by finite invertible ladders belongs to the next layer.
+
+## References
+
+* *Quotient-submodule equidistribution*, <https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
@@ -38,7 +42,7 @@ right tau-sequences.
 The chosen categorical radical is globally aligned with
 `CategoricalRadical.IsRadicalMorphism` and nilpotent.  Nilpotence is stronger
 than the separated-radical hypothesis in Iyama's general theorem, but is the
-finite input intended for the source paper's acyclic word mesh category. -/
+finite input intended for that paper's acyclic word mesh category. -/
 structure FiniteRightTauCategoryData
     (C : Type u) [Category.{v} C] [Preadditive C]
     [HasFiniteBiproducts C] [HasBinaryBiproducts C]

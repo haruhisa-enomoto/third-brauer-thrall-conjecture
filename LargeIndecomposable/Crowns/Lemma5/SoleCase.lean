@@ -2,7 +2,7 @@ module
 
 public import LargeIndecomposable.Crowns.Lemma5.CaseB
 public import LargeIndecomposable.Crowns.Basic.Lemma4c
-public import LargeIndecomposable.RayCategories.Basic.OpAxioms
+public import LargeIndecomposable.RayCategories.Opposite.OpAxioms
 
 /-!
 # BO13a Lemma 5 a) when the next long morphism is the quotient morphism

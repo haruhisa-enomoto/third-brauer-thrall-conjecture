@@ -14,6 +14,10 @@ degree."
 Every evaluated module `M_X` of `A⁽²⁾` lifts to a graded `𝒪P`-module on `Fin n_X → 𝒪`
 (`exists_modLift`), and every arrow map `M_y → M_x` lifts to a degree-one `𝒪P`-linear map
 between the lifts (`exists_arrowLift`). These data are bundled in `WData`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

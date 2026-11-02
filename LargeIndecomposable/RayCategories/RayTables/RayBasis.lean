@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.RayArguments.LocalCorner
+public import LargeIndecomposable.StandardForm.LocalRayGeometry.LocalCorner
 
 /-!
 # Rays and ray transversals
@@ -11,6 +11,10 @@ maximal subbimodule (`le_endpointRadical`), and "`[f] = U(f) ∖ R(f)`"
 (`eq:ray-layer`; here `mem_ray_iff`). Corollary 3.3: "In each corner, the chosen
 vectors represent the consecutive one-dimensional quotients of a finite chain.
 They therefore form a basis adapted to every member of that chain."
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

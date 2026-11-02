@@ -16,6 +16,10 @@ nonprojective label the right mesh is exact in both variables
 We record these properties for a finite family of objects of a `k`-linear
 category (`LocalFamily`, `MeshData`), and derive the module-theoretic
 consequences over the category algebra `Λ`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

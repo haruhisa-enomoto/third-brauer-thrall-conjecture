@@ -12,6 +12,10 @@ and `e_x`. Every nonzero corner element is `u b_r w` with endpoint units `u, w` 
 `r` (the top of its support in the endpoint chain), and `R_x b_s R_y` is spanned by the
 rays of `U(s)`. These are the facts behind "the basis vectors represent exactly the same
 endpoint-unit orbits" in the proof of Proposition 11.3(3).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

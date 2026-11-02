@@ -12,6 +12,10 @@ star model with signed coefficients, and let `(v, t) ↦ (σ v, t + s)` be a dec
 transformation with `σ` fixing the centre. In degree `d = m + 1 = 2 + s`, the row
 class of a closed path at a `σ`-fixed vertex `v` (`phiV`) is independent of the
 height, kills the relations of `Π(Δ)`, and satisfies twisted rotation.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

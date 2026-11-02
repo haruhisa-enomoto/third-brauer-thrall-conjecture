@@ -14,6 +14,10 @@ category satisfying the brick hypothesis, in characteristic two, the cokernels o
 mesh derivatives are spanned by the class of at most one row (`connected_cokerSpan`):
 by Proposition 4.1 the quiver is covered by a star model; the types `A` give zero
 cokernels, and the types `D`, `E` one row of degree `2s + 2` at the centre.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

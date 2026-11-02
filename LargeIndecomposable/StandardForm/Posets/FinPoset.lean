@@ -12,6 +12,10 @@ the Euclidean trees of the table after `lem:dimension-infinity`): a poset on `Fi
 a Boolean table (`Pos`), whose axioms, cover relation, uniqueness of lower covers
 and dimension count are checked by `decide`. `forbidden` transfers the conclusion along an
 order isomorphism, for the poset and its dual.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

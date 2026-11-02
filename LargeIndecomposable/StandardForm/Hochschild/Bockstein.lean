@@ -4,7 +4,7 @@ public import LargeIndecomposable.StandardForm.Hochschild.CharComplex
 public import LargeIndecomposable.StandardForm.IntegralLifting.ZModFour
 public import LargeIndecomposable.MeshCategories.Basic.BaseChange
 public import LargeIndecomposable.StandardForm.Hochschild.SupportedBockstein
-public import LargeIndecomposable.StandardForm.RayArguments.CentralizerTable
+public import LargeIndecomposable.StandardForm.LocalRayGeometry.CentralizerTable
 public import LargeIndecomposable.StandardForm.Hochschild.IndicatorRel
 
 /-!
@@ -21,6 +21,10 @@ gives the corollary over `𝔽₂` (`cor105_coeff₂`); "It may be chosen over `
 to `k`": a class over `k` has a coordinate class over `𝔽₂` which is not a coboundary, and a
 retraction `k → 𝔽₂` shows that its supported representative stays a non-coboundary over `k`
 (`cor105_coeff`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

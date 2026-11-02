@@ -7,7 +7,7 @@ public import Mathlib.Combinatorics.SimpleGraph.Acyclic
 /-!
 # The repetition `ℤΔ` of a tree and the signed preprojective category `Π(Δ)`
 
-The source paper.
+That paper.
 
 We use the height coordinates of Proposition 4.1(2). Fix a finite graph `Δ` with a proper
 two-colouring `par`. A vertex of `ℤΔ` is a pair `(v, t)` with `t ≡ par v`
@@ -22,6 +22,10 @@ of Subsection 4.1 under `v_j ↦ (v, 2j + d_v)`.
 oriented `x → y` and `-1` otherwise. The signed mesh coefficients of `ℤΔ` are
 `c_{(x,t), (y,t-1)} = ε(x, y)`, so forgetting heights sends the mesh relation at
 `(x, t)` to `ρ_x`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

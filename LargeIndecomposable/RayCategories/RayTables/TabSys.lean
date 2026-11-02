@@ -2,7 +2,7 @@ module
 
 public import LargeIndecomposable.RayCategories.RayTables.LinCorners
 public import LargeIndecomposable.RayCategories.RayTables.EndpointChains
-public import LargeIndecomposable.StandardForm.RayArguments.LocalCorner
+public import LargeIndecomposable.StandardForm.LocalRayGeometry.LocalCorner
 public import LargeIndecomposable.AuslanderReiten.Radical.GradedLayers
 
 /-!
@@ -17,6 +17,10 @@ positive degree. By Lemma 3.1(3) (`exists_rad_gen`) at most one positive local r
 not a product of two positive local rays; it generates all local rays (`q_x`). Every Hom is
 cyclic over one endpoint (`endpointSpan_one_sided`) and its endpoint subbimodules form a
 chain (`isChain_subbimodules`), which gives the fields `cyc` and `chain` of `Sys`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.FundamentalGroups.Basic.Fundamental
-public import LargeIndecomposable.RayCategories.Basic.QuotientCompare
+public import LargeIndecomposable.RayCategories.Quotients.QuotientCompare
 
 /-!
 # Interlaced paths and contours

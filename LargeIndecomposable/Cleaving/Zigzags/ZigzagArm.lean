@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.Cleaving.Zigzags.ZigzagFork
-public import LargeIndecomposable.Cleaving.Basic.TreeShapes
+public import LargeIndecomposable.Cleaving.Diagrams.TreeShapes
 
 /-!
 # Zigzags with a fork and an arm: BO13a figures 5.2 and 5.3

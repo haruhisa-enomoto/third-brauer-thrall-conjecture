@@ -7,7 +7,7 @@ public import LargeIndecomposable.MeshCategories.Periodic.RowRotation
 /-!
 # Hochschild classes and mesh corrections (Proposition 7.6, the map `Ψ`)
 
-The source paper (`prop:hochschild-mesh-restriction`): "Represent
+That paper (`prop:hochschild-mesh-restriction`): "Represent
 a homogeneous class by a normalized relative cocycle `μ`. Apply Lemma 6.6 with
 `R = k`, `Λ = A₀` and the normalized modules, using Lemma 6.3. Choose the actual
 projectives at their labels, give `ε` degree `−q`, and lift the arrows
@@ -19,6 +19,10 @@ arrow lifts by `εf_a` changes their tuple by `D_{q+1}f`."
 Here: the arrow maps `fA` on evaluated modules, the choice data `LiftData`
 (module lifts and arrow lifts), the mesh error `zE`, its representative
 `zhat ∈ C_{q+2}(τx, x)`, and the class `Ψ ∈ coker D_{q+1}`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

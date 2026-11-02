@@ -16,6 +16,10 @@ sending `o` to `z`, lifting the rooted tree edges, and extending by translation
 and mates. Since `Δ` is a tree, these choices are consistent."
 
 Here `o` is the centre at height `0`; the rooted tree edges are the arms.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

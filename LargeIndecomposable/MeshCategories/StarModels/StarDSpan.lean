@@ -8,7 +8,7 @@ public import LargeIndecomposable.PreprojectiveAlgebras.ECase
 /-!
 # Type `D` in characteristic two (Appendix B)
 
-The source paper. On a periodic star model
+That paper. On a periodic star model
 of type `D_n` (`N = n − 2`) with period `c₀ = 2s`, a row of path degree `2j` exists
 only for `j = 1 + n s` with twist `θ^n` (Lemma A.2(1)), and its class is an integer
 multiple of the alternating word `w_j` (`trace_D_span`), which vanishes for `j > N`.
@@ -20,6 +20,10 @@ only `j = s + 1` remains: all cokernel classes are multiples of the class of the
 row of `w_{s+1}` at the centre.
 
 For the three-cycle of the arms of `D_4`, all classes vanish.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

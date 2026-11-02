@@ -6,7 +6,7 @@ public import LargeIndecomposable.MeshCategories.Traces.TraceTwoTorsion
 /-!
 # Candidate rows killed by two (Lemma B.2 on a periodic star model)
 
-The source paper (proof of `lem:integral-mesh-cokernels`):
+That paper (proof of `lem:integral-mesh-cokernels`):
 "The proofs of Lemmas A.1 and A.2 apply over `𝒪` without change … Lemma A.2 gives a
 surjection from the twisted trace module over `𝒪` onto the integral derivative cokernel."
 
@@ -14,6 +14,10 @@ Over any commutative coefficient ring: on a periodic star model, if the twisted 
 word `W₀` is killed by two in every twisted trace module, then so is the class of its
 candidate row (`star_two`). The coefficients are first normalized (Lemma A.1, which divides
 only by units); the candidate row is then the trace of `W₀`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

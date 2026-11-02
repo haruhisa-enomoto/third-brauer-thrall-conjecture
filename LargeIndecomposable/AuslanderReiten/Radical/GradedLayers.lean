@@ -21,6 +21,10 @@ member."
 
 `LenGrading` is a grading of the algebra by `ℕ` with homogeneous products; the
 scaling maps `σ_t` (`scale`) are multiplicative.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.MildContours.Basic.SplitBridge
+public import LargeIndecomposable.MildContours.Assembly.SplitBridge
 public import LargeIndecomposable.RepresentationType.MinimalInfinite.Connected
 
 /-!

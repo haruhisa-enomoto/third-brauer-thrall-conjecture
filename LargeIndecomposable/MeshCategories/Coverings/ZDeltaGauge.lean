@@ -18,6 +18,10 @@ In height coordinates the arrows over an edge `{x, y}` form a line indexed by
 the height `h` of their source, and the mesh at height `h + 2` prescribes the
 product of the scalars of the arrows of heights `h` and `h + 1`
 (`exists_line_solution`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -6,7 +6,7 @@ public import LargeIndecomposable.Modules.Idempotents.PrimitiveDecomposition
 /-!
 # Normed multiplicative bases and basic algebras
 
-Definition 1.1 of the source paper: a basis `𝓑` of a
+Definition 1.1 of that paper: a basis `𝓑` of a
 finite-dimensional algebra `A` is *multiplicative* if `bc ∈ 𝓑 ∪ {0}` for all
 `b, c ∈ 𝓑`; it is *normed* if it contains a complete set of primitive
 orthogonal idempotents and `𝓑 ∩ (rad A)^n` is a basis of `(rad A)^n` for every
@@ -16,6 +16,10 @@ The algebra radical `rad A` is Mathlib's Jacobson radical `Ring.jacobson A`
 (the intersection of the maximal left ideals), regarded as a `k`-subspace.
 Its powers are products of `k`-subspaces, which agree with the ideal powers
 because `rad A` is a two-sided ideal.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

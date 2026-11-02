@@ -8,6 +8,10 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 Used for the twists `θ = ρ^l` of Lemma A.2: an automorphism of a star model fixing the centre preserves depths
 and maps arm `i` onto an arm `θ i` of the same length, vertex by vertex.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -17,6 +17,10 @@ endpoint ring (`lem:endpoint-chains`). In ray terms:
 
 `Sys` bundles a ray table with this structure. Products are computed in the monoid with zero
 `M P`; we write `⌜r⌝` for a ray in it.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

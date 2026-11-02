@@ -10,6 +10,10 @@ public import Mathlib
 
 The reduction `red : ℤ/4 → 𝔽₂`, the set-theoretic section `lift`, and the additive embedding
 `tw : 𝔽₂ → 2𝒪`, `a ↦ 2ã`. Every statement is a finite check.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -16,6 +16,10 @@ The mesh ideal is spanned by composites `u r_Y v`; their degree-two parts from
 `u, v` scalars (`proj_two_mem_span`). A linear relation among the composites
 `(σa) a` in `C(Q, c)` is therefore proportional to the mesh coefficients
 (`mesh_coeffs`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

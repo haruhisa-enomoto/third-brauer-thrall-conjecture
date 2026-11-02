@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.RayArguments.FibreRays
+public import LargeIndecomposable.StandardForm.LocalRayGeometry.FibreRays
 public import LargeIndecomposable.RayCategories.RayTables.RayProduct
 public import LargeIndecomposable.RayCategories.RayTables.RayTransport
 
@@ -16,6 +16,10 @@ The transported rays of a fibre of the zero-product family present `B` by `P` (`
 "If `n ∈ rad R_y`, the product `rn` is a combination of proper rays, so `(rn)·s = (rn)s` …
 Each correction `r*s = rq_ys` belongs to this subspace." With zero coefficients this shows
 that a representation-finite ray table presents its own linearization.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

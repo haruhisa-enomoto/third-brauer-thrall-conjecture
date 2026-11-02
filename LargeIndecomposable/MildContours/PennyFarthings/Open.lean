@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.MildContours.PennyFarthings.Contour
-public import LargeIndecomposable.MildContours.Basic.Separated
+public import LargeIndecomposable.MildContours.Setup.Separated
 public import LargeIndecomposable.Cleaving.Shapes.ShapeOut3
 
 /-!

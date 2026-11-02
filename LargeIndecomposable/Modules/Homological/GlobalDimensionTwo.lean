@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.StandardForm.Basic.ProjectiveEvaluation
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.ProjectiveEvaluation
 
 /-!
 # Global dimension at most two (proof of Proposition 2.10)
@@ -16,6 +16,10 @@ resolution of length two by modules `R_Z` (the simple resolutions and the
 horseshoe construction, along a composition series); by Schanuel's lemma every
 second syzygy is projective; a finite-dimensional projective module is some
 `R_W` (tops and Nakayama's lemma).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

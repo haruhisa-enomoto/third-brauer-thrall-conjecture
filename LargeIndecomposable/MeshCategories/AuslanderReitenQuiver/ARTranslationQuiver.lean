@@ -21,6 +21,10 @@ middle term of the almost split sequence ending at `x`. The projective and
 injective vertices are those whose module is projective, respectively
 injective, in `mod A`. The translation and the dimension identities come from
 the Auslander--Reiten theory through `ARBridge.lean`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -2,7 +2,7 @@ module
 
 public import LargeIndecomposable.StandardForm.IntegralLifting.IntegralTable
 public import LargeIndecomposable.Foundations.LinearAlgebra.HomBasis
-public import LargeIndecomposable.StandardForm.Basic.A0Graded
+public import LargeIndecomposable.StandardForm.ProjectiveAlgebra.A0Graded
 public import LargeIndecomposable.StandardForm.Hochschild.PsiInjective
 public import LargeIndecomposable.StandardForm.IntegralLifting.ZModFour
 public import LargeIndecomposable.Foundations.Gradings.GradedBasis
@@ -18,6 +18,10 @@ with a ray degree `d` and an isomorphism `Θ : 𝔽₂P ≅ A⁽²⁾` taking ev
 element of its degree and the vertex rays to the vertex idempotents (for `C⁽²⁾` this is
 `IndSkeleton.Θ₂`). Then `A⁽⁴⁾ = 𝒪P` is graded by the degrees of the rays (`galgO`), and the
 reduction `π : 𝒪P → 𝔽₂P ≅ A⁽²⁾` is a reduction of graded algebras (`isRed_πO`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

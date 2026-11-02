@@ -30,6 +30,10 @@ connected set `D` (`thinRep`); the source restricts them to the component of
 through the up-sets of `R`, whose components are convex in `R`, so the
 representations of all steps are representations of the incidence algebra of
 `R` itself (no corner argument is needed).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

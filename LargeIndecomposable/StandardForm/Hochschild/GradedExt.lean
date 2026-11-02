@@ -13,9 +13,13 @@ is the cohomology of the bar complex `Hom_R(M ⊗ Λ^{⊗n}, N)` in internal deg
 `Λ` (`R` a commutative ring: a field, or `ℤ/4` in Section 10).
 
 The bar complex is taken over `R` rather than relative to `S`; both compute `Ext`
-(the source paper for the relative form). That it computes the source paper's
+(that paper for the relative form). That it computes that paper's
 `Ext` is proved in `ExtResolutions.lean`: for every graded projective resolution, the `Ext`
 computed from it vanishes exactly when the bar `Ext` does (`GRes.extVanish_iff`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

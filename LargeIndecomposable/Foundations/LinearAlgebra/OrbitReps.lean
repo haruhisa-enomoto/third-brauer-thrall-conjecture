@@ -13,6 +13,10 @@ For a permutation `θ` of a finite linearly ordered type we fix the least elemen
 `rep i` of the orbit of `i`, an exponent `ord i` with `θ^{ord i} (rep i) = i`, and
 the minimal period `per i` of `rep i`; exponents reaching the same point differ
 by a multiple of the period.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

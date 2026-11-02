@@ -1,7 +1,7 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.RadSq
-public import LargeIndecomposable.Cleaving.Basic.Cleaving
+public import LargeIndecomposable.Cleaving.ThinCategories.RadSq
+public import LargeIndecomposable.Cleaving.Functors.Cleaving
 
 /-!
 # Band modules over the crown category

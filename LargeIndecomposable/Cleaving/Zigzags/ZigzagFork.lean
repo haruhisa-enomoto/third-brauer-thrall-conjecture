@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.BipTree
+public import LargeIndecomposable.Cleaving.PathCategories.BipTree
 
 /-!
 # Zigzags with forks: `D̃` cleaving diagrams

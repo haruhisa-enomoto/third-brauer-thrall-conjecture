@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RayCategories.Basic.Op
+public import LargeIndecomposable.RayCategories.Opposite.Op
 
 /-!
 # The fundamental groupoid of the opposite ray category

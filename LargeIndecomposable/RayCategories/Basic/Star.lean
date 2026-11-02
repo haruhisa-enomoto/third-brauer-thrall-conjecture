@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.BipDiagram
+public import LargeIndecomposable.Cleaving.Diagrams.BipDiagram
 
 /-!
 # The `D̃₄` star

@@ -13,6 +13,10 @@ Elementary facts about a finite tree with a proper two-colouring, used in the
 proof of Proposition 4.1, Step 2:
 seen from a root `o`, adjacent vertices have distances differing by one, and
 every other vertex has a unique neighbour closer to `o` (its parent).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

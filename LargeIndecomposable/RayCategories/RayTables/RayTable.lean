@@ -12,7 +12,11 @@ ray is determined by its endpoints and weight.
 
 We record this as an abstract finite table `Tab`: rays with source and target, identities,
 a partial associative product, weights and a degree. The rays together with a formal unit and
-a zero form a monoid with zero `M P`, in which all products of the source paper are computed.
+a zero form a monoid with zero `M P`, in which all products of that paper are computed.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

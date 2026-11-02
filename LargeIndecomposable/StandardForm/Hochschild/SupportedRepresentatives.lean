@@ -11,6 +11,10 @@ public import LargeIndecomposable.StandardForm.Deformations.FiltrationDim
 `A₀` with the dual weights (`Char2A0.Cor105`): the hypotheses of Theorem 9.1(3) come from the
 induction hypothesis of Proposition 8.3 through Lemma 9.2 (`hWl_of_liftBelow`), and the only
 remaining input is Proposition 10.3 in coefficients (`IStar`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -17,6 +17,10 @@ translation-commuting automorphisms acting freely.
 The proof assembles Steps 1–4 (`SectionalCover`, `SectionalDynkin`,
 `ModelDeck`), transporting the covering from the tree of sectional paths to the
 star model along the isomorphism of Step 2 (`ZTransport`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -13,6 +13,10 @@ expressed through the remaining ones").
 
 `zval_agree`: on a set of edges closed under the matching triangles, a cocycle agreeing
 with the prescribed values on the unmatched edges of the set agrees with `zval`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

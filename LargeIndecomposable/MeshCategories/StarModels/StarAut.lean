@@ -16,6 +16,10 @@ its middle vertex. Every tree automorphism fixes that root."
 * For a path (one arm), an automorphism is the identity or the reversal of
   depths (`path_aut`); a reversal preserving the parity of depths fixes the
   middle vertex.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

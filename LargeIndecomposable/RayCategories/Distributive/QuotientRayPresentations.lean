@@ -1,8 +1,8 @@
 module
 
 public import LargeIndecomposable.RayCategories.Distributive.LinearizationRepresentationFinite
-public import LargeIndecomposable.RayCategories.Basic.RayIdealSpan
-public import LargeIndecomposable.RayCategories.Basic.ResidueQuiver
+public import LargeIndecomposable.RayCategories.Quotients.RayIdealSpan
+public import LargeIndecomposable.RayCategories.Quotients.ResidueQuiver
 
 /-!
 # Ray presentations of quotients (B5)

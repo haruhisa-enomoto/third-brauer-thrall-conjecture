@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.Cleaving.Basic.ToolsMod
+public import LargeIndecomposable.Cleaving.Diagrams.ToolsMod
 
 /-!
 # The thin diagram `MD29C`

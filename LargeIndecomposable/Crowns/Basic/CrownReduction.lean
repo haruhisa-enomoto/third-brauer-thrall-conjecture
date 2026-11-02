@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RayCategories.RoiterVanishing.Roiter
-public import LargeIndecomposable.RayCategories.Basic.ResidueQuiver
+public import LargeIndecomposable.RayCategories.Quotients.ResidueQuiver
 
 /-!
 # The crown case: reduction to `P/μ`
@@ -10,7 +10,7 @@ Let `μ` be a long morphism (maximal and not irreducible) of a finite ray
 category `P` with cancellation which occurs in no contour. If `P/μ` is
 chain-bounded, the fundamental group of `P` is free and every contour function
 on `P` is exact (BO13a, proof of Theorem 2, with the lemma of §3.1:
-`RayCategories/Basic/ResidueQuiver.lean`, Fischbacher for `Π` and Roiter for `H²`).
+`RayCategories/Quotients/ResidueQuiver.lean`, Fischbacher for `Π` and Roiter for `H²`).
 -/
 
 @[expose] public section

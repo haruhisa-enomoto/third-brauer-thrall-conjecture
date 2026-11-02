@@ -18,6 +18,10 @@ injective labels." This file transfers the hypotheses of the abstract Lemma 2.5
   map) is the source normal form of `Cᵒᵖ` (`hasSplitRadicalNormalForm_op`);
 * a left tau-sequence `Y → E → T` with epic second map is a right radical
   approximation of `Y` in `Cᵒᵖ` (`approxOfLeftTau`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

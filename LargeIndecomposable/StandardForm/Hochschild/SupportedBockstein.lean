@@ -5,7 +5,7 @@ public import Mathlib
 /-!
 # Lemma 11.4: a coefficient criterion for supported representatives
 
-The source paper (`lem:supported-bockstein`): "Let `p` be a prime, let
+That paper (`lem:supported-bockstein`): "Let `p` be a prime, let
 `C^*` be a complex of free `ℤ/p²`-modules, and put `C̄^* = C^*/pC^*`. Let `U ⊆ C²` be
 spanned by a subset of a fixed basis. Assume: (1) the coefficient-inclusion map
 `H²(C̄^*) → H²(C^*)`, induced by multiplication by `p`, is zero; (2) every
@@ -16,6 +16,10 @@ Formalized on three terms `M₁ → M₂ → M₃` of a complex over a commutati
 consequences of freeness used in the proof: the annihilator of `p` is `pM` on `M₂` and
 `M₃`, and `U ∩ pM₂ = pU`. A class of `C̄` is represented by `z ∈ M₂` with `dz ∈ pM₃`; its
 representative is `u ∈ U` with `du ∈ pM₃` and `z − u ∈ d(M₁) + pM₂`.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

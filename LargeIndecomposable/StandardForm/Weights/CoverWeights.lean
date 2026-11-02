@@ -10,6 +10,10 @@ public import LargeIndecomposable.StandardForm.Posets.SupportPoset
 any abelian group, is a difference of object values." The generic statement
 `Thin.addWeight_eq_diff` applied to the graded covering category, whose
 exhaustion hypotheses are those of Lemma 4.12 (`cov_exists_multBasis`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

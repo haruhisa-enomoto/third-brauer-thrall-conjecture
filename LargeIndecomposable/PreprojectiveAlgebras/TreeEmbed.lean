@@ -11,6 +11,10 @@ ideal of `Π(Δ)` with the outside of the image deleted into the ideal of `Π(Δ
 (`res_mem`), so nonzero paths of `Π(Δ')` stay nonzero (`not_mem_del`). We use it for
 intervals in the middle of a path (Appendix B, odd quotients of even `A`:
 "retain the first `(r+1)/2` levels").
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

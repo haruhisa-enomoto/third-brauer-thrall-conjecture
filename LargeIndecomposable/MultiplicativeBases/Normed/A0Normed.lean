@@ -14,6 +14,10 @@ The path-length grading of the scalar mesh category grades `A₀ = (Alg F₀)ᵒ
 (`lenA0`); the basis of Proposition 4.14 consists of homogeneous elements of
 corners, so by the layer argument (`GradedLayers.lean`) it is adapted to every
 radical power, and `A₀` has a normed multiplicative basis (`hasNormedBasis_A0`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

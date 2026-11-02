@@ -11,6 +11,10 @@ along covering relations are unique (`subsingleton_ePath`) and exist between com
 points (`nonempty_ePath`), so the incidence algebra is the path algebra of the oriented
 tree and Lemma 8.8 applies (`tree_not_isRepresentationFinite`); the dual poset has the same
 cover graph (`tree_not_isRepresentationFinite_dual`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

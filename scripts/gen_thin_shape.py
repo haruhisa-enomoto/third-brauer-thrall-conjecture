@@ -5,7 +5,7 @@ commutative squares and zero relations), BO13a figures.
 Usage: gen_thin_shape.py SPEC.json OUT.lean
 
 With "mild": true in SPEC, the theorem is `MildHyp.<theorem>` taking
-`hM : MildHyp k P` instead of `hmin hL hR` (Cleaving/Basic/Tools.lean).
+`hM : MildHyp k P` instead of `hmin hL hR` (Cleaving/Diagrams/Tools.lean).
 
 SPEC fields: name, doc, theorem, verts, objs, arrows [[src, tgt, mor]],
   zero : [[x, z], ...] pairs whose morphisms vanish (optional),
@@ -76,9 +76,9 @@ w('module\n')
 MILD = spec.get('mild', False)
 ZMOD = spec.get('zero_mod', False)
 if MILD and ZMOD:
-    w('public import LargeIndecomposable.Cleaving.Basic.ToolsMod\n')
+    w('public import LargeIndecomposable.Cleaving.Diagrams.ToolsMod\n')
 else:
-    w('public import LargeIndecomposable.Cleaving.Basic.Tools\n' if MILD else 'public import LargeIndecomposable.Cleaving.Basic.ThinDiagram\n')
+    w('public import LargeIndecomposable.Cleaving.Diagrams.Tools\n' if MILD else 'public import LargeIndecomposable.Cleaving.Diagrams.ThinDiagram\n')
 w('/-!')
 w(f'# The thin diagram `{N}`\n')
 w(spec['doc'])

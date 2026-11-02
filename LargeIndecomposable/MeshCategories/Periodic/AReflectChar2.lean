@@ -21,6 +21,10 @@ vanish (`x^{m+1} = 0` on an arm), and a row of word degree `j` has `j = 1 + n s`
 for `s ≥ m` all classes vanish. For `s < m`, the deletion to `A_{2s+1}` and the top paths
 of `LineTop.line_return` contradict the brick hypothesis (`not_brick_star_to`, the
 version of `not_brick_star` with paths ending at the deck image).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

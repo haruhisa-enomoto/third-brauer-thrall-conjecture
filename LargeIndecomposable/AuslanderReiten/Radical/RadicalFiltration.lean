@@ -7,12 +7,16 @@ public import LargeIndecomposable.MeshCategories.AuslanderReitenQuiver.ARBridge
 
 The powers `J^n` of the categorical radical of `ind(mod A)` form a decreasing multiplicative filtration:
 `J^{n+1} ⊆ J^n` and `J^m ∘ J^n ⊆ J^{m+n}`. For a representation-finite algebra
-the radical is nilpotent: the source paper argues that `J` consists of the
+the radical is nilpotent: that paper argues that `J` consists of the
 matrix entries of the Jacobson radical of the endomorphism algebra of a finite
 additive generator. The formal nilpotence uses
 the nilpotence of the categorical radical of `mod A`, which is proved
 by that argument (`LargeIndecomposable.Algebra.RightModuleRadical`,
 `nilpotentRadicalDataOfArtinianGenerator`).
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section

@@ -11,6 +11,10 @@ group must be countable. Its elements are classes of walks in a finite complex:
 paths in the symmetrized edge quiver are determined by their lists of edges
 (`arrowList_injective`), and the fundamental groupoid is a quotient of the path
 category.
+
+## References
+
+* *Multiplicative bases and deformations of representation-finite algebras*, <https://github.com/haruhisa-enomoto/multiplicative-bases-deformations>. Numbered statements cited here refer to it.
 -/
 
 @[expose] public section
