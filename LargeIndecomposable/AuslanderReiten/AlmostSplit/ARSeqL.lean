@@ -208,7 +208,7 @@ theorem isRightAS_coker {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f)
       -- `ψ` preserves `R`, and induces a bijection `ψ̄` of `V`
       have hRψ : R ≤ R.comap ψ := by
         rintro _ ⟨u, rfl⟩
-        exact ⟨u, (LinearMap.congr_fun hfψ u).symm⟩
+        exact ⟨u, (LinearMap.congr_fun (congrArg FDMod.lin hfψ) u).symm⟩
       let ψb : V →ₗ[A] V := R.mapQ R ψ hRψ
       have hψbg : ∀ e, ψb (g e) = g (ψ e) := fun e ↦ rfl
       have hψbs : Function.Surjective ψb := fun v ↦ by
@@ -229,7 +229,7 @@ theorem isRightAS_coker {U E : FDMod k A} {f : U ⟶ E} (hf : IsLeftAS f)
         rfl
       let eψ := LinearEquiv.ofBijective ψb hψbb
       apply hw
-      refine ⟨show V →ₗ[A] W from τ ∘ₗ eψ.symm.toLinearMap, LinearMap.ext fun v ↦ ?_⟩
+      refine ⟨(FDMod.ofLin (show V →ₗ[A] W from τ ∘ₗ eψ.symm.toLinearMap)), (FDMod.hom_ext (LinearMap.ext fun v ↦ ?_))⟩
       change FDMod.lin w (τ (eψ.symm v)) = v
       obtain ⟨e, he⟩ := hgsurj (eψ.symm v)
       rw [← he, hτ, he]

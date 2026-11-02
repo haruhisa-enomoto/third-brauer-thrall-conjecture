@@ -69,9 +69,9 @@ lemma splitMono_res_iff {W Z : FDMod k A'} (v : Z ⟶ W) :
     (∃ r : resFD φ W ⟶ resFD φ Z, resHom φ v ≫ r = 𝟙 _) ↔ ∃ r : W ⟶ Z, v ≫ r = 𝟙 Z := by
   constructor
   · rintro ⟨r, hr⟩
-    exact ⟨unresHom hφ r, LinearMap.ext fun z ↦ LinearMap.congr_fun hr (ofX z)⟩
+    exact ⟨unresHom hφ r, (FDMod.hom_ext (LinearMap.ext fun z ↦ LinearMap.congr_fun (congrArg FDMod.lin hr) (ofX z)))⟩
   · rintro ⟨r, hr⟩
-    exact ⟨resHom φ r, LinearMap.ext fun z ↦ LinearMap.congr_fun hr (toX z)⟩
+    exact ⟨resHom φ r, (FDMod.hom_ext (LinearMap.ext fun z ↦ LinearMap.congr_fun (congrArg FDMod.lin hr) (toX z)))⟩
 
 include hφ in
 /-- **A left almost split map of `A`-modules between restrictions is left almost split over
@@ -80,7 +80,7 @@ theorem isLeftAS_unres {U E : FDMod k A'} {f : U ⟶ E} (hf : IsLeftAS (resHom �
     IsLeftAS f := by
   refine ⟨fun hs ↦ hf.1 ((splitMono_res_iff hφ f).2 hs), fun W v hv ↦ ?_⟩
   obtain ⟨t, ht⟩ := hf.2 (resFD φ W) (resHom φ v) fun hs ↦ hv ((splitMono_res_iff hφ v).1 hs)
-  exact ⟨unresHom hφ t, LinearMap.ext fun w ↦ LinearMap.congr_fun ht (ofX w)⟩
+  exact ⟨unresHom hφ t, (FDMod.hom_ext (LinearMap.ext fun w ↦ LinearMap.congr_fun (congrArg FDMod.lin ht) (ofX w)))⟩
 
 end Restrict
 
