@@ -36,15 +36,15 @@ theorem iso_summand_of_splitMono {X E : FDMod k A} (hX : IndNT X) (d : Decomp E)
   haveI := hX.1.isLocalRing (k := k)
   have hsum : (1 : Module.End A X) =
       ∑ i, (FDMod.lin r ∘ₗ FDMod.lin (d.inc i)) ∘ₗ (FDMod.lin (d.proj i) ∘ₗ FDMod.lin f) := by
-    have h1 : (1 : Module.End A X) = FDMod.lin r ∘ₗ LinearMap.id ∘ₗ FDMod.lin f := hfr.symm
+    have h1 : (1 : Module.End A X) = FDMod.lin r ∘ₗ LinearMap.id ∘ₗ FDMod.lin f := (congrArg FDMod.lin hfr).symm
     rw [h1, ← d.sum_id]
     ext x
     simp [map_sum]
   obtain ⟨i, _, hi⟩ := IsLocalRing.exists_of_isUnit_sum (hsum ▸ isUnit_one)
   obtain ⟨w, hw1, hw2⟩ := isUnit_iff_exists.1 hi
   -- `proj_i ∘ f` is split mono with retraction `w ∘ r ∘ inc_i`
-  let g : X ⟶ d.obj i := FDMod.lin (d.proj i) ∘ₗ FDMod.lin f
-  let ρ : d.obj i ⟶ X := w ∘ₗ FDMod.lin r ∘ₗ FDMod.lin (d.inc i)
+  let g : X ⟶ d.obj i := (FDMod.ofLin (FDMod.lin (d.proj i) ∘ₗ FDMod.lin f))
+  let ρ : d.obj i ⟶ X := (FDMod.ofLin (w ∘ₗ FDMod.lin r ∘ₗ FDMod.lin (d.inc i)))
   have hρg : FDMod.lin ρ ∘ₗ FDMod.lin g = LinearMap.id := by
     have : w * ((FDMod.lin r ∘ₗ FDMod.lin (d.inc i)) ∘ₗ (FDMod.lin (d.proj i) ∘ₗ FDMod.lin f)) = 1 :=
       hw2

@@ -92,7 +92,7 @@ theorem isIrr_left {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeftA
   · -- `f` surjective forces `Z = 0`
     have hfs : ∀ e, e ∈ LinearMap.ker (FDMod.lin g) := fun e ↦ by
       rw [← hex]
-      exact ⟨FDMod.lin s e, LinearMap.congr_fun hs e⟩
+      exact ⟨FDMod.lin s e, LinearMap.congr_fun (congrArg FDMod.lin hs) e⟩
     have h0 : (1 : Module.End A Z) = 0 := by
       apply LinearMap.ext; intro z
       obtain ⟨e, rfl⟩ := hsurj z
@@ -109,9 +109,9 @@ theorem isIrr_left {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeftA
       rw [← hex] at he
       obtain ⟨x, rfl⟩ := he
       have h1 : FDMod.lin b (FDMod.lin c (FDMod.lin f x)) = FDMod.lin f x := by
-        have h2 : FDMod.lin c (FDMod.lin f x) = FDMod.lin a x := LinearMap.congr_fun hc x
+        have h2 : FDMod.lin c (FDMod.lin f x) = FDMod.lin a x := LinearMap.congr_fun (congrArg FDMod.lin hc) x
         rw [h2]
-        exact LinearMap.congr_fun hab x
+        exact LinearMap.congr_fun (congrArg FDMod.lin (hab)) x
       change FDMod.lin f x - FDMod.lin b (FDMod.lin c (FDMod.lin f x)) = 0
       rw [h1, sub_self]
     let q := LinearMap.quotKerEquivOfSurjective (FDMod.lin g) hsurj
@@ -124,7 +124,7 @@ theorem isIrr_left {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeftA
     rcases IsLocalRing.isUnit_or_isUnit_one_sub_self (FDMod.lin g ∘ₗ t) with h | h
     · -- `g` would split
       obtain ⟨w, hw1, -⟩ := isUnit_iff_exists.1 h
-      exact absurd ⟨show Z ⟶ E from t ∘ₗ w, hw1⟩ hg.1
+      exact absurd ⟨show Z ⟶ E from (FDMod.ofLin (t ∘ₗ w)), ((FDMod.comp_eq_id_iff _ _).2 (hw1))⟩ hg.1
     · have hu := isUnit_one_sub_comp t (FDMod.lin g) h
       have heq : (1 - t ∘ₗ FDMod.lin g : Module.End A E) = FDMod.lin b ∘ₗ FDMod.lin c := by
         apply LinearMap.ext; intro e
@@ -133,7 +133,7 @@ theorem isIrr_left {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeftA
         simp
       rw [heq] at hu
       obtain ⟨w, hw1, -⟩ := isUnit_iff_exists.1 hu
-      exact ⟨show E ⟶ W from FDMod.lin c ∘ₗ w, hw1⟩
+      exact ⟨show E ⟶ W from (FDMod.ofLin (FDMod.lin c ∘ₗ w)), ((FDMod.comp_eq_id_iff _ _).2 (hw1))⟩
 
 /-- **Dually, `g` is irreducible when `End(X)` is local and `f` is injective.** -/
 theorem isIrr_right {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeftAS f)
@@ -146,7 +146,7 @@ theorem isIrr_right {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeft
       apply LinearMap.ext; intro x
       apply hinj
       have hx : FDMod.lin f x ∈ LinearMap.ker (FDMod.lin g) := hex ▸ LinearMap.mem_range_self _ x
-      have h1 : FDMod.lin r (FDMod.lin g (FDMod.lin f x)) = FDMod.lin f x := LinearMap.congr_fun hr _
+      have h1 : FDMod.lin r (FDMod.lin g (FDMod.lin f x)) = FDMod.lin f x := LinearMap.congr_fun (congrArg FDMod.lin hr) _
       rw [show FDMod.lin g (FDMod.lin f x) = 0 from hx, map_zero] at h1
       change FDMod.lin f x = FDMod.lin f 0
       rw [map_zero, ← h1]
@@ -161,8 +161,8 @@ theorem isIrr_right {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeft
       rw [hex]
       change FDMod.lin g (e - FDMod.lin c (FDMod.lin a e)) = 0
       have h1 : FDMod.lin g (FDMod.lin c (FDMod.lin a e)) = FDMod.lin b (FDMod.lin a e) :=
-        LinearMap.congr_fun hc _
-      have h2 : FDMod.lin b (FDMod.lin a e) = FDMod.lin g e := LinearMap.congr_fun hab e
+        LinearMap.congr_fun (congrArg FDMod.lin hc) _
+      have h2 : FDMod.lin b (FDMod.lin a e) = FDMod.lin g e := LinearMap.congr_fun (congrArg FDMod.lin hab) e
       rw [map_sub, h1, h2, sub_self]
     let ef := LinearEquiv.ofInjective (FDMod.lin f) hinj
     let t : E →ₗ[A] X := ef.symm.toLinearMap ∘ₗ LinearMap.codRestrict _
@@ -172,7 +172,7 @@ theorem isIrr_right {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeft
       exact congrArg Subtype.val this
     rcases IsLocalRing.isUnit_or_isUnit_one_sub_self (t ∘ₗ FDMod.lin f) with h | h
     · obtain ⟨w, -, hw2⟩ := isUnit_iff_exists.1 h
-      exact absurd ⟨show E ⟶ X from w ∘ₗ t, hw2⟩ hf.1
+      exact absurd ⟨show E ⟶ X from (FDMod.ofLin (w ∘ₗ t)), ((FDMod.comp_eq_id_iff _ _).2 (hw2))⟩ hf.1
     · have hu := isUnit_one_sub_comp (FDMod.lin f) t h
       have heq : (1 - FDMod.lin f ∘ₗ t : Module.End A E) = FDMod.lin c ∘ₗ FDMod.lin a := by
         apply LinearMap.ext; intro e
@@ -181,7 +181,7 @@ theorem isIrr_right {X E Z : FDMod k A} {f : X ⟶ E} {g : E ⟶ Z} (hf : IsLeft
         simp
       rw [heq] at hu
       obtain ⟨w, -, hw2⟩ := isUnit_iff_exists.1 hu
-      exact ⟨show W ⟶ E from w ∘ₗ FDMod.lin c, hw2⟩
+      exact ⟨show W ⟶ E from (FDMod.ofLin (w ∘ₗ FDMod.lin c)), ((FDMod.comp_eq_id_iff _ _).2 (hw2))⟩
 
 /-- **The components of a right minimal right almost split map on a summand factor only
 trivially**: if `g` is right minimal right almost split and `E = U ⊕ V`, then `g` restricted to `U`
@@ -190,7 +190,7 @@ theorem component_factor {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
     (hmin : ∀ φ : E ⟶ E, φ ≫ g = g → Function.Bijective (FDMod.lin φ))
     (U V : Submodule A E) (hUV : IsCompl U V) (W : FDMod k A)
     (a : FDMod.ofSub U ⟶ W) (b : W ⟶ Z)
-    (hab : a ≫ b = (show FDMod.ofSub U ⟶ Z from FDMod.lin g ∘ₗ U.subtype)) :
+    (hab : a ≫ b = (show FDMod.ofSub U ⟶ Z from (FDMod.ofLin (FDMod.lin g ∘ₗ U.subtype)))) :
     SplitMono a ∨ SplitEpi b := by
   by_cases hb : SplitEpi b
   · exact Or.inr hb
@@ -207,11 +207,11 @@ theorem component_factor {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
   let φ : E →ₗ[A] E := ca ∘ₗ πU + V.subtype ∘ₗ πV
   have hca : ∀ u : U, FDMod.lin g (ca u) = FDMod.lin g u := fun u ↦ by
     have h1 : FDMod.lin g (FDMod.lin c (FDMod.lin a u)) = FDMod.lin b (FDMod.lin a u) :=
-      LinearMap.congr_fun hc _
+      LinearMap.congr_fun (congrArg FDMod.lin hc) _
     rw [show ca u = FDMod.lin c (FDMod.lin a u) from rfl, h1]
-    exact LinearMap.congr_fun hab u
-  have hφ : (show E ⟶ E from φ) ≫ g = g := by
-    apply LinearMap.ext; intro x
+    exact LinearMap.congr_fun (congrArg FDMod.lin (hab)) u
+  have hφ : (show E ⟶ E from (FDMod.ofLin (φ))) ≫ g = g := by
+    apply FDMod.hom_ext; apply LinearMap.ext; intro x
     change FDMod.lin g (ca (πU x) + (πV x : E)) = FDMod.lin g x
     rw [map_add, hca, ← map_add, hsplit]
   have hbij := hmin _ hφ
@@ -252,7 +252,7 @@ theorem component_factor {E Z : FDMod k A} {g : E ⟶ Z} (hg : IsRightAS g)
   have hτbij : Function.Bijective τ :=
     ⟨hτinj, (LinearMap.injective_iff_surjective (f := τ.restrictScalars k)).1 hτinj⟩
   let eτ := LinearEquiv.ofBijective τ hτbij
-  refine ⟨show W →ₗ[A] U from eτ.symm.toLinearMap ∘ₗ πU ∘ₗ FDMod.lin c, LinearMap.ext fun u ↦ ?_⟩
+  refine ⟨(FDMod.ofLin (show W →ₗ[A] U from eτ.symm.toLinearMap ∘ₗ πU ∘ₗ FDMod.lin c)), (FDMod.hom_ext (LinearMap.ext fun u ↦ ?_))⟩
   change eτ.symm (πU (FDMod.lin c (FDMod.lin a u))) = u
   rw [LinearEquiv.symm_apply_eq]
   rfl

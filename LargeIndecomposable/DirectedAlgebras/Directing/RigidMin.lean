@@ -78,7 +78,9 @@ def ExtVanish (X Y : FDMod k A) : Prop :=
 
 /-- Directing modules are rigid. -/
 lemma Directing.extVanish [FiniteDimensional k A] {M : FDMod k A} (hM : Directing M) :
-    ExtVanish M M := fun _ i p hi hp hex ↦ hM.split i p hi hp hex
+    ExtVanish M M := fun _ i p hi hp hex ↦
+  let ⟨s, hs⟩ := hM.split (FDMod.ofLin i) (FDMod.ofLin p) hi hp hex
+  ⟨FDMod.lin s, hs⟩
 
 section Sums
 
