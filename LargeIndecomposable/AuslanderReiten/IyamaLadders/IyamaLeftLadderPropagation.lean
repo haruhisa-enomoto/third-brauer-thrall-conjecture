@@ -129,21 +129,21 @@ theorem stepMaps_mem_radical_of_leftTauSequence_iso_stepComplex
     exact (R.mem_iff _).2 (hS.toTauApproximation.g_radical_of_iso e)
   refine ⟨?_, ?_, ?_⟩
   · have hcomponent :=
-      R.ideal.postcomp
+      R.ideal.comp_mem_right
         (biprod.fst : ZNext ⊞ U ⟶ ZNext)
-        (R.ideal.precomp
+        (R.ideal.comp_mem_left
           (biprod.inl : YNext ⟶ YNext ⊞ ZPrev) hstep_mem)
     simpa [stepComplex, Category.assoc] using hcomponent
   · have hcomponent :=
-      R.ideal.postcomp
+      R.ideal.comp_mem_right
         (biprod.fst : ZNext ⊞ U ⟶ ZNext)
-        (R.ideal.precomp
+        (R.ideal.comp_mem_left
           (-(biprod.inr : ZPrev ⟶ YNext ⊞ ZPrev)) hstep_mem)
     simpa [stepComplex, Category.assoc] using hcomponent
   · have hcomponent :=
-      R.ideal.postcomp
+      R.ideal.comp_mem_right
         (biprod.snd : ZNext ⊞ U ⟶ U)
-        (R.ideal.precomp
+        (R.ideal.comp_mem_left
           (biprod.inr : ZPrev ⟶ YNext ⊞ ZPrev) hstep_mem)
     simpa [stepComplex, Category.assoc] using hcomponent
 
@@ -430,7 +430,7 @@ theorem exists_nonzero_coremainder_in_radical_power
   intro n
   obtain ⟨s, hs, heq⟩ := hprop n
   rw [heq]
-  exact (R.ideal.pow n).postcomp s (hprefix n)
+  exact (R.ideal.pow n).comp_mem_right s (hprefix n)
 
 end RadicalPropagation
 

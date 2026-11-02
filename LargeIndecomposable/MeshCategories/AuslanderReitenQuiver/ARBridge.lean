@@ -199,7 +199,7 @@ theorem mem_radPow_two_iff {X Y : S.Ind} (f : X ⟶ Y) :
         have h : S.toFG.map (c • a) = (c • 𝟙 _) ≫ S.toFG.map a := by
           simp [Functor.map_smul]
         rw [h]
-        exact (homIdeal ⋆ᵢ homIdeal).precomp _ ha
+        exact (homIdeal ⋆ᵢ homIdeal).comp_mem_left _ ha
   · intro hf
     suffices H : ∀ h ∈ S.vendorRadicalSquare X Y,
         (S.homEquivFG X Y).symm h ∈ S.radPow 2 X Y by

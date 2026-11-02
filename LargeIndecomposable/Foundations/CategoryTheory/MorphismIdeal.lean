@@ -26,10 +26,10 @@ variable (C : Type u) [Category.{v} C] [Preadditive C]
 /-- A two-sided additive ideal in a preadditive category. -/
 structure MorphismIdeal where
   hom : ∀ X Y : C, AddSubgroup (X ⟶ Y)
-  precomp :
+  comp_mem_left :
     ∀ {X Y Z : C} (f : X ⟶ Y) {g : Y ⟶ Z},
       g ∈ hom Y Z → f ≫ g ∈ hom X Z
-  postcomp :
+  comp_mem_right :
     ∀ {X Y Z : C} {f : X ⟶ Y} (g : Y ⟶ Z),
       f ∈ hom X Y → f ≫ g ∈ hom X Z
 
@@ -54,10 +54,10 @@ instance : Congruence I.rel where
       simpa [rel] using h' }
   comp_left := by
     intro X Y Z f g g' h
-    simpa [rel] using I.precomp f h
+    simpa [rel] using I.comp_mem_left f h
   comp_right := by
     intro X Y Z f f' g h
-    simpa [rel] using I.postcomp g h
+    simpa [rel] using I.comp_mem_right g h
 
 theorem add_compatible
     {X Y : C} (f₁ f₂ g₁ g₂ : X ⟶ Y)
@@ -114,7 +114,7 @@ def linearSpan
     (𝕜 : Type w) [Ring 𝕜] [Linear 𝕜 C]
     (R : ∀ X Y : C, Set (X ⟶ Y)) : MorphismIdeal C where
   hom X Y := (generatedHomSubmodule 𝕜 R X Y).toAddSubgroup
-  precomp := by
+  comp_mem_left := by
     intro X Y Z f g hg
     change f ≫ g ∈ generatedHomSubmodule 𝕜 R X Z
     change g ∈ generatedHomSubmodule 𝕜 R Y Z at hg
@@ -128,7 +128,7 @@ def linearSpan
         simpa using (generatedHomSubmodule 𝕜 R X Z).add_mem hg hh
     | smul k g _ hg =>
         simpa using (generatedHomSubmodule 𝕜 R X Z).smul_mem k hg
-  postcomp := by
+  comp_mem_right := by
     intro X Y Z f g hf
     change f ≫ g ∈ generatedHomSubmodule 𝕜 R X Z
     change f ∈ generatedHomSubmodule 𝕜 R X Y at hf
@@ -173,7 +173,7 @@ theorem smul_mem
     (J : MorphismIdeal C) {X Y : C} (k : K) {f : X ⟶ Y}
     (hf : f ∈ J.hom X Y) :
     k • f ∈ J.hom X Y := by
-  simpa using J.precomp (k • 𝟙 X) hf
+  simpa using J.comp_mem_left (k • 𝟙 X) hf
 
 /-- Minimality of the linearly generated Hom ideal. -/
 theorem linearSpan_le
@@ -186,7 +186,7 @@ theorem linearSpan_le
   induction hf using Submodule.span_induction with
   | mem f hf =>
       rcases hf with ⟨A, B, r, hr, a, b, rfl⟩
-      simpa [Category.assoc] using J.postcomp b (J.precomp a (hR hr))
+      simpa [Category.assoc] using J.comp_mem_right b (J.comp_mem_left a (hR hr))
   | zero => exact (J.hom X Y).zero_mem
   | add f g _ _ hf hg => exact (J.hom X Y).add_mem hf hg
   | smul k f _ hf => exact J.smul_mem k hf

@@ -817,7 +817,7 @@ theorem lastArrow_sum_mem_of {W Y : S.ARVertex}
     (hG : ∀ i, G ⟨S.vertex (S.midLabel (S.index Y) i), S.occArrow Y i⟩ ∈ (S.meshIdeal b).hom _ _) :
     ∑ a, G a ≫ LinearPaths.arrow a.2 ∈ (S.meshIdeal b).hom _ _ := by
   rw [S.sum_lastArrow_eq (W := W)]
-  exact sum_mem fun i _ ↦ (S.meshIdeal b).postcomp _ (hG i)
+  exact sum_mem fun i _ ↦ (S.meshIdeal b).comp_mem_right _ (hG i)
 
 set_option maxHeartbeats 800000 in
 /-- **Injectivity** in Proposition 2.6(3): a homogeneous morphism of degree `N`
@@ -883,7 +883,7 @@ theorem mem_meshIdeal_of_realize_mem (N : ℕ) : ∀ {W Y : S.ARVertex}
             let h : S.fg (S.index W) ⟶ S.fg (S.index (S.arTranslationQuiver.tau y).1) :=
               z ≫ (S.tau.tauPlusIso (S.vendorNonprojective y)).hom
             have hh : h ∈ (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).hom _ _ :=
-              (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).postcomp _ hz
+              (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).comp_mem_right _ hz
             let hInd : S.label W ⟶ S.label (S.arTranslationQuiver.tau y).1 :=
               (S.homEquivFG (S.ind (S.index W)) (S.ind (S.index (S.arTranslationQuiver.tau y).1))).symm h
             have hIndMap : S.toFG.map hInd = h := S.map_homEquivFG_symm _
@@ -911,7 +911,7 @@ theorem mem_meshIdeal_of_realize_mem (N : ℕ) : ∀ {W Y : S.ARVertex}
                 exact hwz i
             -- the mesh relation at `Y`
             have hmesh : H ≫ meshRelation (S.arCoefficients b) y ∈ (S.meshIdeal b).hom _ _ := by
-              apply (S.meshIdeal b).precomp
+              apply (S.meshIdeal b).comp_mem_left
               exact MorphismIdeal.relation_mem_linearSpan
                 _ ⟨y, rfl, rfl, by simp⟩
             have hdecomp : ∑ a, G a ≫ LinearPaths.arrow a.2 - H ≫ meshRelation (S.arCoefficients b) y =
@@ -928,7 +928,7 @@ theorem mem_meshIdeal_of_realize_mem (N : ℕ) : ∀ {W Y : S.ARVertex}
                 ((S.arCoefficients b y _ (S.occArrow Y i) : kˣ) : k) •
                   (H ≫ LinearPaths.arrow (S.arTranslationQuiver.mate y _ (S.occArrow Y i)))) ≫
                 LinearPaths.arrow (S.occArrow Y i) ∈ (S.meshIdeal b).hom _ _ :=
-              sum_mem fun i _ ↦ (S.meshIdeal b).postcomp (LinearPaths.arrow (S.occArrow Y i)) (hcorr i)
+              sum_mem fun i _ ↦ (S.meshIdeal b).comp_mem_right (LinearPaths.arrow (S.occArrow Y i)) (hcorr i)
             have := add_mem hsumc hmesh
             rwa [← hdecomp, sub_add_cancel] at this
           · have hz0 : z = 0 := (S.isZero_rightMesh_X₁_of_not_mem Y hY).eq_of_tgt _ _

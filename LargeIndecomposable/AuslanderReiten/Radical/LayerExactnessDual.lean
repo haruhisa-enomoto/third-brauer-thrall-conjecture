@@ -123,7 +123,7 @@ theorem midDesc_mem {W : ModCat A} (x : Fin S.n) (v : ∀ i, S.fg (S.midLabel x 
     (hv : ∀ i, v i ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _) :
     S.midDesc x v ∈ (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).hom _ _ :=
   Submodule.sum_mem (MorphismIdeal.homSubmodule (k := k) _ _ _) fun i _ ↦
-    (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).precomp _ (hv i)
+    (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).comp_mem_left _ (hv i)
 
 theorem f_midDesc {W : ModCat A} (x : Fin S.n) (v : ∀ i, S.fg (S.midLabel x i) ⟶ W) :
     (S.rightMesh x).f ≫ S.midDesc x v = ∑ i, ((S.rightMesh x).f ≫ S.midProj x i) ≫ v i := by
@@ -144,7 +144,7 @@ theorem colayer_exact_zero {W : ModCat A} (y : S.nonprojectiveVertices)
     exact hsum)
   rw [← StrictLayers.mem_Ipow_unop_iff] at h
   rw [← S.midInc_midDesc _ v i]
-  exact (StrictLayers.Ipow 1 : MorphismIdeal (ModCat A)).precomp _ h
+  exact (StrictLayers.Ipow 1 : MorphismIdeal (ModCat A)).comp_mem_left _ h
 
 /-- **Proposition 2.6(1)**, second sequence, exactness at the middle term: if
 every `v_i ∈ J^{n+1}` and `∑ α_i v_i ∈ J^{n+3}`, then there is
@@ -167,8 +167,8 @@ theorem colayer_exact {W : ModCat A} (y : S.nonprojectiveVertices)
       exact hsum)
   rw [← StrictLayers.mem_Ipow_unop_iff] at hz hwz
   refine ⟨(S.tau.rightTermIso (S.tau.obj (S.index y.1))).inv ≫ z.unop,
-    (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).precomp _ hz, fun i ↦ ?_⟩
-  have h := (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).precomp
+    (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).comp_mem_left _ hz, fun i ↦ ?_⟩
+  have h := (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).comp_mem_left
     (S.midInc (S.index y.1) i) hwz
   change S.midInc _ i ≫ (S.midDesc _ v - (S.rightMesh (S.index y.1)).g ≫ z.unop) ∈ _ at h
   rw [Preadditive.comp_sub, S.midInc_midDesc] at h
@@ -203,9 +203,9 @@ theorem colayer_injective {W : ModCat A} (y : S.nonprojectiveVertices) {n : ℕ}
               simp only [Category.assoc]
       rw [e]
       exact sum_mem fun i _ ↦
-        (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).precomp _ (hu i))
+        (StrictLayers.Ipow (n + 2) : MorphismIdeal (ModCat A)).comp_mem_left _ (hu i))
   rw [← StrictLayers.mem_Ipow_unop_iff] at h
-  have := (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).precomp (S.tau.rightTermIso (S.tau.obj (S.index y.1))).inv h
+  have := (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).comp_mem_left (S.tau.rightTermIso (S.tau.obj (S.index y.1))).inv h
   rwa [Quiver.Hom.unop_op, Iso.inv_hom_id_assoc] at this
 
 end LargeIndecomposable.IndSkeleton

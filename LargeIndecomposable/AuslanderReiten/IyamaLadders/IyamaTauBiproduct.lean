@@ -153,8 +153,8 @@ theorem isRadicalMorphism_biproduct_map
     biproduct.π X j ≫ f j ≫ biproduct.ι Y j ∈
       R.ideal.hom (⨁ X) (⨁ Y)
   simpa only [Category.assoc] using
-    R.ideal.postcomp (biproduct.ι Y j)
-      (R.ideal.precomp (biproduct.π X j)
+    R.ideal.comp_mem_right (biproduct.ι Y j)
+      (R.ideal.comp_mem_left (biproduct.π X j)
         ((R.mem_ideal_iff (f j)).2 (hf j)))
 
 /-- Tau-approximation conditions are preserved by finite componentwise
@@ -178,7 +178,7 @@ theorem tauApproximation_shortComplexBiproduct
         IsRadicalMorphism
           (biproduct.ι (fun j ↦ (S j).X₁) j ≫ a) :=
       (R.mem_ideal_iff _).1
-        (R.ideal.precomp (biproduct.ι (fun j ↦ (S j).X₁) j)
+        (R.ideal.comp_mem_left (biproduct.ι (fun j ↦ (S j).X₁) j)
           ((R.mem_ideal_iff a).2 ha))
     choose b hb using fun j ↦
       (hS j).factors_from_left
@@ -198,7 +198,7 @@ theorem tauApproximation_shortComplexBiproduct
         IsRadicalMorphism
           (a ≫ biproduct.π (fun j ↦ (S j).X₃) j) :=
       (R.mem_ideal_iff _).1
-        (R.ideal.postcomp (biproduct.π (fun j ↦ (S j).X₃) j)
+        (R.ideal.comp_mem_right (biproduct.π (fun j ↦ (S j).X₃) j)
           ((R.mem_ideal_iff a).2 ha))
     choose b hb using fun j ↦
       (hS j).factors_into_right
@@ -283,8 +283,8 @@ theorem mem_radicalIdeal_of_biproduct_components
         biproduct.ι Y j ∈
       R.ideal.hom (⨁ X) (⨁ Y)
   simpa only [Category.assoc] using
-    R.ideal.postcomp (biproduct.ι Y j)
-      (R.ideal.precomp (biproduct.π X i) (hq i j))
+    R.ideal.comp_mem_right (biproduct.ι Y j)
+      (R.ideal.comp_mem_left (biproduct.π X i) (hq i j))
 
 /-- A morphism out of a finite biproduct belongs to the radical ideal when
 each restriction to a summand does. -/
@@ -312,7 +312,7 @@ theorem mem_radicalIdeal_of_biproduct_source_components
   rw [hsum]
   apply (R.ideal.hom (⨁ X) Y).sum_mem
   intro i hi
-  exact R.ideal.precomp (biproduct.π X i) (hq i)
+  exact R.ideal.comp_mem_left (biproduct.π X i) (hq i)
 
 /-- Finite componentwise biproducts preserve right-minimal morphisms whenever
 the categorical radical is realized by a two-sided additive Hom ideal. -/

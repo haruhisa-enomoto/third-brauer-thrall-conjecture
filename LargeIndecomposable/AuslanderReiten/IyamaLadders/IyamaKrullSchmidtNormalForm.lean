@@ -369,8 +369,8 @@ noncomputable def splitRadicalForm_biprod_obj
           biprod.fst ≫ a + biprod.snd ≫ r by
             apply biprod.hom_ext' <;> simp]
       exact (T.radical.ideal.hom _ _).add_mem
-        (T.radical.ideal.precomp biprod.fst ha_mem)
-        (T.radical.ideal.precomp biprod.snd hq.r_mem)
+        (T.radical.ideal.comp_mem_left biprod.fst ha_mem)
+        (T.radical.ideal.comp_mem_left biprod.snd hq.r_mem)
   · have hsplit : IsSplitMono a := by
       apply Classical.not_not.mp
       intro hnot
@@ -442,8 +442,8 @@ noncomputable def splitRadicalForm_biprod_obj
     dsimp only [r', c₂]
     simpa only [U, r, Preadditive.neg_comp] using
       (T.radical.ideal.hom U M).add_mem
-        (T.radical.ideal.postcomp j'
-          (T.radical.ideal.postcomp s'
+        (T.radical.ideal.comp_mem_right j'
+          (T.radical.ideal.comp_mem_right s'
             ((T.radical.ideal.hom _ _).neg_mem hq.r_mem)))
         hq.r_mem
 

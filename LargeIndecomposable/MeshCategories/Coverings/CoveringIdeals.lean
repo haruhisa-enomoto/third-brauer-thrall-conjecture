@@ -70,11 +70,11 @@ theorem comp_rel_comp_mem {X Y : V} (i : R.I) (q : LinearPaths.obj (k := k) X �
 
 theorem comp_mem_ideal {X Y Z : LinearPaths k V} (f : X ⟶ Y) {g : Y ⟶ Z}
     (hg : g ∈ R.ideal Y Z) : f ≫ g ∈ R.ideal X Z :=
-  (MorphismIdeal.linearSpan k R.rels).precomp f hg
+  (MorphismIdeal.linearSpan k R.rels).comp_mem_left f hg
 
 theorem mem_ideal_comp {X Y Z : LinearPaths k V} {f : X ⟶ Y} (hf : f ∈ R.ideal X Y)
     (g : Y ⟶ Z) : f ≫ g ∈ R.ideal X Z :=
-  (MorphismIdeal.linearSpan k R.rels).postcomp g hf
+  (MorphismIdeal.linearSpan k R.rels).comp_mem_right g hf
 
 /-- Induction principle for the ideal: it suffices to treat path contexts. -/
 theorem ideal_induction {X Y : V} {P : (LinearPaths.obj (k := k) X ⟶ LinearPaths.obj Y) → Prop}

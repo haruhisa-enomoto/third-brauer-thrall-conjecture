@@ -131,8 +131,8 @@ lemma avoidsI_of_not_mem {x : RayVert C} : ∀ {y : RayVert C} (p : Quiver.Path 
   | _, .nil, _ => trivial
   | _, .cons p e, h => by
     refine ⟨avoidsI_of_not_mem p fun hp ↦ h ?_, fun he ↦ h ?_⟩
-    · exact I.postcomp e.1 hp
-    · exact I.precomp (pathVal p) he
+    · exact I.comp_mem_right e.1 hp
+    · exact I.comp_mem_left (pathVal p) he
 
 include hI in
 /-- The lift of an arrow of the quotient. -/

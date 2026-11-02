@@ -61,7 +61,7 @@ theorem mem_radPow_iff (n : ℕ) {X Y : S.Ind} (f : X ⟶ Y) :
             have h : S.toFG.map (c • a) = (c • 𝟙 _) ≫ S.toFG.map a := by
               simp [Functor.map_smul]
             rw [h]
-            exact (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).precomp _ ha
+            exact (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).comp_mem_left _ ha
       · intro hf
         suffices H : ∀ h ∈ (StrictLayers.Ipow (n + 1) : MorphismIdeal (ModCat A)).hom
             (S.toFG.obj X) (S.toFG.obj Y), (S.homEquivFG X Y).symm h ∈ S.radPow (n + 1) X Y by
@@ -97,8 +97,8 @@ theorem mem_radPow_iff (n : ℕ) {X Y : S.Ind} (f : X ⟶ Y) :
             · rw [isRadical_iff, ha']
               exact isRadicalMorphism_postcomp _ ((mem_homIdeal_iff a).1 ha)
             · rw [ih, hb']
-              exact (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).precomp _
-                ((StrictLayers.Ipow n : MorphismIdeal (ModCat A)).precomp _ hb)
+              exact (StrictLayers.Ipow n : MorphismIdeal (ModCat A)).comp_mem_left _
+                ((StrictLayers.Ipow n : MorphismIdeal (ModCat A)).comp_mem_left _ hb)
         | zero => simp
         | add a b _ _ ha hb => rw [map_add]; exact add_mem ha hb
         | neg a _ ha => rw [map_neg]; exact neg_mem ha

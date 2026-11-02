@@ -178,7 +178,7 @@ theorem map_mem_pow_of_mem_radPow {n : ℕ} {X Y : S.Ind} {f : X ⟶ Y}
           have h : S.toFG.map (c • a) = (c • 𝟙 _) ≫ S.toFG.map a := by
             simp [Functor.map_smul]
           rw [h]
-          exact MorphismIdeal.precomp _ _ ha
+          exact MorphismIdeal.comp_mem_left _ _ ha
 
 /-- For a representation-finite algebra the radical of `ind(mod A)` is
 nilpotent. -/

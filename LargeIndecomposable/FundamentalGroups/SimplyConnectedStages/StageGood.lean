@@ -72,7 +72,7 @@ lemma usT_not_mem (K : Set (vtx x₀ ⟶ vtx b)) (w : vtx x₀ ⟶ vtx b) (i : �
     exact (arrowIdeal α).zero_mem _ _
   · apply D.hus i
     rw [← val_usT D w i, h, Cover.val_comp, Cover.val_comp]
-    exact (arrowIdeal α).precomp _ ((arrowIdeal α).postcomp _ hm)
+    exact (arrowIdeal α).comp_mem_left _ ((arrowIdeal α).comp_mem_right _ hm)
 
 /-- **In a loop-free category the lift of `u` survives** at points outside `K`. -/
 lemma uT_not_mem (hLF : LoopFree P) {K : Set (vtx x₀ ⟶ vtx b)} {w : vtx x₀ ⟶ vtx b}

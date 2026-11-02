@@ -130,7 +130,7 @@ theorem exists_lift_of_mem {W : C} {n : ℕ} {g : W ⟶ Y}
   | mem h hh =>
       obtain ⟨M, u, v, hu, hv, rfl⟩ := hh
       obtain ⟨v', hv'⟩ := P.factors v ((mem_homIdeal_iff v).1 hv)
-      exact ⟨u ≫ v', (Ipow n : MorphismIdeal C).postcomp v' hu, by rw [Category.assoc, hv']⟩
+      exact ⟨u ≫ v', (Ipow n : MorphismIdeal C).comp_mem_right v' hu, by rw [Category.assoc, hv']⟩
   | zero => exact ⟨0, zero_mem _, by simp⟩
   | add a b _ _ ha hb =>
       obtain ⟨w₁, hw₁, rfl⟩ := ha
@@ -154,7 +154,7 @@ theorem isSplitMono_of_perturbation (hnf : HasSplitRadicalNormalForm C)
   let h : U ⟶ Y := -(e.hom ≫ biprod.snd ≫ r ≫ p)
   have hh : h ∈ (Ipow 2 : MorphismIdeal C).hom U Y := by
     apply neg_mem
-    exact (Ipow 2 : MorphismIdeal C).precomp _ ((Ipow 2 : MorphismIdeal C).precomp _
+    exact (Ipow 2 : MorphismIdeal C).comp_mem_left _ ((Ipow 2 : MorphismIdeal C).comp_mem_left _
       (rad_comp_rad_mem hr hp))
   have hu' : u = e.hom ≫ biprod.desc j r := by
     rw [← hu]; simp
@@ -292,10 +292,10 @@ theorem strict (hnf : HasSplitRadicalNormalForm C)
         change s ≫ P.i ≫ ρ = _
         rw [← Category.assoc, hs, Preadditive.sub_comp, Category.assoc, hρ, Category.comp_id]
       have hsmem : s ∈ (Ipow n : MorphismIdeal C).hom _ _ :=
-        ih b hb_rad hbpert s (by rw [hsb]; exact (Ipow (n + 1) : MorphismIdeal C).postcomp _ hw)
+        ih b hb_rad hbpert s (by rw [hsb]; exact (Ipow (n + 1) : MorphismIdeal C).comp_mem_right _ hw)
       have hz' : z = w ≫ ρ - s ≫ c := by rw [hsc]; abel
       rw [hz']
-      exact sub_mem ((Ipow (n + 1) : MorphismIdeal C).postcomp _ hw) (comp_rad_mem hsmem hc_rad)
+      exact sub_mem ((Ipow (n + 1) : MorphismIdeal C).comp_mem_right _ hw) (comp_rad_mem hsmem hc_rad)
 
 /-- The reverse implication of Lemma 2.5: `z ∈ I^n` implies `z ≫ a ∈ I^{n+1}`
 for radical `a`. -/

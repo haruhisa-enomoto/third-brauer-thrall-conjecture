@@ -32,9 +32,9 @@ structure ZeroHomIdeal (C : Type u) [Category.{v} C]
     [HasZeroMorphisms C] where
   mem : ∀ {X Y : C}, (X ⟶ Y) → Prop
   zero_mem : ∀ X Y : C, mem (0 : X ⟶ Y)
-  precomp : ∀ {X Y Z : C} (f : X ⟶ Y) {g : Y ⟶ Z},
+  comp_mem_left : ∀ {X Y Z : C} (f : X ⟶ Y) {g : Y ⟶ Z},
     mem g → mem (f ≫ g)
-  postcomp : ∀ {X Y Z : C} {f : X ⟶ Y} (g : Y ⟶ Z),
+  comp_mem_right : ∀ {X Y Z : C} {f : X ⟶ Y} (g : Y ⟶ Z),
     mem f → mem (f ≫ g)
 
 /-- A zero Hom ideal is proper when it contains no identity morphism. -/
@@ -76,12 +76,12 @@ instance rel_congruence : Congruence I.rel where
     intro X Y Z f g g' h
     rcases h with h | h
     · exact Or.inl (congrArg (fun q ↦ f ≫ q) h)
-    · exact Or.inr ⟨I.precomp f h.1, I.precomp f h.2⟩
+    · exact Or.inr ⟨I.comp_mem_left f h.1, I.comp_mem_left f h.2⟩
   comp_right := by
     intro X Y Z f f' g h
     rcases h with h | h
     · exact Or.inl (congrArg (fun q ↦ q ≫ g) h)
-    · exact Or.inr ⟨I.postcomp g h.1, I.postcomp g h.2⟩
+    · exact Or.inr ⟨I.comp_mem_right g h.1, I.comp_mem_right g h.2⟩
 
 /-- The categorical quotient by a zero Hom ideal again has zero morphisms. -/
 instance quotientHasZeroMorphisms :
@@ -483,11 +483,11 @@ def principalZeroHomIdeal {A B : C} (mu : A ⟶ B) :
     ZeroHomIdeal C where
   mem f := FactorsThroughMorphism mu f
   zero_mem X Y := ⟨0, 0, by simp⟩
-  precomp := by
+  comp_mem_left := by
     intro X Y Z f g hg
     obtain ⟨a, b, rfl⟩ := hg
     exact ⟨f ≫ a, b, by simp [Category.assoc]⟩
-  postcomp := by
+  comp_mem_right := by
     intro X Y Z f g hf
     obtain ⟨a, b, rfl⟩ := hf
     exact ⟨a, b ≫ g, by simp [Category.assoc]⟩

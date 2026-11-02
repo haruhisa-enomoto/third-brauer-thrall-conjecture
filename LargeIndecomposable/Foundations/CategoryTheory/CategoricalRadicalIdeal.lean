@@ -66,8 +66,8 @@ def homIdeal : MorphismIdeal C where
       zero_mem' := isRadicalMorphism_zero
       add_mem' := fun hf hg ↦ isRadicalMorphism_add hf hg
       neg_mem' := fun hf ↦ isRadicalMorphism_neg hf }
-  precomp := fun f _ hg ↦ isRadicalMorphism_precomp f hg
-  postcomp := fun g hf ↦ isRadicalMorphism_postcomp g hf
+  comp_mem_left := fun f _ hg ↦ isRadicalMorphism_precomp f hg
+  comp_mem_right := fun g hf ↦ isRadicalMorphism_postcomp g hf
 
 @[simp]
 theorem mem_homIdeal_iff {X Y : C} (f : X ⟶ Y) :

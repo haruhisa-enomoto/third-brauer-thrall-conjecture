@@ -63,11 +63,11 @@ def arrSetIdeal (S : ∀ {x y : RayVert C}, (x ⟶ y) → Prop) : ZeroHomIdeal C
   mem {X Y} f := f = 0 ∨ ∃ (x y : RayVert C) (e : x ⟶ y) (_ : S e) (a : X ⟶ x.out) (c : y.out ⟶ Y),
     f = a ≫ e.1 ≫ c
   zero_mem _ _ := Or.inl rfl
-  precomp f g hg := by
+  comp_mem_left f g hg := by
     rcases hg with rfl | ⟨x, y, e, hS, a, c, rfl⟩
     · exact Or.inl comp_zero
     · exact Or.inr ⟨x, y, e, hS, f ≫ a, c, by simp [Category.assoc]⟩
-  postcomp g hf := by
+  comp_mem_right g hf := by
     rcases hf with rfl | ⟨x, y, e, hS, a, c, rfl⟩
     · exact Or.inl zero_comp
     · exact Or.inr ⟨x, y, e, hS, a, c ≫ g, by simp [Category.assoc]⟩

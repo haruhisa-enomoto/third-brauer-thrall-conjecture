@@ -79,7 +79,7 @@ lemma not_mem_K_of_val {a a' : Cover x₀} (f : a ⟶ a') (h : ¬(arrowIdeal α)
   · exact h (by rw [h0]; exact Or.inl rfl)
   · apply h
     rw [Cover.val_comp, Cover.val_comp]
-    exact (arrowIdeal α).precomp _ ((arrowIdeal α).postcomp _ hm)
+    exact (arrowIdeal α).comp_mem_left _ ((arrowIdeal α).comp_mem_right _ hm)
 
 lemma ev_liftAct_comp {X Y Z : Quiver.FreeGroupoid (RayVert (ArrowQuot α))} (f : X ⟶ Y)
     (g : Y ⟶ Z) (p : ((liftAct hα K c).obj X).carrier) :

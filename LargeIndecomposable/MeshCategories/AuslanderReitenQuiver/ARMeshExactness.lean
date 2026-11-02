@@ -128,7 +128,7 @@ theorem cov_homog (d : ℕ) {W Y : S.ARVertex}
         let h : S.fg (S.index W) ⟶ S.fg (S.index (S.arTranslationQuiver.tau y).1) :=
           z ≫ (S.tau.tauPlusIso (S.vendorNonprojective y)).hom
         have hh : h ∈ (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).hom _ _ :=
-          (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).postcomp _ hz
+          (StrictLayers.Ipow m : MorphismIdeal (ModCat A)).comp_mem_right _ hz
         let hInd : S.label W ⟶ S.label (S.arTranslationQuiver.tau y).1 :=
           (S.homEquivFG (S.ind (S.index W)) (S.ind (S.index (S.arTranslationQuiver.tau y).1))).symm h
         have hIndMap : S.toFG.map hInd = h := S.map_homEquivFG_symm _
@@ -187,7 +187,7 @@ theorem cov_mono_homog (m : ℕ) {W : S.ARVertex} (y : S.nonprojectiveVertices)
     simp only [z, Category.assoc]
     exact this
   rw [S.mem_radPow_iff]
-  have := (StrictLayers.Ipow (m + 1) : MorphismIdeal (ModCat A)).postcomp
+  have := (StrictLayers.Ipow (m + 1) : MorphismIdeal (ModCat A)).comp_mem_right
     (S.tau.tauPlusIso (S.vendorNonprojective y)).hom hz
   simp only [z, Category.assoc, Iso.inv_hom_id, Category.comp_id] at this
   exact this
@@ -293,7 +293,7 @@ theorem contra_homog (d : ℕ) {W : S.ARVertex} (y : S.nonprojectiveVertices)
       (StrictLayers.Ipow (d + 2) : MorphismIdeal (ModCat A)).hom _ _ := by
     have h1 := (S.mem_radPow_iff (d + 2) _).1 hT
     rw [Functor.map_sum] at h1
-    have h2 := (StrictLayers.Ipow (d + 2) : MorphismIdeal (ModCat A)).precomp
+    have h2 := (StrictLayers.Ipow (d + 2) : MorphismIdeal (ModCat A)).comp_mem_left
       (S.tau.tauPlusIso (S.vendorNonprojective y)).hom h1
     have e : (S.tau.tauPlusIso (S.vendorNonprojective y)).hom ≫
         ∑ i, S.toFG.map (S.alphaI y i ≫ (S.vCoeff b y.1 i • R i)) =

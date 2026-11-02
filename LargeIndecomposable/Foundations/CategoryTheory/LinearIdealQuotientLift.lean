@@ -38,13 +38,13 @@ local instance quotientLinearInstance :
 functor. -/
 def functorKernel : MorphismIdeal C where
   hom X Y := (LinearMap.ker (F.mapLinearMap k)).toAddSubgroup
-  precomp := by
+  comp_mem_left := by
     intro X Y Z f g hg
     change F.map (f ≫ g) = 0
     change F.map g = 0 at hg
     rw [F.map_comp, hg]
     simp
-  postcomp := by
+  comp_mem_right := by
     intro X Y Z f g hf
     change F.map (f ≫ g) = 0
     change F.map f = 0 at hf

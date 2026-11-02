@@ -42,14 +42,14 @@ def comap (F : C ⥤ D) [F.Additive] (I : MorphismIdeal D) : MorphismIdeal C whe
       neg_mem' := by
         intro f hf
         simpa using (I.hom (F.obj X) (F.obj Y)).neg_mem hf }
-  precomp := by
+  comp_mem_left := by
     intro X Y Z f g hg
     show F.map (f ≫ g) ∈ I.hom (F.obj X) (F.obj Z)
-    simpa only [F.map_comp] using I.precomp (F.map f) hg
-  postcomp := by
+    simpa only [F.map_comp] using I.comp_mem_left (F.map f) hg
+  comp_mem_right := by
     intro X Y Z f g hf
     show F.map (f ≫ g) ∈ I.hom (F.obj X) (F.obj Z)
-    simpa only [F.map_comp] using I.postcomp (F.map g) hf
+    simpa only [F.map_comp] using I.comp_mem_right (F.map g) hf
 
 @[simp]
 theorem mem_comap_iff (F : C ⥤ D) [F.Additive] (I : MorphismIdeal D)
@@ -100,7 +100,7 @@ def homSubmodule (I : MorphismIdeal C) (X Y : C) : Submodule k (X ⟶ Y) where
   add_mem' := (I.hom X Y).add_mem
   smul_mem' := by
     intro c f hf
-    have h := I.precomp (c • 𝟙 X) hf
+    have h := I.comp_mem_left (c • 𝟙 X) hf
     change c • f ∈ I.hom X Y
     simpa only [CategoryTheory.Linear.smul_comp, Category.id_comp] using h
 

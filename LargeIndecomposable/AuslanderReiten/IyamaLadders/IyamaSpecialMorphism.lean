@@ -60,8 +60,8 @@ theorem IsSpecial.of_iso (R : NilpotentRadicalData C)
     let r : A.left ⟶ A.right := e.hom.left ≫ s ≫ e.inv.right
     have hr : r ∈ (R.ideal.pow 2).hom A.left A.right := by
       simpa only [r, Category.assoc] using
-        (R.ideal.pow 2).postcomp e.inv.right
-          ((R.ideal.pow 2).precomp e.hom.left hs)
+        (R.ideal.pow 2).comp_mem_right e.inv.right
+          ((R.ideal.pow 2).comp_mem_left e.hom.left hs)
     obtain ⟨q⟩ := ha.2 r hr
     let eL : A.left ≅ B.left :=
       { hom := e.hom.left
@@ -108,7 +108,7 @@ theorem IsSpecial.nonempty_iso_biprod_desc_zero
   let t : Z ⊞ U ⟶ Y := biprod.desc 0 (-q)
   have ht : t ∈ (R.ideal.pow 2).hom (Z ⊞ U) Y := by
     have hqneg : -q ∈ (R.ideal.pow 2).hom U Y := neg_mem hq
-    have hpre := (R.ideal.pow 2).precomp
+    have hpre := (R.ideal.pow 2).comp_mem_left
       (biprod.snd : Z ⊞ U ⟶ U) hqneg
     simpa [t, biprod.desc_eq] using hpre
   obtain ⟨e⟩ := ha.2 t ht
@@ -211,7 +211,7 @@ theorem IsSpecial.cancel_biprod_desc_zero
   · intro r hr
     let t : Z ⊞ U ⟶ Y := biprod.desc r 0
     have ht : t ∈ (R.ideal.pow 2).hom (Z ⊞ U) Y := by
-      have hpre := (R.ideal.pow 2).precomp
+      have hpre := (R.ideal.pow 2).comp_mem_left
         (biprod.fst : Z ⊞ U ⟶ Z) hr
       simpa [t, biprod.desc_eq] using hpre
     obtain ⟨e⟩ := hpadded.2 t ht
@@ -249,7 +249,7 @@ theorem TauApproximation.exists_radical_factor_of_mem_square
       obtain ⟨W, u, v, hu, hv, rfl⟩ := hr
       obtain ⟨b, hb⟩ :=
         hS.factors_from_left u ((R.mem_ideal_iff u).mp hu)
-      refine ⟨b ≫ v, R.ideal.precomp b hv, ?_⟩
+      refine ⟨b ≫ v, R.ideal.comp_mem_left b hv, ?_⟩
       rw [← Category.assoc, hb]
   | zero =>
       exact ⟨0, zero_mem _, by simp⟩
@@ -283,7 +283,7 @@ theorem TauApproximation.exists_radical_factor_into_of_mem_square
       obtain ⟨V, u, v, hu, hv, rfl⟩ := hr
       obtain ⟨b, hb⟩ :=
         hS.factors_into_right v ((R.mem_ideal_iff v).mp hv)
-      refine ⟨u ≫ b, R.ideal.postcomp b hu, ?_⟩
+      refine ⟨u ≫ b, R.ideal.comp_mem_right b hu, ?_⟩
       rw [Category.assoc, hb]
   | zero =>
       exact ⟨0, zero_mem _, by simp⟩

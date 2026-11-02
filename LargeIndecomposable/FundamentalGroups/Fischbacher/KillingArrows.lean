@@ -43,11 +43,11 @@ def FactorsThroughArrows (α : ∀ i, b ⟶ d i) {X Y : P} (f : X ⟶ Y) : Prop 
 def arrowIdeal (α : ∀ i, b ⟶ d i) : LargeIndecomposable.ZeroHomIdeal P where
   mem f := f = 0 ∨ FactorsThroughArrows α f
   zero_mem _ _ := Or.inl rfl
-  precomp f g hg := by
+  comp_mem_left f g hg := by
     rcases hg with rfl | ⟨i, a, c, rfl⟩
     · exact Or.inl comp_zero
     · exact Or.inr ⟨i, f ≫ a, c, by simp [Category.assoc]⟩
-  postcomp g hf := by
+  comp_mem_right g hf := by
     rcases hf with rfl | ⟨i, a, c, rfl⟩
     · exact Or.inl zero_comp
     · exact Or.inr ⟨i, a, c ≫ g, by simp [Category.assoc]⟩
@@ -177,8 +177,8 @@ lemma avoids_of_not_mem {x : RayVert P} : ∀ {y : RayVert P} (p : Quiver.Path x
   | _, .nil, _ => trivial
   | _, .cons p e, h => by
     refine ⟨avoids_of_not_mem p fun hp ↦ h ?_, fun he ↦ h ?_⟩
-    · exact (arrowIdeal α).postcomp e.1 hp
-    · exact (arrowIdeal α).precomp (pathVal p) he
+    · exact (arrowIdeal α).comp_mem_right e.1 hp
+    · exact (arrowIdeal α).comp_mem_left (pathVal p) he
 
 lemma avoids_comp {x y : RayVert P} (p : Quiver.Path x y) : ∀ {z : RayVert P}
     (q : Quiver.Path y z), Avoids α (p.comp q) ↔ Avoids α p ∧ Avoids α q

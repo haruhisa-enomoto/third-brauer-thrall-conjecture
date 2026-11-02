@@ -60,12 +60,12 @@ instance : PartialOrder (MorphismIdeal C) where
 /-- The zero categorical Hom ideal. -/
 def zero (C : Type u) [Category.{v} C] [Preadditive C] : MorphismIdeal C where
   hom := fun _ _ ↦ ⊥
-  precomp := by
+  comp_mem_left := by
     intro X Y Z f g hg
     change g = 0 at hg
     subst g
     simp
-  postcomp := by
+  comp_mem_right := by
     intro X Y Z f g hf
     change f = 0 at hf
     subst f
@@ -85,8 +85,8 @@ instance : OrderBot (MorphismIdeal C) where
 /-- The whole categorical Hom ideal. -/
 def whole (C : Type u) [Category.{v} C] [Preadditive C] : MorphismIdeal C where
   hom := fun _ _ ↦ ⊤
-  precomp := by simp
-  postcomp := by simp
+  comp_mem_left := by simp
+  comp_mem_right := by simp
 
 instance : Top (MorphismIdeal C) := ⟨whole C⟩
 
@@ -109,26 +109,26 @@ def compositeGenerators (I J : MorphismIdeal C) (X Z : C) :
 by composites `f ≫ g` with `f ∈ I` and `g ∈ J`. -/
 def mul (I J : MorphismIdeal C) : MorphismIdeal C where
   hom X Z := AddSubgroup.closure (compositeGenerators I J X Z)
-  precomp := by
+  comp_mem_left := by
     intro X Y Z a g hg
     induction hg using AddSubgroup.closure_induction with
     | mem g hg =>
         obtain ⟨M, f, b, hf, hb, rfl⟩ := hg
         apply AddSubgroup.subset_closure
-        refine ⟨M, a ≫ f, b, I.precomp a hf, hb, ?_⟩
+        refine ⟨M, a ≫ f, b, I.comp_mem_left a hf, hb, ?_⟩
         simp only [Category.assoc]
     | zero => simp
     | add g h _ _ hg hh =>
         simpa only [Preadditive.comp_add] using add_mem hg hh
     | neg g _ hg =>
         simpa only [Preadditive.comp_neg] using neg_mem hg
-  postcomp := by
+  comp_mem_right := by
     intro X Y Z f b hf
     induction hf using AddSubgroup.closure_induction with
     | mem f hf =>
         obtain ⟨M, a, g, ha, hg, rfl⟩ := hf
         apply AddSubgroup.subset_closure
-        refine ⟨M, a, g ≫ b, ha, J.postcomp b hg, ?_⟩
+        refine ⟨M, a, g ≫ b, ha, J.comp_mem_right b hg, ?_⟩
         simp only [Category.assoc]
     | zero => simp
     | add f g _ _ hf hg =>
@@ -168,7 +168,7 @@ theorem mul_le_left (I J : MorphismIdeal C) :
   induction hh using AddSubgroup.closure_induction with
   | mem h hh =>
       obtain ⟨Y, f, g, hf, hg, rfl⟩ := hh
-      exact I.postcomp g hf
+      exact I.comp_mem_right g hf
   | zero => exact zero_mem _
   | add f g _ _ hf hg => exact add_mem hf hg
   | neg f _ hf => exact neg_mem hf
@@ -181,7 +181,7 @@ theorem mul_le_right (I J : MorphismIdeal C) :
   induction hh using AddSubgroup.closure_induction with
   | mem h hh =>
       obtain ⟨Y, f, g, hf, hg, rfl⟩ := hh
-      exact J.precomp f hg
+      exact J.comp_mem_left f hg
   | zero => exact zero_mem _
   | add f g _ _ hf hg => exact add_mem hf hg
   | neg f _ hf => exact neg_mem hf
@@ -311,16 +311,16 @@ theorem pow_le_pow_of_le (I : MorphismIdeal C) {m n : ℕ}
 /-- The pointwise intersection of all powers. -/
 def powerIntersection (I : MorphismIdeal C) : MorphismIdeal C where
   hom X Y := ⨅ n, (pow I n).hom X Y
-  precomp := by
+  comp_mem_left := by
     intro X Y Z f g hg
     simp only [AddSubgroup.mem_iInf] at hg ⊢
     intro n
-    exact (pow I n).precomp f (hg n)
-  postcomp := by
+    exact (pow I n).comp_mem_left f (hg n)
+  comp_mem_right := by
     intro X Y Z f g hf
     simp only [AddSubgroup.mem_iInf] at hf ⊢
     intro n
-    exact (pow I n).postcomp g (hf n)
+    exact (pow I n).comp_mem_right g (hf n)
 
 @[simp]
 theorem mem_powerIntersection_iff

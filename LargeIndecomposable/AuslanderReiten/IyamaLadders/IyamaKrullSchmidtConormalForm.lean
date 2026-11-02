@@ -191,8 +191,8 @@ noncomputable def cosplitRadicalForm_biprod_obj
           a ≫ biprod.inl + r ≫ biprod.inr by
             apply biprod.hom_ext <;> simp]
       exact (T.radical.ideal.hom _ _).add_mem
-        (T.radical.ideal.postcomp biprod.inl ha_mem)
-        (T.radical.ideal.postcomp biprod.inr hq.r_mem)
+        (T.radical.ideal.comp_mem_right biprod.inl ha_mem)
+        (T.radical.ideal.comp_mem_right biprod.inr hq.r_mem)
   · have hsplit : IsSplitEpi a := by
       apply Classical.not_not.mp
       intro hnot
@@ -266,8 +266,8 @@ noncomputable def cosplitRadicalForm_biprod_obj
     dsimp only [r', c₂]
     simpa only [U, r, Preadditive.comp_neg] using
       (T.radical.ideal.hom M U).add_mem
-        (T.radical.ideal.precomp p'
-          (T.radical.ideal.precomp s'
+        (T.radical.ideal.comp_mem_left p'
+          (T.radical.ideal.comp_mem_left s'
             ((T.radical.ideal.hom _ _).neg_mem hq.r_mem)))
         hq.r_mem
 
