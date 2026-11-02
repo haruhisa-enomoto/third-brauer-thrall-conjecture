@@ -1,0 +1,101 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>LargeIndecomposable.MildContours.Setup.Setup</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="LargeIndecomposable.MildContours.Setup.Setup";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Third Brauer–Thrall conjecture</a></span></h1><h2 class="header_filename break_within"><span class="name">LargeIndecomposable</span>.<span class="name">MildContours</span>.<span class="name">Setup</span>.<span class="name">Setup</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/84a74f0fe1001cdacb936eae9b9a541870f97b06/LargeIndecomposable/MildContours/Setup/Setup.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././LargeIndecomposable/BongartzTheorem/Reduction/TheoremSix.html">LargeIndecomposable.BongartzTheorem.Reduction.TheoremSix</a></li><li><a href="../../.././LargeIndecomposable/FundamentalGroups/Basic/SmallFree.html">LargeIndecomposable.FundamentalGroups.Basic.SmallFree</a></li><li><a href="../../.././LargeIndecomposable/RayCategories/Distributive/Cancel.html">LargeIndecomposable.RayCategories.Distributive.Cancel</a></li><li><a href="../../.././LargeIndecomposable/RayCategories/Distributive/QuotientRayPresentations.html">LargeIndecomposable.RayCategories.Distributive.QuotientRayPresentations</a></li><li><a href="../../.././LargeIndecomposable/RayCategories/Quotients/MinimalQuotLin.html">LargeIndecomposable.RayCategories.Quotients.MinimalQuotLin</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-LargeIndecomposable.MildContours.Setup.Setup" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.MildHyp"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.RayCat.MildHyp.not_thin_cleaving"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_thin_cleaving</span></a></div><div class="nav_link"><a class="break_within" href="#LargeIndecomposable.SplitBasicData.mildHyp"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mildHyp</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Setting-for-Bongartz-s-On-mild-contours" class="markdown-heading">Setting for Bongartz's &quot;On mild contours&quot; <a class="hover-link" href="#Setting-for-Bongartz-s-On-mild-contours">#</a></h1><p><code><a href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.RayCat.MildHyp">MildHyp</a> k P</code>: a finite ray category with cancellation all of whose proper
+residues <code>P/τ</code> (<code>τ</code> nonzero, non-invertible) have representation-finite
+linearization. Thin cleaving diagrams into a residue then give contradictions
+(<code><a href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.RayCat.MildHyp.not_thin_cleaving">MildHyp.not_thin_cleaving</a></code>). The ray category of a minimal
+representation-infinite distributive algebra satisfies <code><a href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.RayCat.MildHyp">MildHyp</a></code>
+(<code><a href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.SplitBasicData.mildHyp">SplitBasicData.mildHyp</a></code>, via B5).</p></div><div class="decl" id="LargeIndecomposable.RayCat.MildHyp"><div class="structure"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/84a74f0fe1001cdacb936eae9b9a541870f97b06/LargeIndecomposable/MildContours/Setup/Setup.lean#L37-L47">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.RayCat.MildHyp"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/FiniteRayCategory.html#LargeIndecomposable.IsFiniteRayCategory">IsFiniteRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The hypotheses of [mild]: cancellation and representation-finite proper
+residues.</p><ul class="structure_fields" id="LargeIndecomposable.RayCat.MildHyp.mk"><li id="LargeIndecomposable.RayCat.MildHyp.left" class="structure_field"><div class="structure_field_info">left : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RoiterVanishing/KeyLemma.html#LargeIndecomposable.RayCat.LeftCancel">LeftCancel</a> <span class="fn">P</span></span></div></li><li id="LargeIndecomposable.RayCat.MildHyp.right" class="structure_field"><div class="structure_field_info">right : <span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/RoiterVanishing/KeyLemma.html#LargeIndecomposable.RayCat.RightCancel">RightCancel</a> <span class="fn">P</span></span></div></li><li id="LargeIndecomposable.RayCat.MildHyp.res" class="structure_field"><div class="structure_field_info">res<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">τ</span> : <span class="fn"><span class="fn">a</span> <span class="fn">⟶</span> <span class="fn">b</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.IsIso</span> <span class="fn">τ</span></span></span>)</span></span>
+ : <span class="fn"><span class="fn"><span class="fn">τ</span> <span class="fn">≠</span> <span class="fn">0</span></span> → <span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsRepresentationFinite">Statement.IsRepresentationFinite</a> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Quotients/ResidueQuiver.html#LargeIndecomposable.RayCat.Res">Res</a> <span class="fn">τ</span>)</span> <span class="fn">k</span>)</span></span></span></div></li></ul><details id="instances-for-list-LargeIndecomposable.RayCat.MildHyp" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LargeIndecomposable.RayCat.MildHyp.not_thin_cleaving"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/84a74f0fe1001cdacb936eae9b9a541870f97b06/LargeIndecomposable/MildContours/Setup/Setup.lean#L51-L65">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.RayCat.MildHyp.not_thin_cleaving"><span class="name">LargeIndecomposable</span>.<span class="name">RayCat</span>.<span class="name">MildHyp</span>.<span class="name">not_thin_cleaving</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{0, 0}</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasZeroMorphisms</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././LargeIndecomposable/RayCategories/Basic/FiniteRayCategory.html#LargeIndecomposable.IsFiniteRayCategory">IsFiniteRayCategory</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Finite</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Infinite</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.RayCat.MildHyp">MildHyp</a> <span class="fn">k</span> <span class="fn">P</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b</span> : <span class="fn">P</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">τ</span> : <span class="fn"><span class="fn">a</span> <span class="fn">⟶</span> <span class="fn">b</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><span class="fn">CategoryTheory.IsIso</span> <span class="fn">τ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hτ0</span> : <span class="fn"><span class="fn">τ</span> <span class="fn">≠</span> <span class="fn">0</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">T</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Cleaving/ThinCategories/Thin.html#LargeIndecomposable.RayCat.ThinData">ThinData</a> <span class="fn">V</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hD</span> : <span class="fn"><span class="fn">¬</span><span class="fn"><a href="../../.././LargeIndecomposable/Statement.html#LargeIndecomposable.Statement.IsRepresentationFinite">Statement.IsRepresentationFinite</a> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/RayQuiver.html#LargeIndecomposable.RayQuiver.Linearization">RayQuiver.Linearization</a> <span class="fn">(<a href="../../.././LargeIndecomposable/Cleaving/ThinCategories/Thin.html#LargeIndecomposable.RayCat.ThinCat">ThinCat</a> <span class="fn">T</span>)</span> <span class="fn">k</span>)</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">D</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Cleaving/Functors/ThinCleaving.html#LargeIndecomposable.RayCat.ThinFunctorData">ThinFunctorData</a> <span class="fn">T</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Quotients/ResidueQuiver.html#LargeIndecomposable.RayCat.Res">Res</a> <span class="fn">τ</span>)</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">Ar</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Cleaving/Functors/ThinCleaving.html#LargeIndecomposable.RayCat.ThinArrows">ThinArrows</a> <span class="fn">T</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hc</span> : <span class="fn"><span class="fn"><span class="fn">D</span>.<a href="../../.././LargeIndecomposable/Cleaving/Functors/ThinCleaving.html#LargeIndecomposable.RayCat.ThinFunctorData.Cleaves">Cleaves</a></span> <span class="fn">Ar</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">False</span></div></div><p><strong>A representation-infinite thin diagram cannot cleave into a proper residue.</strong></p></div></div><div class="decl" id="LargeIndecomposable.SplitBasicData.mildHyp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture/blob/84a74f0fe1001cdacb936eae9b9a541870f97b06/LargeIndecomposable/MildContours/Setup/Setup.lean#L74-L102">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.SplitBasicData.mildHyp"><span class="name">LargeIndecomposable</span>.<span class="name">SplitBasicData</span>.<span class="name">mildHyp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsAlgClosed</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">FiniteDimensional</span> <span class="fn">k</span> <span class="fn">B</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Fintype</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">DecidableEq</span> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <span class="fn"><a href="../../.././LargeIndecomposable/Modules/SplitBasic/SplitBasicAlgebras.html#LargeIndecomposable.SplitBasicData">SplitBasicData</a> <span class="fn">k</span> <span class="fn">B</span> <span class="fn">ι</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/MinimalInfinite/Minimal.html#LargeIndecomposable.IsMinimalRepInfinite">IsMinimalRepInfinite</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hd</span> : <span class="fn"><a href="../../.././LargeIndecomposable/RepresentationType/DistributiveIdeals/Layers.html#LargeIndecomposable.IsDistribIdeals">IsDistribIdeals</a> <span class="fn">B</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././LargeIndecomposable/MildContours/Setup/Setup.html#LargeIndecomposable.RayCat.MildHyp">RayCat.MildHyp</a> <span class="fn">k</span> <span class="fn">(<a href="../../.././LargeIndecomposable/RayCategories/Basic/Small.html#LargeIndecomposable.RayCat.RaySmall">RayCat.RaySmall</a> <span class="fn"><span class="fn"><span class="fn">S</span>.<a href="../../.././LargeIndecomposable/RayCategories/Quotients/Residue.html#LargeIndecomposable.SplitBasicData.toIdempotents">toIdempotents</a></span>.<a href="../../.././LargeIndecomposable/RayCategories/Distributive/SplitBasicRayCategory.html#LargeIndecomposable.SplitBasicIdempotents.RayCategory">RayCategory</a></span>)</span></span></div></div><p><strong>The ray category of a minimal representation-infinite distributive
+algebra satisfies the [mild] hypotheses</strong> (B5 and minimality).</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>
