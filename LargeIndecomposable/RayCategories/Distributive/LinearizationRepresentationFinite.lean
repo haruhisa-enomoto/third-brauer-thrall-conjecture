@@ -102,7 +102,7 @@ theorem lin_isRepresentationFinite_of_isRayPres [Nontrivial B]
     (hfin : Statement.IsRepresentationFinite B) {V R : Type} [Fintype V] [DecidableEq V]
     [Fintype R] [DecidableEq R] (T : RaySys.Mult V R) (ιT : V ≃ Fin S.primitiveIdempotents.m) (βT : R → B)
     (hT : S.primitiveIdempotents.IsRayPres (k := k) T ιT βT) :
-    LargeIndecomposable.IsRepresentationFiniteRight k (T.Lin k) := by
+    LargeIndecomposable.IsRepresentationFinite k (T.Lin k)ᵐᵒᵖ := by
   classical
   have hA := primitiveIdempotents_isRepresentationFinite (k := k) hfin
   have hbasic := S.isBasicAlgebra
@@ -122,8 +122,8 @@ theorem lin_isRepresentationFinite_of_isRayPres [Nontrivial B]
     inferInstanceAs (DecidableEq (MeshWalk.RayA0 (S'.arMeshData b) v₀))
   obtain ⟨m, ν, hmul, he⟩ := hT.exists_tableIso hA hpres'
   obtain ⟨φ⟩ := RaySys.nonempty_algEquiv_of_match _ _ m ν hmul he k
-  have h0 : LargeIndecomposable.IsRepresentationFiniteRight k
-      ((S'.A0MultAR b v₀ hF).Lin k) :=
+  have h0 : LargeIndecomposable.IsRepresentationFinite k
+      ((S'.A0MultAR b v₀ hF).Lin k)ᵐᵒᵖ :=
     MeshWalk.A0Tab_isRepresentationFinite (S'.arMeshData b) v₀ hF
   exact isRepresentationFinite_of_surjective φ.symm.toAlgHom (by exact φ.symm.surjective) h0
 
