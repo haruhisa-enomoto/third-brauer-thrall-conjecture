@@ -250,12 +250,3 @@ variable [Finite S.ARVertex]
 end Relabel
 
 end LargeIndecomposable.IndSkeleton
-
-namespace LargeIndecomposable.IndSkeleton
-
-universe w'
-
-variable {k A : Type w'} [Field k] [IsAlgClosed k] [Ring A] [Algebra k A] [FiniteDimensional k A]
-  [IsNoetherianRing Aᵐᵒᵖ] (S : IndSkeleton k A) (b : S.ArrowBases)
-
-end LargeIndecomposable.IndSkeleton

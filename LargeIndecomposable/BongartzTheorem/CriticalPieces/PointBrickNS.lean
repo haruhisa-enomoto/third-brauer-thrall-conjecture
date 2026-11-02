@@ -149,11 +149,3 @@ theorem pointBrick'_of_cocycles_source {S : Finset (Cover x₀)} (F : Ext.RelFam
       (w₂ : Ext.Data (Rep.pointRep (k := k) x) V), hind, hK w₁, hK w₂⟩⟩
 
 end LargeIndecomposable.RayCat
-
-namespace LargeIndecomposable
-
-open Statement
-
-universe u
-
-end LargeIndecomposable

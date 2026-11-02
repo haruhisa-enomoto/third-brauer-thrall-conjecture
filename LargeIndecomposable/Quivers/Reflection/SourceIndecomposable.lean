@@ -147,23 +147,6 @@ end General
 
 /-! ### Injectivity from a nonnegative reflected dimension vector -/
 
-section Nonnegative
-
-variable {k : Type u} {Q : Type v} [Field k] [Quiver.{w} Q]
-variable {M : QuiverRep.{u, v, w, max v w x} k Q} {i : Q}
-variable [Fintype Q] [∀ a b : Q, Fintype (a ⟶ b)]
-
-end Nonnegative
-
 /-! ### The vertex simple as the exceptional case -/
-
-section VertexSimple
-
-variable {k : Type u} {Q : Type u} [Field k] [Quiver.{u} Q]
-variable {M : QuiverRep.{u, u, u, u} k Q} {i : Q}
-
-variable [Fintype Q] [∀ a b : Q, Fintype (a ⟶ b)]
-
-end VertexSimple
 
 end LargeIndecomposable.Foundations

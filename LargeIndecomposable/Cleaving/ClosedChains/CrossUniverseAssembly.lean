@@ -332,7 +332,6 @@ section ClosedChainAssembly
 
 universe uA x
 
-open LargeIndecomposable.ClosedZigzag
 open LargeIndecomposable.ClosedZigzagTransfer
 
 variable {A : Type uA} [Ring A] [Algebra k A] [Module.Finite k A]

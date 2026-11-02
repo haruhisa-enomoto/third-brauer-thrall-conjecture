@@ -1172,24 +1172,6 @@ theorem case2_exc {x : RayVert P} (D : PFData x x) (hq : D.q = .nil) (a₁ : x �
 
 end PFData
 
-namespace PFData
-
-variable {x : RayVert P} (D : PFData x x) (hq : D.q = .nil) (a₁ : x ⟶ D.t)
-  (hw : D.w' = Quiver.Path.nil.cons a₁)
-include hq hw
-
-section Exit2
-
-variable (hM : MildHyp k P) (hMo : MildHyp k Pᵒᵖ) (hE : EndCyclic P) (hNTo : NoTiny Pᵒᵖ)
-  (hno : ∀ {y : RayVert P}, y ≠ x → y ≠ D.t → IsEmpty (x ⟶ y))
-  {c : P} (γ : D.t.out ⟶ c) (hγ : IsIrreducible γ) (hcx : c ≠ x.out) (hct : c ≠ D.t.out)
-  (haγ : a₁.1 ≫ γ ≠ 0)
-include hM hMo hE hNTo hno hγ hcx hct haγ
-
-end Exit2
-
-end PFData
-
 end RayCat
 
 end LargeIndecomposable

@@ -53,16 +53,4 @@ def quiverArrowCast {Q : Type u} [Quiver.{v} Q]
   subst j'
   exact a
 
-namespace BundledArrowOccurrence
-
-end BundledArrowOccurrence
-
-namespace RayHookTackle
-
-end RayHookTackle
-
-namespace RayCohookTackle
-
-end RayCohookTackle
-
 end LargeIndecomposable

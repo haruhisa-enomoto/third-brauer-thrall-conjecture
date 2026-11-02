@@ -23,8 +23,6 @@ universe u x
 variable {k : Type u} [Field k]
 variable {C : Type x} [Category.{u} C] [Preadditive C] [Linear k C]
 
-open LargeIndecomposable.ClosedZigzag
-
 /-- A vector outside a subspace admits a normalized linear coefficient whose
 kernel contains that subspace. -/
 theorem exists_normalized_coefficient_killing
@@ -41,11 +39,4 @@ theorem exists_normalized_coefficient_killing
     rw [show φ g = 0 from hφ hg]
     simp
 
-namespace ClosedZigzagSupplementData
-
-variable {n : ℕ} {hn : 2 ≤ n}
-variable {D : LinearPathCategory.Category k (Vertex n)ᵒᵖ ⥤ C}
-variable [D.Additive] [D.Linear k]
-
-end ClosedZigzagSupplementData
 end LargeIndecomposable.ClosedZigzagTransfer

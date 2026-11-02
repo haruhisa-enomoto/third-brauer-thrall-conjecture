@@ -404,12 +404,4 @@ As in `LargeIndecomposable.Foundations.RepresentationTheory.Quiver.Reflection.In
 reflected representation and the vertex simple has to put the quiver, its arrows and the field in
 one universe. -/
 
-section VertexSimple
-
-variable {k : Type u} {Q : Type u} [Field k] [Quiver.{u} Q] [Fintype Q]
-  [∀ a b : Q, Fintype (a ⟶ b)]
-variable {M : QuiverRep.{u, u, u, u} k Q} {i : Q}
-
-end VertexSimple
-
 end LargeIndecomposable.Foundations

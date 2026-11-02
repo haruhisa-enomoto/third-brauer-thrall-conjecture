@@ -299,19 +299,6 @@ theorem rayA_eq_rayA0 (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring 
 
 end LargeIndecomposable
 
-namespace LargeIndecomposable
-
-universe u
-
-namespace RaySys.Mult
-
-variable {V R : Type} [Fintype V] [DecidableEq V] [Fintype R] [DecidableEq R] {T : Mult V R}
-  {k : Type u} [Field k] [IsAlgClosed k]
-
-end RaySys.Mult
-
-end LargeIndecomposable
-
 /-! ### The scalar-weight group of a table (Definition 7.1) -/
 
 namespace LargeIndecomposable
@@ -745,11 +732,5 @@ theorem W_free_of_isFiniteRayCategory (hQ : T.IsFiniteRayCategory k)
   exact Module.Free.of_equiv (wEquiv m ν hmul he).symm.toIntLinearEquiv
 
 end RaySys.Mult
-
-end LargeIndecomposable
-
-namespace LargeIndecomposable
-
-universe u
 
 end LargeIndecomposable

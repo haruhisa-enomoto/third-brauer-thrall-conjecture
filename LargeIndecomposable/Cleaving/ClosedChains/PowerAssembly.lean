@@ -16,8 +16,6 @@ universe u x
 variable {k : Type u} [Field k]
 variable {C : Type x} [Category.{u} C] [Preadditive C] [Linear k C]
 
-open LargeIndecomposable.ClosedZigzag
-
 private theorem radicalElement_isNilpotent_agent
     {R : Type*} [Ring R] [IsArtinianRing R]
     {a : R} (ha : a ∈ Ring.jacobson R) : IsNilpotent a := by

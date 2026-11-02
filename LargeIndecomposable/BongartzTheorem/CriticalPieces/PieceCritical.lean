@@ -525,11 +525,3 @@ theorem pointBrickNode' : PointBrickNode'.{u} := by
     (coverLocalSCNode k B ι S hB hd x₀) hrep hmin⟩
 
 end LargeIndecomposable.RayCat
-
-namespace LargeIndecomposable
-
-open Statement
-
-universe u
-
-end LargeIndecomposable
