@@ -239,12 +239,12 @@ lemma crossOK_of_rel (K : KroneckerPair k (pieceQuiver S))
     exact hz _ (Or.inr ⟨le, le', i, j, h, h', he, rfl⟩)
 
 /-- **Point–brick data from two independent data respecting the relations.** -/
-theorem pointBrick'_of_rel (x : (pieceQuiver S).V) (V : Rep k (pieceQuiver S))
+theorem pointBrickAt_of_rel (x : (pieceQuiver S).V) (V : Rep k (pieceQuiver S))
     (finV : ∀ i, FiniteDimensional k (V.obj i)) (hVx : Subsingleton (V.obj x))
     (brickV : ∀ f : V ⟶ V, ∃ c : k, ∀ i, (f.app i).hom = c • LinearMap.id)
     (hV : ∃ i, Nontrivial (V.obj i)) (hVc : RespectsCover V)
     (h2 : 2 ≤ Module.finrank k (relSub V (Rep.pointRep (k := k) x))) :
-    PointBrick' (k := k) S := by
+    PointBrickAt (k := k) x V := by
   haveI := finV
   haveI : ∀ i, FiniteDimensional k ((Rep.pointRep (k := k) x).obj i) := fun i ↦
     inferInstanceAs (FiniteDimensional k (Fin _ → k))
@@ -260,17 +260,17 @@ theorem pointBrick'_of_rel (x : (pieceQuiver S).V) (V : Rep k (pieceQuiver S))
       CrossOK (pairAtSink x V finV hVx brickV hV (w₁ : Ext.Data V (Rep.pointRep (k := k) x))
         (w₂ : Ext.Data V (Rep.pointRep (k := k) x)) hind)
         (w : Ext.Data V (Rep.pointRep (k := k) x)) := fun w ↦ crossOK_of_rel _ _ w.2
-  exact ⟨x, V, finV, hVx, brickV, hV, hVc,
+  exact ⟨finV, hVx, brickV, hV, hVc,
     Or.inr ⟨(w₁ : Ext.Data V (Rep.pointRep (k := k) x)),
       (w₂ : Ext.Data V (Rep.pointRep (k := k) x)), hind, hK w₁, hK w₂⟩⟩
 
 /-- **Point–brick data at a source from two independent data respecting the relations.** -/
-theorem pointBrick'_of_rel_source (x : (pieceQuiver S).V) (V : Rep k (pieceQuiver S))
+theorem pointBrickAt_of_rel_source (x : (pieceQuiver S).V) (V : Rep k (pieceQuiver S))
     (finV : ∀ i, FiniteDimensional k (V.obj i)) (hVx : Subsingleton (V.obj x))
     (brickV : ∀ f : V ⟶ V, ∃ c : k, ∀ i, (f.app i).hom = c • LinearMap.id)
     (hV : ∃ i, Nontrivial (V.obj i)) (hVc : RespectsCover V)
     (h2 : 2 ≤ Module.finrank k (relSub (Rep.pointRep (k := k) x) V)) :
-    PointBrick' (k := k) S := by
+    PointBrickAt (k := k) x V := by
   haveI := finV
   haveI : ∀ i, FiniteDimensional k ((Rep.pointRep (k := k) x).obj i) := fun i ↦
     inferInstanceAs (FiniteDimensional k (Fin _ → k))
@@ -286,7 +286,7 @@ theorem pointBrick'_of_rel_source (x : (pieceQuiver S).V) (V : Rep k (pieceQuive
       CrossOK (pairAtSource x V finV hVx brickV hV
         (w₁ : Ext.Data (Rep.pointRep (k := k) x) V) (w₂ : Ext.Data (Rep.pointRep (k := k) x) V) hind)
         (w : Ext.Data (Rep.pointRep (k := k) x) V) := fun w ↦ crossOK_of_rel _ _ w.2
-  exact ⟨x, V, finV, hVx, brickV, hV, hVc,
+  exact ⟨finV, hVx, brickV, hV, hVc,
     Or.inl ⟨(w₁ : Ext.Data (Rep.pointRep (k := k) x) V),
       (w₂ : Ext.Data (Rep.pointRep (k := k) x) V), hind, hK w₁, hK w₂⟩⟩
 
