@@ -634,6 +634,7 @@ public import LargeIndecomposable.DirectedAlgebras.Directing.Cartan
 public import LargeIndecomposable.DirectedAlgebras.EulerForm.EulerUnit
 public import LargeIndecomposable.DirectedAlgebras.EulerForm.EulerInterval
 public import LargeIndecomposable.DirectedAlgebras.Directing.CornerSurvive
+public import LargeIndecomposable.DirectedAlgebras.Directing.SupportSplit
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.CriticalArrows
 public import LargeIndecomposable.DirectedAlgebras.Directing.RigidMin
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceRigid
