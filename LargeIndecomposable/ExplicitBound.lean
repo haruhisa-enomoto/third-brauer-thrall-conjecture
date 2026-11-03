@@ -79,7 +79,7 @@ lemma exists_band_of_line {x₀ : P} (L : CLine x₀) (e : Linearization P k ≃
   have : ∀ x y : P, Finite (x ⟶ y) := IsRayCategory.finite_hom
   rw [finrank_eq_card_nz e] at hL ⊢
   obtain ⟨t, t', hg, ht'⟩ := L.exists_goodPair_window hL le_rfl
-  obtain ⟨M, hM⟩ := exists_lineBandRel L hg e
+  obtain ⟨M, hM⟩ := exists_lineBandRel L.toWLine hg (fun hu ↦ CLine.rigid hu) e
   exact ⟨M, by omega⟩
 
 end Dimension

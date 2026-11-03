@@ -8,7 +8,7 @@ public import LargeIndecomposable.RayCategories.Linearization.RegularRepresentat
 
 Let `d` be the number of nonzero morphisms of `P`, the dimension of `k(P)`. Every point of a
 window `pt 0, …, pt N` of a line has a nonzero morphism to a sink of the window
-(`CLine.WSink`), unless it lies on the initial backward run (`cover_or_run`). Points with the
+(`WLine.WSink`), unless it lies on the initial backward run (`cover_or_run`). Points with the
 same sink are told apart by the value of this morphism, and the points of the initial run by
 the value of their morphism to `pt 0`. If no good pair lies in the window, at most two sinks of
 the window have the same image in `P` (`goodPair_of_three`), so `N + 1 ≤ 2d + d`. Hence a
@@ -28,9 +28,9 @@ open CategoryTheory Limits Cover
 
 variable {P : Type} [Category.{0} P] [HasZeroMorphisms P] [IsRayCategory P] {x₀ : P}
 
-namespace CLine
+namespace WLine
 
-variable (L : CLine x₀)
+variable (L : WLine x₀)
 
 /-- A sink of the window `pt 0, …, pt N` at the point `pt s`: the arrow on its left points
 to it, and so does the arrow on its right unless `s = N`. -/
@@ -206,6 +206,6 @@ theorem exists_goodPair_window [Finite P] [∀ x y : P, Finite (x ⟶ y)] {N : �
     exact this.trans (Finset.card_union_le _ _)
   omega
 
-end CLine
+end WLine
 
 end LargeIndecomposable.RayCat

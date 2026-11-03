@@ -9,7 +9,7 @@ public import LargeIndecomposable.RepresentationEmbeddings.WalkConstruction.Cycl
 # A monomial band from a line of the cover
 
 Labels of cover paths are paths of `Q_P` with the same value (`pathMor_labs`). A minimal good
-pair of sinks of a line (`CLine.GoodPair`) projects to a closed walk of `Q_P` with a sink; it is
+pair of sinks of a line (`WLine.GoodPair`) projects to a closed walk of `Q_P` with a sink; it is
 locally injective and primitive, and its directed segments are directed segments of the line, so
 they have nonzero value. If `P` has no contours, this is a monomial band of `k(P)`
 (BO23, proof of Theorem 7; BO13b, Lemma 7.2).
@@ -127,9 +127,9 @@ lemma arrLab_src_eq {c c' d : Cover x₀} (f : RayVert.mk c ⟶ RayVert.mk d)
     (f' : RayVert.mk c' ⟶ RayVert.mk d) (h : arrLab f = arrLab f') : c = c' :=
   (eq_srcOf f).trans ((srcOf_congr d h rfl rfl).trans (eq_srcOf f').symm)
 
-namespace CLine
+namespace WLine
 
-variable (L : CLine x₀)
+variable (L : WLine x₀)
 
 /-- The `i`-th arrow of the line with its endpoints. -/
 def larr (i : ℕ) (hi : i < L.n) :
@@ -479,11 +479,11 @@ lemma cyc_band (le : List (CycArr (nc t t'))) (i j : Option (Fin (nc t t' + 1)))
 
 end Band
 
-end CLine
+end WLine
 
 section Assemble
 
-open CLine
+open WLine
 
 universe u
 
@@ -491,7 +491,7 @@ variable {k : Type u} [Field k] {B : Type u} [Ring B] [Algebra k B]
 
 /-- **A monomial band from a line** (BO23, proof of Theorem 7): if `P` has no contours, a
 minimal good pair of sinks of a line of the cover gives a monomial band of `B ≅ k(P)`. -/
-def lineBand (L : CLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
+def lineBand (L : WLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
     (hmin : ∀ u u', L.GoodPair u u' → t' - t ≤ u' - u) (hnc : NoContour P)
     (e : Linearization P k ≃ₐ[k] B) : Walk.MonomialBand k B where
   n := nc t t'
@@ -511,7 +511,7 @@ def lineBand (L : CLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
   band le i j h := cyc_band hg le i j h
 
 /-- **A long line of the cover gives a monomial band.** -/
-theorem nonempty_monomialBand [∀ x y : P, Finite (x ⟶ y)] (L : CLine x₀)
+theorem nonempty_monomialBand [∀ x y : P, Finite (x ⟶ y)] (L : WLine x₀)
     (hn : (2 * Fintype.card P + 1) * (2 * bound P) ≤ L.n) (hnc : NoContour P)
     (e : Linearization P k ≃ₐ[k] B) : Nonempty (Walk.MonomialBand k B) := by
   obtain ⟨t, t', hg, hmin⟩ := L.exists_minimal_goodPair (L.exists_goodPair hn)

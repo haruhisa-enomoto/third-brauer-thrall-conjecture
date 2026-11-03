@@ -9,7 +9,7 @@ public import LargeIndecomposable.FundamentalGroups.Basic.CocycleExtendMax
 
 A line of the cover (BO13b, §1: a full convex subcategory given by a quiver of type `A` without
 relations) is recorded by its points `pt 0, …, pt n` and the orientations `fwd i` of the arrows
-joining `pt i` and `pt (i + 1)` (`CLine`). Directed runs of a line are bounded by the number of
+joining `pt i` and `pt (i + 1)` (`CLine`, and `WLine` without convexity). Directed runs of a line are bounded by the number of
 morphisms of `P` (`run_le_fwd`, `run_le_bwd`), so a long line has many sinks (`exists_sinks`).
 Two sinks with the same image in `P` whose outer incoming arrows have different labels form a
 *good pair* (`GoodPair`; BO23, proof of Theorem 7); a long enough line contains one
@@ -29,10 +29,9 @@ open CategoryTheory Limits Cover
 variable {P : Type} [Category.{0} P] [HasZeroMorphisms P] [IsRayCategory P] {x₀ : P}
 
 variable (x₀) in
-/-- **A line of the universal cover**: a full convex subcategory given by a quiver of type `A`
-without relations. The points are `pt 0, …, pt n`, and the `i`-th arrow joins `pt i` and
-`pt (i + 1)`, pointing to `pt (i + 1)` iff `fwd i`. -/
-structure CLine where
+/-- **A weak line of the universal cover**: points `pt 0, …, pt n` joined by irreducible
+morphisms, the `i`-th one pointing to `pt (i + 1)` iff `fwd i`, with nonzero paths. -/
+structure WLine where
   /-- The number of arrows. -/
   n : ℕ
   /-- The points. -/
@@ -44,17 +43,22 @@ structure CLine where
   arrB : ∀ i < n, fwd i = false → ∃ f : pt (i + 1) ⟶ pt i, IsIrreducible f
   uniqF : ∀ i < n, ∀ f g : pt i ⟶ pt (i + 1), IsIrreducible f → IsIrreducible g → f = g
   uniqB : ∀ i < n, ∀ f g : pt (i + 1) ⟶ pt i, IsIrreducible f → IsIrreducible g → f = g
-  /-- The only arrows between points of the line are the line arrows. -/
-  only : ∀ a b, a ≤ n → b ≤ n → ∀ f : pt a ⟶ pt b, IsIrreducible f →
-    (b = a + 1 ∧ fwd a = true) ∨ (a = b + 1 ∧ fwd b = false)
-  convex : Convex {c | ∃ a ≤ n, pt a = c}
   /-- No relations: every path inside the line has nonzero value. -/
   nz : ∀ {X Y : RayVert (Cover x₀)} (p : Quiver.Path X Y), PathIn {c | ∃ a ≤ n, pt a = c} p →
     pathVal p ≠ 0
 
-namespace CLine
+variable (x₀) in
+/-- **A line of the universal cover**: a full convex subcategory given by a quiver of type `A`
+without relations (a weak line that is convex and has no other arrows). -/
+structure CLine extends WLine x₀ where
+  /-- The only arrows between points of the line are the line arrows. -/
+  only : ∀ a b, a ≤ n → b ≤ n → ∀ f : pt a ⟶ pt b, IsIrreducible f →
+    (b = a + 1 ∧ fwd a = true) ∨ (a = b + 1 ∧ fwd b = false)
+  convex : Convex {c | ∃ a ≤ n, pt a = c}
 
-variable (L : CLine x₀)
+namespace WLine
+
+variable (L : WLine x₀)
 
 /-- The set of points of the line. -/
 def pts : Set (Cover x₀) := {c | ∃ a ≤ L.n, L.pt a = c}
@@ -389,6 +393,6 @@ lemma exists_minimal_goodPair (h : ∃ t t', L.GoodPair t t') :
   rw [hd']
   exact Nat.find_min' hd ⟨u, u', hu, rfl⟩
 
-end CLine
+end WLine
 
 end LargeIndecomposable.RayCat

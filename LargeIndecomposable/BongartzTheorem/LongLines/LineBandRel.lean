@@ -74,9 +74,9 @@ lemma piecePath_of_pathIn (S : Finset (Cover x₀)) {X : RayVert (Cover x₀)} (
     rw [List.map_append, hmap]
     rfl
 
-namespace CLine
+namespace WLine
 
-variable {L : CLine x₀} {t t' : ℕ} (hg : L.GoodPair t t')
+variable {L : WLine x₀} {t t' : ℕ} (hg : L.GoodPair t t')
 
 /-- The paths of `Q_P` along the band cycle of a good pair. -/
 def Along : Set (List (quiver P).A) :=
@@ -105,42 +105,15 @@ lemma along_drop {l l' : List (quiver P).A} (h : l' ++ l ∈ Along hg) : l ∈ A
   rw [List.map_drop, hmap, List.drop_left']
   rfl
 
-include hg in
-/-- **A path along the band shares its value with no other path.** -/
-lemma eq_of_along {l l' : List (quiver P).A} {x y : P} (h : PathFrom (D := quiver P) x l y)
-    (h' : PathFrom (D := quiver P) x l' y) (he : pathMor l x y h = pathMor l' x y h')
-    (hl : l ∈ Along hg) : l = l' := by
-  obtain ⟨le, i, j, hp, hmap⟩ := hl
-  have hν : pathMor l x y h ≠ 0 := by
-    intro h0
-    exact cyc_band hg le i j hp (hmap ▸ ⟨x, y, h, h0⟩)
-  by_cases hl0 : l = []
-  · subst hl0
-    change x = y at h
-    subst h
-    by_contra hll'
-    obtain ⟨c, l'', rfl⟩ := List.exists_cons_of_ne_nil (Ne.symm hll')
-    refine pathMor_ne_id c l'' x h' ?_
-    rw [← he]
-    simp [pathMor]
-  have hN := t'_eq hg
-  have hn := hg.2.1.1
-  have hvi : vidx t i ≤ L.n := by
-    rcases i with _ | j₀
-    · change t + 1 ≤ L.n; omega
-    · change t + 2 + (j₀ : ℕ) ≤ L.n; have := j₀.2; omega
-  obtain ⟨b, q, hq, hlq⟩ := cover_path hg le i j hp (vidx t i) hvi (by rintro j₀ rfl; rfl)
-  rw [← L.coe_finset] at hq
-  obtain ⟨lp, hlp, hlpm⟩ := piecePath_of_pathIn L.finset (pathIn_src _ q hq) q hq
-    (pathIn_tgt _ q hq)
-  have hlpm' : lp.map (pieceProj L.finset).arr = l := hlpm.trans (hlq.trans hmap)
-  obtain ⟨lp', hlpm2, hlp', -⟩ := exists_partner L.convex_finset (L.respectsCover_lineRep ℚ) he hν
-    hl0 hlpm' hlp
-  rw [← hlpm', ← hlpm2, L.path_unique lp lp' _ _ hlp hlp']
+/-- **Rigidity** of a good pair: a path along its band shares its value with no other path. -/
+def Rigid : Prop :=
+  ∀ (l l' : List (quiver P).A) (x y : P) (h : PathFrom (D := quiver P) x l y)
+    (h' : PathFrom (D := quiver P) x l' y), pathMor l x y h = pathMor l' x y h' →
+      l ∈ Along hg → l = l'
 
 /-- **The paths off the band** contain the zero paths and the contours, and are closed under
 extension. -/
-theorem relPaths_notAlong : RelPaths (NotAlong hg) where
+theorem relPaths_notAlong (hrig : Rigid hg) : RelPaths (NotAlong hg) where
   ne_nil l hl := by
     rintro rfl
     exact hl.1 ⟨[], none, none, rfl, rfl⟩
@@ -150,20 +123,65 @@ theorem relPaths_notAlong : RelPaths (NotAlong hg) where
   zero l hl := by
     obtain ⟨x, y, h, h0⟩ := hl
     refine ⟨fun ⟨le, i, j, hp, hmap⟩ ↦ cyc_band hg le i j hp (hmap ▸ ⟨x, y, h, h0⟩), x, y, h⟩
-  contour l l' x y h h' he hll := ⟨fun hl ↦ hll (eq_of_along hg h h' he hl), x, y, h⟩
+  contour l l' x y h h' he hll := ⟨fun hl ↦ hll (hrig l l' x y h h' he hl), x, y, h⟩
+
+end WLine
+
+namespace CLine
+
+open WLine
+
+variable {L : CLine x₀} {t t' : ℕ} (hg : L.GoodPair t t')
+
+include hg in
+/-- **A path along the band shares its value with no other path.** -/
+lemma eq_of_along {l l' : List (quiver P).A} {x y : P} (h : PathFrom (D := quiver P) x l y)
+    (h' : PathFrom (D := quiver P) x l' y) (he : pathMor l x y h = pathMor l' x y h')
+    (hl : l ∈ WLine.Along hg) : l = l' := by
+  obtain ⟨le, i, j, hp, hmap⟩ := hl
+  have hν : pathMor l x y h ≠ 0 := by
+    intro h0
+    exact WLine.cyc_band hg le i j hp (hmap ▸ ⟨x, y, h, h0⟩)
+  by_cases hl0 : l = []
+  · subst hl0
+    change x = y at h
+    subst h
+    by_contra hll'
+    obtain ⟨c, l'', rfl⟩ := List.exists_cons_of_ne_nil (Ne.symm hll')
+    refine pathMor_ne_id c l'' x h' ?_
+    rw [← he]
+    simp [pathMor]
+  have hN := WLine.t'_eq hg
+  have hn := hg.2.1.1
+  have hvi : WLine.vidx t i ≤ L.n := by
+    rcases i with _ | j₀
+    · change t + 1 ≤ L.n; omega
+    · change t + 2 + (j₀ : ℕ) ≤ L.n; have := j₀.2; omega
+  obtain ⟨b, q, hq, hlq⟩ := WLine.cover_path hg le i j hp (WLine.vidx t i) hvi (by rintro j₀ rfl; rfl)
+  rw [← L.coe_finset] at hq
+  obtain ⟨lp, hlp, hlpm⟩ := piecePath_of_pathIn L.finset (pathIn_src _ q hq) q hq
+    (pathIn_tgt _ q hq)
+  have hlpm' : lp.map (pieceProj L.finset).arr = l := hlpm.trans (hlq.trans hmap)
+  obtain ⟨lp', hlpm2, hlp', -⟩ := exists_partner L.convex_finset (L.respectsCover_lineRep ℚ) he hν
+    hl0 hlpm' hlp
+  rw [← hlpm', ← hlpm2, L.path_unique lp lp' _ _ hlp hlp']
+
+/-- Good pairs of a convex line are rigid. -/
+lemma rigid (hg : L.GoodPair t t') : WLine.Rigid hg :=
+  fun _ _ _ _ h h' he hl ↦ eq_of_along hg h h' he hl
 
 end CLine
 
 section Assemble
 
-open CLine
+open WLine
 
 variable {k : Type u} [Field k] {B : Type u} [Ring B] [Algebra k B]
 
 /-- **A band from one line of the cover**, without excluding contours: the cycle of a minimal
 good pair, presented by the paths off the band. -/
-def lineBandRel (L : CLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
-    (hmin : ∀ u u', L.GoodPair u u' → t' - t ≤ u' - u)
+def lineBandRel (L : WLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
+    (hmin : ∀ u u', L.GoodPair u u' → t' - t ≤ u' - u) (hrig : Rigid hg)
     (e : Linearization P k ≃ₐ[k] B) : Walk.MonomialBand k B where
   n := nc t t'
   ε := eps L t t'
@@ -178,23 +196,25 @@ def lineBandRel (L : CLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
     have : linPres P k z = 0 := by
       have h0 : e (linPres P k z) = e 0 := by rw [map_zero]; exact hz
       exact e.injective h0
-    exact (relPaths_notAlong hg).ker_linPres_le_of k z this
+    exact (relPaths_notAlong hg hrig).ker_linPres_le_of k z this
   band le i j h hmem := hmem.1 ⟨le, i, j, h, rfl⟩
 
-lemma lineBandRel_n (L : CLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
-    (hmin : ∀ u u', L.GoodPair u u' → t' - t ≤ u' - u) (e : Linearization P k ≃ₐ[k] B) :
-    (lineBandRel L hg hmin e).n + 2 = t' - t := by
+lemma lineBandRel_n (L : WLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
+    (hmin : ∀ u u', L.GoodPair u u' → t' - t ≤ u' - u) (hrig : Rigid hg)
+    (e : Linearization P k ≃ₐ[k] B) :
+    (lineBandRel L hg hmin hrig e).n + 2 = t' - t := by
   have := t'_eq hg
   change nc t t' + 2 = t' - t
   omega
 
 /-- **A line with a good pair gives a band** whose cycle has at most `t' - t` points, for any
 good pair `(t, t')` of the line. -/
-theorem exists_lineBandRel (L : CLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
-    (e : Linearization P k ≃ₐ[k] B) :
+theorem exists_lineBandRel (L : WLine x₀) {t t' : ℕ} (hg : L.GoodPair t t')
+    (hrig : ∀ {u u'} (hu : L.GoodPair u u'), Rigid hu) (e : Linearization P k ≃ₐ[k] B) :
     ∃ M : Walk.MonomialBand k B, M.n + 2 ≤ t' - t := by
   obtain ⟨u, u', hu, hmin⟩ := L.exists_minimal_goodPair ⟨t, t', hg⟩
-  exact ⟨lineBandRel L hu hmin e, (lineBandRel_n L hu hmin e).le.trans (hmin t t' hg)⟩
+  exact ⟨lineBandRel L hu hmin (hrig hu) e,
+    (lineBandRel_n L hu hmin (hrig hu) e).le.trans (hmin t t' hg)⟩
 
 end Assemble
 

@@ -58,7 +58,7 @@ theorem repFinitePiecesGiveBandCore_of_longLine (hL : LinesOfEveryLength.{u}) : 
   have hnc := noContour_of_lines hB e htf hlines
   haveI : ∀ x y : RaySmall.{0} S.toIdempotents.RayCategory, Finite (x ⟶ y) := IsRayCategory.finite_hom
   obtain ⟨L, hLn⟩ := hlines ((2 * Fintype.card (RaySmall.{0} S.toIdempotents.RayCategory) + 1) *
-    (2 * CLine.bound (RaySmall.{0} S.toIdempotents.RayCategory)))
-  exact nonempty_monomialBand L hLn hnc e
+    (2 * WLine.bound (RaySmall.{0} S.toIdempotents.RayCategory)))
+  exact nonempty_monomialBand L.toWLine hLn hnc e
 
 end LargeIndecomposable
