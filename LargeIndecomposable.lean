@@ -673,3 +673,6 @@ public import LargeIndecomposable.BongartzTheorem.ContourExclusion.ContourFree
 public import LargeIndecomposable.BongartzTheorem.LongLines.ForestPiece
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBuild
 public import LargeIndecomposable.MainTheorems
+public import LargeIndecomposable.KroneckerBricks.AnchoredFamilies
+public import LargeIndecomposable.KroneckerBricks.Injective
+public import LargeIndecomposable.KroneckerBricks.RigidFamily
