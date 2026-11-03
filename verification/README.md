@@ -10,4 +10,8 @@
 - [2026-11-03](2026-11-03/README.md): library reorganized, statements unchanged; build,
   axiom audit, declaration scan, `lake comparator` and hosted Palomar preflight: passed.
 
+- [2026-11-03, direct route](2026-11-03-direct-route/README.md): the library follows the revised
+  manuscript (functors and retractions in arbitrary dimension); build, axiom audit, declaration
+  scan, `lake comparator` and hosted Palomar preflight: passed.
+
 [`module-origins.json`](module-origins.json) records the origin of reused modules.

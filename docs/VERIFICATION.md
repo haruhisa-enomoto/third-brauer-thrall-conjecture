@@ -15,7 +15,7 @@ embeddings, representation-finite algebras and dimensions as cardinals.
 
 ## Results
 
-The [record of November 3, 2026](../verification/2026-11-03/README.md) gives the local
+The [record of November 3, 2026](../verification/2026-11-03-direct-route/README.md) gives the local
 results, the hosted Palomar preflight (passed on a 4-CPU, 16 GB runner) and the hashes
 for the current library. A preflight is an advisory report, not registry acceptance.
 Earlier records are in [`verification/`](../verification/README.md).

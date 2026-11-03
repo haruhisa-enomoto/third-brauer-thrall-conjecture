@@ -117,7 +117,7 @@ The repository follows the layout of the
 [formalization.yaml](formalization.yaml). The workflow
 [Palomar preflight](.github/workflows/palomar-preflight.yml) runs Palomar's
 mechanical verification for a chosen commit. It
-[passed](verification/2026-11-03/README.md) for the current commit. This is an advisory
+[passed](verification/2026-11-03-direct-route/README.md) for the current commit. This is an advisory
 report; the formalization has not been submitted to the registry.
 
 ## Website
