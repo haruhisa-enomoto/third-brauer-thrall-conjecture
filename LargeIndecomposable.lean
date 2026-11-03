@@ -632,6 +632,7 @@ public import LargeIndecomposable.Quivers.Representations.ExtCount
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.SinkCount
 public import LargeIndecomposable.DirectedAlgebras.Directing.Cartan
 public import LargeIndecomposable.DirectedAlgebras.EulerForm.EulerUnit
+public import LargeIndecomposable.DirectedAlgebras.EulerForm.EulerInterval
 public import LargeIndecomposable.DirectedAlgebras.Directing.RigidMin
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceRigid
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceTits
