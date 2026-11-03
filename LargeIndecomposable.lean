@@ -660,6 +660,7 @@ public import LargeIndecomposable.DirectedAlgebras.Sincere.SincereDirecting
 public import LargeIndecomposable.DirectedAlgebras.Sincere.SincereEuler
 public import LargeIndecomposable.UnitForms.RootBound
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.CriticalAbstract
+public import LargeIndecomposable.DirectedAlgebras.Preprojective.ArrowEuler
 public import LargeIndecomposable.AuslanderReiten.Lengths.ChainBound
 public import LargeIndecomposable.DirectedAlgebras.Directing.QuotAny
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.MinimalQuot
