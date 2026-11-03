@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.BongartzTheorem.Reduction.ControlledEmbeddings
+public import LargeIndecomposable.BongartzTheorem.Reduction.MinimalReduction
 public import Mathlib.LinearAlgebra.Dual.Lemmas
 
 /-!
@@ -269,7 +269,7 @@ end Modules
 
 section Main
 
-variable (H : DistributiveControlled.{u}) (G : KroneckerBricks.{u})
+variable (H : DistributiveEmbeddingData.{u}) (G : KroneckerBricks.{u})
 
 include H G in
 /-- Corollary 1.1, conditional on the two hypotheses. -/

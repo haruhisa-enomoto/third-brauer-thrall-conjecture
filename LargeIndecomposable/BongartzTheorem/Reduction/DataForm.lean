@@ -22,7 +22,7 @@ needs. Alternative (1), for
 nondistributive algebras, is proved in `NonDistributive`.
 
 By Propositions 4.4, 4.7 and 4.8 (`PushDown.PdDatum.embeddingData`), it
-implies the hypothesis `DistributiveControlled`, and hence Theorem A
+implies the hypothesis `DistributiveEmbeddingData`, and hence Theorem A
 and the two corollaries.
 -/
 
@@ -48,8 +48,8 @@ def BongartzDistributive : Prop :=
 
 /-- Theorem 3.10 for distributive algebras, from the data form of Bongartz's
 Theorem 6. -/
-theorem distributiveControlled_of_bongartz (H : BongartzDistributive.{u}) :
-    DistributiveControlled.{u} := by
+theorem distributiveEmbeddingData_of_bongartz (H : BongartzDistributive.{u}) :
+    DistributiveEmbeddingData.{u} := by
   intro k _ _ B _ _ _ ι _ S hB hd
   rcases H k B ι S hB hd with h | h
   · obtain ⟨W⟩ := h
@@ -59,20 +59,20 @@ theorem distributiveControlled_of_bongartz (H : BongartzDistributive.{u}) :
 
 /-- Theorem A, conditional on the data form of Bongartz's Theorem 6. -/
 theorem theoremA_of_bongartz (H : BongartzDistributive.{u}) : TheoremA.{u} :=
-  theoremA_of_distributiveControlled (distributiveControlled_of_bongartz H)
+  theoremA_of_distributiveEmbeddingData (distributiveEmbeddingData_of_bongartz H)
 
 /-- Corollary 1.1 (an indecomposable module of every infinite dimension),
 conditional on Bongartz's Theorem 6 and Kronecker bricks of every infinite
 dimension. -/
 theorem corollaryDimension_of_bongartz (H : BongartzDistributive.{u})
     (G : KroneckerBricks.{u}) : CorollaryDimension.{u} :=
-  corollaryDimension_of (distributiveControlled_of_bongartz H) G
+  corollaryDimension_of (distributiveEmbeddingData_of_bongartz H) G
 
 /-- The radical corollary, conditional on Bongartz's Theorem 6 and Kronecker
 bricks of every infinite dimension. -/
 theorem corollaryRadical_of_bongartz (H : BongartzDistributive.{u})
     (G : KroneckerBricks.{u}) : CorollaryRadical.{u} :=
-  corollaryRadical_of (distributiveControlled_of_bongartz H) G
+  corollaryRadical_of (distributiveEmbeddingData_of_bongartz H) G
 
 
 /-- Göbel–Simson, Corollary 1.3: Kronecker bricks of every infinite dimension. -/

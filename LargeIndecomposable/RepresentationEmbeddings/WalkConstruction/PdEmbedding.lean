@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RepresentationEmbeddings.WalkConstruction.PdControl
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.EmbeddingTheorem
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.EmbeddingData
 public import Mathlib.RingTheory.Ideal.Quotient.Operations
 
 /-!

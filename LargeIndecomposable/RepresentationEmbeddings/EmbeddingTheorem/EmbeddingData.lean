@@ -1,8 +1,8 @@
 module
 
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Comparison
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.CSub
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Criterion
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Comparison
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.CSub
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.SminusSplitting
 public import LargeIndecomposable.Modules.KrullSchmidt.IndecomposableFullyFaithful
 
 /-!

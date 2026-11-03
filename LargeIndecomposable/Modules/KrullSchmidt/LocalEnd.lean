@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.Statement
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.FixedSummand
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.FixedSummand
 public import Mathlib.LinearAlgebra.Projection
 public import Mathlib.RingTheory.Artinian.Module
 public import Mathlib.RingTheory.Artinian.Ring

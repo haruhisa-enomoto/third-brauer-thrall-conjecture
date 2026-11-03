@@ -1,7 +1,7 @@
 module
 
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Colimit
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Preserves
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Colimit
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Preserves
 
 /-!
 # The colimit comparison

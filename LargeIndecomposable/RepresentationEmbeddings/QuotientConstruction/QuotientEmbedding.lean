@@ -2,7 +2,7 @@ module
 
 public import LargeIndecomposable.RepresentationEmbeddings.Control.QuotientRetractions
 public import LargeIndecomposable.RepresentationEmbeddings.Control.Consequences
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.EmbeddingTheorem
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.EmbeddingData
 public import Mathlib.LinearAlgebra.TensorProduct.Finiteness
 
 /-!

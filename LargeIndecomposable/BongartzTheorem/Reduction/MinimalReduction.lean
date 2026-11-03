@@ -12,10 +12,10 @@ The assembly of Theorem 5.2. Lemma 3.1 reduces `A` to a split basic minimal
 representation-infinite algebra `B` (full corner, then a minimal quotient);
 Theorem 3.14 provides the data of Theorem 5.2 for `B` (proved here in the
 nondistributive case; the distributive case enters as the hypothesis
-`DistributiveControlled`); the functor `Φ` of Lemma 3.1 transports it to `A`,
+`DistributiveEmbeddingData`); the functor `Φ` of Lemma 3.1 transports it to `A`,
 and Theorem 5.2 applies.
 
-`DistributiveControlled` is an intermediate hypothesis of the formalization.
+`DistributiveEmbeddingData` is an intermediate hypothesis of the formalization.
 It follows from the data form of Bongartz's Theorem 6 together with
 Sections 3.3–3.4 and 4.2–4.5 of the manuscript (`BongartzTheorem/Reduction/DataForm.lean`), and the
 final proof in `MainTheorems.lean` removes it.
@@ -36,7 +36,7 @@ universe u
 /-- Hypothesis: every distributive split basic minimal
 representation-infinite algebra over an algebraically closed field has the
 data of Theorem 5.2. -/
-def DistributiveControlled : Prop :=
+def DistributiveEmbeddingData : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι], SplitBasicData k B ι →
       IsMinimalRepInfinite B → IsDistribIdeals B → Nonempty (EmbeddingData k B)
@@ -54,7 +54,7 @@ lemma Morita.preservesFilteredColimits {A : Type u} [Ring A] {e : A} (he : IsIde
   haveI : Limits.PreservesColimitsOfSize.{u, u} (Morita.functor he) := inferInstance
   ⟨fun _ _ _ ↦ inferInstance⟩
 
-variable (H : DistributiveControlled.{u})
+variable (H : DistributiveEmbeddingData.{u})
 
 include H in
 /-- Theorem 3.14, in the form of the data of Theorem 5.2, for split basic
@@ -93,7 +93,7 @@ theorem nonempty_embeddingData_of_not_isRepresentationFinite {k : Type u} [Field
 
 include H in
 /-- Theorem A, conditional on the distributive case of Theorem 3.10. -/
-theorem theoremA_of_distributiveControlled : TheoremA.{u} := by
+theorem theoremA_of_distributiveEmbeddingData : TheoremA.{u} := by
   intro k _ _ A _ _ _ hA
   obtain ⟨E⟩ := nonempty_embeddingData_of_not_isRepresentationFinite (k := k) H A hA
   exact E.theoremA_conclusion

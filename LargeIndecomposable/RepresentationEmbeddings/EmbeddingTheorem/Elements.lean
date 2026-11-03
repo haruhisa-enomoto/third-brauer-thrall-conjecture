@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Defs
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Defs
 public import Mathlib.Algebra.Category.ModuleCat.FilteredColimits
 public import Mathlib.CategoryTheory.Limits.ConcreteCategory.WithAlgebraicStructures
 

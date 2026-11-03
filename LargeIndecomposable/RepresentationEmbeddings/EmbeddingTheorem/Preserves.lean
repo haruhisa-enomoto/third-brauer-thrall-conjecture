@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Defs
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Defs
 public import LargeIndecomposable.KroneckerModules.Colimits
 public import Mathlib.Algebra.Category.ModuleCat.FilteredColimits
 public import Mathlib.CategoryTheory.ConcreteCategory.EpiMono

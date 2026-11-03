@@ -1,6 +1,6 @@
 module
 
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Elements
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Elements
 
 /-!
 # Finite-dimensional modules are finitely presented with respect to `F`

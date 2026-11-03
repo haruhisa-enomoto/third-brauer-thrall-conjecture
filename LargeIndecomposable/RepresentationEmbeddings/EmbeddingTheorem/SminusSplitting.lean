@@ -1,24 +1,19 @@
 module
 
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.NoSummand
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Preserves
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.ImageSummand
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Preserves
 public import Mathlib.CategoryTheory.Limits.Preserves.Shapes.Biproducts
 public import Mathlib.LinearAlgebra.Dimension.Constructions
 
 /-!
-# Theorem 2.7: the extension criterion
+# Splitting off the copies of `S₋`
 
-Let `Φ : D_fin → mod A` be a faithful representation embedding with
-retractions on `C_fin` whose kernels satisfy a common nilpotence bound. Then
-its colimit extension `F` is a representation embedding on `D`, commutes with
-direct sums and filtered colimits, preserves infinite dimension, and has
-retractions on `C` with the same bound.
-
-The new point is reflection of isomorphism classes on all of `D`. Write
-`T ≅ T₀ ⊕ S₋^(I)` with `T₀ ∈ C` by (2.2). An isomorphism
-`F(T) ≅ F(U)` has an invertible block `F(T₀) → F(U₀)` by (2.5), Lemma 2.6 and
-the no-summand lemma, and then an invertible Schur complement
-`F(S₋^(I)) ≅ F(S₋^(J))`, whence `|I| = |J|`.
+Tools for Step 2 of the proof of Theorem 5.2. Inside `D`, every `T` splits as
+`T₀ ⊕ S₋^(I)` with `T₀ ∈ C` (2.2) (`DSplit.bicone`); `S₋^(I)` is a coproduct of
+copies of `S₋` in `D`, and `I →₀ P` a coproduct of copies of a module `P`.
+Bicones with isomorphic summands have isomorphic points, a positive finite
+factor cancels from cardinals, and the dimension of `I →₀ P` is `|I| dim P`.
+Also: `S₋` is indecomposable in `D_fin`.
 -/
 
 @[expose] public section
@@ -221,102 +216,10 @@ lemma finrank_restrictScalars_ne_zero (M : ModuleCat.{u} A)
 
 end
 
-/-! ### Reflection of isomorphism classes on `D` -/
-
-namespace Extension
-
-variable (Φ : Dfin k ⥤ ModuleCat.{u} A) (hexact : IsExactOnDfin Φ) [Φ.Additive]
-
-/-- `F(S₋^(I)) ≅ P^(I)` with `P = Φ(S₋)`. -/
-def sumIso (I : Type u) :
-    (functor Φ).obj (DSplit.sumD I) ≅ ModuleCat.of A (I →₀ Φ.obj SminusFin) :=
-  haveI := preservesCoproducts hexact I
-  IsColimit.coconePointsIsoOfNatIso (isColimitOfPreserves (functor Φ) (DSplit.isColimitCofan I))
-    (isColimitFinsuppCofan _ I)
-    (Discrete.natIso fun _ ↦ isoOfFin Φ Sminus Sminus_isFiniteDimensional)
-
-omit [Algebra k A] in
-include hexact in
-lemma factorsThroughSum_comp {X Y : ModuleCat.{u} A} (I : Type u)
-    (g : X ⟶ (functor Φ).obj (DSplit.sumD I)) (h : (functor Φ).obj (DSplit.sumD I) ⟶ Y) :
-    FixedSummand.FactorsThroughSum (Φ.obj SminusFin) (g ≫ h) :=
-  ⟨I, g ≫ (sumIso Φ hexact I).hom, (sumIso Φ hexact I).inv ≫ h, by simp⟩
-
-/-- The image under `F` of the bicone `T₀ → T ← S₋^(I)`. -/
-abbrev fBicone (T : D k) :
-    BinaryBicone ((functor Φ).obj (DSplit.T₀D T))
-      ((functor Φ).obj (DSplit.sumD (Kron.Splitting.I T.obj))) :=
-  (functor Φ).mapBinaryBicone (DSplit.bicone T)
-
-omit [Algebra k A] in
-lemma fBicone_total (T : D k) :
-    (fBicone Φ T).fst ≫ (fBicone Φ T).inl + (fBicone Φ T).snd ≫ (fBicone Φ T).inr = 𝟙 _ := by
-  have := congrArg (functor Φ).map (DSplit.total T)
-  rw [Functor.map_add, Functor.map_comp, Functor.map_comp] at this
-  exact this.trans ((functor Φ).map_id _)
-
-variable [FiniteDimensional k A]
-  (hfin : ∀ X : Dfin k, Module.Finite k (RestrictScalars k A (Φ.obj X)))
-
-include hexact hfin in
-/-- Theorem 2.7, reflection of isomorphism classes on `D`. -/
-theorem reflects_iso (R : Retractions k (Ψfin Φ)) {n : ℕ} (hn : R.NilpotentBound n)
-    (hindS : IsIndecomposable A (Φ.obj SminusFin))
-    (hnot : ∀ X : Dfin k, InC X.obj → IsEmpty (Φ.obj SminusFin ≅ Φ.obj X))
-    (T U : D k) (e : (functor Φ).obj T ≅ (functor Φ).obj U) : Nonempty (T ≅ U) := by
-  have hPfin : Module.Finite k (RestrictScalars k A (Φ.obj SminusFin)) := hfin _
-  obtain ⟨ℓ, -, hℓ⟩ := exists_nonunitProductsVanish' (k := k) (Φ.obj SminusFin) hindS
-  have hT := fBicone_total Φ T
-  have hU := fBicone_total Φ U
-  have hnsT := noSummand Φ R hfin hn hnot (DSplit.T₀D T) (DSplit.inC_T₀D T)
-  have hnsU := noSummand Φ R hfin hn hnot (DSplit.T₀D U) (DSplit.inC_T₀D U)
-  have h₁ : IsNilpotent (show End _ from
-      blockγ (fBicone Φ T) (fBicone Φ U) e ≫ blockβ (fBicone Φ U) (fBicone Φ T) e.symm) :=
-    isNilpotent_end_of_hom_pow _ (FixedSummand.pow_eq_zero_of_factorsThroughSum hℓ hnsT
-      (factorsThroughSum_comp Φ hexact _ _ _))
-  have h₂ : IsNilpotent (show End _ from
-      blockγ (fBicone Φ U) (fBicone Φ T) e.symm ≫ blockβ (fBicone Φ T) (fBicone Φ U) e) :=
-    isNilpotent_end_of_hom_pow _ (FixedSummand.pow_eq_zero_of_factorsThroughSum hℓ hnsU
-      (factorsThroughSum_comp Φ hexact _ _ _))
-  have := isIso_blockα (fBicone Φ T) (fBicone Φ U) hT hU e h₁ h₂
-  -- the summands in `C` are isomorphic
-  obtain ⟨φ⟩ : Nonempty (DSplit.T₀D T ≅ DSplit.T₀D U) := by
-    obtain ⟨ψ⟩ := Retractions.reflects_iso (retractions Φ R hfin)
-      (X := ⟨DSplit.T₀D T, DSplit.inC_T₀D T⟩) (Y := ⟨DSplit.T₀D U, DSplit.inC_T₀D U⟩)
-      (asIso (blockα (fBicone Φ T) (fBicone Φ U) e))
-    exact ⟨(InCD (k := k)).ι.mapIso ψ⟩
-  -- the multiplicities of `S₋` agree
-  have := isIso_schur (fBicone Φ T) (fBicone Φ U) hT hU e
-  let s := asIso (blockδ (fBicone Φ T) (fBicone Φ U) e -
-    blockβ (fBicone Φ T) (fBicone Φ U) e ≫ inv (blockα (fBicone Φ T) (fBicone Φ U) e) ≫
-      blockγ (fBicone Φ T) (fBicone Φ U) e)
-  let e' := (sumIso Φ hexact _).symm ≪≫ s ≪≫ sumIso Φ hexact _
-  have hdim := (restrictScalarsLinearEquiv (k := k) e'.toLinearEquiv).rank_eq
-  change Statement.dim k A _ = Statement.dim k A _ at hdim
-  rw [dim_finsupp, dim_finsupp, Statement.dim, ← Module.finrank_eq_rank] at hdim
-  have hpos : Module.finrank k (RestrictScalars k A (Φ.obj SminusFin)) ≠ 0 :=
-    finrank_restrictScalars_ne_zero _ hPfin hindS.1
-  obtain ⟨σ⟩ := Cardinal.eq.1 (Cardinal.eq_of_mul_natCast hpos hdim)
-  exact ⟨biconeIso (DSplit.bicone T) (DSplit.bicone U) (DSplit.total T) (DSplit.total U) φ
-    (DSplit.sumDIsoOfEquiv σ)⟩
-
-end Extension
-
-/-! ### Theorem 2.7 -/
+/-! ### Indecomposability of `S₋` -/
 
 /-- Indecomposability in `D_fin`: nonzero with only trivial idempotents. -/
 def IsIndecDfin (X : Dfin k) : Prop := ¬ IsZero X.obj ∧ ∀ e : X ⟶ X, e ≫ e = e → e = 0 ∨ e = 𝟙 X
-
-/-- The hypotheses of Theorem 2.7 on `Φ : D_fin → mod A`, apart from additivity,
-`k`-linearity, faithfulness and the retractions: finite-dimensional values,
-exactness, and the two facts about `S₋` that the proof uses (implied by
-`Φ` being a representation embedding): `Φ(S₋)` is indecomposable, and it is
-not isomorphic to `Φ(T)` for `T ∈ C_fin`. -/
-structure IsRepEmbeddingFin (Φ : Dfin k ⥤ ModuleCat.{u} A) : Prop where
-  fin : ∀ X : Dfin k, Module.Finite k (RestrictScalars k A (Φ.obj X))
-  exact : IsExactOnDfin Φ
-  indecS : IsIndecomposable A (Φ.obj Extension.SminusFin)
-  notIsoS : ∀ X : Dfin k, InC X.obj → IsEmpty (Φ.obj Extension.SminusFin ≅ Φ.obj X)
 
 lemma isIndecDfin_SminusFin : IsIndecDfin (Extension.SminusFin (k := k)) := by
   refine ⟨fun h ↦ Kron.id_Sminus_ne_zero (h.eq_of_src _ _), fun e he ↦ ?_⟩
@@ -338,41 +241,5 @@ lemma isIndecDfin_SminusFin : IsIndecDfin (Extension.SminusFin (k := k)) := by
     · apply ModuleCat.hom_ext
       exact LinearMap.ext fun (x : k) ↦ (hg x).trans ((congrArg (fun c ↦ x * c)
         (sub_eq_zero.1 h1)).trans (mul_one x))
-
-namespace Extension
-
-variable (Φ : Dfin k ⥤ ModuleCat.{u} A) [FiniteDimensional k A] [Φ.Additive] [Φ.Linear k]
-  [Φ.Faithful] (hΦ : IsRepEmbeddingFin Φ) (R : Retractions k (Ψfin Φ)) {n : ℕ}
-  (hn : R.NilpotentBound n)
-
-omit [Φ.Faithful] in
-include hΦ hn in
-/-- Theorem 2.7: the extension `F` is a representation embedding on `D`. -/
-theorem isRepresentationEmbedding : IsRepresentationEmbedding (functor Φ) := by
-  refine ⟨inferInstance, inferInstance, fun X Y Z f g h ↦ map_shortExact Φ f g hΦ.exact h,
-    fun X hX ↦ ?_, fun X Y ⟨e⟩ ↦ reflects_iso Φ hΦ.exact hΦ.fin R hn
-      hΦ.indecS hΦ.notIsoS X Y e⟩
-  rcases inC_or_iso_Sminus_of_isIndecomposable hX with hC | ⟨⟨e⟩⟩
-  · refine Retractions.isIndecomposable (retractions Φ R hΦ.fin) (nilpotentBound Φ R hΦ.fin hn)
-      (X := ⟨X, hC⟩) (fun h ↦ hX.1 ?_) (fun e he ↦ ?_)
-    · have h' : 𝟙 X.obj = 0 := congrArg (fun φ ↦ InCD.kh φ) h
-      exact (IsZero.iff_id_eq_zero _).2 h'
-    · rcases hX.2 e.hom (congrArg InducedCategory.Hom.hom he) with h0 | h1
-      · left; ext1; exact h0
-      · right; ext1; exact h1
-  · let e' : X ≅ Sminus := (InD (k := k)).fullyFaithfulι.preimageIso e
-    have hS := hΦ.indecS
-    exact hS.of_linearEquiv
-      (((functor Φ).mapIso e' ≪≫ isoOfFin Φ Sminus Sminus_isFiniteDimensional).symm.toLinearEquiv)
-
-omit [FiniteDimensional k A] [Φ.Additive] [Φ.Linear k] [Φ.Faithful] in
-include hΦ in
-/-- Theorem 2.7: finite-dimensional modules go to finite-dimensional modules. -/
-theorem finite_of_finite (T : D k) (hT : T.obj.IsFiniteDimensional) :
-    Module.Finite k (RestrictScalars k A ((functor Φ).obj T)) := by
-  have := hΦ.fin (toDfin T hT)
-  exact Module.Finite.equiv (restrictScalarsLinearEquiv (isoOfFin Φ T hT).symm.toLinearEquiv)
-
-end Extension
 
 end LargeIndecomposable
