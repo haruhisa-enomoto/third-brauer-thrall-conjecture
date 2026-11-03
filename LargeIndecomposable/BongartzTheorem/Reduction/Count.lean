@@ -61,4 +61,36 @@ theorem exists_noniso_family (κ : Cardinal.{u}) (hκ : ℵ₀ ≤ κ) :
 
 end EmbeddingData
 
+section Main
+
+attribute [local instance] ModuleCat.moduleOfAlgebraModule
+  ModuleCat.isScalarTower_of_algebra_moduleCat
+
+omit [Infinite k] in
+/-- The endomorphism algebra of `F(T)` for a brick `T ∈ C` is local with residue
+field `k`, and its radical satisfies the nilpotence bound of the retractions. -/
+lemma endLocalBounded_FT (E : EmbeddingData k A) {T : Kron k} (hT : IsBrickKron T)
+    (hinf : ℵ₀ ≤ T.dim) : EndLocalBounded k A (E.n + 1) (FT E hT hinf) := by
+  refine ⟨fun x ↦ ?_, one_not_mem_jacobson E hT hinf, prod_eq_zero E hT hinf⟩
+  obtain ⟨c, hc⟩ := brickC_scalar hT hinf (ρE E hT hinf x)
+  exact ⟨c, ker_mem_jacobson E hT hinf _ (by rw [ρE_sub, ρE_algebraMap, hc, sub_self])⟩
+
+end Main
+
+variable (H : DistributiveEmbeddingData.{u})
+
+include H in
+/-- Corollary 5.6 without the explicit bound on `n`, conditional on the
+distributive case of Theorem 3.14. -/
+theorem corollaryCount_of : CorollaryCount.{u} := by
+  intro k _ _ A _ _ _ hA
+  obtain ⟨E⟩ := nonempty_embeddingData_of_not_isRepresentationFinite (k := k) H A hA
+  refine ⟨E.n + 1, Nat.succ_le_succ (Nat.zero_le _), fun κ hκ ↦ ⟨?_, fun hk ι M _ _ _ _ hni hdim ↦
+    card_le_two_pow_of_pairwise_not_iso κ hκ hk M hni hdim⟩⟩
+  obtain ⟨ι, T, hT, hinf, hι, hdim, hni⟩ := E.exists_noniso_family κ hκ
+  exact ⟨ι, fun i ↦ FT E (hT i) (hinf i), fun _ ↦ inferInstance, fun _ ↦ inferInstance,
+    fun _ ↦ ModuleCat.moduleOfAlgebraModule _, fun _ ↦ ModuleCat.isScalarTower_of_algebra_moduleCat _,
+    hι, hni, fun i ↦ ⟨(rank_FT E (hT i) (hinf i)).trans (hdim i),
+      isIndecomposable_brick E (hT i) (hinf i), endLocalBounded_FT E (hT i) (hinf i)⟩⟩
+
 end LargeIndecomposable

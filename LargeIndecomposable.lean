@@ -676,3 +676,5 @@ public import LargeIndecomposable.MainTheorems
 public import LargeIndecomposable.KroneckerBricks.AnchoredFamilies
 public import LargeIndecomposable.KroneckerBricks.Injective
 public import LargeIndecomposable.KroneckerBricks.RigidFamily
+public import LargeIndecomposable.BongartzTheorem.Reduction.Count
+public import LargeIndecomposable.Modules.IsoClassCount
