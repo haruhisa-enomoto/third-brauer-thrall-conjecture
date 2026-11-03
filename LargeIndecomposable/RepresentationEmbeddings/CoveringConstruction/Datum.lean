@@ -8,7 +8,7 @@ public import Mathlib.GroupTheory.Perm.Basic
 /-!
 # The covering construction as a controlled embedding
 
-Alternative (2) of Theorem 3.10 in data form. A Galois covering `R → A` with
+Alternative (2) of Theorem 3.14 in data form. A Galois covering `R → A` with
 torsion-free group `G` enters only through the finite full subquiver `D` of
 the quiver of `R` on the support `Σ = supp L(S₊) ∪ supp L(S₋)`, the
 restriction `p : D → Q` of the covering map, and the action of `G` on the
@@ -199,7 +199,7 @@ end CoverData
 variable {k : Type u} [Field k] {A : Type u} [Ring A] [Algebra k A]
 
 variable (k A) in
-/-- The data of alternative (2) of Theorem 3.10, apart from the
+/-- The data of alternative (2) of Theorem 3.14, apart from the
 representation-embedding property. -/
 structure CoveringData where
   /-- The full subquiver of the covering on the support `Σ`. -/

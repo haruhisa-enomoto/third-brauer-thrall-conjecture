@@ -13,7 +13,7 @@ For a finite ray category `P` and a finite set `S` of objects of its universal
 cover, the irreducible morphisms of the cover between objects of `S` form a
 finite quiver `D_S`, the projection gives a locally injective morphism of
 quivers `D_S → Q_P`, and the deck action of `Π(P, x₀)` makes this covering
-data in the sense of Definition 3.4 of the paper (`RayCat.coverPieceData`),
+data in the sense of Definition 3.5 of the paper (`RayCat.coverPieceData`),
 given that `Π(P, x₀)` is torsion-free (it is free by Bongartz's Theorem 2).
 -/
 

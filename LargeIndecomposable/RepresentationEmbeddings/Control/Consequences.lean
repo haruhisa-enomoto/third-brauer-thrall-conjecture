@@ -6,10 +6,9 @@ public import LargeIndecomposable.Modules.KrullSchmidt.LocalEnd
 /-!
 # Consequences of retractions with nilpotent kernels
 
-If a functor `Ψ : 𝒞 ⥤ Mod A` has retractions (Definition 2.4) and every
+If a functor `Ψ : 𝒞 ⥤ Mod A` has retractions (Definition 2.3) and every
 composite of `n` maps in their kernels vanishes, then `Ψ` preserves
-indecomposability and reflects isomorphism classes (Section 1.4 and the end of
-the proof of Proposition 2.5). Indecomposability in `𝒞` means: the identity is
+indecomposability and reflects isomorphism classes (Lemma 2.4). Indecomposability in `𝒞` means: the identity is
 nonzero and the only idempotent endomorphisms are `0` and `1`.
 -/
 

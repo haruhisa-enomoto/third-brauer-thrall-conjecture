@@ -6,7 +6,7 @@ public import Mathlib.Algebra.Category.ModuleCat.Algebra
 /-!
 # Retractions
 
-Definition 2.4 of the manuscript: for a `k`-linear functor `Ψ : 𝒞 ⥤ Mod A`,
+Definition 2.3 of the manuscript: for a `k`-linear functor `Ψ : 𝒞 ⥤ Mod A`,
 retractions for `Ψ` are `k`-linear maps
 `ρ_{X,Y} : Hom(Ψ X, Ψ Y) → Hom(X, Y)` compatible with composition and left
 inverse to `Ψ`. The domain `𝒞` is any `k`-linear category; in the applications
@@ -32,7 +32,7 @@ universe v v' w w' u
 variable (k : Type u) [Field k] {A : Type u} [Ring A] [Algebra k A]
   {𝒞 : Type w} [Category.{v} 𝒞] [Preadditive 𝒞] [Linear k 𝒞]
 
-/-- Definition 2.4: retractions for `Ψ` on `𝒞`. -/
+/-- Definition 2.3: retractions for `Ψ` on `𝒞`. -/
 structure Retractions (Ψ : 𝒞 ⥤ ModuleCat.{u} A) where
   /-- The retraction `ρ_{X,Y} : Hom(Ψ X, Ψ Y) → Hom(X, Y)`. -/
   ρ : ∀ X Y : 𝒞, (Ψ.obj X ⟶ Ψ.obj Y) →ₗ[k] (X ⟶ Y)

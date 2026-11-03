@@ -10,7 +10,7 @@ public import Mathlib.RingTheory.Artinian.Algebra
 /-!
 # Presentations of split basic algebras by quivers
 
-Gabriel's presentation in the form needed for the data of Theorem 3.10: a
+Gabriel's presentation in the form needed for the data of Theorem 3.14: a
 finite-dimensional split basic algebra `B` with idempotents `e_x` is a quotient
 of a path algebra `kQ`. The vertices of `Q` are the `x`, the arrows `x → y` are
 lifts to `e_y J e_x` of a basis of the corner `e_y (J/J²) e_x` of the first

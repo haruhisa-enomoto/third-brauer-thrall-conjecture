@@ -9,7 +9,7 @@ public import Mathlib.RingTheory.LocalRing.Defs
 /-!
 # Maps factoring through sums of copies of a fixed module
 
-Lemma 2.6. Fix a module `P`. On modules without a direct summand isomorphic to
+Lemma 5.1. Fix a module `P`. On modules without a direct summand isomorphic to
 `P`, the maps factoring through a direct sum `P^(I)` of copies of `P` form an
 ideal `J`, and every composite of `ℓ + 1` maps of `J` vanishes as soon as every
 product of `ℓ` nonunits of `End_A(P)` vanishes.
@@ -55,7 +55,7 @@ def NonunitProductsVanish (ℓ : ℕ) : Prop :=
 
 variable {P}
 
-/-! ### Lemma 2.6(a): `J` is an ideal -/
+/-! ### Lemma 5.1(a): `J` is an ideal -/
 
 lemma factorsThroughSum_zero (X Y : ModuleCat.{u} A) : FactorsThroughSum P (0 : X ⟶ Y) :=
   ⟨PEmpty, 0, 0, by simp⟩
@@ -85,7 +85,7 @@ lemma FactorsThroughSum.comp_right {X Y Z : ModuleCat.{u} A} {f : X ⟶ Y}
   obtain ⟨I, u, v, rfl⟩ := hf
   exact ⟨I, u, v ≫ g, by simp⟩
 
-/-! ### Lemma 2.6(b): `J^(ℓ+1) = 0` -/
+/-! ### Lemma 5.1(b): `J^(ℓ+1) = 0` -/
 
 variable (P) in
 /-- `IsJComp P n f`: `f` is a composite of `n + 1` maps of `J`, each
@@ -170,7 +170,7 @@ lemma IsJComp.exists_good {n : ℕ} {X Y : ModuleCat.{u} A} {f : X ⟶ Y} (hf : 
     refine ⟨I, K, u, (u'.hom ∘ₗ v.hom) ∘ₗ φ, v', hφ.comp _ fun j k ↦ ?_, by ext; simp⟩
     exact not_isUnit_of_noSummand hY (v.hom ∘ₗ Finsupp.lsingle j) (Finsupp.lapply k ∘ₗ u'.hom)
 
-/-- Lemma 2.6(b): a composite of `ℓ + 1` maps of `J` through modules without a
+/-- Lemma 5.1(b): a composite of `ℓ + 1` maps of `J` through modules without a
 direct summand isomorphic to `P` vanishes. -/
 theorem IsJComp.eq_zero {ℓ : ℕ} (H : NonunitProductsVanish P ℓ) {X Y : ModuleCat.{u} A}
     {f : X ⟶ Y} (hf : IsJComp P ℓ f) : f = 0 := by
@@ -179,7 +179,7 @@ theorem IsJComp.eq_zero {ℓ : ℕ} (H : NonunitProductsVanish P ℓ) {X Y : Mod
   ext
   simp
 
-/-- Lemma 2.6(b) for endomorphisms: an endomorphism in `J` of a module without
+/-- Lemma 5.1(b) for endomorphisms: an endomorphism in `J` of a module without
 a direct summand isomorphic to `P` satisfies `f^(ℓ+1) = 0`. -/
 theorem pow_eq_zero_of_factorsThroughSum {ℓ : ℕ} (H : NonunitProductsVanish P ℓ)
     {X : ModuleCat.{u} A} (hX : NoSummand P X) {f : X ⟶ X} (hf : FactorsThroughSum P f) :

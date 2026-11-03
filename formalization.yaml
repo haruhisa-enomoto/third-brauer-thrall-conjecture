@@ -10,10 +10,11 @@ project:
     finite-dimensional algebra admits a representation embedding of a
     colimit-closed category of Kronecker modules that preserves infinite
     dimensions (Theorem A). Hence it has indecomposable modules of every
-    infinite dimension (Corollary 1.1), with endomorphism rings local with
-    residue field k and radical of bounded nilpotence index (Corollary 5.3).
-    The cited inputs are proved in the library: Bongartz's Theorem 6 and
-    Corollary 1.3 of Göbel and Simson.
+    infinite dimension, with endomorphism rings local with residue field k and
+    radical of bounded nilpotence index (Corollary 1.1, without the number of
+    modules and the explicit bound). The cited inputs are proved in the
+    library: Bongartz's Theorem 6 and the form of the Göbel–Simson result that
+    is used, Kronecker bricks of every infinite dimension.
   authors: ["Haruhisa Enomoto"]
   responsible_maintainers: ["Haruhisa Enomoto"]
   license: "Apache-2.0"
@@ -29,9 +30,10 @@ sources:
     location: "https://hexagonmath.org/2610.00179v1"
     relationship: "formalizes"
     note: >-
-      The formalized paper, version 1, written under the author's direction with
-      GPT-6-Astra and revised with Claude Opus 5.5. Statements are matched with
-      Lean declarations in docs/PAPER-CORRESPONDENCE.md.
+      The formalized paper, written under the author's direction with
+      GPT-6-Astra and revised with Claude Opus 5.5. The library follows the
+      revision that succeeds version 1 (docs/MANUSCRIPT.md). Statements are
+      matched with Lean declarations in docs/PAPER-CORRESPONDENCE.md.
     author_endorsement: "participated"
   - title: "Representation embeddings and the second Brauer–Thrall conjecture"
     authors: ["K. Bongartz"]
@@ -47,17 +49,21 @@ sources:
     type: "paper"
     location: "Israel J. Math. 110 (1999), 293–315"
     relationship: "background"
-    note: "Source of Corollary 1.3, proved in the library for every algebraically closed field."
+    note: >-
+      Source of the rigid families used for Corollary 1.1. The library proves
+      the form that is used, Kronecker bricks of every infinite dimension, for
+      every algebraically closed field.
     author_endorsement: "not-contacted"
 
 status:
   scope: >-
-    Theorem A, Corollary 1.1 and Corollary 5.3 as stated in the paper, for
-    arbitrary algebraically closed fields. The compared statements in
+    Theorem A as stated in the paper, and Corollary 1.1 without the number of
+    modules and the explicit bound on the nilpotence index, for arbitrary
+    algebraically closed fields. The compared statements in
     Challenge.lean use only Mathlib definitions. Every numbered statement of the
-    paper with mathematical content is covered in the form recorded in
+    paper used for these results is covered in the form recorded in
     docs/PAPER-CORRESPONDENCE.md, and the cited inputs are proved: Bongartz's
-    Theorem 6 and Göbel–Simson Corollary 1.3. The library proves only the part of
+    Theorem 6 and Kronecker bricks of every infinite dimension. The library proves only the part of
     Bongartz's large-line theorem that Theorem A needs.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -89,15 +95,18 @@ automation:
 
 fidelity:
   divergences: >-
-    Theorem A, Corollary 1.1 and Corollary 5.3 are stated as in the paper; Theorem 5.1
-    of the paper, which also names the extension, is covered through the extension
-    criterion. The statements have the
+    Theorem A is stated as in the paper. Corollary 1.1 (= Corollary 5.6) is
+    stated without the number 2^κ of modules and without the explicit bound
+    n ≤ max(30, 4 dim A): CorollaryDimension gives an indecomposable module of
+    every infinite dimension and CorollaryRadical gives such modules with local
+    endomorphism rings and one nilpotence bound n. The statements have the
     field, the algebra and the modules in one universe. Dimensions are cardinals.
     Intermediate results may be proved in an equivalent or more general form and
     by a different route; docs/PAPER-CORRESPONDENCE.md lists these. Two steps of
     Bongartz's Theorem 6 have different proofs: the critical pair avoids tilting
     theory, and long lines avoid the classification of large sincere algebras. No
-    weakening of the hypotheses or conclusions of the three results is known.
+    other weakening of the hypotheses or conclusions of the three results is
+    known.
 
 review:
   status: "agent-reviewed"
@@ -122,11 +131,15 @@ alignment:
       lean: "LargeIndecomposable.Challenge.corollaryDimension"
       module: "Challenge"
       status: "proved"
-      note: "Proved in Solution.lean from LargeIndecomposable.corollaryDimension."
-    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Corollary 5.3"
+      note: >-
+        The dimension part, without the number of modules. Proved in
+        Solution.lean from LargeIndecomposable.corollaryDimension.
+    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Corollary 5.6"
       lean: "LargeIndecomposable.Challenge.corollaryRadical"
       module: "Challenge"
       status: "proved"
-      note: "Proved in Solution.lean from LargeIndecomposable.corollaryRadical."
+      note: >-
+        Without the number of modules and the explicit bound on n. Proved in
+        Solution.lean from LargeIndecomposable.corollaryRadical.
 
 acknowledgements: "Lean and Mathlib."

@@ -1,9 +1,9 @@
 # Provenance
 
 The Lean development is maintained by Haruhisa Enomoto. It formalizes
-*Representation embeddings and the third Brauer–Thrall conjecture*, version 1
-([hexagon:2610.00179v1](https://hexagonmath.org/2610.00179v1)), identified in
-[docs/MANUSCRIPT.md](docs/MANUSCRIPT.md). The
+*Representation embeddings and the third Brauer–Thrall conjecture*
+([hexagon:2610.00179v1](https://hexagonmath.org/2610.00179v1)), following the
+revision identified in [docs/MANUSCRIPT.md](docs/MANUSCRIPT.md). The
 [correspondence](docs/PAPER-CORRESPONDENCE.md) describes formal coverage.
 
 ## Contributions

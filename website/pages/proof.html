@@ -1,16 +1,16 @@
 <p class="eyebrow">Mathematical navigation</p><h1>The proof in four parts</h1>
-<p>The paper extends a finite representation embedding by a filtered colimit, and shows that the three constructions behind Bongartz's embedding satisfy a criterion for this extension. The library then proves the two inputs that the paper cites.</p>
-<h2>Part I: extending embeddings</h2>
+<p>The paper defines the three functors behind Bongartz's embedding directly on Kronecker modules of arbitrary dimension, recovers Kronecker morphisms from morphisms between their images by retractions with nilpotent kernels, and cancels the images of the simple projective summands. The library then proves the two inputs that the paper cites.</p>
+<h2>Part I: the embedding theorem</h2>
 <div class="flow">
-<article class="card"><h3>Kronecker modules</h3><p>The categories 𝒟 and 𝒞, their colimits, and gluing along finite-dimensional submodules.</p><a href="{{source_url}}/LargeIndecomposable/KroneckerModules/Subcategories.lean">Subcategories</a></article>
-<article class="card"><h3>The colimit extension</h3><p>The extension of a functor on 𝒟<sub>fin</sub> preserves exactness, commutes with colimits (Proposition 2.3), and extends retractions (Proposition 2.5).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/ColimitExtension/Colimit.lean">Proposition 2.3</a></article>
-<article class="card"><h3>The extension criterion</h3><p>A controlled embedding extends to a representation embedding of 𝒟 (Theorem 2.7).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/ColimitExtension/Criterion.lean">Theorem 2.7</a></article>
+<article class="card"><h3>Kronecker modules</h3><p>The categories 𝒟 and 𝒞, their colimits, and finite-dimensional submodules (Lemma 2.2).</p><a href="{{source_url}}/LargeIndecomposable/KroneckerModules/Subcategories.lean">Subcategories</a></article>
+<article class="card"><h3>Retractions</h3><p>Retractions with nilpotent kernels preserve indecomposability and reflect isomorphisms (Lemma 2.4).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/Control/Consequences.lean">Lemma 2.4</a></article>
+<article class="card"><h3>The embedding theorem</h3><p>A functor with retractions on 𝒞 and the colimit comparison (3.6) is a representation embedding of 𝒟 (Theorem 5.2).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/EmbeddingTheorem/EmbeddingData.lean">Theorem 5.2</a></article>
 </div>
 <h2>Part II: three constructions</h2>
 <div class="flow">
-<article class="card"><h3>Quotients</h3><p>A quotient of a sum of copies of a projective module (Proposition 4.1).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/Control/QuotientRetractions.lean">Proposition 4.1</a></article>
-<article class="card"><h3>Galois coverings</h3><p>Push-downs of representations along a covering (Proposition 4.4).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/CoveringConstruction/Datum.lean">Covering construction</a></article>
-<article class="card"><h3>Closed walks</h3><p>Push-downs along the map to the quiver given by a closed walk (Proposition 4.7).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/WalkConstruction/WalkCase.lean">Walk construction</a></article>
+<article class="card"><h3>Quotients</h3><p>A quotient of a sum of copies of a projective module (Lemma 3.4, Proposition 4.1).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/Control/QuotientRetractions.lean">Proposition 4.1</a></article>
+<article class="card"><h3>Galois coverings</h3><p>Push-downs of representations along a covering (Lemma 3.8, Proposition 4.4).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/CoveringConstruction/Datum.lean">Covering construction</a></article>
+<article class="card"><h3>Closed walks</h3><p>Push-downs along the map to the quiver given by a closed walk (Lemma 3.13, Proposition 4.7).</p><a href="{{source_url}}/LargeIndecomposable/RepresentationEmbeddings/WalkConstruction/WalkCase.lean">Walk construction</a></article>
 </div>
 <h2>Part III: Bongartz's Theorem 6</h2>
 <div class="flow">
@@ -22,5 +22,5 @@
 <h2>Part IV: Kronecker modules of every infinite dimension</h2>
 <div class="flow">
 <article class="card"><h3>Göbel–Simson</h3><p>Bricks of dimension at most |<i>k</i>|, gluing along non-split extensions, and rigid map systems on regular cardinals for larger dimensions.</p><a href="{{source_url}}/LargeIndecomposable/KroneckerBricks/Transport.lean">Kronecker bricks</a></article>
-<article class="card"><h3>Main theorems</h3><p>Theorem A, Corollary 1.1 and Corollary 5.3.</p><a href="{{source_url}}/LargeIndecomposable/MainTheorems.lean">Main theorems</a></article>
+<article class="card"><h3>Main theorems</h3><p>Theorem A and Corollary 1.1.</p><a href="{{source_url}}/LargeIndecomposable/MainTheorems.lean">Main theorems</a></article>
 </div>

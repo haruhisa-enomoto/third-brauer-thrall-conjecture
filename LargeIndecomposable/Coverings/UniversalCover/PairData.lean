@@ -10,7 +10,7 @@ If `A ≅ k(P)` for a finite ray category `P` whose fundamental group is
 torsion-free (free, by Bongartz's Theorem 2), a Kronecker pair on a finite
 convex piece `S` of the universal cover whose two generating modules respect
 the relations of the cover gives covering data with a Kronecker pair for `A`
-(`RayCat.pairCoveringData`). This reduces alternative (2′) of Theorem 3.10 to
+(`RayCat.pairCoveringData`). This reduces alternative (2′) of Theorem 3.14 to
 a statement about `P̃`.
 -/
 

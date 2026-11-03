@@ -20,7 +20,7 @@ finite-dimensional `U ⊆ T`, and `L` keeps inclusions injective.
 
 The functor `F = p_*L : D → Mod A` is additive, `k`-linear, faithful and exact,
 has finite-dimensional values on `D_fin`, satisfies the colimit comparison
-(3.4), and admits retractions on `C` with a nilpotence bound, the number of
+(3.6), and admits retractions on `C` with a nilpotence bound, the number of
 vertices of `D` (Propositions 4.4, 4.7, 4.8). With the two facts about `S₋`
 (`PdDatum`) it gives the data of Theorem 5.2. A kernel of `π` acting by zero on
 `p_*L(T)` for finite-dimensional `T` acts by zero for every `T`
@@ -211,7 +211,7 @@ lemma isPdHom_toTot {T U : Statement.D k} (g : W.obj T ⟶ W.obj U) : IsPdHom W.
 lemma blockEqs_toTot {T U : Statement.D k} (g : W.obj T ⟶ W.obj U) : BlockEqs W.p (W.toTot g) :=
   (isPdHom_iff W.p _).1 (W.isPdHom_toTot g)
 
-/-- The functor `F = p_*L` on `D_fin`. -/
+/-- The functor `F = p_*L` on `D`. -/
 def functor : Statement.D k ⥤ ModuleCat.{u} A where
   obj := W.obj
   map f := W.ofPd (W.L.map f).tot (Hom.isPdHom_tot W.p _)
@@ -295,7 +295,7 @@ lemma exists_tot_rep (T : Statement.D k) (x : (W.L.obj T).Tot) :
 lemma toTot_map_incl (T : Statement.D k) (U : Kron.FinSub T.obj) :
     W.toTot (W.functor.map (Comparison.incl T U)) = (W.L.map (Comparison.incl T U)).tot := rfl
 
-/-- Constructions 3.7 and 3.12: `p_*L` satisfies the colimit comparison (3.4). -/
+/-- Constructions 3.7 and 3.12: `p_*L` satisfies the colimit comparison (3.6). -/
 theorem comparison : Comparison.IsComparison W.functor := by
   refine Comparison.isComparison_of_elements _ (fun T x ↦ ?_) (fun T U y hy ↦ ?_)
   · obtain ⟨U, y, hy⟩ := W.exists_tot_rep T x

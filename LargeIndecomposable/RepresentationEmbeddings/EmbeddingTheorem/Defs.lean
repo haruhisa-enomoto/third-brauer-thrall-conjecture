@@ -8,12 +8,13 @@ public import Mathlib.CategoryTheory.Category.Preorder
 /-!
 # The colimit extension of a functor on `D_fin`
 
-For a functor `Φ : D_fin → Mod A` and `T ∈ D`, the manuscript defines
-(1.1)
-`F(T) = colim_{U ⊆ T, dim U < ∞} Φ(U)`.
-This file builds this functor `Extension.functor Φ : D ⥤ Mod A`, indexing the
-colimit by the directed poset `Kron.FinSub T` of finite-dimensional
-subrepresentations.
+For a functor `Φ : D_fin → Mod A` and `T ∈ D`, put
+`F(T) = colim_{U ⊆ T, dim U < ∞} Φ(U)`,
+the right side of the colimit comparison (3.6). This file builds this functor
+`Extension.functor Φ : D ⥤ Mod A`, indexing the colimit by the directed poset
+`Kron.FinSub T` of finite-dimensional subrepresentations. The functors of
+Theorem 3.14 are identified with such extensions (`Comparison.isoExtension`),
+which gives their colimit and dimension properties.
 -/
 
 @[expose] public section
@@ -112,7 +113,7 @@ lemma hom_ext' {X : D k} {M : ModuleCat.{u} A} {φ ψ : obj Φ X ⟶ M}
     (h : ∀ U, ι Φ X U ≫ φ = ι Φ X U ≫ ψ) : φ = ψ :=
   colimit.hom_ext h
 
-/-- The extension `F : D ⥤ Mod A` of `Φ` by filtered colimits, (1.1). -/
+/-- The extension `F : D ⥤ Mod A` of `Φ` by filtered colimits. -/
 def functor : D k ⥤ ModuleCat.{u} A where
   obj := obj Φ
   map := map Φ

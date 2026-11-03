@@ -12,7 +12,7 @@ the first leaf and the brick `Q₀` with `k²` at the center and the three lines
 two coordinate maps `k → k²` on the arrow from the first leaf are independent
 extension tuples. With the trivial covering this is covering data for the path
 algebra of `D̃₄` (`DTilde4.pairCoveringData`): the covering alternative of
-Theorem 3.10 for a tame hereditary algebra, recovering the classical embedding
+Theorem 3.14 for a tame hereditary algebra, recovering the classical embedding
 of Kronecker modules into representations of `D̃₄`.
 -/
 

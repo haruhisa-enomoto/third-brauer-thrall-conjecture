@@ -241,13 +241,13 @@ theorem theoremA : TheoremA.{u} :=
     (RayCat.criticalPieceCarriesPair_of_pointBrickData RayCat.pointBrickData)
     (repFinitePiecesGiveBand_of (intervalFiniteCover_of_stage simplyConnectedStageStep) (repFinitePiecesGiveBandCore_of_longLine linesOfEveryLength))))
 
-/-- **Corollary 1.1.** -/
+/-- **Corollary 1.1**, dimension part. -/
 theorem corollaryDimension : CorollaryDimension.{u} :=
   corollaryDimension_of_bongartz' (bongartzDistributive_of_coverDichotomy (coverDichotomy_of
     (RayCat.criticalPieceCarriesPair_of_pointBrickData RayCat.pointBrickData)
     (repFinitePiecesGiveBand_of (intervalFiniteCover_of_stage simplyConnectedStageStep) (repFinitePiecesGiveBandCore_of_longLine linesOfEveryLength))))
 
-/-- **The radical corollary.** -/
+/-- **Corollary 5.6**, without the number of modules and the explicit bound. -/
 theorem corollaryRadical : CorollaryRadical.{u} :=
   corollaryRadical_of_bongartz' (bongartzDistributive_of_coverDichotomy (coverDichotomy_of
     (RayCat.criticalPieceCarriesPair_of_pointBrickData RayCat.pointBrickData)

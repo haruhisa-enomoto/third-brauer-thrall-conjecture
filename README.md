@@ -8,8 +8,9 @@
 
 This repository contains a Lean 4 formalization of the principal results of the
 paper *Representation embeddings and the third Brauer–Thrall conjecture*
-([hexagon:2610.00179v1](https://hexagonmath.org/2610.00179v1)), including the
-inputs the paper cites.
+([hexagon:2610.00179v1](https://hexagonmath.org/2610.00179v1); the library
+follows the revision described in [MANUSCRIPT.md](docs/MANUSCRIPT.md)), including
+the cited inputs that it uses.
 
 Let `k` be an algebraically closed field, `A` a representation-infinite
 finite-dimensional `k`-algebra, and `D` the category of Kronecker modules of
@@ -20,10 +21,9 @@ finite-dimensional modules to finite-dimensional modules, commutes with arbitrar
 direct sums and filtered colimits, and satisfies `dim F(T) = dim T` for
 infinite-dimensional `T`.
 
-**Corollary 1.1.** For every infinite cardinal `κ`, `A` has an indecomposable
-module of dimension `κ`.
-
-**Corollary 5.3.** These modules can be chosen with
+**Corollary 1.1** (formalized without the number `2^κ` of modules and the
+explicit bound on `n`). For every infinite cardinal `κ`, `A` has an
+indecomposable module of dimension `κ`, and these modules can be chosen with
 `End(M)/rad End(M) ≅ k` and `(rad End(M))ⁿ = 0` for one `n` independent of the
 dimension.
 
@@ -40,7 +40,9 @@ dimension.
 
 All definitions and proofs are complete. The main statements depend only on the
 axioms `propext`, `Classical.choice` and `Quot.sound`. The paper cites Bongartz's
-Theorem 6 and Corollary 1.3 of Göbel and Simson; the library proves both. Two
+Theorem 6 and Göbel and Simson's rigid families; the library proves Theorem 6 and
+the form of the Göbel–Simson result that is used (Kronecker bricks of every
+infinite dimension). Two
 steps of Bongartz's Theorem 6 have different proofs here: the critical pair avoids
 tilting theory, and long lines avoid the classification of large sincere algebras.
 Theorem A needs only a weak form of Bongartz's large-line theorem, and the library
@@ -75,7 +77,7 @@ The library is organized by subject under `LargeIndecomposable/`.
 | `MeshCategories`, `PreprojectiveAlgebras` | mesh categories, periodic components, star models, traces, preprojective algebras |
 | `Crowns`, `MildContours` | long morphisms and crowns; mild contours, dumb-bells, diamonds, penny-farthings |
 | `KroneckerModules`, `KroneckerBricks` | Kronecker modules; bricks of every infinite dimension |
-| `RepresentationEmbeddings` | the colimit extension, control by retractions, and the quotient, covering and walk constructions |
+| `RepresentationEmbeddings` | the quotient, covering and walk constructions on Kronecker modules of any dimension, control by retractions, and the embedding theorem |
 | `BongartzTheorem` | Bongartz's Theorem 6: reduction, critical pieces, contour exclusion, simply connected covers, long lines |
 
 Conventions: modules are left modules. The field, the algebra and the modules live

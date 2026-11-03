@@ -6,7 +6,7 @@ public import LargeIndecomposable.Quivers.PushDown.PushDown
 # The push-down as a module over the path algebra
 
 For a quiver morphism `p : D → Q` and a representation `X` of `D`, the
-push-down `p_*X` (Construction 3.9) is the total space `⊕_i X(i)` with `e_q`
+push-down `p_*X` (Construction 3.12) is the total space `⊕_i X(i)` with `e_q`
 acting as the projection onto `⊕_{p(i)=q} X(i)` and an arrow `c` acting by the
 sum of the arrow operators of the arrows labelled `c`. This file builds the
 algebra homomorphism `kQ → End_k(⊕_i X(i))`.

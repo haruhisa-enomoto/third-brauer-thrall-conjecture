@@ -2,6 +2,7 @@ module
 
 public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Comparison
 public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.CSub
+public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Lift
 public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.SminusSplitting
 public import LargeIndecomposable.Modules.KrullSchmidt.IndecomposableFullyFaithful
 
@@ -9,9 +10,9 @@ public import LargeIndecomposable.Modules.KrullSchmidt.IndecomposableFullyFaithf
 # Theorem 5.2: the embedding theorem
 
 An `EmbeddingData k A` collects what the manuscript establishes for each of the
-functors `F_ν : D → Mod A` of (3.3), apart from the reduction of Lemma 3.1:
+functors `F_ν : D → Mod A` of (3.5), apart from the reduction of Lemma 3.1:
 `F` is `k`-linear, faithful and exact on `D`, has finite-dimensional values on
-`D_fin`, satisfies the colimit comparison (3.4), admits retractions on `C` with
+`D_fin`, satisfies the colimit comparison (3.6), admits retractions on `C` with
 a nilpotence bound (Proposition 4.8), and satisfies the two facts about `S₋`
 that the proof of Theorem 5.2 takes from the representation-embedding property
 on `D_fin`: `F(S₋)` is indecomposable and not isomorphic to `F(T)` for
@@ -23,7 +24,7 @@ The proof follows the manuscript.
 
 * Step 1 (`noSummand`): for `T₀ ∈ C`, `F(T₀)` has no direct summand isomorphic
   to `P = F(S₋)`. A split monomorphism `P → F(T₀)` factors through `F(T₁)` for a
-  finite-dimensional `T₁ ⊆ T₀` in `C`, by (3.4). Instead of the Krull–Schmidt
+  finite-dimensional `T₁ ⊆ T₀` in `C`, by (3.6). Instead of the Krull–Schmidt
   theorem we use the retractions: the idempotent of `F(T₁)` splitting off `P`
   is conjugate to `F(η)` for the idempotent `η = ρ(ε)` of `T₁`, so `P` is
   isomorphic to `F` of a summand of `T₁` in `C_fin`.
@@ -105,7 +106,7 @@ theorem noSummand (T₀ : D k) (hT₀ : InC T₀.obj) :
   let Φ := Comparison.fin E.F
   let P := E.F.obj Extension.Sminus
   have : Module.Finite k P := E.fin Extension.SminusFin
-  -- factor `i` through `F(T₁)` for a finite-dimensional `T₁ ⊆ T₀` in `C` (3.4)
+  -- factor `i` through `F(T₁)` for a finite-dimensional `T₁ ⊆ T₀` in `C` (3.6)
   let iso := Comparison.isoApp E.comparison T₀
   obtain ⟨U, -, i₀, hi₀⟩ := Extension.exists_lift Φ T₀ (i ≫ iso.hom) ⟨⊥, Kron.Sub.isFin_bot⟩
   obtain ⟨V₀, hV₀⟩ := Kron.FinV.exists_le hT₀ U

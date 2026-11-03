@@ -18,7 +18,7 @@ For the functor `F₁ = Q.functor` of Construction 3.3:
   `range_eq_ker_of_shortExact`: `F₁` is exact on `D`;
 * `finite_obj`: `F₁` preserves finite dimension;
 * `topQ`, `topQ_eq_zero_iff`, `topEquiv`: the top `F₁(T)/J F₁(T)` is `W`;
-* `map_injective`: `F₁` is faithful on `D` (Lemma 3.11(1)).
+* `map_injective`: `F₁` is faithful on `D` (Lemma 3.4).
 
 Two hypotheses on the idempotents are used where needed, both in the form
 `TopOneDim k e : Λ e ⊆ k e + J`. They hold for primitive idempotents of a
@@ -567,14 +567,14 @@ def topEquiv (X : Kron k) :
     ((Q.P ⊗[k] X.W ⧸ Q.relSub X) ⧸ LinearMap.ker (topQ hy X)) ≃ₗ[k] X.W :=
   (topQ hy X).quotKerEquivOfSurjective (topQ_surjective hy X)
 
-/-! ### (f) Faithfulness (Lemma 3.11(1)) -/
+/-! ### (f) Faithfulness (Lemma 3.4) -/
 
 lemma topQ_functor_map_gen {X Y : Kron k} (f : X ⟶ Y) (w : X.W) :
     topQ hy Y ((Q.functor.map f).hom (Q.gen X w)) = (f.app one).hom w := by
   rw [functor_map_gen, topQ_gen]
 
 include hy in
-/-- (f) Lemma 3.11(1): `F₁` is faithful on morphisms into `D`. -/
+/-- (f) Lemma 3.4: `F₁` is faithful on morphisms into `D`. -/
 lemma functor_map_injective {X Y : Kron k} (hY : InD Y) {f f' : X ⟶ Y}
     (h : Q.functor.map f = Q.functor.map f') : f = f' := by
   refine Kron.ext_of_app_one hY ?_

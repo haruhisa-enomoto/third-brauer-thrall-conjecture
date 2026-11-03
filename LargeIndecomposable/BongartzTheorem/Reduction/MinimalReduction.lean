@@ -92,7 +92,7 @@ theorem nonempty_embeddingData_of_not_isRepresentationFinite {k : Type u} [Field
     (Morita.preservesSES he hfull) (fun M _ ↦ Morita.finite_obj (k := k) he hfull M)⟩
 
 include H in
-/-- Theorem A, conditional on the distributive case of Theorem 3.10. -/
+/-- Theorem A, conditional on the distributive case of Theorem 3.14. -/
 theorem theoremA_of_distributiveEmbeddingData : TheoremA.{u} := by
   intro k _ _ A _ _ _ hA
   obtain ⟨E⟩ := nonempty_embeddingData_of_not_isRepresentationFinite (k := k) H A hA

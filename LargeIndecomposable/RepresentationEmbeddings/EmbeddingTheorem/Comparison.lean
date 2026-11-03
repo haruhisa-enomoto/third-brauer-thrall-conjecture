@@ -6,7 +6,7 @@ public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Pres
 /-!
 # The colimit comparison
 
-For a functor `G : D → Mod A`, the comparison (3.4) of the manuscript says that
+For a functor `G : D → Mod A`, the comparison (3.6) of the manuscript says that
 `G(T)` is the filtered colimit of the modules `G(U)` over the finite-dimensional
 subrepresentations `U ⊆ T`:
 `G(T) ≅ colim_{U ⊆ T, dim U < ∞} G(U)`.
@@ -92,7 +92,7 @@ def cocone (X : D k) : Cocone (Extension.diag (fin G) X) where
           G.map (incl X U) ≫ 𝟙 _
         rw [← G.map_comp, map_incl, Category.comp_id] }
 
-/-- The colimit comparison (3.4): `G(X)` is the colimit of `G(U)` over the
+/-- The colimit comparison (3.6): `G(X)` is the colimit of `G(U)` over the
 finite-dimensional subrepresentations `U ⊆ X`. -/
 abbrev IsComparison : Prop := ∀ X : D k, Nonempty (IsColimit (cocone G X))
 

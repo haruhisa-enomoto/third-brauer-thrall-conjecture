@@ -6,7 +6,7 @@ public import LargeIndecomposable.KroneckerModules.Basic
 /-!
 # The cycle of a closed walk with a sink and the functor `L`
 
-Setting 3.8 and Construction 3.9, in the dual form with a sink. A primitive
+Setting 3.11 and Construction 3.12, in the dual form with a sink. A primitive
 cyclically reduced closed walk `w` of length `r = n + 2` whose cycle `D_w` is
 not oriented has a sink `u`. The cycle is recorded with `u` as `none` and the
 other `n + 1` vertices `some 0, …, some n` in cyclic order; the two arrows into
@@ -71,7 +71,7 @@ abbrev cycleQuiver (n : ℕ) (ε : Fin n → Bool) : FinQuiver where
 
 variable {k : Type u} [Field k] {n : ℕ} {ε : Fin n → Bool}
 
-/-- Construction 3.9: the representation `L(T)` of the cycle. -/
+/-- Construction 3.12: the representation `L(T)` of the cycle. -/
 def cycleRep (T : Kron k) : Rep k (cycleQuiver n ε) where
   obj x := x.elim T.W fun _ ↦ T.V
   map
@@ -89,7 +89,7 @@ def cycleRepMap {T U : Kron k} (f : T ⟶ U) : cycleRep (ε := ε) T ⟶ cycleRe
     | .second => Kron.b_comp f
     | .mid _ => by simp [cycleRep, cycleQuiver]
 
-/-- The functor `L` of Construction 3.9. -/
+/-- The functor `L` of Construction 3.12. -/
 def cycleFunctor (n : ℕ) (ε : Fin n → Bool) : Kron k ⥤ Rep k (cycleQuiver n ε) where
   obj := cycleRep
   map := cycleRepMap
@@ -139,7 +139,7 @@ lemma cycleFunctor_map_preimage {T U : Kron k} (φ : cycleRep (ε := ε) T ⟶ c
   · rfl
   · exact (cycleFunctor_full_aux φ j).symm
 
-/-- `L` is fully faithful (Construction 3.9). -/
+/-- `L` is fully faithful (Construction 3.12). -/
 def cycleFunctorFullyFaithful : (cycleFunctor (k := k) n ε).FullyFaithful where
   preimage := cyclePreimage
   map_preimage := cycleFunctor_map_preimage

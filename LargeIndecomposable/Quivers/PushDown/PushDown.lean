@@ -8,7 +8,7 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 # Push-down of representations along a quiver morphism
 
 For a morphism of finite quivers `p : D → Q` and a representation `X` of `D`,
-the push-down `p_*X` of Construction 3.9 has `(p_*X)(q) = ⊕_{p(i) = q} X(i)`
+the push-down `p_*X` of Construction 3.12 has `(p_*X)(q) = ⊕_{p(i) = q} X(i)`
 and, along an arrow `c` of `Q`, the block `X(e) : X(i) → X(j)` for each arrow
 `e : i → j` of `D` with label `c`. We realize it directly as a module over the
 path algebra `kQ` on the total space `⊕_i X(i)` (`Rep.Tot`): the vertex

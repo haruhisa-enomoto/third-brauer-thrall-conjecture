@@ -5,7 +5,7 @@ public import LargeIndecomposable.RepresentationEmbeddings.WalkConstruction.Walk
 /-!
 # Monomial presentations and bands
 
-The data form (3′) of Theorem 3.10 for a monomial presentation. Let
+The data form (3′) of Theorem 3.14 for a monomial presentation. Let
 `π : kQ → B` be surjective with kernel spanned by the words of a set `P` of
 paths (for a monomial ideal `I`, the paths lying in `I`). Let `p : D_w → Q` be
 the cycle of a primitive cyclically reduced closed walk such that no directed
@@ -90,7 +90,7 @@ namespace Walk
 variable {k : Type u} [Field k] {B : Type u} [Ring B] [Algebra k B]
 
 variable (k B) in
-/-- Alternative (3′) of Theorem 3.10 for a monomial presentation: a presentation
+/-- Alternative (3′) of Theorem 3.14 for a monomial presentation: a presentation
 `π : kQ → B` whose kernel is spanned by the words of a set `P` of paths, and the
 cycle of a primitive cyclically reduced closed walk none of whose directed
 paths has its label word in `P`. -/

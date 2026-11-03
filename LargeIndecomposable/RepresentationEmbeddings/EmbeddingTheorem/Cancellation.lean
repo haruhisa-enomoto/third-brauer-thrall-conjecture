@@ -7,9 +7,9 @@ public import Mathlib.RingTheory.Nilpotent.Basic
 /-!
 # Block matrices and cancellation
 
-The matrix computations in the proof of Theorem 2.7. Let
+The matrix computations in the proof of Theorem 5.2. Let
 `f : X ⊕ Y → X' ⊕ Y'` be an isomorphism, written through binary bicones, with
-blocks `α, β, γ, δ` and inverse blocks `α', β', γ', δ'`. Then (2.5)
+blocks `α, β, γ, δ` and inverse blocks `α', β', γ', δ'`. Then (5.1)
 
 `α'α = 1 - β'γ`, `αα' = 1 - βγ'`,
 
@@ -84,7 +84,7 @@ lemma blockα_symm_comp_blockα :
     BinaryBicone.inl_fst]
 
 include hb hb' in
-/-- (2.5): `α` is an isomorphism when the two error terms are nilpotent. -/
+/-- (5.1): `α` is an isomorphism when the two error terms are nilpotent. -/
 theorem isIso_blockα
     (h₁ : IsNilpotent (show End X from blockγ b b' e ≫ blockβ b' b e.symm))
     (h₂ : IsNilpotent (show End X' from blockγ b' b e.symm ≫ blockβ b b' e)) :

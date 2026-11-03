@@ -1,7 +1,8 @@
 # Verification
 
-The library proves Theorem A, Corollary 1.1 and Corollary 5.3 of [the paper](MANUSCRIPT.md),
-together with the inputs the paper cites. The [correspondence](PAPER-CORRESPONDENCE.md)
+The library proves Theorem A and Corollary 1.1 (= Corollary 5.6, without the number of modules and the explicit bound) of [the paper](MANUSCRIPT.md),
+together with Bongartz's Theorem 6 and the form of the Göbel–Simson result that is used.
+The [correspondence](PAPER-CORRESPONDENCE.md)
 lists the declarations. Records are in [`verification/`](../verification/).
 
 ## Independent statement

@@ -4,18 +4,19 @@ public import LargeIndecomposable.RepresentationEmbeddings.WalkConstruction.PdEm
 public import LargeIndecomposable.RepresentationEmbeddings.WalkConstruction.CycleCoords
 
 /-!
-# The walk construction as a controlled embedding
+# The walk construction and Theorem 5.2
 
-Alternative (3) of Theorem 3.10 in data form. `Walk.WalkData k A` consists of a
+Alternative (3) of Theorem 3.14 in data form. `Walk.WalkData k A` consists of a
 presentation `π : kQ → A` (a surjective algebra homomorphism) and a primitive
-walk, given by its cycle `D_w` with a source and the map `p : D_w → Q`
-satisfying (3.4), such that `p_*L(T)` (Construction 3.9) is an `A`-module for
-every `T ∈ D_fin`. It gives push-down data (`PushDown.PdData`): the classes of
-block positions are the components of the matching quiver (Lemma 4.6), and a
-morphism `φ` with `L(φ)` vanishing at a vertex is zero by Lemma 2.2(1).
-With the sink convention, the facts about `S₋` used in Theorem 2.7
-holds automatically (`WalkData.toPdDatum`), so walk data alone yield a
-controlled embedding.
+walk, given by its cycle `D_w` and the map `p : D_w → Q` satisfying (3.4), such
+that `p_*L(T)` (Construction 3.12) is an `A`-module for every `T ∈ D_fin`. By
+Lemma 3.13 this holds for every `T ∈ D` (`PushDown.kills_of_fin`). The data give
+push-down data (`PushDown.PdData`): the classes of block positions are the
+components of the matching quiver (Lemma 4.6), and a morphism `φ` with `L(φ)`
+vanishing at a vertex is zero by Lemma 2.2(1). The cycle is used in the form
+dual to Setting 3.11, with a sink; then the facts about `S₋` used in Theorem 5.2
+hold automatically (`WalkData.toPdDatum`), so walk data alone give the data of
+Theorem 5.2.
 -/
 
 @[expose] public section
@@ -82,7 +83,7 @@ def blockClasses {p : FinQuiver.Hom (cycleQuiver n ε) Q} (hloc : p.LocallyInjec
           exact ⟨i, fun j hj ↦ absurd (Quotient.exact hj.symm) (hi j)⟩ }
 
 variable (k A) in
-/-- The data of alternative (3) of Theorem 3.10, apart from the
+/-- The data of alternative (3) of Theorem 3.14, apart from the
 representation-embedding property. -/
 structure WalkData where
   /-- The cycle has `n + 2` vertices. -/
@@ -98,7 +99,7 @@ structure WalkData where
   /-- The presentation `kQ → A`. -/
   π : Q.PathAlgebra k →ₐ[k] A
   surj : Function.Surjective π
-  /-- `p_*L(T)` is an `A`-module for `T ∈ D_fin`. -/
+  /-- `p_*L(T)` is an `A`-module for `T ∈ D_fin` (hence for all `T`, Lemma 3.13). -/
   kills : ∀ (T : Dfin k) (z : Q.PathAlgebra k), π z = 0 → (cycleRep (ε := ε) T.obj).pdAct p z = 0
 
 /-- Every vector of `L(T)` comes from `L(U)` for a finite-dimensional `U ⊆ T`. -/

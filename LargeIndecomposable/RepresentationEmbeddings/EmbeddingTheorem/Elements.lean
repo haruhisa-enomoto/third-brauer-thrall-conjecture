@@ -7,7 +7,7 @@ public import Mathlib.CategoryTheory.Limits.ConcreteCategory.WithAlgebraicStruct
 /-!
 # Elements of the colimit extension
 
-Elementwise description of `F(X) = colim_{U} Φ(U)` (manuscript (1.1)): every
+Elementwise description of `F(X) = colim_{U} Φ(U)` (the right side of (3.6)): every
 element comes from some `Φ(U)`, and an element of `Φ(U)` vanishes in `F(X)`
 exactly when it vanishes in some `Φ(U')` with `U ⊆ U'`.
 -/

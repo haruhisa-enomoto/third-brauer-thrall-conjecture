@@ -14,7 +14,7 @@ public import Mathlib.Logic.Equiv.Option
 * Exchange: if an indecomposable module `P` with local endomorphism ring is a
   direct summand of `Π j, X j` with every `X j` indecomposable, then
   `P ≅ X j` for some `j` (`exists_nonempty_linearEquiv_of_comp_eq_id`). This
-  is the cancellation form used in the proof of Theorem 5.1.
+  is the cancellation form used in the proof of Theorem 5.2.
 * Uniqueness: two decompositions of a module of finite length into finitely
   many indecomposables agree up to a bijection of the index sets and
   isomorphisms of the summands (`krullSchmidt`).

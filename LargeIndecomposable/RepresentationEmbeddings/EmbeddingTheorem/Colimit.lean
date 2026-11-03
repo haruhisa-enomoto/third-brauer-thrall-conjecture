@@ -4,12 +4,12 @@ public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Elem
 public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Preserves
 
 /-!
-# Properties of the colimit extension (Proposition 2.3)
+# Properties of the colimit extension
 
 For a functor `Φ : D_fin → Mod A`, the extension `F = Extension.functor Φ`
-of (1.1) extends `Φ` (`Extension.isoOfFin`), is `k`-linear when `Φ` is, is
+of (3.6) extends `Φ` (`Extension.isoOfFin`), is `k`-linear when `Φ` is, is
 faithful and exact when `Φ` is, and satisfies `dim F(T) = dim T` for
-infinite-dimensional `T` (Proposition 2.3). Additivity and colimit
+infinite-dimensional `T`. Additivity and colimit
 preservation are in `Extension.Preserves`.
 -/
 
@@ -67,7 +67,7 @@ instance isIso_ι_topFin (X : D k) (hX : X.obj.IsFiniteDimensional) :
     IsIso (ι Φ X (topFin hX)) :=
   isIso_ι_of_isTerminal (isTerminalTopFin hX) _
 
-/-- Proposition 2.3: on finite-dimensional modules, `F(X) ≅ Φ(X)`. -/
+/-- On finite-dimensional modules, `F(X) ≅ Φ(X)`. -/
 def isoOfFin (X : D k) (hX : X.obj.IsFiniteDimensional) :
     (functor Φ).obj X ≅ Φ.obj (toDfin X hX) :=
   (asIso (ι Φ X (topFin hX))).symm ≪≫ Φ.mapIso (topIsoDfin X hX)
@@ -77,7 +77,7 @@ lemma ι_isoOfFin_hom (X : D k) (hX : X.obj.IsFiniteDimensional) :
   change ι Φ X (topFin hX) ≫ inv (ι Φ X (topFin hX)) ≫ Φ.map (topIsoDfin X hX).hom = _
   rw [IsIso.hom_inv_id_assoc]
 
-/-- Proposition 2.3: naturality of `F(X) ≅ Φ(X)` on finite-dimensional
+/-- Naturality of `F(X) ≅ Φ(X)` on finite-dimensional
 modules. -/
 @[reassoc]
 lemma isoOfFin_hom_naturality {X Y : D k} (hX : X.obj.IsFiniteDimensional)
@@ -110,7 +110,7 @@ lemma exists_ge₃ {X : Kron k} (U₁ U₂ U₃ : Kron.FinSub X) :
   obtain ⟨U, h3, h4⟩ := _root_.exists_ge_ge V U₃
   exact ⟨U, h1.trans h3, h2.trans h3, h4⟩
 
-/-- Proposition 2.3: `F` is `k`-linear. -/
+/-- `F` is `k`-linear. -/
 instance linear [Algebra k A] [Φ.Linear k] : (functor Φ).Linear k where
   map_smul {X Y} f c := by
     refine hom_ext' Φ fun U ↦ ?_
@@ -137,7 +137,7 @@ lemma exists_restrict_eq_zero [Algebra k A]
   refine ⟨U', hU', Φ.map_injective ?_⟩
   rw [← restrict_comp_map f U le_rfl hU', Φ.map_comp, h, Φ.map_zero]
 
-/-- Proposition 2.3: `F` is faithful. -/
+/-- `F` is faithful. -/
 lemma faithful [Algebra k A]
     (hfin : ∀ X : Dfin k, Module.Finite k (RestrictScalars k A (Φ.obj X))) [Φ.Faithful]
     [Φ.Additive] : (functor Φ).Faithful where
@@ -235,7 +235,7 @@ lemma span_iUnion_image_ιF (X : D k) {ι : Type u} (fs : ι → Kron.FinSub X.o
   rw [← Submodule.map_span, hg i]
   exact Submodule.mem_map_of_mem trivial
 
-/-- Proposition 2.3, upper bound: `dim F(T) ≤ dim T` for infinite-dimensional
+/-- Upper bound: `dim F(T) ≤ dim T` for infinite-dimensional
 `T`. Different route from the manuscript: `F(T)` is the union of the images of
 the `Φ(U)` for `U` spanned by finitely many basis vectors. -/
 theorem dim_le (hfin : ∀ X : Dfin k, Module.Finite k (RestrictScalars k A (Φ.obj X)))
@@ -333,7 +333,7 @@ lemma fromSminusLinear_injective (X : D k) : Function.Injective (fromSminusLinea
   have := congrArg (fun φ : Sminus ⟶ X ↦ (φ.hom.app one).hom (1 : k)) h
   simpa [fromSminusLinear, fromSminus_app_one] using this
 
-/-- Proposition 2.3, lower bound: `dim T ≤ dim F(T)` for infinite-dimensional
+/-- Lower bound: `dim T ≤ dim F(T)` for infinite-dimensional
 `T`, from `W ≅ Hom(S₋, T) ↪ Hom_A(F(S₋), F(T))` and `dim V ≤ 2 dim W`. -/
 theorem le_dim (hfin : ∀ X : Dfin k, Module.Finite k (RestrictScalars k A (Φ.obj X)))
     [Φ.Faithful] [Φ.Additive] [Φ.Linear k] (X : D k) (hX : Cardinal.aleph0 ≤ X.obj.dim) :
@@ -370,7 +370,7 @@ theorem le_dim (hfin : ∀ X : Dfin k, Module.Finite k (RestrictScalars k A (Φ.
     exact (inD_iff _).1 X.2 v (congrArg Prod.fst hv) (congrArg Prod.snd hv)
   exact cardinal_aux n hX hVW (by simpa [Statement.dim] using hWF)
 
-/-- Proposition 2.3: `dim F(T) = dim T` for infinite-dimensional `T`. -/
+/-- `dim F(T) = dim T` for infinite-dimensional `T`. -/
 theorem dim_eq (hfin : ∀ X : Dfin k, Module.Finite k (RestrictScalars k A (Φ.obj X)))
     [Φ.Faithful] [Φ.Additive] [Φ.Linear k] (X : D k) (hX : Cardinal.aleph0 ≤ X.obj.dim) :
     Statement.dim k A ((functor Φ).obj X) = X.obj.dim :=

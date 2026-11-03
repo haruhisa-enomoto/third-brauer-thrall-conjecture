@@ -22,17 +22,18 @@ This file uses only Mathlib. It fixes the vocabulary of the manuscript
 *Representation embeddings and the third Brauer–Thrall conjecture* and states
 its three principal results:
 
-* `TheoremA` (Theorem A = Theorem 5.1): a representation-infinite
+* `TheoremA` (Theorem A = Theorem 5.2): a representation-infinite
   finite-dimensional algebra over an algebraically closed field admits a
   representation embedding `F : D → Mod A` from the Kronecker modules without
   simple injective summand, sending finite-dimensional modules to
   finite-dimensional modules, commuting with arbitrary direct sums and
   filtered colimits, and preserving the dimension of infinite-dimensional
   modules;
-* `CorollaryDimension` (Corollary 1.1): such an algebra has an indecomposable
-  module of every infinite dimension (the third Brauer–Thrall conjecture over
-  algebraically closed fields);
-* `CorollaryRadical` (Corollary 5.3): these modules can be chosen with
+* `CorollaryDimension` (part of Corollary 1.1 = Corollary 5.6): such an
+  algebra has an indecomposable module of every infinite dimension (the third
+  Brauer–Thrall conjecture over algebraically closed fields);
+* `CorollaryRadical` (Corollary 1.1 = Corollary 5.6, without the number of
+  modules and the explicit bound on `n`): these modules can be chosen with
   `End(M)/rad End(M) ≅ k` and `(rad End(M))ⁿ = 0` for one `n` independent of
   the dimension.
 
@@ -175,7 +176,7 @@ def ClosedUnderColimits : Prop :=
     HasFilteredColimitsOfSize.{u, u} (D k) ∧
       ∀ ι : Type u, HasColimitsOfShape (Discrete ι) (D k)
 
-/-- Theorem A (Theorem 5.1). -/
+/-- Theorem A (Theorem 5.2). -/
 def TheoremA : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
     [FiniteDimensional k A], ¬ IsRepresentationFinite A →
@@ -186,8 +187,8 @@ def TheoremA : Prop :=
       PreservesFilteredColimitsOfSize.{u, u} F ∧
       (∀ T : D k, Cardinal.aleph0 ≤ T.obj.dim → dim k A (F.obj T) = T.obj.dim)
 
-/-- Corollary 1.1: the third Brauer–Thrall conjecture over algebraically
-closed fields, in the form that every infinite dimension occurs. -/
+/-- Part of Corollary 1.1: the third Brauer–Thrall conjecture over
+algebraically closed fields, in the form that every infinite dimension occurs. -/
 def CorollaryDimension : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
     [FiniteDimensional k A], ¬ IsRepresentationFinite A →
@@ -195,7 +196,8 @@ def CorollaryDimension : Prop :=
       ∃ (M : Type u) (_ : AddCommGroup M) (_ : Module A M) (_ : Module k M)
         (_ : IsScalarTower k A M), Module.rank k M = κ ∧ IsIndecomposable A M
 
-/-- Corollary 5.3: modules of every infinite dimension whose endomorphism
+/-- Corollary 1.1 (= Corollary 5.6) without the number of modules and the
+explicit bound on `n`: modules of every infinite dimension whose endomorphism
 algebra `E` satisfies `E = k·1 + rad E`, `1 ∉ rad E` (so `E / rad E ≅ k`), and
 `(rad E)ⁿ = 0` for one `n ≥ 1` independent of the dimension. -/
 def CorollaryRadical : Prop :=

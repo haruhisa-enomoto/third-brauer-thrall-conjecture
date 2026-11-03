@@ -22,7 +22,7 @@ For the predicate `Statement.IsIndecomposable` this file proves:
 * for a module that is finite-dimensional over a field `k`, the radical of the
   endomorphism ring is nilpotent, so every product of `ℓ` nonunits vanishes for
   some `ℓ ≥ 1` (`exists_nonunitProductsVanish`). This is the hypothesis
-  `(rad End_A(P))^ℓ = 0` of Lemma 2.6, in the form
+  `(rad End_A(P))^ℓ = 0` of Lemma 5.1, in the form
   `FixedSummand.NonunitProductsVanish`.
 
 The idempotent characterization and Fitting's lemma are adapted from
@@ -218,7 +218,7 @@ theorem prod_ofFn_mem_pow {R : Type*} [Ring R] (I : Ideal R) :
     rw [List.ofFn_succ', List.prod_concat, Submodule.pow_succ]
     exact Ideal.mul_mem_mul (prod_ofFn_mem_pow I _ fun i ↦ hf _) (hf _)
 
-/-- Lemma 2.6 hypothesis: for a finite-dimensional indecomposable module `P`
+/-- Lemma 5.1 hypothesis: for a finite-dimensional indecomposable module `P`
 some `ℓ ≥ 1` has every product of `ℓ` nonunits of `End_A(P)` zero, that is
 `(rad End_A(P))^ℓ = 0`. -/
 theorem exists_nonunitProductsVanish (P : ModuleCat.{u} A) [Module k P] [IsScalarTower k A P]

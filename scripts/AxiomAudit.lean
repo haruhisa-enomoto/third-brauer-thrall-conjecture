@@ -13,11 +13,12 @@ Run with `lake env lean scripts/AxiomAudit.lean`, or `python3 scripts/audit_axio
 #print axioms LargeIndecomposable.corollaryRadical
 #print axioms LargeIndecomposable.linesOfEveryLength
 #print axioms LargeIndecomposable.theoremA_of_bongartz
-#print axioms LargeIndecomposable.SplitBasicData.nonempty_controlledEmbedding
+#print axioms LargeIndecomposable.EmbeddingData.theoremA_conclusion
+#print axioms LargeIndecomposable.SplitBasicData.nonempty_embeddingData
 #print axioms LargeIndecomposable.Covering.PairCoveringData.toCoveringData
-#print axioms LargeIndecomposable.Covering.CoveringData.controlledEmbedding
+#print axioms LargeIndecomposable.Covering.CoveringData.embeddingData
 #print axioms LargeIndecomposable.Walk.MonomialBand.toWalkData
-#print axioms LargeIndecomposable.Walk.WalkData.controlledEmbedding
+#print axioms LargeIndecomposable.Walk.WalkData.embeddingData
 #print axioms LargeIndecomposable.exists_brick_of_le_card
 #print axioms LargeIndecomposable.kroneckerBricks_of_large
 #print axioms LargeIndecomposable.SplitBasicData.presentation_surjective

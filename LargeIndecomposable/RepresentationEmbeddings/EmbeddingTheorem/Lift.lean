@@ -7,8 +7,8 @@ public import LargeIndecomposable.RepresentationEmbeddings.EmbeddingTheorem.Elem
 
 A homomorphism from a finite-dimensional `A`-module into `F(X)` factors
 through some `Φ(U)`, and two such factorizations agree at a later stage. This
-is the finite presentation used in the proofs of Proposition 2.5 and
-Theorem 2.7. The algebra `A` is finite-dimensional.
+is the finite presentation used in Step 1 of the proof of Theorem 5.2. The
+algebra `A` is finite-dimensional.
 -/
 
 @[expose] public section

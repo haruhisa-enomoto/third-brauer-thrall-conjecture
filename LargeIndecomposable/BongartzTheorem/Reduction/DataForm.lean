@@ -17,7 +17,7 @@ algebraically closed field carries covering data with a Kronecker pair (`Coverin
 presentation with a band (`Walk.MonomialBand.toWalkData` turns a band into walk
 data). The representation-embedding property of
 the push-down functors is not assumed: the facts about `S₋` (`RepresentationEmbeddings/WalkConstruction/WalkCase.lean`,
-`RepresentationEmbeddings/CoveringConstruction/SimpleInjectiveFacts.lean`) and Propositions 4.4, 4.7, 4.8 supply what Theorem 2.7
+`RepresentationEmbeddings/CoveringConstruction/SimpleInjectiveFacts.lean`) and Propositions 4.4, 4.7, 4.8 supply what Theorem 5.2
 needs. Alternative (1), for
 nondistributive algebras, is proved in `NonDistributive`.
 
@@ -39,14 +39,14 @@ open CategoryTheory Statement
 universe u
 
 /-- The data form of Bongartz's Theorem 6 in the distributive case: alternative
-(2) or (3) of Theorem 3.10. -/
+(2) or (3) of Theorem 3.14. -/
 def BongartzDistributive : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι], SplitBasicData k B ι →
       IsMinimalRepInfinite B → IsDistribIdeals B →
         Nonempty (Covering.PairCoveringData k B) ∨ Nonempty (Walk.MonomialBand k B)
 
-/-- Theorem 3.10 for distributive algebras, from the data form of Bongartz's
+/-- Theorem 3.14 for distributive algebras, from the data form of Bongartz's
 Theorem 6. -/
 theorem distributiveEmbeddingData_of_bongartz (H : BongartzDistributive.{u}) :
     DistributiveEmbeddingData.{u} := by

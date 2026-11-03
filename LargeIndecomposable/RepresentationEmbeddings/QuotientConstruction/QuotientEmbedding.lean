@@ -11,7 +11,7 @@ public import Mathlib.LinearAlgebra.TensorProduct.Finiteness
 For `Q : QuotientData k Λ` with one-dimensional tops at `e_x, e_y` and
 `J^n = 0`, the functor `F₁ : D → Mod Λ` of Construction 3.3 is exact and
 faithful, has finite-dimensional values on `D_fin` and satisfies the colimit
-comparison (3.4) (Lemma 3.4); its retractions on `D` (Proposition 4.1) restrict
+comparison (3.6) (Lemma 3.4); its retractions on `D` (Proposition 4.1) restrict
 to `C`. Restricted to `D_fin`, the retractions show that `F₁(S₋)` is
 indecomposable and not isomorphic to `F₁(T)` for `T ∈ C_fin`.
 -/
@@ -46,7 +46,7 @@ lemma tensorMap_comp {W₁ W₂ W₃ : ModuleCat.{u} k} (f : W₁ ⟶ W₂) (g :
   rfl
 
 include hx in
-/-- Lemma 3.4: `F₁` satisfies the colimit comparison (3.4). An element of
+/-- Lemma 3.4: `F₁` satisfies the colimit comparison (3.6). An element of
 `F₁(T)` is the class of an element of `Λe_y ⊗ W₀` for a finite-dimensional
 `W₀ ⊆ W`, and a relation `s ⊗ a(v) + t ⊗ b(v)` holds in `F₁(U + ⟨v⟩)`. -/
 theorem comparison : Comparison.IsComparison (ΦD Q) := by

@@ -11,7 +11,7 @@ public import Mathlib.CategoryTheory.Preadditive.AdditiveFunctor
 /-!
 # The extension commutes with filtered colimits and direct sums
 
-Proposition 2.3, the part on colimits: if `Φ : D_fin → mod A` is exact, then
+If `Φ : D_fin → mod A` is exact, then
 its colimit extension `F = Extension.functor Φ : D → Mod A` commutes with
 filtered colimits, and, if `Φ` is moreover additive, with arbitrary direct
 sums.
@@ -264,7 +264,7 @@ namespace Extension
 
 variable {Φ : Dfin k ⥤ ModuleCat.{u} A}
 
-/-- Proposition 2.3: the extension `F` commutes with filtered colimits. -/
+/-- The extension `F` commutes with filtered colimits. -/
 def isColimit_mapCocone_of_isFiltered (hexact : IsExactOnDfin Φ) {J : Type u}
     [SmallCategory J] [IsFiltered J] {K : J ⥤ D k} {c : Cocone K} (hc : IsColimit c) :
     IsColimit ((functor Φ).mapCocone c) := by
@@ -374,7 +374,7 @@ def isColimit_mapCocone_of_isFiltered (hexact : IsExactOnDfin Φ) {J : Type u}
     exact ⟨(colimit.ι (K ⋙ functor Φ) j).hom ((ι Φ _ Uj).hom u'),
       (hφ j _).trans (ι_map_apply Φ _ Uj U hUj.le u')⟩
 
-/-- Proposition 2.3: the extension `F` commutes with filtered colimits. -/
+/-- The extension `F` commutes with filtered colimits. -/
 theorem preservesFilteredColimits (hexact : IsExactOnDfin Φ) :
     PreservesFilteredColimitsOfSize.{u, u} (functor Φ) where
   preserves_filtered_colimits _ _ _ :=
@@ -492,7 +492,7 @@ instance additive [Φ.Additive] : (functor Φ).Additive where
       ← Preadditive.add_comp, e, Φ.map_add]
 
 variable {Φ} in
-/-- Proposition 2.3: the extension `F` of an additive exact `Φ` commutes with
+/-- The extension `F` of an additive exact `Φ` commutes with
 arbitrary direct sums. As in the manuscript, an arbitrary sum is the filtered
 colimit of its finite subsums, and `F` preserves finite sums by additivity. -/
 theorem preservesCoproducts [Φ.Additive] (hexact : IsExactOnDfin Φ) (ι : Type u) :
