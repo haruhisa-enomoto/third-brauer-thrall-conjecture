@@ -9,7 +9,7 @@ public import LargeIndecomposable.KroneckerModules.Basic
 Propositions 4.4, 4.7 and 4.8, for maps between the total spaces
 `⊕_i L(T)(i)` satisfying the block equations of a push-down along a quiver
 morphism `p : D → Q` injective on the arrows with a fixed source and on those
-with a fixed target. Here `L : D_fin → Rep D` is fully faithful and a morphism
+with a fixed target. Here `L : D → Rep D` is fully faithful and a morphism
 `φ : T → U` with `T ∈ C` whose image `L(φ)` vanishes at one vertex is zero
 (`ZeroAtVertex`, Lemmas 2.2(1) and 4.2). The positions `(j, i)` of blocks are
 partitioned into classes (`BlockClasses`): components of the matching quiver
@@ -319,16 +319,16 @@ end Chain
 
 /-- A morphism `φ : T → U` with `T ∈ C` whose image under `L` vanishes at some
 vertex is zero. -/
-def ZeroAtVertex (L : Dfin k ⥤ Rep k D) : Prop :=
-  ∀ {T U : Dfin k}, InC T.obj → ∀ (φ : T ⟶ U) (c : D.V), (L.map φ).app c = 0 → φ = 0
+def ZeroAtVertex (L : Statement.D k ⥤ Rep k D) : Prop :=
+  ∀ {T U : Statement.D k}, InC T.obj → ∀ (φ : T ⟶ U) (c : D.V), (L.map φ).app c = 0 → φ = 0
 
-variable (hloc : p.LocallyInjective) {L : Dfin k ⥤ Rep k D} [L.Additive] (hL : L.FullyFaithful)
+variable (hloc : p.LocallyInjective) {L : Statement.D k ⥤ Rep k D} [L.Additive] (hL : L.FullyFaithful)
   (hZ : ZeroAtVertex L)
 include hloc hL hZ
 
 /-- For `T ∈ C`, a map `p_*L(T) → p_*L(U)` satisfying the block equations and
 vanishing on one summand has zero diagonal blocks. -/
-theorem bl_self_eq_zero {T U : Dfin k} (hT : InC T.obj) {h : (L.obj T).Tot →ₗ[k] (L.obj U).Tot}
+theorem bl_self_eq_zero {T U : Statement.D k} (hT : InC T.obj) {h : (L.obj T).Tot →ₗ[k] (L.obj U).Tot}
     (hh : BlockEqs p h) {c : D.V} (hc : h ∘ₗ (L.obj T).idm c = 0) (i : D.V) : bl h i i = 0 := by
   set ψ := diagHom hloc h hh
   have hcc : blk h c c = 0 := by
@@ -347,7 +347,7 @@ theorem bl_self_eq_zero {T U : Dfin k} (hT : InC T.obj) {h : (L.obj T).Tot →�
 
 omit hZ in
 /-- The diagonal blocks of a map in the image of `L` are its components. -/
-lemma diagHom_eq_preimage {T U : Dfin k} {h : (L.obj T).Tot →ₗ[k] (L.obj U).Tot}
+lemma diagHom_eq_preimage {T U : Statement.D k} {h : (L.obj T).Tot →ₗ[k] (L.obj U).Tot}
     (hh : BlockEqs p h) (h0 : hL.preimage (diagHom hloc h hh) = 0) (i : D.V) : bl h i i = 0 := by
   have key : (diagHom hloc h hh).app i = 0 := by
     rw [← hL.map_preimage (diagHom hloc h hh), h0, L.map_zero]; rfl
@@ -359,7 +359,7 @@ include B in
 /-- The diagonal part is multiplicative: for `T ∈ C`, the diagonal block of a
 composite `p_*L(T) → p_*L(U) → p_*L(V)` is the composite of the diagonal
 blocks. -/
-theorem bl_comp_self {T U V : Dfin k} (hT : InC T.obj) {f : (L.obj T).Tot →ₗ[k] (L.obj U).Tot}
+theorem bl_comp_self {T U V : Statement.D k} (hT : InC T.obj) {f : (L.obj T).Tot →ₗ[k] (L.obj U).Tot}
     {g : (L.obj U).Tot →ₗ[k] (L.obj V).Tot} (hf : BlockEqs p f) (hg : BlockEqs p g) (i : D.V) :
     bl (g ∘ₗ f) i i = bl g i i ∘ₗ bl f i i := by
   classical
@@ -387,10 +387,10 @@ theorem bl_comp_self {T U V : Dfin k} (hT : InC T.obj) {f : (L.obj T).Tot →ₗ
   rw [e1, ← e2, h0, add_zero]
 
 
-/-! ### The chain argument for `L` on `C_fin` -/
+/-! ### The chain argument for `L` on `C` -/
 
-/-- The family `T ↦ L(T)` on `C_fin`. -/
-abbrev LX (L : Dfin k ⥤ Rep k D) : {T : Dfin k // InC T.obj} → Rep k D :=
+/-- The family `T ↦ L(T)` on `C`. -/
+abbrev LX (L : Statement.D k ⥤ Rep k D) : {T : Statement.D k // InC T.obj} → Rep k D :=
   fun o ↦ L.obj o.1
 
 lemma diagZero_LX : Chain.DiagZero (p := p) (LX L) (fun _ _ ↦ True) :=

@@ -17,11 +17,12 @@ arrows of `D` with the same label are `G`-translates of each other. Grouping
 block positions `(γ x, x)` by `γ ∈ G` gives the classes of Proposition 4.4
 (`CoverData.blockClasses`); a class `γ ≠ 1` misses a column because `γ Σ ≠ Σ`.
 
-`CoveringData k A` adds an exact fully faithful functor `L` from
-finite-dimensional Kronecker modules to representations of `D`, with every
-vertex of `D` in the support of `L(S₊)` or `L(S₋)`, and a presentation
-`kQ → A` whose kernel acts by zero on `p_*L(T)` for `T ∈ D_fin`. By the facts about `S₋`
-(`RepresentationEmbeddings/CoveringConstruction/SimpleInjectiveFacts.lean`) it yields a controlled embedding.
+`CoveringData k A` adds an exact fully faithful functor `L` from Kronecker
+modules of any dimension to representations of `D`, with every vertex of `D` in
+the support of `L(S₊)` or `L(S₋)`, and a presentation `kQ → A` whose kernel
+acts by zero on `p_*L(T)`. By the facts about `S₋`
+(`RepresentationEmbeddings/CoveringConstruction/SimpleInjectiveFacts.lean`) it
+gives the data of Theorem 5.2.
 -/
 
 @[expose] public section
@@ -211,26 +212,30 @@ structure CoveringData where
   /-- The group action of the covering. -/
   C : CoverData p
   /-- The functor `L`. -/
-  L : Kfin k ⥤ Rep k D
+  L : Kron k ⥤ Rep k D
   [additive : L.Additive]
   hL : L.FullyFaithful
-  map_smul : ∀ {T U : Kfin k} (c : k) (f : T ⟶ U) (i : D.V),
+  map_smul : ∀ {T U : Kron k} (c : k) (f : T ⟶ U) (i : D.V),
     (L.map (c • f)).app i = c • (L.map f).app i
-  exact : ExactOnKfin L
-  fin : ∀ (T : Kfin k) (i : D.V), Module.Finite k ((L.obj T).obj i)
-  supp : ∀ c : D.V, Nontrivial ((L.obj (SplusK k)).obj c) ∨ Nontrivial ((L.obj (SminusK k)).obj c)
-  nonzero : (∃ c, Nontrivial ((L.obj (SplusK k)).obj c)) ∧ ∃ c, Nontrivial ((L.obj (SminusK k)).obj c)
+  exact : ExactOnKron L
+  fin : ∀ (T : Kron k), T.IsFiniteDimensional → ∀ i : D.V, Module.Finite k ((L.obj T).obj i)
+  /-- Every vector of `L(T)` comes from `L(U)` for a finite-dimensional `U ⊆ T`. -/
+  finitary : ∀ (T : Kron k) (i : D.V) (x : (L.obj T).obj i),
+    ∃ U : Kron.FinSub T, x ∈ Set.range ((L.map (Kron.Sub.ι U.1)).app i).hom
+  /-- `L` keeps inclusions injective. -/
+  incl_injective : ∀ (T : Kron k) (U : Kron.Sub T) (i : D.V),
+    Function.Injective ((L.map (Kron.Sub.ι U)).app i).hom
+  supp : ∀ c : D.V, Nontrivial ((L.obj (Kron.Splus k)).obj c) ∨
+    Nontrivial ((L.obj (Kron.Sminus k)).obj c)
+  nonzero : (∃ c, Nontrivial ((L.obj (Kron.Splus k)).obj c)) ∧
+    ∃ c, Nontrivial ((L.obj (Kron.Sminus k)).obj c)
   /-- The presentation `kQ → A`. -/
   π : Q.PathAlgebra k →ₐ[k] A
   surj : Function.Surjective π
-  /-- `p_*L(T)` is an `A`-module for `T ∈ D_fin`. -/
-  kills : ∀ (T : Dfin k) (z : Q.PathAlgebra k), π z = 0 →
-    (L.obj ((DfinToKfin k).obj T)).pdAct p z = 0
+  /-- `p_*L(T)` is an `A`-module. -/
+  kills : ∀ (T : Kron k) (z : Q.PathAlgebra k), π z = 0 → (L.obj T).pdAct p z = 0
 
 attribute [instance] CoveringData.additive
-
-instance : (DfinToKfin k).Additive where
-  map_add := rfl
 
 /-- Covering data as push-down data. -/
 def CoveringData.toPdData (W : CoveringData k A) : PushDown.PdData k A where
@@ -239,15 +244,17 @@ def CoveringData.toPdData (W : CoveringData k A) : PushDown.PdData k A where
   p := W.p
   locInj := W.locInj
   B := W.C.blockClasses
-  L := DfinToKfin k ⋙ W.L
-  hL := (ObjectProperty.fullyFaithfulιOfLE _).comp W.hL
-  map_smul c f i := W.map_smul c ((DfinToKfin k).map f) i
+  L := DToKron k ⋙ W.L
+  hL := (ObjectProperty.fullyFaithfulι _).comp W.hL
+  map_smul c f i := W.map_smul c f.hom i
   zero := zeroAtVertex W.L W.exact W.supp
-  exact _ _ _ f g h := W.exact _ _ _ ((DfinToKfin k).map f) ((DfinToKfin k).map g) h
-  fin _ := W.fin _
+  exact _ _ _ f g h := W.exact _ _ _ f.hom g.hom h
+  fin T := W.fin T.obj T.2.2
+  finitary T i x := W.finitary T.obj i x
+  incl_injective T U i := W.incl_injective T.obj U.1 i
   π := W.π
   surj := W.surj
-  kills := W.kills
+  kills T := W.kills T.obj
 
 end Covering
 

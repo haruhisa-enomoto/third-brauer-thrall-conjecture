@@ -5,6 +5,7 @@ public import Mathlib.LinearAlgebra.TensorProduct.Prod
 public import Mathlib.LinearAlgebra.Dual.Lemmas
 public import Mathlib.LinearAlgebra.TensorProduct.Basis
 public import Mathlib.RingTheory.Flat.Basic
+public import Mathlib.LinearAlgebra.TensorProduct.Finiteness
 
 /-!
 # The functor `L` from a Kronecker pair
@@ -15,7 +16,7 @@ supports, together with two families `z₁, z₂` of maps `z_α : P(i) → Q₀(
 for the arrows `α : i → j` that are linearly independent as tuples
 (two independent extension classes in `Ext¹(P, Q₀)`).
 
-For a finite-dimensional Kronecker module `T = (V, W; a, b)`,
+For a Kronecker module `T = (V, W; a, b)` of any dimension (Construction 3.7),
 `L(T)(i) = (Q₀(i) ⊗ W) × (P(i) ⊗ V)` with arrow maps
 `[[Q₀(α) ⊗ 1, z₁,α ⊗ a + z₂,α ⊗ b], [0, P(α) ⊗ 1]]`, and `L(g, h) = (1 ⊗ h) × (1 ⊗ g)`.
 -/
@@ -61,11 +62,10 @@ structure KroneckerPair (D : FinQuiver) where
 section BrickTensor
 
 variable {X W : Type u} [AddCommGroup X] [Module k X] [AddCommGroup W] [Module k W]
-  [FiniteDimensional k W]
 
-lemma equivFinsupp_apply_eq (t : X ⊗[k] W) (i : Fin (Module.finrank k W)) :
-    (TensorProduct.equivFinsuppOfBasisRight (Module.finBasis k W) t) i =
-      (TensorProduct.rid k X) (TensorProduct.map LinearMap.id ((Module.finBasis k W).coord i) t) := by
+lemma equivFinsupp_apply_eq {ι : Type*} [DecidableEq ι] (b : Module.Basis ι k W) (t : X ⊗[k] W) (i : ι) :
+    (TensorProduct.equivFinsuppOfBasisRight b t) i =
+      (TensorProduct.rid k X) (TensorProduct.map LinearMap.id (b.coord i) t) := by
   induction t using TensorProduct.inductionOn with
   | tmul x w => simp [TensorProduct.equivFinsuppOfBasisRight_apply_tmul]
   | add x y hx hy => simp only [map_add, Finsupp.coe_add, Pi.add_apply, hx, hy]
@@ -75,18 +75,19 @@ on `W`. -/
 lemma tensor_eq_zero_of_contract (t : X ⊗[k] W)
     (h : ∀ μ : Module.Dual k W, (TensorProduct.rid k X) (TensorProduct.map LinearMap.id μ t) = 0) :
     t = 0 := by
-  have : TensorProduct.equivFinsuppOfBasisRight (Module.finBasis k W) t = 0 := by
+  classical
+  have : TensorProduct.equivFinsuppOfBasisRight (Module.Basis.ofVectorSpace k W) t = 0 := by
     ext i; rw [equivFinsupp_apply_eq, h]; rfl
   simpa using this
 
 end BrickTensor
 
-/-- Maps between `X ⊗ W` and `X ⊗ W'` commuting with the arrows, for a brick `X`
-with finite-dimensional spaces, are `1 ⊗ h`. -/
+/-- Maps between `X ⊗ W` and `X ⊗ W'` commuting with the arrows, for a brick `X`,
+are `1 ⊗ h`; the spaces `W, W'` may have any dimension (proof of Lemma 3.8). -/
 theorem brick_tensor {D : FinQuiver} (X : Rep k D)
     (hbrick : ∀ f : X ⟶ X, ∃ c : k, ∀ i, (f.app i).hom = c • LinearMap.id)
     {W W' : Type u} [AddCommGroup W] [Module k W] [AddCommGroup W'] [Module k W']
-    [FiniteDimensional k W'] (φ : ∀ i, X.obj i ⊗[k] W →ₗ[k] X.obj i ⊗[k] W')
+    (φ : ∀ i, X.obj i ⊗[k] W →ₗ[k] X.obj i ⊗[k] W')
     (hφ : ∀ α : D.A, φ (D.tgt α) ∘ₗ TensorProduct.map (X.map α).hom LinearMap.id =
       TensorProduct.map (X.map α).hom LinearMap.id ∘ₗ φ (D.src α)) :
     ∃ h : W →ₗ[k] W', ∀ i, φ i = TensorProduct.map LinearMap.id h := by
@@ -148,32 +149,32 @@ namespace KroneckerPair
 variable {D : FinQuiver} (K : KroneckerPair k D)
 
 /-- The space `L(T)(i) = (Q₀(i) ⊗ W) × (P(i) ⊗ V)`. -/
-abbrev space (T : Kfin k) (i : D.V) : Type u :=
-  (K.Q₀.obj i ⊗[k] T.obj.W) × (K.P.obj i ⊗[k] T.obj.V)
+abbrev space (T : Kron k) (i : D.V) : Type u :=
+  (K.Q₀.obj i ⊗[k] T.W) × (K.P.obj i ⊗[k] T.V)
 
 /-- The arrow map of `L(T)`. -/
-def arrMap (T : Kfin k) (α : D.A) : K.space T (D.src α) →ₗ[k] K.space T (D.tgt α) :=
+def arrMap (T : Kron k) (α : D.A) : K.space T (D.src α) →ₗ[k] K.space T (D.tgt α) :=
   LinearMap.prod
     (LinearMap.coprod (TensorProduct.map (K.Q₀.map α).hom LinearMap.id)
-      (TensorProduct.map (K.z₁ α) T.obj.a.hom + TensorProduct.map (K.z₂ α) T.obj.b.hom))
+      (TensorProduct.map (K.z₁ α) T.a.hom + TensorProduct.map (K.z₂ α) T.b.hom))
     (TensorProduct.map (K.P.map α).hom LinearMap.id ∘ₗ LinearMap.snd k _ _)
 
 /-- The representation `L(T)`. -/
-def obj (T : Kfin k) : Rep k D where
+def obj (T : Kron k) : Rep k D where
   obj i := ModuleCat.of k (K.space T i)
   map α := ModuleCat.ofHom (K.arrMap T α)
 
 /-- The vertex map of `L(g, h)`. -/
-def vmap {T U : Kfin k} (f : T ⟶ U) (i : D.V) : K.space T i →ₗ[k] K.space U i :=
-  LinearMap.prodMap (TensorProduct.map LinearMap.id (f.hom.app one).hom)
-    (TensorProduct.map LinearMap.id (f.hom.app zero).hom)
+def vmap {T U : Kron k} (f : T ⟶ U) (i : D.V) : K.space T i →ₗ[k] K.space U i :=
+  LinearMap.prodMap (TensorProduct.map LinearMap.id (f.app one).hom)
+    (TensorProduct.map LinearMap.id (f.app zero).hom)
 
-lemma vmap_comm {T U : Kfin k} (f : T ⟶ U) (α : D.A) :
+lemma vmap_comm {T U : Kron k} (f : T ⟶ U) (α : D.A) :
     K.vmap f (D.tgt α) ∘ₗ K.arrMap T α = K.arrMap U α ∘ₗ K.vmap f (D.src α) := by
-  have ha : (f.hom.app one).hom ∘ₗ T.obj.a.hom = U.obj.a.hom ∘ₗ (f.hom.app zero).hom :=
-    congrArg ModuleCat.Hom.hom (Kron.a_comp f.hom)
-  have hb : (f.hom.app one).hom ∘ₗ T.obj.b.hom = U.obj.b.hom ∘ₗ (f.hom.app zero).hom :=
-    congrArg ModuleCat.Hom.hom (Kron.b_comp f.hom)
+  have ha : (f.app one).hom ∘ₗ T.a.hom = U.a.hom ∘ₗ (f.app zero).hom :=
+    congrArg ModuleCat.Hom.hom (Kron.a_comp f)
+  have hb : (f.app one).hom ∘ₗ T.b.hom = U.b.hom ∘ₗ (f.app zero).hom :=
+    congrArg ModuleCat.Hom.hom (Kron.b_comp f)
   apply LinearMap.prod_ext
   · apply TensorProduct.ext'
     intro q w
@@ -186,7 +187,7 @@ lemma vmap_comm {T U : Kfin k} (f : T ⟶ U) (α : D.A) :
     simp [vmap, arrMap, e1, e2]
 
 /-- The functor `L`. -/
-def functor : Kfin k ⥤ Rep k D where
+def functor : Kron k ⥤ Rep k D where
   obj := K.obj
   map f := ⟨fun i ↦ ModuleCat.ofHom (K.vmap f i), fun α ↦ by
     ext1
@@ -215,38 +216,38 @@ lemma subsingleton_tensor_left {M N : Type u} [AddCommGroup M] [Module k M] [Add
     rw [h x, h y]⟩
 
 /-- The off-diagonal blocks of a map `L(T)(i) → L(U)(i)` vanish. -/
-lemma snd_comp_inl {T U : Kfin k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) :
+lemma snd_comp_inl {T U : Kron k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) :
     LinearMap.snd k _ _ ∘ₗ φ ∘ₗ LinearMap.inl k _ _ = 0 := by
   have := K.finP i
   have := K.finQ i
   refine LinearMap.ext fun x ↦ ?_
   rcases K.disjoint i with hP | hQ
-  · have : Subsingleton (K.P.obj i ⊗[k] U.obj.V) := subsingleton_tensor_left
+  · have : Subsingleton (K.P.obj i ⊗[k] U.V) := subsingleton_tensor_left
     exact Subsingleton.elim _ _
-  · have : Subsingleton (K.Q₀.obj i ⊗[k] T.obj.W) := subsingleton_tensor_left
+  · have : Subsingleton (K.Q₀.obj i ⊗[k] T.W) := subsingleton_tensor_left
     rw [Subsingleton.elim x 0]
     simp only [LinearMap.comp_apply, LinearMap.inl_apply, LinearMap.snd_apply, LinearMap.zero_apply]
     rw [Prod.mk_zero_zero, map_zero]; rfl
 
-lemma fst_comp_inr {T U : Kfin k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) :
+lemma fst_comp_inr {T U : Kron k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) :
     LinearMap.fst k _ _ ∘ₗ φ ∘ₗ LinearMap.inr k _ _ = 0 := by
   refine LinearMap.ext fun x ↦ ?_
   rcases K.disjoint i with hP | hQ
-  · have : Subsingleton (K.P.obj i ⊗[k] T.obj.V) := subsingleton_tensor_left
+  · have : Subsingleton (K.P.obj i ⊗[k] T.V) := subsingleton_tensor_left
     rw [Subsingleton.elim x 0]
     simp only [LinearMap.comp_apply, LinearMap.inr_apply, LinearMap.fst_apply, LinearMap.zero_apply]
     rw [Prod.mk_zero_zero, map_zero]; rfl
-  · have : Subsingleton (K.Q₀.obj i ⊗[k] U.obj.W) := subsingleton_tensor_left
+  · have : Subsingleton (K.Q₀.obj i ⊗[k] U.W) := subsingleton_tensor_left
     exact Subsingleton.elim _ _
 
-lemma snd_apply {T U : Kfin k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) (a b) :
+lemma snd_apply {T U : Kron k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) (a b) :
     (φ (a, b)).2 = (φ (0, b)).2 := by
   have h := congrArg (fun F ↦ F a) (K.snd_comp_inl i φ)
   simp only [LinearMap.comp_apply, LinearMap.inl_apply, LinearMap.snd_apply,
     LinearMap.zero_apply] at h
   rw [show (a, b) = (a, 0) + (0, b) by simp, map_add, Prod.snd_add, h, zero_add]
 
-lemma fst_apply {T U : Kfin k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) (a b) :
+lemma fst_apply {T U : Kron k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) (a b) :
     (φ (a, b)).1 = (φ (a, 0)).1 := by
   have h := congrArg (fun F ↦ F b) (K.fst_comp_inr i φ)
   simp only [LinearMap.comp_apply, LinearMap.inr_apply, LinearMap.fst_apply,
@@ -265,7 +266,7 @@ lemma eq_zero_of_tmul {M N : Type u} [AddCommGroup M] [Module k M] [AddCommGroup
   have := congrArg (fun t ↦ (TensorProduct.lid k N) (TensorProduct.map lam LinearMap.id t)) h
   simpa [hl] using this
 
-lemma eq_prodMap {T U : Kfin k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) :
+lemma eq_prodMap {T U : Kron k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) :
     φ = LinearMap.prodMap (LinearMap.fst k _ _ ∘ₗ φ ∘ₗ LinearMap.inl k _ _)
       (LinearMap.snd k _ _ ∘ₗ φ ∘ₗ LinearMap.inr k _ _) := by
   refine LinearMap.ext fun ⟨a, b⟩ ↦ Prod.ext ?_ ?_
@@ -288,31 +289,29 @@ lemma eq_zero_of_indep {W' : Type u} [AddCommGroup W'] [Module k W'] (u₁ u₂ 
   exact ⟨(Module.forall_dual_apply_eq_zero_iff k u₁).1 fun μ ↦ (hμ μ).1,
     (Module.forall_dual_apply_eq_zero_iff k u₂).1 fun μ ↦ (hμ μ).2⟩
 
-lemma arrMap_fst (T : Kfin k) (α : D.A) (x : K.space T (D.src α)) : (K.arrMap T α x).1 =
+lemma arrMap_fst (T : Kron k) (α : D.A) (x : K.space T (D.src α)) : (K.arrMap T α x).1 =
     TensorProduct.map (K.Q₀.map α).hom LinearMap.id x.1 +
-      (TensorProduct.map (K.z₁ α) T.obj.a.hom + TensorProduct.map (K.z₂ α) T.obj.b.hom) x.2 := by
+      (TensorProduct.map (K.z₁ α) T.a.hom + TensorProduct.map (K.z₂ α) T.b.hom) x.2 := by
   simp [arrMap]
 
-lemma arrMap_snd (T : Kfin k) (α : D.A) (x : K.space T (D.src α)) : (K.arrMap T α x).2 =
+lemma arrMap_snd (T : Kron k) (α : D.A) (x : K.space T (D.src α)) : (K.arrMap T α x).2 =
     TensorProduct.map (K.P.map α).hom LinearMap.id x.2 := by
   simp [arrMap]
 
-lemma snd_zero {T U : Kfin k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) (a) :
+lemma snd_zero {T U : Kron k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) (a) :
     (φ (a, 0)).2 = 0 := by
   rw [K.snd_apply i φ a 0, Prod.mk_zero_zero, map_zero]; rfl
 
-lemma fst_zero {T U : Kfin k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) (b) :
+lemma fst_zero {T U : Kron k} (i : D.V) (φ : K.space T i →ₗ[k] K.space U i) (b) :
     (φ (0, b)).1 = 0 := by
   rw [K.fst_apply i φ 0 b, Prod.mk_zero_zero, map_zero]; rfl
 
 instance : K.functor.Full where
   map_surjective {T U} φ := by
-    have : FiniteDimensional k U.obj.W := U.2.2
-    have : FiniteDimensional k U.obj.V := U.2.1
     let φi : ∀ i, K.space T i →ₗ[k] K.space U i := fun i ↦ (φ.app i).hom
-    let φQ : ∀ i, K.Q₀.obj i ⊗[k] T.obj.W →ₗ[k] K.Q₀.obj i ⊗[k] U.obj.W := fun i ↦
+    let φQ : ∀ i, K.Q₀.obj i ⊗[k] T.W →ₗ[k] K.Q₀.obj i ⊗[k] U.W := fun i ↦
       LinearMap.fst k _ _ ∘ₗ φi i ∘ₗ LinearMap.inl k _ _
-    let φP : ∀ i, K.P.obj i ⊗[k] T.obj.V →ₗ[k] K.P.obj i ⊗[k] U.obj.V := fun i ↦
+    let φP : ∀ i, K.P.obj i ⊗[k] T.V →ₗ[k] K.P.obj i ⊗[k] U.V := fun i ↦
       LinearMap.snd k _ _ ∘ₗ φi i ∘ₗ LinearMap.inr k _ _
     have hdec : ∀ i, φi i = LinearMap.prodMap (φQ i) (φP i) := fun i ↦
       K.eq_prodMap i (φi i)
@@ -334,8 +333,8 @@ instance : K.functor.Full where
         TensorProduct.map (K.P.map α).hom LinearMap.id y) from Prod.ext rfl (by rw [arrMap_snd])]
       exact (K.snd_apply (D.tgt α) (φi (D.tgt α)) _ _).symm
     -- the extension tuples force the Kronecker equations
-    have hab : ∀ v, h (T.obj.a.hom v) = U.obj.a.hom (g v) ∧
-        h (T.obj.b.hom v) = U.obj.b.hom (g v) := by
+    have hab : ∀ v, h (T.a.hom v) = U.a.hom (g v) ∧
+        h (T.b.hom v) = U.b.hom (g v) := by
       intro v
       refine (fun H ↦ ⟨sub_eq_zero.1 H.1, sub_eq_zero.1 H.2⟩) (K.eq_zero_of_indep _ _ fun α p ↦ ?_)
       have e := congrArg Prod.fst (hcomm α (0, p ⊗ₜ v))
@@ -349,9 +348,9 @@ instance : K.functor.Full where
       simp only [map_zero, zero_add, LinearMap.add_apply, TensorProduct.map_tmul,
         LinearMap.id_apply, map_add] at e
       rw [TensorProduct.tmul_sub, TensorProduct.tmul_sub, sub_add_sub_comm, e, sub_self]
-    refine ⟨ObjectProperty.homMk (Kron.homMk (ModuleCat.ofHom g) (ModuleCat.ofHom h)
+    refine ⟨Kron.homMk (ModuleCat.ofHom g) (ModuleCat.ofHom h)
       (ModuleCat.hom_ext (LinearMap.ext fun v ↦ (hab v).1))
-      (ModuleCat.hom_ext (LinearMap.ext fun v ↦ (hab v).2))), ?_⟩
+      (ModuleCat.hom_ext (LinearMap.ext fun v ↦ (hab v).2)), ?_⟩
     refine Rep.hom_ext fun i ↦ ?_
     ext1
     change K.vmap _ i = φi i
@@ -366,16 +365,15 @@ instance : K.functor.Faithful where
     obtain ⟨p, hp⟩ := exists_ne (0 : K.P.obj iP)
     have h1 := congrArg (fun F ↦ (F.app iQ).hom) hff
     have h2 := congrArg (fun F ↦ (F.app iP).hom) hff
-    ext1
     refine Kron.hom_ext ?_ ?_
     · ext v
       have := congrArg (fun F ↦ (F (0, p ⊗ₜ v)).2) h2
-      change p ⊗ₜ[k] (f.hom.app zero).hom v = p ⊗ₜ[k] (f'.hom.app zero).hom v at this
+      change p ⊗ₜ[k] (f.app zero).hom v = p ⊗ₜ[k] (f'.app zero).hom v at this
       rw [← sub_eq_zero, ← TensorProduct.tmul_sub] at this
       exact sub_eq_zero.1 (eq_zero_of_tmul hp this)
     · ext w
       have := congrArg (fun F ↦ (F (q ⊗ₜ w, 0)).1) h1
-      change q ⊗ₜ[k] (f.hom.app one).hom w = q ⊗ₜ[k] (f'.hom.app one).hom w at this
+      change q ⊗ₜ[k] (f.app one).hom w = q ⊗ₜ[k] (f'.app one).hom w at this
       rw [← sub_eq_zero, ← TensorProduct.tmul_sub] at this
       exact sub_eq_zero.1 (eq_zero_of_tmul hq this)
 
@@ -388,30 +386,30 @@ instance : K.functor.Additive where
     ext1
     change K.vmap (f + g) i = K.vmap f i + K.vmap g i
     simp only [vmap]
-    rw [show (f + g).hom.app one = f.hom.app one + g.hom.app one from rfl,
-      show (f + g).hom.app zero = f.hom.app zero + g.hom.app zero from rfl,
+    rw [show (f + g).app one = f.app one + g.app one from rfl,
+      show (f + g).app zero = f.app zero + g.app zero from rfl,
       ModuleCat.hom_add, ModuleCat.hom_add, TensorProduct.map_add_right,
       TensorProduct.map_add_right]
     apply LinearMap.prod_ext <;> rfl
 
-lemma map_smul' {T U : Kfin k} (c : k) (f : T ⟶ U) (i : D.V) :
+lemma map_smul' {T U : Kron k} (c : k) (f : T ⟶ U) (i : D.V) :
     (K.functor.map (c • f)).app i = c • (K.functor.map f).app i := by
   ext1
   change K.vmap (c • f) i = c • K.vmap f i
   simp only [vmap]
-  rw [show (c • f).hom.app one = c • f.hom.app one from rfl,
-    show (c • f).hom.app zero = c • f.hom.app zero from rfl,
+  rw [show (c • f).app one = c • f.app one from rfl,
+    show (c • f).app zero = c • f.app zero from rfl,
     ModuleCat.hom_smul, ModuleCat.hom_smul, TensorProduct.map_smul_right,
     TensorProduct.map_smul_right]
   apply LinearMap.prod_ext <;> rfl
 
-lemma exact : ExactOnKfin K.functor := by
+lemma exact : ExactOnKron K.functor := by
   intro X Y Z f g h i
   obtain ⟨h0i, h0s, h0e⟩ := h zero
   obtain ⟨h1i, h1s, h1e⟩ := h one
-  have e0 : Function.Exact (f.hom.app zero).hom (g.hom.app zero).hom := by
+  have e0 : Function.Exact (f.app zero).hom (g.app zero).hom := by
     rw [LinearMap.exact_iff]; exact h0e.symm
-  have e1 : Function.Exact (f.hom.app one).hom (g.hom.app one).hom := by
+  have e1 : Function.Exact (f.app one).hom (g.app one).hom := by
     rw [LinearMap.exact_iff]; exact h1e.symm
   have iQ := Module.Flat.lTensor_preserves_injective_linearMap (M := K.Q₀.obj i) _ h1i
   have iP := Module.Flat.lTensor_preserves_injective_linearMap (M := K.P.obj i) _ h0i
@@ -427,8 +425,8 @@ lemma exact : ExactOnKfin K.functor := by
     obtain ⟨b, hb⟩ := sP y.2
     exact ⟨(a, b), Prod.ext ha hb⟩
   · ext ⟨y₁, y₂⟩
-    change (∃ x : K.space X i, (LinearMap.lTensor _ (f.hom.app one).hom x.1,
-      LinearMap.lTensor _ (f.hom.app zero).hom x.2) = (y₁, y₂)) ↔ (LinearMap.lTensor _ (g.hom.app one).hom y₁, LinearMap.lTensor _ (g.hom.app zero).hom y₂) = 0
+    change (∃ x : K.space X i, (LinearMap.lTensor _ (f.app one).hom x.1,
+      LinearMap.lTensor _ (f.app zero).hom x.2) = (y₁, y₂)) ↔ (LinearMap.lTensor _ (g.app one).hom y₁, LinearMap.lTensor _ (g.app zero).hom y₂) = 0
     constructor
     · rintro ⟨⟨x₁, x₂⟩, hx⟩
       obtain ⟨rfl, rfl⟩ := Prod.ext_iff.1 hx
@@ -438,25 +436,70 @@ lemma exact : ExactOnKfin K.functor := by
       obtain ⟨x₂, hx₂⟩ := (xP y₂).1 (congrArg Prod.snd hy)
       exact ⟨(x₁, x₂), Prod.ext hx₁ hx₂⟩
 
-lemma fin (T : Kfin k) (i : D.V) : Module.Finite k ((K.functor.obj T).obj i) := by
+lemma fin (T : Kron k) (hT : T.IsFiniteDimensional) (i : D.V) :
+    Module.Finite k ((K.functor.obj T).obj i) := by
   have := K.finP i
   have := K.finQ i
-  have : FiniteDimensional k T.obj.V := T.2.1
-  have : FiniteDimensional k T.obj.W := T.2.2
+  have : FiniteDimensional k T.V := hT.1
+  have : FiniteDimensional k T.W := hT.2
   change Module.Finite k (K.space T i)
   infer_instance
 
 lemma nontrivial_splus (i : D.V) (h : Nontrivial (K.P.obj i)) :
-    Nontrivial ((K.functor.obj (SplusK k)).obj i) := by
+    Nontrivial ((K.functor.obj (Kron.Splus k)).obj i) := by
   obtain ⟨x, hx⟩ := exists_ne (0 : K.P.obj i)
   refine ⟨⟨((0 : K.Q₀.obj i ⊗[k] PUnit), x ⊗ₜ[k] (1 : k)), 0, fun h' ↦ hx ?_⟩⟩
   exact eq_zero_of_tmul_right (show (1 : k) ≠ 0 from one_ne_zero) (congrArg Prod.snd h')
 
 lemma nontrivial_sminus (i : D.V) (h : Nontrivial (K.Q₀.obj i)) :
-    Nontrivial ((K.functor.obj (SminusK k)).obj i) := by
+    Nontrivial ((K.functor.obj (Kron.Sminus k)).obj i) := by
   obtain ⟨x, hx⟩ := exists_ne (0 : K.Q₀.obj i)
   refine ⟨⟨(x ⊗ₜ[k] (1 : k), (0 : K.P.obj i ⊗[k] PUnit)), 0, fun h' ↦ hx ?_⟩⟩
   exact eq_zero_of_tmul_right (show (1 : k) ≠ 0 from one_ne_zero) (congrArg Prod.fst h')
+
+lemma vmap_ι_apply {T : Kron k} (U : Kron.Sub T) (i : D.V) (x : K.space U.toKron i) :
+    ((K.functor.map (Kron.Sub.ι U)).app i).hom x =
+      (LinearMap.lTensor _ U.W.subtype x.1, LinearMap.lTensor _ U.V.subtype x.2) := by
+  rcases x with ⟨a, b⟩
+  change K.vmap (Kron.Sub.ι U) i (a, b) = _
+  simp only [vmap, LinearMap.prodMap_apply]
+  rfl
+
+/-- `L` keeps inclusions injective, since tensor products over a field are
+exact. -/
+lemma incl_injective (T : Kron k) (U : Kron.Sub T) (i : D.V) :
+    Function.Injective ((K.functor.map (Kron.Sub.ι U)).app i).hom := by
+  intro x y h
+  change K.vmap (Kron.Sub.ι U) i x = K.vmap (Kron.Sub.ι U) i y at h
+  simp only [vmap, LinearMap.prodMap_apply, Prod.ext_iff] at h
+  exact Prod.ext
+    (Module.Flat.lTensor_preserves_injective_linearMap _ Subtype.val_injective
+      h.1)
+    (Module.Flat.lTensor_preserves_injective_linearMap _ Subtype.val_injective h.2)
+
+/-- Every vector of `L(T)` comes from `L(U)` for a finite-dimensional `U ⊆ T`. -/
+lemma finitary (T : Kron k) (i : D.V) (x : (K.functor.obj T).obj i) :
+    ∃ U : Kron.FinSub T, x ∈ Set.range ((K.functor.map (Kron.Sub.ι U.1)).app i).hom := by
+  obtain ⟨x₁, x₂⟩ := (x : K.space T i)
+  obtain ⟨NW, hNW, h₁⟩ :=
+    TensorProduct.exists_finite_submodule_right_of_setFinite {x₁} (Set.finite_singleton x₁)
+  obtain ⟨NV, hNV, h₂⟩ :=
+    TensorProduct.exists_finite_submodule_right_of_setFinite {x₂} (Set.finite_singleton x₂)
+  obtain ⟨sW, hsW, hspanW⟩ := Submodule.fg_def.1 (Module.Finite.iff_fg.1 hNW)
+  obtain ⟨sV, hsV, hspanV⟩ := Submodule.fg_def.1 (Module.Finite.iff_fg.1 hNV)
+  obtain ⟨U, hUV, hUW⟩ := Kron.FinSub.exists_of_finite (X := T) sV sW hsV hsW
+  have hW : NW ≤ U.1.W := hspanW ▸ Submodule.span_le.2 hUW
+  have hV : NV ≤ U.1.V := hspanV ▸ Submodule.span_le.2 hUV
+  obtain ⟨y₁, hy₁⟩ := h₁ (Set.mem_singleton x₁)
+  obtain ⟨y₂, hy₂⟩ := h₂ (Set.mem_singleton x₂)
+  refine ⟨U, (LinearMap.lTensor _ (Submodule.inclusion hW) y₁,
+    LinearMap.lTensor _ (Submodule.inclusion hV) y₂), ?_⟩
+  rw [K.vmap_ι_apply]
+  refine Prod.ext ?_ ?_
+  · change (LinearMap.lTensor _ U.1.W.subtype ∘ₗ LinearMap.lTensor _ (Submodule.inclusion hW)) y₁ = x₁
+    rw [← LinearMap.lTensor_comp]; exact hy₁
+  · change (LinearMap.lTensor _ U.1.V.subtype ∘ₗ LinearMap.lTensor _ (Submodule.inclusion hV)) y₂ = x₂
+    rw [← LinearMap.lTensor_comp]; exact hy₂
 
 end KroneckerPair
 
@@ -466,7 +509,7 @@ variable (k A) in
 /-- Covering data: the
 finite part of a Galois covering with torsion-free group, a Kronecker pair on
 it whose supports cover `D`, and a presentation `kQ → A` whose kernel acts by
-zero on the push-downs `p_*L(T)`, `T ∈ D_fin`. -/
+zero on the push-downs `p_*L(T)`. -/
 structure PairCoveringData where
   /-- The full subquiver of the covering on the support. -/
   D : FinQuiver
@@ -483,8 +526,8 @@ structure PairCoveringData where
   /-- The presentation. -/
   π : Q.PathAlgebra k →ₐ[k] A
   surj : Function.Surjective π
-  kills : ∀ (T : Dfin k) (z : Q.PathAlgebra k), π z = 0 →
-    (K.functor.obj ((DfinToKfin k).obj T)).pdAct p z = 0
+  kills : ∀ (T : Kron k) (z : Q.PathAlgebra k), π z = 0 →
+    (K.functor.obj T).pdAct p z = 0
 
 /-- Covering data from a Kronecker pair. -/
 def PairCoveringData.toCoveringData (W : PairCoveringData k A) : CoveringData k A where
@@ -498,6 +541,8 @@ def PairCoveringData.toCoveringData (W : PairCoveringData k A) : CoveringData k 
   map_smul := W.K.map_smul'
   exact := W.K.exact
   fin := W.K.fin
+  finitary := W.K.finitary
+  incl_injective := W.K.incl_injective
   supp i := (W.supp i).imp (W.K.nontrivial_splus i) (W.K.nontrivial_sminus i)
   nonzero := ⟨let ⟨i, hi⟩ := W.K.nonzeroP; ⟨i, W.K.nontrivial_splus i hi⟩,
     let ⟨i, hi⟩ := W.K.nonzeroQ; ⟨i, W.K.nontrivial_sminus i hi⟩⟩
