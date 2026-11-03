@@ -628,6 +628,177 @@ lemma Rad1.dshape_of_branch (hg : q.IsGraph) (h : q.Rad1 y) (hc : q.NoCore)
         · obtain rfl : m = k + 2 := by omega
           rw [Fe, yz1]; simp [DTilde.sy]
 
+/-- **Graph forms with a positive radical vector in at least ten variables**: the cycle `Ã`
+(constant radical vector, an induced path through all points but one) or a `D̃` tree. -/
+theorem Rad1.graph_shape (hg : q.IsGraph) (h : q.Rad1 y) (h10 : 10 ≤ Fintype.card ι) :
+    ((∀ u v, y u = y v) ∧ q.LongPath (Fintype.card ι - 1)) ∨ q.DShape y := by
+  classical
+  haveI : Nonempty ι := Fintype.card_pos_iff.1 (by omega)
+  have hrad := h.2.2.1
+  by_cases hcore : ∃ S : Finset ι, S.Nonempty ∧ ∀ v ∈ S, 2 ≤ (q.nbrs v ∩ S).card
+  · obtain ⟨S, hS, hS2⟩ := hcore
+    exact Or.inl (h.longPath_of_core hg S hS hS2)
+  right
+  have hc : q.NoCore := by
+    intro S hS
+    by_contra h'
+    push Not at h'
+    exact hcore ⟨S, hS, fun v hv ↦ h' v hv⟩
+  by_cases h4 : ∃ v, 4 ≤ (q.nbrs v).card
+  · obtain ⟨v, hv⟩ := h4
+    have := h.card_le_of_deg4 hg v hv; omega
+  push Not at h4
+  have hpos1 : ∀ v, 1 ≤ (q.nbrs v).card := by
+    intro v
+    by_contra h0
+    have h0 : q.nbrs v = ∅ := Finset.card_eq_zero.1 (by omega)
+    have := additive hg hrad v
+    rw [h0, Finset.sum_empty] at this
+    have := h.2.1 v
+    omega
+  -- a leaf
+  obtain ⟨ℓ, -, hℓ⟩ := hc Finset.univ Finset.univ_nonempty
+  rw [Finset.inter_univ] at hℓ
+  obtain ⟨n, hnℓ⟩ := Finset.card_eq_one.1 (le_antisymm hℓ (hpos1 ℓ))
+  have hn : n ∈ q.nbrs ℓ := by rw [hnℓ]; simp
+  have hyn : y n = 2 * y ℓ := by
+    have := additive hg hrad ℓ; rw [hnℓ, Finset.sum_singleton] at this; linarith
+  -- the walk from the leaf ends at a point of degree three
+  obtain ⟨k, hk⟩ := exists_stop hc hn
+  have hk1 := hk.1
+  have hend : (q.nbrs (q.walk ℓ n k)).card = 3 := by
+    have h1 := hpos1 (q.walk ℓ n k)
+    have h3 := h4 (q.walk ℓ n k)
+    have h2 := hk.2.2
+    by_contra h3'
+    have hone : (q.nbrs (q.walk ℓ n k)).card = 1 := by omega
+    have e := additive hg hrad (q.walk ℓ n k)
+    rw [hk.nbrs_end hn hone, Finset.sum_singleton, hk.val hg hrad hn le_rfl,
+      hk.val hg hrad hn (by omega), hyn] at e
+    obtain ⟨m, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩
+    rw [show m + 1 - 1 = m by omega] at e
+    push_cast at e
+    have := h.2.1 ℓ
+    nlinarith
+  set b := q.walk ℓ n k with hbdef
+  obtain ⟨n0, n1, n2, h01, h02, h12, hnb⟩ := Finset.card_eq_three.1 hend
+  set nn : Fin 3 → ι := ![n0, n1, n2] with hnn
+  have hinj : Function.Injective nn := by
+    intro i j hij
+    fin_cases i <;> fin_cases j <;> simp_all [hnn] <;> first | exact absurd hij ‹_› |
+      exact absurd hij.symm ‹_›
+  have hnb' : q.nbrs b = Finset.univ.image nn := by
+    rw [hnb]; ext x; simp [hnn, Fin.exists_fin_succ]; tauto
+  have hmem : ∀ j, nn j ∈ q.nbrs b := fun j ↦ by
+    rw [hnb']; exact Finset.mem_image_of_mem _ (by simp)
+  choose kk hkk using fun j ↦ exists_stop hc (hmem j)
+  by_cases hbr : ∃ j, (q.nbrs (q.walk b (nn j) (kk j))).card = 3
+  · obtain ⟨j, hj⟩ := hbr
+    exact h.dshape_of_branch hg hc (hmem j) hend (hkk j) hj
+  push Not at hbr
+  have := h.card_le_of_star hg hc nn hinj hnb' kk hkk fun j ↦ ?_
+  · omega
+  have := hpos1 (q.walk b (nn j) (kk j))
+  have := h4 (q.walk b (nn j) (kk j))
+  have := (hkk j).2.2
+  have := hbr j
+  omega
+
+
+/-- **The critical diagrams in at least ten variables** (von Höhne 1988, Theorems 1.2 and
+2.1): a form with `Rad1` is the cycle `Ã` with a constant radical vector, or a shape of type
+`D̃`. Inflate to a graph form (`exists_terminal`) and pull the shape back
+(`DShape.of_inflate`); an inflation of `Ã` is impossible, since it makes the radical vector
+nonconstant. -/
+theorem Rad1.shape (h : q.Rad1 y) (h10 : 10 ≤ Fintype.card ι) :
+    ((∀ u v, y u = y v) ∧ q.LongPath (Fintype.card ι - 1)) ∨ q.DShape y := by
+  classical
+  obtain ⟨M, hM⟩ : ∃ M : ℕ, ∀ q' ∈ {q : UnitForm ι | ∀ x, 0 ≤ q.val x}, q'.rsum ≤ M := by
+    obtain ⟨M, hM⟩ := ((finite_nonneg (ι := ι)).image rsum).bddAbove
+    exact ⟨M, fun q' hq' ↦ hM ⟨q', hq', rfl⟩⟩
+  suffices H : ∀ n, ∀ (q : UnitForm ι) (y : ι → ℤ), q.Rad1 y → M - q.rsum = n →
+      ((∀ u v, y u = y v) ∧ q.LongPath (Fintype.card ι - 1)) ∨ q.DShape y from H _ q y h rfl
+  intro n
+  induction n using Nat.strong_induction_on with
+  | _ n ih =>
+  intro q y h hn
+  by_cases hterm : ∀ a b, a ≠ b → q.c a b ≠ 1
+  · exact h.graph_shape (fun a b hab ↦ h.coeff_graph hterm (by omega) hab) h10
+  push Not at hterm
+  obtain ⟨a, b, hab, hc⟩ := hterm
+  have h1 := h.inflate hab hc
+  have hlt := q.rsum_lt_inflate h hab hc
+  have hle := hM _ h1.1
+  rcases ih (M - (q.inflate hab hc).rsum) (by omega) _ _ h1 rfl with ⟨hconst, -⟩ | hD
+  · exfalso
+    have e := hconst a b
+    rw [deflMap_apply, deflMap_apply, if_pos rfl, if_neg (Ne.symm hab), add_zero] at e
+    have := h.2.1 a
+    linarith
+  · exact Or.inr (DShape.of_inflate hab hc h.2.1 hD)
+
+open DTilde DTilde.Pt in
+/-- A shape has an induced path through all points but `s` and `t`. -/
+theorem DShape.longPath {q : UnitForm ι} {y : ι → ℤ} (h : q.DShape y) :
+    q.LongPath (Fintype.card ι - 2) := by
+  classical
+  obtain ⟨M, i, j, pos, l, hl, hij, hjM, hval, hinj, hsurj, hcoef, hyy⟩ := h
+  choose F hF using hsurj
+  have : Nonempty ι := ⟨F s trivial⟩
+  -- the number of points
+  have hcard : Fintype.card ι = M + 2 := by
+    let V : Finset Pt := insert s (insert t ((Finset.range M).image p))
+    have hV : V.card = M + 2 := by
+      rw [Finset.card_insert_of_notMem (by simp), Finset.card_insert_of_notMem (by simp),
+        Finset.card_image_of_injective _ (fun a b h ↦ by injection h), Finset.card_range]
+    have hmemV : ∀ x, x ∈ V ↔ Valid M x := fun x ↦ by
+      rcases x with _ | _ | k <;> simp [V, Valid]
+    have h1 : Fintype.card ι ≤ V.card := by
+      rw [← Finset.card_univ]
+      exact Finset.card_le_card_of_injOn pos (fun u _ ↦ (hmemV _).2 (hval u))
+        (fun u _ v _ huv ↦ hinj huv)
+    have h2 : V.card ≤ Fintype.card ι := by
+      rw [← Finset.card_univ]
+      exact Finset.card_le_card_of_injOn (fun x ↦ if hx : Valid M x then F x hx else
+        Classical.arbitrary ι) (fun _ _ ↦ Finset.mem_univ _) fun x hx x' hx' hxx ↦ by
+          have hx1 := (hmemV x).1 hx
+          have hx2 := (hmemV x').1 hx'
+          simp only [dif_pos hx1, dif_pos hx2] at hxx
+          rw [← hF x hx1, ← hF x' hx2, hxx]
+    omega
+  rw [hcard, show M + 2 - 2 = M by omega]
+  let P : ℕ → ι := fun k ↦ if hk : k < M then F (p k) hk else Classical.arbitrary ι
+  have hP : ∀ k (hk : k < M), pos (P k) = p k := fun k hk ↦ by
+    simp only [P, dif_pos hk]; exact hF _ _
+  refine ⟨P, fun k k' hk hk' hkk ↦ ?_, fun k hk ↦ ?_, fun k k' hk' hkk ↦ ?_⟩
+  · have := congrArg pos hkk
+    rw [hP k hk, hP k' hk'] at this
+    injection this
+  · have hne : P k ≠ P (k + 1) := fun h' ↦ by
+      have := congrArg pos h'; rw [hP k (by omega), hP (k + 1) hk] at this; injection this; omega
+    rw [hcoef _ _ hne, hP k (by omega), hP (k + 1) hk]
+    simp [sc]
+  · have hne : P k ≠ P k' := fun h' ↦ by
+      have := congrArg pos h'; rw [hP k (by omega), hP k' hk'] at this; injection this; omega
+    rw [hcoef _ _ hne, hP k (by omega), hP k' hk']
+    simp only [sc]
+    rw [if_neg (by omega)]
+
+lemma LongPath.mono {q : UnitForm ι} {m m' : ℕ} (h : q.LongPath m) (hm : m' ≤ m) :
+    q.LongPath m' := by
+  obtain ⟨P, h1, h2, h3⟩ := h
+  exact ⟨P, fun k l hk hl ↦ h1 k l (by omega) (by omega), fun k hk ↦ h2 k (by omega),
+    fun k l hl hkl ↦ h3 k l (by omega) hkl⟩
+
+/-- **A critical form in at least ten variables has an induced path of full edges through all
+points but two.** -/
+theorem Critical.longPath (q : UnitForm ι) (hq : q.Critical) (h10 : 10 ≤ Fintype.card ι) :
+    q.LongPath (Fintype.card ι - 2) := by
+  obtain ⟨y, hy⟩ := Critical.rad1 q hq (by omega)
+  rcases hy.shape h10 with ⟨-, hP⟩ | hD
+  · exact hP.mono (by omega)
+  · exact hD.longPath
+
 end UnitForm
 
 end LargeIndecomposable.Forms

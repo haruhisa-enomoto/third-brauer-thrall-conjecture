@@ -474,6 +474,8 @@ public import LargeIndecomposable.UnitForms.Reduction
 public import LargeIndecomposable.UnitForms.Graph
 public import LargeIndecomposable.UnitForms.Tree
 public import LargeIndecomposable.UnitForms.Ovsienko
+public import LargeIndecomposable.UnitForms.DTilde
+public import LargeIndecomposable.UnitForms.DTildeGraph
 public import LargeIndecomposable.Modules.Duality.DualA
 public import LargeIndecomposable.Modules.Homological.Presentation
 public import LargeIndecomposable.AuslanderReiten.AlmostSplit.RightAlmostSplit
