@@ -613,6 +613,7 @@ public import LargeIndecomposable.BongartzTheorem.LongLines.CoverLine
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBand
 public import LargeIndecomposable.BongartzTheorem.LongLines.WindowPair
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBandRel
+public import LargeIndecomposable.BongartzTheorem.Reduction.BoundedReduction
 public import LargeIndecomposable.BongartzTheorem.ContourExclusion.RelationPaths
 public import LargeIndecomposable.BongartzTheorem.LongLines.LinePaths
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineModule
@@ -676,6 +677,7 @@ public import LargeIndecomposable.BongartzTheorem.ContourExclusion.ContourFree
 public import LargeIndecomposable.BongartzTheorem.LongLines.ForestPiece
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBuild
 public import LargeIndecomposable.MainTheorems
+public import LargeIndecomposable.ExplicitBound
 public import LargeIndecomposable.KroneckerBricks.AnchoredFamilies
 public import LargeIndecomposable.KroneckerBricks.Injective
 public import LargeIndecomposable.KroneckerBricks.RigidFamily

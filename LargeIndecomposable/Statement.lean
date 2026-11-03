@@ -242,4 +242,20 @@ def CorollaryCount : Prop :=
         (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) → (∀ i, Module.rank k (M i) = κ) →
           Cardinal.mk ι ≤ 2 ^ κ)
 
+/-- **Corollary 1.1 (= Corollary 5.6)** with the explicit bound: as `CorollaryCount`, with
+`1 ≤ n ≤ max(30, 4 dim A)`. -/
+def CorollaryCountBounded : Prop :=
+  ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
+    [FiniteDimensional k A], ¬ IsRepresentationFinite A →
+    ∃ n : ℕ, 1 ≤ n ∧ n ≤ max 30 (4 * Module.finrank k A) ∧ ∀ κ : Cardinal.{u}, Cardinal.aleph0 ≤ κ →
+      (∃ (ι : Type u) (M : ι → Type u) (_ : ∀ i, AddCommGroup (M i)) (_ : ∀ i, Module A (M i))
+          (_ : ∀ i, Module k (M i)) (_ : ∀ i, IsScalarTower k A (M i)),
+        Cardinal.mk ι = 2 ^ κ ∧ (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) ∧
+        ∀ i, Module.rank k (M i) = κ ∧ IsIndecomposable A (M i) ∧
+          EndLocalBounded k A n (M i)) ∧
+      (Cardinal.mk k ≤ κ → ∀ (ι : Type u) (M : ι → Type u) [∀ i, AddCommGroup (M i)]
+          [∀ i, Module A (M i)] [∀ i, Module k (M i)] [∀ i, IsScalarTower k A (M i)],
+        (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) → (∀ i, Module.rank k (M i) = κ) →
+          Cardinal.mk ι ≤ 2 ^ κ)
+
 end LargeIndecomposable.Statement

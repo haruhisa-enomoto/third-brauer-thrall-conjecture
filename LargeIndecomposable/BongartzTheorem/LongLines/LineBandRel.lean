@@ -61,14 +61,14 @@ lemma pathIn_src (S : Set (Cover x₀)) {X : RayVert (Cover x₀)} :
 
 /-- A path of the cover inside a finite set `S` is a path of the piece quiver of `S` with the
 same labels. -/
-lemma piece_of_cover_path (S : Finset (Cover x₀)) {X : RayVert (Cover x₀)} (hX : X.out ∈ S) :
+lemma piecePath_of_pathIn (S : Finset (Cover x₀)) {X : RayVert (Cover x₀)} (hX : X.out ∈ S) :
     ∀ {Y : RayVert (Cover x₀)} (q : Quiver.Path X Y), PathIn (S : Set (Cover x₀)) q →
       (hY : Y.out ∈ S) → ∃ le : List (pieceQuiver S).A,
         PathFrom (D := pieceQuiver S) (⟨X.out, hX⟩ : S) le ⟨Y.out, hY⟩ ∧
           le.map (pieceProj S).arr = labs q
   | _, .nil, _, _ => ⟨[], rfl, rfl⟩
   | _, .cons q e, hq, hY => by
-    obtain ⟨le, hle, hmap⟩ := piece_of_cover_path S hX q hq.1 (pathIn_tgt _ q hq.1)
+    obtain ⟨le, hle, hmap⟩ := piecePath_of_pathIn S hX q hq.1 (pathIn_tgt _ q hq.1)
     let α : (pieceQuiver S).A := ⟨⟨_, pathIn_tgt _ q hq.1⟩, ⟨_, hY⟩, e.1, e.2⟩
     refine ⟨le ++ [α], pathFrom_append_gen le [α] hle ⟨rfl, rfl⟩, ?_⟩
     rw [List.map_append, hmap]
@@ -131,7 +131,7 @@ lemma eq_of_along {l l' : List (quiver P).A} {x y : P} (h : PathFrom (D := quive
     · change t + 2 + (j₀ : ℕ) ≤ L.n; have := j₀.2; omega
   obtain ⟨b, q, hq, hlq⟩ := cover_path hg le i j hp (vidx t i) hvi (by rintro j₀ rfl; rfl)
   rw [← L.coe_finset] at hq
-  obtain ⟨lp, hlp, hlpm⟩ := piece_of_cover_path L.finset (pathIn_src _ q hq) q hq
+  obtain ⟨lp, hlp, hlpm⟩ := piecePath_of_pathIn L.finset (pathIn_src _ q hq) q hq
     (pathIn_tgt _ q hq)
   have hlpm' : lp.map (pieceProj L.finset).arr = l := hlpm.trans (hlq.trans hmap)
   obtain ⟨lp', hlpm2, hlp', -⟩ := exists_partner L.convex_finset (L.respectsCover_lineRep ℚ) he hν
