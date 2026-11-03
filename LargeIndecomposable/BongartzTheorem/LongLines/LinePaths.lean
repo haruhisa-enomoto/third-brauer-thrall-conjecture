@@ -23,9 +23,9 @@ open CategoryTheory Limits Cover FinQuiver RayQuiver Classical
 variable {P : Type} [Category.{0} P] [HasZeroMorphisms P] [IsRayCategory P] [Fintype P]
   [DecidableEq P] {x₀ : P}
 
-namespace CLine
+namespace OLine
 
-variable (L : CLine x₀)
+variable (L : OLine x₀)
 
 /-- The points of the line as a finite set. -/
 def finset : Finset (Cover x₀) := (Finset.range (L.n + 1)).image L.pt
@@ -36,9 +36,6 @@ lemma mem_finset {c : Cover x₀} : c ∈ L.finset ↔ ∃ a ≤ L.n, L.pt a = c
 
 lemma coe_finset : (L.finset : Set (Cover x₀)) = L.pts := by
   ext c; exact L.mem_finset
-
-lemma convex_finset : Convex (L.finset : Set (Cover x₀)) := by
-  rw [coe_finset]; exact L.convex
 
 /-- The index of a point of the line. -/
 def idx (c : Cover x₀) : ℕ := if h : ∃ a ≤ L.n, L.pt a = c then Nat.find h else 0
@@ -186,6 +183,15 @@ lemma path_unique : ∀ (le le' : List (pieceQuiver L.finset).A) (i j : (pieceQu
       rfl
     subst hαβ
     rw [path_unique le le' α.2.1 j h.2 h'.2]
+
+end OLine
+
+namespace CLine
+
+variable (L : CLine x₀)
+
+lemma convex_finset : Convex (L.finset : Set (Cover x₀)) := by
+  rw [OLine.coe_finset]; exact L.convex
 
 end CLine
 

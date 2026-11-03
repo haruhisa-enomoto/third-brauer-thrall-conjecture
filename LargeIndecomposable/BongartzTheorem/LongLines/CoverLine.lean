@@ -48,12 +48,16 @@ structure WLine where
     pathVal p ≠ 0
 
 variable (x₀) in
-/-- **A line of the universal cover**: a full convex subcategory given by a quiver of type `A`
-without relations (a weak line that is convex and has no other arrows). -/
-structure CLine extends WLine x₀ where
+/-- A weak line with no other arrows between its points. -/
+structure OLine extends WLine x₀ where
   /-- The only arrows between points of the line are the line arrows. -/
   only : ∀ a b, a ≤ n → b ≤ n → ∀ f : pt a ⟶ pt b, IsIrreducible f →
     (b = a + 1 ∧ fwd a = true) ∨ (a = b + 1 ∧ fwd b = false)
+
+variable (x₀) in
+/-- **A line of the universal cover**: a full convex subcategory given by a quiver of type `A`
+without relations (a weak line that is convex and has no other arrows). -/
+structure CLine extends OLine x₀ where
   convex : Convex {c | ∃ a ≤ n, pt a = c}
 
 namespace WLine

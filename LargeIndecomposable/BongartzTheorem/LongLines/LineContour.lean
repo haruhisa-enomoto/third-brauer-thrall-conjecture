@@ -99,7 +99,7 @@ variable (L : CLine x₀) (k : Type u) [Field k]
 
 lemma card_finset : L.finset.card = L.n + 1 := by
   classical
-  unfold finset
+  unfold OLine.finset
   rw [Finset.card_image_of_injOn, Finset.card_range]
   intro a ha b hb hab
   simp only [Finset.coe_range, Set.mem_Iio] at ha hb
