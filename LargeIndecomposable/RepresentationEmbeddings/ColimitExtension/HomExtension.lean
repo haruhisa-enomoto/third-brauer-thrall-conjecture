@@ -1,7 +1,7 @@
 module
 
 public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Lift
-public import LargeIndecomposable.KroneckerModules.Glue
+public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.CSub
 public import LargeIndecomposable.RepresentationEmbeddings.Control.Retraction
 
 /-!
@@ -31,38 +31,9 @@ universe u
 
 variable {k : Type u} [Field k] {A : Type u} [Ring A] [Algebra k A]
 
-/-- The subcategory `C` of `D`. -/
-abbrev InCD : ObjectProperty (D k) := fun X ↦ InC X.obj
-
-/-- The subcategory `C_fin` of `D_fin`. -/
-abbrev InCfin : ObjectProperty (Dfin k) := fun X ↦ InC X.obj
-
-/-- The underlying Kronecker morphism of a morphism of `C_fin`. -/
-abbrev InCfin.kh {X Y : (InCfin (k := k)).FullSubcategory} (f : X ⟶ Y) : X.obj.obj ⟶ Y.obj.obj :=
-  f.hom.hom
-
-/-- The underlying Kronecker morphism of a morphism of `C`. -/
-abbrev InCD.kh {X Y : (InCD (k := k)).FullSubcategory} (f : X ⟶ Y) : X.obj.obj ⟶ Y.obj.obj :=
-  f.hom.hom
-
 namespace Extension
 
 variable (Φ : Dfin k ⥤ ModuleCat.{u} A)
-
-/-- `Φ` restricted to `C_fin`. -/
-abbrev Ψfin : (InCfin (k := k)).FullSubcategory ⥤ ModuleCat.{u} A := (InCfin (k := k)).ι ⋙ Φ
-
-/-- The stage `T_{V₀}` of `X ∈ D` as an object of `C_fin`. -/
-abbrev stage (X : D k) (V₀ : Kron.FinV X.obj) : (InCfin (k := k)).FullSubcategory :=
-  ⟨(finDiagram X).obj V₀.toFinSub, Kron.Sub.inC_ofV X.2 V₀.1⟩
-
-/-- The transition `T_{V₀} → T_{V₁}` in `C_fin`. -/
-def stageMap (X : D k) {V₀ V₁ : Kron.FinV X.obj} (h : V₀.toFinSub ≤ V₁.toFinSub) :
-    stage X V₀ ⟶ stage X V₁ :=
-  ObjectProperty.homMk ((finDiagram X).map (homOfLE h))
-
-lemma stageMap_kh (X : D k) {V₀ V₁ : Kron.FinV X.obj} (h : V₀.toFinSub ≤ V₁.toFinSub) :
-    InCfin.kh (stageMap X h) = Kron.Sub.homOfLE h := rfl
 
 variable (R : Retractions k (Ψfin Φ))
 
