@@ -663,6 +663,7 @@ public import LargeIndecomposable.DirectedAlgebras.Preprojective.CriticalAbstrac
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.ArrowEuler
 public import LargeIndecomposable.AuslanderReiten.Lengths.ChainBound
 public import LargeIndecomposable.DirectedAlgebras.Directing.QuotAny
+public import LargeIndecomposable.DirectedAlgebras.Directing.QuotSource
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.MinimalQuot
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.ExtCocycle
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceCritical
