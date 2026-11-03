@@ -615,6 +615,7 @@ public import LargeIndecomposable.BongartzTheorem.LongLines.CoverLine
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBand
 public import LargeIndecomposable.BongartzTheorem.LongLines.WindowPair
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBandRel
+public import LargeIndecomposable.BongartzTheorem.LongLines.ModuleLine
 public import LargeIndecomposable.BongartzTheorem.Reduction.BoundedReduction
 public import LargeIndecomposable.BongartzTheorem.ContourExclusion.RelationPaths
 public import LargeIndecomposable.BongartzTheorem.LongLines.LinePaths
