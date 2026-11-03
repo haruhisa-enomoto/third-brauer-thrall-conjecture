@@ -257,6 +257,20 @@ lemma reflPt_reflPt {M : ℕ} {x : Pt} (hx : Valid M x) : reflPt M (reflPt M x) 
   rcases x with _ | _ | k <;> simp only [Valid, reflPt] at hx ⊢
   congr 1; omega
 
+/-- The neighbours in the model `D̃` with fork ends (`i = 0`, `j = M - 1`, `M = k + 3`). -/
+def forkNbrs (k : ℕ) : Pt → Finset Pt
+  | s => {p 1}
+  | t => {p (k + 1)}
+  | p m => if m = 0 then {p 1} else if m = 1 then {p 0, s, p 2} else if m ≤ k then
+      {p (m - 1), p (m + 1)} else if m = k + 1 then {p k, p (k + 2), t} else {p (k + 1)}
+
+lemma sc_fork {k : ℕ} (hk : 1 ≤ k) (x x' : Pt) (hx : Valid (k + 3) x) (hx' : Valid (k + 3) x')
+    (hne : x ≠ x') : sc (k + 3) 0 (k + 2) x x' = if x' ∈ forkNbrs k x then -1 else 0 := by
+  rcases x with _ | _ | m <;> rcases x' with _ | _ | m' <;> simp only [Valid] at hx hx' <;>
+    simp only [forkNbrs] <;> (try split_ifs) <;>
+    simp only [Finset.mem_insert, Finset.mem_singleton, reduceCtorEq, Pt.p.injEq, or_false,
+      false_or] at * <;> model_tac
+
 end DTilde
 
 namespace UnitForm
