@@ -1,6 +1,8 @@
 module
 
 public import LargeIndecomposable.DirectedAlgebras.EulerForm.EulerUnit
+public import LargeIndecomposable.DirectedAlgebras.Directing.CornerSurvive
+public import LargeIndecomposable.DirectedAlgebras.Preprojective.MinimalQuot
 
 /-!
 # The Euler form on an interval with two points
@@ -95,5 +97,64 @@ theorem eulerForm_c_interval (hT : ∀ x, x ∈ D.T) {a b : D.ι} (hab : a ≠ b
     linarith
   change (cartan D)⁻¹ b a + (cartan D)⁻¹ a b = -1
   rw [h1, h2, add_zero]
+
+namespace DirData
+
+variable {D}
+
+/-- Paths of a quotient are paths of the algebra. -/
+lemma rtg_of_quot {T' : Set D.ι} (hsub : T' ⊆ D.T) {x y : T'}
+    (h : Relation.ReflTransGen (D.quotAny hsub).Arr x y) :
+    Relation.ReflTransGen D.Arr x.1 y.1 := by
+  induction h with
+  | refl => exact Relation.ReflTransGen.refl
+  | @tail y z _ hyz ih =>
+    obtain ⟨-, a, ha⟩ := hyz
+    obtain ⟨a', rfl⟩ := D.qmap_surjective T' a
+    have ha' : D.e z.1 * a' * D.e y.1 ≠ 0 := fun h0 ↦ ha (by
+      change D.qmap T' _ * D.qmap T' a' * D.qmap T' _ = 0
+      rw [← map_mul, ← map_mul, h0, map_zero])
+    exact ih.trans (D.hom _ _ a' ha')
+
+/-- **An edge of the quotient**: if `e_b A e_a` is one-dimensional and nonzero, and every
+point on a path from `a` to `b` is `a` or `b`, then `a, b` are joined by a full edge of the
+Euler form of the quotient by the idempotents outside any `T' ∋ a, b`. -/
+theorem eulerForm_c_quot_interval {T' : Set D.ι} (hsub : T' ⊆ D.T) {a b : D.ι} (ha : a ∈ T')
+    (hb : b ∈ T') (hab : a ≠ b) {c : A} (hc : D.e b * c * D.e a ≠ 0)
+    (hle : cartan D b a ≤ 1)
+    (hmid : ∀ v, Relation.ReflTransGen D.Arr a v → Relation.ReflTransGen D.Arr v b →
+      v = a ∨ v = b) :
+    (eulerForm (D.quotAny hsub) fun _ ↦ Set.mem_univ _).c ⟨a, ha⟩ ⟨b, hb⟩ = -1 := by
+  classical
+  have hsurv : D.qmap T' (D.e b * c * D.e a) ≠ 0 :=
+    D.qmap_corner_ne' ha hb (fun v h1 h2 ↦ by
+      rcases hmid v h1 h2 with rfl | rfl
+      · exact ha
+      · exact hb) hc
+  have hcart : cartan (D.quotAny hsub) ⟨b, hb⟩ ⟨a, ha⟩ = 1 := by
+    have hle' := (cartan_quotAny_le hsub ⟨a, ha⟩ ⟨b, hb⟩).trans hle
+    have hpos : 0 < cartan (D.quotAny hsub) ⟨b, hb⟩ ⟨a, ha⟩ := by
+      unfold cartan
+      have : (⟨⟨D.qmap T' (D.e b * c * D.e a), by
+          change D.qmap T' _ * D.qmap T' (D.e a) = _
+          rw [← map_mul, mul_assoc, (D.idem a).eq]⟩, by
+          apply Subtype.ext
+          change D.qmap T' (D.e b) * D.qmap T' _ = _
+          rw [← map_mul, ← mul_assoc, ← mul_assoc, (D.idem b).eq]⟩ :
+          eSub (projE (k := k) ((D.quotAny hsub).idem ⟨a, ha⟩))
+            ((D.quotAny hsub).e ⟨b, hb⟩)) ≠ 0 := fun h0 ↦
+        hsurv (congrArg (fun z : eSub (projE (k := k) ((D.quotAny hsub).idem ⟨a, ha⟩))
+          ((D.quotAny hsub).e ⟨b, hb⟩) ↦ (z : projE (k := k) ((D.quotAny hsub).idem ⟨a, ha⟩)).1)
+          h0)
+      exact_mod_cast Module.finrank_pos_iff_exists_ne_zero.2 ⟨_, this⟩
+    omega
+  refine eulerForm_c_interval _ _ (fun h : (⟨a, ha⟩ : T') = ⟨b, hb⟩ ↦
+    hab (congrArg Subtype.val h)) hcart ?_
+  intro y hya hyb h1 h2
+  rcases hmid y.1 (rtg_of_quot hsub h1) (rtg_of_quot hsub h2) with h | h
+  · exact hya (Subtype.ext h)
+  · exact hyb (Subtype.ext h)
+
+end DirData
 
 end LargeIndecomposable.AR

@@ -633,6 +633,8 @@ public import LargeIndecomposable.BongartzTheorem.CriticalPieces.SinkCount
 public import LargeIndecomposable.DirectedAlgebras.Directing.Cartan
 public import LargeIndecomposable.DirectedAlgebras.EulerForm.EulerUnit
 public import LargeIndecomposable.DirectedAlgebras.EulerForm.EulerInterval
+public import LargeIndecomposable.DirectedAlgebras.Directing.CornerSurvive
+public import LargeIndecomposable.BongartzTheorem.CriticalPieces.CriticalArrows
 public import LargeIndecomposable.DirectedAlgebras.Directing.RigidMin
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceRigid
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceTits
@@ -661,10 +663,9 @@ public import LargeIndecomposable.DirectedAlgebras.Sincere.SincereDirecting
 public import LargeIndecomposable.DirectedAlgebras.Sincere.SincereEuler
 public import LargeIndecomposable.UnitForms.RootBound
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.CriticalAbstract
-public import LargeIndecomposable.DirectedAlgebras.Preprojective.ArrowEuler
+public import LargeIndecomposable.DirectedAlgebras.Preprojective.BrickOff
 public import LargeIndecomposable.AuslanderReiten.Lengths.ChainBound
 public import LargeIndecomposable.DirectedAlgebras.Directing.QuotAny
-public import LargeIndecomposable.DirectedAlgebras.Directing.QuotSource
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.MinimalQuot
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.ExtCocycle
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PieceCritical
