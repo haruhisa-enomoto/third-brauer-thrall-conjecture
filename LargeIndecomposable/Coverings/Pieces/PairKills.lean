@@ -36,55 +36,50 @@ variable {k : Type u} [Field k]
 
 variable (k) in
 /-- The projective Kronecker module `P₁ = (k, k²; inl, inr)`. -/
-def P1K : Kfin k :=
-  ⟨Kron.mk (ModuleCat.of k k) (ModuleCat.of k (k × k)) (ModuleCat.ofHom (LinearMap.inl k k k))
-    (ModuleCat.ofHom (LinearMap.inr k k k)),
-    ⟨by change FiniteDimensional k k; infer_instance,
-      by change FiniteDimensional k (k × k); infer_instance⟩⟩
+def P1K : Kron k :=
+  Kron.mk (ModuleCat.of k k) (ModuleCat.of k (k × k)) (ModuleCat.ofHom (LinearMap.inl k k k))
+    (ModuleCat.ofHom (LinearMap.inr k k k))
 
 /-- The morphism `P₁ → T` sending the generator to `v`. -/
-def fromP1 (T : Kfin k) (v : T.obj.V) : P1K k ⟶ T :=
-  ObjectProperty.homMk (Kron.homMk (ModuleCat.ofHom (LinearMap.toSpanSingleton k _ v))
-    (ModuleCat.ofHom (LinearMap.coprod (LinearMap.toSpanSingleton k _ (T.obj.a.hom v))
-      (LinearMap.toSpanSingleton k _ (T.obj.b.hom v))))
+def fromP1 (T : Kron k) (v : T.V) : P1K k ⟶ T :=
+  (Kron.homMk (ModuleCat.ofHom (LinearMap.toSpanSingleton k _ v))
+    (ModuleCat.ofHom (LinearMap.coprod (LinearMap.toSpanSingleton k _ (T.a.hom v))
+      (LinearMap.toSpanSingleton k _ (T.b.hom v))))
     (ModuleCat.hom_ext (LinearMap.ext fun (t : k) ↦ by
-      change LinearMap.coprod _ _ (t, 0) = T.obj.a.hom (t • v)
+      change LinearMap.coprod _ _ (t, 0) = T.a.hom (t • v)
       simp))
     (ModuleCat.hom_ext (LinearMap.ext fun (t : k) ↦ by
-      change LinearMap.coprod _ _ (0, t) = T.obj.b.hom (t • v)
+      change LinearMap.coprod _ _ (0, t) = T.b.hom (t • v)
       simp)))
 
 /-- The morphism `S₋ → T` sending the generator to `w`. -/
-def fromSminus (T : Kfin k) (w : T.obj.W) : SminusK k ⟶ T :=
-  ObjectProperty.homMk (Kron.homMk 0 (ModuleCat.ofHom (LinearMap.toSpanSingleton k _ w))
-    (hom_ext_punit' _ _) (hom_ext_punit' _ _))
+def fromSminus (T : Kron k) (w : T.W) : Kron.Sminus k ⟶ T :=
+  Kron.homMk 0 (ModuleCat.ofHom (LinearMap.toSpanSingleton k _ w))
+    (hom_ext_punit' _ _) (hom_ext_punit' _ _)
 
 namespace KroneckerPair
 
 variable {D Q : FinQuiver} (K : KroneckerPair k D) (p : FinQuiver.Hom D Q)
 
-lemma tot_single_inl (T : Kfin k) (i : D.V) (q : K.Q₀.obj i) (w : T.obj.W) :
+lemma tot_single_inl (T : Kron k) (i : D.V) (q : K.Q₀.obj i) (w : T.W) :
     (Pi.single (M := K.space T) i (q ⊗ₜ[k] w, 0) : (K.functor.obj T).Tot) =
       (K.functor.map (fromSminus T w)).tot
-        (Pi.single (M := K.space (SminusK k)) i (q ⊗ₜ[k] (show (SminusK k).obj.W from (1 : k)), 0)) := by
+        (Pi.single (M := K.space (Kron.Sminus k)) i (q ⊗ₜ[k] (show (Kron.Sminus k).W from (1 : k)), 0)) := by
   funext j
   by_cases hj : j = i
   · subst hj
     change Pi.single (M := K.space T) j _ j =
-      K.vmap (fromSminus T w) j (Pi.single (M := K.space (SminusK k)) j _ j)
+      K.vmap (fromSminus T w) j (Pi.single (M := K.space (Kron.Sminus k)) j _ j)
     rw [Pi.single_eq_same, Pi.single_eq_same]
     simp [vmap, fromSminus]
-    erw [TensorProduct.map_tmul]
-    change q ⊗ₜ[k] w = q ⊗ₜ[k] ((1 : k) • w)
-    rw [one_smul]
   · change Pi.single (M := K.space T) i _ j =
-      K.vmap (fromSminus T w) j (Pi.single (M := K.space (SminusK k)) i _ j)
+      K.vmap (fromSminus T w) j (Pi.single (M := K.space (Kron.Sminus k)) i _ j)
     rw [Pi.single_eq_of_ne hj, Pi.single_eq_of_ne hj, map_zero]
 
-lemma tot_single_inr (T : Kfin k) (i : D.V) (x : K.P.obj i) (v : T.obj.V) :
+lemma tot_single_inr (T : Kron k) (i : D.V) (x : K.P.obj i) (v : T.V) :
     (Pi.single (M := K.space T) i (0, x ⊗ₜ[k] v) : (K.functor.obj T).Tot) =
       (K.functor.map (fromP1 T v)).tot
-        (Pi.single (M := K.space (P1K k)) i (0, x ⊗ₜ[k] (show (P1K k).obj.V from (1 : k)))) := by
+        (Pi.single (M := K.space (P1K k)) i (0, x ⊗ₜ[k] (show (P1K k).V from (1 : k)))) := by
   funext j
   by_cases hj : j = i
   · subst hj
@@ -102,15 +97,15 @@ lemma tot_single_inr (T : Kfin k) (i : D.V) (x : K.P.obj i) (v : T.obj.V) :
 /-- The push-down of every `L(T)` is killed by the elements of `kQ` that kill the
 push-downs of `L(S₋)` and `L(P₁)`. -/
 theorem kills_of_generators (z : Q.PathAlgebra k)
-    (h₁ : (K.functor.obj (SminusK k)).pdAct p z = 0) (h₂ : (K.functor.obj (P1K k)).pdAct p z = 0)
-    (T : Kfin k) : (K.functor.obj T).pdAct p z = 0 := by
-  have hnat : ∀ {U : Kfin k} (f : U ⟶ T) (y : (K.functor.obj U).Tot),
+    (h₁ : (K.functor.obj (Kron.Sminus k)).pdAct p z = 0) (h₂ : (K.functor.obj (P1K k)).pdAct p z = 0)
+    (T : Kron k) : (K.functor.obj T).pdAct p z = 0 := by
+  have hnat : ∀ {U : Kron k} (f : U ⟶ T) (y : (K.functor.obj U).Tot),
       (K.functor.obj T).pdAct p z ((K.functor.map f).tot y) =
         (K.functor.map f).tot ((K.functor.obj U).pdAct p z y) := by
     intro U f y
     have hf := Hom.isPdHom_tot p (K.functor.map f)
     exact (LinearMap.congr_fun (commute_pdAct p _ _ hf.1 hf.2 z) y).symm
-  have hA : ∀ i (a : K.Q₀.obj i ⊗[k] T.obj.W),
+  have hA : ∀ i (a : K.Q₀.obj i ⊗[k] T.W),
       (K.functor.obj T).pdAct p z (Pi.single (M := K.space T) i (a, 0)) = 0 := by
     intro i a
     induction a using TensorProduct.inductionOn with
@@ -123,7 +118,7 @@ theorem kills_of_generators (z : Q.PathAlgebra k)
         rw [← Pi.single_add]; simp
       rw [e]
       exact (map_add ((K.functor.obj T).pdAct p z) _ _).trans (by rw [ha, ha', add_zero])
-  have hB : ∀ i (b : K.P.obj i ⊗[k] T.obj.V),
+  have hB : ∀ i (b : K.P.obj i ⊗[k] T.V),
       (K.functor.obj T).pdAct p z (Pi.single (M := K.space T) i (0, b)) = 0 := by
     intro i b
     induction b using TensorProduct.inductionOn with
@@ -157,7 +152,7 @@ def PairCoveringData.mk' (D Q : FinQuiver) (p : FinQuiver.Hom D Q) (locInj : p.L
     (C : CoverData p) (K : KroneckerPair k D)
     (supp : ∀ i, Nontrivial (K.P.obj i) ∨ Nontrivial (K.Q₀.obj i))
     (π : Q.PathAlgebra k →ₐ[k] A) (surj : Function.Surjective π)
-    (kills₁ : ∀ z, π z = 0 → (K.functor.obj (SminusK k)).pdAct p z = 0)
+    (kills₁ : ∀ z, π z = 0 → (K.functor.obj (Kron.Sminus k)).pdAct p z = 0)
     (kills₂ : ∀ z, π z = 0 → (K.functor.obj (P1K k)).pdAct p z = 0) :
     PairCoveringData k A where
   D := D

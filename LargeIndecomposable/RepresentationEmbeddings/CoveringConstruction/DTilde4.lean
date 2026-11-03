@@ -227,9 +227,10 @@ def pairCoveringData : Covering.PairCoveringData k (quiver.PathAlgebra k) where
     rw [show z = 0 from hz]
     exact map_zero _
 
-/-- The path algebra of `D̃₄` has a controlled embedding of Kronecker modules. -/
-theorem controlledEmbedding : Nonempty (ControlledEmbedding k (quiver.PathAlgebra k)) :=
-  ⟨(pairCoveringData k).toCoveringData.controlledEmbedding⟩
+/-- The covering construction for the path algebra of `D̃₄` gives the data of
+Theorem 5.2. -/
+theorem nonempty_embeddingData : Nonempty (EmbeddingData k (quiver.PathAlgebra k)) :=
+  ⟨(pairCoveringData k).toCoveringData.embeddingData⟩
 
 end DTilde4
 

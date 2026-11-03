@@ -47,7 +47,7 @@ def PointBrick' (Sp : Finset (Cover x₀)) : Prop :=
 /-- **A point and a brick give a Kronecker pair with extensions respecting the cover.** -/
 theorem pair_of_pointBrick' {Sp : Finset (Cover x₀)} (h : PointBrick' (k := k) Sp) :
     ∃ K : KroneckerPair k (pieceQuiver Sp),
-      RespectsCover (K.functor.obj (SminusK k)) ∧ RespectsCover (K.functor.obj (P1K k)) := by
+      RespectsCover (K.functor.obj (Kron.Sminus k)) ∧ RespectsCover (K.functor.obj (P1K k)) := by
   obtain ⟨x, V, finV, hVx, brickV, hV, hVc, hz⟩ := h
   rcases hz with ⟨z₁, z₂, indep, h₁, h₂⟩ | ⟨z₁, z₂, indep, h₁, h₂⟩
   · exact ⟨_, respectsCover_generic _

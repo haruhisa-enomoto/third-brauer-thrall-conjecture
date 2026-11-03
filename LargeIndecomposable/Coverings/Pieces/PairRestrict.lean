@@ -124,13 +124,13 @@ lemma restrict_supp (i : (fullSub D K.supp).V) :
     Nontrivial (K.restrict.P.obj i) ∨ Nontrivial (K.restrict.Q₀.obj i) :=
   K.mem_supp.1 i.2
 
-lemma restrict_obj (T : Kfin k) : K.restrict.functor.obj T = (K.functor.obj T).res K.supp := rfl
+lemma restrict_obj (T : Kron k) : K.restrict.functor.obj T = (K.functor.obj T).res K.supp := rfl
 
-lemma functor_obj_subsingleton (T : Kfin k) {i : D.V} (h : i ∉ K.supp) :
+lemma functor_obj_subsingleton (T : Kron k) {i : D.V} (h : i ∉ K.supp) :
     Subsingleton ((K.functor.obj T).obj i) := by
   haveI := K.subsingleton_P h
   haveI := K.subsingleton_Q h
-  change Subsingleton ((K.Q₀.obj i ⊗[k] T.obj.W) × (K.P.obj i ⊗[k] T.obj.V))
+  change Subsingleton ((K.Q₀.obj i ⊗[k] T.W) × (K.P.obj i ⊗[k] T.V))
   infer_instance
 
 end KroneckerPair
@@ -153,8 +153,8 @@ variable {A : Type u} [Ring A] [Algebra k A]
 def PairCoveringData.ofPair (D Q : FinQuiver) (p : FinQuiver.Hom D Q) (locInj : p.LocallyInjective)
     (C : CoverData p) (K : KroneckerPair k D) (π : Q.PathAlgebra k →ₐ[k] A)
     (surj : Function.Surjective π)
-    (kills : ∀ (T : Dfin k) (z : Q.PathAlgebra k), π z = 0 →
-      (K.functor.obj ((DfinToKfin k).obj T)).pdAct p z = 0) : PairCoveringData k A where
+    (kills : ∀ (T : Kron k) (z : Q.PathAlgebra k), π z = 0 →
+      (K.functor.obj T).pdAct p z = 0) : PairCoveringData k A where
   D := fullSub D K.supp
   Q := Q
   p := fullSubHom K.supp p

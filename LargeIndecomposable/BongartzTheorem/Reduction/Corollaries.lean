@@ -4,13 +4,13 @@ public import LargeIndecomposable.BongartzTheorem.Reduction.ControlledEmbeddings
 public import Mathlib.LinearAlgebra.Dual.Lemmas
 
 /-!
-# Corollaries 1.1 and 5.3
+# Corollaries 1.1 and 5.6
 
-Applying the representation embedding of Theorem A to Kronecker bricks of
+Applying the representation embedding of Theorem 5.2 to Kronecker bricks of
 every infinite dimension gives indecomposable modules of every infinite
-dimension (Corollary 1.1), with local endomorphism algebras whose radicals are
-nilpotent of an exponent independent of the dimension (Corollary 5.3, through
-the retractions of Proposition 5.2).
+dimension, with local endomorphism algebras whose radicals are nilpotent of an
+exponent independent of the dimension (Corollary 5.6, through the retractions
+on `C` of Theorem 5.2).
 
 The Kronecker bricks are supplied by Göbel–Simson, Corollary 1.3; here this
 input is the hypothesis `KroneckerBricks`.
@@ -140,19 +140,19 @@ lemma Retractions.NilpotentBound.succ {A : Type u} [Ring A] [Algebra k A] {𝒞 
   cases hf with
   | cons hf' hg => rw [h _ hf', Limits.zero_comp]
 
-/-! ### The modules of Corollaries 1.1 and 5.3 -/
+/-! ### The modules of Corollary 5.6 -/
 
 section Modules
 
-variable {A : Type u} [Ring A] [Algebra k A] [FiniteDimensional k A] (E : ControlledEmbedding k A)
+variable {A : Type u} [Ring A] [Algebra k A] [FiniteDimensional k A] (E : EmbeddingData k A)
   {T : Kron k} (hT : IsBrickKron T) (hinf : Cardinal.aleph0 ≤ T.dim)
 
 /-- `T` as an object of `C`. -/
 def brickC : (InCD (k := k)).FullSubcategory :=
   ⟨⟨T, (hT.inC hinf).1⟩, hT.inC hinf⟩
 
-/-- The retractions of Proposition 5.2 for the extension of `E`. -/
-abbrev Rext := Extension.retractions E.Φ E.R E.isRepEmbeddingFin.fin
+/-- The retractions on `C` of Theorem 5.2. -/
+abbrev Rext := E.R
 
 lemma brickC_scalar (f : brickC hT hinf ⟶ brickC hT hinf) : ∃ c : k, f = c • 𝟙 _ := by
   obtain ⟨c, hc⟩ := hT.2 f.hom.hom
@@ -169,13 +169,13 @@ lemma iter_hom {M : ModuleCat.{u} A} (w : M ⟶ M) (m : ℕ) :
   | succ m ih => rw [Retractions.iter, ModuleCat.hom_comp, ih, pow_succ']; rfl
 
 /-- The module `F(T)`. -/
-abbrev FT : ModuleCat.{u} A := ((InCD (k := k)).ι ⋙ Extension.functor E.Φ).obj (brickC hT hinf)
+abbrev FT : ModuleCat.{u} A := ((InCD (k := k)).ι ⋙ E.F).obj (brickC hT hinf)
 
 include hinf in
 /-- The module `F(T)` is indecomposable. -/
 theorem isIndecomposable_brick : IsIndecomposable A (FT E hT hinf) := by
-  refine Retractions.isIndecomposable (Rext E) (Extension.nilpotentBound E.Φ E.R
-    E.isRepEmbeddingFin.fin E.bound) (brickC_id_ne_zero hT hinf) fun e he ↦ ?_
+  refine Retractions.isIndecomposable (Rext E) E.bound (brickC_id_ne_zero hT hinf)
+    fun e he ↦ ?_
   obtain ⟨c, rfl⟩ := brickC_scalar hT hinf e
   have hc : c * c = c := by
     have h := he
@@ -218,8 +218,7 @@ lemma ker_mem_jacobson (y : Module.End A (FT E hT hinf)) (hy : ρE E hT hinf y =
   refine Corner.mem_jacobson_of_forall_isUnit fun z ↦ IsNilpotent.isUnit_one_sub ⟨E.n, ?_⟩
   have h0 : (Rext E).ρ _ _ (ModuleCat.ofHom (z * y)) = 0 :=
     (ρE_mul E hT hinf z y).trans (by rw [hy, Limits.zero_comp])
-  have := Extension.nilpotentBound E.Φ E.R E.isRepEmbeddingFin.fin E.bound _
-    ((Rext E).kerChain_iter _ h0 E.n)
+  have := E.bound _ ((Rext E).kerChain_iter _ h0 E.n)
   have h := congrArg ModuleCat.Hom.hom this
   exact (iter_hom (ModuleCat.ofHom (z * y)) E.n).symm.trans h
 
@@ -259,13 +258,12 @@ lemma prod_eq_zero (f : Fin (E.n + 1) → Module.End A (FT E hT hinf))
       rw [List.ofFn_succ, List.prod_cons]
       exact Retractions.KerChain.cons (ih _ fun i ↦ hg i.succ) (hg 0)
   have h := key _ f fun i ↦ ρE_eq_zero_of_mem E hT hinf (hf i)
-  have hz := Retractions.NilpotentBound.succ _
-    (Extension.nilpotentBound E.Φ E.R E.isRepEmbeddingFin.fin E.bound) _ h
+  have hz := Retractions.NilpotentBound.succ _ E.bound _ h
   exact congrArg ModuleCat.Hom.hom hz
 
 omit [FiniteDimensional k A] in
 lemma rank_FT : Module.rank k (FT E hT hinf) = T.dim :=
-  Extension.dim_eq E.Φ E.isRepEmbeddingFin.fin (brickC hT hinf).obj hinf
+  Comparison.dim_eq E.comparison E.fin (brickC hT hinf).obj hinf
 
 end Modules
 
@@ -277,7 +275,7 @@ include H G in
 /-- Corollary 1.1, conditional on the two hypotheses. -/
 theorem corollaryDimension_of : CorollaryDimension.{u} := by
   intro k _ _ A _ _ _ hA κ hκ
-  obtain ⟨E⟩ := nonempty_controlledEmbedding_of_not_isRepresentationFinite (k := k) H A hA
+  obtain ⟨E⟩ := nonempty_embeddingData_of_not_isRepresentationFinite (k := k) H A hA
   obtain ⟨T, hTd, hT⟩ := G k κ hκ
   have hinf : Cardinal.aleph0 ≤ T.dim := hTd ▸ hκ
   exact ⟨FT E hT hinf, inferInstance, inferInstance, ModuleCat.moduleOfAlgebraModule _,
@@ -285,10 +283,11 @@ theorem corollaryDimension_of : CorollaryDimension.{u} := by
     isIndecomposable_brick E hT hinf⟩
 
 include H G in
-/-- Corollary 5.3, conditional on the two hypotheses. -/
+/-- Corollary 5.6 without the count and the explicit bound, conditional on the
+two hypotheses. -/
 theorem corollaryRadical_of : CorollaryRadical.{u} := by
   intro k _ _ A _ _ _ hA
-  obtain ⟨E⟩ := nonempty_controlledEmbedding_of_not_isRepresentationFinite (k := k) H A hA
+  obtain ⟨E⟩ := nonempty_embeddingData_of_not_isRepresentationFinite (k := k) H A hA
   refine ⟨E.n + 1, Nat.succ_le_succ (Nat.zero_le _), fun κ hκ ↦ ?_⟩
   obtain ⟨T, hTd, hT⟩ := G k κ hκ
   have hinf : Cardinal.aleph0 ≤ T.dim := hTd ▸ hκ

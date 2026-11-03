@@ -23,7 +23,7 @@ noncomputable section
 
 namespace LargeIndecomposable
 
-open CategoryTheory FinQuiver
+open CategoryTheory FinQuiver Statement
 
 universe u
 
@@ -135,8 +135,8 @@ structure FreeCoverPair where
   /-- The Kronecker pair. -/
   K : KroneckerPair k (FreeCover.quiver S)
   supp : ∀ i, Nontrivial (K.P.obj i) ∨ Nontrivial (K.Q₀.obj i)
-  kills : ∀ (T : Dfin k) (z : Q.PathAlgebra k), π z = 0 →
-    (K.functor.obj ((DfinToKfin k).obj T)).pdAct (FreeCover.proj S) z = 0
+  kills : ∀ (T : Kron k) (z : Q.PathAlgebra k), π z = 0 →
+    (K.functor.obj T).pdAct (FreeCover.proj S) z = 0
 
 /-- Free-covering data are covering data with a Kronecker pair. -/
 def FreeCoverPair.toPairCoveringData (W : FreeCoverPair k A) : PairCoveringData k A where

@@ -144,14 +144,14 @@ def toExtP1 (π : k × k →ₗ[k] k) (z : ∀ α : D.A, K.P.obj (D.src α) →�
   comm α := ModuleCat.hom_ext (LinearMap.ext fun x ↦ K.toExtP1Map_comm π z hz α x)
 
 /-- The vertex map `L(S₋)(i) → E(z)(i)`. -/
-def toExtSmMap (i : D.V) : K.space (SminusK k) i →ₗ[k] K.Q₀.obj i × K.P.obj i :=
+def toExtSmMap (i : D.V) : K.space (Kron.Sminus k) i →ₗ[k] K.Q₀.obj i × K.P.obj i :=
   show (K.Q₀.obj i ⊗[k] k) × (K.P.obj i ⊗[k] PUnit.{u + 1}) →ₗ[k] K.Q₀.obj i × K.P.obj i from
     LinearMap.prod ((TensorProduct.rid k (K.Q₀.obj i)).toLinearMap ∘ₗ
       LinearMap.fst k (K.Q₀.obj i ⊗[k] k) (K.P.obj i ⊗[k] PUnit.{u + 1})) 0
 
 lemma toExtSmMap_comm (z : ∀ α : D.A, K.P.obj (D.src α) →ₗ[k] K.Q₀.obj (D.tgt α)) (α : D.A)
-    (x : K.space (SminusK k) (D.src α)) :
-    K.toExtSmMap (D.tgt α) (K.arrMap (SminusK k) α x) =
+    (x : K.space (Kron.Sminus k) (D.src α)) :
+    K.toExtSmMap (D.tgt α) (K.arrMap (Kron.Sminus k) α x) =
       (LinearMap.prod (LinearMap.coprod (K.Q₀.map α).hom (z α))
         ((K.P.map α).hom ∘ₗ LinearMap.snd k _ _)) (K.toExtSmMap (D.src α) x) := by
   obtain ⟨t, s⟩ := x
@@ -172,7 +172,7 @@ lemma toExtSmMap_comm (z : ∀ α : D.A, K.P.obj (D.src α) →ₗ[k] K.Q₀.obj
 
 /-- The morphism `L(S₋) → E(z)`. -/
 def toExtSm (z : ∀ α : D.A, K.P.obj (D.src α) →ₗ[k] K.Q₀.obj (D.tgt α)) :
-    K.functor.obj (SminusK k) ⟶ K.extRep z where
+    K.functor.obj (Kron.Sminus k) ⟶ K.extRep z where
   app i := ModuleCat.ofHom (K.toExtSmMap i)
   comm α := ModuleCat.hom_ext (LinearMap.ext fun x ↦ K.toExtSmMap_comm z α x)
 
@@ -216,7 +216,7 @@ lemma toExtP1_inj (x : (K.functor.obj (P1K k)).Tot)
   exact key (x i).1 (x i).2 e₁ e₂
 
 lemma toExtSm_inj (z : ∀ α : D.A, K.P.obj (D.src α) →ₗ[k] K.Q₀.obj (D.tgt α))
-    (x : (K.functor.obj (SminusK k)).Tot) (h : (K.toExtSm z).tot x = 0) : x = 0 := by
+    (x : (K.functor.obj (Kron.Sminus k)).Tot) (h : (K.toExtSm z).tot x = 0) : x = 0 := by
   funext i
   have e := congrFun h i
   have key : ∀ (t : K.Q₀.obj i ⊗[k] k) (s : K.P.obj i ⊗[k] PUnit.{u + 1}),
@@ -342,7 +342,7 @@ theorem respectsCover_extRep (K : KroneckerPair k (pieceQuiver S))
 /-- **The generic objects of a Kronecker pair respect the cover** when its two extensions do. -/
 theorem respectsCover_generic (K : KroneckerPair k (pieceQuiver S))
     (h₁ : RespectsCover (K.extRep K.z₁)) (h₂ : RespectsCover (K.extRep K.z₂)) :
-    RespectsCover (K.functor.obj (SminusK k)) ∧ RespectsCover (K.functor.obj (P1K k)) :=
+    RespectsCover (K.functor.obj (Kron.Sminus k)) ∧ RespectsCover (K.functor.obj (P1K k)) :=
   ⟨respectsCover_of_two (K.toExtSm K.z₁) (K.toExtSm K.z₁)
       (fun x hx _ ↦ K.toExtSm_inj K.z₁ x hx) h₁ h₁,
     respectsCover_of_two _ _ (fun x hx hy ↦ K.toExtP1_inj x hx hy) h₁ h₂⟩

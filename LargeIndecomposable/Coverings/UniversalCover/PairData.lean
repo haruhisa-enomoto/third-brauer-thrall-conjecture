@@ -42,7 +42,7 @@ def pairCoveringData (e : Linearization P k ≃ₐ[k] A)
     (S : Finset (Cover x₀)) (hS : Convex (S : Set (Cover x₀)))
     (K : KroneckerPair k (pieceQuiver S))
     (supp : ∀ i, Nontrivial (K.P.obj i) ∨ Nontrivial (K.Q₀.obj i))
-    (h₁ : RespectsCover (K.functor.obj (SminusK k)))
+    (h₁ : RespectsCover (K.functor.obj (Kron.Sminus k)))
     (h₂ : RespectsCover (K.functor.obj (P1K k))) : PairCoveringData k A :=
   PairCoveringData.mk' (pieceQuiver S) (quiver P) (pieceProj S) (pieceProj_locInj S)
     (coverPieceData S htf) K supp ((e : Linearization P k →ₐ[k] A).comp (linPres P k))

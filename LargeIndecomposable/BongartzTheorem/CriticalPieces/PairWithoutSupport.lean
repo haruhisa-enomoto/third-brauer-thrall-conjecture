@@ -36,7 +36,7 @@ def pairCoveringData' (e : Linearization P k ≃ₐ[k] A)
     (htf : ∀ g : Pi1 x₀, g ≠ 1 → ∀ n : ℕ, 0 < n → g ^ n ≠ 1)
     (S : Finset (Cover x₀)) (hS : Convex (S : Set (Cover x₀)))
     (K : KroneckerPair k (pieceQuiver S))
-    (h₁ : RespectsCover (K.functor.obj (SminusK k)))
+    (h₁ : RespectsCover (K.functor.obj (Kron.Sminus k)))
     (h₂ : RespectsCover (K.functor.obj (P1K k))) : PairCoveringData k A :=
   PairCoveringData.ofPair (pieceQuiver S) (quiver P) (pieceProj S) (pieceProj_locInj S)
     (coverPieceData S htf) K ((e : Linearization P k →ₐ[k] A).comp (linPres P k))
@@ -65,7 +65,7 @@ def CriticalPieceCarriesPair : Prop :=
             PieceRepFin k C') →
           ∃ (Sp : Finset (Cover x₀)) (_ : Convex (Sp : Set (Cover x₀)))
             (K : KroneckerPair k (pieceQuiver Sp)),
-              RespectsCover (K.functor.obj (SminusK k)) ∧ RespectsCover (K.functor.obj (P1K k))
+              RespectsCover (K.functor.obj (Kron.Sminus k)) ∧ RespectsCover (K.functor.obj (P1K k))
 
 /-- The dichotomy on the universal cover, without a support condition. -/
 def CoverDichotomy : Prop :=
@@ -82,7 +82,7 @@ def CoverDichotomy : Prop :=
         (∀ g : Pi1 x₀, g ≠ 1 → ∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
           (∃ (Sp : Finset (Cover x₀)) (_ : Convex (Sp : Set (Cover x₀)))
             (K : KroneckerPair k (pieceQuiver Sp)),
-              RespectsCover (K.functor.obj (SminusK k)) ∧ RespectsCover (K.functor.obj (P1K k))) ∨
+              RespectsCover (K.functor.obj (Kron.Sminus k)) ∧ RespectsCover (K.functor.obj (P1K k))) ∨
           Nonempty (Walk.MonomialBand k B)
 
 theorem coverDichotomy_of (hC : CriticalPieceCarriesPair.{u}) (hL : RepFinitePiecesGiveBand.{u}) : CoverDichotomy.{u} := by

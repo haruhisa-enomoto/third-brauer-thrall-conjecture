@@ -21,7 +21,7 @@ the push-down functors is not assumed: the facts about `S₋` (`RepresentationEm
 needs. Alternative (1), for
 nondistributive algebras, is proved in `NonDistributive`.
 
-By Propositions 4.4, 4.7 and 4.8 (`PushDown.PdDatum.controlledEmbedding`), it
+By Propositions 4.4, 4.7 and 4.8 (`PushDown.PdDatum.embeddingData`), it
 implies the hypothesis `DistributiveControlled`, and hence Theorem A
 and the two corollaries.
 -/
@@ -53,9 +53,9 @@ theorem distributiveControlled_of_bongartz (H : BongartzDistributive.{u}) :
   intro k _ _ B _ _ _ ι _ S hB hd
   rcases H k B ι S hB hd with h | h
   · obtain ⟨W⟩ := h
-    exact ⟨W.toCoveringData.controlledEmbedding⟩
+    exact ⟨W.toCoveringData.embeddingData⟩
   · obtain ⟨W⟩ := h
-    exact ⟨W.toWalkData.controlledEmbedding⟩
+    exact ⟨W.toWalkData.embeddingData⟩
 
 /-- Theorem A, conditional on the data form of Bongartz's Theorem 6. -/
 theorem theoremA_of_bongartz (H : BongartzDistributive.{u}) : TheoremA.{u} :=

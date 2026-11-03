@@ -2,17 +2,19 @@ module
 
 public import LargeIndecomposable.RepresentationType.DistributiveIdeals.SoclePair
 public import LargeIndecomposable.RepresentationEmbeddings.QuotientConstruction.QuotientEmbedding
-public import LargeIndecomposable.RepresentationEmbeddings.ColimitExtension.Controlled
 public import LargeIndecomposable.Modules.Morita.Inflation
+public import Mathlib.CategoryTheory.Adjunction.Limits
+public import Mathlib.Algebra.Category.ModuleCat.ChangeOfRings
 public import LargeIndecomposable.Modules.KrullSchmidt.LocalEnd
 
 /-!
-# The nondistributive case of Theorem 3.10
+# The nondistributive case of Theorem 3.14
 
 A split basic algebra `B` whose lattice of two-sided ideals is not
 distributive has a quotient `Λ = B/K` with a socle pair (Bongartz,
-Corollary 2); the quotient construction `F₁` over `Λ` is a controlled
-embedding (Proposition 4.1), and inflation along `B → Λ` transports it to `B`.
+Corollary 2); the quotient construction `F₁` over `Λ` gives the data of
+Theorem 5.2 (Lemma 3.4, Proposition 4.1), and inflation along `B → Λ`
+transports it to `B`.
 -/
 
 @[expose] public section
@@ -60,15 +62,11 @@ namespace QuotientData
 
 variable {Λ : Type u} [Ring Λ] [Algebra k Λ] [FiniteDimensional k Λ]
 
-/-- The quotient construction as a controlled embedding. -/
-def controlledEmbedding (Q : QuotientData k Λ) (hx : TopOneDim k Q.ex) (hy : TopOneDim k Q.ey) :
-    ControlledEmbedding k Λ :=
-  haveI : (Φfin Q).Faithful := ⟨fun h ↦ (retractions hx hy).map_injective h⟩
-  { Φ := Φfin Q
-    isRepEmbeddingFin := isRepEmbeddingFin hx hy (exists_jacobson_list_prod (k := k) (Λ := Λ)).choose_spec
-    R := retractionsCfin hx hy
-    n := (exists_jacobson_list_prod (k := k) (Λ := Λ)).choose
-    bound := nilpotentBound_Cfin hx hy (exists_jacobson_list_prod (k := k) (Λ := Λ)).choose_spec }
+/-- The quotient construction gives the data of Theorem 5.2, with the
+nilpotence bound `n` such that `J^n = 0`. -/
+def embeddingDataOf (Q : QuotientData k Λ) (hx : TopOneDim k Q.ex) (hy : TopOneDim k Q.ey) :
+    EmbeddingData k Λ :=
+  embeddingData hx hy (exists_jacobson_list_prod (k := k) (Λ := Λ)).choose_spec
 
 end QuotientData
 
@@ -89,7 +87,7 @@ def fullyFaithful : (functor (k := k) K).FullyFaithful :=
     Ideal.Quotient.mk_surjective
   Functor.FullyFaithful.ofFullyFaithful _
 
-lemma preservesSES : ControlledEmbedding.PreservesSES (functor (k := k) K) := by
+lemma preservesSES : PreservesSES (functor (k := k) K) := by
   intro L M N f g h₁ h₂ h₃
   refine ⟨h₁, h₂, ?_⟩
   ext x
@@ -102,17 +100,24 @@ lemma finite (M : ModuleCat.{u} (B ⧸ K.asIdeal))
     Module.Finite k (RestrictScalars k B ((functor (k := k) K).obj M)) :=
   Module.Finite.equiv (Reduction.restrictScalarsLinearEquiv k _ M).symm
 
+/-- Inflation commutes with filtered colimits: it is a left adjoint. -/
+instance : PreservesFilteredColimitsOfSize.{u, u} (functor (k := k) K) :=
+  haveI : PreservesColimitsOfSize.{u, u} (functor (k := k) K) :=
+    Adjunction.leftAdjoint_preservesColimits
+      (ModuleCat.restrictCoextendScalarsAdj (Ideal.Quotient.mkₐ k K.asIdeal).toRingHom)
+  ⟨fun _ _ _ ↦ inferInstance⟩
+
 end Inflation
 
-/-- The nondistributive case of Theorem 3.10: a split basic algebra whose
-ideal lattice is not distributive has a controlled embedding. -/
-theorem SplitBasicData.nonempty_controlledEmbedding {B : Type u} [Ring B] [Algebra k B]
+/-- The nondistributive case of Theorem 3.14: a split basic algebra whose
+ideal lattice is not distributive has the data of Theorem 5.2. -/
+theorem SplitBasicData.nonempty_embeddingData {B : Type u} [Ring B] [Algebra k B]
     [FiniteDimensional k B] {ι : Type} [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι)
-    (hnd : ¬ IsDistribIdeals B) : Nonempty (ControlledEmbedding k B) := by
+    (hnd : ¬ IsDistribIdeals B) : Nonempty (EmbeddingData k B) := by
   obtain ⟨x, y, K, hK, Q, hQx, hQy⟩ := S.exists_quotientData hnd
   have hx : TopOneDim k Q.ex := hQx ▸ (S.quotient K hK).topOneDim x
   have hy : TopOneDim k Q.ey := hQy ▸ (S.quotient K hK).topOneDim y
-  exact ⟨(Q.controlledEmbedding hx hy).transport (Inflation.functor K)
+  exact ⟨(Q.embeddingDataOf hx hy).transport (Inflation.functor K)
     (Inflation.fullyFaithful K) (Inflation.preservesSES K) (Inflation.finite K)⟩
 
 end LargeIndecomposable

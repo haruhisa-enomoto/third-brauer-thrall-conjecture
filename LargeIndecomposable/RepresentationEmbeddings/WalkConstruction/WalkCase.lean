@@ -37,11 +37,11 @@ namespace Walk
 instance (n : ℕ) (ε : Fin n → Bool) : (cycleFunctor (k := k) n ε).Additive where
   map_add {_ _ _ _} := Rep.hom_ext fun i ↦ by rcases i <;> rfl
 
-/-- The functor `L` of Construction 3.9 on `D_fin`. -/
-abbrev LD (n : ℕ) (ε : Fin n → Bool) : Dfin k ⥤ Rep k (cycleQuiver n ε) :=
-  (InDfin (k := k)).ι ⋙ cycleFunctor n ε
+/-- The functor `L` of Construction 3.12 on `D`. -/
+abbrev LD (n : ℕ) (ε : Fin n → Bool) : Statement.D k ⥤ Rep k (cycleQuiver n ε) :=
+  (InD (k := k)).ι ⋙ cycleFunctor n ε
 
-/-- `L` on `D_fin` is fully faithful. -/
+/-- `L` on `D` is fully faithful. -/
 def LDFullyFaithful (n : ℕ) (ε : Fin n → Bool) : (LD (k := k) n ε).FullyFaithful :=
   (ObjectProperty.fullyFaithfulι _).comp cycleFunctorFullyFaithful
 
@@ -49,7 +49,7 @@ lemma zeroAtVertex (n : ℕ) (ε : Fin n → Bool) : PushDown.ZeroAtVertex (LD (
   intro T U hT φ c h
   ext1
   rcases c with _ | j
-  · exact hom_eq_zero_of_app_one U.2.1 φ.hom h
+  · exact hom_eq_zero_of_app_one U.2 φ.hom h
   · exact hom_eq_zero_of_app_zero hT φ.hom h
 
 variable {n : ℕ} {ε : Fin n → Bool} {Q : FinQuiver}
@@ -101,6 +101,24 @@ structure WalkData where
   /-- `p_*L(T)` is an `A`-module for `T ∈ D_fin`. -/
   kills : ∀ (T : Dfin k) (z : Q.PathAlgebra k), π z = 0 → (cycleRep (ε := ε) T.obj).pdAct p z = 0
 
+/-- Every vector of `L(T)` comes from `L(U)` for a finite-dimensional `U ⊆ T`. -/
+lemma finitary (T : Statement.D k) (i : (cycleQuiver n ε).V) (x : ((LD (k := k) n ε).obj T).obj i) :
+    ∃ U : Kron.FinSub T.obj,
+      x ∈ Set.range (((LD n ε).map (Comparison.incl T U)).app i).hom := by
+  rcases i with _ | j
+  · obtain ⟨U, -, hU⟩ := Kron.FinSub.exists_of_finite (X := T.obj) ∅ {x} Set.finite_empty
+      (Set.finite_singleton x)
+    exact ⟨U, ⟨x, hU (Set.mem_singleton x)⟩, rfl⟩
+  · obtain ⟨U, hU, -⟩ := Kron.FinSub.exists_of_finite (X := T.obj) {x} ∅ (Set.finite_singleton x)
+      Set.finite_empty
+    exact ⟨U, ⟨x, hU (Set.mem_singleton x)⟩, rfl⟩
+
+lemma incl_injective (T : Statement.D k) (U : Kron.FinSub T.obj) (i : (cycleQuiver n ε).V) :
+    Function.Injective (((LD (k := k) n ε).map (Comparison.incl T U)).app i).hom := by
+  rcases i with _ | j
+  · exact Subtype.val_injective
+  · exact Subtype.val_injective
+
 /-- Walk data as push-down data. -/
 def WalkData.toPdData (W : WalkData k A) : PushDown.PdData k A where
   D := cycleQuiver W.n W.ε
@@ -120,15 +138,18 @@ def WalkData.toPdData (W : WalkData k A) : PushDown.PdData k A where
     rcases i with _ | j
     · exact T.2.2.2
     · exact T.2.2.1
+  finitary := finitary
+  incl_injective := incl_injective
   π := W.π
   surj := W.surj
-  kills := W.kills
+  kills T z hz := PushDown.kills_of_fin (LD W.n W.ε) finitary W.p z (fun T ↦ W.kills T z hz) T
 
 lemma finrank_tot (X : Dfin k) :
-    Module.finrank k ((LD (k := k) n ε).obj X).Tot =
+    Module.finrank k ((LD (k := k) n ε).obj ((DfinToD k).obj X)).Tot =
       Module.finrank k X.obj.W + (n + 1) * Module.finrank k X.obj.V := by
   have hX := X.2.2
-  have : ∀ i : (cycleQuiver n ε).V, Module.Finite k (((LD (k := k) n ε).obj X).obj i) := by
+  have : ∀ i : (cycleQuiver n ε).V,
+      Module.Finite k (((LD (k := k) n ε).obj ((DfinToD k).obj X)).obj i) := by
     intro i; rcases i with _ | j
     · exact hX.2
     · exact hX.1
@@ -141,15 +162,15 @@ representation at the sink, so `F₃(S₋)` has dimension one, while `F₃(T)` f
 `T ∈ C` has dimension `0` or at least `n + 2`. -/
 def WalkData.toPdDatum (W : WalkData k A) : PushDown.PdDatum k A where
   toPdData := W.toPdData
-  indecS := W.toPdData.isIndecomposable_of_finrank_eq_one (by
-    change Module.finrank k ((LD (k := k) W.n W.ε).obj Extension.SminusFin).Tot = 1
+  indecS := W.toPdData.isIndecomposable_of_finrank_eq_one (T := (DfinToD k).obj Extension.SminusFin) (by
+    change Module.finrank k ((LD (k := k) W.n W.ε).obj ((DfinToD k).obj Extension.SminusFin)).Tot = 1
     rw [finrank_tot]
     change Module.finrank k k + (W.n + 1) * Module.finrank k PUnit = 1
     rw [Module.finrank_self, Module.finrank_zero_of_subsingleton, mul_zero, add_zero])
   notIsoS X hX := ⟨fun e ↦ by
     have h := W.toPdData.finrank_eq_of_iso e
-    change Module.finrank k ((LD (k := k) W.n W.ε).obj Extension.SminusFin).Tot =
-      Module.finrank k ((LD (k := k) W.n W.ε).obj X).Tot at h
+    change Module.finrank k ((LD (k := k) W.n W.ε).obj ((DfinToD k).obj Extension.SminusFin)).Tot =
+      Module.finrank k ((LD (k := k) W.n W.ε).obj ((DfinToD k).obj X)).Tot at h
     rw [finrank_tot, finrank_tot] at h
     change Module.finrank k k + (W.n + 1) * Module.finrank k PUnit = _ at h
     rw [Module.finrank_self, Module.finrank_zero_of_subsingleton, mul_zero, add_zero] at h
@@ -180,9 +201,10 @@ def WalkData.toPdDatum (W : WalkData k A) : PushDown.PdDatum k A where
       have hm := Nat.mul_pos (show 0 < W.n + 1 by omega) h0
       omega⟩
 
-/-- The walk construction as a controlled embedding. -/
-def WalkData.controlledEmbedding (W : WalkData k A) : ControlledEmbedding k A :=
-  W.toPdDatum.controlledEmbedding
+/-- Alternative (3) of Theorem 3.14 in data form: the walk construction gives the
+data of Theorem 5.2. -/
+def WalkData.embeddingData (W : WalkData k A) : EmbeddingData k A :=
+  W.toPdDatum.embeddingData
 
 end Walk
 
