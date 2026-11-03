@@ -5,7 +5,8 @@
     "LargeIndecomposable.Challenge.theoremA",
     "LargeIndecomposable.Challenge.corollaryDimension",
     "LargeIndecomposable.Challenge.corollaryRadical",
-    "LargeIndecomposable.Challenge.corollaryCount"
+    "LargeIndecomposable.Challenge.corollaryCount",
+    "LargeIndecomposable.Challenge.corollaryCountBounded"
   ],
   "definition_names": [],
   "permitted_axioms": [

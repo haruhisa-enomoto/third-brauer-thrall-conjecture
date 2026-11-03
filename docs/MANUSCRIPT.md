@@ -21,10 +21,9 @@ by filtered colimits (`main.tex` SHA-256
 `8d57d9270f3ef58961cb21697852b01cfdc2195bc79f61e00bfdbe844b3a6e48`).
 
 The paper cites Bongartz's Theorem 6 and Göbel and Simson's rigid families;
-Bongartz's Theorem 6 is proved in this repository, and so is the form of the
-Göbel–Simson result that is used: Kronecker bricks of every infinite dimension.
-The number `2^κ` of modules in Corollary 1.1 and the explicit bound
-`n ≤ max(30, 4 dim A)` are not formalized. At two points of Bongartz's Theorem 6 the formal
+Bongartz's Theorem 6 is proved in this repository, and so are the rigid families
+over infinite fields. Corollary 1.1 is formalized in full, with the number `2^κ`
+of modules and the bound `n ≤ max(30, 4 dim A)`. At two points of Bongartz's Theorem 6 the formal
 proof differs from the literature. These arguments are not in the paper, and they
 are written up in [`proofs/`](proofs/): [long lines](proofs/long-lines.md), with
 [contours](proofs/contours.md), and the

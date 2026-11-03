@@ -35,6 +35,12 @@ modules in every infinite dimension `κ`, the largest possible number when
 theorem LargeIndecomposable.Challenge.corollaryCount :
     LargeIndecomposable.Statement.CorollaryCount.{u} := by
   sorry
+
+/-- **Corollary 1.1 (= Corollary 5.6)**. `2^κ` pairwise non-isomorphic such modules
+in every infinite dimension `κ`, with one nilpotence index `n ≤ max(30, 4 dim A)`. -/
+theorem LargeIndecomposable.Challenge.corollaryCountBounded :
+    LargeIndecomposable.Statement.CorollaryCountBounded.{u} := by
+  sorry
 """
 
 

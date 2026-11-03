@@ -12,6 +12,7 @@ Run with `lake env lean scripts/AxiomAudit.lean`, or `python3 scripts/audit_axio
 #print axioms LargeIndecomposable.corollaryDimension
 #print axioms LargeIndecomposable.corollaryRadical
 #print axioms LargeIndecomposable.corollaryCount
+#print axioms LargeIndecomposable.corollaryCountBounded
 #print axioms LargeIndecomposable.Bricks.rigidFamily
 #print axioms LargeIndecomposable.linesOfEveryLength
 #print axioms LargeIndecomposable.theoremA_of_bongartz
@@ -28,3 +29,4 @@ Run with `lake env lean scripts/AxiomAudit.lean`, or `python3 scripts/audit_axio
 #print axioms LargeIndecomposable.Challenge.corollaryDimension
 #print axioms LargeIndecomposable.Challenge.corollaryRadical
 #print axioms LargeIndecomposable.Challenge.corollaryCount
+#print axioms LargeIndecomposable.Challenge.corollaryCountBounded

@@ -4,6 +4,7 @@ public import LargeIndecomposable.MainTheorems
 public import LargeIndecomposable.BongartzTheorem.LongLines.WindowPair
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBandRel
 public import LargeIndecomposable.BongartzTheorem.Reduction.BoundedReduction
+public import LargeIndecomposable.BongartzTheorem.CriticalPieces.CriticalPieceLine
 
 /-!
 # The explicit bound `n ≤ max(30, 4 dim A)` (Corollary 1.1)
@@ -13,16 +14,16 @@ Let `B` be the minimal representation-infinite quotient of the basic corner of `
 
 * `dim` of a quotient of `B` in the nondistributive case (`SplitBasicData.exists_embeddingData_le`);
 * the number of points of the band cycle in the walk case: a window of `3d` arrows of a line
-  of the cover contains a good pair (`CLine.exists_goodPair_window`), and the band of a good
+  of the cover contains a good pair (`WLine.exists_goodPair_window`), and the band of a good
   pair needs no condition on contours (`exists_lineBandRel`), so the cycle has fewer than
   `3d` points;
 * the number of points of a critical piece `C` in the covering case.
 
-For the covering case we use the classification input `CriticalPieceLongLine`: a critical piece
-with at least `30` points contains a line of the cover with at least `|C| - 8` arrows. If that
-line has `3d` arrows we use its band instead; otherwise `|C| + 1 ≤ 3d + 8 ≤ max(30, 4d)`.
-The input is the part of Bongartz's proof (BO23, Theorem 7; BO13b, Theorem BT2) that rests on
-the classification of critical algebras.
+In the covering case, the Kronecker pair of a critical piece lives on the minimal set `T'` of
+points whose quotient has unbounded indecomposables, so `n ≤ |T'|`. If `|T'| ≥ 30`, the Euler form
+of that quotient is critical of type `D̃` and its long induced path gives a module line with
+`|T'| - 3` arrows (`pointBrickAt_critical_line`). If that line has `3d` arrows we use its band
+instead; otherwise `|T'| + 1 ≤ 3d + 3 ≤ max(30, 4d)`.
 -/
 
 @[expose] public section
@@ -36,26 +37,6 @@ namespace LargeIndecomposable
 open CategoryTheory Statement RayCat RayCat.Cover RayQuiver Covering LargeIndecomposable.Graded
 
 universe u
-
-/-- **The classification input**: a critical convex piece of the cover with at least `30`
-points contains a line of the cover with at least `|C| - 8` arrows (for a piece of type `D̃`,
-the chain of points where the null root is `2`). -/
-def CriticalPieceLongLine : Prop :=
-  ∀ (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
-    [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι),
-    IsMinimalRepInfinite B → ∀ hd : IsDistribIdeals B,
-      letI := S.distribHomStructure hd
-      letI := S.locallySmall hd
-      letI := S.isRayCategory hd
-      letI : Fintype (RaySmall.{0} S.toIdempotents.RayCategory) := Fintype.ofFinite _
-      letI : DecidableEq (RaySmall.{0} S.toIdempotents.RayCategory) := Classical.decEq _
-      ∀ (_ : Linearization (RaySmall.{0} S.toIdempotents.RayCategory) k ≃ₐ[k] B)
-        (x₀ : RaySmall.{0} S.toIdempotents.RayCategory),
-        (∀ g : Pi1 x₀, g ≠ 1 → ∀ n : ℕ, 0 < n → g ^ n ≠ 1) →
-        ∀ C : Finset (Cover x₀), Convex (C : Set (Cover x₀)) → ¬PieceRepFin k C →
-          (∀ C' : Finset (Cover x₀), Convex (C' : Set (Cover x₀)) → C'.card < C.card →
-            PieceRepFin k C') →
-          C.card ≤ 29 ∨ ∃ L : CLine x₀, C.card ≤ L.n + 8
 
 section Dimension
 
@@ -80,6 +61,18 @@ lemma exists_band_of_line {x₀ : P} (L : CLine x₀) (e : Linearization P k ≃
   rw [finrank_eq_card_nz e] at hL ⊢
   obtain ⟨t, t', hg, ht'⟩ := L.exists_goodPair_window hL le_rfl
   obtain ⟨M, hM⟩ := exists_lineBandRel L.toWLine hg (fun hu ↦ CLine.rigid hu) e
+  exact ⟨M, by omega⟩
+
+/-- A module line with `3 dim B` arrows in a convex set gives a band with fewer than `3 dim B`
+points. -/
+lemma exists_band_of_mline {x₀ : P} {S : Finset (Cover x₀)} (hS : Convex (S : Set (Cover x₀)))
+    (L : MLine x₀ S k) (e : Linearization P k ≃ₐ[k] B)
+    (hL : 3 * Module.finrank k B ≤ L.n) :
+    ∃ M : Walk.MonomialBand k B, M.n + 2 + 1 ≤ 3 * Module.finrank k B := by
+  have : ∀ x y : P, Finite (x ⟶ y) := IsRayCategory.finite_hom
+  rw [finrank_eq_card_nz e] at hL ⊢
+  obtain ⟨t, t', hg, ht'⟩ := L.toWLine.exists_goodPair_window hL le_rfl
+  obtain ⟨M, hM⟩ := exists_lineBandRel L.toWLine hg (fun hu ↦ L.rigid hS hu) e
   exact ⟨M, by omega⟩
 
 end Dimension
@@ -107,8 +100,24 @@ lemma pairCoveringData'_n {P : Type} [Category.{0} P] [Limits.HasZeroMorphisms P
   change Fintype.card (S : Type) ≤ S.card
   simp
 
-/-- **The distributive case with the explicit bound**, from the classification input. -/
-theorem exists_embeddingData_distributive_bounded (hK : CriticalPieceLongLine.{u})
+/-- The covering construction of a pair has nilpotence bound at most the size of the support
+of the pair. -/
+lemma pairCoveringData'_n_supp {P : Type} [Category.{0} P] [Limits.HasZeroMorphisms P]
+    [IsRayCategory P] [Fintype P] [DecidableEq P] {x₀ : P} {k : Type u} [Field k] {A : Type u}
+    [Ring A] [Algebra k A] (e : Linearization P k ≃ₐ[k] A)
+    (htf : ∀ g : Pi1 x₀, g ≠ 1 → ∀ n : ℕ, 0 < n → g ^ n ≠ 1)
+    (S : Finset (Cover x₀)) (hS : Convex (S : Set (Cover x₀)))
+    (K : KroneckerPair k (pieceQuiver S))
+    (h₁ : RespectsCover (K.functor.obj (Kron.Sminus k)))
+    (h₂ : RespectsCover (K.functor.obj (P1K k))) :
+    (pairCoveringData' e htf S hS K h₁ h₂).toCoveringData.embeddingData.n ≤ K.supp.card := by
+  classical
+  change Fintype.card (FinQuiver.fullSub (pieceQuiver S) K.supp).V ≤ K.supp.card
+  change Fintype.card {i // i ∈ K.supp} ≤ K.supp.card
+  rw [Fintype.card_coe]
+
+/-- **The distributive case with the explicit bound.** -/
+theorem exists_embeddingData_distributive_bounded
     (k : Type u) [Field k] [IsAlgClosed k] (B : Type u) [Ring B] [Algebra k B]
     [FiniteDimensional k B] (ι : Type) [Fintype ι] [DecidableEq ι] (S : SplitBasicData k B ι)
     (hB : IsMinimalRepInfinite B) (hd : IsDistribIdeals B) :
@@ -149,17 +158,27 @@ theorem exists_embeddingData_distributive_bounded (hK : CriticalPieceLongLine.{u
         PieceRepFin k C' := fun C' hC' hlt ↦ by
       by_contra hC''
       exact Nat.find_min h (hC3 ▸ hlt) ⟨C', hC', hC'', rfl⟩
-    have hpair : ∃ E : EmbeddingData k B, E.n ≤ C.card := by
-      obtain ⟨K, h₁, h₂⟩ := pair_of_pointBrick' (pointBrick'_critical hC1
-        (nonempty_of_not_repFin hC2) (coverIsAcyclic k B ι S hB hd x₀)
-        (intervalFinite_of_hull (intervalFiniteCover k B ι S hB hd e x₀ htf))
-        (coverLocallySimplyConnected k B ι S hB hd x₀) hC2 hmin)
-      exact ⟨_, pairCoveringData'_n e htf C hC1 K h₁ h₂⟩
-    rcases hK k B ι S hB hd e x₀ htf C hC1 hC2 hmin with hsmall | ⟨L, hL⟩
+    obtain ⟨T', x, Vr, hP, hx, hsupp, hcase⟩ := pointBrickAt_critical_line hC1
+      (nonempty_of_not_repFin hC2) (coverIsAcyclic k B ι S hB hd x₀)
+      (intervalFinite_of_hull (intervalFiniteCover k B ι S hB hd e x₀ htf))
+      (coverLocallySimplyConnected k B ι S hB hd x₀) hC2 hmin
+    obtain ⟨K, h₁, h₂, hK⟩ := pair_of_pointBrickAt hP
+    have hKT : K.supp.card ≤ T'.ncard := by
+      rw [← Set.ncard_coe_finset]
+      refine Set.ncard_le_ncard (fun i hi ↦ ?_) (Set.toFinite T')
+      rcases hK i hi with h | h
+      · rw [h]; exact hx
+      · exact hsupp i h
+    have hpair : ∃ E : EmbeddingData k B, E.n ≤ T'.ncard :=
+      ⟨_, (pairCoveringData'_n_supp e htf C hC1 K h₁ h₂).trans hKT⟩
+    rcases hcase with hsmall | ⟨L, hL⟩
     · obtain ⟨E, hE⟩ := hpair
       exact ⟨E, by omega⟩
     · by_cases hLn : 3 * Module.finrank k B ≤ L.n
-      · exact hband L hLn
+      · obtain ⟨M, hM⟩ := exists_band_of_mline hC1 L e hLn
+        refine ⟨M.toWalkData.embeddingData, ?_⟩
+        rw [Walk.MonomialBand.embeddingData_n]
+        omega
       · obtain ⟨E, hE⟩ := hpair
         exact ⟨E, by omega⟩
   · push Not at h
@@ -189,14 +208,13 @@ theorem exists_embeddingData_distributive_bounded (hK : CriticalPieceLongLine.{u
       (3 * Module.finrank k B)
     exact hband L hL
 
-/-- **Corollary 1.1 (= Corollary 5.6) with the explicit bound**, from the classification
-input. -/
-theorem corollaryCountBounded_of (hK : CriticalPieceLongLine.{u}) : CorollaryCountBounded.{u} := by
+/-- **Corollary 1.1 (= Corollary 5.6) with the explicit bound** `n ≤ max(30, 4 dim A)`. -/
+theorem corollaryCountBounded : CorollaryCountBounded.{u} := by
   intro k _ _ A _ _ _ hA
   obtain ⟨E, hE⟩ := exists_embeddingData_bounded_of
     (fun k _ _ B _ _ _ ι _ S hB hd ↦ by
       classical
-      exact exists_embeddingData_distributive_bounded hK k B ι S hB hd) (k := k) A hA
+      exact exists_embeddingData_distributive_bounded k B ι S hB hd) (k := k) A hA
   refine ⟨E.n + 1, Nat.succ_le_succ (Nat.zero_le _), hE, fun κ hκ ↦ ⟨?_, fun hk ι M _ _ _ _ hni hdim ↦
     card_le_two_pow_of_pairwise_not_iso κ hκ hk M hni hdim⟩⟩
   obtain ⟨ι, T, hT, hinf, hι, hdim, hni⟩ := E.exists_noniso_family κ hκ

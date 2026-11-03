@@ -21,17 +21,18 @@ finite-dimensional modules to finite-dimensional modules, commutes with arbitrar
 direct sums and filtered colimits, and satisfies `dim F(T) = dim T` for
 infinite-dimensional `T`.
 
-**Corollary 1.1** (formalized without the number `2^κ` of modules and the
-explicit bound on `n`). For every infinite cardinal `κ`, `A` has an
-indecomposable module of dimension `κ`, and these modules can be chosen with
-`End(M)/rad End(M) ≅ k` and `(rad End(M))ⁿ = 0` for one `n` independent of the
-dimension.
+**Corollary 1.1.** For every infinite cardinal `κ`, `A` has `2^κ` pairwise
+non-isomorphic indecomposable modules of dimension `κ` with
+`End(M)/rad End(M) ≅ k` and `(rad End(M))ⁿ = 0`, for one
+`n ≤ max(30, 4 dim A)` independent of `κ`. For `κ ≥ |k|` this is the largest
+possible number of pairwise non-isomorphic modules of dimension `κ`.
 
 ## Start reading
 
 - [Main theorems](LargeIndecomposable/MainTheorems.lean): `theoremA`,
-  `corollaryDimension` and `corollaryRadical`.
-- [Independent statement](LargeIndecomposable/Statement.lean): the three results
+  `corollaryDimension`, `corollaryRadical` and `corollaryCount`; the bound on `n`
+  is `corollaryCountBounded` in [ExplicitBound](LargeIndecomposable/ExplicitBound.lean).
+- [Independent statement](LargeIndecomposable/Statement.lean): the results
   stated with Mathlib alone. The [Challenge](Challenge.lean) is generated from it,
   and [Solution](Solution.lean) proves it.
 - [Paper correspondence](docs/PAPER-CORRESPONDENCE.md): every numbered statement
@@ -41,8 +42,7 @@ dimension.
 All definitions and proofs are complete. The main statements depend only on the
 axioms `propext`, `Classical.choice` and `Quot.sound`. The paper cites Bongartz's
 Theorem 6 and Göbel and Simson's rigid families; the library proves Theorem 6 and
-the form of the Göbel–Simson result that is used (Kronecker bricks of every
-infinite dimension). Two
+the rigid families over infinite fields. Two
 steps of Bongartz's Theorem 6 have different proofs here: the critical pair avoids
 tilting theory, and long lines avoid the classification of large sincere algebras.
 Theorem A needs only a weak form of Bongartz's large-line theorem, and the library
@@ -50,7 +50,8 @@ does not prove the full theorem.
 
 An independent agent audit of an earlier revision checked the definitions in
 `Statement.lean`, the final proof assembly and selected steps of the two proofs. The
-theorem statements have not changed since. It was not a line-by-line review, and no human
+statements it checked have not changed since; `CorollaryCount` and `CorollaryCountBounded`
+were added later and were not part of that audit. It was not a line-by-line review, and no human
 expert has reviewed the Lean statements or these proofs. Lean checks the proofs; whether
 [Challenge.lean](Challenge.lean) says what the paper says is a human judgement.
 
