@@ -666,6 +666,7 @@ public import LargeIndecomposable.UnitForms.RootBound
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.CriticalAbstract
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.BrickOff
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.CriticalLine
+public import LargeIndecomposable.DirectedAlgebras.Preprojective.CriticalQuotLine
 public import LargeIndecomposable.AuslanderReiten.Lengths.ChainBound
 public import LargeIndecomposable.DirectedAlgebras.Directing.QuotAny
 public import LargeIndecomposable.DirectedAlgebras.Preprojective.MinimalQuot
