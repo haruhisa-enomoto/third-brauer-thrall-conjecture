@@ -10,9 +10,9 @@ For `F₁(T) = (Λe_y ⊗ W)/{s ⊗ a(v) + t ⊗ b(v)}` (Construction 3.3), a
 homomorphism `f : F₁(T) → F₁(U)` induces `h : W → W'` on the tops, and the map
 `d(w₁, w₂) = s w₁ + t w₂` with kernel `{(a(v), b(v))}` (3.1) gives the unique
 `g : V → V'` with `ha = a'g`, `hb = b'g`. Then `ρ(f) = (g, h)` are retractions
-for `F₁` on `D_fin`; `ρ(f) = 0` exactly when `f` maps into `J F₁(U)`, so any
+for `F₁` on `D`; `ρ(f) = 0` exactly when `f` maps into `J F₁(U)`, so any
 `n` such maps compose to zero if `J^n = 0`. The argument does not use finite
-dimension; we state it on `D_fin`, where it is applied.
+dimension.
 -/
 
 @[expose] public section
@@ -248,8 +248,8 @@ lemma map_radPow_succ {M N : Type u} [AddCommGroup M] [Module Λ M] [AddCommGrou
 lemma mem_radPow_zero {M : Type u} [AddCommGroup M] [Module Λ M] (m : M) : m ∈ radPow Λ M 0 := by
   simpa using smul_mem_radPow_of_mem (Λ := Λ) (l := []) rfl (by simp) m
 
-/-- `F₁` restricted to `D_fin`. -/
-abbrev Φfin (Q : QuotientData k Λ) : Dfin k ⥤ ModuleCat.{u} Λ := (InDfin (k := k)).ι ⋙ Q.functor
+/-- `F₁` on `D`. -/
+abbrev ΦD (Q : QuotientData k Λ) : D k ⥤ ModuleCat.{u} Λ := (InD (k := k)).ι ⋙ Q.functor
 
 lemma hMap_add {X Y : Kron k} (f f' : Q.functor.obj X ⟶ Q.functor.obj Y) (w : X.W) :
     hMap hy (f + f') w = hMap hy f w + hMap hy f' w := by
@@ -265,29 +265,29 @@ lemma hMap_smul {X Y : Kron k} (c : k) (f : Q.functor.obj X ⟶ Q.functor.obj Y)
   exact ((algebraMap_smul Λ c (f.hom (Q.gen X w) : ↑(Q.functor.obj Y))).symm).trans
     (algebraMap_smul Λ c (Q.fL f (Q.gen X w)))
 
-/-- Proposition 4.1: retractions for `F₁` on `D_fin`. -/
-def retractions : Retractions k (Φfin Q) where
+/-- Proposition 4.1: retractions for `F₁` on `D`. -/
+def retractions : Retractions k (ΦD Q) where
   ρ X Y :=
-    { toFun f := ObjectProperty.homMk (ρK hx hy Y.2.1 f)
+    { toFun f := ObjectProperty.homMk (ρK hx hy Y.2 f)
       map_add' f f' := by
         ext1
-        exact ρK_ext hx hy Y.2.1 _ _ fun w ↦ (hMap_add hy f f' w).trans rfl
+        exact ρK_ext hx hy Y.2 _ _ fun w ↦ (hMap_add hy f f' w).trans rfl
       map_smul' c f := by
         ext1
-        exact ρK_ext hx hy Y.2.1 _ _ fun w ↦ (hMap_smul hy c f w).trans rfl }
+        exact ρK_ext hx hy Y.2 _ _ fun w ↦ (hMap_smul hy c f w).trans rfl }
   map_comp {X Y Z} f f' := by
     ext1
-    exact ρK_ext hx hy Z.2.1 _ _ fun w ↦ (hMap_comp hy f f' w).trans rfl
+    exact ρK_ext hx hy Z.2 _ _ fun w ↦ (hMap_comp hy f f' w).trans rfl
   ρ_map {X Y} u := by
     ext1
-    exact ρK_ext hx hy Y.2.1 _ _ fun w ↦ hMap_map hy u.hom w
+    exact ρK_ext hx hy Y.2 _ _ fun w ↦ hMap_map hy u.hom w
 
-lemma hMap_eq_zero_of_ρ {X Y : Dfin k} {f : (Φfin Q).obj X ⟶ (Φfin Q).obj Y}
+lemma hMap_eq_zero_of_ρ {X Y : D k} {f : (ΦD Q).obj X ⟶ (ΦD Q).obj Y}
     (h : (retractions hx hy).ρ X Y f = 0) (w : X.obj.W) : hMap hy f w = 0 := by
   have := congrArg (fun φ : X ⟶ Y ↦ (φ.hom.app one).hom w) h
   exact this
 
-lemma kerChain_mem {n : ℕ} {X Y : Dfin k} {f : (Φfin Q).obj X ⟶ (Φfin Q).obj Y}
+lemma kerChain_mem {n : ℕ} {X Y : D k} {f : (ΦD Q).obj X ⟶ (ΦD Q).obj Y}
     (hf : (retractions hx hy).KerChain n f) (m : Q.Qt X.obj) : Q.fL f m ∈ radPow Λ _ n := by
   induction hf with
   | nil X => exact mem_radPow_zero m
