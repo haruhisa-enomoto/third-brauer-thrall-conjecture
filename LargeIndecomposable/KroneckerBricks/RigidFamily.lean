@@ -79,7 +79,7 @@ theorem rigidFamily (X : Type u) [Infinite X] :
         LinearMap.range (T b).a.hom ⊔ LinearMap.range (T b).b.hom = ⊤) ∧
       (∀ b c, b ⊆ c → Nonempty ((T b ⟶ T c) ≃ₗ[k] k)) ∧
       (∀ b c, ¬ b ⊆ c → ∀ f : T b ⟶ T c, f = 0) ∧
-      (∀ b, Nonempty (End (T b) ≃ₐ[k] k)) := by
+      (∀ b, Nonempty (End (T b) ≃ₐ[k] k)) ∧ ∀ b, IsBrickKron (T b) := by
   classical
   have hX0 : ℵ₀ ≤ #X := Cardinal.infinite_iff.1 inferInstance
   obtain ⟨J, _, σ, hJ, hCd, hBd, hiC, hiB⟩ := exists_anchored (k := k) #X hX0
@@ -126,7 +126,7 @@ theorem rigidFamily (X : Type u) [Infinite X] :
     change ℵ₀ ≤ Module.rank k (T b).V + Module.rank k (T b).W
     rw [hrV]; exact hX0.trans le_self_add)
   refine ⟨T, fun b ↦ ⟨hrV b, hrW b, hinj b, (hC b).2⟩, fun b c hbc ↦ ?_, fun b c hbc f ↦ ?_,
-    fun b ↦ ?_⟩
+    fun b ↦ ?_, hbrick⟩
   · -- `Hom(T_b, T_c) ≅ k`, spanned by the inclusion
     let ι0 := subIncl σ2.C σ2.B σ2.α σ2.β ((hS b c).2 hbc)
     have hι0 : ι0 ≠ 0 := fun h ↦ σ2.hc0 (by
