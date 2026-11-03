@@ -611,6 +611,7 @@ public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.CoverLoca
 public import LargeIndecomposable.BongartzTheorem.ContourExclusion.NoContour
 public import LargeIndecomposable.BongartzTheorem.LongLines.CoverLine
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBand
+public import LargeIndecomposable.BongartzTheorem.LongLines.WindowPair
 public import LargeIndecomposable.BongartzTheorem.LongLines.LinePaths
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineModule
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineIndec

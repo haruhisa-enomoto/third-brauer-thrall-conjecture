@@ -215,8 +215,8 @@ lemma two_le : t + 2 ≤ t' := by
   obtain ⟨h1, h2, h3, -⟩ := hg
   by_contra h
   obtain rfl : t' = t + 1 := by omega
-  have a1 : L.fwd (t + 1) = false := h1.2.2
-  have a2 : L.fwd (t + 1) = true := h2.2.1
+  have a1 : L.fwd (t + 1) = false := h1.2
+  have a2 : L.fwd (t + 1) = true := h2.2
   rw [a1] at a2
   exact absurd a2 (by simp)
 
@@ -253,7 +253,7 @@ lemma src_idx (e : CycArr (nc t t')) :
     (L.larr (lidx t e) (lidx_lt hg e)).1 = vidx t ((cycleQuiver (nc t t') (eps L t t')).src e) := by
   rw [larr_fst]
   have h2 := t'_eq hg
-  obtain ⟨⟨-, -, hf1⟩, ⟨-, hf2, -⟩, -⟩ := hg
+  obtain ⟨⟨-, hf1⟩, ⟨-, hf2⟩, -⟩ := hg
   cases e with
   | first =>
     simp only [lidx, CycArr.posNat, vidx, add_zero, Fin.val_zero]
@@ -271,7 +271,7 @@ include hg in
 lemma tgt_idx (e : CycArr (nc t t')) (he : e ≠ .second) :
     (L.larr (lidx t e) (lidx_lt hg e)).2.1 = vidx t ((cycleQuiver (nc t t') (eps L t t')).tgt e) := by
   rw [larr_snd]
-  obtain ⟨⟨-, -, hf1⟩, -, -⟩ := hg
+  obtain ⟨⟨-, hf1⟩, -, -⟩ := hg
   cases e with
   | first =>
     simp only [lidx, CycArr.posNat, vidx, add_zero]
@@ -286,7 +286,7 @@ include hg in
 lemma tgt_idx_second : (L.larr (lidx t (.second : CycArr (nc t t'))) (lidx_lt hg _)).2.1 = t' + 1 := by
   rw [larr_snd]
   have h2 := t'_eq hg
-  obtain ⟨-, ⟨-, hf2, -⟩, -⟩ := hg
+  obtain ⟨-, ⟨-, hf2⟩, -⟩ := hg
   simp only [lidx, CycArr.posNat]
   simp only [show t + 1 + (nc t t' + 1) = t' by omega, hf2, if_true]
 
@@ -317,8 +317,8 @@ include hg in
 lemma arr_second_ne_first : (cyc hg).arr .second ≠ (cyc hg).arr .first := by
   intro ha
   have h1 : forget ((cyc hg).arr .second) = L.labL t' :=
-    forget_lab_fwd' _ (lidx_second hg) hg.2.1.2.1
-  have h2 : forget ((cyc hg).arr .first) = L.labR t := L.forget_lab_bwd t _ hg.1.2.2
+    forget_lab_fwd' _ (lidx_second hg) hg.2.1.2
+  have h2 : forget ((cyc hg).arr .first) = L.labR t := L.forget_lab_bwd t _ hg.1.2
   exact hg.2.2.2.2 (h2.symm.trans ((congrArg forget ha).symm.trans h1))
 
 include hg in
@@ -362,8 +362,8 @@ include hg in
 lemma cfwd_eq (e : CycArr (nc t t')) :
     (cycleCoords (nc t t') (eps L t t')).fwd e = L.fwd (lidx t e) := by
   cases e with
-  | first => exact hg.1.2.2.symm
-  | second => rw [lidx_second hg]; exact hg.2.1.2.1.symm
+  | first => exact hg.1.2.symm
+  | second => rw [lidx_second hg]; exact hg.2.1.2.symm
   | mid j =>
     change L.fwd (t + 2 + j) = L.fwd (t + 1 + ((j : ℕ) + 1))
     rw [show t + 1 + ((j : ℕ) + 1) = t + 2 + j by omega]
@@ -407,12 +407,10 @@ lemma cyc_primitive (hmin : ∀ u u', L.GoodPair u u' → t' - t ≤ u' - u) :
   have lA : lidx t eA = t + 1 + τ.val := by unfold lidx; rw [hpA]
   have lB : lidx t eB = t + τ.val := by unfold lidx; rw [hpB]; omega
   have fA : L.fwd (t + 1 + τ.val) = false := by
-    rw [← lA, ← cfwd_eq hg eA, hA2, cfwd_eq hg]; exact hg.1.2.2
+    rw [← lA, ← cfwd_eq hg eA, hA2, cfwd_eq hg]; exact hg.1.2
   have fB : L.fwd (t + τ.val) = true := by
-    rw [← lB, ← cfwd_eq hg eB, hB2, cfwd_eq hg, lidx_second hg]; exact hg.2.1.2.1
-  have hsink : L.IsSinkAt (t + τ.val) :=
-    ⟨by have := hg.2.1.1; omega, fB,
-      by rw [show t + τ.val + 1 = t + 1 + τ.val by omega]; exact fA⟩
+    rw [← lB, ← cfwd_eq hg eB, hB2, cfwd_eq hg, lidx_second hg]; exact hg.2.1.2
+  have hsink : L.IsLSink (t + τ.val) := ⟨by have := hg.2.1.1; omega, fB⟩
   have hy : (L.pt (t + 1)).y = (L.pt (t + τ.val + 1)).y := by
     have hfB : L.fwd (lidx t eB) = true := by rw [lB]; exact fB
     have h1 : (quiver P).tgt ((cyc hg).arr eB) = (L.pt (t + τ.val + 1)).y := by
@@ -424,7 +422,7 @@ lemma cyc_primitive (hmin : ∀ u u', L.GoodPair u u' → t' - t ≤ u' - u) :
   have hlab : L.labR t ≠ L.labL (t + τ.val) := by
     have h1 : forget ((cyc hg).arr eB) = L.labL (t + τ.val) := forget_lab_fwd' _ lB fB
     have h2 : forget ((cyc hg).arr .second) = L.labL t' :=
-      forget_lab_fwd' _ (lidx_second hg) hg.2.1.2.1
+      forget_lab_fwd' _ (lidx_second hg) hg.2.1.2
     rw [← h1, hB1, h2]
     exact hg.2.2.2.2
   have := hmin t (t + τ.val) ⟨hg.1, hsink, by omega, hy, hlab⟩
