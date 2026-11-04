@@ -8,7 +8,7 @@ public import Mathlib.Algebra.BigOperators.Pi
 /-!
 # Block matrices with a zero column
 
-Lemma 4.3 of the manuscript. Let `Ω` be a finite set with a partition, given
+Lemma 4.4 of the manuscript. Let `Ω` be a finite set with a partition, given
 by a map `p : Ω → P` whose fibres are the parts, and let `M i` be vector
 spaces. Endomorphisms of `⨁ M i = Π i, M i` are block matrices with blocks
 `block f j i : M i → M j` (columns are indexed by sources). The diagonal
@@ -19,14 +19,13 @@ For a unital subalgebra `E` preserving the part-subspaces, with
 1. `diag E ⊆ E`,
 2. every coordinate map `E₀ = diag E → End(M i)` injective,
 3. `N = ker (diag|_E)` spanned by elements of `N` with at most one nonzero
-   block in each row and column and with a zero column,
+   block in each column and with a zero column,
 
 `diag : E → E₀` is a split algebra surjection, `N` is a two-sided ideal, and
 every product of `m` elements of `N` vanishes, `m` the largest part size.
 
-The proof needs neither `M i ≠ 0` nor `Ω ≠ ∅`, nor the row condition in (3);
-the core lemmas are stated without them, and `zeroColumn` states the lemma
-with the manuscript's hypotheses.
+The proof needs neither `M i ≠ 0` nor `Ω ≠ ∅`; the core lemmas are stated
+without them, and `zeroColumn` states the lemma with the manuscript's hypotheses.
 -/
 
 @[expose] public section
@@ -106,10 +105,6 @@ lemma Conc.eq_single {y : ∀ i, M i} {i : Ω} (h : Conc y i) : y = Pi.single i 
 /-- At most one nonzero block in each column. -/
 def ColProp (z : Module.End k (∀ i, M i)) : Prop :=
   ∀ i j j', block z j i ≠ 0 → block z j' i ≠ 0 → j = j'
-
-/-- At most one nonzero block in each row. -/
-def RowProp (z : Module.End k (∀ i, M i)) : Prop :=
-  ∀ j i i', block z j i ≠ 0 → block z j i' ≠ 0 → i = i'
 
 /-- Some column all of whose blocks are zero. -/
 def HasZeroCol (z : Module.End k (∀ i, M i)) : Prop :=
@@ -240,7 +235,7 @@ lemma conc_prod (hE : PreservesParts E p) {i₀ : Ω} {y : ∀ i, M i} (hy : Con
     exact hb hne (hE.block_eq_zero ha.1.1 hpj)
 
 variable [Fintype Ω] [DecidableEq P] in
-/-- The core of Lemma 4.3: a product of `m` spanning matrices vanishes. -/
+/-- The core of Lemma 4.4: a product of `m` spanning matrices vanishes. -/
 lemma prod_eq_zero (hE : PreservesParts E p) (h2 : ∀ i, Set.InjOn (fun r ↦ block r i i) (E₀ E : Set (Module.End k (∀ i, M i))))
     {m : ℕ} (hm : ∀ i, (Finset.univ.filter fun j ↦ p j = p i).card ≤ m)
     {l : List (Module.End k (∀ i, M i))} (hlen : l.length = m)
@@ -402,7 +397,7 @@ variable [Fintype Ω] [DecidableEq P]
 /-- The largest part size `m = max_{Ω' ∈ 𝒫} |Ω'|`. -/
 def maxPart (p : Ω → P) : ℕ := Finset.univ.sup fun i ↦ (Finset.univ.filter fun j ↦ p j = p i).card
 
-/-- Lemma 4.3, with the manuscript's hypotheses. The partition of `Ω` is the
+/-- Lemma 4.4, with the manuscript's hypotheses. The partition of `Ω` is the
 set of fibres of `p`; `E` preserves each part-subspace (`PreservesParts`).
 Conclusions: `δ` restricts to an algebra map `E → E` with image `E₀` that
 is the identity on `E₀` (a split algebra surjection onto `E₀`); `N` is a
@@ -411,7 +406,7 @@ theorem zeroColumn (E : Subalgebra k (Module.End k (∀ i, M i))) (p : Ω → P)
     (hE : PreservesParts E p)
     (h1 : ∀ f ∈ E, diag k M f ∈ E)
     (h2 : ∀ i, Set.InjOn (fun r ↦ block r i i) (E₀ E : Set (Module.End k (∀ i, M i))))
-    (h3 : N E = Submodule.span k {z | z ∈ N E ∧ RowProp z ∧ ColProp z ∧ HasZeroCol z}) :
+    (h3 : N E = Submodule.span k {z | z ∈ N E ∧ ColProp z ∧ HasZeroCol z}) :
     ∃ δE : E →ₐ[k] E,
       (∀ f, (δE f : Module.End k (∀ i, M i)) = diag k M f) ∧
       Set.range (fun f : E ↦ (δE f : Module.End k (∀ i, M i))) = E₀ E ∧
@@ -419,9 +414,7 @@ theorem zeroColumn (E : Subalgebra k (Module.End k (∀ i, M i))) (p : Ω → P)
       (∀ f ∈ E, ∀ z ∈ N E, f * z ∈ N E ∧ z * f ∈ N E) ∧
       ∀ l : List (Module.End k (∀ i, M i)), l.length = maxPart p → (∀ z ∈ l, z ∈ N E) →
         l.prod = 0 := by
-  have h3' : N E ≤ Submodule.span k (SpanSet (E := E)) := by
-    rw [h3]
-    exact Submodule.span_mono fun z hz ↦ ⟨hz.1, hz.2.2.1, hz.2.2.2⟩
+  have h3' : N E ≤ Submodule.span k (SpanSet (E := E)) := h3.le
   refine ⟨diagHom h1 h2 h3', fun _ ↦ rfl, range_diagHom h1 h2 h3',
     diagHom_of_mem_E₀ h1 h2 h3', fun f hf z hz ↦
       ⟨mul_mem_N_left h1 h2 h3' hf hz, mul_mem_N_right h1 h2 h3' hf hz⟩,

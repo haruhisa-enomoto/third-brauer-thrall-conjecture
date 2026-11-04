@@ -95,18 +95,18 @@ automation:
 
 fidelity:
   divergences: >-
-    Theorem A is stated as in the paper. Corollary 1.1 (= Corollary 5.6) is
-    stated without the number 2^κ of modules and without the explicit bound
-    n ≤ max(30, 4 dim A): CorollaryDimension gives an indecomposable module of
-    every infinite dimension and CorollaryRadical gives such modules with local
-    endomorphism rings and one nilpotence bound n. The statements have the
+    Theorem A and Corollary 1.1 (= Corollary 5.7) are stated as in the paper.
+    CorollaryCountBounded is the full corollary: 2^κ pairwise non-isomorphic
+    indecomposable modules of every infinite dimension κ, the largest possible
+    number when κ ≥ |k|, with End/rad End ≅ k and one nilpotence bound
+    n ≤ max(30, 4 dim A). CorollaryDimension, CorollaryRadical and CorollaryCount
+    are its weaker parts. The statements have the
     field, the algebra and the modules in one universe. Dimensions are cardinals.
     Intermediate results may be proved in an equivalent or more general form and
     by a different route; docs/PAPER-CORRESPONDENCE.md lists these. Two steps of
     Bongartz's Theorem 6 have different proofs: the critical pair avoids tilting
     theory, and long lines avoid the classification of large sincere algebras. No
-    other weakening of the hypotheses or conclusions of the three results is
-    known.
+    other weakening of the hypotheses or conclusions of these results is known.
 
 review:
   status: "agent-reviewed"
@@ -115,7 +115,9 @@ review:
     A separate agent audited an earlier revision: the complete statement
     definitions against the paper, the final proof assembly, selected load-bearing
     arguments of the two proofs in docs/proofs, the build, the axiom reports and the
-    comparator. The theorem statements have not changed since. It was not a
+    comparator. A later agent audit checked the added statements CorollaryCount and
+    CorollaryCountBounded against the paper, the new proofs of the count and the
+    bound, the build, the axiom reports and the comparator. Neither was a
     line-by-line review, and no human expert has checked the Lean statements or
     these proofs.
 
@@ -134,12 +136,26 @@ alignment:
       note: >-
         The dimension part, without the number of modules. Proved in
         Solution.lean from LargeIndecomposable.corollaryDimension.
-    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Corollary 5.6"
+    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Corollary 5.7"
       lean: "LargeIndecomposable.Challenge.corollaryRadical"
       module: "Challenge"
       status: "proved"
       note: >-
         Without the number of modules and the explicit bound on n. Proved in
         Solution.lean from LargeIndecomposable.corollaryRadical.
+    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Corollary 5.7"
+      lean: "LargeIndecomposable.Challenge.corollaryCount"
+      module: "Challenge"
+      status: "proved"
+      note: >-
+        Without the explicit bound on n. Proved in Solution.lean from
+        LargeIndecomposable.corollaryCount.
+    - source: "Representation embeddings and the third Brauer–Thrall conjecture, Corollary 1.1 (= Corollary 5.7)"
+      lean: "LargeIndecomposable.Challenge.corollaryCountBounded"
+      module: "Challenge"
+      status: "proved"
+      note: >-
+        The full corollary, with n ≤ max(30, 4 dim A). Proved in Solution.lean
+        from LargeIndecomposable.corollaryCountBounded.
 
 acknowledgements: "Lean and Mathlib."

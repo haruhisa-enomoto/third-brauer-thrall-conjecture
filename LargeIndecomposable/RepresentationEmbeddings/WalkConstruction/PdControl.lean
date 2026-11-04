@@ -6,7 +6,7 @@ public import LargeIndecomposable.KroneckerModules.Basic
 /-!
 # Control of push-down constructions on total spaces
 
-Propositions 4.4, 4.7 and 4.8, for maps between the total spaces
+Propositions 4.5, 4.7 and 4.8, for maps between the total spaces
 `⊕_i L(T)(i)` satisfying the block equations of a push-down along a quiver
 morphism `p : D → Q` injective on the arrows with a fixed source and on those
 with a fixed target. Here `L : D → Rep D` is fully faithful and a morphism
@@ -22,7 +22,7 @@ some column is missing.
   has zero diagonal blocks.
 * `bl_comp_self`: the diagonal part is multiplicative.
 * `eq_zero_of_mem_closure_good`: a composite of `|D₀|` maps with zero diagonal
-  parts vanishes (the argument of Lemma 4.3).
+  parts vanishes (the argument of Lemma 4.4).
 -/
 
 @[expose] public section
@@ -91,7 +91,7 @@ namespace PushDown
 variable {D Q : FinQuiver} (p : FinQuiver.Hom D Q)
 
 /-- A partition of the positions `(j, i)` of blocks into classes, as needed for
-Propositions 4.4 and 4.7. -/
+Propositions 4.5 and 4.7. -/
 structure BlockClasses where
   /-- The classes. -/
   ι : Type
@@ -140,7 +140,7 @@ lemma restr_offdiag_eq_sum {X Y : Rep k D} (f : X.Tot →ₗ[k] Y.Tot) :
 
 end BlockClasses
 
-/-! ### Chains of maps with zero diagonal part (the argument of Lemma 4.3)
+/-! ### Chains of maps with zero diagonal part (the argument of Lemma 4.4)
 
 The nilpotence argument only needs a family of representations `Xf o` of `D`,
 a notion of admissible column `Adm o c`, the vanishing of the diagonal blocks of

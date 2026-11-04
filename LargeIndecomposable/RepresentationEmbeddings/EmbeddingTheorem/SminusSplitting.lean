@@ -9,7 +9,7 @@ public import Mathlib.LinearAlgebra.Dimension.Constructions
 # Splitting off the copies of `S₋`
 
 Tools for Step 2 of the proof of Theorem 5.2. Inside `D`, every `T` splits as
-`T₀ ⊕ S₋^(I)` with `T₀ ∈ C` (2.2) (`DSplit.bicone`); `S₋^(I)` is a coproduct of
+`T₀ ⊕ S₋^(I)` with `T₀ ∈ C` (2.3) (`DSplit.bicone`); `S₋^(I)` is a coproduct of
 copies of `S₋` in `D`, and `I →₀ P` a coproduct of copies of a module `P`.
 Bicones with isomorphic summands have isomorphic points, a positive finite
 factor cancels from cardinals, and the dimension of `I →₀ P` is `|I| dim P`.

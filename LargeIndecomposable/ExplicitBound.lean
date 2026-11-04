@@ -208,7 +208,7 @@ theorem exists_embeddingData_distributive_bounded
       (3 * Module.finrank k B)
     exact hband L hL
 
-/-- **Corollary 1.1 (= Corollary 5.6) with the explicit bound** `n ≤ max(30, 4 dim A)`. -/
+/-- **Corollary 1.1 (= Corollary 5.7) with the explicit bound** `n ≤ max(30, 4 dim A)`. -/
 theorem corollaryCountBounded : CorollaryCountBounded.{u} := by
   intro k _ _ A _ _ _ hA
   obtain ⟨E, hE⟩ := exists_embeddingData_bounded_of

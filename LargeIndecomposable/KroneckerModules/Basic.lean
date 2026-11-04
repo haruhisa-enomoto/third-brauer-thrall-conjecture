@@ -73,7 +73,7 @@ lemma inD_iff (X : Kron k) :
     exact (h v ha hb).symm ▸ Submodule.zero_mem _
 
 /-- Definition 2.1: the modules of `D` with `a(V) + b(V) = W`, equivalently
-(after (2.2)) the Kronecker modules with neither simple module as a direct
+(after (2.3)) the Kronecker modules with neither simple module as a direct
 summand. -/
 def InC : ObjectProperty (Kron k) :=
   fun X ↦ InD X ∧ LinearMap.range X.a.hom ⊔ LinearMap.range X.b.hom = ⊤

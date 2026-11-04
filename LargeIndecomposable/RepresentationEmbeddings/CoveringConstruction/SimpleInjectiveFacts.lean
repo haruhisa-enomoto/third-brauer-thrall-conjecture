@@ -10,7 +10,7 @@ automatically, so covering data alone give the data of Theorem 5.2.
 
 * `F₂(S₋) = π_*L(S₋)` is indecomposable: `L(S₋)` is a brick, and for each class
   `γ ≠ 1` of block positions some vertex `x` of the support of `L(S₋)` has
-  `γ x` outside the support (the argument of Proposition 4.4 for `L(S₋)`), so
+  `γ x` outside the support (the argument of Proposition 4.5 for `L(S₋)`), so
   `PdData.isIndecomposable_of_brick` applies.
 * `F₂(S₋) ≇ F₂(T)` for `T ∈ C_fin`: by exactness, `dim L(T)(x)` is
   `dim L(0, W)(x) + dim L(V, 0)(x)`, and `S₋`, `S₊` are retracts of `(0, W)`,

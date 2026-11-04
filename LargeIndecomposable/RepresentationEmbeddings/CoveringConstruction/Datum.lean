@@ -14,7 +14,7 @@ the quiver of `R` on the support `Σ = supp L(S₊) ∪ supp L(S₋)`, the
 restriction `p : D → Q` of the covering map, and the action of `G` on the
 objects of `R` (`CoverData`): `G` acts freely, it is torsion-free, and two
 arrows of `D` with the same label are `G`-translates of each other. Grouping
-block positions `(γ x, x)` by `γ ∈ G` gives the classes of Proposition 4.4
+block positions `(γ x, x)` by `γ ∈ G` gives the classes of Proposition 4.5
 (`CoverData.blockClasses`); a class `γ ≠ 1` misses a column because `γ Σ ≠ Σ`.
 
 `CoveringData k A` adds an exact fully faithful functor `L` from Kronecker
@@ -167,7 +167,7 @@ lemma zeroCol_rel (P : D.V → Prop) {c₀ : D.V} (hc₀ : P c₀) (a₀ : D.V �
     cases hj
 
 open Classical in
-/-- The classes of block positions of Proposition 4.4. -/
+/-- The classes of block positions of Proposition 4.5. -/
 def blockClasses : PushDown.BlockClasses p where
   ι := Set.range C.gcls
   fin := Set.fintypeRange _

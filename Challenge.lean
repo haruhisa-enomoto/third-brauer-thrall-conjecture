@@ -30,10 +30,10 @@ its three principal results:
   finite-dimensional modules, commuting with arbitrary direct sums and
   filtered colimits, and preserving the dimension of infinite-dimensional
   modules;
-* `CorollaryDimension` (part of Corollary 1.1 = Corollary 5.6): such an
+* `CorollaryDimension` (part of Corollary 1.1 = Corollary 5.7): such an
   algebra has an indecomposable module of every infinite dimension (the third
   Brauer–Thrall conjecture over algebraically closed fields);
-* `CorollaryRadical` (Corollary 1.1 = Corollary 5.6, without the number of
+* `CorollaryRadical` (Corollary 1.1 = Corollary 5.7, without the number of
   modules and the explicit bound on `n`): these modules can be chosen with
   `End(M)/rad End(M) ≅ k` and `(rad End(M))ⁿ = 0` for one `n` independent of
   the dimension.
@@ -108,7 +108,7 @@ def IsShortExact {X Y Z : Kron k} (f : X ⟶ Y) (g : Y ⟶ Z) : Prop :=
 end Kron
 
 /-- The modules without a direct summand isomorphic to the simple injective
-`S₊ = (k, 0; 0, 0)`; equivalently (manuscript (2.1)) `ker a ∩ ker b = 0`. -/
+`S₊ = (k, 0; 0, 0)`; equivalently (manuscript (2.2)) `ker a ∩ ker b = 0`. -/
 def InD : ObjectProperty (Kron k) :=
   fun X ↦ LinearMap.ker X.a.hom ⊓ LinearMap.ker X.b.hom = ⊥
 
@@ -197,7 +197,7 @@ def CorollaryDimension : Prop :=
       ∃ (M : Type u) (_ : AddCommGroup M) (_ : Module A M) (_ : Module k M)
         (_ : IsScalarTower k A M), Module.rank k M = κ ∧ IsIndecomposable A M
 
-/-- Corollary 1.1 (= Corollary 5.6) without the number of modules and the
+/-- Corollary 1.1 (= Corollary 5.7) without the number of modules and the
 explicit bound on `n`: modules of every infinite dimension whose endomorphism
 algebra `E` satisfies `E = k·1 + rad E`, `1 ∉ rad E` (so `E / rad E ≅ k`), and
 `(rad E)ⁿ = 0` for one `n ≥ 1` independent of the dimension. -/
@@ -224,7 +224,7 @@ def EndLocalBounded (k : Type u) [Field k] (A : Type u) [Ring A] [Algebra k A] (
   ∀ f : Fin n → Module.End A M, (∀ i, f i ∈ Ring.jacobson (Module.End A M)) →
     (List.ofFn f).prod = 0
 
-/-- Corollary 1.1 (= Corollary 5.6) without the explicit bound on `n`: for one
+/-- Corollary 1.1 (= Corollary 5.7) without the explicit bound on `n`: for one
 `n ≥ 1` and every infinite cardinal `κ` there are `2^κ` pairwise non-isomorphic
 indecomposable modules of dimension `κ` whose endomorphism algebras satisfy
 `EndLocalBounded` for `n`; if `κ ≥ |k|`, no family of pairwise non-isomorphic
@@ -243,7 +243,7 @@ def CorollaryCount : Prop :=
         (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) → (∀ i, Module.rank k (M i) = κ) →
           Cardinal.mk ι ≤ 2 ^ κ)
 
-/-- **Corollary 1.1 (= Corollary 5.6)** with the explicit bound: as `CorollaryCount`, with
+/-- **Corollary 1.1 (= Corollary 5.7)** with the explicit bound: as `CorollaryCount`, with
 `1 ≤ n ≤ max(30, 4 dim A)`. -/
 def CorollaryCountBounded : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
@@ -277,21 +277,21 @@ theorem LargeIndecomposable.Challenge.corollaryDimension :
     LargeIndecomposable.Statement.CorollaryDimension.{u} := by
   sorry
 
-/-- **Corollary 5.6**, without the number of modules and the explicit bound.
+/-- **Corollary 5.7**, without the number of modules and the explicit bound.
 Indecomposable modules of every infinite dimension whose endomorphism rings are
 local with residue field `k` and radical of bounded nilpotence index. -/
 theorem LargeIndecomposable.Challenge.corollaryRadical :
     LargeIndecomposable.Statement.CorollaryRadical.{u} := by
   sorry
 
-/-- **Corollary 5.6**, without the explicit bound. `2^κ` pairwise non-isomorphic such
+/-- **Corollary 5.7**, without the explicit bound. `2^κ` pairwise non-isomorphic such
 modules in every infinite dimension `κ`, the largest possible number when
 `κ ≥ |k|`. -/
 theorem LargeIndecomposable.Challenge.corollaryCount :
     LargeIndecomposable.Statement.CorollaryCount.{u} := by
   sorry
 
-/-- **Corollary 1.1 (= Corollary 5.6)**. `2^κ` pairwise non-isomorphic such modules
+/-- **Corollary 1.1 (= Corollary 5.7)**. `2^κ` pairwise non-isomorphic such modules
 in every infinite dimension `κ`, with one nilpotence index `n ≤ max(30, 4 dim A)`. -/
 theorem LargeIndecomposable.Challenge.corollaryCountBounded :
     LargeIndecomposable.Statement.CorollaryCountBounded.{u} := by

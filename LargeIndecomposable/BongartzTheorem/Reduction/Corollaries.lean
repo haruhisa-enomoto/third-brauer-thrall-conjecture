@@ -9,7 +9,7 @@ public import Mathlib.LinearAlgebra.Dual.Lemmas
 Applying the representation embedding of Theorem 5.2 to Kronecker bricks of
 every infinite dimension gives indecomposable modules of every infinite
 dimension, with local endomorphism algebras whose radicals are nilpotent of an
-exponent independent of the dimension (Corollary 5.6, through the retractions
+exponent independent of the dimension (Corollary 5.7, through the retractions
 on `C` of Theorem 5.2).
 
 The Kronecker bricks are supplied by Göbel–Simson, Corollary 1.3; here this
@@ -140,7 +140,7 @@ lemma Retractions.NilpotentBound.succ {A : Type u} [Ring A] [Algebra k A] {𝒞 
   cases hf with
   | cons hf' hg => rw [h _ hf', Limits.zero_comp]
 
-/-! ### The modules of Corollary 5.6 -/
+/-! ### The modules of Corollary 5.7 -/
 
 section Modules
 
@@ -283,7 +283,7 @@ theorem corollaryDimension_of : CorollaryDimension.{u} := by
     isIndecomposable_brick E hT hinf⟩
 
 include H G in
-/-- Corollary 5.6 without the count and the explicit bound, conditional on the
+/-- Corollary 5.7 without the count and the explicit bound, conditional on the
 two hypotheses. -/
 theorem corollaryRadical_of : CorollaryRadical.{u} := by
   intro k _ _ A _ _ _ hA

@@ -13,7 +13,7 @@ An `EmbeddingData k A` collects what the manuscript establishes for each of the
 functors `F_ν : D → Mod A` of (3.5), apart from the reduction of Lemma 3.1:
 `F` is `k`-linear, faithful and exact on `D`, has finite-dimensional values on
 `D_fin`, satisfies the colimit comparison (3.6), admits retractions on `C` with
-a nilpotence bound (Proposition 4.8), and satisfies the two facts about `S₋`
+a nilpotence bound (Proposition 4.9), and satisfies the two facts about `S₋`
 that the proof of Theorem 5.2 takes from the representation-embedding property
 on `D_fin`: `F(S₋)` is indecomposable and not isomorphic to `F(T)` for
 `T ∈ C_fin`.

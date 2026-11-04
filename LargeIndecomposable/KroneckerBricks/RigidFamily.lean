@@ -4,14 +4,14 @@ public import LargeIndecomposable.KroneckerBricks.AnchoredFamilies
 public import LargeIndecomposable.BongartzTheorem.Reduction.Corollaries
 
 /-!
-# Göbel–Simson rigid families (Theorem 5.5)
+# Göbel–Simson rigid families (Theorem 5.6)
 
 For an infinite field `k` and an infinite type `X` of cardinality `κ` there are
 Kronecker modules `T_β = (V_β, W_β; a_β, b_β)`, `β ⊆ X`, with
 `dim V_β = dim W_β = κ`, `a_β, b_β` injective and `a_β(V_β) + b_β(V_β) = W_β`,
 such that `Hom(T_β, T_γ) ≅ k` for `β ⊆ γ`, `Hom(T_β, T_γ) = 0` for `β ⊄ γ`,
 and `End(T_β) ≅ k` as `k`-algebras (`Bricks.rigidFamily`). This is the form of
-Göbel and Simson's Theorem 1.2 and Theorem 3.3 recorded as Theorem 5.5 of the
+Göbel and Simson's Theorem 1.2 and Theorem 3.3 recorded as Theorem 5.6 of the
 manuscript, here for infinite fields.
 
 The proof glues: take an anchored family over `X ⊕ X` (`Bricks.exists_anchored`)
@@ -70,7 +70,7 @@ lemma le_rank_dfinsupp {S : Type u} {M : S → Type u} [∀ s, AddCommGroup (M s
 
 variable [Infinite k]
 
-/-- **Theorem 5.5** (Göbel–Simson, Theorem 1.2(i),(iii) and Theorem 3.3), for
+/-- **Theorem 5.6** (Göbel–Simson, Theorem 1.2(i),(iii) and Theorem 3.3), for
 infinite fields: a family of Kronecker modules `T_β`, `β ⊆ X`, with
 `Hom(T_β, T_γ) ≅ k` exactly when `β ⊆ γ`. -/
 theorem rigidFamily (X : Type u) [Infinite X] :

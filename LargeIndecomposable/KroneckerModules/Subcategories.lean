@@ -13,8 +13,8 @@ public import Mathlib.CategoryTheory.Limits.FunctorCategory.Basic
 /-!
 # The subcategories `D` and `C`
 
-The simple Kronecker modules `S₊` and `S₋`, the description (2.1) of `D`,
-Lemma 2.2(2) and (3), and the splitting (2.2) of a module of `D` into a module
+The simple Kronecker modules `S₊` and `S₋`, the description (2.2) of `D`,
+Lemma 2.2(2) and (3), and the splitting (2.3) of a module of `D` into a module
 of `C` and copies of `S₋`.
 -/
 
@@ -44,7 +44,7 @@ abbrev Sminus : Kron k := Kron.mk (ModuleCat.of k PUnit.{u + 1}) (ModuleCat.of k
 
 end Kron
 
-/-- (2.1): `T ∈ D` if and only if `Hom(S₊, T) = 0`. -/
+/-- (2.2): `T ∈ D` if and only if `Hom(S₊, T) = 0`. -/
 theorem inD_iff_hom_Splus (X : Kron k) : InD X ↔ ∀ f : Kron.Splus k ⟶ X, f = 0 := by
   rw [inD_iff]
   constructor
@@ -248,7 +248,7 @@ def sumSminusIso (I : Type u) : sumSminus k I ≅ ∐ fun _ : I ↦ Sminus k :=
 
 end Kron
 
-/-! ### The splitting (2.2) -/
+/-! ### The splitting (2.3) -/
 
 namespace Kron.Splitting
 
@@ -335,7 +335,7 @@ def isoBiprod : T ≅ T₀ T ⊞ Kron.sumSminus k (I T) :=
 
 end Kron.Splitting
 
-/-- (2.2): every `T ∈ D` splits as `T ≅ T₀ ⊕ S₋^(I)` with `T₀ ∈ C`. -/
+/-- (2.3): every `T ∈ D` splits as `T ≅ T₀ ⊕ S₋^(I)` with `T₀ ∈ C`. -/
 theorem exists_iso_biprod_sigma_Sminus (T : Kron k) (hT : InD T) :
     ∃ (T₀ : Kron k) (I : Type u), InC T₀ ∧ Nonempty (T ≅ T₀ ⊞ ∐ fun _ : I ↦ Kron.Sminus k) :=
   ⟨_, _, Kron.Splitting.inC_T₀ T hT,
@@ -346,7 +346,7 @@ lemma Kron.id_Sminus_ne_zero : 𝟙 (Kron.Sminus k) ≠ 0 := by
   have := congrArg (fun f : Kron.Sminus k ⟶ Kron.Sminus k ↦ (f.app one).hom (1 : k)) h
   simp at this
 
-/-- The converse remark after (2.2): a module with a direct summand `S₋` is not in `C`. -/
+/-- The converse remark after (2.3): a module with a direct summand `S₋` is not in `C`. -/
 theorem not_inC_of_iso_biprod_Sminus {T T' : Kron k} (e : T ≅ T' ⊞ Kron.Sminus k) : ¬ InC T := by
   intro hT
   apply Kron.id_Sminus_ne_zero (k := k)
@@ -392,7 +392,7 @@ def Kron.sumSminusIsoSminus {I : Type u} [Subsingleton I] (i : I) :
   parallelPair.ext (Iso.refl _)
     (LinearEquiv.toModuleIso (Finsupp.uniqueLinearEquiv k k i)) (by simp) (by simp)
 
-/-- After (2.2): an indecomposable object of `D` either lies in `C` or is
+/-- After (2.3): an indecomposable object of `D` either lies in `C` or is
 isomorphic to `S₋`. -/
 theorem inC_or_iso_Sminus_of_isIndecomposable {X : D k} (hX : IsIndecomposableKron X) :
     InC X.obj ∨ Nonempty (X.obj ≅ Kron.Sminus k) := by

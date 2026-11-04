@@ -5,7 +5,7 @@ public import LargeIndecomposable.KroneckerModules.Subcategories
 public import Mathlib.LinearAlgebra.Dual.Lemmas
 
 /-!
-# Morphisms vanishing at one vertex (Lemma 4.2)
+# Morphisms vanishing at one vertex (Lemma 4.3)
 
 Let `L : Kron → Rep D` be a functor from Kronecker modules to representations
 of a finite quiver, sending short exact sequences to
@@ -13,7 +13,7 @@ vertexwise short exact sequences, such that every vertex lies in the support
 of `L(S₊)` or of `L(S₋)`. If `φ : T → U` is a morphism of `D` with
 `T ∈ C` and `L(φ)` vanishes at some vertex, then `φ = 0`.
 
-This is the part of Lemma 4.2 used in Proposition 4.4. Instead of the natural
+This is the part of Lemma 4.3 used in Proposition 4.5. Instead of the natural
 identifications `L(T)(x) ≅ L(S₊)(x) ⊗ V` we argue with the quotient
 `T → (V, 0)` and the subobject `(0, W) → U`: at a vertex in the support of
 `L(S₊)`, a nonzero `φ` gives a map `T → S₊` whose image under `L` is
@@ -184,7 +184,7 @@ lemma eq_zero_of_sminus {T U : Statement.D k} (φ : T ⟶ U) (c : D.V)
   simp
 
 include hex in
-/-- Lemma 4.2, in the form used by Proposition 4.4. -/
+/-- Lemma 4.3, in the form used by Proposition 4.5. -/
 theorem zeroAtVertex
     (hsupp : ∀ c, Nontrivial ((L.obj (Kron.Splus k)).obj c) ∨
       Nontrivial ((L.obj (Kron.Sminus k)).obj c)) :

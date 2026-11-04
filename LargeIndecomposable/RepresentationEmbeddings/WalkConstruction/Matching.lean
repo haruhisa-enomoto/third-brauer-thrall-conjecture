@@ -9,7 +9,7 @@ public import Mathlib.Tactic.LinearCombination
 /-!
 # The matching quiver of a closed walk
 
-Definition 4.5 and Lemma 4.6. The cycle `D_w` of a closed walk is described
+Definition 4.6 and Lemma 4.7. The cycle `D_w` of a closed walk is described
 by cycle coordinates (`CycleCoords`): its vertices and arrows are numbered by
 `ZMod r`, arrow `x` joining the vertices `x` and `x + 1`, forwards (from `x`
 to `x + 1`) or backwards. For a quiver morphism `p : D_w → Q`, the matching
@@ -19,7 +19,7 @@ both entering (`Inc`); it joins `(j, i)` to the pair of the other endpoints
 (`Adj`). Components are classes of `Conn`, the reflexive transitive closure.
 
 For `p` injective on the arrows with a fixed source and on those with a
-fixed target (3.4), we prove the facts of Lemma 4.6 used in Proposition 4.7:
+fixed target (3.4), we prove the facts of Lemma 4.7 used in Proposition 4.8:
 
 * `diag_iff_of_conn`: the diagonal pairs form a union of components;
 * `eq_of_conn_of_snd_eq`: on each component the second coordinate determines
@@ -254,7 +254,7 @@ lemma adj_diag {a b : D.V × D.V} (h : Adj p a b) (ha : a.1 = a.2) : b.1 = b.2 :
   subst this
   simp [ha]
 
-/-- Lemma 4.6: the diagonal pairs form a union of components. -/
+/-- Lemma 4.7: the diagonal pairs form a union of components. -/
 lemma diag_iff_of_conn {a b : D.V × D.V} (h : Conn p a b) : a.1 = a.2 ↔ b.1 = b.2 := by
   induction h with
   | refl => exact Iff.rfl
@@ -292,7 +292,7 @@ lemma line {a₀ : D.V × D.V} {s : ℤ} (h₀ : ∀ α β, Inc p a₀ α β →
       linear_combination ih1
     · rw [type_eq C hloc hi' (inc_other_pair C hi), type_other C hi, ht]
 
-/-- Lemma 4.6: on a component the second coordinate determines the first. -/
+/-- Lemma 4.7: on a component the second coordinate determines the first. -/
 lemma eq_of_conn_of_snd_eq {a₀ a b : D.V × D.V} (ha : Conn p a₀ a) (hb : Conn p a₀ b)
     (h : a.2 = b.2) : a = b := by
   obtain ⟨s, -, hs⟩ := exists_type C hloc a₀
@@ -368,7 +368,7 @@ lemma two_fixed [Fact (1 < r)] (c : ZMod r) (h : ∀ x, 2 * x ≠ c) :
 variable {p} (hloc : p.LocallyInjective)
 include hloc
 
-/-- Lemma 4.6: if the walk is primitive, a component off the diagonal misses
+/-- Lemma 4.7: if the walk is primitive, a component off the diagonal misses
 some second coordinate. -/
 theorem exists_col_not_conn (hprim : Primitive p C) {a₀ : D.V × D.V} (hoff : a₀.1 ≠ a₀.2) :
     ∃ i, ∀ j, ¬ Conn p a₀ (j, i) := by

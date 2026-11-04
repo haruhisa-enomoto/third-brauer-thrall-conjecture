@@ -11,8 +11,8 @@ identified by the SHA-256 hashes of its files:
 
 | File | SHA-256 |
 | --- | --- |
-| `main.tex` | `808910a19d0a27150e4e035b9ab68562f762e855e48e613f0cffcd29bbe4a445` |
-| PDF | `e533f01a44ff8322cb126d3b9b03871322a691a6a018a2f18f2dd28c3ee96dea` |
+| `main.tex` | `555b29fe3a362d90abaa110f34e12c8ad9ca0cad22f23e416b5337cfd12526a1` |
+| PDF | `0aebde92a4965bb7862c1c26dac886c44a0fc2e4b3bd5b6e30b08e1e041fac49` |
 
 The revision defines Bongartz's three functors directly on Kronecker modules of
 arbitrary dimension and controls their endomorphisms there; the library follows

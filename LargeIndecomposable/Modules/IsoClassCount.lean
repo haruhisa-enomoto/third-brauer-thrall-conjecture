@@ -13,7 +13,7 @@ public import Mathlib.LinearAlgebra.Dimension.Constructions
 Let `A` be a finite-dimensional algebra over a field `k`, and `κ ≥ |k|` an
 infinite cardinal. Pairwise non-isomorphic `A`-modules of dimension `κ` form a
 family of cardinality at most `2^κ` (`card_le_two_pow_of_pairwise_not_iso`), as in
-the proof of Corollary 5.6: a vector space `Y` of dimension `κ` has `κ`
+the proof of Corollary 5.7: a vector space `Y` of dimension `κ` has `κ`
 elements, so there are at most `κ^κ = 2^κ` linear endomorphisms of `Y`, and an
 `A`-module structure on `Y` is determined by the action of a finite basis of
 `A`.

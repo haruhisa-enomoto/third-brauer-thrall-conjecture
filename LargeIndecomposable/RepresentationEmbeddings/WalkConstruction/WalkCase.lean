@@ -12,7 +12,7 @@ walk, given by its cycle `D_w` and the map `p : D_w → Q` satisfying (3.4), suc
 that `p_*L(T)` (Construction 3.12) is an `A`-module for every `T ∈ D_fin`. By
 Lemma 3.13 this holds for every `T ∈ D` (`PushDown.kills_of_fin`). The data give
 push-down data (`PushDown.PdData`): the classes of block positions are the
-components of the matching quiver (Lemma 4.6), and a morphism `φ` with `L(φ)`
+components of the matching quiver (Lemma 4.7), and a morphism `φ` with `L(φ)`
 vanishing at a vertex is zero by Lemma 2.2(1). The cycle is used in the form
 dual to Setting 3.11, with a sink; then the facts about `S₋` used in Theorem 5.2
 hold automatically (`WalkData.toPdDatum`), so walk data alone give the data of
@@ -62,7 +62,7 @@ def connSetoid : Setoid ((cycleQuiver n ε).V × (cycleQuiver n ε).V) where
   iseqv := ⟨fun _ ↦ Relation.ReflTransGen.refl, conn_symm (cycleCoords n ε), conn_trans⟩
 
 /-- The components of the matching quiver as classes of block positions
-(Lemma 4.6). -/
+(Lemma 4.7). -/
 def blockClasses {p : FinQuiver.Hom (cycleQuiver n ε) Q} (hloc : p.LocallyInjective)
     (hprim : Primitive p (cycleCoords n ε)) : PushDown.BlockClasses p :=
   letI := Classical.decRel (connSetoid p).r

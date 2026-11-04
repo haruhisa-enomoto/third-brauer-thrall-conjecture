@@ -4,10 +4,10 @@ public import LargeIndecomposable.KroneckerBricks.RigidFamily
 public import LargeIndecomposable.Modules.IsoClassCount
 
 /-!
-# `2^κ` modules in every infinite dimension (Corollary 5.6)
+# `2^κ` modules in every infinite dimension (Corollary 5.7)
 
 Applying the representation embedding of Theorem 5.2 to the Göbel–Simson family
-`T_β`, `β ⊆ κ` (Theorem 5.5), gives `2^κ` pairwise non-isomorphic indecomposable
+`T_β`, `β ⊆ κ` (Theorem 5.6), gives `2^κ` pairwise non-isomorphic indecomposable
 modules of dimension `κ` with local endomorphism rings whose radicals satisfy
 the nilpotence bound of the retractions (`EmbeddingData.exists_noniso_family`).
 For `β ≠ γ` one of `Hom(T_β, T_γ)`, `Hom(T_γ, T_β)` vanishes, so `T_β ≇ T_γ`,
@@ -80,7 +80,7 @@ end Main
 variable (H : DistributiveEmbeddingData.{u})
 
 include H in
-/-- Corollary 5.6 without the explicit bound on `n`, conditional on the
+/-- Corollary 5.7 without the explicit bound on `n`, conditional on the
 distributive case of Theorem 3.14. -/
 theorem corollaryCount_of : CorollaryCount.{u} := by
   intro k _ _ A _ _ _ hA

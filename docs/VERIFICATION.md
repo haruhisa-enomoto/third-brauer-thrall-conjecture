@@ -1,6 +1,6 @@
 # Verification
 
-The library proves Theorem A and Corollary 1.1 (= Corollary 5.6) of [the paper](MANUSCRIPT.md),
+The library proves Theorem A and Corollary 1.1 (= Corollary 5.7) of [the paper](MANUSCRIPT.md),
 together with Bongartz's Theorem 6 and Göbel and Simson's rigid families over infinite fields.
 The [correspondence](PAPER-CORRESPONDENCE.md)
 lists the declarations. Records are in [`verification/`](../verification/).

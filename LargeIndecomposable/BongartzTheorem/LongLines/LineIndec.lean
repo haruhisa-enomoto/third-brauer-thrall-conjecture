@@ -9,8 +9,8 @@ public import LargeIndecomposable.Modules.KrullSchmidt.IndecomposableFitting
 For a map of the total space of the line representation satisfying the block equations of the
 push-down, the diagonal blocks are multiplication by one scalar (`dsc_const`): the arrows of the
 line are identities and the line is connected. A map with a zero column therefore has zero
-diagonal, and the chain argument of Lemma 4.3 (`PushDown.Chain`, with the block classes of the
-covering, Proposition 4.4) shows that every endomorphism of the push-down is a scalar plus a
+diagonal, and the chain argument of Lemma 4.4 (`PushDown.Chain`, with the block classes of the
+covering, Proposition 4.5) shows that every endomorphism of the push-down is a scalar plus a
 nilpotent map. Hence the push-down is indecomposable (`isIndecomposable_lineMod`).
 -/
 

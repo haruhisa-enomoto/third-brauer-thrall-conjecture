@@ -5,7 +5,7 @@ public import LargeIndecomposable.Quivers.PushDown.PushDownModule
 /-!
 # Block equations of maps between push-downs
 
-Proof of Proposition 4.7, first paragraph. For a quiver morphism `p : D → Q`
+Proof of Proposition 4.8, first paragraph. For a quiver morphism `p : D → Q`
 and representations `X, Y` of `D`, a linear map `f : ⊕ X(i) → ⊕ Y(i)` commutes
 with the push-down actions (`IsPdHom`) if and only if its blocks
 `bl f j i = e_j f e_i` satisfy the equations (`BlockEqs`): blocks between

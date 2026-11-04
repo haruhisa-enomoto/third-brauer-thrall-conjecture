@@ -8,7 +8,7 @@ public import Mathlib.RingTheory.Flat.Basic
 # Injective arrow maps
 
 A Kronecker module `(V, W; a, b)` has *injective arrows* if `a` and `b` are both
-injective (`Kron.ABInj`), as required of the rigid families in Theorem 5.5. The
+injective (`Kron.ABInj`), as required of the rigid families in Theorem 5.6. The
 bricks `T_Λ` have injective arrows (`Bricks.abInj_T`); gluing along a family and
 transport preserve the property (`Bricks.abInj_extFamily`,
 `Bricks.Anchored.abInj_transport`), because the arrow maps are block triangular

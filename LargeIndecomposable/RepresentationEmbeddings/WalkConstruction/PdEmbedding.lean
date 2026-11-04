@@ -21,7 +21,7 @@ finite-dimensional `U ⊆ T`, and `L` keeps inclusions injective.
 The functor `F = p_*L : D → Mod A` is additive, `k`-linear, faithful and exact,
 has finite-dimensional values on `D_fin`, satisfies the colimit comparison
 (3.6), and admits retractions on `C` with a nilpotence bound, the number of
-vertices of `D` (Propositions 4.4, 4.7, 4.8). With the two facts about `S₋`
+vertices of `D` (Propositions 4.5, 4.7, 4.8). With the two facts about `S₋`
 (`PdDatum`) it gives the data of Theorem 5.2. A kernel of `π` acting by zero on
 `p_*L(T)` for finite-dimensional `T` acts by zero for every `T`
 (`kills_of_fin`, as in the proof of Lemma 3.13).
@@ -307,7 +307,7 @@ theorem comparison : Comparison.IsComparison W.functor := by
         exact this.trans (map_zero _).symm)
     rw [hy0, map_zero]
 
-/-! ### Retractions on `C` (Propositions 4.4, 4.7, 4.8) -/
+/-! ### Retractions on `C` (Propositions 4.5, 4.7, 4.8) -/
 
 /-- The diagonal part of a morphism, as a morphism of representations. -/
 abbrev δ {T U : Statement.D k} (g : W.obj T ⟶ W.obj U) : W.L.obj T ⟶ W.L.obj U :=
@@ -369,7 +369,7 @@ lemma ρD_map {T U : Statement.D k} (u : T ⟶ U) : W.ρD (W.functor.map u) = u 
   change ModuleCat.ofHom (blk (W.L.map u).tot i i) = _
   rw [Hom.blk_tot]; rfl
 
-/-- Proposition 4.8: retractions on `C`. -/
+/-- Proposition 4.9: retractions on `C`. -/
 def retractions : Retractions k ((InCD (k := k)).ι ⋙ W.functor) where
   ρ X Y :=
     { toFun g := ObjectProperty.homMk (W.ρD g)
