@@ -214,6 +214,51 @@ def CorollaryRadical : Prop :=
           (List.ofFn f).prod = 0) ∧
         IsIndecomposable A M
 
+/-- The endomorphism algebra `E` of `M` satisfies `E = k·1 + rad E`,
+`1 ∉ rad E` (so `E / rad E ≅ k`) and `(rad E)ⁿ = 0`. -/
+def EndLocalBounded (k : Type u) [Field k] (A : Type u) [Ring A] [Algebra k A] (n : ℕ)
+    (M : Type u) [AddCommGroup M] [Module A M] [Module k M] [IsScalarTower k A M] : Prop :=
+  (∀ x : Module.End A M, ∃ c : k,
+    x - algebraMap k (Module.End A M) c ∈ Ring.jacobson (Module.End A M)) ∧
+  (1 : Module.End A M) ∉ Ring.jacobson (Module.End A M) ∧
+  ∀ f : Fin n → Module.End A M, (∀ i, f i ∈ Ring.jacobson (Module.End A M)) →
+    (List.ofFn f).prod = 0
+
+/-- Corollary 1.1 (= Corollary 5.6) without the explicit bound on `n`: for one
+`n ≥ 1` and every infinite cardinal `κ` there are `2^κ` pairwise non-isomorphic
+indecomposable modules of dimension `κ` whose endomorphism algebras satisfy
+`EndLocalBounded` for `n`; if `κ ≥ |k|`, no family of pairwise non-isomorphic
+modules of dimension `κ` is larger than `2^κ`. -/
+def CorollaryCount : Prop :=
+  ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
+    [FiniteDimensional k A], ¬ IsRepresentationFinite A →
+    ∃ n : ℕ, 1 ≤ n ∧ ∀ κ : Cardinal.{u}, Cardinal.aleph0 ≤ κ →
+      (∃ (ι : Type u) (M : ι → Type u) (_ : ∀ i, AddCommGroup (M i)) (_ : ∀ i, Module A (M i))
+          (_ : ∀ i, Module k (M i)) (_ : ∀ i, IsScalarTower k A (M i)),
+        Cardinal.mk ι = 2 ^ κ ∧ (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) ∧
+        ∀ i, Module.rank k (M i) = κ ∧ IsIndecomposable A (M i) ∧
+          EndLocalBounded k A n (M i)) ∧
+      (Cardinal.mk k ≤ κ → ∀ (ι : Type u) (M : ι → Type u) [∀ i, AddCommGroup (M i)]
+          [∀ i, Module A (M i)] [∀ i, Module k (M i)] [∀ i, IsScalarTower k A (M i)],
+        (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) → (∀ i, Module.rank k (M i) = κ) →
+          Cardinal.mk ι ≤ 2 ^ κ)
+
+/-- **Corollary 1.1 (= Corollary 5.6)** with the explicit bound: as `CorollaryCount`, with
+`1 ≤ n ≤ max(30, 4 dim A)`. -/
+def CorollaryCountBounded : Prop :=
+  ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
+    [FiniteDimensional k A], ¬ IsRepresentationFinite A →
+    ∃ n : ℕ, 1 ≤ n ∧ n ≤ max 30 (4 * Module.finrank k A) ∧ ∀ κ : Cardinal.{u}, Cardinal.aleph0 ≤ κ →
+      (∃ (ι : Type u) (M : ι → Type u) (_ : ∀ i, AddCommGroup (M i)) (_ : ∀ i, Module A (M i))
+          (_ : ∀ i, Module k (M i)) (_ : ∀ i, IsScalarTower k A (M i)),
+        Cardinal.mk ι = 2 ^ κ ∧ (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) ∧
+        ∀ i, Module.rank k (M i) = κ ∧ IsIndecomposable A (M i) ∧
+          EndLocalBounded k A n (M i)) ∧
+      (Cardinal.mk k ≤ κ → ∀ (ι : Type u) (M : ι → Type u) [∀ i, AddCommGroup (M i)]
+          [∀ i, Module A (M i)] [∀ i, Module k (M i)] [∀ i, IsScalarTower k A (M i)],
+        (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) → (∀ i, Module.rank k (M i) = κ) →
+          Cardinal.mk ι ≤ 2 ^ κ)
+
 end LargeIndecomposable.Statement
 
 universe u
@@ -225,15 +270,29 @@ colimits, which preserves dimensions. -/
 theorem LargeIndecomposable.Challenge.theoremA : LargeIndecomposable.Statement.TheoremA.{u} := by
   sorry
 
-/-- **Corollary 1.1.** A representation-infinite finite-dimensional algebra over an
-algebraically closed field has an indecomposable module of every infinite dimension. -/
+/-- **Corollary 1.1**, dimension part. A representation-infinite finite-dimensional
+algebra over an algebraically closed field has an indecomposable module of every
+infinite dimension. -/
 theorem LargeIndecomposable.Challenge.corollaryDimension :
     LargeIndecomposable.Statement.CorollaryDimension.{u} := by
   sorry
 
-/-- **Corollary 5.3.** Indecomposable modules of every infinite dimension whose
-endomorphism rings are local with residue field `k` and radical of bounded
-nilpotence index. -/
+/-- **Corollary 5.6**, without the number of modules and the explicit bound.
+Indecomposable modules of every infinite dimension whose endomorphism rings are
+local with residue field `k` and radical of bounded nilpotence index. -/
 theorem LargeIndecomposable.Challenge.corollaryRadical :
     LargeIndecomposable.Statement.CorollaryRadical.{u} := by
+  sorry
+
+/-- **Corollary 5.6**, without the explicit bound. `2^κ` pairwise non-isomorphic such
+modules in every infinite dimension `κ`, the largest possible number when
+`κ ≥ |k|`. -/
+theorem LargeIndecomposable.Challenge.corollaryCount :
+    LargeIndecomposable.Statement.CorollaryCount.{u} := by
+  sorry
+
+/-- **Corollary 1.1 (= Corollary 5.6)**. `2^κ` pairwise non-isomorphic such modules
+in every infinite dimension `κ`, with one nilpotence index `n ≤ max(30, 4 dim A)`. -/
+theorem LargeIndecomposable.Challenge.corollaryCountBounded :
+    LargeIndecomposable.Statement.CorollaryCountBounded.{u} := by
   sorry

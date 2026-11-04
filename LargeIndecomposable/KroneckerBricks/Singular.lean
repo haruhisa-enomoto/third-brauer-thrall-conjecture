@@ -2,6 +2,7 @@ module
 
 public import LargeIndecomposable.KroneckerBricks.TransportPool
 public import LargeIndecomposable.KroneckerBricks.Iterate
+public import LargeIndecomposable.KroneckerBricks.Injective
 
 /-!
 # Kronecker bricks of singular dimension
@@ -75,7 +76,8 @@ lemma dim_T_le (Λ : Set k) : (T Λ).dim ≤ #k :=
 `T_{Λ_{Y₁}}` and with a non-split class onto their anchor. -/
 lemma exists_pool (lam : Cardinal.{u}) (hreg : lam.IsRegular) (hk : #k < lam) :
     ∃ (J : Type u) (_ : DecidableEq J) (σ : Anchored k J), #J = lam ∧ σ.C.dim ≤ lam ∧
-      (∀ j, (σ.B j).dim ≤ lam) ∧ Orth (T (LamX (nE (k := k) 1))) σ.C ∧
+      (∀ j, (σ.B j).dim ≤ lam) ∧ Kron.ABInj σ.C ∧ (∀ j, Kron.ABInj (σ.B j)) ∧
+      Orth (T (LamX (nE (k := k) 1))) σ.C ∧
       (∀ j, Orth (T (LamX (nE (k := k) 1))) (σ.B j)) ∧
       ∃ α0 β0 : σ.C.V →ₗ[k] (T (LamX (nE (k := k) 1))).W,
         ¬Splits (T (LamX (nE (k := k) 1))) σ.C α0 β0 := by
@@ -85,6 +87,7 @@ lemma exists_pool (lam : Cardinal.{u}) (hreg : lam.IsRegular) (hk : #k < lam) :
   haveI := Rigid.infinite_of hα
   refine ⟨Rigid.Dec lam.ord.ToType, inferInstance, transportPool hα, by rw [mk_dec_eq, hmk],
     (dim_T_le _).trans hk.le, fun j ↦ ((dim_poolB hα (hmk.symm ▸ hk.le : #k ≤ #lam.ord.ToType) j).trans hmk).le,
+    abInj_T _, fun j ↦ (poolSeed k).abInj_transport _ (abInj_T _) fun _ ↦ abInj_T _,
     orth_T (diff_infinite (nE_ne (by omega))) (diff_infinite (nE_ne (by omega))),
     fun j ↦ (poolSeed k).orth_transport _ (orth_poolSeed (by omega)).1
       (orth_poolSeed (by omega)).2, 0,
@@ -106,7 +109,7 @@ theorem exists_brick_singular (κ : Cardinal.{u}) (hk : #k < κ) (hreg : ¬κ.Is
   have hlk : #k < lam := (le_max_right _ _).trans_lt (Order.lt_succ _)
   have hlκ : lam < κ := lt_of_le_of_ne (Order.succ_le_of_lt (max_lt hμκ hk))
     fun h ↦ hreg (h ▸ hlreg)
-  obtain ⟨J, _, σ, hJ, hCd, hBd, hoC, hoB, α0, β0, hns0⟩ := exists_pool lam hlreg hlk
+  obtain ⟨J, _, σ, hJ, hCd, hBd, -, -, hoC, hoB, α0, β0, hns0⟩ := exists_pool lam hlreg hlk
   obtain ⟨ι, f, hf, hι⟩ := Ordinal.exists_lsub_cof κ.ord
   have hιNu : #(ι × Nu) ≤ #J := by
     rw [mk_prod, lift_id, lift_id, hι, hJ]

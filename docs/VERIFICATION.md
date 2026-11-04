@@ -1,28 +1,30 @@
 # Verification
 
-The library proves Theorem A and Corollary 1.1 (= Corollary 5.6, without the number of modules and the explicit bound) of [the paper](MANUSCRIPT.md),
-together with Bongartz's Theorem 6 and the form of the Göbel–Simson result that is used.
+The library proves Theorem A and Corollary 1.1 (= Corollary 5.6) of [the paper](MANUSCRIPT.md),
+together with Bongartz's Theorem 6 and Göbel and Simson's rigid families over infinite fields.
 The [correspondence](PAPER-CORRESPONDENCE.md)
 lists the declarations. Records are in [`verification/`](../verification/).
 
 ## Independent statement
 
-`LargeIndecomposable/Statement.lean` states the three results with Mathlib alone:
+`LargeIndecomposable/Statement.lean` states the results with Mathlib alone:
 Kronecker modules as functors from `WalkingParallelPair`, the category `D`, representation
 embeddings, representation-finite algebras and dimensions as cardinals.
-`Challenge.lean` is generated from it with three deliberate `sorry` placeholders.
+`Challenge.lean` is generated from it with five deliberate `sorry` placeholders.
 `Solution.lean` proves them and does not import the Challenge.
 
 ## Results
 
 The [record of November 3, 2026](../verification/2026-11-03-direct-route/README.md) gives the local
 results, the hosted Palomar preflight (passed on a 4-CPU, 16 GB runner) and the hashes
-for the current library. A preflight is an advisory report, not registry acceptance.
+for commit `8a86293`, before `CorollaryCount` and `CorollaryCountBounded` were added.
+A preflight is an advisory report, not registry acceptance.
 Earlier records are in [`verification/`](../verification/README.md).
 
 An independent agent audit of an earlier revision checked the definitions in
 `Statement.lean`, the final proof assembly and selected steps of the proofs in
-[`proofs/`](proofs/). The theorem statements have not changed since. It was not a
+[`proofs/`](proofs/). The statements it checked have not changed since; `CorollaryCount`
+and `CorollaryCountBounded` were added later and were not part of that audit. It was not a
 line-by-line review, and no human expert has reviewed the Lean statements or these proofs.
 Lean checks the proofs; whether `Challenge.lean` says what the paper says is a human
 judgement.

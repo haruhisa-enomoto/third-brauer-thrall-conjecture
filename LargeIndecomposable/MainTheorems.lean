@@ -3,6 +3,7 @@ module
 public import LargeIndecomposable.BongartzTheorem.LongLines.LineBuild
 public import LargeIndecomposable.BongartzTheorem.LongLines.LinesToBands
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.PointBrickData
+public import LargeIndecomposable.BongartzTheorem.Reduction.Count
 
 /-!
 # Long lines
@@ -252,5 +253,13 @@ theorem corollaryRadical : CorollaryRadical.{u} :=
   corollaryRadical_of_bongartz' (bongartzDistributive_of_coverDichotomy (coverDichotomy_of
     (RayCat.criticalPieceCarriesPair_of_pointBrickData RayCat.pointBrickData)
     (repFinitePiecesGiveBand_of (intervalFiniteCover_of_stage simplyConnectedStageStep) (repFinitePiecesGiveBandCore_of_longLine linesOfEveryLength))))
+
+/-- **Corollary 5.6**, without the explicit bound: `2^κ` pairwise non-isomorphic
+indecomposable modules in every infinite dimension `κ`. -/
+theorem corollaryCount : CorollaryCount.{u} :=
+  corollaryCount_of (distributiveEmbeddingData_of_bongartz (bongartzDistributive_of_coverDichotomy
+    (coverDichotomy_of (RayCat.criticalPieceCarriesPair_of_pointBrickData RayCat.pointBrickData)
+      (repFinitePiecesGiveBand_of (intervalFiniteCover_of_stage simplyConnectedStageStep)
+        (repFinitePiecesGiveBandCore_of_longLine linesOfEveryLength)))))
 
 end LargeIndecomposable

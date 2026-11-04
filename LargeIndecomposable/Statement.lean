@@ -213,4 +213,49 @@ def CorollaryRadical : Prop :=
           (List.ofFn f).prod = 0) ∧
         IsIndecomposable A M
 
+/-- The endomorphism algebra `E` of `M` satisfies `E = k·1 + rad E`,
+`1 ∉ rad E` (so `E / rad E ≅ k`) and `(rad E)ⁿ = 0`. -/
+def EndLocalBounded (k : Type u) [Field k] (A : Type u) [Ring A] [Algebra k A] (n : ℕ)
+    (M : Type u) [AddCommGroup M] [Module A M] [Module k M] [IsScalarTower k A M] : Prop :=
+  (∀ x : Module.End A M, ∃ c : k,
+    x - algebraMap k (Module.End A M) c ∈ Ring.jacobson (Module.End A M)) ∧
+  (1 : Module.End A M) ∉ Ring.jacobson (Module.End A M) ∧
+  ∀ f : Fin n → Module.End A M, (∀ i, f i ∈ Ring.jacobson (Module.End A M)) →
+    (List.ofFn f).prod = 0
+
+/-- Corollary 1.1 (= Corollary 5.6) without the explicit bound on `n`: for one
+`n ≥ 1` and every infinite cardinal `κ` there are `2^κ` pairwise non-isomorphic
+indecomposable modules of dimension `κ` whose endomorphism algebras satisfy
+`EndLocalBounded` for `n`; if `κ ≥ |k|`, no family of pairwise non-isomorphic
+modules of dimension `κ` is larger than `2^κ`. -/
+def CorollaryCount : Prop :=
+  ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
+    [FiniteDimensional k A], ¬ IsRepresentationFinite A →
+    ∃ n : ℕ, 1 ≤ n ∧ ∀ κ : Cardinal.{u}, Cardinal.aleph0 ≤ κ →
+      (∃ (ι : Type u) (M : ι → Type u) (_ : ∀ i, AddCommGroup (M i)) (_ : ∀ i, Module A (M i))
+          (_ : ∀ i, Module k (M i)) (_ : ∀ i, IsScalarTower k A (M i)),
+        Cardinal.mk ι = 2 ^ κ ∧ (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) ∧
+        ∀ i, Module.rank k (M i) = κ ∧ IsIndecomposable A (M i) ∧
+          EndLocalBounded k A n (M i)) ∧
+      (Cardinal.mk k ≤ κ → ∀ (ι : Type u) (M : ι → Type u) [∀ i, AddCommGroup (M i)]
+          [∀ i, Module A (M i)] [∀ i, Module k (M i)] [∀ i, IsScalarTower k A (M i)],
+        (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) → (∀ i, Module.rank k (M i) = κ) →
+          Cardinal.mk ι ≤ 2 ^ κ)
+
+/-- **Corollary 1.1 (= Corollary 5.6)** with the explicit bound: as `CorollaryCount`, with
+`1 ≤ n ≤ max(30, 4 dim A)`. -/
+def CorollaryCountBounded : Prop :=
+  ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
+    [FiniteDimensional k A], ¬ IsRepresentationFinite A →
+    ∃ n : ℕ, 1 ≤ n ∧ n ≤ max 30 (4 * Module.finrank k A) ∧ ∀ κ : Cardinal.{u}, Cardinal.aleph0 ≤ κ →
+      (∃ (ι : Type u) (M : ι → Type u) (_ : ∀ i, AddCommGroup (M i)) (_ : ∀ i, Module A (M i))
+          (_ : ∀ i, Module k (M i)) (_ : ∀ i, IsScalarTower k A (M i)),
+        Cardinal.mk ι = 2 ^ κ ∧ (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) ∧
+        ∀ i, Module.rank k (M i) = κ ∧ IsIndecomposable A (M i) ∧
+          EndLocalBounded k A n (M i)) ∧
+      (Cardinal.mk k ≤ κ → ∀ (ι : Type u) (M : ι → Type u) [∀ i, AddCommGroup (M i)]
+          [∀ i, Module A (M i)] [∀ i, Module k (M i)] [∀ i, IsScalarTower k A (M i)],
+        (∀ i j, Nonempty (M i ≃ₗ[A] M j) → i = j) → (∀ i, Module.rank k (M i) = κ) →
+          Cardinal.mk ι ≤ 2 ^ κ)
+
 end LargeIndecomposable.Statement

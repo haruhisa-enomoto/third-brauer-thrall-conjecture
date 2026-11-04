@@ -9,7 +9,7 @@ public import LargeIndecomposable.FundamentalGroups.Basic.CocycleExtendMax
 
 A line of the cover (BO13b, §1: a full convex subcategory given by a quiver of type `A` without
 relations) is recorded by its points `pt 0, …, pt n` and the orientations `fwd i` of the arrows
-joining `pt i` and `pt (i + 1)` (`CLine`). Directed runs of a line are bounded by the number of
+joining `pt i` and `pt (i + 1)` (`CLine`, and `WLine` without convexity). Directed runs of a line are bounded by the number of
 morphisms of `P` (`run_le_fwd`, `run_le_bwd`), so a long line has many sinks (`exists_sinks`).
 Two sinks with the same image in `P` whose outer incoming arrows have different labels form a
 *good pair* (`GoodPair`; BO23, proof of Theorem 7); a long enough line contains one
@@ -29,10 +29,9 @@ open CategoryTheory Limits Cover
 variable {P : Type} [Category.{0} P] [HasZeroMorphisms P] [IsRayCategory P] {x₀ : P}
 
 variable (x₀) in
-/-- **A line of the universal cover**: a full convex subcategory given by a quiver of type `A`
-without relations. The points are `pt 0, …, pt n`, and the `i`-th arrow joins `pt i` and
-`pt (i + 1)`, pointing to `pt (i + 1)` iff `fwd i`. -/
-structure CLine where
+/-- **A weak line of the universal cover**: points `pt 0, …, pt n` joined by irreducible
+morphisms, the `i`-th one pointing to `pt (i + 1)` iff `fwd i`, with nonzero paths. -/
+structure WLine where
   /-- The number of arrows. -/
   n : ℕ
   /-- The points. -/
@@ -44,17 +43,26 @@ structure CLine where
   arrB : ∀ i < n, fwd i = false → ∃ f : pt (i + 1) ⟶ pt i, IsIrreducible f
   uniqF : ∀ i < n, ∀ f g : pt i ⟶ pt (i + 1), IsIrreducible f → IsIrreducible g → f = g
   uniqB : ∀ i < n, ∀ f g : pt (i + 1) ⟶ pt i, IsIrreducible f → IsIrreducible g → f = g
-  /-- The only arrows between points of the line are the line arrows. -/
-  only : ∀ a b, a ≤ n → b ≤ n → ∀ f : pt a ⟶ pt b, IsIrreducible f →
-    (b = a + 1 ∧ fwd a = true) ∨ (a = b + 1 ∧ fwd b = false)
-  convex : Convex {c | ∃ a ≤ n, pt a = c}
   /-- No relations: every path inside the line has nonzero value. -/
   nz : ∀ {X Y : RayVert (Cover x₀)} (p : Quiver.Path X Y), PathIn {c | ∃ a ≤ n, pt a = c} p →
     pathVal p ≠ 0
 
-namespace CLine
+variable (x₀) in
+/-- A weak line with no other arrows between its points. -/
+structure OLine extends WLine x₀ where
+  /-- The only arrows between points of the line are the line arrows. -/
+  only : ∀ a b, a ≤ n → b ≤ n → ∀ f : pt a ⟶ pt b, IsIrreducible f →
+    (b = a + 1 ∧ fwd a = true) ∨ (a = b + 1 ∧ fwd b = false)
 
-variable (L : CLine x₀)
+variable (x₀) in
+/-- **A line of the universal cover**: a full convex subcategory given by a quiver of type `A`
+without relations (a weak line that is convex and has no other arrows). -/
+structure CLine extends OLine x₀ where
+  convex : Convex {c | ∃ a ≤ n, pt a = c}
+
+namespace WLine
+
+variable (L : WLine x₀)
 
 /-- The set of points of the line. -/
 def pts : Set (Cover x₀) := {c | ∃ a ≤ L.n, L.pt a = c}
@@ -296,23 +304,35 @@ lemma labL_ne_labR {t : ℕ} (ht : L.IsSinkAt t) : L.labL t ≠ L.labR t := by
   have := L.inj _ _ (by have := ht.1; omega) (by have := ht.1; omega) this
   omega
 
+/-- The first sink of a good pair at `t + 1`: only its right arrow `pt (t + 1) ← pt (t + 2)`
+is needed. -/
+def IsRSink (t : ℕ) : Prop := t + 1 < L.n ∧ L.fwd (t + 1) = false
+
+/-- The second sink of a good pair at `t + 1`: only its left arrow `pt t → pt (t + 1)` is
+needed, so it may be the right end of the line. -/
+def IsLSink (t : ℕ) : Prop := t < L.n ∧ L.fwd t = true
+
+lemma IsSinkAt.isRSink {t : ℕ} (h : L.IsSinkAt t) : L.IsRSink t := ⟨h.1, h.2.2⟩
+
+lemma IsSinkAt.isLSink {t : ℕ} (h : L.IsSinkAt t) : L.IsLSink t := ⟨by have := h.1; omega, h.2.1⟩
+
 /-- **A good pair of sinks** (BO23, proof of Theorem 7): two sinks at `t + 1 < t' + 1` with the
 same image in `P` whose outer incoming arrows have different labels. -/
 def GoodPair (t t' : ℕ) : Prop :=
-  L.IsSinkAt t ∧ L.IsSinkAt t' ∧ t < t' ∧ (L.pt (t + 1)).y = (L.pt (t' + 1)).y ∧
+  L.IsRSink t ∧ L.IsLSink t' ∧ t < t' ∧ (L.pt (t + 1)).y = (L.pt (t' + 1)).y ∧
     L.labR t ≠ L.labL t'
 
-lemma goodPair_of_three {t₁ t₂ t₃ : ℕ} (h₁ : L.IsSinkAt t₁) (h₂ : L.IsSinkAt t₂)
-    (h₃ : L.IsSinkAt t₃) (h12 : t₁ < t₂) (h23 : t₂ < t₃) (hy₁ : (L.pt (t₁ + 1)).y = (L.pt (t₂ + 1)).y)
+lemma goodPair_of_three {t₁ t₂ t₃ : ℕ} (h₁ : L.IsRSink t₁) (h₂ : L.IsSinkAt t₂)
+    (h₃ : L.IsLSink t₃) (h12 : t₁ < t₂) (h23 : t₂ < t₃) (hy₁ : (L.pt (t₁ + 1)).y = (L.pt (t₂ + 1)).y)
     (hy₂ : (L.pt (t₂ + 1)).y = (L.pt (t₃ + 1)).y) :
-    ∃ t t', L.GoodPair t t' := by
+    ∃ t t', L.GoodPair t t' ∧ t₁ ≤ t ∧ t' ≤ t₃ := by
   by_cases ha : L.labR t₁ = L.labL t₂
   · by_cases hb : L.labR t₂ = L.labL t₃
-    · refine ⟨t₁, t₃, h₁, h₃, h12.trans h23, hy₁.trans hy₂, ?_⟩
+    · refine ⟨t₁, t₃, ⟨h₁, h₃, h12.trans h23, hy₁.trans hy₂, ?_⟩, le_rfl, le_rfl⟩
       rw [ha, ← hb]
       exact L.labL_ne_labR h₂
-    · exact ⟨t₂, t₃, h₂, h₃, h23, hy₂, hb⟩
-  · exact ⟨t₁, t₂, h₁, h₂, h12, hy₁, ha⟩
+    · exact ⟨t₂, t₃, ⟨h₂.isRSink, h₃, h23, hy₂, hb⟩, h12.le, le_rfl⟩
+  · exact ⟨t₁, t₂, ⟨h₁, h₂.isLSink, h12, hy₁, ha⟩, le_rfl, h23.le⟩
 
 section Count
 
@@ -345,9 +365,11 @@ theorem exists_goodPair (hn : (2 * Fintype.card P + 1) * (2 * bound P) ≤ L.n) 
       ∃ t t', L.GoodPair t t' := by
     intro i j l hi hj hl hij hjl hyi hyj hyl
     simp only [Finset.mem_range] at hi hj hl
-    exact L.goodPair_of_three (hs i (by omega)).1 (hs j (by omega)).1 (hs l (by omega)).1
+    obtain ⟨t, t', h, -⟩ := L.goodPair_of_three (hs i (by omega)).1.isRSink (hs j (by omega)).1
+      (hs l (by omega)).1.isLSink
       (hsm (by simp; omega) (by simp; omega) hij) (hsm (by simp; omega) (by simp; omega) hjl)
       (hyi.trans hyj.symm) (hyj.trans hyl.symm)
+    exact ⟨t, t', h⟩
   have hr : ∀ i, i < 2 * Fintype.card P + 1 → i ∈ Finset.range (2 * Fintype.card P + 1) :=
     fun i hi ↦ Finset.mem_range.2 hi
   rcases lt_trichotomy a b with h1 | h1 | h1 <;> rcases lt_trichotomy b c with h2 | h2 | h2 <;>
@@ -375,6 +397,6 @@ lemma exists_minimal_goodPair (h : ∃ t t', L.GoodPair t t') :
   rw [hd']
   exact Nat.find_min' hd ⟨u, u', hu, rfl⟩
 
-end CLine
+end WLine
 
 end LargeIndecomposable.RayCat

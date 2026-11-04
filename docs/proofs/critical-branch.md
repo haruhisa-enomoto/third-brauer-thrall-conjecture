@@ -58,4 +58,4 @@ So `χ` is critical. `Critical.ovsienko` gives `χ ≥ 0`, a positive radical ve
 - At a sink, `⟨e_x, w⟩ = w_x = 0`, so `⟨V, S_x⟩ = −2` and (E) gives `dim Ext¹(V, S_x) ≥ 2`.
 - At a source, `⟨w, e_x⟩ = ⟨V, I_x⟩ = 0`, so `dim Ext¹(S_x, V) ≥ 2`.
 
-**Step 10 (inflate).** Inflation along `A → B` is fully faithful and exact and preserves bricks. An extension of `A`-modules killed by `e_Z` is itself killed by `e_Z`, so it comes from `B`. The supports of `S_x` and `V` are disjoint, so the two independent classes of Step 9 give two independent cocycles on `C`. Take `Sp = C` and apply `pointBrick'_of_rel`, or `pointBrick'_of_rel_source` when `x` is a source.
+**Step 10 (inflate).** Inflation along `A → B` is fully faithful and exact and preserves bricks. An extension of `A`-modules killed by `e_Z` is itself killed by `e_Z`, so it comes from `B`. The supports of `S_x` and `V` are disjoint, so the two independent classes of Step 9 give two independent cocycles on `C`. Take `Sp = C` and apply `pointBrickAt_of_rel`, or `pointBrickAt_of_rel_source` when `x` is a source.

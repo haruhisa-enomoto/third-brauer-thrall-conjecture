@@ -3,7 +3,7 @@ module
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.ExtCocycle
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.CriticalForm
 public import LargeIndecomposable.BongartzTheorem.CriticalPieces.CriticalConnected
-public import LargeIndecomposable.DirectedAlgebras.Preprojective.MinimalQuot
+public import LargeIndecomposable.DirectedAlgebras.Preprojective.CriticalQuotLine
 public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.CoverLocalSCResidue
 public import LargeIndecomposable.BongartzTheorem.SimplyConnectedCover.HullStage
 public import LargeIndecomposable.Coverings.Pieces.PieceSepCover
@@ -427,26 +427,24 @@ theorem exists_point_equiv (hacyc : ∀ (i : (pieceQuiver S).V) (l : List (piece
     change cd y • s₀ = w
     rw [h3, hc]
 
-section Final
-
-variable [IsAlgClosed k] (hS : Convex (S : Set (Cover x₀))) (hne : S.Nonempty)
-  (hacycCov : CoverAcyclic x₀) (hint : ∀ a b : Cover x₀, (interval a b).Finite)
-  (hlsc : CoverLocalSC x₀) (hrep : ¬PieceRepFin k S)
-  (hmin : ∀ C' : Finset (Cover x₀), Convex (C' : Set (Cover x₀)) → C'.card < S.card →
-    PieceRepFin k C')
-include hS hne hacycCov hint hlsc hrep hmin
-
-/-- **Critical pieces carry point–brick data.** -/
-theorem pointBrick'_critical : PointBrick' (k := k) S := by
+/-- **Point–brick data over the piece algebra living on `T'` give point–brick data on the
+piece living on `T'`.** -/
+theorem pointBrickAt_of_in [IsAlgClosed k] (hacyc : ∀ (i : (pieceQuiver S).V)
+    (l : List (pieceQuiver S).A), l ≠ [] → ¬PathFrom i l i) {T' : Set (pieceQuiver S).V}
+    (h : (pieceDirData (k := k) hacyc).PointBrickAIn T') :
+    ∃ (x : (pieceQuiver S).V) (Vr : Rep k (pieceQuiver S)), PointBrickAt (k := k) x Vr ∧
+      x ∈ T' ∧ ∀ i, Nontrivial (Vr.obj i) → i ∈ T' := by
   classical
-  have hpar : ParEq S := parEq_of_cover hacycCov hint hlsc
-  have hacyc := piece_acyclic (S := S) hacycCov
   let D := pieceDirData (k := k) hacyc
-  obtain ⟨x, V, Sm, K, Pm, f, hb, hnt, hVk, hSx, hS1, hf, hext⟩ :=
-    AR.DirData.exists_pointBrickA (D := D) (fun _ ↦ Set.mem_univ _)
-      (fun x y ↦ cartan_piece_le_one hacyc hpar x y)
-      (goodProj_piece hS hne hacycCov hint hlsc hrep hmin)
-      (unb_piece hS hne hacycCov hint hlsc hrep hmin)
+  obtain ⟨x, hxT, V, hV0, Sm, K, Pm, f, hb, hnt, hVk, hSx, hS1, hf, hext⟩ := h
+  refine ⟨x, repOf V, ?_, hxT, fun i hi ↦ ?_⟩
+  swap
+  · by_contra hiT
+    obtain ⟨a, b, hab⟩ := hi
+    apply hab
+    apply val_injective V
+    rw [← ev_smul_val V a, ← ev_smul_val V b]
+    exact (hV0 i hiT _).trans (hV0 i hiT _).symm
   let Vr := repOf V
   have hVc : RespectsCover Vr := respectsCover_repOf V
   let eV : PieceMod Vr hVc ≃ₗ[PieceAlg k S] V := repOfEquivA V
@@ -486,10 +484,33 @@ theorem pointBrick'_critical : PointBrick' (k := k) S := by
     inferInstanceAs (FiniteDimensional k (Fin _ → k))
   obtain ⟨eS⟩ := exists_point_equiv hacyc x Sm hSx hS1
   rcases hext with ⟨g, hg, hex, hd⟩ | ⟨g, hg, hex, hd⟩
-  · exact pointBrick'_of_rel x Vr finV hVx brickV hV hVc
+  · exact pointBrickAt_of_rel x Vr finV hVx brickV hV hVc
       (two_le_relSub_mod f g hf hg hex hVc (respectsCover_pointRep x) eV eS hd)
-  · exact pointBrick'_of_rel_source x Vr finV hVx brickV hV hVc
+  · exact pointBrickAt_of_rel_source x Vr finV hVx brickV hV hVc
       (two_le_relSub_mod f g hf hg hex (respectsCover_pointRep x) hVc eS eV hd)
+
+
+section Final
+
+variable [IsAlgClosed k] (hS : Convex (S : Set (Cover x₀))) (hne : S.Nonempty)
+  (hacycCov : CoverAcyclic x₀) (hint : ∀ a b : Cover x₀, (interval a b).Finite)
+  (hlsc : CoverLocalSC x₀) (hrep : ¬PieceRepFin k S)
+  (hmin : ∀ C' : Finset (Cover x₀), Convex (C' : Set (Cover x₀)) → C'.card < S.card →
+    PieceRepFin k C')
+include hS hne hacycCov hint hlsc hrep hmin
+
+/-- **Critical pieces carry point–brick data.** -/
+theorem pointBrick'_critical : PointBrick' (k := k) S := by
+  classical
+  have hpar : ParEq S := parEq_of_cover hacycCov hint hlsc
+  have hacyc := piece_acyclic (S := S) hacycCov
+  let D := pieceDirData (k := k) hacyc
+  obtain ⟨T', hT', h⟩ := AR.DirData.exists_pointBrick (D := D) (fun _ ↦ Set.mem_univ _)
+      (fun x y ↦ cartan_piece_le_one hacyc hpar x y)
+      (goodProj_piece hS hne hacycCov hint hlsc hrep hmin)
+      (unb_piece hS hne hacycCov hint hlsc hrep hmin)
+  obtain ⟨x, Vr, h, -⟩ := pointBrickAt_of_in hacyc (AR.DirData.pointBrickAIn_of_quot hT' h)
+  exact ⟨x, Vr, h⟩
 
 end Final
 
