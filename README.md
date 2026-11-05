@@ -119,8 +119,7 @@ The repository follows the layout of the
 [formalization.yaml](formalization.yaml). The workflow
 [Palomar preflight](.github/workflows/palomar-preflight.yml) runs Palomar's
 mechanical verification for a chosen commit. It
-[passed](verification/2026-11-03-direct-route/README.md) for commit `8a86293`, before `CorollaryCount`
-and `CorollaryCountBounded` were added. This is an advisory
+[passed](verification/2026-11-05-arxiv/README.md) for commit `57dc712`. This is an advisory
 report; the formalization has not been submitted to the registry.
 
 ## Website

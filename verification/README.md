@@ -14,4 +14,8 @@
   manuscript (functors and retractions in arbitrary dimension); build, axiom audit, declaration
   scan, `lake comparator` and hosted Palomar preflight: passed.
 
+- [2026-11-05, published paper](2026-11-05-arxiv/README.md): the full Corollary 1.1 and the
+  rigid families; numbering of arXiv:2611.06325v1; build, axiom audit, declaration scan,
+  `lake comparator` and hosted Palomar preflight: passed.
+
 [`module-origins.json`](module-origins.json) records the origin of reused modules.
