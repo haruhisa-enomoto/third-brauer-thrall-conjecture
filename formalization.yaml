@@ -27,12 +27,13 @@ sources:
   - title: "Representation embeddings and the third Brauer–Thrall conjecture"
     authors: ["Haruhisa Enomoto"]
     type: "paper"
-    location: "https://hexagonmath.org/2610.00179v1"
+    location: "https://arxiv.org/abs/2611.06325v1"
     relationship: "formalizes"
     note: >-
       The formalized paper, written under the author's direction with
-      GPT-6-Astra and revised with Claude Opus 5.5. The library follows the
-      revision that succeeds version 1 (docs/MANUSCRIPT.md). Statements are
+      GPT-6-Astra and revised with Claude Opus 5.5. The library follows
+      arXiv:2611.06325v1, the same source as hexagon:2610.00179v2
+      (docs/MANUSCRIPT.md). Statements are
       matched with Lean declarations in docs/PAPER-CORRESPONDENCE.md.
     author_endorsement: "participated"
   - title: "Representation embeddings and the second Brauer–Thrall conjecture"

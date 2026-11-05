@@ -1,16 +1,17 @@
 # The third Brauer–Thrall conjecture over algebraically closed fields
 
 [Website](https://haruhisa-enomoto.github.io/third-brauer-thrall-conjecture/) ·
-[Paper](https://hexagonmath.org/2610.00179v1) ·
+[Paper](https://arxiv.org/abs/2611.06325) ·
 [Main theorems in Lean](LargeIndecomposable/MainTheorems.lean) ·
 [Independent statement](LargeIndecomposable/Statement.lean) ·
 [Paper correspondence](docs/PAPER-CORRESPONDENCE.md)
 
 This repository contains a Lean 4 formalization of the principal results of the
 paper *Representation embeddings and the third Brauer–Thrall conjecture*
-([hexagon:2610.00179v1](https://hexagonmath.org/2610.00179v1); the library
-follows the revision described in [MANUSCRIPT.md](docs/MANUSCRIPT.md)), including
-the cited inputs that it uses.
+([arXiv:2611.06325](https://arxiv.org/abs/2611.06325), also
+[hexagon:2610.00179v2](https://hexagonmath.org/2610.00179v2)), including the cited
+inputs that it uses. The formalized version is identified in
+[MANUSCRIPT.md](docs/MANUSCRIPT.md).
 
 Let `k` be an algebraically closed field, `A` a representation-infinite
 finite-dimensional `k`-algebra, and `D` the category of Kronecker modules of
