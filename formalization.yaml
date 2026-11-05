@@ -9,12 +9,16 @@ project:
     an algebraically closed field, every representation-infinite
     finite-dimensional algebra admits a representation embedding of a
     colimit-closed category of Kronecker modules that preserves infinite
-    dimensions (Theorem A). Hence it has indecomposable modules of every
-    infinite dimension, with endomorphism rings local with residue field k and
-    radical of bounded nilpotence index (Corollary 1.1, without the number of
-    modules and the explicit bound). The cited inputs are proved in the
-    library: Bongartz's Theorem 6 and the form of the Göbel–Simson result that
-    is used, Kronecker bricks of every infinite dimension.
+    dimensions (Theorem A). Hence, for every infinite cardinal κ, it has 2^κ
+    pairwise non-isomorphic indecomposable modules of dimension κ whose
+    endomorphism rings are local with residue field k and whose radicals
+    satisfy (rad End M)^n = 0 for one n ≤ max(30, 4 dim A) independent of κ;
+    for κ ≥ |k| this is the largest possible number (Corollary 1.1, in full).
+    Weaker parts of the corollary are also compared: modules of every infinite
+    dimension, the endomorphism control without the count and the bound, and
+    the count without the bound. The cited inputs are proved in the library:
+    Bongartz's Theorem 6 and Göbel and Simson's rigid families over infinite
+    fields.
   authors: ["Haruhisa Enomoto"]
   responsible_maintainers: ["Haruhisa Enomoto"]
   license: "Apache-2.0"
@@ -51,21 +55,51 @@ sources:
     location: "Israel J. Math. 110 (1999), 293–315"
     relationship: "background"
     note: >-
-      Source of the rigid families used for Corollary 1.1. The library proves
-      the form that is used, Kronecker bricks of every infinite dimension, for
-      every algebraically closed field.
+      Source of the rigid families used for Corollary 1.1 (Theorem 5.6 of the
+      paper). The library proves the rigid families over infinite fields, which
+      include all algebraically closed fields.
     author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "https://github.com/TauCetiProject/TauCeti"
+    relationship: "adapts"
+    note: >-
+      45 modules adapted from the development state of October 28, 2026 (not a
+      published revision), with copyright headers kept; see VENDORED.md and
+      verification/module-origins.json.
+  - id: "https://github.com/haruhisa-enomoto/multiplicative-bases-deformations"
+    relationship: "adapts"
+    note: >-
+      300 modules reused (ray categories, multiplicative bases, standard forms);
+      see VENDORED.md and verification/module-origins.json.
+  - id: "https://github.com/haruhisa-enomoto/magnitude-conjecture"
+    relationship: "adapts"
+    note: "38 modules reused; see VENDORED.md and verification/module-origins.json."
+  - id: "https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution"
+    relationship: "adapts"
+    note: "44 modules reused; see VENDORED.md and verification/module-origins.json."
+  - id: "https://github.com/haruhisa-enomoto/brick-accessibility-special-biserial"
+    relationship: "adapts"
+    note: "Finite quivers and path algebras (Quivers/PathAlgebras/FiniteQuiver.lean)."
+  - id: "Unpublished formalization around the Cartan determinant conjecture (Haruhisa Enomoto)"
+    relationship: "adapts"
+    note: >-
+      106 modules reused from the author's unpublished development; no public
+      repository. See VENDORED.md and verification/module-origins.json.
 
 status:
   scope: >-
-    Theorem A as stated in the paper, and Corollary 1.1 without the number of
-    modules and the explicit bound on the nilpotence index, for arbitrary
-    algebraically closed fields. The compared statements in
+    Theorem A and the full Corollary 1.1 (= Corollary 5.7) as stated in the
+    paper, for arbitrary algebraically closed fields: corollaryCountBounded
+    gives 2^κ modules with one nilpotence bound n ≤ max(30, 4 dim A), the upper
+    count for κ ≥ |k| included. corollaryDimension, corollaryRadical and
+    corollaryCount are compared as its weaker parts. The compared statements in
     Challenge.lean use only Mathlib definitions. Every numbered statement of the
     paper used for these results is covered in the form recorded in
     docs/PAPER-CORRESPONDENCE.md, and the cited inputs are proved: Bongartz's
-    Theorem 6 and Kronecker bricks of every infinite dimension. The library proves only the part of
-    Bongartz's large-line theorem that Theorem A needs.
+    Theorem 6 and Göbel and Simson's rigid families over infinite fields. The
+    library proves only the part of Bongartz's large-line theorem that Theorem A
+    needs. Lemma 5.4 of the paper is bypassed: the bound is proved directly.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
