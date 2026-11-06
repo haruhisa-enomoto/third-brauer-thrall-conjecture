@@ -7,7 +7,7 @@ project:
     A Lean 4 formalization, built on Mathlib, of the principal results of the
     paper Representation embeddings and the third Brauer–Thrall conjecture. Over
     an algebraically closed field, every representation-infinite
-    finite-dimensional algebra admits a representation embedding of a
+    finite-dimensional algebra admits a faithful representation embedding of a
     colimit-closed category of Kronecker modules that preserves infinite
     dimensions (Theorem A). Hence, for every infinite cardinal κ, it has 2^κ
     pairwise non-isomorphic indecomposable modules of dimension κ whose
@@ -130,7 +130,11 @@ automation:
 
 fidelity:
   divergences: >-
-    Theorem A and Corollary 1.1 (= Corollary 5.7) are stated as in the paper.
+    Theorem A and Corollary 1.1 (= Corollary 5.7) are stated as in the paper,
+    with the representation embedding defined as there (exact, preserving
+    indecomposability, reflecting isomorphism classes); Theorem A additionally
+    asserts that the embedding is faithful, which the paper derives from
+    Theorem 5.2.
     CorollaryCountBounded is the full corollary: 2^κ pairwise non-isomorphic
     indecomposable modules of every infinite dimension κ, the largest possible
     number when κ ≥ |k|, with End/rad End ≅ k and one nilpotence bound

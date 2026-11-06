@@ -7,9 +7,9 @@ public import LargeIndecomposable
 universe u
 
 /-- **Theorem A.** A representation-infinite finite-dimensional algebra over an
-algebraically closed field admits a representation embedding of the category `D`
-of Kronecker modules without the simple injective as a summand, closed under
-colimits, which preserves dimensions. -/
+algebraically closed field admits a faithful representation embedding of the
+category `D` of Kronecker modules without the simple injective as a summand,
+closed under colimits, which preserves dimensions. -/
 theorem LargeIndecomposable.Challenge.theoremA : LargeIndecomposable.Statement.TheoremA.{u} :=
   LargeIndecomposable.theoremA
 

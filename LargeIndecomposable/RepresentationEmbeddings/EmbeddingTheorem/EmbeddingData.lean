@@ -278,12 +278,12 @@ include E in
 Theorem A. -/
 theorem theoremA_conclusion :
     ∃ F : D k ⥤ ModuleCat.{u} A,
-      IsRepresentationEmbedding F ∧
+      IsRepresentationEmbedding F ∧ F.Faithful ∧
       (∀ T : D k, T.obj.IsFiniteDimensional → Module.Finite k (RestrictScalars k A (F.obj T))) ∧
       (∀ ι : Type u, PreservesColimitsOfShape (Discrete ι) F) ∧
       PreservesFilteredColimitsOfSize.{u, u} F ∧
       (∀ T : D k, Cardinal.aleph0 ≤ T.obj.dim → dim k A (F.obj T) = T.obj.dim) :=
-  ⟨E.F, E.isRepresentationEmbedding, fun T hT ↦ E.fin ⟨T.obj, T.2, hT⟩,
+  ⟨E.F, E.isRepresentationEmbedding, E.faithful, fun T hT ↦ E.fin ⟨T.obj, T.2, hT⟩,
     Comparison.preservesCoproducts E.comparison E.exact,
     Comparison.preservesFilteredColimits E.comparison E.exact,
     Comparison.dim_eq E.comparison E.fin⟩

@@ -20,7 +20,10 @@ arbitrary dimension without a direct summand isomorphic to the simple injective.
 **Theorem A.** There is a representation embedding `F : D → Mod A` that sends
 finite-dimensional modules to finite-dimensional modules, commutes with arbitrary
 direct sums and filtered colimits, and satisfies `dim F(T) = dim T` for
-infinite-dimensional `T`.
+infinite-dimensional `T`. The formal statement also asserts that `F` is faithful,
+which the paper derives from Theorem 5.2; a representation embedding, as defined
+by Bongartz and in the paper, is exact, preserves indecomposability and reflects
+isomorphism classes.
 
 **Corollary 1.1.** For every infinite cardinal `κ`, `A` has `2^κ` pairwise
 non-isomorphic indecomposable modules of dimension `κ` with

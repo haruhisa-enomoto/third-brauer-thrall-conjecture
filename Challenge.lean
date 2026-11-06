@@ -25,7 +25,7 @@ its three principal results:
 
 * `TheoremA` (Theorem A = Theorem 5.2): a representation-infinite
   finite-dimensional algebra over an algebraically closed field admits a
-  representation embedding `F : D → Mod A` from the Kronecker modules without
+  faithful representation embedding `F : D → Mod A` from the Kronecker modules without
   simple injective summand, sending finite-dimensional modules to
   finite-dimensional modules, commuting with arbitrary direct sums and
   filtered colimits, and preserving the dimension of infinite-dimensional
@@ -177,12 +177,14 @@ def ClosedUnderColimits : Prop :=
     HasFilteredColimitsOfSize.{u, u} (D k) ∧
       ∀ ι : Type u, HasColimitsOfShape (Discrete ι) (D k)
 
-/-- Theorem A (Theorem 5.2). -/
+/-- Theorem A (Theorem 5.2). The embedding is also faithful: the paper's definition of a
+representation embedding, following Bongartz, does not include faithfulness, and the paper notes
+after Theorem A that Theorem 5.2 also shows the functors to be faithful. -/
 def TheoremA : Prop :=
   ∀ (k : Type u) [Field k] [IsAlgClosed k] (A : Type u) [Ring A] [Algebra k A]
     [FiniteDimensional k A], ¬ IsRepresentationFinite A →
     ∃ F : D k ⥤ ModuleCat.{u} A,
-      IsRepresentationEmbedding F ∧
+      IsRepresentationEmbedding F ∧ F.Faithful ∧
       (∀ T : D k, T.obj.IsFiniteDimensional → Module.Finite k (RestrictScalars k A (F.obj T))) ∧
       (∀ ι : Type u, PreservesColimitsOfShape (Discrete ι) F) ∧
       PreservesFilteredColimitsOfSize.{u, u} F ∧
@@ -264,9 +266,9 @@ end LargeIndecomposable.Statement
 universe u
 
 /-- **Theorem A.** A representation-infinite finite-dimensional algebra over an
-algebraically closed field admits a representation embedding of the category `D`
-of Kronecker modules without the simple injective as a summand, closed under
-colimits, which preserves dimensions. -/
+algebraically closed field admits a faithful representation embedding of the
+category `D` of Kronecker modules without the simple injective as a summand,
+closed under colimits, which preserves dimensions. -/
 theorem LargeIndecomposable.Challenge.theoremA : LargeIndecomposable.Statement.TheoremA.{u} := by
   sorry
 
