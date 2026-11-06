@@ -122,8 +122,13 @@ The repository follows the layout of the
 [formalization.yaml](formalization.yaml). The workflow
 [Palomar preflight](.github/workflows/palomar-preflight.yml) runs Palomar's
 mechanical verification for a chosen commit. It
-[passed](verification/2026-11-05-arxiv/README.md) for commit `57dc712`. This is an advisory
-report; the formalization has not been submitted to the registry.
+[passed](verification/2026-11-05-arxiv/README.md) for commit `57dc712`, and again for
+commit `26160bb` (run 42139238901), which adds faithfulness to Theorem A.
+
+Commit `26160bb` is registered as
+[PALOMAR-2026-11-06-000009](https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-06-000009&version=1):
+Palomar's mechanical verification passed, and its editorial review identified no blocking
+problem. Palomar is a registry, not a journal; the review is not a human expert review.
 
 ## Website
 
